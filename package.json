@@ -27,6 +27,7 @@
         "react-dom": "17.0.1"
     },
     "devDependencies": {
+        "@tailwindcss/ui": "^0.7.2",
         "@testing-library/jest-dom": "^5.11.5",
         "@testing-library/react": "^11.1.1",
         "@types/node": "^14.14.6",
@@ -45,7 +46,12 @@
         "husky": "^4.3.0",
         "jest": "^26.6.3",
         "lint-staged": "^10.5.1",
+        "postcss-flexbugs-fixes": "^5.0.1",
+        "postcss-preset-env": "^6.7.0",
         "prettier": "^2.1.2",
+        "stylelint-config-recommended": "^3.0.0",
+        "tailwindcss": "1.8.10",
+        "tailwindcss-filters": "^3.0.0",
         "typescript": "^4.0.5"
     },
     "config": {
