@@ -1,5 +1,11 @@
-import { FC } from 'react';
+import LandingLayout from '@components/layouts/LandingLayout';
+import Hero from '@components/pages/index/Hero';
+import React, { FC } from 'react';
 
-const Index: FC = () => <h1 className="text-xl font-bold">Hello World</h1>;
+const Index: FC = () => (
+    <LandingLayout>
+        <Hero />
+    </LandingLayout>
+);
 
 export default Index;
