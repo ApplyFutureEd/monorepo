@@ -10,6 +10,14 @@
             "StackName": "amplify-students-dev-162403",
             "StackId": "arn:aws:cloudformation:ap-southeast-1:708772081646:stack/amplify-students-dev-162403/9cb4a140-229f-11eb-8e0e-066f4415ff9e",
             "AmplifyAppId": "d1myhy97cpodfp"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1myhy97cpodfp",
+                    "type": "cicd"
+                }
+            }
         }
     }
 }
