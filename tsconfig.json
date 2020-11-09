@@ -20,9 +20,9 @@
         "baseUrl": ".",
         "paths": {
             "@components/*": ["src/components/*"],
-            "@hooks/*": ["src/hooks/*"],
             "@pages/*": ["src/pages/*"],
             "@styles/*": ["src/styles/*"],
+            "@tests/*": ["src/tests/*"],
             "@utils/*": ["src/utils/*"]
         }
     },
