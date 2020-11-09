@@ -74,6 +74,7 @@
         "postcss-flexbugs-fixes": "^5.0.1",
         "postcss-preset-env": "^6.7.0",
         "prettier": "^2.1.2",
+        "prettier-plugin-tailwind": "^2.1.9",
         "stylelint-config-recommended": "^3.0.0",
         "tailwindcss": "1.9.6",
         "tailwindcss-filters": "^3.0.0",
