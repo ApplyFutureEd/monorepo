@@ -53,6 +53,7 @@
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
         "@next/bundle-analyzer": "10.0.1",
+        "@storybook/addon-knobs": "^6.0.28",
         "@tailwindcss/ui": "0.7.2",
         "@testing-library/jest-dom": "5.11.5",
         "@testing-library/react": "11.1.1",

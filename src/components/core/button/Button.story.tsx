@@ -1,5 +1,5 @@
 import { withKnobs } from '@storybook/addon-knobs';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import Button from './Button';
 
@@ -9,7 +9,7 @@ export default {
     decorators: [withKnobs]
 };
 
-export const withText = () => (
+export const withText = (): ReactNode => (
     <Button type="button" variant="primary">
         Hello Button
     </Button>
