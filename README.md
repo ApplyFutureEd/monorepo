@@ -1,6 +1,6 @@
-# Students
+[![codecov](https://codecov.io/gh/ApplyFutureEd/students/branch/master/graph/badge.svg?token=MqHvklJfgL)](https://codecov.io/gh/ApplyFutureEd/students)
 
-[ApplyFuture](https://www.applyfuture.com) is an online school application platform, totally free for students who want to apply for European Private Higher Education Institutions.
+> “The only way to go fast, is to go well.” ― Robert C. Martin, Clean Architecture
 
 ## 🤖 Scripts
 
