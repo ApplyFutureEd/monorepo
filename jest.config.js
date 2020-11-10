@@ -1,6 +1,12 @@
 module.exports = {
-    collectCoverageFrom: ['**/*.{ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
-    // we need to create this file
+    collectCoverageFrom: [
+        '**/*.{ts,tsx}',
+        '!**/*.d.ts',
+        '!**/node_modules/**',
+        '!**/*.story.tsx',
+        '!**/pages/*.tsx',
+        '!**/utils/*.ts'
+    ],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     transform: {
@@ -9,7 +15,6 @@ module.exports = {
     transformIgnorePatterns: ['/node_modules/'],
     moduleNameMapper: {
         '@components/(.*)': '<rootDir>/src/components/$1',
-        '@hooks/(.*)': '<rootDir>/src/hooks/$1',
         '@pages/(.*)': '<rootDir>/src/pages/$1',
         '@styles/(.*)': '<rootDir>/src/styles/$1',
         '@utils/(.*)': '<rootDir>/src/utils/$1'

@@ -7,7 +7,7 @@ const Hero: FC = () => {
 
     return (
         <div className="bg-white font-sans overflow-hidden relative">
-            <main className="lg:relative">
+            <div className="lg:relative">
                 <div className="mx-auto max-w-7xl pb-20 pt-16 text-center w-full lg:py-16 lg:text-left">
                     <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
                         <h1 className="text-3xl font-extrabold tracking-tight leading-10 text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-4xl xl:text-5xl">
@@ -23,21 +23,21 @@ const Hero: FC = () => {
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <a href="#students">
-                                    <Button type="button" variant="primary">
+                                    <Button variant="primary">
                                         {t('landing:hero-cta-student')}
                                     </Button>
                                 </a>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <a href="#schools">
-                                    <Button type="button" variant="secondary">
+                                    <Button variant="secondary">
                                         {t('landing:hero-cta-school')}
                                     </Button>
                                 </a>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <a href="#recruiters">
-                                    <Button type="button" variant="secondary">
+                                    <Button variant="secondary">
                                         {t('landing:hero-cta-recruiter')}
                                     </Button>
                                 </a>
@@ -52,7 +52,7 @@ const Hero: FC = () => {
                         alt=""
                     />
                 </div>
-            </main>
+            </div>
         </div>
     );
 };

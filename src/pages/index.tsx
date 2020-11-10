@@ -1,9 +1,9 @@
 import LandingLayout from '@components/layouts/LandingLayout';
-import Hero from '@components/pages/landing/Hero';
+import Hero from '@components/pages/landing/hero/Hero';
 import React, { FC } from 'react';
 
 const Landing: FC = () => (
-    <LandingLayout>
+    <LandingLayout title="Apply for the best school in Europe">
         <Hero />
     </LandingLayout>
 );

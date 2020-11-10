@@ -10,11 +10,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 module.exports = withBundleAnalyzer(
     withSourceMaps({
-        i18n: {
-            locales: ['en', 'cn', 'fr'],
-            defaultLocale: 'en'
-        },
-
         webpack: (config, { isServer }) => {
             config.node = {
                 fs: 'empty'
@@ -25,7 +20,6 @@ module.exports = withBundleAnalyzer(
             }
 
             config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-            config.resolve.alias['@hooks'] = path.join(__dirname, 'src/hooks');
             config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
             config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
             config.resolve.alias['@utils'] = path.join(__dirname, 'src/utils');

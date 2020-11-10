@@ -1,3 +1,4 @@
+import Loader from '@components/core/loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
@@ -5,12 +6,12 @@ import React, { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;
-    type: 'button' | 'submit' | 'reset';
-    variant: 'primary' | 'secondary' | 'danger';
+    type?: 'button' | 'submit' | 'reset';
+    variant?: 'primary' | 'secondary' | 'danger';
     loading?: boolean;
     disabled?: boolean;
-    icon?: IconProp;
-    iconPosition?: 'prepend' | 'append';
+    startIcon?: IconProp;
+    endIcon?: IconProp;
     onClick?: () => void;
 };
 
@@ -21,14 +22,14 @@ const Button: FC<Props> = (props) => {
         variant = 'primary',
         loading = false,
         disabled = false,
-        icon,
-        iconPosition = 'prepend',
+        startIcon,
+        endIcon,
         onClick,
         ...rest
     } = props;
 
     const baseClasses =
-        'items-center rounded-md border inline-flex text-base font-medium leading-6 px-4 py-2 duration-150 transition ease-in-out';
+        'font-sans items-center rounded-md border inline-flex text-base font-medium leading-6 px-4 py-2 duration-150 transition ease-in-out';
     const primaryClasses =
         'hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:shadow-outline-indigo focus:outline-none text-white';
     const secondaryClasses =
@@ -48,13 +49,11 @@ const Button: FC<Props> = (props) => {
     return (
         <span className="rounded-md shadow-sm inline-flex" {...rest}>
             <button type={type} disabled={disabled} className={classes} onClick={onClick}>
-                {iconPosition === 'prepend' && icon && (
-                    <FontAwesomeIcon icon={icon} className={cx({ 'mr-2': children })} />
+                {startIcon && (
+                    <FontAwesomeIcon icon={startIcon} className={cx({ 'mr-2': children })} />
                 )}
-                {loading ? '...' : children}
-                {iconPosition === 'append' && icon && (
-                    <FontAwesomeIcon icon={icon} className={cx({ 'ml-2': children })} />
-                )}
+                {loading ? <Loader /> : <span>{children}</span>}
+                {endIcon && <FontAwesomeIcon icon={endIcon} className={cx({ 'ml-2': children })} />}
             </button>
         </span>
     );

@@ -5,14 +5,14 @@
     "scripts": {
         "start": "next dev",
         "build": "next build && next export",
-        "storybook": "start-storybook -p 6000",
+        "storybook": "start-storybook -p 6006",
         "analyse:dev": "ANALYZE_BUNDLE=true yarn start",
         "analyse:prod": "ANALYZE_BUNDLE=true next build",
         "analyse:unused": "next-unused",
         "commit": "git add . && cz",
         "lint": "eslint --fix .",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-        "test": "jest",
+        "test": "jest --watch",
         "security:audit": "yarn audit",
         "packages:upgrade": "yarn upgrade-interactive --latest"
     },
@@ -40,8 +40,15 @@
             "eslint --fix"
         ]
     },
+    "jest": {
+        "collectCoverage": true,
+        "coveragePathIgnorePatterns": [
+            ".story.tsx"
+        ]
+    },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "1.2.32",
+        "@fortawesome/pro-light-svg-icons": "^5.15.1",
         "@fortawesome/react-fontawesome": "0.1.12",
         "classnames": "2.2.6",
         "next": "10.0.1",
@@ -53,13 +60,15 @@
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
         "@next/bundle-analyzer": "10.0.1",
-        "@storybook/addon-knobs": "^6.0.28",
+        "@storybook/addon-knobs": "^6.1.0-beta.6",
+        "@storybook/react": "^6.1.0-beta.6",
         "@tailwindcss/ui": "0.7.2",
         "@testing-library/jest-dom": "5.11.5",
         "@testing-library/react": "11.1.1",
         "@types/classnames": "2.2.11",
         "@types/node": "14.14.7",
         "@types/react": "16.9.56",
+        "@types/storybook__react": "^5.2.1",
         "@typescript-eslint/eslint-plugin": "4.7.0",
         "@typescript-eslint/parser": "4.7.0",
         "@welldone-software/why-did-you-render": "6.0.0-rc.1",

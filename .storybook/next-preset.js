@@ -29,6 +29,7 @@ module.exports = {
 
         newConfig.module.rules.push({
             test: /\.css$/,
+            include: path.resolve(__dirname, '../'),
             loaders: [
                 {
                     loader: 'postcss-loader',
@@ -39,10 +40,19 @@ module.exports = {
                         }
                     }
                 }
-            ],
-
-            include: path.resolve(__dirname, '../')
+            ]
         });
+
+        newConfig.module.rules.push({
+            test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+            include: path.resolve(__dirname, '../'),
+            loaders: ['file-loader']
+        });
+
+        newConfig.resolve.alias = {
+            ...newConfig.resolve.alias,
+            '@components': path.resolve(__dirname, '../src/components')
+        };
 
         return newConfig;
     }
