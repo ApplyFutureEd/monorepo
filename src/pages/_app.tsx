@@ -1,7 +1,10 @@
 import '@styles/index.css';
 
+import { whyDidYouRender } from '@utils/whyDidYouRender';
 import type { AppProps } from 'next/app';
-import { FC } from 'react';
+import React, { FC } from 'react';
+
+whyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return <Component {...pageProps} />;
