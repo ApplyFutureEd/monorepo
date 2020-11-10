@@ -1,5 +1,4 @@
 import Button from '@components/core/Button';
-import Image from 'next/image';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -47,10 +46,9 @@ const Hero: FC = () => {
                     </div>
                 </div>
                 <div className="h-64 relative w-full sm:h-72 md:h-96 lg:h-full lg:inset-y-0 lg:right-0 lg:absolute lg:w-1/2">
-                    <Image
+                    <img
                         className="h-full inset-0 object-contain absolute w-full lg:w-auto"
                         src="/static/images/landing/landing-hero.svg"
-                        layout="fill"
                         alt=""
                     />
                 </div>
