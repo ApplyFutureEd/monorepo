@@ -28,14 +28,14 @@ const Button: FC<Props> = (props) => {
     } = props;
 
     const baseClasses =
-        'inline-flex items-center px-4 py-2 border text-base leading-6 font-medium rounded-md transition ease-in-out duration-150';
+        'items-center rounded-md border inline-flex text-base font-medium leading-6 px-4 py-2 duration-150 transition ease-in-out';
     const primaryClasses =
-        'border-transparent text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700';
+        'hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:shadow-outline-indigo focus:outline-none text-white';
     const secondaryClasses =
-        'border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none active:text-gray-800 active:bg-gray-50';
+        'active:bg-gray-50 bg-white border-gray-300 focus:outline-none hover:text-gray-500 text-gray-700 active:text-gray-800';
     const dangerClasses =
-        'border-transparent text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red';
-    const disabledClasses = 'border-transparent text-gray-500 bg-indigo-100 cursor-not-allowed';
+        'hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:shadow-outline-red focus:outline-none text-white';
+    const disabledClasses = 'bg-indigo-100 border-transparent cursor-not-allowed text-gray-500';
 
     const classes = cx({
         [`${baseClasses}`]: true,
@@ -46,7 +46,7 @@ const Button: FC<Props> = (props) => {
     });
 
     return (
-        <span className="inline-flex rounded-md shadow-sm" {...rest}>
+        <span className="rounded-md shadow-sm inline-flex" {...rest}>
             <button type={type} disabled={disabled} className={classes} onClick={onClick}>
                 {iconPosition === 'prepend' && icon && (
                     <FontAwesomeIcon icon={icon} className={cx({ 'mr-2': children })} />
