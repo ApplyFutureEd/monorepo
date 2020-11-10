@@ -1,4 +1,4 @@
-import LandingLayout from '@components/layouts/LandingLayout';
+import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import Hero from '@components/pages/landing/hero/Hero';
 import React, { FC } from 'react';
 
