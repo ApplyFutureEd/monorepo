@@ -5,7 +5,6 @@ import React from 'react';
  * Applied in development environment, on the frontend only
  *
  * @see https://github.com/welldone-software/why-did-you-render
- * @returns {void}
  */
 export const whyDidYouRender = (): void => {
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {

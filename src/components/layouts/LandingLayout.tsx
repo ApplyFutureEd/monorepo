@@ -1,4 +1,4 @@
-import Head from '@components/core/Head';
+import Head from '@components/core/head/Head';
 import React, { FC, ReactNode } from 'react';
 
 type Props = {

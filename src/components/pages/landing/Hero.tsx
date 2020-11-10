@@ -1,4 +1,4 @@
-import Button from '@components/core/Button';
+import Button from '@components/core/button/Button';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
