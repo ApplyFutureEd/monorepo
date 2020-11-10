@@ -32,50 +32,50 @@ const Head: FC<HeadProps> = (props) => {
         WebFontLoader.load({
             custom: {
                 families: ['Inter var'],
-                urls: ['/static/fonts/inter/font.css']
+                urls: ['/assets/fonts/inter/font.css']
             }
         });
     }
 
     const fonts = [
         {
-            href: '/static/fonts/inter/Inter-Bold.woff',
+            href: '/assets/fonts/inter/Inter-Bold.woff',
             type: 'font/woff'
         },
         {
-            href: '/static/fonts/inter/Inter-Bold.woff2',
+            href: '/assets/fonts/inter/Inter-Bold.woff2',
             type: 'font/woff2'
         },
         {
-            href: '/static/fonts/inter/Inter-ExtraBold.woff',
+            href: '/assets/fonts/inter/Inter-ExtraBold.woff',
             type: 'font/woff'
         },
         {
-            href: '/static/fonts/inter/Inter-ExtraBold.woff2',
+            href: '/assets/fonts/inter/Inter-ExtraBold.woff2',
             type: 'font/woff2'
         },
         {
-            href: '/static/fonts/inter/Inter-Medium.woff',
+            href: '/assets/fonts/inter/Inter-Medium.woff',
             type: 'font/woff'
         },
         {
-            href: '/static/fonts/inter/Inter-Medium.woff2',
+            href: '/assets/fonts/inter/Inter-Medium.woff2',
             type: 'font/woff2'
         },
         {
-            href: '/static/fonts/inter/Inter-Regular.woff',
+            href: '/assets/fonts/inter/Inter-Regular.woff',
             type: 'font/woff'
         },
         {
-            href: '/static/fonts/inter/Inter-Regular.woff2',
+            href: '/assets/fonts/inter/Inter-Regular.woff2',
             type: 'font/woff2'
         },
         {
-            href: '/static/fonts/inter/Inter-SemiBold.woff',
+            href: '/assets/fonts/inter/Inter-SemiBold.woff',
             type: 'font/woff'
         },
         {
-            href: '/static/fonts/inter/Inter-SemiBold.woff2',
+            href: '/assets/fonts/inter/Inter-SemiBold.woff2',
             type: 'font/woff2'
         }
     ];
@@ -89,7 +89,7 @@ const Head: FC<HeadProps> = (props) => {
 
             <link rel="icon" href={favicon} />
 
-            <link rel="preload" as="style" href={'/static/fonts/inter/font.css'} />
+            <link rel="preload" as="style" href={'/assets/fonts/inter/font.css'} />
             {fonts.map((font) => (
                 <link
                     key={font.href}
