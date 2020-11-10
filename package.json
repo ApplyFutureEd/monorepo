@@ -12,7 +12,8 @@
         "commit": "git add . && cz",
         "lint": "eslint --fix .",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-        "test": "jest --watch",
+        "test": "jest",
+        "test:coverage": "jest && bash <(curl -s https://codecov.io/bash) -t 71bd4721-25ce-45c8-b597-839e27b55808",
         "security:audit": "yarn audit",
         "packages:upgrade": "yarn upgrade-interactive --latest"
     },
