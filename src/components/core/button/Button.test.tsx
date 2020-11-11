@@ -4,14 +4,14 @@ import { render, screen } from '@testing-library/react';
 
 describe('Button', () => {
     const baseClasses =
-        'items-center rounded-md border inline-flex text-base font-medium leading-6 px-4 py-2 duration-150 transition ease-in-out';
+        'inline-flex items-center px-4 py-2 font-sans text-base font-medium leading-6 border rounded-md transition duration-150 ease-in-out';
     const primaryClasses =
-        'hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:shadow-outline-indigo focus:outline-none text-white';
+        'text-white hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo';
     const secondaryClasses =
-        'active:bg-gray-50 bg-white border-gray-300 focus:outline-none hover:text-gray-500 text-gray-700 active:text-gray-800';
+        'hover:text-gray-500 text-gray-700 active:text-gray-800 active:bg-gray-50 bg-white border-gray-300 focus:outline-none';
     const dangerClasses =
-        'hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:shadow-outline-red focus:outline-none text-white';
-    const disabledClasses = 'bg-indigo-100 border-transparent cursor-not-allowed text-gray-500';
+        'text-white hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:outline-none focus:shadow-outline-red';
+    const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
 
     it('can render without crashing', () => {
         render(<Button variant="primary">Apply</Button>);

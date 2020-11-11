@@ -23,7 +23,7 @@ type Props = {
 const Loader: FC<Props> = (props) => {
     const { size = 'lg' } = props;
     return (
-        <div className="loader items-center inline-flex h-full justify-center w-full">
+        <div className="loader inline-flex items-center justify-center w-full h-full">
             <FontAwesomeIcon icon={faSpinnerThird} size={size} />
         </div>
     );
