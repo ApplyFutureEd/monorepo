@@ -1498,21 +1498,21 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-brands-svg-icons@^5.15.1":
+"@fortawesome/free-brands-svg-icons@5.15.1":
   version "5.15.1"
   resolved "https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/5.15.1/free-brands-svg-icons-5.15.1.tgz#1dc0563f4036639e53d24b8e532ea78a53ca2250"
   integrity sha512-pkTZIWn7iuliCCgV+huDfZmZb2UjslalXGDA2PcqOVUYJmYL11y6ooFiMJkJvUZu+xgAc1gZgQe+Px12mZF0CA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/pro-light-svg-icons@^5.15.1":
+"@fortawesome/pro-light-svg-icons@5.15.1":
   version "5.15.1"
   resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/5.15.1/pro-light-svg-icons-5.15.1.tgz#bbe0cff115f271419327dd8d77e2fcb7634004ad"
   integrity sha512-rtCrlbFlmEFaFqSnYwJ5muLq2pMKhHjqV6OIRqDT35mp2KH/sQgu+FrjfLz54kdjk6gjH+4toz3+cfWmpH5kYg==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/pro-solid-svg-icons@^5.15.1":
+"@fortawesome/pro-solid-svg-icons@5.15.1":
   version "5.15.1"
   resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/5.15.1/pro-solid-svg-icons-5.15.1.tgz#65f60a76b45655ff0bb774169ff1dedde4d1703b"
   integrity sha512-PUlwSvPLgsd1m3n6LQkKwJ9JnewagtcX9L/NpFK1IZ6IgVETXR8rpRlOXp0mbztQ28zUm5AawFgavjiYyLjCTg==
@@ -1886,7 +1886,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@storybook/addon-knobs@^6.1.0-beta.6":
+"@storybook/addon-knobs@6.1.0-beta.6":
   version "6.1.0-beta.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-6.1.0-beta.6.tgz#01cd762af24d1235013e9b9b23f56d1f768b65e7"
   integrity sha512-mGmYyXmeI0PyV4YNbrAfll/G7N1rmi3bTv47aqy5GriLbtZX/NZ3Rat3ATlprSx8pQB0di1ezDu/pbcI/ZO7Ow==
@@ -2433,7 +2433,7 @@
     ts-dedent "^1.1.1"
     webpack "^4.43.0"
 
-"@storybook/react@^6.1.0-beta.6":
+"@storybook/react@6.1.0-beta.6":
   version "6.1.0-beta.6"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.1.0-beta.6.tgz#0b0c48d7256f3463147a77f0c7cf19af653a1407"
   integrity sha512-3UTXaZESQvxgU7oBJW7hrEVKl1t+sBPtehKJBmotH2jDjdoYb2bVY78tGhs4Gl2P4D7ED8c0k/+DMQgEIzdmGQ==
@@ -3017,7 +3017,7 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
   integrity sha512-RJJrrySY7A8havqpGObOB4W92QXKJo63/jFLLgpvOtsGUqbQZ9Sbgl35KMm1DjC6j7AvmmU2bIno+3IyEaemaw==
 
-"@types/storybook__react@^5.2.1":
+"@types/storybook__react@5.2.1":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-5.2.1.tgz#b5fd1612f2e5846b2f441725ea946bafd7ab9edb"
   integrity sha512-p4QGO+VjEO3YxyWVHpPylNheA0JhStzoCg6RBTmdobrC0ZqLPEIIWu0pFkHlNkmGIiEKW2yDGFJooBe8M4Df0Q==
