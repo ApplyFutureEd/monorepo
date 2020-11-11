@@ -10,7 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 type Props = {
     autoCapitalize?: string;
     disabled?: boolean;
-    errors: Record<string, FieldError>;
+    errors?: Record<string, FieldError>;
     isLoading?: boolean;
     label: string;
     max?: string | number;
@@ -29,7 +29,7 @@ const Input: FC<Props> = (props) => {
         disabled = false,
         errors = {},
         isLoading = false,
-        label = '',
+        label,
         max,
         min,
         name,

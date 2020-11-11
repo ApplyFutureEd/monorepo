@@ -13,16 +13,16 @@ describe('Button', () => {
         'text-white hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:outline-none focus:shadow-outline-red';
     const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
 
-    it('can render without crashing', () => {
-        render(<Button variant="primary">Apply</Button>);
+    it('can render a button without crashing', () => {
+        render(<Button>Apply</Button>);
 
         const button = screen.getByRole('button');
 
         expect(button).toBeInTheDocument();
     });
 
-    it('can render text', () => {
-        render(<Button variant="primary">Apply</Button>);
+    it('can render a button with text', () => {
+        render(<Button>Apply</Button>);
 
         const button = screen.getByRole('button');
 

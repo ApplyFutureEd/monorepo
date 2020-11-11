@@ -1,5 +1,5 @@
-[![codecov](https://codecov.io/gh/ApplyFutureEd/students/branch/master/graph/badge.svg?token=MqHvklJfgL)](https://codecov.io/gh/ApplyFutureEd/students)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=ncloc&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
+[![codecov](https://codecov.io/gh/ApplyFutureEd/students/branch/master/graph/badge.svg?token=MqHvklJfgL)](https://codecov.io/gh/ApplyFutureEd/students)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=sqale_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=reliability_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=security_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
