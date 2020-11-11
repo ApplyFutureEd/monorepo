@@ -16,8 +16,7 @@ type Props = {
         | '7x'
         | '8x'
         | '9x'
-        | '10x'
-        | undefined;
+        | '10x';
 };
 
 const Loader: FC<Props> = (props) => {
