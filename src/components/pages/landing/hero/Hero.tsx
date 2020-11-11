@@ -6,7 +6,7 @@ const Hero: FC = () => {
     const { t } = useTranslation(['landing']);
 
     return (
-        <div className="relative font-sans bg-white overflow-hidden">
+        <section className="relative font-sans bg-white overflow-hidden">
             <div className="lg:relative">
                 <div className="mx-auto pb-20 pt-16 w-full max-w-7xl text-center lg:py-16 lg:text-left">
                     <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
@@ -53,7 +53,7 @@ const Hero: FC = () => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
