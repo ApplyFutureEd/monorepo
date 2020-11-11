@@ -1,24 +1,9 @@
 module.exports = {
-    root: true,
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        ecmaFeatures: {
-            jsx: true
-        }
-    },
-    settings: {
-        react: {
-            version: 'detect'
-        }
-    },
     env: {
-        browser: true,
         amd: true,
+        browser: true,
         node: true
     },
-    plugins: ['simple-import-sort'],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
@@ -28,19 +13,43 @@ module.exports = {
         'prettier/@typescript-eslint',
         'plugin:prettier/recommended'
     ],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true
+        },
+        ecmaVersion: 2020,
+        sourceType: 'module'
+    },
+    plugins: ['simple-import-sort'],
+    root: true,
     rules: {
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-        'react/react-in-jsx-scope': 'off',
-        'react/prop-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
-        'simple-import-sort/sort': 'error',
         'jsx-a11y/anchor-is-valid': [
             'error',
             {
+                aspects: ['invalidHref', 'preferButton'],
                 components: ['Link'],
-                specialLink: ['hrefLeft', 'hrefRight'],
-                aspects: ['invalidHref', 'preferButton']
+                specialLink: ['hrefLeft', 'hrefRight']
             }
-        ]
+        ],
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+        'react/jsx-sort-props': [
+            'error',
+            {
+                callbacksLast: true,
+                reservedFirst: true,
+                shorthandFirst: true
+            }
+        ],
+        'react/prop-types': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'simple-import-sort/sort': 'error',
+        'sort-keys': 'error'
+    },
+    settings: {
+        react: {
+            version: 'detect'
+        }
     }
 };

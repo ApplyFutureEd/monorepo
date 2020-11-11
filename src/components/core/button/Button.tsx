@@ -6,12 +6,12 @@ import React, { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;
+    disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
     variant?: 'primary' | 'secondary' | 'danger';
-    loading?: boolean;
-    disabled?: boolean;
     startIcon?: IconProp;
     endIcon?: IconProp;
+    isLoading?: boolean;
     onClick?: () => void;
 };
 
@@ -20,10 +20,10 @@ const Button: FC<Props> = (props) => {
         children,
         type = 'button',
         variant = 'primary',
-        loading = false,
         disabled = false,
         startIcon,
         endIcon,
+        isLoading = false,
         onClick,
         ...rest
     } = props;
@@ -48,12 +48,12 @@ const Button: FC<Props> = (props) => {
 
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
-            <button type={type} disabled={disabled} className={classes} onClick={onClick}>
+            <button className={classes} disabled={disabled} type={type} onClick={onClick}>
                 {startIcon && (
-                    <FontAwesomeIcon icon={startIcon} className={cx({ 'mr-2': children })} />
+                    <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
                 )}
-                {loading ? <Loader /> : <span>{children}</span>}
-                {endIcon && <FontAwesomeIcon icon={endIcon} className={cx({ 'ml-2': children })} />}
+                {isLoading ? <Loader /> : <span>{children}</span>}
+                {endIcon && <FontAwesomeIcon className={cx({ 'ml-2': children })} icon={endIcon} />}
             </button>
         </span>
     );

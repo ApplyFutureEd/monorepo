@@ -22,9 +22,9 @@ const Arguments: FC = () => {
                                     <div className="flex-shrink-0">
                                         <div className="flex items-center justify-center w-12 h-12 text-white bg-indigo-600 rounded-md">
                                             <FontAwesomeIcon
+                                                fixedWidth
                                                 icon={faHandHoldingUsd}
                                                 size="lg"
-                                                fixedWidth
                                             />
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@ const Arguments: FC = () => {
                                 <div className="flex">
                                     <div className="flex-shrink-0">
                                         <div className="flex items-center justify-center w-12 h-12 text-white bg-indigo-600 rounded-md">
-                                            <FontAwesomeIcon icon={faBuffer} size="lg" fixedWidth />
+                                            <FontAwesomeIcon fixedWidth icon={faBuffer} size="lg" />
                                         </div>
                                     </div>
                                     <div className="ml-4">
@@ -59,7 +59,7 @@ const Arguments: FC = () => {
                                 <div className="flex">
                                     <div className="flex-shrink-0">
                                         <div className="flex items-center justify-center w-12 h-12 text-white bg-indigo-600 rounded-md">
-                                            <FontAwesomeIcon icon={faEye} size="lg" fixedWidth />
+                                            <FontAwesomeIcon fixedWidth icon={faEye} size="lg" />
                                         </div>
                                     </div>
                                     <div className="ml-4">
@@ -78,39 +78,39 @@ const Arguments: FC = () => {
                     <div className="relative -mx-4 mt-10 lg:mt-0">
                         <svg
                             className="left-1/2 absolute transform -translate-x-1/2 translate-y-16 lg:hidden"
-                            width="784"
-                            height="404"
                             fill="none"
-                            viewBox="0 0 784 404">
+                            height="404"
+                            viewBox="0 0 784 404"
+                            width="784">
                             <defs>
                                 <pattern
-                                    id="ca9667ae-9f92-4be7-abcb-9e3d727f2941"
-                                    x="0"
-                                    y="0"
-                                    width="20"
                                     height="20"
-                                    patternUnits="userSpaceOnUse">
+                                    id="ca9667ae-9f92-4be7-abcb-9e3d727f2941"
+                                    patternUnits="userSpaceOnUse"
+                                    width="20"
+                                    x="0"
+                                    y="0">
                                     <rect
-                                        x="0"
-                                        y="0"
-                                        width="4"
-                                        height="4"
                                         className="text-gray-200"
                                         fill="currentColor"
+                                        height="4"
+                                        width="4"
+                                        x="0"
+                                        y="0"
                                     />
                                 </pattern>
                             </defs>
                             <rect
-                                width="784"
-                                height="404"
                                 fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)"
+                                height="404"
+                                width="784"
                             />
                         </svg>
                         <img
-                            className="relative mx-auto"
-                            src="/assets/images/landing/landing-arguments.svg"
                             alt=""
+                            className="relative mx-auto"
                             loading="lazy"
+                            src="/assets/images/landing/landing-arguments.svg"
                         />
                     </div>
                 </div>

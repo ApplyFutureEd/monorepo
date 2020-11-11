@@ -4,9 +4,9 @@ import { withKnobs } from '@storybook/addon-knobs';
 import React, { ReactNode } from 'react';
 
 export default {
-    title: 'Button',
     component: Button,
-    decorators: [withKnobs]
+    decorators: [withKnobs],
+    title: 'Button'
 };
 
 export const Primary = (): ReactNode => <Button variant="primary">Apply</Button>;
@@ -16,25 +16,25 @@ export const Secondary = (): ReactNode => <Button variant="secondary">Apply</But
 export const Danger = (): ReactNode => <Button variant="danger">Delete</Button>;
 
 export const Disabled = (): ReactNode => (
-    <Button variant="primary" disabled>
+    <Button disabled variant="primary">
         Apply
     </Button>
 );
 
 export const StartIcon = (): ReactNode => (
-    <Button variant="primary" startIcon={faArrowLeft}>
+    <Button startIcon={faArrowLeft} variant="primary">
         Previous
     </Button>
 );
 
 export const EndIcon = (): ReactNode => (
-    <Button variant="primary" endIcon={faArrowRight}>
+    <Button endIcon={faArrowRight} variant="primary">
         Next
     </Button>
 );
 
 export const Loading = (): ReactNode => (
-    <Button variant="primary" loading>
+    <Button isLoading variant="primary">
         Apply
     </Button>
 );

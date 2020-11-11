@@ -15,10 +15,10 @@ export const initWhyDidYouRender = (): void => {
             'Initializing WhyDidYouRender, to help you locate unnecessary re-renders during development. See https://github.com/welldone-software/why-did-you-render'
         );
         whyDidYouRender(React, {
-            trackAllPureComponents: true,
-            trackHooks: true,
+            collapseGroups: true,
             logOwnerReasons: true,
-            collapseGroups: true
+            trackAllPureComponents: true,
+            trackHooks: true
         });
     }
 };

@@ -10,6 +10,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 module.exports = withBundleAnalyzer(
     withSourceMaps({
+        poweredByHeader: false,
         webpack: (config, { isServer }) => {
             config.node = {
                 fs: 'empty'
@@ -25,8 +26,6 @@ module.exports = withBundleAnalyzer(
             config.resolve.alias['@utils'] = path.join(__dirname, 'src/utils');
 
             return config;
-        },
-
-        poweredByHeader: false
+        }
     })
 );

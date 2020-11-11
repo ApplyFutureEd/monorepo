@@ -67,7 +67,7 @@ describe('Button', () => {
 
     it('can render a disabled button', () => {
         render(
-            <Button variant="primary" disabled>
+            <Button disabled variant="primary">
                 Apply
             </Button>
         );
@@ -83,7 +83,7 @@ describe('Button', () => {
 
     it('can render a button with a start icon', () => {
         render(
-            <Button variant="primary" startIcon={faArrowLeft}>
+            <Button startIcon={faArrowLeft} variant="primary">
                 Previous
             </Button>
         );
@@ -97,7 +97,7 @@ describe('Button', () => {
 
     it('can render a button with a start icon', () => {
         render(
-            <Button variant="primary" endIcon={faArrowRight}>
+            <Button endIcon={faArrowRight} variant="primary">
                 Next
             </Button>
         );
@@ -111,7 +111,7 @@ describe('Button', () => {
 
     it('can render a loading button', () => {
         render(
-            <Button variant="primary" loading>
+            <Button isLoading variant="primary">
                 Apply
             </Button>
         );

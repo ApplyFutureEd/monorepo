@@ -2,6 +2,11 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    future: {
+        purgeLayersByDefault: true,
+        removeDeprecatedGapUtilities: true
+    },
+    plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
     purge: false,
     theme: {
         container: {
@@ -10,8 +15,8 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                serif: [...defaultTheme.fontFamily.serif],
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                serif: [...defaultTheme.fontFamily.serif]
             }
         },
         inset: {
@@ -20,10 +25,5 @@ module.exports = {
             4: '4rem',
             8: '8rem'
         }
-    },
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true
-    },
-    plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')]
+    }
 };

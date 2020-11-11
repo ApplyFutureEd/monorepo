@@ -84,32 +84,32 @@ const Head: FC<HeadProps> = (props) => {
         <NextHead>
             <meta charSet="UTF-8" />
             <title>{title}</title>
-            <meta name="description" content={description} />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta content={description} name="description" />
+            <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-            <link rel="icon" href={favicon} />
+            <link href={favicon} rel="icon" />
 
-            <link rel="preload" as="style" href={'/assets/fonts/inter/font.css'} />
+            <link as="style" href={'/assets/fonts/inter/font.css'} rel="preload" />
             {fonts.map((font) => (
                 <link
                     key={font.href}
-                    rel="preload"
                     as="font"
-                    href={font.href}
-                    type={font.type}
                     crossOrigin="anonymous"
+                    href={font.href}
+                    rel="preload"
+                    type={font.type}
                 />
             ))}
 
-            <meta property="og:url" content={url} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta name="twitter:site" content={url} />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:image" content={ogImage} />
-            <meta property="og:image" content={ogImage} />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
+            <meta content={url} property="og:url" />
+            <meta content={title} property="og:title" />
+            <meta content={description} property="og:description" />
+            <meta content={url} name="twitter:site" />
+            <meta content="summary_large_image" name="twitter:card" />
+            <meta content={ogImage} name="twitter:image" />
+            <meta content={ogImage} property="og:image" />
+            <meta content="1200" property="og:image:width" />
+            <meta content="630" property="og:image:height" />
         </NextHead>
     );
 };

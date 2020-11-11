@@ -47,9 +47,9 @@ const Hero: FC = () => {
                 </div>
                 <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
                     <img
+                        alt=""
                         className="absolute inset-0 w-full h-full object-contain lg:w-auto"
                         src="/assets/images/landing/landing-hero.svg"
-                        alt=""
                     />
                 </div>
             </div>

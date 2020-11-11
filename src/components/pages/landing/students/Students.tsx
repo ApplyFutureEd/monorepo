@@ -6,36 +6,36 @@ const Students: FC = () => {
     const { t } = useTranslation(['landing']);
 
     return (
-        <section id="students" className="py-8 font-sans bg-white overflow-hidden lg:py-16">
+        <section className="py-8 font-sans bg-white overflow-hidden lg:py-16" id="students">
             <div className="relative mx-auto px-4 max-w-xl sm:px-6 lg:px-8 lg:max-w-screen-xl">
                 <svg
                     className="right-full absolute hidden transform translate-x-1/2 translate-y-12 lg:block"
-                    width="404"
-                    height="784"
                     fill="none"
-                    viewBox="0 0 404 784">
+                    height="784"
+                    viewBox="0 0 404 784"
+                    width="404">
                     <defs>
                         <pattern
-                            id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d"
-                            x="0"
-                            y="0"
-                            width="20"
                             height="20"
-                            patternUnits="userSpaceOnUse">
+                            id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d"
+                            patternUnits="userSpaceOnUse"
+                            width="20"
+                            x="0"
+                            y="0">
                             <rect
-                                x="0"
-                                y="0"
-                                width="4"
-                                height="4"
                                 className="text-gray-100"
                                 fill="currentColor"
+                                height="4"
+                                width="4"
+                                x="0"
+                                y="0"
                             />
                         </pattern>
                     </defs>
                     <rect
-                        width="404"
-                        height="784"
                         fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"
+                        height="784"
+                        width="404"
                     />
                 </svg>
 
@@ -59,40 +59,40 @@ const Students: FC = () => {
                         <div className="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
                             <svg
                                 className="left-1/2 absolute transform -translate-x-1/2 translate-y-16 lg:hidden"
-                                width="784"
-                                height="404"
                                 fill="none"
-                                viewBox="0 0 784 404">
+                                height="404"
+                                viewBox="0 0 784 404"
+                                width="784">
                                 <defs>
                                     <pattern
-                                        id="e80155a9-dfde-425a-b5ea-1f6fadd20131"
-                                        x="0"
-                                        y="0"
-                                        width="20"
                                         height="20"
-                                        patternUnits="userSpaceOnUse">
+                                        id="e80155a9-dfde-425a-b5ea-1f6fadd20131"
+                                        patternUnits="userSpaceOnUse"
+                                        width="20"
+                                        x="0"
+                                        y="0">
                                         <rect
-                                            x="0"
-                                            y="0"
-                                            width="4"
-                                            height="4"
                                             className="text-gray-100"
                                             fill="currentColor"
+                                            height="4"
+                                            width="4"
+                                            x="0"
+                                            y="0"
                                         />
                                     </pattern>
                                 </defs>
                                 <rect
-                                    width="784"
-                                    height="404"
                                     fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)"
+                                    height="404"
+                                    width="784"
                                 />
                             </svg>
                             <img
-                                className="relative mx-auto"
-                                width="590"
-                                src="/assets/images/landing/landing-students.svg"
                                 alt=""
+                                className="relative mx-auto"
                                 loading="lazy"
+                                src="/assets/images/landing/landing-students.svg"
+                                width="590"
                             />
                         </div>
                     </div>

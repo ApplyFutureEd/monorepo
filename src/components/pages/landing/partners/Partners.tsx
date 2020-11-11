@@ -14,44 +14,44 @@ const Partners: FC = () => {
                 <div className="grid gap-0.5 grid-cols-2 mt-6 md:grid-cols-3 lg:mt-8">
                     <div className="filter-grayscale hover:filter-none flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="Alain Ducasse Cooking School logo"
                             className="max-h-12"
                             src="/assets/images/landing/partners-logo-ducasse.svg"
-                            alt="Alain Ducasse Cooking School logo"
                         />
                     </div>
                     <div className="filter-grayscale hover:filter-none flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="La Rochelle Business School logo"
                             className="max-h-12"
                             src="/assets/images/landing/partners-logo-larochelle.png"
-                            alt="La Rochelle Business School logo"
                         />
                     </div>
                     <div className="filter-grayscale hover:filter-none flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="Glion Institute of Higher Education logo"
                             className="max-h-12"
                             src="/assets/images/landing/partners-logo-glion.svg"
-                            alt="Glion Institute of Higher Education logo"
                         />
                     </div>
                     <div className="filter-grayscale flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="Les Roches International School of Hotel Management logo"
                             className="max-h-6"
                             src="/assets/images/landing/partners-logo-lesroches.svg"
-                            alt="Les Roches International School of Hotel Management logo"
                         />
                     </div>
                     <div className="filter-grayscale hover:filter-none flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="South Champagne Business School logo"
                             className="max-h-12"
                             src="/assets/images/landing/partners-logo-scbs.png"
-                            alt="South Champagne Business School logo"
                         />
                     </div>
                     <div className="filter-grayscale hover:filter-none flex col-span-1 justify-center px-8 py-8 bg-gray-50">
                         <img
+                            alt="Sup de Luxe logo"
                             className="max-h-16"
                             src="/assets/images/landing/partners-logo-supdeluxe.png"
-                            alt="Sup de Luxe logo"
                         />
                     </div>
                 </div>
