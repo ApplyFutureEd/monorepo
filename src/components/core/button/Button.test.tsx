@@ -9,6 +9,8 @@ describe('Button', () => {
         'text-white hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo';
     const secondaryClasses =
         'hover:text-gray-500 text-gray-700 active:text-gray-800 active:bg-gray-50 bg-white border-gray-300 focus:outline-none';
+    const successClasses =
+        'text-white bg-green-400 focus:border-green-700 border-transparent focus:outline-none focus:shadow-outline-green cursor-default';
     const dangerClasses =
         'text-white hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:outline-none focus:shadow-outline-red';
     const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
@@ -37,6 +39,7 @@ describe('Button', () => {
         expect(button).toHaveClass(baseClasses);
         expect(button).toHaveClass(primaryClasses);
         expect(button).not.toHaveClass(secondaryClasses);
+        expect(button).not.toHaveClass(successClasses);
         expect(button).not.toHaveClass(dangerClasses);
         expect(button).not.toHaveClass(disabledClasses);
     });
@@ -49,6 +52,20 @@ describe('Button', () => {
         expect(button).toHaveClass(baseClasses);
         expect(button).toHaveClass(secondaryClasses);
         expect(button).not.toHaveClass(primaryClasses);
+        expect(button).not.toHaveClass(successClasses);
+        expect(button).not.toHaveClass(dangerClasses);
+        expect(button).not.toHaveClass(disabledClasses);
+    });
+
+    it('can render a success variant button', () => {
+        render(<Button variant="success">Sent</Button>);
+
+        const button = screen.getByRole('button');
+
+        expect(button).toHaveClass(baseClasses);
+        expect(button).toHaveClass(successClasses);
+        expect(button).not.toHaveClass(primaryClasses);
+        expect(button).not.toHaveClass(secondaryClasses);
         expect(button).not.toHaveClass(dangerClasses);
         expect(button).not.toHaveClass(disabledClasses);
     });
@@ -62,6 +79,7 @@ describe('Button', () => {
         expect(button).toHaveClass(dangerClasses);
         expect(button).not.toHaveClass(primaryClasses);
         expect(button).not.toHaveClass(secondaryClasses);
+        expect(button).not.toHaveClass(successClasses);
         expect(button).not.toHaveClass(disabledClasses);
     });
 
@@ -78,6 +96,7 @@ describe('Button', () => {
         expect(button).toHaveClass(disabledClasses);
         expect(button).not.toHaveClass(primaryClasses);
         expect(button).not.toHaveClass(secondaryClasses);
+        expect(button).not.toHaveClass(successClasses);
         expect(button).not.toHaveClass(dangerClasses);
     });
 

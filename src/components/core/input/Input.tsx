@@ -2,20 +2,20 @@ import Tooltip from '@components/core/tooltip/Tooltip';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
+import { FieldInputProps, FieldMetaProps } from 'formik';
 import React, { FC, ReactNode } from 'react';
-import { FieldError } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
     autoCapitalize?: string;
     disabled?: boolean;
-    errors?: Record<string, FieldError>;
+    field?: FieldInputProps<string>;
     isLoading?: boolean;
     label: string;
     max?: string | number;
+    meta?: FieldMetaProps<string>;
     min?: string | number;
-    name: string;
     optional?: boolean;
     placeholder?: string;
     step?: string | number;
@@ -27,12 +27,12 @@ const Input: FC<Props> = (props) => {
     const {
         autoCapitalize = undefined,
         disabled = false,
-        errors = {},
+        field,
         isLoading = false,
         label,
         max,
+        meta,
         min,
-        name,
         optional = false,
         placeholder = '',
         step,
@@ -42,12 +42,12 @@ const Input: FC<Props> = (props) => {
     } = props;
 
     const { t } = useTranslation(['common']);
+    const onError = Boolean(meta?.touched && meta?.error);
 
     const baseClasses = 'form-input py-input-y block w-full sm:text-sm sm:leading-5"';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
-    const onError = errors[name];
 
     const classes = cx({
         [`${baseClasses}`]: true,
@@ -69,7 +69,7 @@ const Input: FC<Props> = (props) => {
     }
 
     return (
-        <label className="font-sans" htmlFor={name} {...rest}>
+        <label className="font-sans" htmlFor={field?.name} {...rest}>
             <Tooltip content={tooltip}>
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
@@ -86,12 +86,14 @@ const Input: FC<Props> = (props) => {
                     autoCapitalize={autoCapitalize}
                     className={classes}
                     disabled={disabled}
+                    id={field?.name}
                     max={max}
                     min={min}
-                    name={name}
                     placeholder={placeholder}
                     step={step}
                     type={type}
+                    onBlur={field?.onBlur}
+                    onChange={field?.onChange}
                 />
                 {onError && (
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -104,7 +106,11 @@ const Input: FC<Props> = (props) => {
                     </div>
                 )}
             </div>
-            {onError && <p className="mt-2 text-red-600 text-sm">{errors[name].message}</p>}
+            {onError && (
+                <p className="mt-2 text-red-600 text-sm" id={`${field?.name}-error`}>
+                    {meta?.error}
+                </p>
+            )}
         </label>
     );
 };

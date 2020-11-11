@@ -13,6 +13,8 @@ export const Primary = (): ReactNode => <Button variant="primary">Apply</Button>
 
 export const Secondary = (): ReactNode => <Button variant="secondary">Apply</Button>;
 
+export const Success = (): ReactNode => <Button variant="success">Sent</Button>;
+
 export const Danger = (): ReactNode => <Button variant="danger">Delete</Button>;
 
 export const Disabled = (): ReactNode => (

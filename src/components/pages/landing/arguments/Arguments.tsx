@@ -13,7 +13,7 @@ const Arguments: FC = () => {
                 <div className="relative lg:grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                     <div className="relative">
                         <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
-                            {t('why-headline')}
+                            {t('landing:why-headline')}
                         </h2>
 
                         <ul className="mt-10">
@@ -30,10 +30,10 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('why-argument-1')}</li>
+                                            <li>{t('landing:why-argument-1')}</li>
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
-                                            {t('why-argument-description-1')}
+                                            {t('landing:why-argument-description-1')}
                                         </p>
                                     </div>
                                 </div>
@@ -47,10 +47,10 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('why-argument-2')}</li>
+                                            <li>{t('landing:why-argument-2')}</li>
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
-                                            {t('why-argument-description-2')}
+                                            {t('landing:why-argument-description-2')}
                                         </p>
                                     </div>
                                 </div>
@@ -64,10 +64,10 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('why-argument-3')}</li>
+                                            <li>{t('landing:why-argument-3')}</li>
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
-                                            {t('why-argument-description-3')}
+                                            {t('landing:why-argument-description-3')}
                                         </p>
                                     </div>
                                 </div>

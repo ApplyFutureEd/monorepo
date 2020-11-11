@@ -50,7 +50,7 @@ const Process: FC = () => {
                     <div className="lg:grid lg:gap-8 lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center">
                         <div className="lg:col-start-2">
                             <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
-                                {t('how-headline')}
+                                {t('landing:how-headline')}
                             </h2>
 
                             <ul className="mt-10">
@@ -67,10 +67,10 @@ const Process: FC = () => {
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                                {t('how-argument-1')}
+                                                {t('landing:how-argument-1')}
                                             </h3>
                                             <p className="mt-2 text-gray-500 text-base leading-6">
-                                                {t('how-argument-description-1')}
+                                                {t('landing:how-argument-description-1')}
                                             </p>
                                         </div>
                                     </div>
@@ -88,10 +88,10 @@ const Process: FC = () => {
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                                {t('how-argument-2')}
+                                                {t('landing:how-argument-2')}
                                             </h3>
                                             <p className="mt-2 text-gray-500 text-base leading-6">
-                                                {t('how-argument-description-2')}
+                                                {t('landing:how-argument-description-2')}
                                             </p>
                                         </div>
                                     </div>
@@ -109,10 +109,10 @@ const Process: FC = () => {
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                                {t('how-argument-3')}
+                                                {t('landing:how-argument-3')}
                                             </h3>
                                             <p className="mt-2 text-gray-500 text-base leading-6">
-                                                {t('how-argument-description-3')}
+                                                {t('landing:how-argument-description-3')}
                                             </p>
                                         </div>
                                     </div>
@@ -130,10 +130,10 @@ const Process: FC = () => {
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                                {t('how-argument-4')}
+                                                {t('landing:how-argument-4')}
                                             </h3>
                                             <p className="mt-2 text-gray-500 text-base leading-6">
-                                                {t('how-argument-description-4')}
+                                                {t('landing:how-argument-description-4')}
                                             </p>
                                         </div>
                                     </div>
@@ -151,10 +151,10 @@ const Process: FC = () => {
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                                {t('how-argument-5')}
+                                                {t('landing:how-argument-5')}
                                             </h3>
                                             <p className="mt-2 text-gray-500 text-base leading-6">
-                                                {t('how-argument-description-5')}
+                                                {t('landing:how-argument-description-5')}
                                             </p>
                                         </div>
                                     </div>

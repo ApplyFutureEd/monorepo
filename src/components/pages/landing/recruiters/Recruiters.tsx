@@ -43,13 +43,13 @@ const Recruiters: FC = () => {
                     <div className="lg:grid lg:gap-8 lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center">
                         <div className="lg:col-start-2">
                             <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
-                                {t('recruiters-headline')}
+                                {t('landing:recruiters-headline')}
                             </h2>
                             <p className="mt-3 text-gray-500 text-lg leading-7">
-                                {t('recruiters-paragraph')}
+                                {t('landing:recruiters-paragraph')}
                             </p>
                             <div className="flex justify-center mt-6">
-                                <Button variant="primary">{t('recruiters-cta')}</Button>
+                                <Button variant="primary">{t('landing:recruiters-cta')}</Button>
                             </div>
                         </div>
 

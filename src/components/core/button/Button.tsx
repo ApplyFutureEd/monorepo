@@ -8,7 +8,7 @@ type Props = {
     children: ReactNode;
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
-    variant?: 'primary' | 'secondary' | 'danger';
+    variant?: 'primary' | 'secondary' | 'success' | 'danger';
     startIcon?: IconProp;
     endIcon?: IconProp;
     isLoading?: boolean;
@@ -34,6 +34,8 @@ const Button: FC<Props> = (props) => {
         'text-white hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo';
     const secondaryClasses =
         'hover:text-gray-500 text-gray-700 active:text-gray-800 active:bg-gray-50 bg-white border-gray-300 focus:outline-none';
+    const successClasses =
+        'text-white bg-green-400 focus:border-green-700 border-transparent focus:outline-none focus:shadow-outline-green cursor-default';
     const dangerClasses =
         'text-white hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:outline-none focus:shadow-outline-red';
     const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
@@ -42,6 +44,7 @@ const Button: FC<Props> = (props) => {
         [`${baseClasses}`]: true,
         [`${primaryClasses}`]: !disabled && variant === 'primary',
         [`${secondaryClasses}`]: !disabled && variant === 'secondary',
+        [`${successClasses}`]: !disabled && variant === 'success',
         [`${dangerClasses}`]: !disabled && variant === 'danger',
         [`${disabledClasses}`]: disabled
     });

@@ -11,18 +11,18 @@ const Schools: FC = () => {
                 <div className="relative lg:grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                     <div className="relative">
                         <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
-                            {t('schools-headline')}
+                            {t('landing:schools-headline')}
                         </h2>
                         <p className="mt-3 text-gray-500 text-lg leading-7">
-                            {t('schools-paragraph-1')}
+                            {t('landing:schools-paragraph-1')}
                         </p>
                         <p className="mt-3 text-gray-500 text-lg leading-7">
-                            {t('schools-paragraph-2')}
+                            {t('landing:schools-paragraph-2')}
                         </p>
                         <div className="flex justify-center mt-6">
                             <a href="#contact">
                                 <Button type="button" variant="primary">
-                                    {t('schools-cta')}
+                                    {t('landing:schools-cta')}
                                 </Button>
                             </a>
                         </div>
