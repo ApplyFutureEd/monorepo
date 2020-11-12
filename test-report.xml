@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/paul/projects/applyfuture/students/src/components/core/loader/Loader.test.tsx">
-    <testCase name="Loader can render without crashing" duration="104"/>
-  </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/layouts/landing-layout/LandingLayout.test.tsx">
     <testCase name="LandingLayout can render without crashing" duration="29"/>
   </file>
-  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/arguments/Arguments.test.tsx">
-    <testCase name="Arguments can render without crashing" duration="299"/>
-  </file>
-  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/process/Process.test.tsx">
-    <testCase name="Process can render without crashing" duration="251"/>
-  </file>
-  <file path="/home/paul/projects/applyfuture/students/src/components/core/input/Input.test.tsx">
-    <testCase name="Input can render an input without crashing" duration="101"/>
-    <testCase name="Input can render a default input" duration="21"/>
-    <testCase name="Input can render an input with a placeholder" duration="5"/>
-    <testCase name="Input can render an input with a tooltip" duration="79"/>
-    <testCase name="Input can render an input with optional label" duration="4"/>
-    <testCase name="Input can render a disabled input" duration="17"/>
-    <testCase name="Input can render an onError input" duration="25"/>
-    <testCase name="Input can render a skeleton when loading" duration="17"/>
+  <file path="/home/paul/projects/applyfuture/students/src/components/core/loader/Loader.test.tsx">
+    <testCase name="Loader can render without crashing" duration="92"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/core/button/Button.test.tsx">
-    <testCase name="Button can render a button without crashing" duration="54"/>
-    <testCase name="Button can render a button with text" duration="18"/>
-    <testCase name="Button can render a primary variant button" duration="23"/>
-    <testCase name="Button can render a secondary variant button" duration="13"/>
-    <testCase name="Button can render a success variant button" duration="17"/>
-    <testCase name="Button can render a danger variant button" duration="10"/>
-    <testCase name="Button can render a disabled button" duration="14"/>
-    <testCase name="Button can render a button with a start icon" duration="51"/>
-    <testCase name="Button can render a button with a start icon" duration="18"/>
+    <testCase name="Button can render a button without crashing" duration="61"/>
+    <testCase name="Button can render a button with text" duration="23"/>
+    <testCase name="Button can render a primary variant button" duration="15"/>
+    <testCase name="Button can render a secondary variant button" duration="14"/>
+    <testCase name="Button can render a success variant button" duration="14"/>
+    <testCase name="Button can render a danger variant button" duration="12"/>
+    <testCase name="Button can render a disabled button" duration="7"/>
+    <testCase name="Button can render a button with a start icon" duration="50"/>
+    <testCase name="Button can render a button with a start icon" duration="13"/>
     <testCase name="Button can render a loading button" duration="19"/>
   </file>
-  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/partners/Partners.test.tsx">
-    <testCase name="Partners can render without crashing" duration="109"/>
+  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/arguments/Arguments.test.tsx">
+    <testCase name="Arguments can render without crashing" duration="205"/>
+  </file>
+  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/process/Process.test.tsx">
+    <testCase name="Process can render without crashing" duration="283"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/recruiters/Recruiters.test.tsx">
-    <testCase name="Recruiters can render without crashing" duration="76"/>
+    <testCase name="Recruiters can render without crashing" duration="100"/>
+  </file>
+  <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/partners/Partners.test.tsx">
+    <testCase name="Partners can render without crashing" duration="168"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/hero/Hero.test.tsx">
-    <testCase name="Hero can render without crashing" duration="46"/>
+    <testCase name="Hero can render without crashing" duration="67"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/students/Students.test.tsx">
-    <testCase name="Students can render without crashing" duration="42"/>
+    <testCase name="Students can render without crashing" duration="40"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/schools/Schools.test.tsx">
-    <testCase name="Schools can render without crashing" duration="44"/>
+    <testCase name="Schools can render without crashing" duration="32"/>
   </file>
   <file path="/home/paul/projects/applyfuture/students/src/components/pages/landing/contact/Contact.test.tsx">
-    <testCase name="Contact can render without crashing" duration="126"/>
+    <testCase name="Contact can render without crashing" duration="122"/>
+  </file>
+  <file path="/home/paul/projects/applyfuture/students/src/components/core/input/Input.test.tsx">
+    <testCase name="Input can render an input without crashing" duration="59"/>
+    <testCase name="Input can render a default input" duration="18"/>
+    <testCase name="Input can render a textarea input" duration="4"/>
+    <testCase name="Input can render an input with a placeholder" duration="4"/>
+    <testCase name="Input can render an input with a tooltip" duration="51"/>
+    <testCase name="Input can render an input with optional label" duration="9"/>
+    <testCase name="Input can render a disabled input" duration="11"/>
+    <testCase name="Input can render an onError input" duration="11"/>
+    <testCase name="Input can render a skeleton when loading" duration="13"/>
   </file>
 </testExecutions>

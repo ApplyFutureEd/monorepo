@@ -26,6 +26,14 @@ describe('Input', () => {
         expect(input).not.toHaveClass(onErrorClasses);
     });
 
+    it('can render a textarea input', () => {
+        const { container } = render(<Input label="Message" rows={5} />);
+
+        const textarea = container.querySelector('textarea');
+
+        expect(textarea).toBeInTheDocument();
+    });
+
     it('can render an input with a placeholder', () => {
         render(<Input label="Email" placeholder="Enter your email address" />);
 
@@ -65,6 +73,7 @@ describe('Input', () => {
         expect(input).toHaveClass(disabledClasses);
         expect(input).not.toHaveClass(onErrorClasses);
     });
+
     it('can render an onError input', () => {
         render(
             <Input

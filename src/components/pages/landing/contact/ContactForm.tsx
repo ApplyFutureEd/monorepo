@@ -12,8 +12,8 @@ const ContactForm: FC = () => {
 
     const validationSchema = object().shape({
         email: string()
-            .email(t('common:error-email-format'))
-            .required(t('common:error-email-required')),
+            .required(t('common:error-email-required'))
+            .email(t('common:error-email-format')),
         firstName: string().required(t('common:error-required')),
         lastName: string().required(t('common:error-required')),
         message: string().required(t('common:error-required'))
@@ -57,20 +57,27 @@ const ContactForm: FC = () => {
                         )}
                     </Field>
                     <div className="flex space-x-4">
-                        <Field id="firstName" name="firstName">
-                            {(props: FormikHelpers<FormValues>) => (
-                                <Input label={t('landing:contact-form-first-name')} {...props} />
-                            )}
-                        </Field>
-                        <Field id="lastName" name="lastName">
-                            {(props: FormikHelpers<FormValues>) => (
-                                <Input label={t('landing:contact-form-last-name')} {...props} />
-                            )}
-                        </Field>
+                        <div className="flex-grow">
+                            <Field id="firstName" name="firstName">
+                                {(props: FormikHelpers<FormValues>) => (
+                                    <Input
+                                        label={t('landing:contact-form-first-name')}
+                                        {...props}
+                                    />
+                                )}
+                            </Field>
+                        </div>
+                        <div className="flex-grow">
+                            <Field id="lastName" name="lastName">
+                                {(props: FormikHelpers<FormValues>) => (
+                                    <Input label={t('landing:contact-form-last-name')} {...props} />
+                                )}
+                            </Field>
+                        </div>
                     </div>
                     <Field id="message" name="message">
                         {(props: FormikHelpers<FormValues>) => (
-                            <Input label={t('landing:contact-form-message')} {...props} />
+                            <Input label={t('landing:contact-form-message')} rows={5} {...props} />
                         )}
                     </Field>
                     <div className="flex items-center justify-end">

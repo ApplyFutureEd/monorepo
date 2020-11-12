@@ -18,6 +18,7 @@ type Props = {
     min?: string | number;
     optional?: boolean;
     placeholder?: string;
+    rows?: number;
     step?: string | number;
     tooltip?: ReactNode;
     type?: string;
@@ -35,6 +36,7 @@ const Input: FC<Props> = (props) => {
         min,
         optional = false,
         placeholder = '',
+        rows = 0,
         step,
         tooltip,
         type = 'text',
@@ -82,19 +84,32 @@ const Input: FC<Props> = (props) => {
                 </div>
             </Tooltip>
             <div className="relative mt-1 rounded-md shadow-sm">
-                <input
-                    autoCapitalize={autoCapitalize}
-                    className={classes}
-                    disabled={disabled}
-                    id={field?.name}
-                    max={max}
-                    min={min}
-                    placeholder={placeholder}
-                    step={step}
-                    type={type}
-                    onBlur={field?.onBlur}
-                    onChange={field?.onChange}
-                />
+                {rows ? (
+                    <textarea
+                        autoCapitalize={autoCapitalize}
+                        className={classes}
+                        disabled={disabled}
+                        id={field?.name}
+                        placeholder={placeholder}
+                        rows={rows}
+                        onBlur={field?.onBlur}
+                        onChange={field?.onChange}
+                    />
+                ) : (
+                    <input
+                        autoCapitalize={autoCapitalize}
+                        className={classes}
+                        disabled={disabled}
+                        id={field?.name}
+                        max={max}
+                        min={min}
+                        placeholder={placeholder}
+                        step={step}
+                        type={type}
+                        onBlur={field?.onBlur}
+                        onChange={field?.onChange}
+                    />
+                )}
                 {onError && (
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <FontAwesomeIcon

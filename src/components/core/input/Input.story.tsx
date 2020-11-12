@@ -10,6 +10,8 @@ export default {
 
 export const Default = (): ReactNode => <Input label="First Name" />;
 
+export const TextArea = (): ReactNode => <Input label="Message" rows={5} />;
+
 export const WithPlaceholder = (): ReactNode => (
     <Input label="Email" placeholder="Enter your email address" />
 );
