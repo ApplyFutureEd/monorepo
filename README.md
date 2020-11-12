@@ -1,5 +1,5 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=ncloc&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
-[![codecov](https://codecov.io/gh/ApplyFutureEd/students/branch/master/graph/badge.svg?token=MqHvklJfgL)](https://codecov.io/gh/ApplyFutureEd/students)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=coverage&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=sqale_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=reliability_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=security_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
@@ -23,7 +23,7 @@ Open [http://localhost:6000](http://localhost:6000) to view it in the browser.
 
 [Storybook](https://storybook.js.org) is an open source tool for developing UI components in isolation.
 
-### `yarn test`
+### `yarn test:watch`
 
 Runs the test watcher in an interactive mode.<br>
 By default, runs tests related to files changed since the last commit.
