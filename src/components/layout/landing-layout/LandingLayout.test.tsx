@@ -1,4 +1,4 @@
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import LandingLayout from '@components/layout/landing-layout/LandingLayout';
 import { render, screen } from '@testing-library/react';
 
 describe('LandingLayout', () => {

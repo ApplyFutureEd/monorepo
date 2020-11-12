@@ -1,4 +1,5 @@
 import Head from '@components/core/head/Head';
+import Footer from '@components/layout/footer/Footer';
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
@@ -13,6 +14,7 @@ const LandingLayout: FC<Props> = (props) => {
         <>
             <Head title={title} />
             <main>{children}</main>
+            <Footer />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import LandingLayout from '@components/layout/landing-layout/LandingLayout';
 import Arguments from '@components/pages/landing/arguments/Arguments';
 import Contact from '@components/pages/landing/contact/Contact';
 import Hero from '@components/pages/landing/hero/Hero';
