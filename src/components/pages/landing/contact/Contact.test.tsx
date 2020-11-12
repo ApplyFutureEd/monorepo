@@ -1,14 +1,12 @@
-import Partners from '@components/pages/landing/partners/Partners';
+import Contact from '@components/pages/landing/contact/Contact';
 import { render, screen } from '@testing-library/react';
 
-describe('Partners', () => {
+describe('Contact', () => {
     it('can render without crashing', () => {
-        render(<Partners />);
+        render(<Contact />);
 
-        const images = screen.getAllByRole('img');
+        const heading = screen.getByRole('heading');
 
-        images.forEach((image) => {
-            expect(image).toBeInTheDocument();
-        });
+        expect(heading).toBeInTheDocument();
     });
 });
