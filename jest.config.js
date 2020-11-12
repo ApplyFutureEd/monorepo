@@ -16,7 +16,7 @@ module.exports = {
     },
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-    testResultsProcessor: 'jest-sonar-reported',
+    testResultsProcessor: 'jest-sonar-reporter',
     transform: {
         '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
     },
