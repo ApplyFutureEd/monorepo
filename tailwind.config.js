@@ -22,11 +22,18 @@ module.exports = {
                 header: '90px'
             }
         },
+        filter: {
+            grayscale: 'grayscale(1)',
+            none: 'grayscale(0)'
+        },
         inset: {
             ...defaultTheme.inset,
             2: '2rem',
             4: '4rem',
             8: '8rem'
         }
+    },
+    variants: {
+        filter: ['hover']
     }
 };
