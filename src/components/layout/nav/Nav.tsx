@@ -10,7 +10,7 @@ type Props = {
     }[];
 };
 
-const Header: FC<Props> = (props) => {
+const Nav: FC<Props> = (props) => {
     const { routes } = props;
     const router = useRouter();
     const { t } = useTranslation(['landing']);
@@ -38,4 +38,4 @@ const Header: FC<Props> = (props) => {
     );
 };
 
-export default Header;
+export default Nav;
