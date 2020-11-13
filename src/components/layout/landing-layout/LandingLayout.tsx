@@ -1,5 +1,6 @@
 import Head from '@components/core/head/Head';
 import Footer from '@components/layout/footer/Footer';
+import Header from '@components/layout/header/Header';
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
@@ -13,7 +14,8 @@ const LandingLayout: FC<Props> = (props) => {
     return (
         <>
             <Head title={title} />
-            <main>{children}</main>
+            <Header />
+            <main className="pt-header">{children}</main>
             <Footer />
         </>
     );

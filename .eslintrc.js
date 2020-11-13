@@ -34,6 +34,7 @@ module.exports = {
             }
         ],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+        'react/display-name': 'off',
         'react/jsx-sort-props': [
             'error',
             {

@@ -17,6 +17,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
+            },
+            padding: {
+                header: '90px'
             }
         },
         inset: {

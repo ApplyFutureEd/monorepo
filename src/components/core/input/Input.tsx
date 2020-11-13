@@ -46,7 +46,7 @@ const Input: FC<Props> = (props) => {
     const { t } = useTranslation(['common']);
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const baseClasses = 'form-input py-input-y block w-full sm:text-sm sm:leading-5"';
+    const baseClasses = 'form-input block w-full sm:text-sm sm:leading-5"';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';

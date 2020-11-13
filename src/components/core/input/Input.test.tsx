@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 describe('Input', () => {
-    const baseClasses = 'form-input py-input-y block w-full sm:text-sm sm:leading-5"';
+    const baseClasses = 'form-input block w-full sm:text-sm sm:leading-5"';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
