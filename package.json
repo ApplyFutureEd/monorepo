@@ -16,7 +16,7 @@
         "test:watch": "jest --watch",
         "security:audit": "yarn audit",
         "packages:upgrade": "yarn upgrade-interactive --latest",
-        "amplify:contactform": "cd amplify/backend/function/contactform/src && tsc"
+        "amplify:contactform": "cd amplify/backend/function/contactform/src && yarn && tsc"
     },
     "next-unused": {
         "alias": {},
