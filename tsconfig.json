@@ -27,6 +27,6 @@
             "@utils/*": ["src/utils/*"]
         }
     },
-    "exclude": [".next", "coverage", "cypress", "node_modules", "public"],
+    "exclude": [".next", "coverage", "cypress", "node_modules", "public", "amplify"],
     "include": ["**/*.ts", "**/*.tsx"]
 }

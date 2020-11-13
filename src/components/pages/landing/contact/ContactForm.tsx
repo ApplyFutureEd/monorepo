@@ -42,6 +42,7 @@ const ContactForm: FC = () => {
             actions.setSubmitting(false);
             setSubmitted(true);
         } catch (error) {
+            console.log(error);
             actions.setSubmitting(false);
             setSubmitted(false);
         }
