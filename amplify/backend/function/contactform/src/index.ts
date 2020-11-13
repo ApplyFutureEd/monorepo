@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import AWS from 'aws-sdk';
 
-export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    AWS.config.update({ region: 'eu-west-1' });
+AWS.config.update({ region: 'eu-west-1' });
 
+export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
         if (!event.body) {
             return {
@@ -18,27 +18,24 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         const { email, firstName, lastName, message } = JSON.parse(event.body);
 
         const contactMessageHtmlBody = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-      </head>
-      <body>
-        <p>Email: ${email}</p>
-        <p>First name: ${firstName}</p>
-        <p>Last name: ${lastName}</p>
-        <p>Message: ${message}</p>
-      </body>
-    </html>
-  `;
+        <!DOCTYPE html>
+        <html>
+            <head>
+            </head>
+            <body>
+                <p>Email: ${email}</p>
+                <p>First name: ${firstName}</p>
+                <p>Last name: ${lastName}</p>
+                <p>Message: ${message}</p>
+            </body>
+        </html>`;
 
         const contactMessageTextBody = `
-    Email: ${email}
-    First name: ${firstName}
-    Last name: ${lastName}
-    Message: ${message}
-  `;
+        Email: ${email}
+        First name: ${firstName}
+        Last name: ${lastName}
+        Message: ${message}`;
 
-        // Create parameters for the Contact Message (internal)
         const contactMessageParams = {
             Destination: {
                 ToAddresses: ['hello@applyfuture.com']
@@ -62,39 +59,35 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             Source: 'ApplyFuture Contact Form <hello@applyfuture.com>'
         };
 
-        // Create the promise and SES service object
         const contactMessagePromise = new AWS.SES({ apiVersion: '2010-12-01' })
             .sendEmail(contactMessageParams)
             .promise();
 
         const confirmMessageHtmlBody = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-      </head>
-      <body>
-        <p>Dear ${firstName}, thanks for reaching out!</p>
-        <br/>
-        <p>We’re thrilled to hear from you. Our inbox can’t wait to get your messages, so talk to us any time you like.</p>
-        <br/>
-        <p>Cheers!</p>
-        <br/>
-        <p>ApplyFuture</p>
-      </body>
-    </html>
-  `;
+        <!DOCTYPE html>
+        <html>
+            <head>
+            </head>
+            <body>
+                <p>Dear ${firstName}, thanks for reaching out!</p>
+                <br/>
+                <p>We’re thrilled to hear from you. Our inbox can’t wait to get your messages, so talk to us any time you like.</p>
+                <br/>
+                <p>Cheers!</p>
+                <br/>
+                <p>ApplyFuture</p>
+            </body>
+        </html>`;
 
         const confirmMessageTextBody = `
-    Dear ${firstName}, thanks for reaching out!
+        Dear ${firstName}, thanks for reaching out!
 
-    We’re thrilled to hear from you. Our inbox can’t wait to get your messages, so talk to us any time you like.
+        We’re thrilled to hear from you. Our inbox can’t wait to get your messages, so talk to us any time you like.
 
-    Cheers!
+        Cheers!
 
-    ApplyFuture
-  `;
+        ApplyFuture`;
 
-        // Create parameters for the Confirmation Message
         const confirmMessageParams = {
             Destination: {
                 ToAddresses: [email]
