@@ -1,0 +1,297 @@
+type Subscription {
+    subscribeToStudentUpdate(id: ID!): Student @aws_subscribe(mutations: ["updateStudent"])
+    subscribeToApplicationUpdate(id: ID!): Application
+        @aws_subscribe(mutations: ["updateApplication"])
+}
+
+type School
+    @auth(
+        rules: [
+            { allow: private, operations: [read] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @searchable
+    @key(name: "bySlug", fields: ["slug"], queryField: "getSchoolBySlug") {
+    id: ID!
+    slug: String
+    name: String
+    city: String
+    country: String
+    totalStudents: String
+    internationalStudents: String
+    institutionType: String
+    creationYear: String
+    description: String
+    logo: String
+    coverPhoto: String
+    contactJobTitle: String
+    contactName: String
+    contactPhone: String
+    contactEmail: String
+    published: Boolean
+    programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
+    stepsTemplates: [ApplicationStepsTemplate]
+    contractStatus: String
+}
+
+type ApplicationStepsTemplate {
+    targets: [String]
+    steps: [ApplicationStep]
+}
+
+type Program
+    @auth(
+        rules: [
+            { allow: private, operations: [read] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @searchable
+    @key(name: "bySlug", fields: ["slug"], queryField: "getProgramBySlug")
+    @key(name: "bySchool", fields: ["schoolId"]) {
+    id: ID!
+    schoolId: ID!
+    schoolName: String
+    school: School @connection(fields: ["schoolId"])
+    slug: String
+    name: String
+    city: String
+    country: String
+    discipline: String
+    degree: String
+    duration: Float
+    durationUnit: String
+    schedule: String
+    languages: [String]
+    fee: Float
+    feeUnit: String
+    feeCurrency: String
+    intakes: [String]
+    intakeInformation: String
+    submissionDeadline: String
+    costOfLiving: Float
+    costOfLivingCurrency: String
+    description: String
+    gradePointAverage: Float
+    highestEducationLevel: Float
+    testToefl: Float
+    testIelts: Float
+    testToeic: Float
+    testTcftef: Float
+    testDelfdalf: Float
+    testGre: Float
+    testGmat: Float
+    testTagemage: Float
+    testCambridgeFirst: Float
+    testCambridgeAdvanced: Float
+    requestedDocuments: [RequestedDocument]
+    minimumAge: Float
+    minimumWorkExperience: Float
+    minimumWorkExperienceUnit: String
+    otherRequirements: String
+    applicationFee: Float
+    applicationFeeCurrency: String
+    feesAndFinancing: String
+    published: Boolean
+}
+
+type RequestedDocument {
+    name: String
+    isMandatory: Boolean
+    storageKey: String
+    description: String
+    condition: String
+    isSpecific: Boolean
+}
+
+type Student
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, read] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @key(name: "byEmail", fields: ["email"], queryField: "getStudentByEmail") {
+    id: ID!
+    email: String
+    phoneNumber: String
+    address: String
+    city: String
+    country: String
+    firstName: String
+    middleName: String
+    lastName: String
+    birthday: String
+    firstLanguage: String
+    passportNumber: String
+    gender: String
+    maritalStatus: String
+    fatherFirstName: String
+    fatherLastName: String
+    motherFirstName: String
+    motherMaidenName: String
+    guardianLastName: String
+    guardianFirstName: String
+    parentsAddress: String
+    parentsCity: String
+    parentsCountry: String
+    parentsPhoneNumber: String
+    parentsEmail: String
+    disciplines: [String]
+    degrees: [String]
+    nationality: String
+    educationCountry: String
+    highestEducationLevel: Float
+    gradePointAverage: Float
+    schoolsAttended: [SchoolAttended]
+    testToefl: Float
+    testIelts: Float
+    testToeic: Float
+    testTcftef: Float
+    testDelfdalf: Float
+    testGre: Float
+    testGmat: Float
+    testTagemage: Float
+    testCambridgeFirst: Float
+    testCambridgeAdvanced: Float
+    testToeflDate: String
+    testIeltsDate: String
+    testToeicDate: String
+    testTcftefDate: String
+    testDelfdalfDate: String
+    testGreDate: String
+    testGmatDate: String
+    testTagemageDate: String
+    testCambridgeFirstDate: String
+    testCambridgeAdvancedDate: String
+    testEnglishPending: Boolean
+    testFrenchPending: Boolean
+    testLogicAndReasoningPending: Boolean
+    validVisa: Boolean
+    refusedVisa: Boolean
+    refusedVisaReason: String
+    workExperiences: [WorkExperience]
+    documents: [Document] @connection(keyName: "byStudent", fields: ["id"])
+    favoritePrograms: [String]
+    favoriteSchools: [String]
+    applications: [Application] @connection(keyName: "byStudent", fields: ["id"])
+    hasMandatoryDocuments: Boolean
+    modalProfileCompletedViewed: Boolean
+    notifications: [Notification]
+    locale: String
+}
+
+type SchoolAttended {
+    name: String
+    address: String
+    city: String
+    country: String
+    primaryLanguageInstruction: String
+    educationLevel: Float
+    degreeAwarded: Float
+    degreeAwardedOn: String
+    attendedInstitutionFrom: String
+    attendedInstitutionTo: String
+}
+
+type WorkExperience {
+    title: String
+    compagnyName: String
+    address: String
+    workedFrom: String
+    workedTo: String
+}
+
+type Document
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, read, delete] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @key(name: "byStudent", fields: ["studentId"], queryField: "getDocumentByStudent")
+    @key(name: "byStorageKey", fields: ["storageKey"], queryField: "getByStorageKey") {
+    id: ID!
+    studentId: ID!
+    student: Student @connection(fields: ["studentId"])
+    name: String
+    storageKey: String
+}
+
+type Application
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, read, delete] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @key(name: "byStudent", fields: ["studentId"], queryField: "getApplicationByStudent") {
+    id: ID!
+    studentId: ID!
+    student: Student @connection(fields: ["studentId"])
+    programId: ID!
+    program: Program @connection(fields: ["programId"])
+    intake: String
+    document: String
+    steps: [ApplicationStep]
+    interviewDate: String
+    admissionResult: String
+    tuitionsFeePaymentDate: String
+    decisionLetterDate: String
+    visaDate: String
+    todo: String
+    notifications: [Notification]
+    modalApplicationCompletedViewed: Boolean
+}
+
+type ApplicationStep {
+    id: String!
+    status: String
+    date: String
+    isMandatory: Boolean
+}
+
+type Notification {
+    title: String
+    titleOptions: String
+    description: String
+    descriptionOptions: String
+    date: String
+    seen: Boolean
+    link: String
+}
+
+type SearchAlert
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, read, delete] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model {
+    id: ID!
+    query: String
+    type: String
+    studentId: ID!
+    student: Student @connection(fields: ["studentId"])
+}
+
+type Feedback
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, read] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model {
+    id: ID!
+    rating: Float
+    applicationId: ID!
+    application: Application @connection(fields: ["applicationId"])
+}

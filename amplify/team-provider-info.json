@@ -17,6 +17,9 @@
                     "appId": "d1myhy97cpodfp",
                     "type": "cicd"
                 }
+            },
+            "auth": {
+                "students9e8a43d9": {}
             }
         }
     }
