@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/ses/contact-form",
+            "lambdaFunction": "contactform",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "REST",
+    "apiName": "REST",
+    "functionArns": [
+        {
+            "lambdaFunction": "contactform"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-students-dev-162403-authRole",
+        "unAuthRoleName": "amplify-students-dev-162403-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "contactform",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "80c390d0"
+}

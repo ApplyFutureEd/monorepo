@@ -53,6 +53,7 @@
         "@fortawesome/pro-light-svg-icons": "5.15.1",
         "@fortawesome/pro-solid-svg-icons": "5.15.1",
         "@fortawesome/react-fontawesome": "0.1.12",
+        "aws-amplify": "^3.3.8",
         "classnames": "^2.2.6",
         "formik": "^2.2.5",
         "next": "10.0.1",
@@ -110,5 +111,6 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
-    }
+    },
+    "amplify:maryhadalittlelambda": "cd amplify/backend/function/contactform/src && tsc"
 }

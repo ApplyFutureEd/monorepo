@@ -1,6 +1,7 @@
 import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { API } from 'aws-amplify';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -35,7 +36,9 @@ const ContactForm: FC = () => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            console.log(values);
+            await API.post('REST', '/ses/contact-form', {
+                body: values
+            });
             actions.setSubmitting(false);
             setSubmitted(true);
         } catch (error) {

@@ -1,4 +1,5 @@
 import '@styles/index.css';
+import '@utils/amplify';
 
 import { initWhyDidYouRender } from '@utils/whyDidYouRender';
 import type { AppProps } from 'next/app';
