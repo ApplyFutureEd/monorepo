@@ -15,7 +15,8 @@
         "test": "jest --coverage",
         "test:watch": "jest --watch",
         "security:audit": "yarn audit",
-        "packages:upgrade": "yarn upgrade-interactive --latest"
+        "packages:upgrade": "yarn upgrade-interactive --latest",
+        "amplify:contactform": "cd amplify/backend/function/contactform/src && tsc"
     },
     "next-unused": {
         "alias": {},
@@ -111,6 +112,5 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
-    },
-    "amplify:maryhadalittlelambda": "cd amplify/backend/function/contactform/src && tsc"
+    }
 }
