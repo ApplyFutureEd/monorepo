@@ -1,8 +1,7 @@
 import React from 'react';
 
 /**
- * WhyDidYouRender helps locate unnecessary re-renders and fix them
- * Applied only in front-end development environment
+ * Helps locate unnecessary re-renders and fix them.
  *
  * @see https://github.com/welldone-software/why-did-you-render
  */
