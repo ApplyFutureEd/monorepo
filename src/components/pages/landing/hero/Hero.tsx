@@ -1,5 +1,4 @@
 import Button from '@components/core/button/Button';
-import Image from 'next/image';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -47,11 +46,10 @@ const Hero: FC = () => {
                     </div>
                 </div>
                 <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
-                    <Image
+                    <img
                         alt=""
                         className="absolute inset-0 w-full h-full object-contain lg:w-auto"
-                        layout="fill"
-                        src="https://res.cloudinary.com/applyfuture/image/upload/v1605355996/landing-hero_mp4qi2.svg"
+                        src="/assets/images/landing/landing-hero.svg"
                     />
                 </div>
             </div>
