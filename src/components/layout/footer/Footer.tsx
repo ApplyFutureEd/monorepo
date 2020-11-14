@@ -31,7 +31,7 @@ const Footer: FC = () => {
                 </nav>
 
                 <div className="mt-8">
-                    <p className="text-center text-gray-400 text-base leading-6">
+                    <p className="text-center text-gray-900 text-base leading-6">
                         &copy; 2020 ApplyFuture.com
                     </p>
                 </div>

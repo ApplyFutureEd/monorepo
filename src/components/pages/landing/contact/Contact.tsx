@@ -49,7 +49,7 @@ const Contact: FC = () => {
                                         size="lg"
                                     />
                                     <a
-                                        className="ml-3 text-indigo-500 underline"
+                                        className="ml-3 text-indigo-600 underline"
                                         href="mailto:hello@applyfuture.com">
                                         hello@applyfuture.com
                                     </a>
