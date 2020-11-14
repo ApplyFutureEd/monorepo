@@ -1,4 +1,5 @@
 import Button from '@components/core/button/Button';
+import Image from 'next/image';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -84,10 +85,10 @@ const Recruiters: FC = () => {
                                     width="784"
                                 />
                             </svg>
-                            <img
+                            <Image
                                 alt=""
                                 className="relative mx-auto"
-                                loading="lazy"
+                                height="349"
                                 src="/assets/images/landing/landing-recruiters.svg"
                                 width="490"
                             />

@@ -1,6 +1,7 @@
 import { faBuffer } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faHandHoldingUsd } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -106,11 +107,12 @@ const Arguments: FC = () => {
                                 width="784"
                             />
                         </svg>
-                        <img
+                        <Image
                             alt=""
                             className="relative mx-auto"
-                            loading="lazy"
+                            height="373"
                             src="/assets/images/landing/landing-arguments.svg"
+                            width="625"
                         />
                     </div>
                 </div>
