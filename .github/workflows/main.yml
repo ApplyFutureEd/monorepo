@@ -34,4 +34,4 @@ jobs:
             - name: Lighthouse Check
               uses: foo-software/lighthouse-check-action@v2.0.5
               with:
-                  urls: 'students-chi.vercel.app'
+                  urls: 'https://students-chi.vercel.app'
