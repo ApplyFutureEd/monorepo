@@ -51,7 +51,7 @@ const Hero: FC = () => {
                         alt=""
                         className="absolute inset-0 w-full h-full object-contain lg:w-auto"
                         layout="fill"
-                        src="/assets/images/landing/landing-hero.svg"
+                        src="https://res.cloudinary.com/applyfuture/image/upload/v1605355996/landing-hero_mp4qi2.svg"
                     />
                 </div>
             </div>

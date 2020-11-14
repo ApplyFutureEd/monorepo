@@ -10,6 +10,13 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 module.exports = withBundleAnalyzer(
     withSourceMaps({
+        images: {
+            deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+            domains: ['res.cloudinary.com'],
+            imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+            loader: 'default',
+            path: '/_next/image'
+        },
         poweredByHeader: false,
         webpack: (config, { isServer }) => {
             config.node = {
