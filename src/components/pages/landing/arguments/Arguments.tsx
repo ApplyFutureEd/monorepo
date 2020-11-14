@@ -30,7 +30,7 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('landing:why-argument-1')}</li>
+                                            {t('landing:why-argument-1')}
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
                                             {t('landing:why-argument-description-1')}
@@ -47,7 +47,7 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('landing:why-argument-2')}</li>
+                                            {t('landing:why-argument-2')}
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
                                             {t('landing:why-argument-description-2')}
@@ -64,7 +64,7 @@ const Arguments: FC = () => {
                                     </div>
                                     <div className="ml-4">
                                         <h3 className="text-gray-900 text-lg font-medium leading-6">
-                                            <li>{t('landing:why-argument-3')}</li>
+                                            {t('landing:why-argument-3')}
                                         </h3>
                                         <p className="mt-2 text-gray-500 text-base leading-6">
                                             {t('landing:why-argument-description-3')}
