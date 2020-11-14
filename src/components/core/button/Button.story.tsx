@@ -36,7 +36,7 @@ export const EndIcon = (): ReactNode => (
 );
 
 export const Loading = (): ReactNode => (
-    <Button isLoading variant="primary">
+    <Button disabled isLoading variant="primary">
         Apply
     </Button>
 );

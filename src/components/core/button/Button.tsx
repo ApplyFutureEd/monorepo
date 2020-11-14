@@ -55,7 +55,14 @@ const Button: FC<Props> = (props) => {
                 {startIcon && (
                     <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
                 )}
-                {isLoading ? <Loader /> : <span>{children}</span>}
+                {isLoading ? (
+                    <span className="flex items-center">
+                        <Loader />
+                        <span className="ml-2">{children}</span>
+                    </span>
+                ) : (
+                    <span>{children}</span>
+                )}
                 {endIcon && <FontAwesomeIcon className={cx({ 'ml-2': children })} icon={endIcon} />}
             </button>
         </span>
