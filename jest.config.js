@@ -5,8 +5,10 @@ module.exports = {
         '!**/*.d.ts',
         '!**/node_modules/**',
         '!**/*.story.tsx',
-        '!**/pages/*.tsx',
-        '!**/utils/*.ts'
+        '!**/pages/**/*.tsx',
+        '!**/utils/**/*.ts',
+        '!**/graphql/**/*.ts',
+        '!**/amplify/**/*.ts'
     ],
     moduleNameMapper: {
         '@components/(.*)': '<rootDir>/src/components/$1',
