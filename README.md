@@ -45,6 +45,7 @@ You'll be prompted to fill out any required commit fields at commit time.
 -   [Cypress](https://cypress.io/) : Javascript End to End testing framework.
 -   [SonarCloud](https://sonarcloud.io/) : Online service to catch Bugs and Security Vulnerabilities in your Pull Requests and throughout your code repositories.
 -   [Sentry](https://sentry.io/) : Open-source error tracking with full stacktraces & asynchronous context.
+-   [Vercel](https://vercel.com) : Cloud platform for static sites and serverless functions.
 
 ## 📚 Folder structure
 
