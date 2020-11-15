@@ -89,7 +89,7 @@ const Head: FC<HeadProps> = (props) => {
 
             <link href={favicon} rel="icon" />
 
-            <link as="style" href={'/assets/fonts/inter/font.css'} rel="preload" />
+            <link as="style" href="/assets/fonts/inter/font.css" rel="preload" />
             {fonts.map((font) => (
                 <link
                     key={font.href}
@@ -112,13 +112,43 @@ const Head: FC<HeadProps> = (props) => {
             <meta content="630" property="og:image:height" />
 
             <link href="/manifest.json" rel="manifest" />
-            <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-            <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-            <link href="/icon-192x192.png" rel="icon" sizes="192x192" type="image/png" />
-            <link href="/icon-256x256.png" rel="icon" sizes="256x256" type="image/png" />
-            <link href="/icon-384x384.png" rel="icon" sizes="384x384" type="image/png" />
-            <link href="/icon-512x512.png" rel="icon" sizes="512x512" type="image/png" />
-            <link href="/apple-icon.png" rel="apple-touch-icon"></link>
+            <link
+                href="/assets/icons/favicon-16x16.png"
+                rel="icon"
+                sizes="16x16"
+                type="image/png"
+            />
+            <link
+                href="/assets/icons/favicon-32x32.png"
+                rel="icon"
+                sizes="32x32"
+                type="image/png"
+            />
+            <link
+                href="/assets/icons/icon-192x192.png"
+                rel="icon"
+                sizes="192x192"
+                type="image/png"
+            />
+            <link
+                href="/assets/icons/icon-256x256.png"
+                rel="icon"
+                sizes="256x256"
+                type="image/png"
+            />
+            <link
+                href="/assets/icons/icon-384x384.png"
+                rel="icon"
+                sizes="384x384"
+                type="image/png"
+            />
+            <link
+                href="/assets/icons/icon-512x512.png"
+                rel="icon"
+                sizes="512x512"
+                type="image/png"
+            />
+            <link href="/assets/icons/apple-icon.png" rel="apple-touch-icon"></link>
             <meta content="#5850ec" name="theme-color" />
         </NextHead>
     );
