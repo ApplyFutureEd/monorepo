@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
-    autoCapitalize?: string;
+    autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
     disabled?: boolean;
     field?: FieldInputProps<string>;
     isLoading?: boolean;
@@ -27,7 +27,7 @@ type Props = {
 
 const Input: FC<Props> = (props) => {
     const {
-        autoCapitalize = undefined,
+        autoCapitalize = 'on',
         disabled = false,
         field,
         isLoading = false,
@@ -137,7 +137,7 @@ Input.propTypes = {
     /**
      * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
      */
-    autoCapitalize: PropTypes.string,
+    autoCapitalize: PropTypes.oneOf(['off', 'none', 'on', 'sentences', 'words', 'characters']),
     /**
      * If `true`, the `input` element will be disabled.
      */
