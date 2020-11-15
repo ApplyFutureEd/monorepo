@@ -1,5 +1,6 @@
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React, { FC, Fragment, ReactNode, useState } from 'react';
 
 type Props = {
@@ -47,6 +48,21 @@ const Tooltip: FC<Props> = (props) => {
             )}
         </div>
     );
+};
+
+Tooltip.propTypes = {
+    /**
+     * The element that display the tooltip when hovered.
+     */
+    children: PropTypes.node.isRequired,
+    /**
+     * The content of the tooltip.
+     */
+    content: PropTypes.node.isRequired,
+    /**
+     * The delay before the tooltip is displayed when the `children` element is hovered.
+     */
+    delay: PropTypes.number
 };
 
 export default Tooltip;

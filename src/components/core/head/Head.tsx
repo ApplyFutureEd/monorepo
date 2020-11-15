@@ -1,33 +1,21 @@
 import { isBrowser } from '@utils/isBrowser';
 import NextHead from 'next/head';
+import PropTypes from 'prop-types';
 import React, { FC } from 'react';
 
 export type HeadProps = {
-    title?: string;
     description?: string;
-    url?: string;
-    ogImage?: string;
-    favicon?: string;
+    title?: string;
 };
 
 const Head: FC<HeadProps> = (props) => {
     const defaultTitle = 'ApplyFuture';
     const defaultDescription =
         'ApplyFuture is an online school application platform, totally free for students who want to apply for European Higher Education Institutions.';
-    const defaultOGURL = 'https://applyfuture.com';
-    const defaultOGImage = '';
-    const defaultFavicon = '';
 
-    const {
-        title = defaultTitle,
-        description = defaultDescription,
-        ogImage = defaultOGURL,
-        url = defaultOGImage,
-        favicon = defaultFavicon
-    } = props;
+    const { description = defaultDescription, title = defaultTitle } = props;
 
     if (isBrowser()) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const WebFontLoader = require('webfontloader');
         WebFontLoader.load({
             custom: {
@@ -87,8 +75,6 @@ const Head: FC<HeadProps> = (props) => {
             <meta content={description} name="description" />
             <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-            <link href={favicon} rel="icon" />
-
             <link as="style" href="/assets/fonts/inter/font.css" rel="preload" />
             {fonts.map((font) => (
                 <link
@@ -100,16 +86,6 @@ const Head: FC<HeadProps> = (props) => {
                     type={font.type}
                 />
             ))}
-
-            <meta content={url} property="og:url" />
-            <meta content={title} property="og:title" />
-            <meta content={description} property="og:description" />
-            <meta content={url} name="twitter:site" />
-            <meta content="summary_large_image" name="twitter:card" />
-            <meta content={ogImage} name="twitter:image" />
-            <meta content={ogImage} property="og:image" />
-            <meta content="1200" property="og:image:width" />
-            <meta content="630" property="og:image:height" />
 
             <link href="/manifest.json" rel="manifest" />
             <link
@@ -152,6 +128,17 @@ const Head: FC<HeadProps> = (props) => {
             <meta content="#5850ec" name="theme-color" />
         </NextHead>
     );
+};
+
+Head.propTypes = {
+    /**
+     * Description that includes keywords relating to the content of your page.
+     */
+    description: PropTypes.string,
+    /**
+     * Title of the overall HTML document.
+     */
+    title: PropTypes.string
 };
 
 export default Head;

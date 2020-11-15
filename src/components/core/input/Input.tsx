@@ -3,6 +3,7 @@ import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { FieldInputProps, FieldMetaProps } from 'formik';
+import PropTypes from 'prop-types';
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
@@ -13,15 +14,15 @@ type Props = {
     field?: FieldInputProps<string>;
     isLoading?: boolean;
     label: string;
-    max?: string | number;
+    max?: number;
     meta?: FieldMetaProps<string>;
-    min?: string | number;
+    min?: number;
     optional?: boolean;
     placeholder?: string;
     rows?: number;
-    step?: string | number;
+    step?: number;
     tooltip?: ReactNode;
-    type?: string;
+    type?: 'text' | 'number';
 };
 
 const Input: FC<Props> = (props) => {
@@ -90,6 +91,7 @@ const Input: FC<Props> = (props) => {
                         className={classes}
                         disabled={disabled}
                         id={field?.name}
+                        name={field?.name}
                         placeholder={placeholder}
                         rows={rows}
                         onBlur={field?.onBlur}
@@ -103,6 +105,7 @@ const Input: FC<Props> = (props) => {
                         id={field?.name}
                         max={max}
                         min={min}
+                        name={field?.name}
                         placeholder={placeholder}
                         step={step}
                         type={type}
@@ -128,6 +131,65 @@ const Input: FC<Props> = (props) => {
             )}
         </label>
     );
+};
+
+Input.propTypes = {
+    /**
+     * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
+     */
+    autoCapitalize: PropTypes.string,
+    /**
+     * If `true`, the `input` element will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    field: PropTypes.any,
+    /**
+     * If `true`, the button will display a loader before the children.
+     */
+    isLoading: PropTypes.bool,
+    /**
+     * The label displayed above the input.
+     */
+    label: PropTypes.string.isRequired,
+    /**
+     * The maximum value accepted when input type is set to `number`.
+     */
+    max: PropTypes.number,
+    /**
+     * @ignore
+     */
+    meta: PropTypes.any,
+    /**
+     * The minimum value accepted when input type is set to `number`.
+     */
+    min: PropTypes.number,
+    /**
+     * If `true`, the input will display an `(optional)` mention next to the label.
+     */
+    optional: PropTypes.bool,
+    /**
+     * The short hint displayed in the input before the user enters a value.
+     */
+    placeholder: PropTypes.string,
+    /**
+     * Number of rows to display when multiline option is set to `true`.
+     */
+    rows: PropTypes.number,
+    /**
+     * The step attribute specifies the interval between legal numbers
+     */
+    step: PropTypes.number,
+    /**
+     * The tooltip displayed when hovering the label.
+     */
+    tooltip: PropTypes.string,
+    /**
+     * The type to use.
+     */
+    type: PropTypes.oneOf(['text', 'number'])
 };
 
 export default Input;

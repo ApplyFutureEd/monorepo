@@ -2,29 +2,28 @@ import Loader from '@components/core/loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;
     disabled?: boolean;
-    type?: 'button' | 'submit' | 'reset';
-    variant?: 'primary' | 'secondary' | 'success' | 'danger';
-    startIcon?: IconProp;
     endIcon?: IconProp;
     isLoading?: boolean;
-    onClick?: () => void;
+    startIcon?: IconProp;
+    type?: 'button' | 'submit' | 'reset';
+    variant?: 'primary' | 'secondary' | 'success' | 'danger';
 };
 
 const Button: FC<Props> = (props) => {
     const {
         children,
-        type = 'button',
-        variant = 'primary',
         disabled = false,
-        startIcon,
         endIcon,
         isLoading = false,
-        onClick,
+        startIcon,
+        type = 'button',
+        variant = 'primary',
         ...rest
     } = props;
 
@@ -51,7 +50,7 @@ const Button: FC<Props> = (props) => {
 
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
-            <button className={classes} disabled={disabled} type={type} onClick={onClick}>
+            <button className={classes} disabled={disabled} type={type}>
                 {startIcon && (
                     <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
                 )}
@@ -67,6 +66,37 @@ const Button: FC<Props> = (props) => {
             </button>
         </span>
     );
+};
+
+Button.propTypes = {
+    /**
+     * The content of the button.
+     */
+    children: PropTypes.node.isRequired,
+    /**
+     * If `true`, the button will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * Element placed after the children. Must be an FontAwesome icon.
+     */
+    endIcon: PropTypes.any,
+    /**
+     * If `true`, the button will display a loader before the children.
+     */
+    isLoading: PropTypes.bool,
+    /**
+     * Element placed before the children. Must be an FontAwesome icon.
+     */
+    startIcon: PropTypes.any,
+    /**
+     * The type to use.
+     */
+    type: PropTypes.oneOf(['button', 'reset', 'submit']),
+    /**
+     * The variant to use.
+     */
+    variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger'])
 };
 
 export default Button;
