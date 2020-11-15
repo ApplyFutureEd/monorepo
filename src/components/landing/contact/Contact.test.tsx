@@ -1,4 +1,4 @@
-import Contact from '@components/pages/landing/contact/Contact';
+import Contact from '@components/landing/contact/Contact';
 import { render, screen } from '@testing-library/react';
 
 describe('Contact', () => {

@@ -1,4 +1,4 @@
-import Hero from '@components/pages/landing/hero/Hero';
+import Hero from '@components/landing/hero/Hero';
 import { render, screen } from '@testing-library/react';
 
 describe('Hero', () => {

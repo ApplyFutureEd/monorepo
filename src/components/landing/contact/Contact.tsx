@@ -1,4 +1,4 @@
-import ContactForm from '@components/pages/landing/contact/ContactForm';
+import ContactForm from '@components/landing/contact/ContactForm';
 import { faEnvelope, faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';

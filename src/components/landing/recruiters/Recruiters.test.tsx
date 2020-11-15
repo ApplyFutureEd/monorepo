@@ -1,9 +1,9 @@
-import Schools from '@components/pages/landing/schools/Schools';
+import Recruiters from '@components/landing/recruiters/Recruiters';
 import { render, screen } from '@testing-library/react';
 
-describe('Schools', () => {
+describe('Recruiters', () => {
     it('can render without crashing', () => {
-        render(<Schools />);
+        render(<Recruiters />);
 
         const heading = screen.getByRole('heading');
 
