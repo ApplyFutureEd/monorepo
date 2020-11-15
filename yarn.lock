@@ -3186,7 +3186,7 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sentry/browser@^5.21.3":
+"@sentry/browser@5.27.4":
   version "5.27.4"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.27.4.tgz#241dedc7d82d3ed2769bfc8e4fb193d10e6a1d4d"
   integrity sha512-L8Fsnkl3PIak4zJ1pcGDmV92XTQjS2/H6EBgp1rhuOF4OE3L59K8RR73C9w+wVtsIi7nyfYg/FIe8lvG++3Mow==
@@ -3227,7 +3227,7 @@
     "@sentry/utils" "5.27.4"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.21.3":
+"@sentry/integrations@5.27.4":
   version "5.27.4"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.27.4.tgz#a048a2e9cbc65575a70a54dd0cae5bce2130d55e"
   integrity sha512-/2KRNrpbRDatNfurKzhpeYa5YQCYSXgR2JbPGQzg8d3fKggSTDLiVxrc+LC7oHeHgv6LWOzkVVzfmB01LJRZTA==
@@ -3246,7 +3246,7 @@
     "@sentry/types" "5.27.4"
     tslib "^1.9.3"
 
-"@sentry/node@^5.21.3":
+"@sentry/node@5.27.4":
   version "5.27.4"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-5.27.4.tgz#7fe327a45f865bff7c4b7f0d74d94506ec0a05bc"
   integrity sha512-fv3FfQ6FiNV56LKk6t48oNw8qgf7X5fEhqhvKAoU7w+BL9AhChzh9v7sWn9ppDtRFE45tFfsZh0J/8ox5jpnfQ==
@@ -3285,7 +3285,7 @@
     "@sentry/types" "5.27.4"
     tslib "^1.9.3"
 
-"@sentry/webpack-plugin@^1.12.1":
+"@sentry/webpack-plugin@1.13.0":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@sentry/webpack-plugin/-/webpack-plugin-1.13.0.tgz#98c1b75cf0cfdb0d2b39240ecc4ffe9e6c28dbd4"
   integrity sha512-XQhmWwHY9sgL9OZQVD+SMn9Wa3E+6odsTGucRRo0GyCgkhHsPEGho7JiQtHu7MFoX7kbeva+metnypMn91NqXg==
