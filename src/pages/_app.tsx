@@ -1,10 +1,12 @@
 import '@styles/index.css';
 import '@utils/amplify';
 
+import { initSentry } from '@utils/sentry';
 import { initWhyDidYouRender } from '@utils/whyDidYouRender';
 import type { AppProps } from 'next/app';
 import React, { FC } from 'react';
 
+initSentry();
 initWhyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
