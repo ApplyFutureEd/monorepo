@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/partners/Partners.test.tsx">
-    <testCase name="Partners can render without crashing" duration="259"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/header/Header.test.tsx">
-    <testCase name="Header can render without crashing" duration="304"/>
-    <testCase name="Header can call the open callback when clicking on an anchor" duration="22"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/mobile-menu/MobileMenu.test.tsx">
-    <testCase name="MobileMenu can render without crashing" duration="332"/>
-    <testCase name="MobileMenu can call the close callback when clicking on the close icon" duration="33"/>
-    <testCase name="MobileMenu can call the close callback when clicking on an anchor" duration="22"/>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/core/input/Input.test.tsx">
+    <testCase name="Input can render an input without crashing" duration="115"/>
+    <testCase name="Input can render a default input" duration="28"/>
+    <testCase name="Input can render a textarea input" duration="6"/>
+    <testCase name="Input can render an input with a placeholder" duration="4"/>
+    <testCase name="Input can render an input with a tooltip" duration="76"/>
+    <testCase name="Input can render an input with optional label" duration="7"/>
+    <testCase name="Input can render a disabled input" duration="39"/>
+    <testCase name="Input can render an onError input" duration="32"/>
+    <testCase name="Input can render a skeleton when loading" duration="18"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/core/button/Button.test.tsx">
-    <testCase name="Button can render a button without crashing" duration="168"/>
-    <testCase name="Button can render a button with text" duration="36"/>
-    <testCase name="Button can render a primary variant button" duration="26"/>
-    <testCase name="Button can render a secondary variant button" duration="19"/>
-    <testCase name="Button can render a success variant button" duration="26"/>
-    <testCase name="Button can render a danger variant button" duration="22"/>
-    <testCase name="Button can render a disabled button" duration="17"/>
-    <testCase name="Button can render a button with a start icon" duration="117"/>
-    <testCase name="Button can render a button with a start icon" duration="34"/>
-    <testCase name="Button can render a loading button" duration="33"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/core/input/Input.test.tsx">
-    <testCase name="Input can render an input without crashing" duration="173"/>
-    <testCase name="Input can render a default input" duration="41"/>
-    <testCase name="Input can render a textarea input" duration="8"/>
-    <testCase name="Input can render an input with a placeholder" duration="14"/>
-    <testCase name="Input can render an input with a tooltip" duration="142"/>
-    <testCase name="Input can render an input with optional label" duration="16"/>
-    <testCase name="Input can render a disabled input" duration="33"/>
-    <testCase name="Input can render an onError input" duration="42"/>
-    <testCase name="Input can render a skeleton when loading" duration="40"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/process/Process.test.tsx">
-    <testCase name="Process can render without crashing" duration="611"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/hero/Hero.test.tsx">
-    <testCase name="Hero can render without crashing" duration="124"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/schools/Schools.test.tsx">
-    <testCase name="Schools can render without crashing" duration="167"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/recruiters/Recruiters.test.tsx">
-    <testCase name="Recruiters can render without crashing" duration="157"/>
-  </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/students/Students.test.tsx">
-    <testCase name="Students can render without crashing" duration="121"/>
+    <testCase name="Button can render a button without crashing" duration="75"/>
+    <testCase name="Button can render a button with text" duration="18"/>
+    <testCase name="Button can render a primary variant button" duration="13"/>
+    <testCase name="Button can render a secondary variant button" duration="16"/>
+    <testCase name="Button can render a success variant button" duration="11"/>
+    <testCase name="Button can render a danger variant button" duration="12"/>
+    <testCase name="Button can render a disabled button" duration="13"/>
+    <testCase name="Button can render a button with a start icon" duration="132"/>
+    <testCase name="Button can render a button with a start icon" duration="72"/>
+    <testCase name="Button can render a loading button" duration="30"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/arguments/Arguments.test.tsx">
-    <testCase name="Arguments can render without crashing" duration="351"/>
+    <testCase name="Arguments can render without crashing" duration="396"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/partners/Partners.test.tsx">
+    <testCase name="Partners can render without crashing" duration="384"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/header/Header.test.tsx">
+    <testCase name="Header can render without crashing" duration="481"/>
+    <testCase name="Header can call the open callback when clicking on an anchor" duration="68"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/mobile-menu/MobileMenu.test.tsx">
+    <testCase name="MobileMenu can render without crashing" duration="622"/>
+    <testCase name="MobileMenu can call the close callback when clicking on the close icon" duration="57"/>
+    <testCase name="MobileMenu can call the close callback when clicking on an anchor" duration="60"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/process/Process.test.tsx">
+    <testCase name="Process can render without crashing" duration="886"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/recruiters/Recruiters.test.tsx">
+    <testCase name="Recruiters can render without crashing" duration="73"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/landing-layout/LandingLayout.test.tsx">
-    <testCase name="LandingLayout can render without crashing" duration="102"/>
+    <testCase name="LandingLayout can render without crashing" duration="184"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/students/Students.test.tsx">
+    <testCase name="Students can render without crashing" duration="145"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/core/loader/Loader.test.tsx">
-    <testCase name="Loader can render without crashing" duration="75"/>
+    <testCase name="Loader can render without crashing" duration="113"/>
   </file>
-  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/nav/Nav.test.tsx">
-    <testCase name="Nav can render without crashing" duration="38"/>
-    <testCase name="Nav can render anchors for each route" duration="11"/>
-    <testCase name="Nav can style anchors correctly" duration="10"/>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/schools/Schools.test.tsx">
+    <testCase name="Schools can render without crashing" duration="134"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/hero/Hero.test.tsx">
+    <testCase name="Hero can render without crashing" duration="139"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/footer/Footer.test.tsx">
-    <testCase name="Footer can render without crashing" duration="10"/>
+    <testCase name="Footer can render without crashing" duration="14"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/core/logo/Logo.test.tsx">
-    <testCase name="Logo can render without crashing" duration="14"/>
+    <testCase name="Logo can render without crashing" duration="26"/>
+  </file>
+  <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/layout/nav/Nav.test.tsx">
+    <testCase name="Nav can render without crashing" duration="60"/>
+    <testCase name="Nav can render anchors for each route" duration="7"/>
+    <testCase name="Nav can style anchors correctly" duration="8"/>
   </file>
   <file path="/Users/paulcailly/dev/src/applyfuture/students/src/components/pages/landing/contact/Contact.test.tsx">
-    <testCase name="Contact can render without crashing" duration="191"/>
+    <testCase name="Contact can render without crashing" duration="186"/>
   </file>
 </testExecutions>
