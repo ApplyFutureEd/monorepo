@@ -6,10 +6,10 @@ import Process from '@components/landing/process/Process';
 import Recruiters from '@components/landing/recruiters/Recruiters';
 import Schools from '@components/landing/schools/Schools';
 import Students from '@components/landing/students/Students';
-import LandingLayout from '@components/layout/landing-layout/LandingLayout';
+import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC } from 'react';
 
-const Landing: FC = () => (
+const LandingPage: FC = () => (
     <LandingLayout title="Apply for the best schools in Europe">
         <Hero />
         <Students />
@@ -22,4 +22,4 @@ const Landing: FC = () => (
     </LandingLayout>
 );
 
-export default Landing;
+export default LandingPage;

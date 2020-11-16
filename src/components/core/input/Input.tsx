@@ -22,7 +22,7 @@ type Props = {
     rows?: number;
     step?: number;
     tooltip?: ReactNode;
-    type?: 'text' | 'number';
+    type?: 'text' | 'number' | 'password';
 };
 
 const Input: FC<Props> = (props) => {
@@ -94,6 +94,7 @@ const Input: FC<Props> = (props) => {
                         name={field?.name}
                         placeholder={placeholder}
                         rows={rows}
+                        value={field?.value}
                         onBlur={field?.onBlur}
                         onChange={field?.onChange}
                     />
@@ -109,6 +110,7 @@ const Input: FC<Props> = (props) => {
                         placeholder={placeholder}
                         step={step}
                         type={type}
+                        value={field?.value}
                         onBlur={field?.onBlur}
                         onChange={field?.onChange}
                     />
@@ -189,7 +191,7 @@ Input.propTypes = {
     /**
      * The type to use.
      */
-    type: PropTypes.oneOf(['text', 'number'])
+    type: PropTypes.oneOf(['text', 'number', 'password'])
 };
 
 export default Input;

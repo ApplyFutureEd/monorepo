@@ -1,7 +1,7 @@
 import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
-import MobileMenu from '@components/layout/mobile-menu/MobileMenu';
-import Nav from '@components/layout/nav/Nav';
+import MobileMenu from '@components/core/mobile-menu/MobileMenu';
+import Nav from '@components/core/nav/Nav';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useState } from 'react';

@@ -58,7 +58,7 @@ Tooltip.propTypes = {
     /**
      * The content of the tooltip.
      */
-    content: PropTypes.node.isRequired,
+    content: PropTypes.node,
     /**
      * The delay before the tooltip is displayed when the `children` element is hovered.
      */
