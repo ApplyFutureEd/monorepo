@@ -1,8 +1,8 @@
-import Header from '@components/layout/header/Header';
+import Header from '@components/core/header/Header';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React, { useState as useStateMock } from 'react';
 
-jest.mock('@components/layout/nav/Nav', () => {
+jest.mock('@components/core/nav/Nav', () => {
     return {
         __esModule: true,
         default: () => {
