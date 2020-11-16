@@ -1,6 +1,6 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Recruiters: FC = () => {

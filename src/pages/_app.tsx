@@ -4,7 +4,7 @@ import '@utils/amplify';
 import { initSentry } from '@utils/sentry';
 import { initWhyDidYouRender } from '@utils/whyDidYouRender';
 import type { AppProps } from 'next/app';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 initSentry();
 initWhyDidYouRender();

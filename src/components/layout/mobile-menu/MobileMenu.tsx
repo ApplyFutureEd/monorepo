@@ -2,7 +2,7 @@ import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type Props = {

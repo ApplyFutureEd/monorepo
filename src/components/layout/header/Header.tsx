@@ -4,7 +4,7 @@ import MobileMenu from '@components/layout/mobile-menu/MobileMenu';
 import Nav from '@components/layout/nav/Nav';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const routes = [

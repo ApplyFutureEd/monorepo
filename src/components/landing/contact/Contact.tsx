@@ -1,7 +1,7 @@
 import ContactForm from '@components/landing/contact/ContactForm';
 import { faEnvelope, faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Contact: FC = () => {

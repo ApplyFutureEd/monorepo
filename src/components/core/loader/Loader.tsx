@@ -1,7 +1,7 @@
 import { faSpinnerThird } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     size?:
