@@ -4,16 +4,17 @@ import Header from '@components/layout/header/Header';
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
-    title: string;
     children: ReactNode;
+    description: string;
+    title: string;
 };
 
 const LandingLayout: FC<Props> = (props) => {
-    const { title, children } = props;
+    const { children, description, title } = props;
 
     return (
         <>
-            <Head title={title} />
+            <Head description={description} title={title} />
             <Header />
             <main className="pt-header">{children}</main>
             <Footer />
