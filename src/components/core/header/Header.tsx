@@ -52,10 +52,10 @@ const Header: FC = () => {
                         </div>
                         <Nav routes={routes} />
                         <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-4 lg:flex lg:flex-1 lg:w-0">
-                            <a>
+                            <a href="/sign-in">
                                 <Button variant="secondary">{t('auth:sign-in')}</Button>
                             </a>
-                            <a>
+                            <a href="/sign-up">
                                 <Button variant="primary">{t('auth:sign-up')}</Button>
                             </a>
                         </div>
