@@ -33,11 +33,11 @@ const SignInForm: FC = () => {
                 password,
                 username: email.toLowerCase()
             });
-            //return redirect programs
+            return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
             if (error.code === 'UserNotConfirmedException') {
-                //return redirect confirm account
+                return router.push('/confirm-account');
             }
             if (error.code === 'NotAuthorizedException') {
                 message = t('auth:error-not-authorized-exception');

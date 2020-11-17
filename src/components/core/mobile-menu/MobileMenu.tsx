@@ -52,10 +52,10 @@ const MobileMenu: FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="flex items-center p-3 space-x-4">
-                        <a>
+                        <a href="/sign-in">
                             <Button variant="secondary">{t('auth:sign-in')}</Button>
                         </a>
-                        <a>
+                        <a href="/sign-up">
                             <Button variant="primary">{t('auth:sign-up')}</Button>
                         </a>
                     </div>
