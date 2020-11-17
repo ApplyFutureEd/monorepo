@@ -3,7 +3,7 @@ import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { FC } from 'react';
 
 const SignInPage: FC = () => (
-    <AuthLayout>
+    <AuthLayout title="Sign in">
         <SignIn />
     </AuthLayout>
 );
