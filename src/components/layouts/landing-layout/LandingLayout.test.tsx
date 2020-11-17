@@ -12,7 +12,11 @@ jest.mock('@components/core/nav/Nav', () => {
 
 describe('LandingLayout', () => {
     it('can render without crashing', () => {
-        render(<LandingLayout title="Hello World">Hello World</LandingLayout>);
+        render(
+            <LandingLayout description="Lorem ipsum" title="Hello World">
+                Hello World
+            </LandingLayout>
+        );
 
         const children = screen.getByText('Hello World');
 
