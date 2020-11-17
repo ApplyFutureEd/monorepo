@@ -7,7 +7,7 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
 
-const SignUpForm: FC = () => {
+const ConfirmAccountForm: FC = () => {
     const router = useRouter();
     const { t } = useTranslation(['auth']);
     const [errorMessage, setErrorMessage] = useState('');
@@ -16,28 +16,38 @@ const SignUpForm: FC = () => {
         email: string()
             .required(t('common:error-email-required'))
             .email(t('common:error-email-format')),
-        password: string().required('common:error-required')
+        password: string().required('common:error-required'),
+        verificationCode: string().required('common:error-required')
     });
 
     type FormValues = {
-        password: string;
         email: string;
+        password: string;
+        verificationCode: string;
     };
 
-    const initialValues: FormValues = { email: (router.query.email as string) || '', password: '' };
+    const initialValues: FormValues = {
+        email: (router.query.email as string) || '',
+        password: '',
+        verificationCode: (router.query.code as string) || ''
+    };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { email, password } = values;
+        const { email, password, verificationCode } = values;
         try {
-            await Auth.signUp({
-                password,
-                username: email.toLowerCase()
-            });
-            return router.push(`/confirm-account?email=${email}`);
+            await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
+            await Auth.signIn({ password, username: email });
+            return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
-            if (error.code === 'UsernameExistsException') {
-                message = t('auth:error-username-exists-exception');
+            if (error.code === 'ExpiredCodeException') {
+                message = t('auth:error-expired-code-exception');
+            }
+            if (error.code === 'NotAuthorizedException') {
+                message = t('auth:error-not-authorized-exception');
+            }
+            if (error.code === 'CodeMismatchException') {
+                message = t('auth:error-code-mismatch-exception');
             }
             setErrorMessage(message);
         }
@@ -62,6 +72,11 @@ const SignUpForm: FC = () => {
                             />
                         )}
                     </Field>
+                    <Field id="verificationCode" name="verificationCode">
+                        {(props: FormikHelpers<FormValues>) => (
+                            <Input label={t('auth:verification-code')} type="text" {...props} />
+                        )}
+                    </Field>
                     <Field id="password" name="password">
                         {(props: FormikHelpers<FormValues>) => (
                             <Input
@@ -73,17 +88,9 @@ const SignUpForm: FC = () => {
                         )}
                     </Field>
 
-                    <div className="flex items-center justify-between">
-                        <div className="text-sm leading-5">
-                            <a
-                                className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none transition duration-150 ease-in-out"
-                                href="/recruiters">
-                                {t('auth:im-a-recruiter')}
-                            </a>
-                        </div>
-
+                    <div className="flex items-center justify-end">
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
-                            {t('auth:sign-up')}
+                            {t('auth:confirm')}
                         </Button>
                     </div>
                     {errorMessage && <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>}
@@ -93,4 +100,4 @@ const SignUpForm: FC = () => {
     );
 };
 
-export default SignUpForm;
+export default ConfirmAccountForm;
