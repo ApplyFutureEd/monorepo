@@ -10,7 +10,7 @@ import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC } from 'react';
 
 const LandingPage: FC = () => (
-    <LandingLayout title="Apply for the best schools in Europe">
+    <LandingLayout description="" title="Apply for the best schools in Europe">
         <Hero />
         <Students />
         <Arguments />
