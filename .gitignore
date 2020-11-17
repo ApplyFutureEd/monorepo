@@ -1,9 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-#serverless
-/.serverless
-/.serverless_nextjs
-
 # dependencies
 /node_modules
 /.pnp
@@ -47,3 +43,10 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
+
+#tests
+test-report.xml
+
+#pwa
+public/*.js
+public/*.js.map
