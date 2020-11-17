@@ -1,7 +1,7 @@
-import LandingLayout from '@components/layout/landing-layout/LandingLayout';
+import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { render, screen } from '@testing-library/react';
 
-jest.mock('@components/layout/nav/Nav', () => {
+jest.mock('@components/core/nav/Nav', () => {
     return {
         __esModule: true,
         default: () => {

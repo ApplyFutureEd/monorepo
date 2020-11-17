@@ -1,7 +1,7 @@
+import Footer from '@components/core/footer/Footer';
 import Head from '@components/core/head/Head';
-import Footer from '@components/layout/footer/Footer';
-import Header from '@components/layout/header/Header';
-import React, { FC, ReactNode } from 'react';
+import Header from '@components/core/header/Header';
+import { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;

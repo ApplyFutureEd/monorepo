@@ -1,5 +1,5 @@
 import About from '@components/landing/about/About';
-import LandingLayout from '@components/layout/landing-layout/LandingLayout';
+import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 

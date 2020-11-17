@@ -2,7 +2,7 @@ import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -52,10 +52,10 @@ const MobileMenu: FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="flex items-center p-3 space-x-4">
-                        <a>
+                        <a href="/sign-in">
                             <Button variant="secondary">{t('auth:sign-in')}</Button>
                         </a>
-                        <a>
+                        <a href="/sign-up">
                             <Button variant="primary">{t('auth:sign-up')}</Button>
                         </a>
                     </div>

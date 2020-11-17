@@ -1,4 +1,4 @@
-import MobileMenu from '@components/layout/mobile-menu/MobileMenu';
+import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 const routes = [

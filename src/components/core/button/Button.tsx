@@ -3,7 +3,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;
