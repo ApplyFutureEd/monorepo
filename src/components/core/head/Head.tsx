@@ -1,7 +1,7 @@
 import { isBrowser } from '@utils/isBrowser';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 export type HeadProps = {
     description?: string;

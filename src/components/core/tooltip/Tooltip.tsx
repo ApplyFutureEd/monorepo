@@ -1,7 +1,7 @@
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React, { FC, Fragment, ReactNode, useState } from 'react';
+import { FC, Fragment, ReactNode, useState } from 'react';
 
 type Props = {
     children: ReactNode;
@@ -58,7 +58,7 @@ Tooltip.propTypes = {
     /**
      * The content of the tooltip.
      */
-    content: PropTypes.node.isRequired,
+    content: PropTypes.node,
     /**
      * The delay before the tooltip is displayed when the `children` element is hovered.
      */

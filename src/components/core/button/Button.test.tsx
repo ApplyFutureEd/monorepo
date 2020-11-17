@@ -114,7 +114,7 @@ describe('Button', () => {
         expect(icon).toBeInTheDocument();
     });
 
-    it('can render a button with a start icon', () => {
+    it('can render a button with a end icon', () => {
         render(
             <Button endIcon={faArrowRight} variant="primary">
                 Next
