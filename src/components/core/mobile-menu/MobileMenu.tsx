@@ -1,7 +1,9 @@
 import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
+import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useAuthenticatedUser from '@utils/useAuthenticatedUser';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +17,7 @@ type Props = {
 
 const MobileMenu: FC<Props> = (props) => {
     const { routes, setOpen } = props;
+    const user = useAuthenticatedUser();
     const { t } = useTranslation(['common', 'auth']);
 
     return (
@@ -52,12 +55,18 @@ const MobileMenu: FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="flex items-center p-3 space-x-4">
-                        <a href="/sign-in">
-                            <Button variant="secondary">{t('auth:sign-in')}</Button>
-                        </a>
-                        <a href="/sign-up">
-                            <Button variant="primary">{t('auth:sign-up')}</Button>
-                        </a>
+                        {user ? (
+                            <UserMenu />
+                        ) : (
+                            <>
+                                <a href="/sign-in">
+                                    <Button variant="secondary">{t('auth:sign-in')}</Button>
+                                </a>
+                                <a href="/sign-up">
+                                    <Button variant="primary">{t('auth:sign-up')}</Button>
+                                </a>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

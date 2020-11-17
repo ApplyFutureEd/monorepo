@@ -2,8 +2,11 @@ import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import Nav from '@components/core/nav/Nav';
+import Transition from '@components/core/transition/Transition';
+import UserMenu from '@components/core/user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useAuthenticatedUser from '@utils/useAuthenticatedUser';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -28,6 +31,7 @@ const routes = [
 
 const Header: FC = () => {
     const { t } = useTranslation(['auth']);
+    const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 
     return (
@@ -52,16 +56,24 @@ const Header: FC = () => {
                         </div>
                         <Nav routes={routes} />
                         <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-4 lg:flex lg:flex-1 lg:w-0">
-                            <a href="/sign-in">
-                                <Button variant="secondary">{t('auth:sign-in')}</Button>
-                            </a>
-                            <a href="/sign-up">
-                                <Button variant="primary">{t('auth:sign-up')}</Button>
-                            </a>
+                            {user ? (
+                                <UserMenu />
+                            ) : (
+                                <>
+                                    <a href="/sign-in">
+                                        <Button variant="secondary">{t('auth:sign-in')}</Button>
+                                    </a>
+                                    <a href="/sign-up">
+                                        <Button variant="primary">{t('auth:sign-up')}</Button>
+                                    </a>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
-                {open && <MobileMenu routes={routes} setOpen={setOpen} />}
+                <Transition show={open}>
+                    <MobileMenu routes={routes} setOpen={setOpen} />
+                </Transition>
             </div>
         </div>
     );
