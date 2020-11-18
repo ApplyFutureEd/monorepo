@@ -33,13 +33,7 @@ describe('UserMenu', () => {
 
         const button = screen.getByRole('button');
 
-        fireEvent(
-            button,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true
-            })
-        );
+        fireEvent.click(button);
 
         const favorites = screen.getByText(/favorites/);
         const signOut = screen.getByText(/sign-out/);
@@ -53,23 +47,11 @@ describe('UserMenu', () => {
 
         const button = screen.getByRole('button');
 
-        fireEvent(
-            button,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true
-            })
-        );
+        fireEvent.click(button);
 
         const signOut = screen.getByText(/favorites/);
 
-        fireEvent(
-            signOut,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true
-            })
-        );
+        fireEvent.click(signOut);
     });
 
     it('can sign out and reload the page', () => {
@@ -77,23 +59,11 @@ describe('UserMenu', () => {
 
         const button = screen.getByRole('button');
 
-        fireEvent(
-            button,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true
-            })
-        );
+        fireEvent.click(button);
 
         const signOut = screen.getByText(/sign-out/);
 
-        fireEvent(
-            signOut,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true
-            })
-        );
+        fireEvent.click(signOut);
 
         expect(Auth.signOut).toHaveBeenCalled();
         expect(window.location.reload).toHaveBeenCalled();

@@ -77,7 +77,9 @@ const CSSTransition: FC<CSSTransitionProps> = (props) => {
     };
 
     const onEnter = (): void => {
-        if (noderef.current) addClasses(noderef.current, [...enterClasses, ...enterFromClasses]);
+        if (noderef.current) {
+            addClasses(noderef.current, [...enterClasses, ...enterFromClasses]);
+        }
     };
 
     const onEntering = (): void => {
@@ -88,11 +90,15 @@ const CSSTransition: FC<CSSTransitionProps> = (props) => {
     };
 
     const onEntered = (): void => {
-        if (noderef.current) removeClasses(noderef.current, [...enterToClasses, ...enterClasses]);
+        if (noderef.current) {
+            removeClasses(noderef.current, [...enterToClasses, ...enterClasses]);
+        }
     };
 
     const onExit = (): void => {
-        if (noderef.current) addClasses(noderef.current, [...leaveClasses, ...leaveFromClasses]);
+        if (noderef.current) {
+            addClasses(noderef.current, [...leaveClasses, ...leaveFromClasses]);
+        }
     };
 
     const onExiting = (): void => {
@@ -103,7 +109,9 @@ const CSSTransition: FC<CSSTransitionProps> = (props) => {
     };
 
     const onExited = (): void => {
-        if (noderef.current) removeClasses(noderef.current, [...leaveToClasses, ...leaveClasses]);
+        if (noderef.current) {
+            removeClasses(noderef.current, [...leaveToClasses, ...leaveClasses]);
+        }
     };
 
     return (
