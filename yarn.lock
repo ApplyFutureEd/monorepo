@@ -13599,12 +13599,13 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier-plugin-tailwind@2.1.9:
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwind/-/prettier-plugin-tailwind-2.1.9.tgz#9c517efa85a1a7fa1bae1f26768e42fc06c6a862"
-  integrity sha512-VBCBiJSlKYyvbVXXF8Q2/KdtVNqk/urU7ZABt22dZCOJMyJxfcflf4uedMy5an6a4lvTPGhuldQima1Jn0R0VQ==
+prettier-plugin-tailwind@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwind/-/prettier-plugin-tailwind-2.2.0.tgz#d419cf9951b97e9787b6903848ed8ee7dbecb602"
+  integrity sha512-u87DzWjbjgg37uAYeJPf1cIOdo0xEmeGrHX6m9csb16zQx0Oo1hu06pZlSQFiN/9a+hWya6VRSiwNq0goRitYw==
   dependencies:
     prettier "^2.1.2"
+    svelte-prettier-plugin "npm:prettier-plugin-svelte"
     tailwind-classes-sorter "^0.2.2"
     tailwindcss "^1.8.13"
 
@@ -15693,6 +15694,11 @@ supports-hyperlinks@^2.0.0:
   dependencies:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
+
+"svelte-prettier-plugin@npm:prettier-plugin-svelte":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-svelte/-/prettier-plugin-svelte-1.4.1.tgz#2f0f7a149190f476dc9b4ba9da8d482bd196f1e2"
+  integrity sha512-6y0m37Xw01GRf/WIHau+Kp3uXj2JB1agtEmNVKb9opMy34A6OMOYhfneVpNIlrghQSw/jIV+t3e5Ngt4up2CMA==
 
 svg-parser@^2.0.2:
   version "2.0.4"
