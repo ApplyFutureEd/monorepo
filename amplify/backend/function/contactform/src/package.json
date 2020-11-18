@@ -8,7 +8,7 @@
         "compile": "tsc"
     },
     "devDependencies": {
-        "aws-sdk": "2.794.0",
+        "aws-sdk": "2.795.0",
         "@types/aws-lambda": "8.10.64",
         "@types/node": "13.13.31",
         "typescript": "4.0.5"
