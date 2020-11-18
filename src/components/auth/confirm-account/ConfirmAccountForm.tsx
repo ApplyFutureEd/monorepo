@@ -9,7 +9,7 @@ import { object, string } from 'yup';
 
 const ConfirmAccountForm: FC = () => {
     const router = useRouter();
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation(['common', 'auth']);
     const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
@@ -57,7 +57,6 @@ const ConfirmAccountForm: FC = () => {
 
     return (
         <Formik
-            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>

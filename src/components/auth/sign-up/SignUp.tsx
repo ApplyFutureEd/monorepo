@@ -34,24 +34,16 @@ const SignUp: FC = () => {
                 <a
                     className="underline"
                     href="/terms-and-conditions"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     target="_blank">
                     {t('auth:terms-and-conditions')}
                 </a>
                 ,{' '}
-                <a
-                    className="underline"
-                    href="/privacy-policy"
-                    rel="noopener noreferrer"
-                    target="_blank">
+                <a className="underline" href="/privacy-policy" rel="noopener" target="_blank">
                     {t('auth:privacy-policy')}
                 </a>{' '}
                 {t('auth:and')}{' '}
-                <a
-                    className="underline"
-                    href="/terms-of-use"
-                    rel="noopener noreferrer"
-                    target="_blank">
+                <a className="underline" href="/terms-of-use" rel="noopener" target="_blank">
                     {t('auth:terms-of-use')}
                 </a>
             </div>
