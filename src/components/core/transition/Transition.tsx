@@ -58,17 +58,17 @@ const CSSTransition: FC<CSSTransitionProps> = (props) => {
     const leaveFromClasses = leaveFrom.split(' ').filter((s) => s.length);
     const leaveToClasses = leaveTo.split(' ').filter((s) => s.length);
 
-    function addClasses(node: HTMLElement, classes: string[]): void {
+    const addClasses = (node: HTMLElement, classes: string[]): void => {
         if (classes.length) {
             node.classList.add(...classes);
         }
-    }
+    };
 
-    function removeClasses(node: HTMLElement, classes: string[]): void {
+    const removeClasses = (node: HTMLElement, classes: string[]): void => {
         if (classes.length) {
             node.classList.remove(...classes);
         }
-    }
+    };
 
     const noderef = useRef<HTMLDivElement>(null);
 
