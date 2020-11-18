@@ -32,7 +32,10 @@ const ConfirmAccountForm: FC = () => {
             await Auth.forgotPassword(email.toLowerCase());
             return router.push(`/confirm-forgot-password?email=${email}`);
         } catch (error) {
-            const message = t('auth:error-generic-exception');
+            let message = t('auth:error-generic-exception');
+            if (error.code === 'CodeDeliveryDetails') {
+                message = t('auth:error-generic-exception');
+            }
             setErrorMessage(message);
         }
         actions.setSubmitting(false);

@@ -10,6 +10,7 @@ import { object, string } from 'yup';
 const ContactForm: FC = () => {
     const { t } = useTranslation(['common']);
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
         email: string()
@@ -42,7 +43,7 @@ const ContactForm: FC = () => {
             actions.setSubmitting(false);
             setSubmitted(true);
         } catch (error) {
-            console.log(error);
+            setErrorMessage(t('common:contact-form-generic-error'));
             actions.setSubmitting(false);
             setSubmitted(false);
         }
@@ -95,6 +96,7 @@ const ContactForm: FC = () => {
                             </Button>
                         )}
                     </div>
+                    {errorMessage && <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>}
                 </Form>
             )}
         </Formik>

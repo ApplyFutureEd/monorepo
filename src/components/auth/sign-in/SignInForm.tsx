@@ -36,11 +36,11 @@ const SignInForm: FC = () => {
             return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
-            if (error.code === 'UserNotConfirmedException') {
-                return router.push(`/confirm-account?email=${email}`);
-            }
             if (error.code === 'NotAuthorizedException') {
                 message = t('auth:error-not-authorized-exception');
+            }
+            if (error.code === 'UserNotConfirmedException') {
+                return router.push(`/confirm-account?email=${email}`);
             }
             setErrorMessage(message);
         }
