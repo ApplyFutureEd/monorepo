@@ -224,4 +224,55 @@ describe('ConfirmAccount', () => {
             expect(errorMessage).toBeVisible();
         });
     });
+
+    it('can display the right error message when an Error is thrown', async () => {
+        Auth.confirmSignUp = jest.fn().mockImplementation(() => {
+            return true;
+        });
+        Auth.signIn = jest.fn().mockImplementation(() => {
+            throw new Error();
+        });
+
+        render(<ConfirmAccount />);
+
+        const email = screen.getByLabelText(/email/);
+        const verificationCode = screen.getByLabelText(/verification-code/);
+        const password = screen.getByLabelText(/password/);
+        const submitButton = screen.getByRole(/button/);
+
+        await waitFor(() => {
+            fireEvent.change(email, {
+                target: {
+                    value: fakeUser.email
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.change(verificationCode, {
+                target: {
+                    value: fakeUser.verificationCode
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.change(password, {
+                target: {
+                    value: fakeUser.password
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.click(submitButton);
+        });
+
+        await waitFor(() => {
+            expect(Auth.signIn).toThrow();
+
+            const errorMessage = screen.getByText(/auth:error-generic-exception/);
+            expect(errorMessage).toBeVisible();
+        });
+    });
 });

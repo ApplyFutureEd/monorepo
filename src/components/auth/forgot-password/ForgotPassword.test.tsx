@@ -80,4 +80,34 @@ describe('ForgotPassword', () => {
             expect(errorMessage).toBeVisible();
         });
     });
+
+    it('can display the right error message when an Error is thrown', async () => {
+        Auth.forgotPassword = jest.fn().mockImplementation(() => {
+            throw new Error();
+        });
+
+        render(<ForgotPassword />);
+
+        const email = screen.getByLabelText(/email/);
+        const submitButton = screen.getByRole(/button/);
+
+        await waitFor(() => {
+            fireEvent.change(email, {
+                target: {
+                    value: fakeUser.email
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.click(submitButton);
+        });
+
+        await waitFor(() => {
+            expect(Auth.forgotPassword).toThrow();
+
+            const errorMessage = screen.getByText(/auth:error-generic-exception/);
+            expect(errorMessage).toBeVisible();
+        });
+    });
 });
