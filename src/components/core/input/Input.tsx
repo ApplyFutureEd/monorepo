@@ -72,7 +72,7 @@ const Input: FC<Props> = (props) => {
     }
 
     return (
-        <label className="font-sans" htmlFor={field?.name} {...rest}>
+        <label className="block font-sans" htmlFor={field?.name} {...rest}>
             <Tooltip content={tooltip}>
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>

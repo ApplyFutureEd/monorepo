@@ -1,4 +1,4 @@
-import SignIn from '@components/auth/sign-in/SignIn';
+import ForgotPassword from '@components/auth/forgot-password/ForgotPassword';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import AmplifyError from '@utils/AmplifyError';
 import { Auth } from 'aws-amplify';
@@ -13,18 +13,17 @@ jest.mock('next/router', () => ({
     }
 }));
 
-Auth.signIn = jest.fn().mockImplementation(() => {
+Auth.forgotPassword = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('SignIn', () => {
+describe('ForgotPassword', () => {
     const fakeUser = {
-        email: 'awesome.student@gmail.com',
-        password: '$tR0nGPaSsw0rd'
+        email: 'awesome.student@gmail.com'
     };
 
     it('can render without crashing', () => {
-        render(<SignIn />);
+        render(<ForgotPassword />);
 
         const heading = screen.getByRole('heading');
 
@@ -32,10 +31,9 @@ describe('SignIn', () => {
     });
 
     it('can submit the form', async () => {
-        render(<SignIn />);
+        render(<ForgotPassword />);
 
         const email = screen.getByLabelText(/email/);
-        const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
         await waitFor(() => {
@@ -47,32 +45,20 @@ describe('SignIn', () => {
         });
 
         await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
             fireEvent.click(submitButton);
         });
 
-        expect(Auth.signIn).toHaveBeenCalledWith({
-            password: fakeUser.password,
-            username: fakeUser.email
-        });
+        expect(Auth.forgotPassword).toHaveBeenCalledWith(fakeUser.email);
     });
 
-    it('can display the right error message when NotAuthorizedException is thrown', async () => {
-        Auth.signIn = jest.fn().mockImplementation(() => {
-            throw new AmplifyError('NotAuthorizedException');
+    it('can display the right error message when CodeDeliveryDetails is thrown', async () => {
+        Auth.forgotPassword = jest.fn().mockImplementation(() => {
+            throw new AmplifyError('CodeDeliveryDetails');
         });
 
-        render(<SignIn />);
+        render(<ForgotPassword />);
 
         const email = screen.getByLabelText(/email/);
-        const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
         await waitFor(() => {
@@ -84,21 +70,13 @@ describe('SignIn', () => {
         });
 
         await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
             fireEvent.click(submitButton);
         });
 
         await waitFor(() => {
-            expect(Auth.signIn).toThrow();
+            expect(Auth.forgotPassword).toThrow();
 
-            const errorMessage = screen.getByText(/auth:error-not-authorized-exception/);
+            const errorMessage = screen.getByText(/auth:error-generic-exception/);
             expect(errorMessage).toBeVisible();
         });
     });

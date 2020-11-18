@@ -8,18 +8,23 @@ import Schools from '@components/landing/schools/Schools';
 import Students from '@components/landing/students/Students';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const LandingPage: FC = () => (
-    <LandingLayout description="" title="Apply for the best schools in Europe">
-        <Hero />
-        <Students />
-        <Arguments />
-        <Process />
-        <Schools />
-        <Partners />
-        <Recruiters />
-        <Contact />
-    </LandingLayout>
-);
+const LandingPage: FC = () => {
+    const { t } = useTranslation(['landing']);
+
+    return (
+        <LandingLayout description={t('landing:meta-description')} title={t('landing:page-title')}>
+            <Hero />
+            <Students />
+            <Arguments />
+            <Process />
+            <Schools />
+            <Partners />
+            <Recruiters />
+            <Contact />
+        </LandingLayout>
+    );
+};
 
 export default LandingPage;

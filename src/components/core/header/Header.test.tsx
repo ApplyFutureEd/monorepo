@@ -1,5 +1,6 @@
 import Header from '@components/core/header/Header';
 import { fireEvent, render, screen } from '@testing-library/react';
+import useAuthenticatedUser from '@utils/useAuthenticatedUser';
 import React, { useState as useStateMock } from 'react';
 
 jest.mock('@components/core/nav/Nav', () => {
@@ -15,6 +16,12 @@ jest.mock('react', () => ({
     ...(jest.requireActual('react') as Record<string, unknown>),
     useState: jest.fn()
 }));
+
+jest.mock('@utils/useAuthenticatedUser');
+
+const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
+    typeof useAuthenticatedUser
+>;
 
 describe('Header', () => {
     const setOpen = jest.fn();
@@ -42,5 +49,16 @@ describe('Header', () => {
         fireEvent.click(anchor);
 
         expect(setOpen).toHaveBeenNthCalledWith(1, true);
+    });
+
+    it('display UserMenu if logged', () => {
+        useAuthenticatedUserMock.mockReturnValue({
+            attributes: { email: 'awesome.student@gmail.com' }
+        });
+        render(<Header />);
+
+        const button = screen.getByLabelText(/user menu/i);
+
+        expect(button).toBeVisible();
     });
 });

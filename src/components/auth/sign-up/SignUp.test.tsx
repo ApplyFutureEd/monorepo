@@ -1,4 +1,4 @@
-import SignIn from '@components/auth/sign-in/SignIn';
+import SignUp from '@components/auth/sign-up/SignUp';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import AmplifyError from '@utils/AmplifyError';
 import { Auth } from 'aws-amplify';
@@ -13,18 +13,18 @@ jest.mock('next/router', () => ({
     }
 }));
 
-Auth.signIn = jest.fn().mockImplementation(() => {
+Auth.signUp = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('SignIn', () => {
+describe('SignUp', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         password: '$tR0nGPaSsw0rd'
     };
 
     it('can render without crashing', () => {
-        render(<SignIn />);
+        render(<SignUp />);
 
         const heading = screen.getByRole('heading');
 
@@ -32,7 +32,7 @@ describe('SignIn', () => {
     });
 
     it('can submit the form', async () => {
-        render(<SignIn />);
+        render(<SignUp />);
 
         const email = screen.getByLabelText(/email/);
         const password = screen.getByLabelText(/password/);
@@ -58,18 +58,18 @@ describe('SignIn', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(Auth.signIn).toHaveBeenCalledWith({
+        expect(Auth.signUp).toHaveBeenCalledWith({
             password: fakeUser.password,
             username: fakeUser.email
         });
     });
 
-    it('can display the right error message when NotAuthorizedException is thrown', async () => {
-        Auth.signIn = jest.fn().mockImplementation(() => {
-            throw new AmplifyError('NotAuthorizedException');
+    it('can display the right error message when UsernameExistsException is thrown', async () => {
+        Auth.signUp = jest.fn().mockImplementation(() => {
+            throw new AmplifyError('UsernameExistsException');
         });
 
-        render(<SignIn />);
+        render(<SignUp />);
 
         const email = screen.getByLabelText(/email/);
         const password = screen.getByLabelText(/password/);
@@ -96,9 +96,9 @@ describe('SignIn', () => {
         });
 
         await waitFor(() => {
-            expect(Auth.signIn).toThrow();
+            expect(Auth.signUp).toThrow();
 
-            const errorMessage = screen.getByText(/auth:error-not-authorized-exception/);
+            const errorMessage = screen.getByText(/auth:error-username-exists-exception/);
             expect(errorMessage).toBeVisible();
         });
     });
