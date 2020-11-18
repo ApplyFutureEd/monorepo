@@ -7,7 +7,7 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
 
-const ConfirmAccountForm: FC = () => {
+const ForgotPasswordForm: FC = () => {
     const router = useRouter();
     const { t } = useTranslation(['common', 'auth']);
     const [errorMessage, setErrorMessage] = useState('');
@@ -77,4 +77,4 @@ const ConfirmAccountForm: FC = () => {
     );
 };
 
-export default ConfirmAccountForm;
+export default ForgotPasswordForm;

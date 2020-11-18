@@ -3,7 +3,7 @@ import Logo from '@components/core/logo/Logo';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const ConfirmAccount: FC = () => {
+const ForgotPassword: FC = () => {
     const { t } = useTranslation(['auth']);
 
     return (
@@ -23,4 +23,4 @@ const ConfirmAccount: FC = () => {
     );
 };
 
-export default ConfirmAccount;
+export default ForgotPassword;

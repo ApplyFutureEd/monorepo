@@ -169,4 +169,52 @@ describe('ConfirmForgotPassword', () => {
             expect(errorMessage).toBeVisible();
         });
     });
+
+    it('can display the right error message when an Error is thrown', async () => {
+        Auth.forgotPasswordSubmit = jest.fn().mockImplementation(() => {
+            throw new Error();
+        });
+
+        render(<ConfirmForgotPassword />);
+
+        const email = screen.getByLabelText(/email/);
+        const newPassword = screen.getByLabelText(/new-password/);
+        const verificationCode = screen.getByLabelText(/verification-code/);
+        const submitButton = screen.getByRole(/button/);
+
+        await waitFor(() => {
+            fireEvent.change(email, {
+                target: {
+                    value: fakeUser.email
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.change(newPassword, {
+                target: {
+                    value: fakeUser.newPassword
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.change(verificationCode, {
+                target: {
+                    value: fakeUser.verificationCode
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.click(submitButton);
+        });
+
+        await waitFor(() => {
+            expect(Auth.forgotPasswordSubmit).toThrow();
+
+            const errorMessage = screen.getByText(/auth:error-generic-exception/);
+            expect(errorMessage).toBeVisible();
+        });
+    });
 });

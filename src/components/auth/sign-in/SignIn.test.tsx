@@ -102,4 +102,43 @@ describe('SignIn', () => {
             expect(errorMessage).toBeVisible();
         });
     });
+
+    it('can display the right error message when an Error is thrown', async () => {
+        Auth.signIn = jest.fn().mockImplementation(() => {
+            throw new Error();
+        });
+
+        render(<SignIn />);
+
+        const email = screen.getByLabelText(/email/);
+        const password = screen.getByLabelText(/password/);
+        const submitButton = screen.getByRole(/button/);
+
+        await waitFor(() => {
+            fireEvent.change(email, {
+                target: {
+                    value: fakeUser.email
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.change(password, {
+                target: {
+                    value: fakeUser.password
+                }
+            });
+        });
+
+        await waitFor(() => {
+            fireEvent.click(submitButton);
+        });
+
+        await waitFor(() => {
+            expect(Auth.signIn).toThrow();
+
+            const errorMessage = screen.getByText(/auth:error-generic-exception/);
+            expect(errorMessage).toBeVisible();
+        });
+    });
 });

@@ -39,7 +39,6 @@ const ConfirmAccountForm: FC = () => {
             await Auth.signIn({ password, username: email });
             return router.push('/programs');
         } catch (error) {
-            console.log(error.code);
             let message = t('auth:error-generic-exception');
             if (error.code === 'ExpiredCodeException') {
                 message = t('auth:error-expired-code-exception');

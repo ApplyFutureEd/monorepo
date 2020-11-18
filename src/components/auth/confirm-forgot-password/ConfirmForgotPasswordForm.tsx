@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { object, string } from 'yup';
 
-const ConfirmAccountForm: FC = () => {
+const ConfirmForgotPasswordForm: FC = () => {
     const router = useRouter();
     const { t } = useTranslation(['common', 'auth']);
     const [errorMessage, setErrorMessage] = useState('');
@@ -105,4 +105,4 @@ const ConfirmAccountForm: FC = () => {
     );
 };
 
-export default ConfirmAccountForm;
+export default ConfirmForgotPasswordForm;
