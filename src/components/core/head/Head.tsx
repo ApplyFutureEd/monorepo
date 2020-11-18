@@ -17,6 +17,7 @@ const Head: FC<HeadProps> = (props) => {
 
     if (isBrowser()) {
         const WebFontLoader = require('webfontloader');
+        console.log(WebFontLoader.load);
         WebFontLoader.load({
             custom: {
                 families: ['Inter var'],
