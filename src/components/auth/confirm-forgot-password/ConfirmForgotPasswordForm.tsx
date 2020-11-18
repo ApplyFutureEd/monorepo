@@ -81,7 +81,7 @@ const ConfirmAccountForm: FC = () => {
                         {(props: FormikHelpers<FormValues>) => (
                             <Input
                                 autoCapitalize="none"
-                                label={t('auth:password-password')}
+                                label={t('auth:new-password')}
                                 type="password"
                                 {...props}
                             />

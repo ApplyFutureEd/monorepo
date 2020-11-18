@@ -39,15 +39,16 @@ const ConfirmAccountForm: FC = () => {
             await Auth.signIn({ password, username: email });
             return router.push('/programs');
         } catch (error) {
+            console.log(error.code);
             let message = t('auth:error-generic-exception');
             if (error.code === 'ExpiredCodeException') {
                 message = t('auth:error-expired-code-exception');
             }
-            if (error.code === 'NotAuthorizedException') {
-                message = t('auth:error-not-authorized-exception');
-            }
             if (error.code === 'CodeMismatchException') {
                 message = t('auth:error-code-mismatch-exception');
+            }
+            if (error.code === 'NotAuthorizedException') {
+                message = t('auth:error-not-authorized-exception');
             }
             setErrorMessage(message);
         }
