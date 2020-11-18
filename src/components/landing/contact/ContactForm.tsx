@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
 
 const ContactForm: FC = () => {
-    const { t } = useTranslation(['common']);
+    const { t } = useTranslation(['common', 'landing']);
     const [submitted, setSubmitted] = useState(false);
 
     const validationSchema = object().shape({
