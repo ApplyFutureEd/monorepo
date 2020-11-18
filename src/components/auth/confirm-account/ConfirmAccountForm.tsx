@@ -56,7 +56,6 @@ const ConfirmAccountForm: FC = () => {
 
     return (
         <Formik
-            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
