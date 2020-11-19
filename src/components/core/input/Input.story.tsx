@@ -1,10 +1,8 @@
 import Input from '@components/core/input/Input';
-import { withKnobs } from '@storybook/addon-knobs';
 import React, { ReactNode } from 'react';
 
 export default {
     component: Input,
-    decorators: [withKnobs],
     title: 'Input'
 };
 
