@@ -6,6 +6,10 @@
 
 > “The only way to go fast, is to go well.” ― Robert C. Martin, Clean Architecture
 
+## 🔗 Links
+
+-   [Design System](https://master--5fb5c6529fbaa1002192c5e0.chromatic.com/?path=/docs/button--primary) : Our library of components based on [TailwindUI](https://tailwindui.com/)
+
 ## 🤖 Scripts
 
 ### `yarn start`
@@ -40,6 +44,7 @@ You'll be prompted to fill out any required commit fields at commit time.
 -   [AWS Amplify](https://docs.amplify.aws/) : AWS Amplify is a set of products and tools that enables mobile and front-end web developers to build and deploy secure, scalable full stack applications, powered by AWS.
 -   [Next.js](https://nextjs.org/) : Open-source React front-end development web framework that enables functionality such as server-side rendering and generating static websites for React based web applications.
 -   [Storybook](https://storybook.js.org/) : Storybook is an open source tool for developing UI components in isolation.
+-   [Chromatic](https://www.chromatic.com/) : Chromatic automates gathering UI feedback, visual testing, and documentation.
 -   [TailwindCSS](https://tailwindcss.com/) : Utility-first CSS framework for rapid UI development.
 -   [Jest](https://jestjs.io/) : JavaScript testing framework designed to ensure correctness of any JavaScript codebase.
 -   [Cypress](https://cypress.io/) : Javascript End to End testing framework.
@@ -57,14 +62,12 @@ You'll be prompted to fill out any required commit fields at commit time.
     ├── graphql                 # GraphQL schema, queries and mutations
     ├── pages                   # Page level components for each path
     ├── styles                  # Styling related files
-    ├── tests                   # Integration and E2E tests
     ├── utils                   # Helpers, hooks, and third-party integrations
     └── types                   # Types declarations
 
 ## 🚀 Deployment
 
-Continous deployment and continous integration is setup on `dev` and `master` branch. Commit on those branch will triggers the deployment pipeline. 3 environements are available:
+Continous Integration and Continous Deployment and is trigger on Pull Requests, push on `dev` branch and push on `master` branch. It will run the following jobs:
 
--   Local environement : http://localhost:3000
--   Developer environement : https://dev.applyfuture.com
--   Production environement : https://applyfuture.com
+-   `code-quality` : runs unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud
+-   `design-system` : publish Storybook on Chromatic and runs UI tests
