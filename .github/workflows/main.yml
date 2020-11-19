@@ -25,3 +25,14 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      design-system:
+          runs-on: ubuntu-latest
+          steps:
+              - uses: actions/checkout@v1
+              - name: Install dependencies
+                run: npm install
+              - name: Deploy to Chromatic
+                run: chromaui/action@v1
+                  with:
+                    token: ${{ secrets.GITHUB_TOKEN }}
+                    projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
