@@ -1,11 +1,9 @@
 import Button from '@components/core/button/Button';
 import { faArrowLeft, faArrowRight } from '@fortawesome/pro-light-svg-icons';
-import { withKnobs } from '@storybook/addon-knobs';
 import React, { ReactNode } from 'react';
 
 export default {
     component: Button,
-    decorators: [withKnobs],
     title: 'Button'
 };
 

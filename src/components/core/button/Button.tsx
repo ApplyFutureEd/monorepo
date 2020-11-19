@@ -6,12 +6,33 @@ import PropTypes from 'prop-types';
 import { FC, ReactNode } from 'react';
 
 type Props = {
+    /**
+     * The content of the button.
+     */
     children: ReactNode;
+    /**
+     * If `true`, the button will be disabled.
+     */
     disabled?: boolean;
+    /**
+     * Element placed after the children. Must be an FontAwesome icon.
+     */
     endIcon?: IconProp;
+    /**
+     * If `true`, the button will display a loader before the children.
+     */
     isLoading?: boolean;
+    /**
+     * Element placed before the children. Must be an FontAwesome icon.
+     */
     startIcon?: IconProp;
+    /**
+     * The type to use.
+     */
     type?: 'button' | 'submit' | 'reset';
+    /**
+     * The variant to use.
+     */
     variant?: 'primary' | 'secondary' | 'success' | 'danger';
 };
 

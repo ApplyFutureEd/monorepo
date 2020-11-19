@@ -9,19 +9,61 @@ import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
+    /**
+     * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
+     */
     autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
+    /**
+     * If `true`, the `input` element will be disabled.
+     */
     disabled?: boolean;
+    /**
+     * @ignore
+     */
     field?: FieldInputProps<string>;
+    /**
+     * If `true`, the button will display a loader before the children.
+     */
     isLoading?: boolean;
+    /**
+     * The label displayed above the input.
+     */
     label: string;
+    /**
+     * The maximum value accepted when input type is set to `number`.
+     */
     max?: number;
+    /**
+     * @ignore
+     */
     meta?: FieldMetaProps<string>;
+    /**
+     * The minimum value accepted when input type is set to `number`.
+     */
     min?: number;
+    /**
+     * If `true`, the input will display an `(optional)` mention next to the label.
+     */
     optional?: boolean;
+    /**
+     * The short hint displayed in the input before the user enters a value.
+     */
     placeholder?: string;
+    /**
+     * Number of rows to display when multiline option is set to `true`.
+     */
     rows?: number;
+    /**
+     * The step attribute specifies the interval between legal numbers
+     */
     step?: number;
+    /**
+     * The tooltip displayed when hovering the label.
+     */
     tooltip?: ReactNode;
+    /**
+     * The type to use.
+     */
     type?: 'text' | 'number' | 'password';
 };
 
