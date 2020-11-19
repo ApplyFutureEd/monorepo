@@ -62,7 +62,7 @@
         "react-toastify": "6.1.0",
         "react-transition-group": "4.4.1",
         "webfontloader": "1.6.28",
-        "yup": "0.29.3"
+        "yup": "0.30.0"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
