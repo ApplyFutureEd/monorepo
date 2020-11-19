@@ -5,7 +5,7 @@ describe('Partners', () => {
     it('can render without crashing', () => {
         render(<Partners />);
 
-        const images = screen.getAllByRole('img');
+        const images = screen.getAllByRole('presentation', { hidden: true });
 
         images.forEach((image) => {
             expect(image).toBeInTheDocument();
