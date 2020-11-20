@@ -1,10 +1,15 @@
 import { isBrowser } from '@utils/isBrowser';
 import NextHead from 'next/head';
-import PropTypes from 'prop-types';
 import { FC } from 'react';
 
 export type HeadProps = {
+    /**
+     * Description that includes keywords relating to the content of your page.
+     */
     description?: string;
+    /**
+     * Title of the overall HTML document.
+     */
     title?: string;
 };
 
@@ -128,17 +133,6 @@ const Head: FC<HeadProps> = (props) => {
             <meta content="#5850ec" name="theme-color" />
         </NextHead>
     );
-};
-
-Head.propTypes = {
-    /**
-     * Description that includes keywords relating to the content of your page.
-     */
-    description: PropTypes.string,
-    /**
-     * Title of the overall HTML document.
-     */
-    title: PropTypes.string
 };
 
 export default Head;

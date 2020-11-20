@@ -7,15 +7,51 @@ import Skeleton from 'react-loading-skeleton';
 import ReactSelect, { ValueType } from 'react-select';
 
 type Props = {
+    /**
+     * If `true`, the `input` element will be disabled.
+     */
     disabled?: boolean;
+    /**
+     * An object containing `onChange`, `onBlur`, `name`, and `value` of the field.
+     *
+     * https://formik.org/docs/api/useField#fieldinputpropsvalue
+     */
     field: FieldInputProps<string>;
+    /**
+     * If `true`, the component will display a loading skeleton.
+     */
     isLoading?: boolean;
+    /**
+     * If `true`, the component will support multiple selected options.
+     */
     isMulti?: boolean;
+    /**
+     * The label displayed above the input.
+     */
     label: string;
+    /**
+     * An object that contains relevant computed metadata.
+     *
+     * https://formik.org/docs/api/useField#fieldmetapropsvalue
+     */
     meta: FieldMetaProps<string>;
+    /**
+     * Array of options that populate the select menu
+     */
     options: Array<{ value: string; label: string }>;
+    /**
+     * If `true`, the input will display an `(optional)` mention next to the label.
+     */
     optional?: boolean;
+    /**
+     * Set the value of a field imperatively.
+     *
+     * https://formik.org/docs/api/formik#setfieldvalue-field-string-value-any-shouldvalidate-boolean--void
+     */
     setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
+    /**
+     * The tooltip displayed when hovering the label.
+     */
     tooltip?: string;
 };
 
@@ -63,7 +99,6 @@ const Select: FC<Props> = (props) => {
 
     let value: ValueType<any> = options.find((option) => option.value === field.value);
     let onChange = (option: ValueType<any>) => {
-        console.log(option);
         return setFieldValue(field.name, option.value);
     };
 
