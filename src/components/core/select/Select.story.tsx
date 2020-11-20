@@ -57,12 +57,12 @@ export const Default = (): ReactNode => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
-                                {(props: FieldProps) => (
+                                {(fieldProps: FieldProps) => (
                                     <Select
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        {...props}
+                                        {...fieldProps}
                                     />
                                 )}
                             </Field>
@@ -106,13 +106,13 @@ export const MultipleValues = (): ReactNode => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degrees" name="degrees">
-                                {(props: FieldProps) => (
+                                {(fieldProps: FieldProps) => (
                                     <Select
                                         isMulti
                                         label="Degrees"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        {...props}
+                                        {...fieldProps}
                                     />
                                 )}
                             </Field>
@@ -156,13 +156,13 @@ export const Optional = (): ReactNode => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
-                                {(props: FieldProps) => (
+                                {(fieldProps: FieldProps) => (
                                     <Select
                                         optional
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        {...props}
+                                        {...fieldProps}
                                     />
                                 )}
                             </Field>
@@ -206,13 +206,13 @@ export const Disabled = (): ReactNode => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
-                                {(props: FieldProps) => (
+                                {(fieldProps: FieldProps) => (
                                     <Select
                                         disabled
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        {...props}
+                                        {...fieldProps}
                                     />
                                 )}
                             </Field>
@@ -256,13 +256,13 @@ export const onError = (): ReactNode => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
-                                {(props: FieldProps) => (
+                                {(fieldProps: FieldProps) => (
                                     <Select
                                         disabled
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        {...props}
+                                        {...fieldProps}
                                         meta={{
                                             error: 'This field is required',
                                             initialTouched: false,

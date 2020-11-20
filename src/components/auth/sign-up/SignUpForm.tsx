@@ -55,22 +55,22 @@ const SignUpForm: FC = () => {
                 return (
                     <Form className="space-y-6">
                         <Field id="email" name="email">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:email')}
                                     type="text"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>
                         <Field id="password" name="password">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:password')}
                                     type="password"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>

@@ -60,38 +60,38 @@ const ContactForm: FC = () => {
                 return (
                     <Form className="grid gap-y-6 grid-cols-1">
                         <Field id="email" name="email">
-                            {(props: FieldProps) => (
-                                <Input label={t('landing:contact-form-email')} {...props} />
+                            {(fieldProps: FieldProps) => (
+                                <Input label={t('landing:contact-form-email')} {...fieldProps} />
                             )}
                         </Field>
                         <div className="flex space-x-4">
                             <div className="flex-grow">
                                 <Field id="firstName" name="firstName">
-                                    {(props: FieldProps) => (
+                                    {(fieldProps: FieldProps) => (
                                         <Input
                                             label={t('landing:contact-form-first-name')}
-                                            {...props}
+                                            {...fieldProps}
                                         />
                                     )}
                                 </Field>
                             </div>
                             <div className="flex-grow">
                                 <Field id="lastName" name="lastName">
-                                    {(props: FieldProps) => (
+                                    {(fieldProps: FieldProps) => (
                                         <Input
                                             label={t('landing:contact-form-last-name')}
-                                            {...props}
+                                            {...fieldProps}
                                         />
                                     )}
                                 </Field>
                             </div>
                         </div>
                         <Field id="message" name="message">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     label={t('landing:contact-form-message')}
                                     rows={5}
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>

@@ -37,7 +37,9 @@ export const Default = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="firstName" name="firstName">
-                            {(props: FieldProps) => <Input label="First Name" {...props} />}
+                            {(fieldProps: FieldProps) => (
+                                <Input label="First Name" {...fieldProps} />
+                            )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
                             Submit
@@ -77,7 +79,9 @@ export const TextArea = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="message" name="message">
-                            {(props: FieldProps) => <Input label="Message" rows={5} {...props} />}
+                            {(fieldProps: FieldProps) => (
+                                <Input label="Message" rows={5} {...fieldProps} />
+                            )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
                             Submit
@@ -117,11 +121,11 @@ export const WithPlaceholder = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="email" name="email">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     label="Email"
                                     placeholder="Enter your email address"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>
@@ -163,11 +167,11 @@ export const WithTooltip = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="passportNumber" name="passportNumber">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     label="Passport Number"
                                     tooltip="We collect your passport information for identity verification proposes, your school or program of interest may require this information to process your application. If applicable, it may also be used for processing your visa."
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>
@@ -209,8 +213,8 @@ export const Optional = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="middleName" name="middleName">
-                            {(props: FieldProps) => (
-                                <Input optional label="Middle Name" {...props} />
+                            {(fieldProps: FieldProps) => (
+                                <Input optional label="Middle Name" {...fieldProps} />
                             )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -251,8 +255,8 @@ export const Disabled = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="studentId" name="studentId">
-                            {(props: FieldProps) => (
-                                <Input disabled label="Student ID" {...props} />
+                            {(fieldProps: FieldProps) => (
+                                <Input disabled label="Student ID" {...fieldProps} />
                             )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -293,10 +297,10 @@ export const onError = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="firstName" name="firstName">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     label="First Name"
-                                    {...props}
+                                    {...fieldProps}
                                     meta={{
                                         error: 'This field is required',
                                         initialTouched: false,
@@ -343,8 +347,8 @@ export const Loading = (): ReactNode => {
                 return (
                     <Form className="space-y-6">
                         <Field id="firstName" name="firstName">
-                            {(props: FieldProps) => (
-                                <Input isLoading label="First Name" {...props} />
+                            {(fieldProps: FieldProps) => (
+                                <Input isLoading label="First Name" {...fieldProps} />
                             )}
                         </Field>
                     </Form>

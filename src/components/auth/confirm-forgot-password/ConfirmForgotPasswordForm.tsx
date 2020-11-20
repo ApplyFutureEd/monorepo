@@ -65,27 +65,31 @@ const ConfirmForgotPasswordForm: FC = () => {
                 return (
                     <Form className="space-y-6">
                         <Field id="email" name="email">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:email')}
                                     type="text"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>
                         <Field id="verificationCode" name="verificationCode">
-                            {(props: FieldProps) => (
-                                <Input label={t('auth:verification-code')} type="text" {...props} />
+                            {(fieldProps: FieldProps) => (
+                                <Input
+                                    label={t('auth:verification-code')}
+                                    type="text"
+                                    {...fieldProps}
+                                />
                             )}
                         </Field>
                         <Field id="newPassword" name="newPassword">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:new-password')}
                                     type="password"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>

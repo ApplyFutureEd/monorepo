@@ -52,12 +52,12 @@ const ForgotPasswordForm: FC = () => {
                 return (
                     <Form className="space-y-6">
                         <Field id="email" name="email">
-                            {(props: FieldProps) => (
+                            {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:email')}
                                     type="text"
-                                    {...props}
+                                    {...fieldProps}
                                 />
                             )}
                         </Field>
