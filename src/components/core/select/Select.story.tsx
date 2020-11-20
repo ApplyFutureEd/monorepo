@@ -129,15 +129,15 @@ export const MultipleValues = (): ReactNode => {
 
 export const WithTooltip = (): ReactNode => {
     const validationSchema = object().shape({
-        degree: string()
+        ['degree-with-tooltip']: string()
     });
 
     type FormValues = {
-        degree: string;
+        ['degree-with-tooltip']: string;
     };
 
     const initialValues: FormValues = {
-        degree: ''
+        ['degree-with-tooltip']: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -155,7 +155,7 @@ export const WithTooltip = (): ReactNode => {
                     const { setFieldValue, isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
-                            <Field id="degree" name="degree">
+                            <Field id="degree-with-tooltip" name="degree-with-tooltip">
                                 {(fieldProps: FieldProps) => (
                                     <Select
                                         label="Degree"
@@ -179,15 +179,15 @@ export const WithTooltip = (): ReactNode => {
 
 export const Optional = (): ReactNode => {
     const validationSchema = object().shape({
-        degree: string()
+        ['degree-optional']: string()
     });
 
     type FormValues = {
-        degree: string;
+        ['degree-optional']: string;
     };
 
     const initialValues: FormValues = {
-        degree: ''
+        ['degree-optional']: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -205,7 +205,7 @@ export const Optional = (): ReactNode => {
                     const { setFieldValue, isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
-                            <Field id="degree" name="degree">
+                            <Field id="degree-optional" name="degree-optional">
                                 {(fieldProps: FieldProps) => (
                                     <Select
                                         optional
@@ -338,15 +338,15 @@ export const onError = (): ReactNode => {
 
 export const Loading = (): ReactNode => {
     const validationSchema = object().shape({
-        degree: string()
+        ['degree-loading']: string()
     });
 
     type FormValues = {
-        degree: string;
+        ['degree-loading']: string;
     };
 
     const initialValues: FormValues = {
-        degree: ''
+        ['degree-loading']: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -364,7 +364,7 @@ export const Loading = (): ReactNode => {
                     const { setFieldValue } = props;
                     return (
                         <Form className="space-y-6">
-                            <Field id="degree" name="degree">
+                            <Field id="degree-loading" name="degree-loading">
                                 {(fieldProps: FieldProps) => (
                                     <Select
                                         isLoading
