@@ -20,7 +20,7 @@ type Props = {
     /**
      * @ignore
      */
-    field?: FieldInputProps<string>;
+    field: FieldInputProps<string>;
     /**
      * If `true`, the button will display a loader before the children.
      */
@@ -36,7 +36,7 @@ type Props = {
     /**
      * @ignore
      */
-    meta?: FieldMetaProps<string>;
+    meta: FieldMetaProps<string>;
     /**
      * The minimum value accepted when input type is set to `number`.
      */

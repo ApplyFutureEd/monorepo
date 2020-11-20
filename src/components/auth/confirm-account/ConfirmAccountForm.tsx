@@ -1,7 +1,7 @@
 import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
 import { Auth } from 'aws-amplify';
-import { Field, Form, Formik, FormikHelpers } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -59,42 +59,48 @@ const ConfirmAccountForm: FC = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
-            {({ isSubmitting }) => (
-                <Form className="space-y-6">
-                    <Field id="email" name="email">
-                        {(props: FormikHelpers<FormValues>) => (
-                            <Input
-                                autoCapitalize="none"
-                                label={t('auth:email')}
-                                type="text"
-                                {...props}
-                            />
-                        )}
-                    </Field>
-                    <Field id="verificationCode" name="verificationCode">
-                        {(props: FormikHelpers<FormValues>) => (
-                            <Input label={t('auth:verification-code')} type="text" {...props} />
-                        )}
-                    </Field>
-                    <Field id="password" name="password">
-                        {(props: FormikHelpers<FormValues>) => (
-                            <Input
-                                autoCapitalize="none"
-                                label={t('auth:password')}
-                                type="password"
-                                {...props}
-                            />
-                        )}
-                    </Field>
+            {(props) => {
+                const { isSubmitting } = props;
 
-                    <div className="flex items-center justify-end">
-                        <Button isLoading={isSubmitting} type="submit" variant="primary">
-                            {t('auth:confirm')}
-                        </Button>
-                    </div>
-                    {errorMessage && <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>}
-                </Form>
-            )}
+                return (
+                    <Form className="space-y-6">
+                        <Field id="email" name="email">
+                            {(props: FieldProps) => (
+                                <Input
+                                    autoCapitalize="none"
+                                    label={t('auth:email')}
+                                    type="text"
+                                    {...props}
+                                />
+                            )}
+                        </Field>
+                        <Field id="verificationCode" name="verificationCode">
+                            {(props: FieldProps) => (
+                                <Input label={t('auth:verification-code')} type="text" {...props} />
+                            )}
+                        </Field>
+                        <Field id="password" name="password">
+                            {(props: FieldProps) => (
+                                <Input
+                                    autoCapitalize="none"
+                                    label={t('auth:password')}
+                                    type="password"
+                                    {...props}
+                                />
+                            )}
+                        </Field>
+
+                        <div className="flex items-center justify-end">
+                            <Button isLoading={isSubmitting} type="submit" variant="primary">
+                                {t('auth:confirm')}
+                            </Button>
+                        </div>
+                        {errorMessage && (
+                            <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>
+                        )}
+                    </Form>
+                );
+            }}
         </Formik>
     );
 };

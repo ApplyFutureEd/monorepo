@@ -1,27 +1,30 @@
 import Tooltip from '@components/core/tooltip/Tooltip';
 import cx from 'classnames';
+import { FieldInputProps, FieldMetaProps } from 'formik';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
-import Select from 'react-select';
+import ReactSelect, { ValueType } from 'react-select';
 
 type Props = {
-    disabled: boolean;
-    field: any;
+    disabled?: boolean;
+    field: FieldInputProps<string>;
     isLoading?: boolean;
+    isMulti?: boolean;
     label: string;
-    meta: any;
+    meta: FieldMetaProps<string>;
     options: Array<{ value: string; label: string }>;
     optional?: boolean;
-    setFieldValue: any;
+    setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
     tooltip?: string;
 };
 
-const SelectMulti: FC<Props> = (props) => {
+const Select: FC<Props> = (props) => {
     const {
         disabled,
         field,
         isLoading = false,
+        isMulti = false,
         label,
         meta,
         options,
@@ -34,11 +37,10 @@ const SelectMulti: FC<Props> = (props) => {
     const { t } = useTranslation(['common']);
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const baseClasses =
-        'block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5';
+    const baseClasses = 'block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
-        'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red';
+        'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red';
 
     const classes = cx({
         [`${baseClasses}`]: true,
@@ -59,8 +61,27 @@ const SelectMulti: FC<Props> = (props) => {
         );
     }
 
+    let value: ValueType<any> = options.find((option) => option.value === field.value);
+    let onChange = (option: ValueType<any>) => {
+        console.log(option);
+        return setFieldValue(field.name, option.value);
+    };
+
+    if (isMulti) {
+        value = options.filter((option) => field.value.includes(option.value));
+        onChange = (options: ValueType<any>) => {
+            if (!options) {
+                return setFieldValue(field.name, ['']);
+            }
+            return setFieldValue(
+                field.name,
+                options.map((option: any) => option.value)
+            );
+        };
+    }
+
     return (
-        <label className="block font-sans" htmlFor={field?.name} {...rest}>
+        <label className="block font-sans" htmlFor={field.name} {...rest}>
             <Tooltip content={tooltip}>
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
@@ -75,33 +96,20 @@ const SelectMulti: FC<Props> = (props) => {
 
             <div className="mt-1">
                 <div className="rounded-md shadow-sm">
-                    <Select
-                        isMulti
+                    <ReactSelect
                         className={classes}
                         inputId={field.name}
+                        isMulti={isMulti}
                         name={field.name}
                         options={options}
                         placeholder=""
-                        value={
-                            (options
-                                ? options.filter((option) => field.value.includes(option.value))
-                                : '') as any
-                        }
-                        onChange={(options: any) => {
-                            if (!options) {
-                                return setFieldValue(field.name, '');
-                            }
-
-                            return setFieldValue(
-                                field.name,
-                                options.map((option: any) => option.value)
-                            );
-                        }}
+                        value={value}
+                        onChange={onChange}
                     />
                 </div>
             </div>
             {onError && (
-                <p className="mt-2 text-red-600 text-sm" id={`${field?.name}-error`}>
+                <p className="mt-2 text-red-600 text-sm" id={`${field.name}-error`}>
                     {meta?.error}
                 </p>
             )}
@@ -109,4 +117,4 @@ const SelectMulti: FC<Props> = (props) => {
     );
 };
 
-export default SelectMulti;
+export default Select;
