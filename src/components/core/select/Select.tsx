@@ -126,11 +126,11 @@ const Select: FC<Props> = (props) => {
     if (isLoading) {
         return (
             <div>
-                <div className="block text-gray-700 text-sm font-medium leading-5">
-                    <Skeleton height="16px" width="120px" />
+                <div>
+                    <Skeleton height="15px" width="120px" />
                 </div>
-                <div className="relative rounded-md shadow-sm">
-                    <Skeleton height="40px" width="100%" />
+                <div className="rounded-md">
+                    <Skeleton height="47px" width="100%" />
                 </div>
             </div>
         );
