@@ -76,7 +76,6 @@ const Select: FC<Props> = (props) => {
     const customStyles = {
         clearIndicator: (provided: any) => ({ ...provided, padding: 0 }),
         control: (provided: any, state: any) => {
-            console.log(state);
             const appearance = 'none';
             const backgroundColor = state.selectProps.isDisabled
                 ? 'rgba(243, 244, 246)'

@@ -19,6 +19,7 @@ module.exports = {
                 serif: [...defaultTheme.fontFamily.serif]
             },
             minHeight: {
+                button: '47px',
                 input: '47px'
             },
             padding: {
