@@ -1,5 +1,4 @@
 import Tooltip from '@components/core/tooltip/Tooltip';
-import cx from 'classnames';
 import { FieldInputProps, FieldMetaProps } from 'formik';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
