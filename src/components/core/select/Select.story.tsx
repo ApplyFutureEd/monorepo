@@ -229,15 +229,15 @@ export const Optional = (): ReactNode => {
 
 export const Disabled = (): ReactNode => {
     const validationSchema = object().shape({
-        degree: string()
+        ['degree-disabled']: string()
     });
 
     type FormValues = {
-        degree: string;
+        ['degree-disabled']: string;
     };
 
     const initialValues: FormValues = {
-        degree: ''
+        ['degree-disabled']: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -255,7 +255,7 @@ export const Disabled = (): ReactNode => {
                     const { setFieldValue, isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
-                            <Field id="degree" name="degree">
+                            <Field id="degree-disabled" name="degree-disabled">
                                 {(fieldProps: FieldProps) => (
                                     <Select
                                         disabled
@@ -278,6 +278,65 @@ export const Disabled = (): ReactNode => {
 };
 
 export const onError = (): ReactNode => {
+    const validationSchema = object().shape({
+        ['degree-error']: string()
+    });
+
+    type FormValues = {
+        ['degree-error']: string;
+    };
+
+    const initialValues: FormValues = {
+        ['degree-error']: ''
+    };
+
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        alert(JSON.stringify(values));
+        actions.setSubmitting(false);
+    };
+
+    return (
+        <Wrapper>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
+                {(props) => {
+                    const { setFieldValue, isSubmitting } = props;
+                    return (
+                        <Form className="space-y-6">
+                            <Field id="degree-error" name="degree-error">
+                                {(fieldProps: FieldProps) => (
+                                    <Select
+                                        label="Degree"
+                                        options={options}
+                                        setFieldValue={setFieldValue}
+                                        {...fieldProps}
+                                        meta={{
+                                            error: 'This field is required',
+                                            initialTouched: false,
+                                            touched: true,
+                                            value: ''
+                                        }}
+                                    />
+                                )}
+                            </Field>
+                            <Button
+                                disabled
+                                isLoading={isSubmitting}
+                                type="submit"
+                                variant="primary">
+                                Submit
+                            </Button>
+                        </Form>
+                    );
+                }}
+            </Formik>
+        </Wrapper>
+    );
+};
+
+export const Loading = (): ReactNode => {
     const validationSchema = object().shape({
         degree: string()
     });
@@ -302,29 +361,20 @@ export const onError = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { setFieldValue } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
                                 {(fieldProps: FieldProps) => (
                                     <Select
-                                        disabled
+                                        isLoading
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
                                         {...fieldProps}
-                                        meta={{
-                                            error: 'This field is required',
-                                            initialTouched: false,
-                                            touched: true,
-                                            value: ''
-                                        }}
                                     />
                                 )}
                             </Field>
-                            <Button isLoading={isSubmitting} type="submit" variant="primary">
-                                Submit
-                            </Button>
                         </Form>
                     );
                 }}

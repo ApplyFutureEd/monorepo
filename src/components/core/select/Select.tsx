@@ -73,16 +73,55 @@ const Select: FC<Props> = (props) => {
     const { t } = useTranslation(['common']);
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const baseClasses = 'block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5';
-    const disabledClasses = 'bg-gray-100 cursor-not-allowed';
-    const onErrorClasses =
-        'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red';
+    const customStyles = {
+        clearIndicator: (provided: any) => ({ ...provided, padding: 0 }),
+        control: (provided: any, state: any) => {
+            console.log(state);
+            const appearance = 'none';
+            const backgroundColor = state.selectProps.isDisabled
+                ? 'rgba(243, 244, 246)'
+                : '#ffffff';
+            const borderColor = state.selectProps.onError ? 'rgba(252, 165, 165)' : '#d2d6dc';
+            const borderRadius = '0.375rem';
+            const borderWidth = '1px';
+            const boxShadow = state.selectProps.onError
+                ? '0 0 0 3px rgba(248, 180, 180, 0.45)'
+                : provided.boxShadow;
+            const fontSize = '0.875rem';
+            const minHeight = 'auto';
+            const outline = 'none';
+            const padding = '0.5rem 0.75rem';
 
-    const classes = cx({
-        [`${baseClasses}`]: true,
-        [`${disabledClasses}`]: disabled,
-        [`${onErrorClasses}`]: onError
-    });
+            return {
+                ...provided,
+                '&:focus': {
+                    borderColor,
+                    boxShadow,
+                    outline
+                },
+                '&:hover': {
+                    borderColor,
+                    boxShadow,
+                    outline
+                },
+                appearance,
+                backgroundColor,
+                borderColor,
+                borderRadius,
+                borderWidth,
+                fontSize,
+                minHeight,
+                outline,
+                padding
+            };
+        },
+        dropdownIndicator: (provided: any) => ({ ...provided, padding: 0 }),
+        indicatorSeparator: (provided: any) => ({ ...provided, display: 'none' }),
+        multiValue: (provided: any) => ({ ...provided, fontSize: '0.875rem' }),
+        multiValueLabel: (provided: any) => ({ ...provided, padding: 0 }),
+        singleValue: (provided: any) => ({ ...provided, fontSize: '0.875rem' }),
+        valueContainer: (provided: any) => ({ ...provided, padding: 0 })
+    };
 
     if (isLoading) {
         return (
@@ -132,14 +171,16 @@ const Select: FC<Props> = (props) => {
             <div className="mt-1">
                 <div className="rounded-md shadow-sm">
                     <ReactSelect
-                        className={classes}
                         inputId={field.name}
+                        isDisabled={disabled}
                         isMulti={isMulti}
                         name={field.name}
                         options={options}
                         placeholder=""
+                        styles={customStyles}
                         value={value}
                         onChange={onChange}
+                        onError={onError}
                     />
                 </div>
             </div>
