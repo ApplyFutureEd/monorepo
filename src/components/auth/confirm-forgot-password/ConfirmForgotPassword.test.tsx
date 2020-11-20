@@ -67,13 +67,11 @@ describe('ConfirmForgotPassword', () => {
             fireEvent.click(submitButton);
         });
 
-        await waitFor(() => {
-            expect(Auth.forgotPasswordSubmit).toHaveBeenCalledWith(
-                fakeUser.email,
-                fakeUser.verificationCode,
-                fakeUser.newPassword
-            );
-        });
+        expect(Auth.forgotPasswordSubmit).toHaveBeenCalledWith(
+            fakeUser.email,
+            fakeUser.verificationCode,
+            fakeUser.newPassword
+        );
     });
 
     it('can display the right error message when ExpiredCodeException is thrown', async () => {

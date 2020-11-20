@@ -71,10 +71,15 @@ describe('ConfirmAccount', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(Auth.confirmSignUp).toHaveBeenCalledWith(fakeUser.email, fakeUser.verificationCode);
-        expect(Auth.signIn).toHaveBeenCalledWith({
-            password: fakeUser.password,
-            username: fakeUser.email
+        await waitFor(() => {
+            expect(Auth.confirmSignUp).toHaveBeenCalledWith(
+                fakeUser.email,
+                fakeUser.verificationCode
+            );
+            expect(Auth.signIn).toHaveBeenCalledWith({
+                password: fakeUser.password,
+                username: fakeUser.email
+            });
         });
     });
 
