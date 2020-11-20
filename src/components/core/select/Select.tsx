@@ -167,7 +167,7 @@ const Select: FC<Props> = (props) => {
                 </div>
             </Tooltip>
 
-            <div className="mt-1">
+            <div className={`mt-1 ${disabled ? 'cursor-not-allowed' : 'cursor-auto'}`}>
                 <div className="rounded-md shadow-sm">
                     <ReactSelect
                         inputId={field.name}
