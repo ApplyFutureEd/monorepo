@@ -7,6 +7,15 @@ import '@testing-library/jest-dom/extend-expect';
  */
 jest.spyOn(global.console, 'warn').mockImplementation(() => jest.fn());
 
+jest.mock('next/image', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div role="presentation" />;
+        }
+    };
+});
+
 process.env = {
     ...process.env,
     __NEXT_IMAGE_OPTS: {
