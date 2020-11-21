@@ -48,7 +48,9 @@ describe('ForgotPassword', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(Auth.forgotPassword).toHaveBeenCalledWith(fakeUser.email);
+        await waitFor(() => {
+            expect(Auth.forgotPassword).toHaveBeenCalledWith(fakeUser.email);
+        });
     });
 
     it('can display the right error message when CodeDeliveryDetails is thrown', async () => {

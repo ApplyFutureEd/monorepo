@@ -2,7 +2,6 @@ import Loader from '@components/core/loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { FC, ReactNode } from 'react';
 
 type Props = {
@@ -49,7 +48,7 @@ const Button: FC<Props> = (props) => {
     } = props;
 
     const baseClasses =
-        'inline-flex items-center px-4 py-2 font-sans text-base font-medium leading-6 border rounded-md transition duration-150 ease-in-out';
+        'min-h-button inline-flex items-center px-4 py-2 font-sans text-base font-medium leading-6 border rounded-md transition duration-150 ease-in-out';
     const primaryClasses =
         'text-white hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo';
     const secondaryClasses =
@@ -87,37 +86,6 @@ const Button: FC<Props> = (props) => {
             </button>
         </span>
     );
-};
-
-Button.propTypes = {
-    /**
-     * The content of the button.
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * If `true`, the button will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * Element placed after the children. Must be an FontAwesome icon.
-     */
-    endIcon: PropTypes.any,
-    /**
-     * If `true`, the button will display a loader before the children.
-     */
-    isLoading: PropTypes.bool,
-    /**
-     * Element placed before the children. Must be an FontAwesome icon.
-     */
-    startIcon: PropTypes.any,
-    /**
-     * The type to use.
-     */
-    type: PropTypes.oneOf(['button', 'reset', 'submit']),
-    /**
-     * The variant to use.
-     */
-    variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger'])
 };
 
 export default Button;

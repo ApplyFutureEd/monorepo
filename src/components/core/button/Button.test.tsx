@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 describe('Button', () => {
     const baseClasses =
-        'inline-flex items-center px-4 py-2 font-sans text-base font-medium leading-6 border rounded-md transition duration-150 ease-in-out';
+        'min-h-button inline-flex items-center px-4 py-2 font-sans text-base font-medium leading-6 border rounded-md transition duration-150 ease-in-out';
     const primaryClasses =
         'text-white hover:bg-indigo-500 bg-indigo-600 active:bg-indigo-700 focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo';
     const secondaryClasses =

@@ -1,9 +1,11 @@
 import { faSpinnerThird } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
 import { FC } from 'react';
 
 type Props = {
+    /**
+     * Size of the icon.
+     * */
     size?:
         | 'xs'
         | 'sm'
@@ -28,24 +30,6 @@ const Loader: FC<Props> = (props) => {
             <FontAwesomeIcon icon={faSpinnerThird} size={size} />
         </div>
     );
-};
-
-Loader.propTypes = {
-    size: PropTypes.oneOf([
-        'xs',
-        'sm',
-        'lg',
-        '1x',
-        '2x',
-        '3x',
-        '4x',
-        '5x',
-        '6x',
-        '7x',
-        '8x',
-        '9x',
-        '10x'
-    ])
 };
 
 export default Loader;

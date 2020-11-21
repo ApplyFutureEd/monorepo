@@ -18,6 +18,10 @@ module.exports = {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
             },
+            minHeight: {
+                button: '47px',
+                input: '47px'
+            },
             padding: {
                 header: '90px'
             }

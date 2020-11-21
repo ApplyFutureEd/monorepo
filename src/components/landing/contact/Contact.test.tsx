@@ -67,13 +67,15 @@ describe('Contact', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(API.post).toHaveBeenCalledWith('REST', '/ses/contact-form', {
-            body: {
-                email: fakeUser.email,
-                firstName: fakeUser.firstName,
-                lastName: fakeUser.lastName,
-                message: fakeUser.message
-            }
+        await waitFor(() => {
+            expect(API.post).toHaveBeenCalledWith('REST', '/ses/contact-form', {
+                body: {
+                    email: fakeUser.email,
+                    firstName: fakeUser.firstName,
+                    lastName: fakeUser.lastName,
+                    message: fakeUser.message
+                }
+            });
         });
     });
 

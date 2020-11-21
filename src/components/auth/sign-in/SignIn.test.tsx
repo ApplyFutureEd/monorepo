@@ -58,9 +58,11 @@ describe('SignIn', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(Auth.signIn).toHaveBeenCalledWith({
-            password: fakeUser.password,
-            username: fakeUser.email
+        await waitFor(() => {
+            expect(Auth.signIn).toHaveBeenCalledWith({
+                password: fakeUser.password,
+                username: fakeUser.email
+            });
         });
     });
 

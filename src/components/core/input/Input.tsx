@@ -3,7 +3,6 @@ import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { FieldInputProps, FieldMetaProps } from 'formik';
-import PropTypes from 'prop-types';
 import { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
@@ -14,15 +13,17 @@ type Props = {
      */
     autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
     /**
-     * If `true`, the `input` element will be disabled.
+     * If `true`, the component element will be disabled.
      */
     disabled?: boolean;
     /**
-     * @ignore
+     * An object containing `onChange`, `onBlur`, `name`, and `value` of the field.
+     *
+     * https://formik.org/docs/api/useField#fieldinputpropsvalue
      */
-    field?: FieldInputProps<string>;
+    field: FieldInputProps<string>;
     /**
-     * If `true`, the button will display a loader before the children.
+     * If `true`, the component will display a loading skeleton.
      */
     isLoading?: boolean;
     /**
@@ -34,9 +35,11 @@ type Props = {
      */
     max?: number;
     /**
-     * @ignore
+     * An object that contains relevant computed metadata.
+     *
+     * https://formik.org/docs/api/useField#fieldmetapropsvalue
      */
-    meta?: FieldMetaProps<string>;
+    meta: FieldMetaProps<string>;
     /**
      * The minimum value accepted when input type is set to `number`.
      */
@@ -89,7 +92,7 @@ const Input: FC<Props> = (props) => {
     const { t } = useTranslation(['common']);
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const baseClasses = 'form-input block w-full sm:text-sm sm:leading-5"';
+    const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
@@ -103,11 +106,11 @@ const Input: FC<Props> = (props) => {
     if (isLoading) {
         return (
             <div>
-                <div className="block text-gray-700 text-sm font-medium leading-5">
-                    <Skeleton height="16px" width="120px" />
+                <div>
+                    <Skeleton height="15px" width="120px" />
                 </div>
-                <div className="relative rounded-md shadow-sm">
-                    <Skeleton height="40px" width="100%" />
+                <div className="rounded-md">
+                    <Skeleton height="47px" width="100%" />
                 </div>
             </div>
         );
@@ -175,65 +178,6 @@ const Input: FC<Props> = (props) => {
             )}
         </label>
     );
-};
-
-Input.propTypes = {
-    /**
-     * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
-     */
-    autoCapitalize: PropTypes.oneOf(['off', 'none', 'on', 'sentences', 'words', 'characters']),
-    /**
-     * If `true`, the `input` element will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    field: PropTypes.any,
-    /**
-     * If `true`, the button will display a loader before the children.
-     */
-    isLoading: PropTypes.bool,
-    /**
-     * The label displayed above the input.
-     */
-    label: PropTypes.string.isRequired,
-    /**
-     * The maximum value accepted when input type is set to `number`.
-     */
-    max: PropTypes.number,
-    /**
-     * @ignore
-     */
-    meta: PropTypes.any,
-    /**
-     * The minimum value accepted when input type is set to `number`.
-     */
-    min: PropTypes.number,
-    /**
-     * If `true`, the input will display an `(optional)` mention next to the label.
-     */
-    optional: PropTypes.bool,
-    /**
-     * The short hint displayed in the input before the user enters a value.
-     */
-    placeholder: PropTypes.string,
-    /**
-     * Number of rows to display when multiline option is set to `true`.
-     */
-    rows: PropTypes.number,
-    /**
-     * The step attribute specifies the interval between legal numbers
-     */
-    step: PropTypes.number,
-    /**
-     * The tooltip displayed when hovering the label.
-     */
-    tooltip: PropTypes.string,
-    /**
-     * The type to use.
-     */
-    type: PropTypes.oneOf(['text', 'number', 'password'])
 };
 
 export default Input;
