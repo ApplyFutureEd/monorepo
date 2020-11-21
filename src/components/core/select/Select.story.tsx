@@ -161,7 +161,7 @@ export const WithTooltip = (): ReactNode => {
                                         label="Degree"
                                         options={options}
                                         setFieldValue={setFieldValue}
-                                        tooltip="Select your degree"
+                                        tooltip="An academic degree is a qualification awarded to students upon successful completion of a course of study in higher education"
                                         {...fieldProps}
                                     />
                                 )}

@@ -89,7 +89,7 @@ describe('Input', () => {
         expect(input).not.toHaveClass(onErrorClasses);
     });
 
-    it('can render an onError input', () => {
+    it('can render an errored input', () => {
         render(
             <Input
                 label="First Name"
