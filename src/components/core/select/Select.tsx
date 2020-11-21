@@ -7,7 +7,7 @@ import ReactSelect, { ValueType } from 'react-select';
 
 type Props = {
     /**
-     * If `true`, the `input` element will be disabled.
+     * If `true`, the component will be disabled.
      */
     disabled?: boolean;
     /**
@@ -25,7 +25,7 @@ type Props = {
      */
     isMulti?: boolean;
     /**
-     * The label displayed above the input.
+     * The label displayed above the select.
      */
     label: string;
     /**
@@ -39,14 +39,19 @@ type Props = {
      */
     options: Array<{ value: string; label: string }>;
     /**
-     * If `true`, the input will display an `(optional)` mention next to the label.
+     * If `true`, the select will display an `(optional)` mention next to the label.
      */
     optional?: boolean;
+    /**
+     * The short hint displayed in the select before the user enters a value.
+     */
+    placeholder?: string;
     /**
      * Set the value of a field imperatively.
      *
      * https://formik.org/docs/api/formik#setfieldvalue-field-string-value-any-shouldvalidate-boolean--void
      */
+
     setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
     /**
      * The tooltip displayed when hovering the label.
@@ -64,6 +69,7 @@ const Select: FC<Props> = (props) => {
         meta,
         options,
         optional,
+        placeholder,
         setFieldValue,
         tooltip = '',
         ...rest
@@ -174,7 +180,7 @@ const Select: FC<Props> = (props) => {
                         isMulti={isMulti}
                         name={field.name}
                         options={options}
-                        placeholder=""
+                        placeholder={placeholder}
                         styles={customStyles}
                         value={value}
                         onChange={onChange}

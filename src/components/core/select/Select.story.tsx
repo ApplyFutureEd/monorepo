@@ -127,6 +127,56 @@ export const MultipleValues = (): ReactNode => {
     );
 };
 
+export const WithPlaceholder = (): ReactNode => {
+    const validationSchema = object().shape({
+        degree: string()
+    });
+
+    type FormValues = {
+        degree: string;
+    };
+
+    const initialValues: FormValues = {
+        degree: ''
+    };
+
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        alert(JSON.stringify(values));
+        actions.setSubmitting(false);
+    };
+
+    return (
+        <Wrapper>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
+                {(props) => {
+                    const { setFieldValue, isSubmitting } = props;
+                    return (
+                        <Form className="space-y-6">
+                            <Field id="degree" name="degree">
+                                {(fieldProps: FieldProps) => (
+                                    <Select
+                                        label="Degree"
+                                        options={options}
+                                        placeholder="Select a degree"
+                                        setFieldValue={setFieldValue}
+                                        {...fieldProps}
+                                    />
+                                )}
+                            </Field>
+                            <Button isLoading={isSubmitting} type="submit" variant="primary">
+                                Submit
+                            </Button>
+                        </Form>
+                    );
+                }}
+            </Formik>
+        </Wrapper>
+    );
+};
+
 export const WithTooltip = (): ReactNode => {
     const validationSchema = object().shape({
         ['degree-with-tooltip']: string()
