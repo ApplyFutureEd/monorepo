@@ -1,5 +1,6 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
@@ -23,25 +24,25 @@ const Hero: FC = () => {
                                 {t('landing:hero-cta-iama')}
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#students">
+                                <Link href="#students">
                                     <Button variant="primary">
                                         {t('landing:hero-cta-student')}
                                     </Button>
-                                </a>
+                                </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#schools">
+                                <Link href="#schools">
                                     <Button variant="secondary">
                                         {t('landing:hero-cta-school')}
                                     </Button>
-                                </a>
+                                </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#recruiters">
+                                <Link href="#recruiters">
                                     <Button variant="secondary">
                                         {t('landing:hero-cta-recruiter')}
                                     </Button>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

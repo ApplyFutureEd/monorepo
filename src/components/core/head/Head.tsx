@@ -76,7 +76,7 @@ const Head: FC<HeadProps> = (props) => {
     return (
         <NextHead>
             <meta charSet="UTF-8" />
-            <title>{title}</title>
+            <title>{title} - ApplyFuture</title>
             <meta content={description} name="description" />
             <meta content="width=device-width, initial-scale=1" name="viewport" />
             <meta key="robots" content="noindex,nofollow" name="robots" />

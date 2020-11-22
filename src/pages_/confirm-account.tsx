@@ -7,9 +7,7 @@ const ConfirmAccountPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <AuthLayout
-            description={t('auth:confirm-account-meta-description')}
-            title={t('auth:confirm-account-page-title')}>
+        <AuthLayout title={t('auth:confirm-account-page-title')}>
             <ConfirmAccount />
         </AuthLayout>
     );

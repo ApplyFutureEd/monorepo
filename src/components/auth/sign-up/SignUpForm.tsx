@@ -2,6 +2,7 @@ import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
@@ -77,11 +78,11 @@ const SignUpForm: FC = () => {
 
                         <div className="flex items-center justify-between">
                             <div className="text-sm leading-5">
-                                <a
-                                    className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none transition duration-150 ease-in-out"
-                                    href="/recruiters">
-                                    {t('auth:im-a-recruiter')}
-                                </a>
+                                <Link href="/recruiters">
+                                    <div className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer transition duration-150 ease-in-out">
+                                        {t('auth:im-a-recruiter')}
+                                    </div>
+                                </Link>
                             </div>
 
                             <Button isLoading={isSubmitting} type="submit" variant="primary">

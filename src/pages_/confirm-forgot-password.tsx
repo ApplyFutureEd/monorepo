@@ -7,9 +7,7 @@ const ConfirmForgotPasswordPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <AuthLayout
-            description={t('auth:confirm-forgot-password-meta-description')}
-            title={t('auth:confirm-forgot-password-page-title')}>
+        <AuthLayout title={t('auth:confirm-forgot-password-page-title')}>
             <ConfirmForgotPassword />
         </AuthLayout>
     );

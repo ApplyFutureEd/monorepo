@@ -7,7 +7,9 @@ const AboutPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <LandingLayout description={t('landing:meta-description')} title={t('landing:page-title')}>
+        <LandingLayout
+            description={t('landing:about-meta-description')}
+            title={t('landing:about-page-title')}>
             <About />
         </LandingLayout>
     );

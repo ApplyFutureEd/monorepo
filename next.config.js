@@ -38,7 +38,7 @@ module.exports = withBundleAnalyzer(
                 // outside of Vercel
                 NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
             },
-            i18n: { defaultLocale, locales },
+            i18n: { defaultLocale, localeDetection: false, locales },
             poweredByHeader: false,
             pwa: {
                 dest: 'public',

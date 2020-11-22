@@ -7,9 +7,7 @@ const SignInPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <AuthLayout
-            description={t('auth:sign-in-meta-description')}
-            title={t('auth:sign-in-page-title')}>
+        <AuthLayout title={t('auth:sign-in-page-title')}>
             <SignIn />
         </AuthLayout>
     );

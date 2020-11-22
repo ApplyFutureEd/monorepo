@@ -43,7 +43,7 @@ const ContactForm: FC = () => {
             actions.setSubmitting(false);
             setSubmitted(true);
         } catch (error) {
-            setErrorMessage(t('common:contact-form-generic-error'));
+            setErrorMessage(t('landing:contact-form-error'));
             actions.setSubmitting(false);
             setSubmitted(false);
         }
