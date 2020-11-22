@@ -9,28 +9,38 @@ export default {
 };
 
 export const Default = (): ReactNode => {
-    const [activeStep, setActiveStep] = useState(1);
-
+    const [currentStep, setCurrentStep] = useState(1);
     const steps = ['Your project', 'Your information', 'Your results'];
 
     const handlePreviousStep = () => {
-        return setActiveStep((prev) => (prev - 1 < 0 ? prev : prev - 1));
+        return setCurrentStep((prev) => (prev - 1 < 0 ? prev : prev - 1));
     };
 
     const handleNextStep = () => {
-        return setActiveStep((prev) => (prev + 1 > steps.length ? prev : prev + 1));
+        return setCurrentStep((prev) => (prev + 1 >= steps.length ? prev : prev + 1));
     };
 
     return (
         <div>
-            <Stepper activeStep={activeStep} steps={steps} />
+            <Stepper currentStep={currentStep} steps={steps} />
             <div className="flex justify-end mt-6 space-x-3">
-                <Button startIcon={faArrowLeft} variant="secondary" onClick={handlePreviousStep}>
-                    Previous
-                </Button>
-                <Button endIcon={faArrowRight} onClick={handleNextStep}>
-                    Next
-                </Button>
+                {currentStep === 0 ? (
+                    <Button variant="secondary">Cancel</Button>
+                ) : (
+                    <Button
+                        startIcon={faArrowLeft}
+                        variant="secondary"
+                        onClick={handlePreviousStep}>
+                        Previous
+                    </Button>
+                )}
+                {currentStep + 1 === steps.length ? (
+                    <Button>Submit</Button>
+                ) : (
+                    <Button endIcon={faArrowRight} onClick={handleNextStep}>
+                        Next
+                    </Button>
+                )}
             </div>
         </div>
     );
