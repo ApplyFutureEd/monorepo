@@ -5,11 +5,11 @@ import { faUser } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
 import { Auth } from 'aws-amplify';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const UserMenu: FC = () => {
-    const { t } = useTranslation(['navigation']);
+    const { t } = useTranslation();
     const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 

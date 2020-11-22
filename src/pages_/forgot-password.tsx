@@ -1,10 +1,10 @@
 import ForgotPassword from '@components/auth/forgot-password/ForgotPassword';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const ForgotPasswordPage: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
 
     return (
         <AuthLayout

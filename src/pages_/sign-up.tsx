@@ -1,10 +1,10 @@
 import SignUp from '@components/auth/sign-up/SignUp';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const SignUpPage: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
 
     return (
         <AuthLayout

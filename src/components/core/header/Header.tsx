@@ -7,30 +7,30 @@ import UserMenu from '@components/core/user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const routes = [
     {
         href: '/programs',
-        label: 'landing:nav-programs'
+        label: 'navigation:programs'
     },
     {
         href: '/schools',
-        label: 'landing:nav-schools'
+        label: 'navigation:schools'
     },
     {
         href: '/about',
-        label: 'landing:nav-about-us'
+        label: 'navigation:about-us'
     },
     {
         href: '/#contact',
-        label: 'landing:nav-contact'
+        label: 'navigation:contact'
     }
 ];
 
 const Header: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
     const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 

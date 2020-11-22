@@ -3,12 +3,12 @@ import Input from '@components/core/input/Input';
 import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { object, string } from 'yup';
 
 const ContactForm: FC = () => {
-    const { t } = useTranslation(['common', 'landing']);
+    const { t } = useTranslation();
     const [submitted, setSubmitted] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 

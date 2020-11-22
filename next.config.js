@@ -9,6 +9,7 @@ const withSourceMaps = nextSourceMaps();
 const withBundleAnalyzer = bundleAnalyzer({
     enabled: process.env.ANALYZE_BUNDLE === 'true'
 });
+const { locales, defaultLocale } = require('./i18n');
 
 const {
     NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
@@ -37,6 +38,7 @@ module.exports = withBundleAnalyzer(
                 // outside of Vercel
                 NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
             },
+            i18n: { defaultLocale, locales },
             poweredByHeader: false,
             pwa: {
                 dest: 'public',

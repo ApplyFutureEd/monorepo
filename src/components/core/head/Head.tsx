@@ -79,6 +79,7 @@ const Head: FC<HeadProps> = (props) => {
             <title>{title}</title>
             <meta content={description} name="description" />
             <meta content="width=device-width, initial-scale=1" name="viewport" />
+            <meta key="robots" content="noindex,nofollow" name="robots" />
 
             <link as="style" href="/assets/fonts/inter/font.css" rel="preload" />
             {fonts.map((font) => (

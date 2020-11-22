@@ -1,8 +1,8 @@
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Footer: FC = () => {
-    const { t } = useTranslation(['auth', 'landing']);
+    const { t } = useTranslation();
 
     return (
         <footer className="font-sans bg-white">

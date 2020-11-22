@@ -4,8 +4,8 @@ import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     routes: {
@@ -18,7 +18,7 @@ type Props = {
 const MobileMenu: FC<Props> = (props) => {
     const { routes, setOpen } = props;
     const user = useAuthenticatedUser();
-    const { t } = useTranslation(['common', 'auth']);
+    const { t } = useTranslation();
 
     return (
         <div className="absolute z-10 z-30 inset-x-0 top-0 p-2 transform origin-top-right transition lg:hidden">

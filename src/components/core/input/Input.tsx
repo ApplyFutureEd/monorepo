@@ -3,8 +3,8 @@ import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { FieldInputProps, FieldMetaProps } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
@@ -89,7 +89,7 @@ const Input: FC<Props> = (props) => {
         ...rest
     } = props;
 
-    const { t } = useTranslation(['common']);
+    const { t } = useTranslation();
     const onError = Boolean(meta?.touched && meta?.error);
 
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';

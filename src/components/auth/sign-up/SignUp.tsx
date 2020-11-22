@@ -1,11 +1,11 @@
 import SignUpForm from '@components/auth/sign-up/SignUpForm';
 import Logo from '@components/core/logo/Logo';
 import capitalize from 'lodash/capitalize';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const SignUp: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
 
     return (
         <>

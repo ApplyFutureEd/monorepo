@@ -1,11 +1,11 @@
 import ContactForm from '@components/landing/contact/ContactForm';
 import { faEnvelope, faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Contact: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <section className="relative bg-white" id="contact">

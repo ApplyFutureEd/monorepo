@@ -1,10 +1,10 @@
 import ConfirmAccountForm from '@components/auth/confirm-account/ConfirmAccountForm';
 import Logo from '@components/core/logo/Logo';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const ConfirmAccount: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
 
     return (
         <>

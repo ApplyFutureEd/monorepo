@@ -3,14 +3,14 @@ import Input from '@components/core/input/Input';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { object, string } from 'yup';
 
 const ConfirmForgotPasswordForm: FC = () => {
     const router = useRouter();
-    const { t } = useTranslation(['common', 'auth']);
+    const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
