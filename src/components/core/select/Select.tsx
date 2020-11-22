@@ -69,7 +69,7 @@ const Select: FC<Props> = (props) => {
         meta,
         options,
         optional,
-        placeholder,
+        placeholder = '',
         setFieldValue,
         tooltip = '',
         ...rest
