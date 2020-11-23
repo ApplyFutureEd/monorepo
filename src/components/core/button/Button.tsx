@@ -22,6 +22,10 @@ type Props = {
      */
     isLoading?: boolean;
     /**
+     * The function called on the `click` event.
+     */
+    onClick?: () => void;
+    /**
      * Element placed before the children. Must be an FontAwesome icon.
      */
     startIcon?: IconProp;
@@ -41,6 +45,7 @@ const Button: FC<Props> = (props) => {
         disabled = false,
         endIcon,
         isLoading = false,
+        onClick,
         startIcon,
         type = 'button',
         variant = 'primary',
@@ -70,7 +75,7 @@ const Button: FC<Props> = (props) => {
 
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
-            <button className={classes} disabled={disabled} type={type}>
+            <button className={classes} disabled={disabled} type={type} onClick={onClick}>
                 {startIcon && (
                     <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
                 )}
