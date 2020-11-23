@@ -25,23 +25,29 @@ const Hero: FC = () => {
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <Link href="#students">
-                                    <Button variant="primary">
-                                        {t('landing:hero-cta-student')}
-                                    </Button>
+                                    <>
+                                        <Button variant="primary">
+                                            {t('landing:hero-cta-student')}
+                                        </Button>
+                                    </>
                                 </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <Link href="#schools">
-                                    <Button variant="secondary">
-                                        {t('landing:hero-cta-school')}
-                                    </Button>
+                                    <>
+                                        <Button variant="secondary">
+                                            {t('landing:hero-cta-school')}
+                                        </Button>
+                                    </>
                                 </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
                                 <Link href="#recruiters">
-                                    <Button variant="secondary">
-                                        {t('landing:hero-cta-recruiter')}
-                                    </Button>
+                                    <>
+                                        <Button variant="secondary">
+                                            {t('landing:hero-cta-recruiter')}
+                                        </Button>
+                                    </>
                                 </Link>
                             </div>
                         </div>

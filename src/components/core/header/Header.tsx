@@ -64,10 +64,14 @@ const Header: FC = () => {
                             ) : (
                                 <>
                                     <Link href="/sign-in">
-                                        <Button variant="secondary">{t('auth:sign-in')}</Button>
+                                        <>
+                                            <Button variant="secondary">{t('auth:sign-in')}</Button>
+                                        </>
                                     </Link>
                                     <Link href="/sign-up">
-                                        <Button variant="primary">{t('auth:sign-up')}</Button>
+                                        <>
+                                            <Button variant="primary">{t('auth:sign-up')}</Button>
+                                        </>
                                     </Link>
                                 </>
                             )}

@@ -20,14 +20,14 @@ const SignIn: FC = () => {
                     {capitalize(t('auth:sign-in-to-your-account'))}
                 </h1>
 
-                <p className="max-w mt-2 text-gray-600 text-sm leading-5">
+                <div className="max-w mt-2 text-gray-600 text-sm leading-5">
                     {t('auth:or')}{' '}
                     <Link href="/sign-up">
                         <div className="inline hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer cursor-pointer transition duration-150 ease-in-out">
                             {t('auth:create-your-account')}
                         </div>
                     </Link>
-                </p>
+                </div>
             </div>
             <div className="mt-8">
                 <SignInForm />

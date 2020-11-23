@@ -42,22 +42,13 @@ describe('Nav', () => {
         expect(nav).toBeInTheDocument();
     });
 
-    it('can render anchors for each route', () => {
+    it('can style links correctly', () => {
         render(<Nav routes={routes} />);
 
-        expect(screen.getByText(/programs/i).closest('a')).toHaveAttribute('href', '/programs');
-        expect(screen.getByText(/schools/i).closest('a')).toHaveAttribute('href', '/schools');
-        expect(screen.getByText(/about us/i).closest('a')).toHaveAttribute('href', '/about');
-        expect(screen.getByText(/contact/i).closest('a')).toHaveAttribute('href', '/#contact');
-    });
-
-    it('can style anchors correctly', () => {
-        render(<Nav routes={routes} />);
-
-        expect(screen.getByText(/programs/i).closest('a')).toHaveClass(linkBaseClasses);
-        expect(screen.getByText(/programs/i).closest('a')).toHaveClass(linkActiveClasses);
-        expect(screen.getByText(/schools/i).closest('a')).not.toHaveClass(linkActiveClasses);
-        expect(screen.getByText(/about us/i).closest('a')).not.toHaveClass(linkActiveClasses);
-        expect(screen.getByText(/contact/i).closest('a')).not.toHaveClass(linkActiveClasses);
+        expect(screen.getByText(/programs/i).closest('div')).toHaveClass(linkBaseClasses);
+        expect(screen.getByText(/programs/i).closest('div')).toHaveClass(linkActiveClasses);
+        expect(screen.getByText(/schools/i).closest('div')).not.toHaveClass(linkActiveClasses);
+        expect(screen.getByText(/about us/i).closest('div')).not.toHaveClass(linkActiveClasses);
+        expect(screen.getByText(/contact/i).closest('div')).not.toHaveClass(linkActiveClasses);
     });
 });
