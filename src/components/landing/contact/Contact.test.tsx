@@ -131,7 +131,7 @@ describe('Contact', () => {
         await waitFor(() => {
             expect(API.post).toThrow();
 
-            const errorMessage = screen.getByText(/common:contact-form-generic-error/);
+            const errorMessage = screen.getByText(/landing:contact-form-error/);
             expect(errorMessage).toBeVisible();
         });
     });

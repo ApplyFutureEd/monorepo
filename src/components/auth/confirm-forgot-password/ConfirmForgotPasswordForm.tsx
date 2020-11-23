@@ -2,15 +2,16 @@ import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { object, string } from 'yup';
 
 const ConfirmForgotPasswordForm: FC = () => {
     const router = useRouter();
-    const { t } = useTranslation(['common', 'auth']);
+    const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
@@ -95,11 +96,11 @@ const ConfirmForgotPasswordForm: FC = () => {
                         </Field>
                         <div className="flex items-center justify-between">
                             <div className="text-sm leading-5">
-                                <a
-                                    className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none transition duration-150 ease-in-out"
-                                    href="/sign-in">
-                                    {t('auth:cancel')}
-                                </a>
+                                <Link href="/sign-in">
+                                    <div className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer transition duration-150 ease-in-out">
+                                        {t('auth:cancel')}
+                                    </div>
+                                </Link>
                             </div>
                             <Button isLoading={isSubmitting} type="submit" variant="primary">
                                 {t('auth:confirm')}

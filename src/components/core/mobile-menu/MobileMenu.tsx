@@ -4,8 +4,9 @@ import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
     routes: {
@@ -18,7 +19,7 @@ type Props = {
 const MobileMenu: FC<Props> = (props) => {
     const { routes, setOpen } = props;
     const user = useAuthenticatedUser();
-    const { t } = useTranslation(['common', 'auth']);
+    const { t } = useTranslation();
 
     return (
         <div className="absolute z-10 z-30 inset-x-0 top-0 p-2 transform origin-top-right transition lg:hidden">
@@ -26,9 +27,11 @@ const MobileMenu: FC<Props> = (props) => {
                 <div className="bg-white rounded-lg shadow-xs divide-gray-50 divide-y-2">
                     <div className="pb-6 pt-5 px-5 space-y-6">
                         <div className="flex items-center justify-between">
-                            <a className="inline-flex">
-                                <Logo />
-                            </a>
+                            <Link href="/">
+                                <div className="inline-flex cursor-pointer">
+                                    <Logo />
+                                </div>
+                            </Link>
                             <div className="-mr-2">
                                 <button
                                     aria-label={t('common:close')}
@@ -46,9 +49,11 @@ const MobileMenu: FC<Props> = (props) => {
                                         key={route.href}
                                         type="button"
                                         onClick={() => setOpen(false)}>
-                                        <a className="flex -m-3 p-3 hover:bg-gray-50 transition duration-150 ease-in-out">
-                                            {route.label}
-                                        </a>
+                                        <Link href={route.href}>
+                                            <div className="flex -m-3 p-3 hover:bg-gray-50 transition duration-150 ease-in-out">
+                                                {route.label}
+                                            </div>
+                                        </Link>
                                     </button>
                                 ))}
                             </nav>
@@ -59,12 +64,12 @@ const MobileMenu: FC<Props> = (props) => {
                             <UserMenu />
                         ) : (
                             <>
-                                <a href="/sign-in">
+                                <Link href="/sign-in">
                                     <Button variant="secondary">{t('auth:sign-in')}</Button>
-                                </a>
-                                <a href="/sign-up">
+                                </Link>
+                                <Link href="/sign-up">
                                     <Button variant="primary">{t('auth:sign-up')}</Button>
-                                </a>
+                                </Link>
                             </>
                         )}
                     </div>

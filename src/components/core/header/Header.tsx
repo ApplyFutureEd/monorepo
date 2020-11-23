@@ -7,30 +7,31 @@ import UserMenu from '@components/core/user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const routes = [
     {
         href: '/programs',
-        label: 'landing:nav-programs'
+        label: 'navigation:programs'
     },
     {
         href: '/schools',
-        label: 'landing:nav-schools'
+        label: 'navigation:schools'
     },
     {
         href: '/about',
-        label: 'landing:nav-about-us'
+        label: 'navigation:about-us'
     },
     {
         href: '/#contact',
-        label: 'landing:nav-contact'
+        label: 'navigation:contact'
     }
 ];
 
 const Header: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
     const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 
@@ -40,9 +41,11 @@ const Header: FC = () => {
                 <div className="mx-auto px-4 max-w-7xl sm:px-6">
                     <div className="flex items-center justify-between py-6 lg:justify-start lg:space-x-10">
                         <div className="flex">
-                            <a className="inline-flex" href="/">
-                                <Logo />
-                            </a>
+                            <Link href="/">
+                                <div className="inline-flex cursor-pointer">
+                                    <Logo />
+                                </div>
+                            </Link>
                         </div>
 
                         <div className="flex -mr-2 -my-2 space-x-2 lg:hidden">
@@ -60,12 +63,16 @@ const Header: FC = () => {
                                 <UserMenu />
                             ) : (
                                 <>
-                                    <a href="/sign-in">
-                                        <Button variant="secondary">{t('auth:sign-in')}</Button>
-                                    </a>
-                                    <a href="/sign-up">
-                                        <Button variant="primary">{t('auth:sign-up')}</Button>
-                                    </a>
+                                    <Link href="/sign-in">
+                                        <>
+                                            <Button variant="secondary">{t('auth:sign-in')}</Button>
+                                        </>
+                                    </Link>
+                                    <Link href="/sign-up">
+                                        <>
+                                            <Button variant="primary">{t('auth:sign-up')}</Button>
+                                        </>
+                                    </Link>
                                 </>
                             )}
                         </div>

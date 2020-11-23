@@ -1,10 +1,10 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Students: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <section className="py-8 font-sans bg-white overflow-hidden lg:py-16" id="students">

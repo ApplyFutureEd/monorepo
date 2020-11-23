@@ -1,30 +1,33 @@
 import SignInForm from '@components/auth/sign-in/SignInForm';
 import Logo from '@components/core/logo/Logo';
 import capitalize from 'lodash/capitalize';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const SignIn: FC = () => {
-    const { t } = useTranslation(['auth']);
+    const { t } = useTranslation();
 
     return (
         <>
             <div>
-                <a className="inline-flex" href="/">
-                    <Logo />
-                </a>
+                <Link href="/">
+                    <div className="inline-flex cursor-pointer">
+                        <Logo />
+                    </div>
+                </Link>
                 <h1 className="mt-6 text-gray-900 text-3xl font-extrabold leading-9">
                     {capitalize(t('auth:sign-in-to-your-account'))}
                 </h1>
 
-                <p className="max-w mt-2 text-gray-600 text-sm leading-5">
+                <div className="max-w mt-2 text-gray-600 text-sm leading-5">
                     {t('auth:or')}{' '}
-                    <a
-                        className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer transition duration-150 ease-in-out"
-                        href="/sign-up">
-                        {t('auth:create-your-account')}
-                    </a>
-                </p>
+                    <Link href="/sign-up">
+                        <div className="inline hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer cursor-pointer transition duration-150 ease-in-out">
+                            {t('auth:create-your-account')}
+                        </div>
+                    </Link>
+                </div>
             </div>
             <div className="mt-8">
                 <SignInForm />

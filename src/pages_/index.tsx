@@ -7,11 +7,11 @@ import Recruiters from '@components/landing/recruiters/Recruiters';
 import Schools from '@components/landing/schools/Schools';
 import Students from '@components/landing/students/Students';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const LandingPage: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <LandingLayout description={t('landing:meta-description')} title={t('landing:page-title')}>
