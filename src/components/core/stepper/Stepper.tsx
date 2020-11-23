@@ -1,8 +1,8 @@
 import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 type StepProps = {
     isCurrent: boolean;
@@ -53,7 +53,7 @@ type Props = {
 };
 
 const Stepper: FC<Props> = (props) => {
-    const { t } = useTranslation(['common']);
+    const { t } = useTranslation();
     const { currentStep, steps } = props;
     const progress = (currentStep / steps.length) * 100;
     const progressPourcentage = `${progress}%`;

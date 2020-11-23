@@ -1,10 +1,11 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Schools: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <section className="py-8 font-sans bg-white overflow-hidden lg:py-16" id="schools">
@@ -21,11 +22,13 @@ const Schools: FC = () => {
                             {t('landing:schools-paragraph-2')}
                         </p>
                         <div className="flex justify-center mt-6">
-                            <a href="#contact">
-                                <Button type="button" variant="primary">
-                                    {t('landing:schools-cta')}
-                                </Button>
-                            </a>
+                            <Link href="#contact">
+                                <>
+                                    <Button type="button" variant="primary">
+                                        {t('landing:schools-cta')}
+                                    </Button>
+                                </>
+                            </Link>
                         </div>
                     </div>
 

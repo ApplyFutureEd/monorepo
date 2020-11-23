@@ -1,10 +1,11 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Hero: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <section className="relative font-sans bg-white overflow-hidden">
@@ -23,25 +24,31 @@ const Hero: FC = () => {
                                 {t('landing:hero-cta-iama')}
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#students">
-                                    <Button variant="primary">
-                                        {t('landing:hero-cta-student')}
-                                    </Button>
-                                </a>
+                                <Link href="#students">
+                                    <>
+                                        <Button variant="primary">
+                                            {t('landing:hero-cta-student')}
+                                        </Button>
+                                    </>
+                                </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#schools">
-                                    <Button variant="secondary">
-                                        {t('landing:hero-cta-school')}
-                                    </Button>
-                                </a>
+                                <Link href="#schools">
+                                    <>
+                                        <Button variant="secondary">
+                                            {t('landing:hero-cta-school')}
+                                        </Button>
+                                    </>
+                                </Link>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <a href="#recruiters">
-                                    <Button variant="secondary">
-                                        {t('landing:hero-cta-recruiter')}
-                                    </Button>
-                                </a>
+                                <Link href="#recruiters">
+                                    <>
+                                        <Button variant="secondary">
+                                            {t('landing:hero-cta-recruiter')}
+                                        </Button>
+                                    </>
+                                </Link>
                             </div>
                         </div>
                     </div>

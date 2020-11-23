@@ -2,11 +2,11 @@ import { faBuffer } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faHandHoldingUsd } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Arguments: FC = () => {
-    const { t } = useTranslation(['landing']);
+    const { t } = useTranslation();
 
     return (
         <section className="py-8 font-sans bg-white overflow-hidden lg:py-16">

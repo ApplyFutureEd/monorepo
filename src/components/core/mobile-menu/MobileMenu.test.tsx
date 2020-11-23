@@ -1,6 +1,17 @@
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import { ReactNode } from 'react';
+
+type LinkProps = {
+    children: ReactNode;
+};
+
+jest.mock('next/link', () => {
+    return ({ children }: LinkProps) => {
+        return children;
+    };
+});
 
 jest.mock('@utils/useAuthenticatedUser');
 

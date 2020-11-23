@@ -1,7 +1,7 @@
 import Tooltip from '@components/core/tooltip/Tooltip';
 import { FieldInputProps, FieldMetaProps } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 import ReactSelect, { ValueType } from 'react-select';
 
@@ -75,7 +75,7 @@ const Select: FC<Props> = (props) => {
         ...rest
     } = props;
 
-    const { t } = useTranslation(['common']);
+    const { t } = useTranslation();
     const onError = Boolean(meta?.touched && meta?.error);
 
     const customStyles = {

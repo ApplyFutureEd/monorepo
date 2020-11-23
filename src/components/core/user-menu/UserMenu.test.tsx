@@ -1,6 +1,17 @@
 import UserMenu from '@components/core/user-menu/UserMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
+import { ReactNode } from 'react';
+
+type LinkProps = {
+    children: ReactNode;
+};
+
+jest.mock('next/link', () => {
+    return ({ children }: LinkProps) => {
+        return children;
+    };
+});
 
 jest.mock('next/router', () => ({
     useRouter() {
