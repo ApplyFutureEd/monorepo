@@ -5,7 +5,7 @@ import { FC, ReactNode } from 'react';
 
 type Props = {
     children: ReactNode;
-    description: string;
+    description?: string;
     title: string;
 };
 
