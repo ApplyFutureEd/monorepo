@@ -3,10 +3,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
 import selectEvent from 'react-select-event';
 
-API.post = jest.fn().mockImplementation(() => {
-    return true;
-});
-
 describe('Recruiters', () => {
     const fakeRecruiter = {
         additionalComments: 'Lorem ipsum',
@@ -46,6 +42,10 @@ describe('Recruiters', () => {
         whatsAppId: 'awesome.recruiter'
     };
 
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('can render without crashing', () => {
         render(<Recruiters />);
 
@@ -55,6 +55,10 @@ describe('Recruiters', () => {
     });
 
     it('can fill the form', async () => {
+        API.post = jest.fn().mockImplementation(() => {
+            return true;
+        });
+
         render(<Recruiters />);
 
         const firstNextStepButton = screen.getAllByText(/common:next-step/)[0];
