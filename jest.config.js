@@ -19,6 +19,7 @@ module.exports = {
         '\\.(css|less)$': 'identity-obj-proxy'
     },
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    testEnvironment: 'jsdom',
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     testResultsProcessor: 'jest-sonar-reporter',
     transform: {
