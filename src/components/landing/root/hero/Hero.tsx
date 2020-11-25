@@ -1,6 +1,5 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
-import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
