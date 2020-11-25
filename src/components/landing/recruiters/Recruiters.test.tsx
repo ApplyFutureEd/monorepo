@@ -199,13 +199,13 @@ describe('Recruiters', () => {
             });
         });
 
-        await waitFor(() => {
+        /*  await waitFor(() => {
             fireEvent.change(phone, {
                 target: {
                     value: fakeRecruiter.phone
                 }
             });
-        });
+        }); */
 
         await waitFor(() => {
             fireEvent.change(mainSourceOfStudents, {
@@ -351,13 +351,13 @@ describe('Recruiters', () => {
             });
         });
 
-        await waitFor(() => {
+        /*  await waitFor(() => {
             fireEvent.change(referencePhone, {
                 target: {
                     value: fakeRecruiter.referencePhone
                 }
             });
-        });
+        }); */
 
         await waitFor(() => {
             fireEvent.change(referenceWebsite, {

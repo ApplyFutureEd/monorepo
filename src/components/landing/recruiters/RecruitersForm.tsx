@@ -83,18 +83,18 @@ const RecruitersForm: FC<Props> = (props) => {
         linkedIn: string(),
         mainSourceOfStudents: string().required(t('common:error-required')),
         marketingMethods: string().required(t('common:error-required')),
-        phone: string()
-            .phone(undefined, false, t('common:error-phone-format'))
-            .required(t('common:error-required')),
+        phone: string(),
+        /* .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-required')), */
         postalCode: string(),
         recruitFrom: string(),
         ref: string(),
         referenceBusinessEmail: string(),
         referenceInstitution: string(),
         referenceName: string(),
-        referencePhone: string()
-            .phone(undefined, false, t('common:error-phone-format'))
-            .required(t('common:error-required')),
+        referencePhone: string(),
+        /*   .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-required')), */
         referenceWebsite: string(),
         servicesProvided: string().required(t('common:error-required')),
         skypeId: string(),
