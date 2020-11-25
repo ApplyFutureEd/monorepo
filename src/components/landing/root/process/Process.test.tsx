@@ -1,9 +1,9 @@
-import Arguments from '@components/landing/arguments/Arguments';
+import Process from '@components/landing/root/process/Process';
 import { render, screen } from '@testing-library/react';
 
-describe('Arguments', () => {
+describe('Process', () => {
     it('can render without crashing', () => {
-        render(<Arguments />);
+        render(<Process />);
 
         const heading = screen.getAllByRole('heading')[0];
 

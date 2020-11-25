@@ -1,4 +1,4 @@
-import Recruiters from '@components/landing/recruiters/Recruiters';
+import Recruiters from '@components/landing/root/recruiters/Recruiters';
 import { render, screen } from '@testing-library/react';
 
 describe('Recruiters', () => {

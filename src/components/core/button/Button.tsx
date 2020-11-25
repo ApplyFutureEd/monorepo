@@ -2,7 +2,9 @@ import Loader from '@components/core/loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import { FC, ReactNode } from 'react';
+import { FC, forwardRef, ReactNode } from 'react';
+
+type Ref = HTMLButtonElement;
 
 type Props = {
     /**
@@ -39,7 +41,7 @@ type Props = {
     variant?: 'primary' | 'secondary' | 'success' | 'danger';
 };
 
-const Button: FC<Props> = (props) => {
+const Button = forwardRef<Ref, Props>((props, ref) => {
     const {
         children,
         disabled = false,
@@ -75,7 +77,7 @@ const Button: FC<Props> = (props) => {
 
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
-            <button className={classes} disabled={disabled} type={type} onClick={onClick}>
+            <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
                 {startIcon && (
                     <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
                 )}
@@ -91,6 +93,6 @@ const Button: FC<Props> = (props) => {
             </button>
         </span>
     );
-};
+});
 
 export default Button;

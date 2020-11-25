@@ -1,6 +1,6 @@
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import { ReactNode } from 'react';
 
 type LinkProps = {

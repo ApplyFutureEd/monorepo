@@ -1,6 +1,6 @@
 import SignIn from '@components/auth/sign-in/SignIn';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import AmplifyError from '@utils/AmplifyError';
+import AmplifyError from '@utils/services/AmplifyError';
 import { Auth } from 'aws-amplify';
 import React from 'react';
 

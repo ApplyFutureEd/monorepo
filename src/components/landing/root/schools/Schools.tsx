@@ -22,13 +22,11 @@ const Schools: FC = () => {
                             {t('landing:schools-paragraph-2')}
                         </p>
                         <div className="flex justify-center mt-6">
-                            <Link href="#contact">
-                                <>
-                                    <Button type="button" variant="primary">
-                                        {t('landing:schools-cta')}
-                                    </Button>
-                                </>
-                            </Link>
+                            <a href="#contact">
+                                <Button type="button" variant="primary">
+                                    {t('landing:schools-cta')}
+                                </Button>
+                            </a>
                         </div>
                     </div>
 

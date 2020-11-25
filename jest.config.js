@@ -15,7 +15,8 @@ module.exports = {
         '@components/(.*)': '<rootDir>/src/components/$1',
         '@pages/(.*)': '<rootDir>/src/pages/$1',
         '@styles/(.*)': '<rootDir>/src/styles/$1',
-        '@utils/(.*)': '<rootDir>/src/utils/$1'
+        '@utils/(.*)': '<rootDir>/src/utils/$1',
+        '\\.(css|less)$': 'identity-obj-proxy'
     },
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],

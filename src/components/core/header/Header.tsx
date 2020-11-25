@@ -6,7 +6,7 @@ import Transition from '@components/core/transition/Transition';
 import UserMenu from '@components/core/user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';

@@ -1,17 +1,16 @@
+import 'react-phone-number-input/style.css';
+
 import Tooltip from '@components/core/tooltip/Tooltip';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import { FieldInputProps, FieldMetaProps } from 'formik';
+import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import ReactPhoneNumberInput, { getCountryCallingCode } from 'react-phone-number-input';
 
 type Props = {
-    /**
-     * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
-     */
-    autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
     /**
      * If `true`, the component element will be disabled.
      */
@@ -23,6 +22,10 @@ type Props = {
      */
     field: FieldInputProps<string>;
     /**
+     * State, handlers, and helpers from the parent form.
+     */
+    form: FormikProps<unknown>;
+    /**
      * If `true`, the component will display a loading skeleton.
      */
     isLoading?: boolean;
@@ -31,65 +34,37 @@ type Props = {
      */
     label: string;
     /**
-     * The maximum value accepted when input type is set to `number`.
-     */
-    max?: number;
-    /**
      * An object that contains relevant computed metadata.
      *
      * https://formik.org/docs/api/useField#fieldmetapropsvalue
      */
     meta: FieldMetaProps<string>;
     /**
-     * The minimum value accepted when input type is set to `number`.
-     */
-    min?: number;
-    /**
      * If `true`, the input will display an `(optional)` mention next to the label.
      */
     optional?: boolean;
-    /**
-     * The short hint displayed in the input before the user enters a value.
-     */
-    placeholder?: string;
-    /**
-     * Number of rows to display when multiline option is set to `true`.
-     */
-    rows?: number;
-    /**
-     * The step attribute specifies the interval between legal numbers
-     */
-    step?: number;
+
     /**
      * The tooltip displayed when hovering the label.
      */
     tooltip?: ReactNode;
-    /**
-     * The type to use.
-     */
-    type?: 'text' | 'number' | 'password';
 };
 
-const Input: FC<Props> = (props) => {
+const PhoneInput: FC<Props> = (props) => {
     const {
-        autoCapitalize = 'on',
         disabled = false,
         field,
+        form,
         isLoading = false,
         label,
-        max,
         meta,
-        min,
         optional = false,
-        placeholder = '',
-        rows = 0,
-        step,
         tooltip,
-        type = 'text',
         ...rest
     } = props;
 
     const { t } = useTranslation();
+    const [countryCallingCode, setCountryCallingCode] = useState('33');
     const onError = Boolean(meta?.touched && meta?.error);
 
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
@@ -116,6 +91,22 @@ const Input: FC<Props> = (props) => {
         );
     }
 
+    const onChange = (phoneNumber: string) => {
+        form.setFieldValue(field.name, phoneNumber);
+    };
+
+    const onCountryChange = (country: string | undefined) => {
+        console.log({ country });
+        if (!country) {
+            return;
+        }
+        try {
+            setCountryCallingCode(getCountryCallingCode(country));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <label className="block font-sans" htmlFor={field?.name} {...rest}>
             <Tooltip content={tooltip}>
@@ -127,36 +118,16 @@ const Input: FC<Props> = (props) => {
                 </div>
             </Tooltip>
             <div className="relative mt-1 rounded-md shadow-sm">
-                {rows ? (
-                    <textarea
-                        autoCapitalize={autoCapitalize}
-                        className={classes}
-                        disabled={disabled}
-                        id={field?.name}
-                        name={field?.name}
-                        placeholder={placeholder}
-                        rows={rows}
-                        value={field?.value}
-                        onBlur={field?.onBlur}
-                        onChange={field?.onChange}
-                    />
-                ) : (
-                    <input
-                        autoCapitalize={autoCapitalize}
-                        className={classes}
-                        disabled={disabled}
-                        id={field?.name}
-                        max={max}
-                        min={min}
-                        name={field?.name}
-                        placeholder={placeholder}
-                        step={step}
-                        type={type}
-                        value={field?.value}
-                        onBlur={field?.onBlur}
-                        onChange={field?.onChange}
-                    />
-                )}
+                <ReactPhoneNumberInput
+                    className={classes}
+                    defaultCountry="FR"
+                    disabled={disabled}
+                    name={field.name}
+                    placeholder={`+${countryCallingCode}`}
+                    value={field.value}
+                    onChange={onChange}
+                    onCountryChange={onCountryChange}
+                />
                 {onError && (
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <FontAwesomeIcon
@@ -177,4 +148,4 @@ const Input: FC<Props> = (props) => {
     );
 };
 
-export default Input;
+export default PhoneInput;

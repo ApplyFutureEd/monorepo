@@ -1,6 +1,6 @@
 import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
-import { faCheck } from '@fortawesome/pro-light-svg-icons';
+import { faCheck, faPaperPlane } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
@@ -101,7 +101,12 @@ const ContactForm: FC = () => {
                                     {t('landing:contact-form-email-sent')}
                                 </Button>
                             ) : (
-                                <Button isLoading={isSubmitting} type="submit" variant="primary">
+                                <Button
+                                    disabled={isSubmitting}
+                                    isLoading={isSubmitting}
+                                    startIcon={faPaperPlane}
+                                    type="submit"
+                                    variant="primary">
                                     {t('landing:contact-form-submit-button')}
                                 </Button>
                             )}

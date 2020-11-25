@@ -1,5 +1,5 @@
-import useOutsideAlerter from '@utils/useOutsideAlerter';
-import React, { FC, ReactNode, useRef } from 'react';
+import useOutsideAlerter from '@utils/hooks/useOutsideAlerter';
+import { FC, ReactNode, useRef } from 'react';
 
 type Props = {
     callback: () => void;

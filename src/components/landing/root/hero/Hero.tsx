@@ -24,31 +24,25 @@ const Hero: FC = () => {
                                 {t('landing:hero-cta-iama')}
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <Link href="#students">
-                                    <>
-                                        <Button variant="primary">
-                                            {t('landing:hero-cta-student')}
-                                        </Button>
-                                    </>
-                                </Link>
+                                <a href="#students">
+                                    <Button variant="primary">
+                                        {t('landing:hero-cta-student')}
+                                    </Button>
+                                </a>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <Link href="#schools">
-                                    <>
-                                        <Button variant="secondary">
-                                            {t('landing:hero-cta-school')}
-                                        </Button>
-                                    </>
-                                </Link>
+                                <a href="#schools">
+                                    <Button variant="secondary">
+                                        {t('landing:hero-cta-school')}
+                                    </Button>
+                                </a>
                             </div>
                             <div className="mt-3 sm:ml-3 sm:mt-0">
-                                <Link href="#recruiters">
-                                    <>
-                                        <Button variant="secondary">
-                                            {t('landing:hero-cta-recruiter')}
-                                        </Button>
-                                    </>
-                                </Link>
+                                <a href="#recruiters">
+                                    <Button variant="secondary">
+                                        {t('landing:hero-cta-recruiter')}
+                                    </Button>
+                                </a>
                             </div>
                         </div>
                     </div>

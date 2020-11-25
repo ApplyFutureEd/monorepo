@@ -1,6 +1,6 @@
 import Header from '@components/core/header/Header';
 import { fireEvent, render, screen } from '@testing-library/react';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import React, { useState as useStateMock } from 'react';
 
 jest.mock('@components/core/nav/Nav', () => {

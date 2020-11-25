@@ -1,25 +1,32 @@
+import 'yup-phone';
+
 import Button from '@components/core/button/Button';
-import Input from '@components/core/input/Input';
+import PhoneInput from '@components/core/phone-input/PhoneInput';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import React, { ReactNode } from 'react';
 import { object, string } from 'yup';
 
 export default {
-    component: Input,
-    title: 'Input'
+    component: PhoneInput,
+    title: 'PhoneInput'
 };
 
 export const Default = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        firstName: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        firstName: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        firstName: ''
+        phoneNumber: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -36,97 +43,9 @@ export const Default = (): ReactNode => {
                 const { isSubmitting } = props;
                 return (
                     <Form className="space-y-6">
-                        <Field id="firstName" name="firstName">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input label="First Name" {...fieldProps} />
-                            )}
-                        </Field>
-                        <Button isLoading={isSubmitting} type="submit" variant="primary">
-                            Submit
-                        </Button>
-                    </Form>
-                );
-            }}
-        </Formik>
-    );
-};
-
-export const TextArea = (): ReactNode => {
-    const validationSchema = object().shape({
-        message: string()
-    });
-
-    type FormValues = {
-        message: string;
-    };
-
-    const initialValues: FormValues = {
-        message: ''
-    };
-
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        alert(JSON.stringify(values));
-        actions.setSubmitting(false);
-    };
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
-            {(props) => {
-                const { isSubmitting } = props;
-                return (
-                    <Form className="space-y-6">
-                        <Field id="message" name="message">
-                            {(fieldProps: FieldProps) => (
-                                <Input label="Message" rows={5} {...fieldProps} />
-                            )}
-                        </Field>
-                        <Button isLoading={isSubmitting} type="submit" variant="primary">
-                            Submit
-                        </Button>
-                    </Form>
-                );
-            }}
-        </Formik>
-    );
-};
-
-export const WithPlaceholder = (): ReactNode => {
-    const validationSchema = object().shape({
-        email: string()
-    });
-
-    type FormValues = {
-        email: string;
-    };
-
-    const initialValues: FormValues = {
-        email: ''
-    };
-
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        alert(JSON.stringify(values));
-        actions.setSubmitting(false);
-    };
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
-            {(props) => {
-                const { isSubmitting } = props;
-                return (
-                    <Form className="space-y-6">
-                        <Field id="email" name="email">
-                            {(fieldProps: FieldProps) => (
-                                <Input
-                                    label="Email"
-                                    placeholder="Enter your email address"
-                                    {...fieldProps}
-                                />
+                                <PhoneInput label="Phone Number" {...fieldProps} />
                             )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -140,16 +59,20 @@ export const WithPlaceholder = (): ReactNode => {
 };
 
 export const WithTooltip = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        passportNumber: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        passportNumber: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        passportNumber: ''
+        phoneNumber: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -166,11 +89,11 @@ export const WithTooltip = (): ReactNode => {
                 const { isSubmitting } = props;
                 return (
                     <Form className="space-y-6">
-                        <Field id="passportNumber" name="passportNumber">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input
-                                    label="Passport Number"
-                                    tooltip="We collect your passport information for identity verification proposes, your school or program of interest may require this information to process your application. If applicable, it may also be used for processing your visa."
+                                <PhoneInput
+                                    label="Phone Number"
+                                    tooltip="Enter your phone number with the country indicator"
                                     {...fieldProps}
                                 />
                             )}
@@ -186,16 +109,20 @@ export const WithTooltip = (): ReactNode => {
 };
 
 export const Optional = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        middleName: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        middleName: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        middleName: ''
+        phoneNumber: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -212,9 +139,9 @@ export const Optional = (): ReactNode => {
                 const { isSubmitting } = props;
                 return (
                     <Form className="space-y-6">
-                        <Field id="middleName" name="middleName">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input optional label="Middle Name" {...fieldProps} />
+                                <PhoneInput optional label="Phone Number" {...fieldProps} />
                             )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -228,16 +155,20 @@ export const Optional = (): ReactNode => {
 };
 
 export const Disabled = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        studentId: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        studentId: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        studentId: 'WD7PM'
+        phoneNumber: '+33621122955'
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -254,9 +185,9 @@ export const Disabled = (): ReactNode => {
                 const { isSubmitting } = props;
                 return (
                     <Form className="space-y-6">
-                        <Field id="studentId" name="studentId">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input disabled label="Student ID" {...fieldProps} />
+                                <PhoneInput disabled label="Phone Number" {...fieldProps} />
                             )}
                         </Field>
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -270,16 +201,20 @@ export const Disabled = (): ReactNode => {
 };
 
 export const onError = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        firstName: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        firstName: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        firstName: ''
+        phoneNumber: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -296,10 +231,10 @@ export const onError = (): ReactNode => {
                 const { isSubmitting } = props;
                 return (
                     <Form className="space-y-6">
-                        <Field id="firstName" name="firstName">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input
-                                    label="First Name"
+                                <PhoneInput
+                                    label="Phone Number"
                                     {...fieldProps}
                                     meta={{
                                         error: 'This field is required',
@@ -310,7 +245,7 @@ export const onError = (): ReactNode => {
                                 />
                             )}
                         </Field>
-                        <Button isLoading={isSubmitting} type="submit" variant="primary">
+                        <Button disabled isLoading={isSubmitting} type="submit" variant="primary">
                             Submit
                         </Button>
                     </Form>
@@ -321,16 +256,20 @@ export const onError = (): ReactNode => {
 };
 
 export const Loading = (): ReactNode => {
+    const { t } = useTranslation();
+
     const validationSchema = object().shape({
-        firstName: string()
+        phoneNumber: string()
+            .phone(undefined, false, t('common:error-phone-format'))
+            .required(t('common:error-email-required'))
     });
 
     type FormValues = {
-        firstName: string;
+        phoneNumber: string;
     };
 
     const initialValues: FormValues = {
-        firstName: ''
+        phoneNumber: ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -346,9 +285,9 @@ export const Loading = (): ReactNode => {
             {() => {
                 return (
                     <Form className="space-y-6">
-                        <Field id="firstName" name="firstName">
+                        <Field id="phoneNumber" name="phoneNumber">
                             {(fieldProps: FieldProps) => (
-                                <Input isLoading label="First Name" {...fieldProps} />
+                                <PhoneInput isLoading label="Phone Number" {...fieldProps} />
                             )}
                         </Field>
                     </Form>
