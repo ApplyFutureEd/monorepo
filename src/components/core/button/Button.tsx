@@ -2,7 +2,7 @@ import Loader from '@components/core/loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import { FC, forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
 type Ref = HTMLButtonElement;
 

@@ -1,4 +1,5 @@
 import Button from '@components/core/button/Button';
+import Checkbox from '@components/core/checkbox/Checkbox';
 import Input from '@components/core/input/Input';
 import PhoneInput from '@components/core/phone-input/PhoneInput';
 import Select from '@components/core/select/Select';
@@ -247,9 +248,9 @@ const RecruitementDetails: FC<Props> = (props) => {
             </Field>
 
             <Field id="confirmation" name="confirmation">
-                {/*  {(fieldProps: FieldProps) => (
-                    <Checkbox details="" label={t('i-declare')} {...fieldProps} />
-                )} */}
+                {(fieldProps: FieldProps) => (
+                    <Checkbox label={t('recruiter-form:i-declare')} {...fieldProps} />
+                )}
             </Field>
 
             <div className="flex justify-end space-x-4">
