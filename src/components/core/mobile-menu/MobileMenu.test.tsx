@@ -13,7 +13,7 @@ jest.mock('next/link', () => {
     };
 });
 
-jest.mock('@utils/useAuthenticatedUser');
+jest.mock('@utils/hooks/useAuthenticatedUser');
 
 const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
     typeof useAuthenticatedUser

@@ -17,7 +17,7 @@ jest.mock('react', () => ({
     useState: jest.fn()
 }));
 
-jest.mock('@utils/useAuthenticatedUser');
+jest.mock('@utils/hooks/useAuthenticatedUser');
 
 const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
     typeof useAuthenticatedUser
