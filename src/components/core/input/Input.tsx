@@ -117,7 +117,7 @@ const Input: FC<Props> = (props) => {
     }
 
     return (
-        <label className="block font-sans" htmlFor={field?.name} {...rest}>
+        <label className="block font-sans" htmlFor={field.name} {...rest}>
             <Tooltip content={tooltip}>
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
@@ -132,29 +132,29 @@ const Input: FC<Props> = (props) => {
                         autoCapitalize={autoCapitalize}
                         className={classes}
                         disabled={disabled}
-                        id={field?.name}
-                        name={field?.name}
+                        id={field.name}
+                        name={field.name}
                         placeholder={placeholder}
                         rows={rows}
-                        value={field?.value}
-                        onBlur={field?.onBlur}
-                        onChange={field?.onChange}
+                        value={field.value}
+                        onBlur={field.onBlur}
+                        onChange={field.onChange}
                     />
                 ) : (
                     <input
                         autoCapitalize={autoCapitalize}
                         className={classes}
                         disabled={disabled}
-                        id={field?.name}
+                        id={field.name}
                         max={max}
                         min={min}
-                        name={field?.name}
+                        name={field.name}
                         placeholder={placeholder}
                         step={step}
                         type={type}
-                        value={field?.value}
-                        onBlur={field?.onBlur}
-                        onChange={field?.onChange}
+                        value={field.value}
+                        onBlur={field.onBlur}
+                        onChange={field.onChange}
                     />
                 )}
                 {onError && (
@@ -169,7 +169,7 @@ const Input: FC<Props> = (props) => {
                 )}
             </div>
             {onError && (
-                <p className="mt-2 text-red-600 text-sm" id={`${field?.name}-error`}>
+                <p className="mt-2 text-red-600 text-sm" id={`${field.name}-error`}>
                     {meta?.error}
                 </p>
             )}
