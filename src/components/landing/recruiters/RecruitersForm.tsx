@@ -59,6 +59,7 @@ const RecruitersForm: FC<Props> = (props) => {
     const { currentStep, handleNextStep, handlePreviousStep } = props;
     const { t } = useTranslation();
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
         additionalComments: string(),
@@ -148,9 +149,11 @@ const RecruitersForm: FC<Props> = (props) => {
                 body: values
             });
             actions.setSubmitting(false);
-        } catch (error) {
             setSubmitted(true);
+        } catch (error) {
+            setErrorMessage(t('landing:contact-form-error'));
             actions.setSubmitting(false);
+            setSubmitted(false);
         }
     };
 
@@ -173,6 +176,7 @@ const RecruitersForm: FC<Props> = (props) => {
                     </div>
                     <div className={cx({ hidden: currentStep !== 2 })}>
                         <RecruitementDetails
+                            errorMessage={errorMessage}
                             handlePreviousStep={handlePreviousStep}
                             isSubmitting={isSubmitting}
                             submitted={submitted}

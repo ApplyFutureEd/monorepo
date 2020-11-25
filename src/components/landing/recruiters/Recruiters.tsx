@@ -14,11 +14,11 @@ const Recruiters: FC = () => {
     ];
 
     const handlePreviousStep = () => {
-        return setCurrentStep((prev) => (prev - 1 < 0 ? prev : prev - 1));
+        return setCurrentStep((prev) => prev - 1);
     };
 
     const handleNextStep = () => {
-        return setCurrentStep((prev) => (prev + 1 >= steps.length ? prev : prev + 1));
+        return setCurrentStep((prev) => prev + 1);
     };
 
     return (

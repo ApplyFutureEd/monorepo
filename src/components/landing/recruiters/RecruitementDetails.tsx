@@ -11,6 +11,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 type Props = {
+    errorMessage: string;
     handlePreviousStep: () => void;
     isSubmitting: boolean;
     submitted: boolean;
@@ -18,7 +19,7 @@ type Props = {
 };
 
 const RecruitementDetails: FC<Props> = (props) => {
-    const { handlePreviousStep, isSubmitting, submitted, values } = props;
+    const { errorMessage, handlePreviousStep, isSubmitting, submitted, values } = props;
     const { t } = useTranslation();
 
     const validate = (values: FormValues) => {
@@ -270,11 +271,13 @@ const RecruitementDetails: FC<Props> = (props) => {
                         disabled={validate(values)}
                         isLoading={isSubmitting}
                         startIcon={faPaperPlane}
-                        type="submit">
+                        type="submit"
+                        variant="primary">
                         {t('landing:contact-form-submit-button')}
                     </Button>
                 )}
             </div>
+            {errorMessage && <p className="mt-2 text-red-600 text-sm">{errorMessage}</p>}
         </div>
     );
 };

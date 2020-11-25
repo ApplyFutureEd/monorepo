@@ -108,7 +108,7 @@ const PhoneInput: FC<Props> = (props) => {
     };
 
     return (
-        <label className="block font-sans" htmlFor={field?.name} {...rest}>
+        <label className="block font-sans" htmlFor={field.name} {...rest}>
             <Tooltip content={tooltip}>
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
@@ -120,6 +120,7 @@ const PhoneInput: FC<Props> = (props) => {
             <div className="relative mt-1 rounded-md shadow-sm">
                 <ReactPhoneNumberInput
                     className={classes}
+                    data-testid={label}
                     defaultCountry="FR"
                     disabled={disabled}
                     name={field.name}
@@ -140,7 +141,7 @@ const PhoneInput: FC<Props> = (props) => {
                 )}
             </div>
             {onError && (
-                <p className="mt-2 text-red-600 text-sm" id={`${field?.name}-error`}>
+                <p className="mt-2 text-red-600 text-sm" id={`${field.name}-error`}>
                     {meta?.error}
                 </p>
             )}
