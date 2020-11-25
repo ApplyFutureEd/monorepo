@@ -22,14 +22,14 @@ const RecruitementDetails: FC<Props> = (props) => {
     const { errorMessage, handlePreviousStep, isSubmitting, submitted, values } = props;
     const { t } = useTranslation();
 
-    const validate = (values: FormValues) => {
+    const validate = (formValues: FormValues) => {
         return (
             isSubmitting ||
-            !values.belongTo ||
-            !values.marketingMethods ||
-            !values.averageServiceFee ||
-            !values.estimatedStudents ||
-            !values.confirmation
+            !formValues.belongTo ||
+            !formValues.marketingMethods ||
+            !formValues.averageServiceFee ||
+            !formValues.estimatedStudents ||
+            !formValues.confirmation
         );
     };
 

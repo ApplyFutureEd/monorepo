@@ -15,8 +15,8 @@ const CompagnyInfo: FC<Props> = (props) => {
     const { handleNextStep, values } = props;
     const { t } = useTranslation();
 
-    const validate = (values: FormValues) => {
-        return !values.compagnyName || !values.email;
+    const validate = (formValues: FormValues) => {
+        return !formValues.compagnyName || !formValues.email;
     };
 
     return (

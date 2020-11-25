@@ -19,14 +19,14 @@ const ContactInfo: FC<Props> = (props) => {
     const { handleNextStep, handlePreviousStep, values } = props;
     const { t } = useTranslation();
 
-    const validate = (values: FormValues) => {
+    const validate = (formValues: FormValues) => {
         return (
-            !values.mainSourceOfStudents ||
-            !values.firstName ||
-            !values.lastName ||
-            !values.streetAddress ||
-            !values.city ||
-            !values.phone
+            !formValues.mainSourceOfStudents ||
+            !formValues.firstName ||
+            !formValues.lastName ||
+            !formValues.streetAddress ||
+            !formValues.city ||
+            !formValues.phone
         );
     };
 
