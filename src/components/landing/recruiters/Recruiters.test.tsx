@@ -703,11 +703,9 @@ describe('Recruiters', () => {
             fireEvent.click(submitButton);
         });
 
-        await waitFor(() => {
-            expect(API.post).toThrow();
+        expect(API.post).toThrow();
 
-            const errorMessage = screen.getByText(/landing:contact-form-error/);
-            expect(errorMessage).toBeVisible();
-        });
+        const errorMessage = screen.getByText(/landing:contact-form-error/);
+        expect(errorMessage).toBeVisible();
     });
 });
