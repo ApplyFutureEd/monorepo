@@ -25,7 +25,7 @@ type Props = {
 const Collapse: FC<Props> = (props) => {
     const { open, onClick, title, content } = props;
 
-    const baseClasses = 'text-base leading-6 text-gray-500';
+    const baseClasses = 'text-gray-500 text-base leading-6';
 
     const classes = cx({
         [`${baseClasses}`]: true,
