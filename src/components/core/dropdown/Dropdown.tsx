@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, ReactNode } from 'react';
 
 export type DropdownItem = {
-    label: string;
-    onClick: () => void;
-    startIcon: IconProp;
+    label: ReactNode;
+    onClick: (...args: unknown[]) => void;
+    startIcon?: IconProp;
 };
 
 type Props = {
     /**
-     * Dropdown menu's items that should include a `label` and an `onClick` callback function. You can also provide a `startIcon`.
+     * Dropdown menu's items that should include a `label: ReactNode` and an `onClick: () => void` callback function. You can also provide a `startIcon: IconProp`.
      */
     items: Array<DropdownItem>;
     /**
@@ -53,7 +53,7 @@ const Dropdown: FC<Props> = (props) => {
                                     return (
                                         <button
                                             key={index}
-                                            className="flex items-center px-4 py-2 text-gray-700 text-sm hover:bg-gray-100 cursor-pointer"
+                                            className="flex items-center px-4 py-2 w-full text-gray-700 text-sm hover:bg-gray-100 cursor-pointer"
                                             onClick={onClick}>
                                             {startIcon && (
                                                 <FontAwesomeIcon

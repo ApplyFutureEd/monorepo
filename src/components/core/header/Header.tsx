@@ -11,6 +11,8 @@ import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 
+import LanguageMenu from '../language-menu/LanguageMenu';
+
 const routes = [
     {
         href: '/programs',
@@ -58,7 +60,8 @@ const Header: FC = () => {
                             </button>
                         </div>
                         <Nav routes={routes} />
-                        <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-4 lg:flex lg:flex-1 lg:w-0">
+                        <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
+                            <LanguageMenu />
                             {user ? (
                                 <UserMenu />
                             ) : (

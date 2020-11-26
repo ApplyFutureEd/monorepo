@@ -12,6 +12,15 @@ jest.mock('@components/core/nav/Nav', () => {
     };
 });
 
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 jest.mock('react', () => ({
     ...(jest.requireActual('react') as Record<string, unknown>),
     useState: jest.fn()
