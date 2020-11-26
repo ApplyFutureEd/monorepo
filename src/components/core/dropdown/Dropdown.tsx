@@ -11,9 +11,21 @@ export type DropdownItem = {
 };
 
 type Props = {
+    /**
+     * Dropdown menu's items that should include a `label` and an `onClick` callback function. You can also provide a `startIcon`.
+     */
     items: Array<DropdownItem>;
+    /**
+     * Callback function called when clicking outside of the Dropdown component.
+     */
     onOutsideClick: () => void;
+    /**
+     * When `open` is `true` items are displayed.
+     */
     open: boolean;
+    /**
+     * Component that, when clicked, toggles of the Dropdown.
+     */
     trigger: ReactNode;
 };
 

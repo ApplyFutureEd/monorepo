@@ -60,7 +60,7 @@ describe('UserMenu', () => {
         expect(signOut).toBeVisible();
     });
 
-    it('can call onClick callback when clicking on the menu trigger', () => {
+    it('can call onClick callback function when clicking on the menu trigger', () => {
         render(
             <Dropdown items={items} open={false} trigger={trigger} onOutsideClick={handleClose} />
         );
@@ -72,7 +72,7 @@ describe('UserMenu', () => {
         expect(handleToggle).toHaveBeenCalled();
     });
 
-    it('can call onClick callbacks when clicking on menu items', () => {
+    it('can call onClick callback functions when clicking on menu items', () => {
         render(
             <Dropdown items={items} open={true} trigger={trigger} onOutsideClick={handleClose} />
         );

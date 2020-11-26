@@ -42,7 +42,7 @@ describe('Header', () => {
         expect(nav).toBeInTheDocument();
     });
 
-    it('can call the open callback when clicking on an anchor', () => {
+    it('can call the open callback function when clicking on an anchor', () => {
         render(<Header />);
 
         const anchor = screen.getByLabelText(/open/i);
