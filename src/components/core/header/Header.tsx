@@ -1,5 +1,6 @@
 import UserMenu from '@components/auth/user-menu/UserMenu';
 import Button from '@components/core/button/Button';
+import LanguageMenu from '@components/core/language-menu/LanguageMenu';
 import Logo from '@components/core/logo/Logo';
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import Nav from '@components/core/nav/Nav';
@@ -11,9 +12,7 @@ import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 
-import LanguageMenu from '../language-menu/LanguageMenu';
-
-const routes = [
+const unloggedRoutes = [
     {
         href: '/programs',
         label: 'navigation:programs'
@@ -29,6 +28,29 @@ const routes = [
     {
         href: '/#contact',
         label: 'navigation:contact'
+    }
+];
+
+const loggedRoutes = [
+    {
+        href: '/profile',
+        label: 'navigation:profile'
+    },
+    {
+        href: '/programs',
+        label: 'navigation:programs'
+    },
+    {
+        href: '/schools',
+        label: 'navigation:schools'
+    },
+    {
+        href: '/applications',
+        label: 'navigation:applications'
+    },
+    {
+        href: '/help',
+        label: 'navigation:help'
     }
 ];
 
@@ -59,8 +81,8 @@ const Header: FC = () => {
                                 <FontAwesomeIcon icon={faBars} size="lg" />
                             </button>
                         </div>
-                        <Nav routes={routes} />
                         <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
+                            <Nav routes={user ? loggedRoutes : unloggedRoutes} />
                             <LanguageMenu />
                             {user ? (
                                 <UserMenu />
@@ -78,7 +100,7 @@ const Header: FC = () => {
                     </div>
                 </div>
                 <Transition show={open}>
-                    <MobileMenu routes={routes} setOpen={setOpen} />
+                    <MobileMenu routes={user ? loggedRoutes : unloggedRoutes} setOpen={setOpen} />
                 </Transition>
             </div>
         </div>
