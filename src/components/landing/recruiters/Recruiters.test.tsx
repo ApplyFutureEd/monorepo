@@ -1,7 +1,6 @@
 import Recruiters from '@components/landing/recruiters/Recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
-import selectEvent from 'react-select-event';
 
 describe('Recruiters', () => {
     const fakeRecruiter = {
@@ -12,7 +11,7 @@ describe('Recruiters', () => {
         city: 'Paris',
         compagnyName: 'Lorem ipsum',
         confirmation: true,
-        country: 'common:france',
+        country: 'CN',
         email: 'awesome.recruiter@gmail.com',
         estimatedStudents: '1 - 5',
         facebook: 'https://www.facebook.com/awesome.recruiter',
@@ -22,16 +21,16 @@ describe('Recruiters', () => {
         institutionsRepresenting: 'Lorem ipsum',
         lastName: 'Doe',
         linkedIn: 'https://www.linkedin.com/awesome.recruiter',
-        mainSourceOfStudents: 'common:china',
-        marketingMethods: 'recruiter-form:type-of-marketing-answer-1',
-        phone: '',
+        mainSourceOfStudents: 'CN',
+        marketingMethods: 'Online Advertising',
+        phone: '+33621122955',
         postalCode: '75007',
-        recruitFrom: 'common:china',
+        recruitFrom: 'CN',
         ref: 'Ying Zhang',
         referenceBusinessEmail: 'amazing.recruiter@gmail.com',
         referenceInstitution: 'Lorem ipsum',
         referenceName: 'Jane Doe',
-        referencePhone: '',
+        referencePhone: '+33612212955',
         referenceWebsite: 'www.amazingrecruiter.com',
         servicesProvided: 'Lorem ipsum',
         skypeId: 'awesome.recruiter',
@@ -82,25 +81,16 @@ describe('Recruiters', () => {
         const streetAddress = screen.getByLabelText(/recruiter-form:street-address/);
         const city = screen.getByLabelText(/recruiter-form:city/);
         const stateOrProvince = screen.getByLabelText(/recruiter-form:state-province/);
-        const country = screen.getByLabelText(/recruiter-form:country/);
         const postalCode = screen.getByLabelText(/recruiter-form:postal-code/);
         const skypeId = screen.getByLabelText(/recruiter-form:skype-id/);
         const whatsAppId = screen.getByLabelText(/recruiter-form:whats-app-id/);
         const ref = screen.getByLabelText(/recruiter-form:referred-question/);
-
         const beginRecruitingDate = screen.getByLabelText(/recruiter-form:when-begin-question/);
         const servicesProvided = screen.getByLabelText(/recruiter-form:service-provide-question/);
         const institutionsRepresenting = screen.getByLabelText(
             /recruiter-form:institutions-representing-question/
         );
         const belongTo = screen.getByLabelText(/recruiter-form:organization-belong-to-question/);
-        const recruitFrom = screen.getByLabelText(/recruiter-form:where-recruit-from-question/);
-        const howManyStudents = screen.getByLabelText(/recruiter-form:how-many-students-question/);
-        const marketingMethods = screen.getByLabelText(/recruiter-form:type-of-marketing-question/);
-        const averageServiceFee = screen.getByLabelText(/recruiter-form:average-fee-question/);
-        const estimatedStudents = screen.getByLabelText(
-            /recruiter-form:estimate-students-refer-question/
-        );
         const additionalComments = screen.getByLabelText(/recruiter-form:additional-comments/);
         const referenceName = screen.getByLabelText(/recruiter-form:reference-name/);
         const referenceInstitution = screen.getByLabelText(
@@ -181,8 +171,6 @@ describe('Recruiters', () => {
             fireEvent.click(firstNextStepButton);
         });
 
-        /*         await selectEvent.select(mainSourceOfStudents, fakeRecruiter.mainSourceOfStudents);
-         */
         await waitFor(() => {
             fireEvent.change(firstName, {
                 target: {
@@ -199,13 +187,13 @@ describe('Recruiters', () => {
             });
         });
 
-        /*  await waitFor(() => {
+        await waitFor(() => {
             fireEvent.change(phone, {
                 target: {
                     value: fakeRecruiter.phone
                 }
             });
-        }); */
+        });
 
         await waitFor(() => {
             fireEvent.change(mainSourceOfStudents, {
@@ -238,8 +226,6 @@ describe('Recruiters', () => {
                 }
             });
         });
-
-        await selectEvent.select(country, fakeRecruiter.country);
 
         await waitFor(() => {
             fireEvent.change(postalCode, {
@@ -308,16 +294,6 @@ describe('Recruiters', () => {
                 }
             });
         });
-
-        /* await selectEvent.select(recruitFrom, fakeRecruiter.recruitFrom);
-
-        await selectEvent.select(howManyStudents, fakeRecruiter.howManyStudents);
-
-        await selectEvent.select(marketingMethods, fakeRecruiter.marketingMethods);
-
-        await selectEvent.select(averageServiceFee, fakeRecruiter.averageServiceFee);
-
-        await selectEvent.select(estimatedStudents, fakeRecruiter.estimatedStudents); */
 
         await waitFor(() => {
             fireEvent.change(additionalComments, {
@@ -351,13 +327,13 @@ describe('Recruiters', () => {
             });
         });
 
-        /*  await waitFor(() => {
+        await waitFor(() => {
             fireEvent.change(referencePhone, {
                 target: {
                     value: fakeRecruiter.referencePhone
                 }
             });
-        }); */
+        });
 
         await waitFor(() => {
             fireEvent.change(referenceWebsite, {
@@ -376,17 +352,11 @@ describe('Recruiters', () => {
         });
 
         expect(API.post).toHaveBeenCalledWith('REST', '/ses/recruiters-contact-form', {
-            body: {
-                ...fakeRecruiter,
-                country: 'FR',
-                mainSourceOfStudents: 'CN',
-                marketingMethods: 'Online Advertising',
-                recruitFrom: 'CN'
-            }
+            body: fakeRecruiter
         });
     });
 
-    it.skip('can display the right error message when an Error is thrown', async () => {
+    it('can display the right error message when an Error is thrown', async () => {
         API.post = jest.fn().mockImplementation(() => {
             throw new Error();
         });
@@ -414,7 +384,6 @@ describe('Recruiters', () => {
         const streetAddress = screen.getByLabelText(/recruiter-form:street-address/);
         const city = screen.getByLabelText(/recruiter-form:city/);
         const stateOrProvince = screen.getByLabelText(/recruiter-form:state-province/);
-        const country = screen.getByLabelText(/recruiter-form:country/);
         const postalCode = screen.getByLabelText(/recruiter-form:postal-code/);
         const skypeId = screen.getByLabelText(/recruiter-form:skype-id/);
         const whatsAppId = screen.getByLabelText(/recruiter-form:whats-app-id/);
@@ -426,13 +395,6 @@ describe('Recruiters', () => {
             /recruiter-form:institutions-representing-question/
         );
         const belongTo = screen.getByLabelText(/recruiter-form:organization-belong-to-question/);
-        const recruitFrom = screen.getByLabelText(/recruiter-form:where-recruit-from-question/);
-        const howManyStudents = screen.getByLabelText(/recruiter-form:how-many-students-question/);
-        const marketingMethods = screen.getByLabelText(/recruiter-form:type-of-marketing-question/);
-        const averageServiceFee = screen.getByLabelText(/recruiter-form:average-fee-question/);
-        const estimatedStudents = screen.getByLabelText(
-            /recruiter-form:estimate-students-refer-question/
-        );
         const additionalComments = screen.getByLabelText(/recruiter-form:additional-comments/);
         const referenceName = screen.getByLabelText(/recruiter-form:reference-name/);
         const referenceInstitution = screen.getByLabelText(
@@ -513,8 +475,6 @@ describe('Recruiters', () => {
             fireEvent.click(firstNextStepButton);
         });
 
-        await selectEvent.select(mainSourceOfStudents, fakeRecruiter.mainSourceOfStudents);
-
         await waitFor(() => {
             fireEvent.change(firstName, {
                 target: {
@@ -570,8 +530,6 @@ describe('Recruiters', () => {
                 }
             });
         });
-
-        await selectEvent.select(country, fakeRecruiter.country);
 
         await waitFor(() => {
             fireEvent.change(postalCode, {
@@ -640,16 +598,6 @@ describe('Recruiters', () => {
                 }
             });
         });
-
-        await selectEvent.select(recruitFrom, fakeRecruiter.recruitFrom);
-
-        await selectEvent.select(howManyStudents, fakeRecruiter.howManyStudents);
-
-        await selectEvent.select(marketingMethods, fakeRecruiter.marketingMethods);
-
-        await selectEvent.select(averageServiceFee, fakeRecruiter.averageServiceFee);
-
-        await selectEvent.select(estimatedStudents, fakeRecruiter.estimatedStudents);
 
         await waitFor(() => {
             fireEvent.change(additionalComments, {
