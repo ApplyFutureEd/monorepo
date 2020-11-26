@@ -53,17 +53,12 @@ export const Default = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
                                 {(fieldProps: FieldProps) => (
-                                    <Select
-                                        label="Degree"
-                                        options={options}
-                                        setFieldValue={setFieldValue}
-                                        {...fieldProps}
-                                    />
+                                    <Select label="Degree" options={options} {...fieldProps} />
                                 )}
                             </Field>
                             <Button isLoading={isSubmitting} type="submit" variant="primary">
@@ -102,7 +97,7 @@ export const MultipleValues = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degrees" name="degrees">
@@ -111,7 +106,6 @@ export const MultipleValues = (): ReactNode => {
                                         isMulti
                                         label="Degrees"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                     />
                                 )}
@@ -152,7 +146,7 @@ export const WithPlaceholder = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree" name="degree">
@@ -161,7 +155,6 @@ export const WithPlaceholder = (): ReactNode => {
                                         label="Degree"
                                         options={options}
                                         placeholder="Select a degree"
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                     />
                                 )}
@@ -202,7 +195,7 @@ export const WithTooltip = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree-with-tooltip" name="degree-with-tooltip">
@@ -210,7 +203,6 @@ export const WithTooltip = (): ReactNode => {
                                     <Select
                                         label="Degree"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         tooltip="An academic degree is a qualification awarded to students upon successful completion of a course of study in higher education"
                                         {...fieldProps}
                                     />
@@ -252,7 +244,7 @@ export const Optional = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree-optional" name="degree-optional">
@@ -261,7 +253,6 @@ export const Optional = (): ReactNode => {
                                         optional
                                         label="Degree"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                     />
                                 )}
@@ -302,7 +293,7 @@ export const Disabled = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree-disabled" name="degree-disabled">
@@ -311,7 +302,6 @@ export const Disabled = (): ReactNode => {
                                         disabled
                                         label="Degree"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                     />
                                 )}
@@ -352,7 +342,7 @@ export const onError = (): ReactNode => {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {(props) => {
-                    const { setFieldValue, isSubmitting } = props;
+                    const { isSubmitting } = props;
                     return (
                         <Form className="space-y-6">
                             <Field id="degree-error" name="degree-error">
@@ -360,7 +350,6 @@ export const onError = (): ReactNode => {
                                     <Select
                                         label="Degree"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                         meta={{
                                             error: 'This field is required',
@@ -410,8 +399,7 @@ export const Loading = (): ReactNode => {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
-                {(props) => {
-                    const { setFieldValue } = props;
+                {() => {
                     return (
                         <Form className="space-y-6">
                             <Field id="degree-loading" name="degree-loading">
@@ -420,7 +408,6 @@ export const Loading = (): ReactNode => {
                                         isLoading
                                         label="Degree"
                                         options={options}
-                                        setFieldValue={setFieldValue}
                                         {...fieldProps}
                                     />
                                 )}

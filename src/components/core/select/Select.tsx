@@ -1,7 +1,7 @@
 import Tooltip from '@components/core/tooltip/Tooltip';
-import { FieldInputProps, FieldMetaProps } from 'formik';
+import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import ReactSelect, { ValueType } from 'react-select';
 
@@ -16,6 +16,10 @@ type Props = {
      * https://formik.org/docs/api/useField#fieldinputpropsvalue
      */
     field: FieldInputProps<string>;
+    /**
+     * State, handlers, and helpers from the parent form.
+     */
+    form: FormikProps<any>;
     /**
      * If `true`, the component will display a loading skeleton.
      */
@@ -47,13 +51,6 @@ type Props = {
      */
     placeholder?: string;
     /**
-     * Set the value of a field imperatively.
-     *
-     * https://formik.org/docs/api/formik#setfieldvalue-field-string-value-any-shouldvalidate-boolean--void
-     */
-
-    setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-    /**
      * The tooltip displayed when hovering the label.
      */
     tooltip?: string;
@@ -63,6 +60,7 @@ const Select: FC<Props> = (props) => {
     const {
         disabled,
         field,
+        form,
         isLoading = false,
         isMulti = false,
         label,
@@ -70,7 +68,6 @@ const Select: FC<Props> = (props) => {
         options,
         optional,
         placeholder = '',
-        setFieldValue,
         tooltip = '',
         ...rest
     } = props;
@@ -142,16 +139,16 @@ const Select: FC<Props> = (props) => {
 
     let value: ValueType<any> = options.find((option) => option.value === field.value);
     let onChange = (option: ValueType<any>) => {
-        return setFieldValue(field.name, option.value);
+        return form.setFieldValue(field.name, option.value);
     };
 
     if (isMulti) {
         value = options.filter((option) => field.value.includes(option.value));
         onChange = (options: ValueType<any>) => {
             if (!options) {
-                return setFieldValue(field.name, ['']);
+                return form.setFieldValue(field.name, ['']);
             }
-            return setFieldValue(
+            return form.setFieldValue(
                 field.name,
                 options.map((option: any) => option.value)
             );
@@ -164,10 +161,7 @@ const Select: FC<Props> = (props) => {
                 <div>
                     <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
                     {optional && (
-                        <span className="text-gray-500 text-sm uppercase">
-                            {' '}
-                            - {t('common:optional')}
-                        </span>
+                        <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
                     )}
                 </div>
             </Tooltip>

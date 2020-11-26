@@ -3,11 +3,11 @@ import Transition from '@components/core/transition/Transition';
 import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faUser } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 const UserMenu: FC = () => {
     const { t } = useTranslation();

@@ -1,102 +1,55 @@
-import Button from '@components/core/button/Button';
-import Image from 'next/image';
+import Stepper from '@components/core/stepper/Stepper';
+import RecruitersForm from '@components/landing/recruiters/RecruitersForm';
 import useTranslation from 'next-translate/useTranslation';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 const Recruiters: FC = () => {
     const { t } = useTranslation();
 
+    const [currentStep, setCurrentStep] = useState(0);
+    const steps = [
+        t('recruiter-form:recruiter-form-step-1'),
+        t('recruiter-form:recruiter-form-step-2'),
+        t('recruiter-form:recruiter-form-step-3')
+    ];
+
+    const handlePreviousStep = () => {
+        return setCurrentStep((prev) => prev - 1);
+    };
+
+    const handleNextStep = () => {
+        return setCurrentStep((prev) => prev + 1);
+    };
+
     return (
-        <section className="py-8 font-sans bg-white overflow-hidden lg:py-16" id="recruiters">
-            <div className="relative mx-auto px-4 max-w-xl sm:px-6 lg:px-8 lg:max-w-screen-xl">
-                <svg
-                    className="right-full absolute hidden transform translate-x-1/2 translate-y-12 lg:block"
-                    fill="none"
-                    height="784"
-                    viewBox="0 0 404 784"
-                    width="404">
-                    <defs>
-                        <pattern
-                            height="20"
-                            id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d"
-                            patternUnits="userSpaceOnUse"
-                            width="20"
-                            x="0"
-                            y="0">
-                            <rect
-                                className="text-gray-200"
-                                fill="currentColor"
-                                height="4"
-                                width="4"
-                                x="0"
-                                y="0"
-                            />
-                        </pattern>
-                    </defs>
-                    <rect
-                        fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"
-                        height="784"
-                        width="404"
+        <div className="relative bg-white">
+            <div className="lg:absolute lg:inset-0">
+                <div className="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
+                    <img
+                        alt=""
+                        className="w-full h-56 object-cover lg:absolute lg:h-full"
+                        src="/assets/images/landing/recruiters-form.svg"
                     />
-                </svg>
-
-                <div className="relative">
-                    <div className="lg:grid lg:gap-8 lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center">
-                        <div className="lg:col-start-2">
-                            <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
-                                {t('landing:recruiters-headline')}
-                            </h2>
-                            <p className="mt-3 text-gray-500 text-lg leading-7">
-                                {t('landing:recruiters-paragraph')}
-                            </p>
-                            <div className="flex justify-center mt-6">
-                                <Button variant="primary">{t('landing:recruiters-cta')}</Button>
-                            </div>
+                </div>
+            </div>
+            <div className="relative pb-16 pt-12 px-4 sm:pt-16 sm:px-6 lg:grid lg:grid-cols-2 lg:mx-auto lg:px-8 lg:max-w-7xl">
+                <div className="lg:col-start-2 lg:pl-8">
+                    <div className="mx-auto max-w-prose text-base lg:ml-auto lg:mr-0 lg:max-w-lg">
+                        <h1 className="mb-8 mt-2 text-gray-900 text-3xl font-extrabold tracking-tight leading-8 sm:text-4xl sm:leading-10">
+                            {t('landing:recruiters-page-heading')}
+                        </h1>
+                        <div className="mb-4">
+                            <Stepper currentStep={currentStep} steps={steps} />
                         </div>
-
-                        <div className="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
-                            <svg
-                                className="left-1/2 absolute transform -translate-x-1/2 translate-y-16 lg:hidden"
-                                fill="none"
-                                height="404"
-                                viewBox="0 0 784 404"
-                                width="784">
-                                <defs>
-                                    <pattern
-                                        height="20"
-                                        id="e80155a9-dfde-425a-b5ea-1f6fadd20131"
-                                        patternUnits="userSpaceOnUse"
-                                        width="20"
-                                        x="0"
-                                        y="0">
-                                        <rect
-                                            className="text-gray-200"
-                                            fill="currentColor"
-                                            height="4"
-                                            width="4"
-                                            x="0"
-                                            y="0"
-                                        />
-                                    </pattern>
-                                </defs>
-                                <rect
-                                    fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)"
-                                    height="404"
-                                    width="784"
-                                />
-                            </svg>
-                            <Image
-                                alt=""
-                                className="relative mx-auto"
-                                height="349"
-                                src="/assets/images/landing/landing-recruiters.svg"
-                                width="490"
-                            />
-                        </div>
+                        <RecruitersForm
+                            currentStep={currentStep}
+                            handleNextStep={handleNextStep}
+                            handlePreviousStep={handlePreviousStep}
+                        />
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

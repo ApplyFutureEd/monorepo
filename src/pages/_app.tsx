@@ -1,9 +1,9 @@
 import '@styles/index.css';
-import '@utils/amplify';
+import '@utils/services/amplify';
 
-import { initSentry } from '@utils/sentry';
-import { AuthenticatedUserProvider } from '@utils/useAuthenticatedUser';
-import { initWhyDidYouRender } from '@utils/whyDidYouRender';
+import { initWhyDidYouRender } from '@utils/helpers/whyDidYouRender';
+import { AuthenticatedUserProvider } from '@utils/hooks/useAuthenticatedUser';
+import { initSentry } from '@utils/services/sentry';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';

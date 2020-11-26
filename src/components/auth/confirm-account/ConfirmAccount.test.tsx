@@ -1,6 +1,6 @@
 import ConfirmAccount from '@components/auth/confirm-account/ConfirmAccount';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import AmplifyError from '@utils/AmplifyError';
+import AmplifyError from '@utils/services/AmplifyError';
 import { Auth } from 'aws-amplify';
 
 jest.mock('next/router', () => ({

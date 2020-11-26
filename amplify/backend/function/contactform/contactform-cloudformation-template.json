@@ -69,7 +69,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-students-dev-162403-deployment",
-					"S3Key": "amplify-builds/contactform-6f6d524a576b6437464e-build.zip"
+					"S3Key": "amplify-builds/contactform-417a38466e344a434c4d-build.zip"
 				}
 			}
 		},

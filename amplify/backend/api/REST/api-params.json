@@ -6,6 +6,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/ses/recruiters-contact-form",
+            "lambdaFunction": "recruiterscontactform",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "REST",
@@ -13,6 +20,9 @@
     "functionArns": [
         {
             "lambdaFunction": "contactform"
+        },
+        {
+            "lambdaFunction": "recruiterscontactform"
         }
     ],
     "privacy": {
@@ -29,7 +39,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "recruiterscontactform",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "80c390d0"
+    "uuid": "e45dfc2e"
 }

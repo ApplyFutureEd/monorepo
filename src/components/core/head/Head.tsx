@@ -1,4 +1,4 @@
-import { isBrowser } from '@utils/isBrowser';
+import { isBrowser } from '@utils/helpers/isBrowser';
 import NextHead from 'next/head';
 import { FC } from 'react';
 

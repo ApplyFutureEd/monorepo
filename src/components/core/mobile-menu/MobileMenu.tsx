@@ -3,7 +3,7 @@ import Logo from '@components/core/logo/Logo';
 import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';

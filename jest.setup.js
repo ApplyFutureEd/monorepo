@@ -1,12 +1,6 @@
 /* eslint-disable no-undef */
 import '@testing-library/jest-dom/extend-expect';
 
-/**
- * disable console.warn() until next-i18next is updated for Next.js 10
- * @see https://github.com/isaachinman/next-i18next/issues/869
- */
-jest.spyOn(global.console, 'warn').mockImplementation(() => jest.fn());
-
 jest.mock('next/image', () => {
     return {
         __esModule: true,
