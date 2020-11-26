@@ -81,8 +81,8 @@ const Header: FC = () => {
                                 <FontAwesomeIcon icon={faBars} size="lg" />
                             </button>
                         </div>
+                        <Nav routes={user ? loggedRoutes : unloggedRoutes} />
                         <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
-                            <Nav routes={user ? loggedRoutes : unloggedRoutes} />
                             <LanguageMenu />
                             {user ? (
                                 <UserMenu />
