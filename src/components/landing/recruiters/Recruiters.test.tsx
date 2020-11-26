@@ -196,14 +196,6 @@ describe('Recruiters', () => {
         });
 
         await waitFor(() => {
-            fireEvent.change(mainSourceOfStudents, {
-                target: {
-                    value: fakeRecruiter.linkedIn
-                }
-            });
-        });
-
-        await waitFor(() => {
             fireEvent.change(streetAddress, {
                 target: {
                     value: fakeRecruiter.streetAddress
@@ -495,14 +487,6 @@ describe('Recruiters', () => {
             fireEvent.change(phone, {
                 target: {
                     value: fakeRecruiter.phone
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(mainSourceOfStudents, {
-                target: {
-                    value: fakeRecruiter.linkedIn
                 }
             });
         });

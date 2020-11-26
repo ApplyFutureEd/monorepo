@@ -24,9 +24,9 @@ const ContactInfo: FC<Props> = (props) => {
             !formValues.mainSourceOfStudents ||
             !formValues.firstName ||
             !formValues.lastName ||
+            !formValues.phone ||
             !formValues.streetAddress ||
-            !formValues.city ||
-            !formValues.phone
+            !formValues.city
         );
     };
 
