@@ -72,9 +72,6 @@ describe('Recruiters', () => {
         const instagram = screen.getByLabelText(/recruiter-form:instagram/);
         const twitter = screen.getByLabelText(/recruiter-form:twitter/);
         const linkedIn = screen.getByLabelText(/recruiter-form:linked-in/);
-        const mainSourceOfStudents = screen.getByLabelText(
-            /recruiter-form:main-source-of-students/
-        );
         const firstName = screen.getByLabelText(/landing:contact-form-first-name/);
         const lastName = screen.getByLabelText(/landing:contact-form-last-name/);
         const phone = screen.getByTestId(/recruiter-form:phone/);
@@ -367,9 +364,6 @@ describe('Recruiters', () => {
         const instagram = screen.getByLabelText(/recruiter-form:instagram/);
         const twitter = screen.getByLabelText(/recruiter-form:twitter/);
         const linkedIn = screen.getByLabelText(/recruiter-form:linked-in/);
-        const mainSourceOfStudents = screen.getByLabelText(
-            /recruiter-form:main-source-of-students/
-        );
         const firstName = screen.getByLabelText(/landing:contact-form-first-name/);
         const lastName = screen.getByLabelText(/landing:contact-form-last-name/);
         const phone = screen.getByTestId(/recruiter-form:phone/);
