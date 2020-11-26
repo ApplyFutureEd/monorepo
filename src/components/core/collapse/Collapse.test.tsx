@@ -42,7 +42,7 @@ describe('Collapse', () => {
         expect(collapseContent).toBeVisible();
     });
 
-    it('renders a ChevronUp icon when open', () => {
+    it('can render a ChevronUp icon when open', () => {
         render(<Collapse content={content} open={true} title={title} onClick={handleClick} />);
 
         const chevronUpIcon = screen.getByRole('img', { hidden: true });
