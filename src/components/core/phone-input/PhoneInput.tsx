@@ -96,7 +96,6 @@ const PhoneInput: FC<Props> = (props) => {
     };
 
     const onCountryChange = (country: string | undefined) => {
-        console.log({ country });
         if (!country) {
             return;
         }
