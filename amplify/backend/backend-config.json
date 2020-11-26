@@ -55,12 +55,26 @@
                         "Name",
                         "Arn"
                     ]
+                },
+                {
+                    "category": "function",
+                    "resourceName": "recruiterscontactform",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
                 }
             ]
         }
     },
     "function": {
         "contactform": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda",
+            "dependsOn": []
+        },
+        "recruiterscontactform": {
             "build": true,
             "providerPlugin": "awscloudformation",
             "service": "Lambda",

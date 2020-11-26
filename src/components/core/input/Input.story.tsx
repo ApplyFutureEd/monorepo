@@ -1,9 +1,9 @@
+import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import React, { ReactNode } from 'react';
 import { object, string } from 'yup';
 
-import Button from '../button/Button';
 export default {
     component: Input,
     title: 'Input'

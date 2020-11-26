@@ -1,6 +1,6 @@
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
-import useAuthenticatedUser from '@utils/useAuthenticatedUser';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import { ReactNode } from 'react';
 
 type LinkProps = {
@@ -13,7 +13,7 @@ jest.mock('next/link', () => {
     };
 });
 
-jest.mock('@utils/useAuthenticatedUser');
+jest.mock('@utils/hooks/useAuthenticatedUser');
 
 const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
     typeof useAuthenticatedUser

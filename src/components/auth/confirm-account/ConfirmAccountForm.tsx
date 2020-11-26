@@ -16,8 +16,8 @@ const ConfirmAccountForm: FC = () => {
         email: string()
             .required(t('common:error-email-required'))
             .email(t('common:error-email-format')),
-        password: string().required('common:error-required'),
-        verificationCode: string().required('common:error-required')
+        password: string().required(t('common:error-required')),
+        verificationCode: string().required(t('common:error-required'))
     });
 
     type FormValues = {
@@ -95,7 +95,11 @@ const ConfirmAccountForm: FC = () => {
                         </Field>
 
                         <div className="flex items-center justify-end">
-                            <Button isLoading={isSubmitting} type="submit" variant="primary">
+                            <Button
+                                disabled={isSubmitting}
+                                isLoading={isSubmitting}
+                                type="submit"
+                                variant="primary">
                                 {t('auth:confirm')}
                             </Button>
                         </div>

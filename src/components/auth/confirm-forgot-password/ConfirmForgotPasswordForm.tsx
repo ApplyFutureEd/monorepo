@@ -18,8 +18,8 @@ const ConfirmForgotPasswordForm: FC = () => {
         email: string()
             .required(t('common:error-email-required'))
             .email(t('common:error-email-format')),
-        newPassword: string().required('common:error-required'),
-        verificationCode: string().required('common:error-required')
+        newPassword: string().required(t('common:error-email-required')),
+        verificationCode: string().required(t('common:error-email-required'))
     });
 
     type FormValues = {
@@ -102,7 +102,11 @@ const ConfirmForgotPasswordForm: FC = () => {
                                     </div>
                                 </Link>
                             </div>
-                            <Button isLoading={isSubmitting} type="submit" variant="primary">
+                            <Button
+                                disabled={isSubmitting}
+                                isLoading={isSubmitting}
+                                type="submit"
+                                variant="primary">
                                 {t('auth:confirm')}
                             </Button>
                         </div>

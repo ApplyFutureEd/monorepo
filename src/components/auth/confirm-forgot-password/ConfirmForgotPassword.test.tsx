@@ -1,6 +1,6 @@
 import ConfirmForgotPassword from '@components/auth/confirm-forgot-password/ConfirmForgotPassword';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import AmplifyError from '@utils/AmplifyError';
+import AmplifyError from '@utils/services/AmplifyError';
 import { Auth } from 'aws-amplify';
 
 jest.mock('next/router', () => ({

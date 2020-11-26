@@ -7,6 +7,7 @@ module.exports = {
     pages: {
         '*': ['common', 'navigation', 'auth'],
         '/': ['landing'],
-        '/about': ['landing']
+        '/about': ['landing'],
+        '/recruiters': ['landing', 'recruiter-form']
     }
 };
