@@ -51,7 +51,7 @@ const MobileMenu: FC<Props> = (props) => {
                                         onClick={() => setOpen(false)}>
                                         <Link href={route.href}>
                                             <div className="flex -m-3 p-3 hover:bg-gray-50 transition duration-150 ease-in-out">
-                                                {route.label}
+                                                {t(route.label)}
                                             </div>
                                         </Link>
                                     </button>

@@ -72,7 +72,8 @@ const Header: FC = () => {
                             </Link>
                         </div>
 
-                        <div className="flex -mr-2 -my-2 space-x-2 lg:hidden">
+                        <div className="flex items-center -mr-2 -my-2 space-x-4 lg:hidden">
+                            <LanguageMenu />
                             <button
                                 aria-label={t('common:open')}
                                 className="inline-flex items-center justify-center p-2 text-gray-500 focus:text-gray-500 hover:text-indigo-500 hover:bg-gray-100 focus:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out"
