@@ -87,14 +87,14 @@ const Header: FC = () => {
                             {user ? (
                                 <UserMenu />
                             ) : (
-                                <>
+                                <div className="flex space-x-4">
                                     <Link href="/sign-in">
                                         <Button variant="secondary">{t('auth:sign-in')}</Button>
                                     </Link>
                                     <Link href="/sign-up">
                                         <Button variant="primary">{t('auth:sign-up')}</Button>
                                     </Link>
-                                </>
+                                </div>
                             )}
                         </div>
                     </div>
