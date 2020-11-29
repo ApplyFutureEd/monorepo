@@ -91,7 +91,7 @@ export const LanguageMenu = (): ReactNode => {
             name: '简体中文'
         },
         {
-            flag: <Flags.FR className="h-4" title="English" />,
+            flag: <Flags.FR className="h-4" title="Français" />,
             locale: 'fr',
             name: 'Français'
         }
