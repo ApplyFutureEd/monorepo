@@ -1,5 +1,6 @@
 import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
+import { faSearch } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import React, { ReactNode } from 'react';
 import { object, string } from 'yup';
@@ -86,6 +87,95 @@ export const TextArea = (): ReactNode => {
                         <Button isLoading={isSubmitting} type="submit" variant="primary">
                             Submit
                         </Button>
+                    </Form>
+                );
+            }}
+        </Formik>
+    );
+};
+
+export const WithStartIcon = (): ReactNode => {
+    const validationSchema = object().shape({
+        search: string()
+    });
+
+    type FormValues = {
+        search: string;
+    };
+
+    const initialValues: FormValues = {
+        search: ''
+    };
+
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        alert(JSON.stringify(values));
+        actions.setSubmitting(false);
+    };
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
+            {(props) => {
+                const { isSubmitting } = props;
+                return (
+                    <Form className="space-y-6">
+                        <Field id="search" name="search">
+                            {(fieldProps: FieldProps) => (
+                                <Input
+                                    placeholder="Search for anything"
+                                    startIcon={faSearch}
+                                    {...fieldProps}
+                                />
+                            )}
+                        </Field>
+                        <Button isLoading={isSubmitting} type="submit" variant="primary">
+                            Submit
+                        </Button>
+                    </Form>
+                );
+            }}
+        </Formik>
+    );
+};
+
+export const WithDebounce = (): ReactNode => {
+    const validationSchema = object().shape({
+        search: string()
+    });
+
+    type FormValues = {
+        search: string;
+    };
+
+    const initialValues: FormValues = {
+        search: ''
+    };
+
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        alert(JSON.stringify(values));
+        actions.setSubmitting(false);
+    };
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
+            {() => {
+                return (
+                    <Form className="space-y-6">
+                        <Field id="search" name="search">
+                            {(fieldProps: FieldProps) => (
+                                <Input
+                                    debounce={2000}
+                                    placeholder="Search for anything"
+                                    startIcon={faSearch}
+                                    {...fieldProps}
+                                />
+                            )}
+                        </Field>
                     </Form>
                 );
             }}
