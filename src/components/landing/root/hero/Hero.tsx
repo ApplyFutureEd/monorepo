@@ -7,10 +7,10 @@ const Hero: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <section className="relative font-sans bg-white overflow-hidden">
-            <div className="lg:relative">
-                <div className="mx-auto pb-20 pt-16 w-full max-w-7xl text-center lg:py-16 lg:text-left">
-                    <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
+        <section className="py-8 font-sans bg-white overflow-hidden lg:py-16">
+            <div className="relative mx-auto px-4 max-w-xl sm:px-6 lg:px-8 lg:max-w-screen-xl">
+                <div className="relative lg:grid lg:gap-8 lg:grid-cols-2 lg:items-center">
+                    <div className="relative">
                         <h1 className="text-gray-900 text-3xl font-extrabold tracking-tight leading-10 sm:text-5xl sm:leading-none md:text-6xl lg:text-4xl xl:text-5xl">
                             {t('landing:hero-slogan')}
                         </h1>
@@ -45,14 +45,15 @@ const Hero: FC = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
-                    <Image
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-contain lg:w-auto"
-                        layout="fill"
-                        src="/assets/images/landing/landing-hero.svg"
-                    />
+                    <div className="relative -mx-4 mt-10 lg:mt-0">
+                        <Image
+                            alt=""
+                            className="relative mx-auto"
+                            height="360"
+                            src="/assets/images/landing/landing-hero.svg"
+                            width="756"
+                        />
+                    </div>
                 </div>
             </div>
         </section>
