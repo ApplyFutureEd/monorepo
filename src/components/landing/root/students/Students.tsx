@@ -1,10 +1,13 @@
 import Button from '@components/core/button/Button';
+import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
 import Image from 'next/image';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 const Students: FC = () => {
     const { t } = useTranslation();
+    const user = useAuthenticatedUser();
 
     return (
         <section className="-mt-16 pt-16" id="students">
@@ -54,7 +57,11 @@ const Students: FC = () => {
                                     {t('landing:students-explanations')}
                                 </p>
                                 <div className="flex justify-center mt-6">
-                                    <Button variant="primary">{t('landing:students-cta')}</Button>
+                                    <Link href={user ? '/programs' : '/sign-up'}>
+                                        <Button variant="primary">
+                                            {t('landing:students-cta')}
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
 
