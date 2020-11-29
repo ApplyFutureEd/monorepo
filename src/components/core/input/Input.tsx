@@ -112,10 +112,10 @@ const Input: FC<Props> = (props) => {
         form.setFieldValue(field.name, value);
         form.submitForm();
     }, debounce);
+
     const onError = Boolean(meta?.touched && meta?.error);
     const withStartIcon = Boolean(startIcon);
     const withDebounce = Boolean(debounce);
-    console.log(debounce);
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
