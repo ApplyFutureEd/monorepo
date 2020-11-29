@@ -1,17 +1,23 @@
 import Tooltip from '@components/core/tooltip/Tooltip';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import { FieldInputProps, FieldMetaProps } from 'formik';
+import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, ReactNode } from 'react';
+import { ChangeEvent, FC, ReactNode, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {
     /**
      * Controls whether and how text input is automatically capitalized as it is entered/edited by the user.
      */
     autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
+    /**
+     * Delay in milliseconds after which the value is updated and submitted.
+     */
+    debounce?: number;
     /**
      * If `true`, the component element will be disabled.
      */
@@ -23,13 +29,17 @@ type Props = {
      */
     field: FieldInputProps<string>;
     /**
+     * State, handlers, and helpers from the parent form.
+     */
+    form: FormikProps<any>;
+    /**
      * If `true`, the component will display a loading skeleton.
      */
     isLoading?: boolean;
     /**
      * The label displayed above the input.
      */
-    label: string;
+    label?: string;
     /**
      * The maximum value accepted when input type is set to `number`.
      */
@@ -57,6 +67,10 @@ type Props = {
      */
     rows?: number;
     /**
+     * The icon displayed inside the input before the typed value.
+     */
+    startIcon?: IconProp;
+    /**
      * The step attribute specifies the interval between legal numbers
      */
     step?: number;
@@ -73,8 +87,10 @@ type Props = {
 const Input: FC<Props> = (props) => {
     const {
         autoCapitalize = 'on',
+        debounce,
         disabled = false,
         field,
+        form,
         isLoading = false,
         label,
         max,
@@ -83,6 +99,7 @@ const Input: FC<Props> = (props) => {
         optional = false,
         placeholder = '',
         rows = 0,
+        startIcon,
         step,
         tooltip,
         type = 'text',
@@ -90,17 +107,26 @@ const Input: FC<Props> = (props) => {
     } = props;
 
     const { t } = useTranslation();
+    const [debouncedValue, setDebouncedValue] = useState('');
+    const debounced = useDebouncedCallback((value: string) => {
+        form.setFieldValue(field.name, value);
+        form.submitForm();
+    }, debounce);
     const onError = Boolean(meta?.touched && meta?.error);
-
+    const withStartIcon = Boolean(startIcon);
+    const withDebounce = Boolean(debounce);
+    console.log(debounce);
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
+    const withStartIconClasses = 'pl-9';
 
     const classes = cx({
         [`${baseClasses}`]: true,
         [`${disabledClasses}`]: disabled,
-        [`${onErrorClasses}`]: onError
+        [`${onErrorClasses}`]: onError,
+        [`${withStartIconClasses}`]: withStartIcon
     });
 
     if (isLoading) {
@@ -116,17 +142,40 @@ const Input: FC<Props> = (props) => {
         );
     }
 
+    const onDebouncedChange = (
+        event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        const { value } = event.target;
+        setDebouncedValue(value);
+        debounced.callback(value);
+    };
+
+    const value = withDebounce ? debouncedValue : field.value;
+    const onChange = withDebounce ? onDebouncedChange : field.onChange;
+
     return (
         <label className="block font-sans" htmlFor={field.name} {...rest}>
-            <Tooltip content={tooltip}>
-                <div>
-                    <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
-                    {optional && (
-                        <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
-                    )}
-                </div>
-            </Tooltip>
+            {label && (
+                <Tooltip content={tooltip}>
+                    <div>
+                        <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
+                        {optional && (
+                            <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
+                        )}
+                    </div>
+                </Tooltip>
+            )}
             <div className="relative mt-1 rounded-md shadow-sm">
+                {startIcon && (
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <FontAwesomeIcon
+                            className="text-gray-700"
+                            fixedWidth={true}
+                            icon={startIcon}
+                            size="1x"
+                        />
+                    </div>
+                )}
                 {rows ? (
                     <textarea
                         autoCapitalize={autoCapitalize}
@@ -136,9 +185,9 @@ const Input: FC<Props> = (props) => {
                         name={field.name}
                         placeholder={placeholder}
                         rows={rows}
-                        value={field.value}
+                        value={value}
                         onBlur={field.onBlur}
-                        onChange={field.onChange}
+                        onChange={onChange}
                     />
                 ) : (
                     <input
@@ -152,9 +201,9 @@ const Input: FC<Props> = (props) => {
                         placeholder={placeholder}
                         step={step}
                         type={type}
-                        value={field.value}
+                        value={value}
                         onBlur={field.onBlur}
-                        onChange={field.onChange}
+                        onChange={onChange}
                     />
                 )}
                 {onError && (
