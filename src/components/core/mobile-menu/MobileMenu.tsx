@@ -1,6 +1,6 @@
+import UserMenu from '@components/auth/user-menu/UserMenu';
 import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
-import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
@@ -51,7 +51,7 @@ const MobileMenu: FC<Props> = (props) => {
                                         onClick={() => setOpen(false)}>
                                         <Link href={route.href}>
                                             <div className="flex -m-3 p-3 hover:bg-gray-50 transition duration-150 ease-in-out">
-                                                {route.label}
+                                                {t(route.label)}
                                             </div>
                                         </Link>
                                     </button>

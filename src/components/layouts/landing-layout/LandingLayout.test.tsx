@@ -10,6 +10,15 @@ jest.mock('@components/core/nav/Nav', () => {
     };
 });
 
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 describe('LandingLayout', () => {
     it('can render without crashing', () => {
         render(

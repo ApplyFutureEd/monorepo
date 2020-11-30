@@ -1,5 +1,6 @@
 import Button from '@components/core/button/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
@@ -63,7 +64,9 @@ const Partners: FC = () => {
                     </div>
                 </div>
                 <div className="flex justify-center mt-6">
-                    <Button variant="primary">{t('landing:partners-cta')}</Button>
+                    <Link href="/schools">
+                        <Button variant="primary">{t('landing:partners-cta')}</Button>
+                    </Link>
                 </div>
             </div>
         </section>

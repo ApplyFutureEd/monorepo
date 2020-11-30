@@ -49,7 +49,7 @@ describe('MobileMenu', () => {
         expect(nav).toBeInTheDocument();
     });
 
-    it('can call the close callback when clicking on the close icon', () => {
+    it('can call the close callback function when clicking on the close icon', () => {
         render(<MobileMenu routes={routes} setOpen={setOpen} />);
 
         const button = screen.getByLabelText(/close/i);
@@ -58,7 +58,7 @@ describe('MobileMenu', () => {
         expect(setOpen).toHaveBeenNthCalledWith(1, false);
     });
 
-    it('can call the close callback when clicking on an anchor', () => {
+    it('can call the close callback function when clicking on an anchor', () => {
         render(<MobileMenu routes={routes} setOpen={setOpen} />);
 
         const anchor = screen.getByText(/programs/i);
