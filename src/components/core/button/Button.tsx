@@ -84,7 +84,7 @@ const Button = forwardRef<Ref, Props>((props, ref) => {
                 {isLoading ? (
                     <span className="flex items-center">
                         <Loader />
-                        <span className="ml-2">{children}</span>
+                        <span className="flex-shrink-0 ml-2">{children}</span>
                     </span>
                 ) : (
                     <span>{children}</span>
