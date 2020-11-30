@@ -1,30 +1,8 @@
 @tailwind base;
 
-button:focus {
-    outline: none;
-}
-input:focus {
-    outline: none;
-}
-select:focus {
-    outline: none;
-}
-textarea:focus {
-    outline: none;
-}
-
-.loader {
-    animation: spin 400ms infinite linear;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+@import './reset.css';
+@import './loader.css';
+@import './toast.css';
 
 /* Start purging... */
 @tailwind components;
