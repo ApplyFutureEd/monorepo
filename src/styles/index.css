@@ -1,5 +1,7 @@
 @tailwind base;
 
+@import './scrollbar.css';
+
 html {
     scroll-behavior: smooth;
 }
