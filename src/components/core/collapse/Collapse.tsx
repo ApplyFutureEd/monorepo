@@ -23,7 +23,7 @@ type Props = {
 };
 
 const Collapse: FC<Props> = (props) => {
-    const { open, onClick, title, content } = props;
+    const { content, onClick, open, title } = props;
 
     const baseClasses = 'text-gray-500 text-base leading-6';
 
@@ -47,8 +47,10 @@ const Collapse: FC<Props> = (props) => {
                             </span>
                         </button>
                     </dt>
-                    <dd className="markdown mt-2 pr-12">
-                        <div className={classes}>{content}</div>
+                    <dd className="mt-2 pr-12">
+                        <div className={classes} hidden={!open}>
+                            {content}
+                        </div>
                     </dd>
                 </div>
             </dl>
