@@ -1,12 +1,12 @@
 import Button from '@components/core/button/Button';
 import Input from '@components/core/input/Input';
+import { toast } from '@utils/helpers/toast';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-import { toast } from 'react-toastify';
 import { object, string } from 'yup';
 
 const ConfirmForgotPasswordForm: FC = () => {
@@ -38,9 +38,12 @@ const ConfirmForgotPasswordForm: FC = () => {
         const { email, newPassword, verificationCode } = values;
         try {
             await Auth.forgotPasswordSubmit(email.toLowerCase(), verificationCode, newPassword);
-            toast.success(t('new-password-confirmation-toast'), {
-                position: 'top-right'
+            toast({
+                description: t('auth:new-password-description-toast'),
+                title: t('auth:new-password-title-toast'),
+                variant: 'success'
             });
+
             return router.push(`/sign-in?email=${email}`);
         } catch (error) {
             let message = t('auth:error-generic-exception');

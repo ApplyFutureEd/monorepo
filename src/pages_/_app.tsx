@@ -11,13 +11,15 @@ import { ToastContainer } from 'react-toastify';
 initSentry();
 initWhyDidYouRender();
 
-const App: FC<AppProps> = ({ Component, pageProps }) => (
-    <>
-        <AuthenticatedUserProvider>
-            <ToastContainer hideProgressBar autoClose={3000} />
-            <Component {...pageProps} />
-        </AuthenticatedUserProvider>
-    </>
-);
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+    return (
+        <>
+            <AuthenticatedUserProvider>
+                <ToastContainer hideProgressBar autoClose={3000} />
+                <Component {...pageProps} />
+            </AuthenticatedUserProvider>
+        </>
+    );
+};
 
 export default App;

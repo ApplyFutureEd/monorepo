@@ -1,36 +1,10 @@
 @tailwind base;
 
+@import './loader.css';
+@import './markdown.css';
+@import './reset.css';
 @import './scrollbar.css';
-
-html {
-    scroll-behavior: smooth;
-}
-
-button:focus {
-    outline: none;
-}
-input:focus {
-    outline: none;
-}
-select:focus {
-    outline: none;
-}
-textarea:focus {
-    outline: none;
-}
-
-.loader {
-    animation: spin 400ms infinite linear;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+@import './toast.css';
 
 /* Start purging... */
 @tailwind components;
