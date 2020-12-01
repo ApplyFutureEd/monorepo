@@ -4,6 +4,59 @@
 @import './loader.css';
 @import './toast.css';
 
+.markdown h1 {
+    @apply mb-6;
+    @apply font-sans;
+    @apply font-semibold;
+    @apply text-xl;
+}
+.markdown h2 {
+    @apply mb-6;
+    @apply font-sans;
+    @apply font-medium;
+    @apply text-lg;
+}
+.markdown h3 {
+    @apply mb-4;
+    @apply font-sans;
+    @apply font-medium;
+    @apply text-base;
+}
+.markdown p {
+    @apply mb-4;
+    @apply font-sans;
+    @apply text-sm;
+    @apply text-justify;
+    @apply leading-5;
+}
+.markdown ul {
+    @apply list-disc;
+    @apply list-inside;
+    @apply mb-4;
+}
+.markdown ol {
+    @apply list-decimal;
+    @apply list-inside;
+    @apply mb-4;
+}
+.markdown li {
+    @apply ml-2;
+    @apply font-sans;
+    @apply text-sm;
+}
+.doc .markdown li {
+    @apply ml-4;
+}
+.markdown li > p {
+    display: inline;
+}
+.markdown a {
+    @apply text-indigo-500;
+}
+.markdown blockquote {
+    @apply ml-7;
+}
+
 /* Start purging... */
 @tailwind components;
 @tailwind utilities;
