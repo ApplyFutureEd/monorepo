@@ -1,5 +1,5 @@
 import Input from '@components/core/input/Input';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 describe('Input', () => {
@@ -152,5 +152,19 @@ describe('Input', () => {
         const skeleton = container.querySelector('.react-loading-skeleton');
 
         expect(skeleton).toBeInTheDocument();
+    });
+
+    it('can call setFieldValue and submitForm with a debounced input', async () => {
+        render(<Input debounce={2000} label="First Name" {...formikProps} />);
+
+        const input = screen.getByRole('textbox');
+
+        await waitFor(() => {
+            fireEvent.change(input, {
+                target: {
+                    value: 'John'
+                }
+            });
+        });
     });
 });
