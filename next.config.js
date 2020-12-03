@@ -33,12 +33,17 @@ module.exports = withBundleAnalyzer(
         withPWA({
             basePath,
             env: {
-                // Make the COMMIT_SHA available to the client so that Sentry events can be
-                // marked for the release the belong to. It may be undefined if running
-                // outside of Vercel
+                ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
                 NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
             },
             i18n: { defaultLocale, localeDetection: true, locales },
+            images: {
+                deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+                domains: ['ik.imagekit.io'],
+                imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+                loader: 'default',
+                path: '/_next/image'
+            },
             poweredByHeader: false,
             pwa: {
                 dest: 'public',
@@ -77,6 +82,7 @@ module.exports = withBundleAnalyzer(
                 }
 
                 config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
+                config.resolve.alias['@graphql'] = path.join(__dirname, 'src/graphql');
                 config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
                 config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
                 config.resolve.alias['@utils'] = path.join(__dirname, 'src/utils');

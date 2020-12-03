@@ -17,7 +17,9 @@ const awsmobile = {
             "endpoint": "https://2cg2y5lqq9.execute-api.ap-southeast-1.amazonaws.com/dev",
             "region": "ap-southeast-1"
         }
-    ]
+    ],
+    "aws_user_files_s3_bucket": "applyfuture-students-content162403-dev",
+    "aws_user_files_s3_bucket_region": "ap-southeast-1"
 };
 
 

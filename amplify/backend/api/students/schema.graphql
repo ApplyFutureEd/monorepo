@@ -15,25 +15,25 @@ type School
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getSchoolBySlug") {
     id: ID!
-    slug: String
-    name: String
-    city: String
-    country: String
-    totalStudents: String
-    internationalStudents: String
-    institutionType: String
-    creationYear: String
+    slug: String!
+    name: String!
+    city: String!
+    country: String!
+    totalStudents: String!
+    internationalStudents: String!
+    institutionType: String!
+    creationYear: String!
     description: String
-    logo: String
-    coverPhoto: String
+    logo: String!
+    coverPhoto: String!
     contactJobTitle: String
     contactName: String
     contactPhone: String
     contactEmail: String
-    published: Boolean
+    published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
-    stepsTemplates: [ApplicationStepsTemplate]
-    contractStatus: String
+    stepsTemplates: [ApplicationStepsTemplate]!
+    contractStatus: String!
 }
 
 type ApplicationStepsTemplate {
@@ -54,48 +54,55 @@ type Program
     @key(name: "bySchool", fields: ["schoolId"]) {
     id: ID!
     schoolId: ID!
-    schoolName: String
+    schoolName: String!
     school: School @connection(fields: ["schoolId"])
-    slug: String
-    name: String
-    city: String
-    country: String
-    discipline: String
-    degree: String
-    duration: Float
-    durationUnit: String
-    schedule: String
-    languages: [String]
-    fee: Float
-    feeUnit: String
-    feeCurrency: String
-    intakes: [String]
+    slug: String!
+    name: String!
+    city: String!
+    country: String!
+    discipline: String!
+    degree: String!
+    duration: Float!
+    durationUnit: DurationUnit!
+    schedule: String!
+    languages: [String]!
+    fee: Float!
+    feeUnit: String!
+    feeCurrency: String!
+    intakes: String!
     intakeInformation: String
-    submissionDeadline: String
-    costOfLiving: Float
-    costOfLivingCurrency: String
+    submissionDeadline: String!
+    costOfLiving: Float!
+    costOfLivingCurrency: String!
     description: String
-    gradePointAverage: Float
-    highestEducationLevel: Float
-    testToefl: Float
-    testIelts: Float
-    testToeic: Float
-    testTcftef: Float
-    testDelfdalf: Float
-    testGre: Float
-    testGmat: Float
-    testTagemage: Float
-    testCambridgeFirst: Float
-    testCambridgeAdvanced: Float
-    requestedDocuments: [RequestedDocument]
-    minimumAge: Float
-    minimumWorkExperience: Float
-    minimumWorkExperienceUnit: String
+    gradePointAverage: Float!
+    highestEducationLevel: Float!
+    testToefl: Float!
+    testIelts: Float!
+    testToeic: Float!
+    testTcftef: Float!
+    testDelfdalf: Float!
+    testGre: Float!
+    testGmat: Float!
+    testTagemage: Float!
+    testCambridgeFirst: Float!
+    testCambridgeAdvanced: Float!
+    requestedDocuments: [RequestedDocument]!
+    minimumAge: Float!
+    minimumWorkExperience: Float!
+    minimumWorkExperienceUnit: String!
     otherRequirements: String
-    applicationFee: Float
-    applicationFeeCurrency: String
+    applicationFee: Float!
+    applicationFeeCurrency: String!
     feesAndFinancing: String
-    published: Boolean
+    published: Boolean!
+}
+
+enum DurationUnit {
+    day
+    month
+    year
+    week
 }
 
 type RequestedDocument {
