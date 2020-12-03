@@ -1,4 +1,4 @@
-export type DurationUnit = 'day' | 'month' | 'week' | 'year';
+import { DurationUnit } from '@graphql/API';
 
 type DurationOptions = {
     /**

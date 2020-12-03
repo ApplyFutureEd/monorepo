@@ -1,17 +1,20 @@
 import Container from '@components/core/container/Container';
+import Row from '@components/programs/row/Row';
+import { SearchProgramsQuery, SearchProgramsQueryVariables } from '@graphql/API';
+import { searchPrograms } from '@graphql/queries';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
-import { SearchProgramsQuery, SearchProgramsQueryVariables } from 'src/graphql/API';
-import { searchPrograms } from 'src/graphql/queries';
-
-import ProgramCard from './program-card/ProgramCard';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
     const { data } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(searchPrograms, {
         limit: 20
     });
+
+    const handleClick = () => {
+        console.log('Apply - to be implemented');
+    };
 
     return (
         <Container innerPadding={false} title={t('programs:programs')}>
@@ -36,7 +39,7 @@ const Programs: FC = () => {
                 } = program;
 
                 return (
-                    <ProgramCard
+                    <Row
                         key={id}
                         city={city}
                         country={country}
@@ -49,6 +52,7 @@ const Programs: FC = () => {
                         name={name}
                         school={{ logo: school.logo, name: school.name }}
                         slug={slug}
+                        onClick={handleClick}
                     />
                 );
             })}

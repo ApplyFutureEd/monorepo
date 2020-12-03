@@ -1,7 +1,8 @@
 import Button from '@components/core/button/Button';
+import { DurationUnit } from '@graphql/API';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
-import { convertDuration, DurationUnit } from '@utils/helpers/duration';
+import { convertDuration } from '@utils/helpers/duration';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -18,6 +19,7 @@ type Props = {
     feeUnit: string;
     intakes: string;
     name: string;
+    onClick: () => void;
     slug: string;
     school: {
         name: string;
@@ -25,7 +27,7 @@ type Props = {
     };
 };
 
-const ProgramCard: FC<Props> = (props) => {
+const Row: FC<Props> = (props) => {
     const {
         city,
         country,
@@ -36,6 +38,7 @@ const ProgramCard: FC<Props> = (props) => {
         feeUnit,
         intakes,
         name,
+        onClick,
         slug,
         school
     } = props;
@@ -132,14 +135,9 @@ const ProgramCard: FC<Props> = (props) => {
                     </div>
                 </div>
             </Link>
-            <Button
-                onClick={() => {
-                    console.log('create');
-                }}>
-                {t('programs:apply')}
-            </Button>
+            <Button onClick={onClick}>{t('programs:apply')}</Button>
         </li>
     );
 };
 
-export default ProgramCard;
+export default Row;
