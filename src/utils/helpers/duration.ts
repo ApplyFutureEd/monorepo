@@ -1,15 +1,17 @@
+export type DurationUnit = 'day' | 'month' | 'week' | 'year';
+
 type DurationOptions = {
     /**
      * Unit in which the provided value should be converted.
      */
-    unit: 'day' | 'month' | 'week' | 'year';
+    unit: DurationUnit;
     /**
      * Value in seconds to be converted in the provided unit.
      */
     value: number;
 };
 
-export const duration = (options: DurationOptions): number => {
+export const convertDuration = (options: DurationOptions): number => {
     const { unit, value } = options;
 
     const durations = {

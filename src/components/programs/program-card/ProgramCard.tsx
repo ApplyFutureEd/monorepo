@@ -1,43 +1,90 @@
 import Button from '@components/core/button/Button';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
-import { duration } from '@utils/helpers/duration';
-import { getUrl } from '@utils/helpers/image';
-import Image from 'next/image';
+import { convertDuration, DurationUnit } from '@utils/helpers/duration';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-translate';
-import React, { FC } from 'react';
+import useTranslation from 'next-translate/useTranslation';
+import React, { FC, useMemo } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    program: any;
+    city: string;
+    country: string;
+    duration: number;
+    durationUnit: DurationUnit;
+    fee: number;
+    feeCurrency: string;
+    feeUnit: string;
+    intakes: string;
+    name: string;
+    slug: string;
+    school: {
+        name: string;
+        logo: string;
+    };
 };
 
 const ProgramCard: FC<Props> = (props) => {
-    const { program } = props;
+    const {
+        city,
+        country,
+        duration,
+        durationUnit,
+        fee,
+        feeCurrency,
+        feeUnit,
+        intakes,
+        name,
+        slug,
+        school
+    } = props;
+
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
 
+    const convertedDuration = useMemo(
+        () =>
+            convertDuration({
+                unit: durationUnit,
+                value: duration
+            }),
+        [durationUnit, duration]
+    );
+
+    const localizedFee = useMemo(
+        () =>
+            currency({
+                currency: feeCurrency,
+                locale: locale,
+                value: fee
+            }),
+        [feeCurrency, locale, fee]
+    );
+
     return (
         <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
-            <Link href={`/programs/${program.slug}`}>
+            <Link href={`/programs/${slug}`}>
                 <div className="w-11/12">
                     <div className="flex items-center w-full">
                         <div className="flex items-center w-full space-x-4 md:w-1/2">
-                            <Image height="3rem" src={getUrl(program.school?.logo)} width="3rem" />
+                            <img
+                                alt={`${school?.name} logo`}
+                                className="w-12 h-12"
+                                src={`${process.env.ASSETS_CDN_URL}/${school?.logo}`}
+                            />
                             <div>
                                 <div className="mb-2 sm:flex sm:justify-between">
                                     <div className="sm:flex">
                                         <div className="flex items-center mt-2 text-sm leading-5 space-x-2 sm:mt-0">
-                                            <div>{program.school?.name}</div>
+                                            <div>{school?.name}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="text-sm leading-5">
-                                        <b>{program.name}</b>
+                                        <b>{name}</b>
                                     </div>
                                 </div>
                             </div>
@@ -46,19 +93,16 @@ const ProgramCard: FC<Props> = (props) => {
                             <div className="w-1/2">
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
-                                        {duration({
-                                            unit: program.durationUnit,
-                                            value: program.duration
-                                        })}{' '}
-                                        {t(`programs:${program.durationUnit}`, {
-                                            count: +program.duration
+                                        {convertedDuration}{' '}
+                                        {t(`programs:${durationUnit}`, {
+                                            count: convertedDuration
                                         })}
-                                        , {t('programs:full-time') || t('programs:part-time')}
+                                        , {t('programs:full-time')}
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
-                                        {program.city}, {program.country}
+                                        {city}, {country}
                                     </div>
                                 </div>
                             </div>
@@ -68,11 +112,10 @@ const ProgramCard: FC<Props> = (props) => {
                                         <div>
                                             {t('programs:next-intake', { count: 1 })}{' '}
                                             <b>
-                                                {program.intakes &&
-                                                    date({
-                                                        locale: locale,
-                                                        value: program.intakes[0]
-                                                    })}
+                                                {date({
+                                                    locale: locale,
+                                                    value: intakes.split(',')[0]
+                                                })}
                                             </b>
                                         </div>
                                     </div>
@@ -80,14 +123,7 @@ const ProgramCard: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
                                         <div>
-                                            {t(`programs:${program.feeUnit}`)}{' '}
-                                            <b>
-                                                {currency({
-                                                    currency: program.feeCurrency,
-                                                    locale: locale,
-                                                    value: program.fee
-                                                })}
-                                            </b>
+                                            {t(`programs:${feeUnit}`)} <b>{localizedFee}</b>
                                         </div>
                                     </div>
                                 </div>

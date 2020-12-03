@@ -1,4 +1,4 @@
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Programs from '@components/programs/Programs';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
@@ -7,9 +7,11 @@ const ProgramsPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <LandingLayout title={t('programs:page-title')}>
+        <DashboardLayout
+            description={t('programs:meta-description')}
+            title={t('programs:page-title')}>
             <Programs />
-        </LandingLayout>
+        </DashboardLayout>
     );
 };
 
