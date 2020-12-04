@@ -125,6 +125,7 @@
         "prettier": "2.2.0",
         "prettier-plugin-tailwind": "2.2.0",
         "react-select-event": "^5.1.0",
+        "storybook-addon-designs": "^5.4.2",
         "stylelint-config-recommended": "3.0.0",
         "tailwindcss": "1.9.6",
         "tailwindcss-filters": "3.0.0",
