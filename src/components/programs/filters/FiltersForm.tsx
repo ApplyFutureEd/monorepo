@@ -31,40 +31,28 @@ const FiltersForm: FC<Props> = (props) => {
 
     const validationSchema = object().shape({
         testGmat: number()
-            .min(200, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(800, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(200, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(800, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable(),
         testGre: number()
-            .min(260, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(344, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(260, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(344, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable(),
         testIelts: number()
-            .min(0, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(9, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(0, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(9, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable(),
         testTagemage: number()
-            .min(0, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(600, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(0, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(600, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable(),
         testToefl: number()
-            .min(310, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(667, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(310, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(667, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable(),
         testToeic: number()
-            .min(0, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(990, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(0, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(990, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .nullable()
     });
 

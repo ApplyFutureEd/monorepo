@@ -1,4 +1,5 @@
 import Container from '@components/core/container/Container';
+import Filters from '@components/programs/filters/Filters';
 import Row from '@components/programs/row/Row';
 import Search from '@components/programs/search/Search';
 import SortBy from '@components/programs/sort-by/SortBy';
@@ -12,8 +13,6 @@ import { searchPrograms } from '@graphql/queries';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
-
-import Filters from './filters/Filters';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
