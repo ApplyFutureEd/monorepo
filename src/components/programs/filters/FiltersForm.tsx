@@ -22,11 +22,12 @@ import { number, object } from 'yup';
 
 type Props = {
     currentTab: number;
+    handleClose: () => void;
     handleFilter: (filter: SearchableProgramFilterInput) => void;
 };
 
 const FiltersForm: FC<Props> = (props) => {
-    const { currentTab, handleFilter } = props;
+    const { currentTab, handleClose, handleFilter } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -146,6 +147,7 @@ const FiltersForm: FC<Props> = (props) => {
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const filter = createFilter(values);
         handleFilter(filter);
+        handleClose();
         actions.setSubmitting(false);
     };
 

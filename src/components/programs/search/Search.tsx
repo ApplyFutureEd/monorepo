@@ -1,6 +1,7 @@
 import Input from '@components/core/input/Input';
 import { faSearch } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 import { object, string } from 'yup';
 
@@ -10,6 +11,7 @@ type Props = {
 
 const Search: FC<Props> = (props) => {
     const { handleSearch } = props;
+    const { t } = useTranslation();
 
     const validationSchema = object().shape({
         query: string()
@@ -41,7 +43,7 @@ const Search: FC<Props> = (props) => {
                             {(fieldProps: FieldProps) => (
                                 <Input
                                     debounce={2000}
-                                    placeholder="Search for anything"
+                                    placeholder={t('programs:search-placeholder')}
                                     startIcon={faSearch}
                                     {...fieldProps}
                                 />
