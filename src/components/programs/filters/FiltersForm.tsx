@@ -158,6 +158,7 @@ const FiltersForm: FC<Props> = (props) => {
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const filter = createFilter(values);
         handleFilter(filter);
+        actions.setSubmitting(false);
     };
 
     const baseClasses = 'space-y-4 hidden';
@@ -223,7 +224,7 @@ const FiltersForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting, setValues, values } = props;
+                const { setValues, values } = props;
 
                 return (
                     <Form>
