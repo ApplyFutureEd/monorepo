@@ -15,7 +15,7 @@ type Props = {
      *
      * https://formik.org/docs/api/useField#fieldinputpropsvalue
      */
-    field: FieldInputProps<string>;
+    field: FieldInputProps<string | number | Array<string | number>>;
     /**
      * State, handlers, and helpers from the parent form.
      */
@@ -37,11 +37,11 @@ type Props = {
      *
      * https://formik.org/docs/api/useField#fieldmetapropsvalue
      */
-    meta: FieldMetaProps<string>;
+    meta: FieldMetaProps<string | number>;
     /**
      * Array of options that populate the select menu
      */
-    options: Array<{ value: string; label: string }>;
+    options: Array<{ value: string | number; label: string }>;
     /**
      * If `true`, the select will display an `(optional)` mention next to the label.
      */
@@ -143,10 +143,11 @@ const Select: FC<Props> = (props) => {
     };
 
     if (isMulti) {
-        value = options.filter((option) => field.value.includes(option.value));
+        const fieldValue = field.value as Array<string | number>;
+        value = options.filter((option) => fieldValue.includes(option.value));
         onChange = (options: ValueType<any>) => {
             if (!options) {
-                return form.setFieldValue(field.name, ['']);
+                return form.setFieldValue(field.name, []);
             }
             return form.setFieldValue(
                 field.name,
