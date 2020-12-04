@@ -47,6 +47,7 @@
         "@fortawesome/pro-light-svg-icons": "5.15.1",
         "@fortawesome/pro-solid-svg-icons": "5.15.1",
         "@fortawesome/react-fontawesome": "0.1.12",
+        "@next/mdx": "^10.0.3",
         "@sentry/browser": "5.27.4",
         "@sentry/integrations": "5.27.4",
         "@sentry/node": "5.27.4",
