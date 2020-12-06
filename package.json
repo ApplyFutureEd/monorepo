@@ -57,6 +57,7 @@
         "classnames": "2.2.6",
         "core-js": "3",
         "country-flag-icons": "^1.2.7",
+        "date-fns": "^2.16.1",
         "formik": "2.2.5",
         "js-cookie": "^2.2.1",
         "lodash": "4.17.20",
@@ -72,6 +73,7 @@
         "react-toastify": "6.1.0",
         "react-transition-group": "4.4.1",
         "use-debounce": "^5.1.0",
+        "use-deep-compare-effect": "^1.5.0",
         "webfontloader": "1.6.28",
         "yup": "0.30.0",
         "yup-phone": "^1.2.15"
@@ -124,6 +126,7 @@
         "prettier": "2.2.0",
         "prettier-plugin-tailwind": "2.2.0",
         "react-select-event": "^5.1.0",
+        "storybook-addon-designs": "^5.4.2",
         "stylelint-config-recommended": "3.0.0",
         "tailwindcss": "1.9.6",
         "tailwindcss-filters": "3.0.0",
