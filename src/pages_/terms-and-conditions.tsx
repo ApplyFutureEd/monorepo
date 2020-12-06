@@ -1,4 +1,4 @@
-import TermsAndConditions from '@components/landing/root/termsAndConditions/TermsAndConditions';
+import TermsAndConditions from '@components/landing/root/terms-and-conditions/TermsAndConditions';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { FC } from 'react';
 

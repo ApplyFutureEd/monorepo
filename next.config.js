@@ -91,8 +91,8 @@ module.exports = withBundleAnalyzer(
                     }
 
                     config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-                    config.resolve.alias['@graphql'] = path.join(__dirname, 'src/graphql');
                     config.resolve.alias['@docs'] = path.join(__dirname, 'src/docs');
+                    config.resolve.alias['@graphql'] = path.join(__dirname, 'src/graphql');
                     config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
                     config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
                     config.resolve.alias['@utils'] = path.join(__dirname, 'src/utils');
