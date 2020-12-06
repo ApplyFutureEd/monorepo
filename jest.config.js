@@ -9,7 +9,8 @@ module.exports = {
         '!**/pages_/*.tsx',
         '!**/utils/**/*.{ts,tsx}',
         '!**/graphql/**/*.ts',
-        '!**/amplify/**/*.ts'
+        '!**/amplify/**/*.ts',
+        '!**/*{md,mdx}'
     ],
     moduleNameMapper: {
         '@components/(.*)': '<rootDir>/src/components/$1',

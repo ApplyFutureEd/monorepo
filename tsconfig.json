@@ -24,7 +24,8 @@
             "@pages/*": ["src/pages_/*"],
             "@styles/*": ["src/styles/*"],
             "@tests/*": ["src/tests/*"],
-            "@utils/*": ["src/utils/*"]
+            "@utils/*": ["src/utils/*"],
+            "@docs/*": ["src/docs/*"]
         }
     },
     "exclude": [

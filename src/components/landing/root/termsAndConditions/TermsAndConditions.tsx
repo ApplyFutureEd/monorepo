@@ -1,6 +1,5 @@
+import TaC from '@docs/terms-and-conditions.md';
 import React, { FC } from 'react';
-
-import TaC from '../../../../docs/TermsAndConditions.md';
 
 const TermsAndConditions: FC = () => {
     return (
