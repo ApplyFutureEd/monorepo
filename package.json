@@ -132,9 +132,6 @@
         "tailwindcss-filters": "3.0.0",
         "typescript": "4.0.5"
     },
-    "resolutions": {
-        "@mdx-js/react": "1.6.21"
-      },
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
