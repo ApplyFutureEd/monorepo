@@ -31,6 +31,10 @@ const FiltersForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
+        gradePointAverage: number()
+            .min(0, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(4, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
         testGmat: number()
             .min(200, ({ min }) => t('common:must-be-superior-validator', { value: min }))
             .max(800, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
@@ -63,24 +67,24 @@ const FiltersForm: FC<Props> = (props) => {
         degrees: Array<string>;
         disciplines: Array<string>;
         educationCountry: string;
-        gradePointAverage: number | undefined;
-        highestEducationLevel: number | undefined;
+        gradePointAverage: string;
+        highestEducationLevel: string;
         intake: string;
-        maxApplicationFee: number | undefined;
-        maxTuitionFee: number | undefined;
-        minApplicationFee: number | undefined;
-        minTuitionFee: number | undefined;
+        maxApplicationFee: string;
+        maxTuitionFee: string;
+        minApplicationFee: string;
+        minTuitionFee: string;
         nationality: string;
-        testCambridgeAdvanced: number | undefined;
-        testCambridgeFirst: number | undefined;
-        testDelfdalf: number | undefined;
-        testGmat: number | undefined;
-        testGre: number | undefined;
-        testIelts: number | undefined;
-        testTagemage: number | undefined;
-        testTcftef: number | undefined;
-        testToefl: number | undefined;
-        testToeic: number | undefined;
+        testCambridgeAdvanced: string;
+        testCambridgeFirst: string;
+        testDelfdalf: string;
+        testGmat: string;
+        testGre: string;
+        testIelts: string;
+        testTagemage: string;
+        testTcftef: string;
+        testToefl: string;
+        testToeic: string;
     };
 
     const initialValues: FormValues = {
@@ -89,24 +93,24 @@ const FiltersForm: FC<Props> = (props) => {
         degrees: [],
         disciplines: [],
         educationCountry: '',
-        gradePointAverage: undefined,
-        highestEducationLevel: undefined,
+        gradePointAverage: '',
+        highestEducationLevel: '',
         intake: '',
-        maxApplicationFee: undefined,
-        maxTuitionFee: undefined,
-        minApplicationFee: undefined,
-        minTuitionFee: undefined,
+        maxApplicationFee: '',
+        maxTuitionFee: '',
+        minApplicationFee: '',
+        minTuitionFee: '',
         nationality: '',
-        testCambridgeAdvanced: undefined,
-        testCambridgeFirst: undefined,
-        testDelfdalf: undefined,
-        testGmat: undefined,
-        testGre: undefined,
-        testIelts: undefined,
-        testTagemage: undefined,
-        testTcftef: undefined,
-        testToefl: undefined,
-        testToeic: undefined
+        testCambridgeAdvanced: '',
+        testCambridgeFirst: '',
+        testDelfdalf: '',
+        testGmat: '',
+        testGre: '',
+        testIelts: '',
+        testTagemage: '',
+        testTcftef: '',
+        testToefl: '',
+        testToeic: ''
     };
 
     const handleClear = (values: FormValues, setValues: FormikHelpers<FormValues>['setValues']) => {
@@ -117,29 +121,29 @@ const FiltersForm: FC<Props> = (props) => {
                 countries: [],
                 degrees: [],
                 disciplines: [],
-                maxApplicationFee: undefined,
-                maxTuitionFee: undefined,
-                minApplicationFee: undefined,
-                minTuitionFee: undefined
+                maxApplicationFee: '',
+                maxTuitionFee: '',
+                minApplicationFee: '',
+                minTuitionFee: ''
             });
         }
         if (currentTab === 1) {
             setValues({
                 ...values,
                 educationCountry: '',
-                gradePointAverage: undefined,
-                highestEducationLevel: undefined,
+                gradePointAverage: '',
+                highestEducationLevel: '',
                 nationality: '',
-                testCambridgeAdvanced: undefined,
-                testCambridgeFirst: undefined,
-                testDelfdalf: undefined,
-                testGmat: undefined,
-                testGre: undefined,
-                testIelts: undefined,
-                testTagemage: undefined,
-                testTcftef: undefined,
-                testToefl: undefined,
-                testToeic: undefined
+                testCambridgeAdvanced: '',
+                testCambridgeFirst: '',
+                testDelfdalf: '',
+                testGmat: '',
+                testGre: '',
+                testIelts: '',
+                testTagemage: '',
+                testTcftef: '',
+                testToefl: '',
+                testToeic: ''
             });
         }
     };
