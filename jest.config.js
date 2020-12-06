@@ -10,7 +10,7 @@ module.exports = {
         '!**/utils/**/*.{ts,tsx}',
         '!**/graphql/**/*.ts',
         '!**/amplify/**/*.ts',
-        '!**/*{md,mdx}'
+        '!**/*.{md,mdx}'
     ],
     moduleNameMapper: {
         '@components/(.*)': '<rootDir>/src/components/$1',
