@@ -85,7 +85,7 @@ describe('Search', () => {
         });
     });
 
-    it('can open the drawer, fill the GPA input with a value too high see related error message', async () => {
+    it('can open the drawer, fill the GPA input with a value too high and see related error message', async () => {
         render(<Filters handleFilter={handleFilter} />);
 
         const button = screen.getByRole('button');
