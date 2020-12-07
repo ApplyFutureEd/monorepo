@@ -1,3 +1,5 @@
+import 'yup-phone';
+
 import Button from '@components/core/button/Button';
 import PhoneInput from '@components/core/phone-input/PhoneInput';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
