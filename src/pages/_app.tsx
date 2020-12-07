@@ -1,5 +1,6 @@
 import '@styles/index.css';
 import '@utils/services/amplify';
+import 'yup-phone';
 
 import { initWhyDidYouRender } from '@utils/helpers/whyDidYouRender';
 import { AuthenticatedUserProvider } from '@utils/hooks/useAuthenticatedUser';

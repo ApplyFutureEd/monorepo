@@ -23,6 +23,7 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
                 const user = await Auth.currentAuthenticatedUser();
                 setUser(user);
             } catch (error) {
+                console.log(error);
                 Amplify.configure({
                     aws_appsync_authenticationType: 'API_KEY'
                 });

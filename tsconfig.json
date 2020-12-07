@@ -35,7 +35,8 @@
         "node_modules",
         "public",
         "amplify",
-        "**/aws-exports.js"
+        "**/aws-exports.js",
+        "**/*.story.tsx"
     ],
     "include": ["**/*.ts", "**/*.tsx"]
 }
