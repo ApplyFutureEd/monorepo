@@ -2,7 +2,7 @@ import TermsAndConditions from '@components/landing/root/terms-and-conditions/Te
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { FC } from 'react';
 
-const HelpPage: FC = () => {
+const TermsAndContionsPage: FC = () => {
     return (
         <DashboardLayout description="terms-and-conditions" title="terms-and-conditons">
             <TermsAndConditions />
@@ -10,4 +10,4 @@ const HelpPage: FC = () => {
     );
 };
 
-export default HelpPage;
+export default TermsAndContionsPage;
