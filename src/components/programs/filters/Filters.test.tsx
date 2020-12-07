@@ -53,7 +53,7 @@ describe('Search', () => {
         expect(eligibilityTab).not.toHaveClass(activeClasses);
     });
 
-    it('can open the drawer, fill the GPA input with a value too low see related error message', async () => {
+    it('can open the drawer, fill the GPA input with a value too low and see related error message', async () => {
         render(<Filters handleFilter={handleFilter} />);
 
         const button = screen.getByRole('button');
