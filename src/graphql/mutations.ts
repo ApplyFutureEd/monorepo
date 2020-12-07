@@ -25,6 +25,18 @@ export const createSchool = /* GraphQL */ `
       contactPhone
       contactEmail
       published
+      stepsTemplates {
+        targets
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+      }
+      contractStatus
+      createdAt
+      updatedAt
       programs {
         items {
           id
@@ -74,18 +86,6 @@ export const createSchool = /* GraphQL */ `
         }
         nextToken
       }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -112,6 +112,18 @@ export const updateSchool = /* GraphQL */ `
       contactPhone
       contactEmail
       published
+      stepsTemplates {
+        targets
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+      }
+      contractStatus
+      createdAt
+      updatedAt
       programs {
         items {
           id
@@ -161,18 +173,6 @@ export const updateSchool = /* GraphQL */ `
         }
         nextToken
       }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -199,6 +199,18 @@ export const deleteSchool = /* GraphQL */ `
       contactPhone
       contactEmail
       published
+      stepsTemplates {
+        targets
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+      }
+      contractStatus
+      createdAt
+      updatedAt
       programs {
         items {
           id
@@ -248,18 +260,6 @@ export const deleteSchool = /* GraphQL */ `
         }
         nextToken
       }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -272,34 +272,6 @@ export const createProgram = /* GraphQL */ `
       id
       schoolId
       schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
       slug
       name
       city
@@ -349,6 +321,34 @@ export const createProgram = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -361,34 +361,6 @@ export const updateProgram = /* GraphQL */ `
       id
       schoolId
       schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
       slug
       name
       city
@@ -438,6 +410,34 @@ export const updateProgram = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -450,34 +450,6 @@ export const deleteProgram = /* GraphQL */ `
       id
       schoolId
       schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
       slug
       name
       city
@@ -527,6 +499,34 @@ export const deleteProgram = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -1393,32 +1393,36 @@ export const createApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -1468,33 +1472,29 @@ export const createApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -1609,32 +1609,36 @@ export const updateApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -1684,33 +1688,29 @@ export const updateApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -1825,32 +1825,36 @@ export const deleteApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -1900,33 +1904,29 @@ export const deleteApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -2362,6 +2362,32 @@ export const createFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2408,32 +2434,6 @@ export const createFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt
@@ -2522,6 +2522,32 @@ export const updateFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2568,32 +2594,6 @@ export const updateFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt
@@ -2682,6 +2682,32 @@ export const deleteFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2728,32 +2754,6 @@ export const deleteFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt

@@ -2,302 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getSchool = /* GraphQL */ `
-  query GetSchool($id: ID!) {
-    getSchool(id: $id) {
-      id
-      slug
-      name
-      city
-      country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
-      coverPhoto
-      contactJobTitle
-      contactName
-      contactPhone
-      contactEmail
-      published
-      programs {
-        items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
-          city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
-          costOfLiving
-          costOfLivingCurrency
-          description
-          gradePointAverage
-          highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          minimumAge
-          minimumWorkExperience
-          minimumWorkExperienceUnit
-          otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
-          published
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listSchools = /* GraphQL */ `
-  query ListSchools(
-    $filter: ModelSchoolFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getProgram = /* GraphQL */ `
-  query GetProgram($id: ID!) {
-    getProgram(id: $id) {
-      id
-      schoolId
-      schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      slug
-      name
-      city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
-      costOfLiving
-      costOfLivingCurrency
-      description
-      gradePointAverage
-      highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      requestedDocuments {
-        name
-        isMandatory
-        storageKey
-        description
-        condition
-        isSpecific
-      }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPrograms = /* GraphQL */ `
-  query ListPrograms(
-    $filter: ModelProgramFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrograms(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        schoolId
-        schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
-        slug
-        name
-        city
-        country
-        discipline
-        degree
-        duration
-        durationUnit
-        schedule
-        languages
-        fee
-        feeUnit
-        feeCurrency
-        intakes
-        intakeInformation
-        submissionDeadline
-        costOfLiving
-        costOfLivingCurrency
-        description
-        gradePointAverage
-        highestEducationLevel
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        requestedDocuments {
-          name
-          isMandatory
-          storageKey
-          description
-          condition
-          isSpecific
-        }
-        minimumAge
-        minimumWorkExperience
-        minimumWorkExperienceUnit
-        otherRequirements
-        applicationFee
-        applicationFeeCurrency
-        feesAndFinancing
-        published
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getStudent = /* GraphQL */ `
   query GetStudent($id: ID!) {
     getStudent(id: $id) {
@@ -849,32 +553,36 @@ export const getApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -924,33 +632,29 @@ export const getApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -1033,6 +737,32 @@ export const listApplications = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -1079,32 +809,6 @@ export const listApplications = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       nextToken
@@ -1389,6 +1093,32 @@ export const getFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -1435,32 +1165,6 @@ export const getFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt
@@ -1500,148 +1204,6 @@ export const listFeedbacks = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getSchoolBySlug = /* GraphQL */ `
-  query GetSchoolBySlug(
-    $slug: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelSchoolFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getSchoolBySlug(
-      slug: $slug
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getProgramBySlug = /* GraphQL */ `
-  query GetProgramBySlug(
-    $slug: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelProgramFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getProgramBySlug(
-      slug: $slug
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        schoolId
-        schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
-        slug
-        name
-        city
-        country
-        discipline
-        degree
-        duration
-        durationUnit
-        schedule
-        languages
-        fee
-        feeUnit
-        feeCurrency
-        intakes
-        intakeInformation
-        submissionDeadline
-        costOfLiving
-        costOfLivingCurrency
-        description
-        gradePointAverage
-        highestEducationLevel
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        requestedDocuments {
-          name
-          isMandatory
-          storageKey
-          description
-          condition
-          isSpecific
-        }
-        minimumAge
-        minimumWorkExperience
-        minimumWorkExperienceUnit
-        otherRequirements
-        applicationFee
-        applicationFeeCurrency
-        feesAndFinancing
-        published
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -2043,6 +1605,32 @@ export const getApplicationByStudent = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2089,33 +1677,177 @@ export const getApplicationByStudent = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listSchools = /* GraphQL */ `
+  query ListSchools(
+    $filter: ModelSchoolFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getSchool = /* GraphQL */ `
+  query GetSchool($id: ID!) {
+    getSchool(id: $id) {
+      id
+      slug
+      name
+      city
+      country
+      totalStudents
+      internationalStudents
+      institutionType
+      creationYear
+      description
+      logo
+      coverPhoto
+      contactJobTitle
+      contactName
+      contactPhone
+      contactEmail
+      published
+      stepsTemplates {
+        targets
         steps {
           id
           status
           date
           isMandatory
         }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
+      }
+      contractStatus
+      createdAt
+      updatedAt
+      programs {
+        items {
+          id
+          schoolId
+          schoolName
+          slug
+          name
+          city
+          country
+          discipline
+          degree
+          duration
+          durationUnit
+          schedule
+          languages
+          fee
+          feeUnit
+          feeCurrency
+          intakes
+          intakeInformation
+          submissionDeadline
+          costOfLiving
+          costOfLivingCurrency
           description
-          descriptionOptions
-          date
-          seen
-          link
+          gradePointAverage
+          highestEducationLevel
+          testToefl
+          testIelts
+          testToeic
+          testTcftef
+          testDelfdalf
+          testGre
+          testGmat
+          testTagemage
+          testCambridgeFirst
+          testCambridgeAdvanced
+          minimumAge
+          minimumWorkExperience
+          minimumWorkExperienceUnit
+          otherRequirements
+          applicationFee
+          applicationFeeCurrency
+          feesAndFinancing
+          published
+          createdAt
+          updatedAt
         }
-        modalApplicationCompletedViewed
+        nextToken
+      }
+    }
+  }
+`;
+export const getSchoolBySlug = /* GraphQL */ `
+  query GetSchoolBySlug(
+    $slug: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelSchoolFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getSchoolBySlug(
+      slug: $slug
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
         createdAt
         updatedAt
-        owner
+        programs {
+          nextToken
+        }
       }
       nextToken
     }
@@ -2152,60 +1884,32 @@ export const searchSchools = /* GraphQL */ `
         contactPhone
         contactEmail
         published
-        programs {
-          nextToken
-        }
         stepsTemplates {
           targets
         }
         contractStatus
         createdAt
         updatedAt
+        programs {
+          nextToken
+        }
       }
       nextToken
       total
     }
   }
 `;
-export const searchPrograms = /* GraphQL */ `
-  query SearchPrograms(
-    $filter: SearchableProgramFilterInput
-    $sort: SearchableProgramSortInput
+export const listPrograms = /* GraphQL */ `
+  query ListPrograms(
+    $filter: ModelProgramFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    searchPrograms(
-      filter: $filter
-      sort: $sort
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listPrograms(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -2255,6 +1959,302 @@ export const searchPrograms = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getProgram = /* GraphQL */ `
+  query GetProgram($id: ID!) {
+    getProgram(id: $id) {
+      id
+      schoolId
+      schoolName
+      slug
+      name
+      city
+      country
+      discipline
+      degree
+      duration
+      durationUnit
+      schedule
+      languages
+      fee
+      feeUnit
+      feeCurrency
+      intakes
+      intakeInformation
+      submissionDeadline
+      costOfLiving
+      costOfLivingCurrency
+      description
+      gradePointAverage
+      highestEducationLevel
+      testToefl
+      testIelts
+      testToeic
+      testTcftef
+      testDelfdalf
+      testGre
+      testGmat
+      testTagemage
+      testCambridgeFirst
+      testCambridgeAdvanced
+      requestedDocuments {
+        name
+        isMandatory
+        storageKey
+        description
+        condition
+        isSpecific
+      }
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      otherRequirements
+      applicationFee
+      applicationFeeCurrency
+      feesAndFinancing
+      published
+      createdAt
+      updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const getProgramBySlug = /* GraphQL */ `
+  query GetProgramBySlug(
+    $slug: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelProgramFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getProgramBySlug(
+      slug: $slug
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        schoolId
+        schoolName
+        slug
+        name
+        city
+        country
+        discipline
+        degree
+        duration
+        durationUnit
+        schedule
+        languages
+        fee
+        feeUnit
+        feeCurrency
+        intakes
+        intakeInformation
+        submissionDeadline
+        costOfLiving
+        costOfLivingCurrency
+        description
+        gradePointAverage
+        highestEducationLevel
+        testToefl
+        testIelts
+        testToeic
+        testTcftef
+        testDelfdalf
+        testGre
+        testGmat
+        testTagemage
+        testCambridgeFirst
+        testCambridgeAdvanced
+        requestedDocuments {
+          name
+          isMandatory
+          storageKey
+          description
+          condition
+          isSpecific
+        }
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        otherRequirements
+        applicationFee
+        applicationFeeCurrency
+        feesAndFinancing
+        published
+        createdAt
+        updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const searchPrograms = /* GraphQL */ `
+  query SearchPrograms(
+    $filter: SearchableProgramFilterInput
+    $sort: SearchableProgramSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchPrograms(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        schoolId
+        schoolName
+        slug
+        name
+        city
+        country
+        discipline
+        degree
+        duration
+        durationUnit
+        schedule
+        languages
+        fee
+        feeUnit
+        feeCurrency
+        intakes
+        intakeInformation
+        submissionDeadline
+        costOfLiving
+        costOfLivingCurrency
+        description
+        gradePointAverage
+        highestEducationLevel
+        testToefl
+        testIelts
+        testToeic
+        testTcftef
+        testDelfdalf
+        testGre
+        testGmat
+        testTagemage
+        testCambridgeFirst
+        testCambridgeAdvanced
+        requestedDocuments {
+          name
+          isMandatory
+          storageKey
+          description
+          condition
+          isSpecific
+        }
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        otherRequirements
+        applicationFee
+        applicationFeeCurrency
+        feesAndFinancing
+        published
+        createdAt
+        updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
       nextToken
       total
