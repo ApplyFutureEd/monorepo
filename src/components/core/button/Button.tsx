@@ -79,7 +79,12 @@ const Button = forwardRef<Ref, Props>((props, ref) => {
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
             <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
                 {startIcon && (
-                    <FontAwesomeIcon className={cx({ 'mr-2': children })} icon={startIcon} />
+                    <FontAwesomeIcon
+                        fixedWidth
+                        className={cx({ 'mr-2': children })}
+                        icon={startIcon}
+                        size="sm"
+                    />
                 )}
                 {isLoading ? (
                     <span className="flex items-center">
@@ -89,7 +94,14 @@ const Button = forwardRef<Ref, Props>((props, ref) => {
                 ) : (
                     <span>{children}</span>
                 )}
-                {endIcon && <FontAwesomeIcon className={cx({ 'ml-2': children })} icon={endIcon} />}
+                {endIcon && (
+                    <FontAwesomeIcon
+                        fixedWidth
+                        className={cx({ 'ml-2': children })}
+                        icon={endIcon}
+                        size="sm"
+                    />
+                )}
             </button>
         </span>
     );

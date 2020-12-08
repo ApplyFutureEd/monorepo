@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 
 type AuthenticatedUser = {
@@ -23,7 +23,10 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
                 const user = await Auth.currentAuthenticatedUser();
                 setUser(user);
             } catch (error) {
-                console.error(error);
+                console.log(error);
+                Amplify.configure({
+                    aws_appsync_authenticationType: 'API_KEY'
+                });
             }
         };
         fetchData();

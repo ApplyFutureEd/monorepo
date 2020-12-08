@@ -7,6 +7,7 @@ type Subscription {
 type School
     @auth(
         rules: [
+            { allow: public, operations: [read], provider: apiKey }
             { allow: private, operations: [read] }
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
@@ -44,6 +45,7 @@ type ApplicationStepsTemplate {
 type Program
     @auth(
         rules: [
+            { allow: public, operations: [read], provider: apiKey }
             { allow: private, operations: [read] }
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
