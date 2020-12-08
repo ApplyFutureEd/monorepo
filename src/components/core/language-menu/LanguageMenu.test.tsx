@@ -39,7 +39,7 @@ describe('LanguageMenu', () => {
         expect(french).toBeVisible();
     });
 
-    it('can close the menu, set the locale cookie and navigate to /locale ', () => {
+    it('can close the menu, set the locale cookie and navigate to /locale', () => {
         render(<LanguageMenu />);
 
         const button = screen.getByRole('button');

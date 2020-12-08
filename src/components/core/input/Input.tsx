@@ -73,7 +73,7 @@ type Props = {
     /**
      * The step attribute specifies the interval between legal numbers
      */
-    step?: number;
+    step?: number | string;
     /**
      * The tooltip displayed when hovering the label.
      */
@@ -116,10 +116,12 @@ const Input: FC<Props> = (props) => {
     const onError = Boolean(meta?.touched && meta?.error);
     const withStartIcon = Boolean(startIcon);
     const withDebounce = Boolean(debounce);
+
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
+    const withLabelClasses = 'mt-1';
     const withStartIconClasses = 'pl-9';
 
     const classes = cx({
@@ -165,7 +167,11 @@ const Input: FC<Props> = (props) => {
                     </div>
                 </Tooltip>
             )}
-            <div className="relative mt-1 rounded-md shadow-sm">
+            <div
+                className={cx({
+                    ['relative rounded-md shadow-sm']: true,
+                    [`${withLabelClasses}`]: label
+                })}>
                 {startIcon && (
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <FontAwesomeIcon

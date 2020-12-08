@@ -21,7 +21,7 @@ describe('Programs', () => {
     it('can render without crashing', () => {
         render(<Programs />);
 
-        const title = screen.getByText(/programs/);
+        const title = screen.getByText(/programs:programs/);
 
         expect(title).toBeInTheDocument();
     });

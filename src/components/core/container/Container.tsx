@@ -35,7 +35,7 @@ const Container: FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="flex flex-shrink-0 ml-4 mt-2 space-x-2">
+                        <div className="flex flex-shrink-0 items-center ml-4 mt-2 space-x-2">
                             {headerComponents}
                         </div>
                     </div>

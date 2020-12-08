@@ -1,3 +1,5 @@
+import 'yup-phone';
+
 import Recruiters from '@components/landing/recruiters/Recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
