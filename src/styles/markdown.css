@@ -38,6 +38,12 @@
     @apply font-sans;
     @apply text-sm;
 }
+.markdown li > ul > li {
+    list-style-type: circle;
+}
+.markdown li > ul > li > ul > li {
+    list-style-type: square;
+}
 .doc .markdown li {
     @apply ml-4;
 }

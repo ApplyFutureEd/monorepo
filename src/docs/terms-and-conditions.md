@@ -67,11 +67,13 @@ Subject to the terms and conditions in the Agreement and any restrictions contai
   - Any feedback that you receive respecting Your Data is not as the result of any specific examination of the data by ApplySchool, or any judgment exercised by ApplySchool respecting Your Data, but rather is solely based on the compliance requirements of ApplySchool Partners.
 
 - **Processing of Your Data**
-  An integral part of the ApplySchool Solution entails the collection, processing, transmission and disclosure of Your Data by ApplySchool, ApplySchool Partners and their service providers, and more specifically:
 
-      -   ApplySchool’s provision of Your Data to any ApplySchool Partner, visa agencies, English and French test score organizations, professional bodies, service providers to ApplySchool (including our hosting providers) as part of the provision of the ApplySchool Solution to you, and Governmental or Regulatory Authorities; and
+  - An integral part of the ApplySchool Solution entails the collection, processing, transmission and disclosure of Your Data by ApplySchool, ApplySchool Partners and their service providers, and more specifically:
 
-      -   Communications from ApplySchool (including e-mail communications, both marketing and informational) respecting the ApplySchool Solution, and ApplySchool’s products and services.
+  - ApplySchool’s provision of Your Data to any ApplySchool Partner, visa agencies, English and French test score organizations, professional bodies, service providers to ApplySchool (including our hosting providers) as part of the provision of the ApplySchool Solution to you, and Governmental or Regulatory Authorities; and
+
+  - Communications from ApplySchool (including e-mail communications, both marketing and informational) respecting the ApplySchool Solution, and ApplySchool’s products and services.
+
 
 - **Privacy Policy**
 

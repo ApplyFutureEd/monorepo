@@ -26,7 +26,8 @@ module.exports = {
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     testResultsProcessor: 'jest-sonar-reporter',
     transform: {
-        '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
+        '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+        '^.+\\.(md|mdx)$': 'jest-transformer-mdx'
     },
     transformIgnorePatterns: ['/node_modules/']
 };
