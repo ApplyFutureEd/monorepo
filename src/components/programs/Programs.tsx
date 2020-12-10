@@ -33,12 +33,8 @@ const Programs: FC = () => {
 
     useEffect(() => {
         if (!isLoading && isPageBottom && data.searchPrograms?.nextToken) {
-            console.log('fetchMore called');
             fetchMore(data.searchPrograms?.nextToken);
         }
-
-        console.log({ isLoading });
-        console.log({ isPageBottom });
     }, [isPageBottom]);
 
     const handleSearch = (query: string) => {
@@ -88,7 +84,7 @@ const Programs: FC = () => {
         <SortBy key={2} handleSort={handleSort} />
     ];
 
-    const skeletons = Array.from({ length: 12 }, (v, k) => k + 1);
+    const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
     return (
         <Container
