@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { searchPrograms } from '@graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
 import { isArray, merge, mergeWith } from 'lodash';
 import { useState } from 'react';
