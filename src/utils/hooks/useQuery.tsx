@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 type UseQueryType<ResultType> = {
-    loading: boolean;
+    isLoading: boolean;
     error: any;
     data: ResultType;
     refetch: () => void;
@@ -14,20 +14,22 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     query: string,
     variables?: VariablesType
 ): UseQueryType<ResultType> => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
     const [data, setData] = useState({} as ResultType);
 
     const fetchQuery = async (query: string, variables?: VariablesType) => {
         try {
+            setIsLoading(true);
             const { data } = (await API.graphql(graphqlOperation(query, variables))) as {
                 data: ResultType;
             };
+
             setData(data);
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
@@ -42,7 +44,7 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     return {
         data,
         error,
-        loading,
+        isLoading,
         refetch
     };
 };

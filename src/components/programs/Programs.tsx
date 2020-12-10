@@ -10,17 +10,35 @@ import {
     SearchProgramsQueryVariables
 } from '@graphql/API';
 import { searchPrograms } from '@graphql/queries';
+import { usePageBottom } from '@utils/hooks/usePageBottom';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+
+import SkeletonRow from './row/SkeletonRow';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({ limit: 20 });
-    const { data } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(
+    const { data, isLoading } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(
         searchPrograms,
         variables
     );
+    const [programs, setPrograms] = useState(data.searchPrograms?.items || []);
+    const isPageBottom = usePageBottom();
+
+    useEffect(() => {
+        setPrograms((prevItems) => {
+            return [...prevItems, ...(data.searchPrograms?.items || [])];
+        });
+    }, [data.searchPrograms?.nextToken]);
+
+    useEffect(() => {
+        setVariables((prev: SearchProgramsQueryVariables) => ({
+            ...prev,
+            nextToken: data.searchPrograms?.nextToken
+        }));
+    }, [isPageBottom]);
 
     const handleSearch = (query: string) => {
         setVariables({
@@ -60,12 +78,14 @@ const Programs: FC = () => {
         <SortBy key={2} handleSort={handleSort} />
     ];
 
+    const skeletons = Array.from({ length: 12 }, (v, k) => k + 1);
+
     return (
         <Container
             headerComponents={headerComponents}
             innerPadding={false}
             title={t('programs:programs')}>
-            {data.searchPrograms?.items?.map((program) => {
+            {programs?.map((program) => {
                 if (!program || !program.school) {
                     return;
                 }
@@ -103,6 +123,7 @@ const Programs: FC = () => {
                     />
                 );
             })}
+            {isLoading && skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
         </Container>
     );
 };
