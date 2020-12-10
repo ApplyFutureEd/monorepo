@@ -19,28 +19,37 @@ import SkeletonRow from './row/SkeletonRow';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
-    const [variables, setVariables] = useState<SearchProgramsQueryVariables>({ limit: 20 });
-    const { data, isLoading } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(
-        searchPrograms,
-        variables
-    );
-    const [programs, setPrograms] = useState(data.searchPrograms?.items || []);
+    const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
+        filter: {
+            published: { eq: true }
+        },
+        limit: 20
+    });
+    const { data, fetchMore, isLoading } = useQuery<
+        SearchProgramsQuery,
+        SearchProgramsQueryVariables
+    >(searchPrograms, variables);
     const isPageBottom = usePageBottom();
 
     useEffect(() => {
-        setPrograms((prevItems) => {
-            return [...prevItems, ...(data.searchPrograms?.items || [])];
-        });
-    }, [data.searchPrograms?.nextToken]);
+        if (!isLoading && isPageBottom && data.searchPrograms?.nextToken) {
+            console.log('fetchMore called');
+            fetchMore(data.searchPrograms?.nextToken);
+        }
 
-    useEffect(() => {
-        setVariables((prev: SearchProgramsQueryVariables) => ({
-            ...prev,
-            nextToken: data.searchPrograms?.nextToken
-        }));
+        console.log({ isLoading });
+        console.log({ isPageBottom });
     }, [isPageBottom]);
 
     const handleSearch = (query: string) => {
+        if (!query) {
+            setVariables({
+                filter: {
+                    published: { eq: true }
+                },
+                limit: 20
+            });
+        }
         setVariables({
             filter: {
                 or: [
@@ -50,7 +59,8 @@ const Programs: FC = () => {
                     { schoolName: { matchPhrasePrefix: query } }
                 ],
                 published: { eq: true }
-            }
+            },
+            limit: 20
         });
     };
 
@@ -85,7 +95,7 @@ const Programs: FC = () => {
             headerComponents={headerComponents}
             innerPadding={false}
             title={t('programs:programs')}>
-            {programs?.map((program) => {
+            {data.searchPrograms?.items?.map((program) => {
                 if (!program || !program.school) {
                     return;
                 }

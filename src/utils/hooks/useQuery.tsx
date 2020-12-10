@@ -1,13 +1,22 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { searchPrograms } from '@graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
+import { isArray, merge, mergeWith } from 'lodash';
 import { useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 type UseQueryType<ResultType> = {
-    isLoading: boolean;
-    error: any;
     data: ResultType;
+    error: any;
+    fetchMore: (nextToken: string) => void;
+    isLoading: boolean;
     refetch: () => void;
+};
+
+const customizer = (objValue: any, srcValue: any) => {
+    if (isArray(objValue)) {
+        return objValue.concat(srcValue);
+    }
 };
 
 export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
@@ -18,19 +27,28 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     const [error, setError] = useState('');
     const [data, setData] = useState({} as ResultType);
 
-    const fetchQuery = async (query: string, variables?: VariablesType) => {
+    const fetchQuery = async (query: string, variables?: VariablesType, nextToken?: string) => {
         try {
             setIsLoading(true);
-            const { data } = (await API.graphql(graphqlOperation(query, variables))) as {
+            const { data } = (await API.graphql(
+                graphqlOperation(query, { ...variables, nextToken })
+            )) as {
                 data: ResultType;
             };
-
-            setData(data);
+            if (nextToken) {
+                setData((prevData) => mergeWith(prevData, data, customizer));
+            } else {
+                setData(data);
+            }
         } catch (error) {
             setError(error);
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const fetchMore = (nextToken: string) => {
+        fetchQuery(query, variables, nextToken);
     };
 
     const refetch = () => {
@@ -44,6 +62,7 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     return {
         data,
         error,
+        fetchMore,
         isLoading,
         refetch
     };
