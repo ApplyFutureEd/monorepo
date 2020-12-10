@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { API, graphqlOperation } from 'aws-amplify';
-import { isArray, merge, mergeWith } from 'lodash';
+import { isArray, mergeWith } from 'lodash';
 import { useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
