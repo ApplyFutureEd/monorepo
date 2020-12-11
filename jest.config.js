@@ -9,7 +9,7 @@ module.exports = {
         '!**/pages_/*.tsx',
         '!**/utils/**/*.{ts,tsx}',
         '!**/graphql/**/*.ts',
-        '!**/amplify/**/*.ts',
+        '!**/amplify/**/*',
         '!**/*.{md,mdx}'
     ],
     moduleNameMapper: {

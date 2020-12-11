@@ -240,32 +240,36 @@ export const subscribeToApplicationUpdate = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -315,544 +319,30 @@ export const subscribeToApplicationUpdate = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
-    }
-  }
-`;
-export const onCreateSchool = /* GraphQL */ `
-  subscription OnCreateSchool {
-    onCreateSchool {
-      id
-      slug
-      name
-      city
-      country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
-      coverPhoto
-      contactJobTitle
-      contactName
-      contactPhone
-      contactEmail
-      published
-      programs {
-        items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
-          city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
-          costOfLiving
-          costOfLivingCurrency
-          description
-          gradePointAverage
-          highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          minimumAge
-          minimumWorkExperience
-          minimumWorkExperienceUnit
-          otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
-          published
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateSchool = /* GraphQL */ `
-  subscription OnUpdateSchool {
-    onUpdateSchool {
-      id
-      slug
-      name
-      city
-      country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
-      coverPhoto
-      contactJobTitle
-      contactName
-      contactPhone
-      contactEmail
-      published
-      programs {
-        items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
-          city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
-          costOfLiving
-          costOfLivingCurrency
-          description
-          gradePointAverage
-          highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          minimumAge
-          minimumWorkExperience
-          minimumWorkExperienceUnit
-          otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
-          published
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteSchool = /* GraphQL */ `
-  subscription OnDeleteSchool {
-    onDeleteSchool {
-      id
-      slug
-      name
-      city
-      country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
-      coverPhoto
-      contactJobTitle
-      contactName
-      contactPhone
-      contactEmail
-      published
-      programs {
-        items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
-          city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
-          costOfLiving
-          costOfLivingCurrency
-          description
-          gradePointAverage
-          highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          minimumAge
-          minimumWorkExperience
-          minimumWorkExperienceUnit
-          otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
-          published
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
-      contractStatus
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateProgram = /* GraphQL */ `
-  subscription OnCreateProgram {
-    onCreateProgram {
-      id
-      schoolId
-      schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      slug
-      name
-      city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
-      costOfLiving
-      costOfLivingCurrency
-      description
-      gradePointAverage
-      highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      requestedDocuments {
-        name
-        isMandatory
-        storageKey
-        description
-        condition
-        isSpecific
-      }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateProgram = /* GraphQL */ `
-  subscription OnUpdateProgram {
-    onUpdateProgram {
-      id
-      schoolId
-      schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      slug
-      name
-      city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
-      costOfLiving
-      costOfLivingCurrency
-      description
-      gradePointAverage
-      highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      requestedDocuments {
-        name
-        isMandatory
-        storageKey
-        description
-        condition
-        isSpecific
-      }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteProgram = /* GraphQL */ `
-  subscription OnDeleteProgram {
-    onDeleteProgram {
-      id
-      schoolId
-      schoolName
-      school {
-        id
-        slug
-        name
-        city
-        country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
-        coverPhoto
-        contactJobTitle
-        contactName
-        contactPhone
-        contactEmail
-        published
-        programs {
-          nextToken
-        }
-        stepsTemplates {
-          targets
-        }
-        contractStatus
-        createdAt
-        updatedAt
-      }
-      slug
-      name
-      city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
-      costOfLiving
-      costOfLivingCurrency
-      description
-      gradePointAverage
-      highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      requestedDocuments {
-        name
-        isMandatory
-        storageKey
-        description
-        condition
-        isSpecific
-      }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -1698,32 +1188,36 @@ export const onCreateApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -1773,33 +1267,29 @@ export const onCreateApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -1911,32 +1401,36 @@ export const onUpdateApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -1986,33 +1480,29 @@ export const onUpdateApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -2124,32 +1614,36 @@ export const onDeleteApplication = /* GraphQL */ `
         owner
       }
       programId
+      intake
+      document
+      steps {
+        id
+        status
+        date
+        isMandatory
+      }
+      interviewDate
+      admissionResult
+      tuitionsFeePaymentDate
+      decisionLetterDate
+      visaDate
+      todo
+      notifications {
+        title
+        titleOptions
+        description
+        descriptionOptions
+        date
+        seen
+        link
+      }
+      modalApplicationCompletedViewed
+      createdAt
+      updatedAt
       program {
         id
         schoolId
         schoolName
-        school {
-          id
-          slug
-          name
-          city
-          country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
-          coverPhoto
-          contactJobTitle
-          contactName
-          contactPhone
-          contactEmail
-          published
-          contractStatus
-          createdAt
-          updatedAt
-        }
         slug
         name
         city
@@ -2199,33 +1693,29 @@ export const onDeleteApplication = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        school {
+          id
+          slug
+          name
+          city
+          country
+          totalStudents
+          internationalStudents
+          institutionType
+          creationYear
+          description
+          logo
+          coverPhoto
+          contactJobTitle
+          contactName
+          contactPhone
+          contactEmail
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
       }
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
-      todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -2649,6 +2139,32 @@ export const onCreateFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2695,32 +2211,6 @@ export const onCreateFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt
@@ -2806,6 +2296,32 @@ export const onUpdateFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -2852,32 +2368,6 @@ export const onUpdateFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
         owner
       }
       createdAt
@@ -2963,6 +2453,32 @@ export const onDeleteFeedback = /* GraphQL */ `
           owner
         }
         programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
         program {
           id
           schoolId
@@ -3009,37 +2525,521 @@ export const onDeleteFeedback = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        intake
-        document
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateSchool = /* GraphQL */ `
+  subscription OnCreateSchool {
+    onCreateSchool {
+      id
+      slug
+      name
+      city
+      country
+      totalStudents
+      internationalStudents
+      institutionType
+      creationYear
+      description
+      logo
+      coverPhoto
+      contactJobTitle
+      contactName
+      contactPhone
+      contactEmail
+      published
+      stepsTemplates {
+        targets
         steps {
           id
           status
           date
           isMandatory
         }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
-        todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
-        createdAt
-        updatedAt
-        owner
       }
+      contractStatus
       createdAt
       updatedAt
-      owner
+      programs {
+        items {
+          id
+          schoolId
+          schoolName
+          slug
+          name
+          city
+          country
+          discipline
+          degree
+          duration
+          durationUnit
+          schedule
+          languages
+          fee
+          feeUnit
+          feeCurrency
+          intakes
+          intakeInformation
+          submissionDeadline
+          costOfLiving
+          costOfLivingCurrency
+          description
+          gradePointAverage
+          highestEducationLevel
+          testToefl
+          testIelts
+          testToeic
+          testTcftef
+          testDelfdalf
+          testGre
+          testGmat
+          testTagemage
+          testCambridgeFirst
+          testCambridgeAdvanced
+          minimumAge
+          minimumWorkExperience
+          minimumWorkExperienceUnit
+          otherRequirements
+          applicationFee
+          applicationFeeCurrency
+          feesAndFinancing
+          published
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateSchool = /* GraphQL */ `
+  subscription OnUpdateSchool {
+    onUpdateSchool {
+      id
+      slug
+      name
+      city
+      country
+      totalStudents
+      internationalStudents
+      institutionType
+      creationYear
+      description
+      logo
+      coverPhoto
+      contactJobTitle
+      contactName
+      contactPhone
+      contactEmail
+      published
+      stepsTemplates {
+        targets
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+      }
+      contractStatus
+      createdAt
+      updatedAt
+      programs {
+        items {
+          id
+          schoolId
+          schoolName
+          slug
+          name
+          city
+          country
+          discipline
+          degree
+          duration
+          durationUnit
+          schedule
+          languages
+          fee
+          feeUnit
+          feeCurrency
+          intakes
+          intakeInformation
+          submissionDeadline
+          costOfLiving
+          costOfLivingCurrency
+          description
+          gradePointAverage
+          highestEducationLevel
+          testToefl
+          testIelts
+          testToeic
+          testTcftef
+          testDelfdalf
+          testGre
+          testGmat
+          testTagemage
+          testCambridgeFirst
+          testCambridgeAdvanced
+          minimumAge
+          minimumWorkExperience
+          minimumWorkExperienceUnit
+          otherRequirements
+          applicationFee
+          applicationFeeCurrency
+          feesAndFinancing
+          published
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteSchool = /* GraphQL */ `
+  subscription OnDeleteSchool {
+    onDeleteSchool {
+      id
+      slug
+      name
+      city
+      country
+      totalStudents
+      internationalStudents
+      institutionType
+      creationYear
+      description
+      logo
+      coverPhoto
+      contactJobTitle
+      contactName
+      contactPhone
+      contactEmail
+      published
+      stepsTemplates {
+        targets
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+      }
+      contractStatus
+      createdAt
+      updatedAt
+      programs {
+        items {
+          id
+          schoolId
+          schoolName
+          slug
+          name
+          city
+          country
+          discipline
+          degree
+          duration
+          durationUnit
+          schedule
+          languages
+          fee
+          feeUnit
+          feeCurrency
+          intakes
+          intakeInformation
+          submissionDeadline
+          costOfLiving
+          costOfLivingCurrency
+          description
+          gradePointAverage
+          highestEducationLevel
+          testToefl
+          testIelts
+          testToeic
+          testTcftef
+          testDelfdalf
+          testGre
+          testGmat
+          testTagemage
+          testCambridgeFirst
+          testCambridgeAdvanced
+          minimumAge
+          minimumWorkExperience
+          minimumWorkExperienceUnit
+          otherRequirements
+          applicationFee
+          applicationFeeCurrency
+          feesAndFinancing
+          published
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateProgram = /* GraphQL */ `
+  subscription OnCreateProgram {
+    onCreateProgram {
+      id
+      schoolId
+      schoolName
+      slug
+      name
+      city
+      country
+      discipline
+      degree
+      duration
+      durationUnit
+      schedule
+      languages
+      fee
+      feeUnit
+      feeCurrency
+      intakes
+      intakeInformation
+      submissionDeadline
+      costOfLiving
+      costOfLivingCurrency
+      description
+      gradePointAverage
+      highestEducationLevel
+      testToefl
+      testIelts
+      testToeic
+      testTcftef
+      testDelfdalf
+      testGre
+      testGmat
+      testTagemage
+      testCambridgeFirst
+      testCambridgeAdvanced
+      requestedDocuments {
+        name
+        isMandatory
+        storageKey
+        description
+        condition
+        isSpecific
+      }
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      otherRequirements
+      applicationFee
+      applicationFeeCurrency
+      feesAndFinancing
+      published
+      createdAt
+      updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateProgram = /* GraphQL */ `
+  subscription OnUpdateProgram {
+    onUpdateProgram {
+      id
+      schoolId
+      schoolName
+      slug
+      name
+      city
+      country
+      discipline
+      degree
+      duration
+      durationUnit
+      schedule
+      languages
+      fee
+      feeUnit
+      feeCurrency
+      intakes
+      intakeInformation
+      submissionDeadline
+      costOfLiving
+      costOfLivingCurrency
+      description
+      gradePointAverage
+      highestEducationLevel
+      testToefl
+      testIelts
+      testToeic
+      testTcftef
+      testDelfdalf
+      testGre
+      testGmat
+      testTagemage
+      testCambridgeFirst
+      testCambridgeAdvanced
+      requestedDocuments {
+        name
+        isMandatory
+        storageKey
+        description
+        condition
+        isSpecific
+      }
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      otherRequirements
+      applicationFee
+      applicationFeeCurrency
+      feesAndFinancing
+      published
+      createdAt
+      updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteProgram = /* GraphQL */ `
+  subscription OnDeleteProgram {
+    onDeleteProgram {
+      id
+      schoolId
+      schoolName
+      slug
+      name
+      city
+      country
+      discipline
+      degree
+      duration
+      durationUnit
+      schedule
+      languages
+      fee
+      feeUnit
+      feeCurrency
+      intakes
+      intakeInformation
+      submissionDeadline
+      costOfLiving
+      costOfLivingCurrency
+      description
+      gradePointAverage
+      highestEducationLevel
+      testToefl
+      testIelts
+      testToeic
+      testTcftef
+      testDelfdalf
+      testGre
+      testGmat
+      testTagemage
+      testCambridgeFirst
+      testCambridgeAdvanced
+      requestedDocuments {
+        name
+        isMandatory
+        storageKey
+        description
+        condition
+        isSpecific
+      }
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      otherRequirements
+      applicationFee
+      applicationFeeCurrency
+      feesAndFinancing
+      published
+      createdAt
+      updatedAt
+      school {
+        id
+        slug
+        name
+        city
+        country
+        totalStudents
+        internationalStudents
+        institutionType
+        creationYear
+        description
+        logo
+        coverPhoto
+        contactJobTitle
+        contactName
+        contactPhone
+        contactEmail
+        published
+        stepsTemplates {
+          targets
+        }
+        contractStatus
+        createdAt
+        updatedAt
+        programs {
+          nextToken
+        }
+      }
     }
   }
 `;

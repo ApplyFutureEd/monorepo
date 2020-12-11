@@ -1,5 +1,3 @@
-import 'yup-phone';
-
 import CompagnyInfo from '@components/landing/recruiters/CompagnyInfo';
 import ContactInfo from '@components/landing/recruiters/ContactInfo';
 import { API } from 'aws-amplify';
