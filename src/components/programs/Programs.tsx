@@ -1,6 +1,7 @@
 import Container from '@components/core/container/Container';
 import Filters from '@components/programs/filters/Filters';
 import Row from '@components/programs/row/Row';
+import SkeletonRow from '@components/programs/row/SkeletonRow';
 import Search from '@components/programs/search/Search';
 import SortBy from '@components/programs/sort-by/SortBy';
 import {
@@ -14,8 +15,6 @@ import { usePageBottom } from '@utils/hooks/usePageBottom';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useEffect, useState } from 'react';
-
-import SkeletonRow from './row/SkeletonRow';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
