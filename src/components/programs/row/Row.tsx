@@ -113,7 +113,9 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
                                         <div>
-                                            {t('programs:next-intake', { count: 1 })}{' '}
+                                            {t('programs:next-intake', {
+                                                count: router.locale === 'zh' ? 0 : 1
+                                            })}{' '}
                                             <b>
                                                 {date({
                                                     locale: locale,
