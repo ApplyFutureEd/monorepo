@@ -1,13 +1,18 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import '@utils/services/amplify';
 
+import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
-import { API, GRAPHQL_AUTH_MODE } from 'aws-amplify';
+import { API } from 'aws-amplify';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import { FC } from 'react';
 
-export default function Program(props: any): any {
+type Props = {
+    data: GetProgramBySlugQuery;
+};
+
+const ProgramPage: FC<Props> = (props) => {
     const router = useRouter();
 
     console.log({ props });
@@ -19,20 +24,21 @@ export default function Program(props: any): any {
             <h1>test</h1>
         </div>
     );
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     try {
-        const { data } = await API.graphql({
+        const data = (await API.graphql({
             query: listPrograms
-        });
+        })) as ListProgramsQuery;
 
-        const paths = data.listPrograms.items.map((program) => ({
-            params: { slug: program.slug }
+        const paths = data?.listPrograms?.items?.map((program) => ({
+            params: { slug: program?.slug || '' }
         }));
+
         return {
             fallback: true,
-            paths
+            paths: paths || []
         };
     } catch (error) {
         console.log(error);
@@ -41,31 +47,35 @@ export async function getStaticPaths() {
             paths: []
         };
     }
-}
+};
 
-export async function getStaticProps({ params }) {
+type Params = {
+    slug: string;
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
-        const { slug } = params;
-        console.log({ slug });
+        const { slug } = params as Params;
 
-        const x = await API.graphql({
-            authMode: 'API_KEY' as GRAPHQL_AUTH_MODE,
+        const data = (await API.graphql({
+            authMode: GRAPHQL_AUTH_MODE.API_KEY,
             query: getProgramBySlug,
             variables: { slug }
-        });
-        console.log({ x });
+        })) as GetProgramBySlugQuery;
 
         return {
             props: {
-                program: x
+                data
             },
             revalidate: 1
         };
     } catch (error) {
-        console.log({ error });
+        console.log(error);
         return {
             props: {},
             revalidate: 1
         };
     }
-}
+};
+
+export default ProgramPage;
