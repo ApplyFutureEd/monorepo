@@ -34,21 +34,21 @@
             "providerPlugin": "awscloudformation",
             "output": {
                 "authConfig": {
+                    "additionalAuthenticationProviders": [
+                        {
+                            "authenticationType": "API_KEY",
+                            "apiKeyConfig": {
+                                "description": "public",
+                                "apiKeyExpirationDays": "365"
+                            }
+                        }
+                    ],
                     "defaultAuthentication": {
                         "authenticationType": "AMAZON_COGNITO_USER_POOLS",
                         "userPoolConfig": {
                             "userPoolId": "authstudents9e8a43d9"
                         }
-                    },
-                    "additionalAuthenticationProviders": [
-                        {
-                            "authenticationType": "API_KEY",
-                            "apiKeyConfig": {
-                                "apiKeyExpirationDays": 365,
-                                "description": "public"
-                            }
-                        }
-                    ]
+                    }
                 }
             }
         },

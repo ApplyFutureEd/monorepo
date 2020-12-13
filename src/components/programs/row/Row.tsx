@@ -69,7 +69,7 @@ const Row: FC<Props> = (props) => {
     return (
         <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
             <Link href={`/programs/${slug}`}>
-                <div className="w-11/12">
+                <div className="w-11/12 cursor-pointer">
                     <div className="flex items-center w-full">
                         <div className="flex items-center w-full space-x-4 md:w-1/2">
                             <img

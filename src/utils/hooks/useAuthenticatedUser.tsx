@@ -1,6 +1,8 @@
 import Amplify, { Auth } from 'aws-amplify';
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 
+import config from './../../aws-exports';
+
 type AuthenticatedUser = {
     attributes: {
         email: string;
@@ -22,11 +24,16 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
             try {
                 const user = await Auth.currentAuthenticatedUser();
                 setUser(user);
+                console.log('current session:', await Auth.currentSession());
+
+                console.log({ user });
             } catch (error) {
-                console.log(error);
                 Amplify.configure({
+                    ...config,
                     aws_appsync_authenticationType: 'API_KEY'
                 });
+                console.log('current session:', await Auth.currentSession());
+                console.log('auth provider', { error });
             }
         };
         fetchData();
