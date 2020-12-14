@@ -1,28 +1,85 @@
 import '@utils/services/amplify';
 
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import Button from '@components/core/button/Button';
+import Cover from '@components/core/cover/Cover';
+import SubHeader from '@components/core/sub-header/SubHeader';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import { faHeart } from '@fortawesome/pro-light-svg-icons';
+import {
+    faMapMarkerAlt,
+    faPortrait,
+    faUniversity as faUniversitySolid
+} from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
 import { API } from 'aws-amplify';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import useTranslation from 'next-translate/useTranslation';
+import React, { FC } from 'react';
 
 type Props = {
-    data: GetProgramBySlugQuery;
+    program: any;
 };
 
 const ProgramPage: FC<Props> = (props) => {
+    const { t } = useTranslation();
+    const program = props.program?.data?.getProgramBySlug?.items?.[0];
     const router = useRouter();
+
+    console.log(program);
 
     console.log({ props });
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
+
     return (
-        <div>
-            <h1>test</h1>
-        </div>
+        <DashboardLayout description="" title="">
+            <Cover
+                alt={''}
+                src={`${process.env.ASSETS_CDN_URL}/${program?.school?.coverPhoto}` || ''}
+            />
+            <SubHeader
+                actions={
+                    <>
+                        <Button startIcon={faHeart} type="button" variant="secondary">
+                            {t('programs:favorite')}
+                        </Button>
+                        <Button type="button" variant="primary">
+                            {t('programs:apply')}
+                        </Button>
+                    </>
+                }
+                src={`${process.env.ASSETS_CDN_URL}/${program?.school?.logo}` || ''}
+                subtitle={
+                    <>
+                        <Link href={`/schools/${program?.school?.slug}`}>
+                            <div className="flex items-baseline hover:text-indigo-500 space-x-1">
+                                <FontAwesomeIcon icon={faUniversitySolid} />
+                                <div>{program?.school?.name}</div>
+                            </div>
+                        </Link>
+                        <div className="flex items-baseline space-x-1">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} />
+                            <div>
+                                {program?.city}, {program?.country}
+                            </div>
+                        </div>
+                        <div className="flex items-baseline space-x-1">
+                            <FontAwesomeIcon icon={faPortrait} />
+                            <div>
+                                {t('programs:program-id')}: {program?.id?.slice(0, 6).toUpperCase()}
+                            </div>
+                        </div>
+                    </>
+                }
+                title={program.name}
+            />
+        </DashboardLayout>
     );
 };
 
@@ -65,7 +122,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
         return {
             props: {
-                data
+                program: data
             },
             revalidate: 1
         };

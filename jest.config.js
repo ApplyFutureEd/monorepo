@@ -6,7 +6,7 @@ module.exports = {
         '!**/node_modules/**',
         '!**/*.story.tsx',
         '!**/pages/*.{js,tsx}',
-        '!**/pages_/*.tsx',
+        '!**/pages_/**/*.tsx',
         '!**/utils/**/*.{ts,tsx}',
         '!**/graphql/**/*.ts',
         '!**/amplify/**/*'
