@@ -4,26 +4,10 @@ import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 import Button from '@components/core/button/Button';
 import Container from '@components/core/container/Container';
 import Cover from '@components/core/cover/Cover';
-import IconPanel from '@components/core/icon-panel/IconPanel';
 import SubHeader from '@components/core/sub-header/SubHeader';
-import Tooltip from '@components/core/tooltip/Tooltip';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Indicators from '@components/programs/indicators/Indicators';
-import {
-    faArrowLeft,
-    faArrowRight,
-    faBirthdayCake,
-    faBook,
-    faCalendar,
-    faClock,
-    faGlobe,
-    faGraduationCap,
-    faHeart,
-    faInfoCircle,
-    faLock,
-    faMoneyBill,
-    faSuitcase
-} from '@fortawesome/pro-light-svg-icons';
+import { faHeart } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
@@ -33,9 +17,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
 import { countries } from '@utils/forms/countries';
-import { currency } from '@utils/helpers/currency';
-import { date } from '@utils/helpers/date';
-import { convertDuration } from '@utils/helpers/duration';
 import { markdown } from '@utils/helpers/markdown';
 import { API } from 'aws-amplify';
 import { GetStaticPaths, GetStaticProps } from 'next';
