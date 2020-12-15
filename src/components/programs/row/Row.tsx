@@ -1,5 +1,6 @@
 import Button from '@components/core/button/Button';
 import { DurationUnit } from '@graphql/API';
+import { countries } from '@utils/forms/countries';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { convertDuration } from '@utils/helpers/duration';
@@ -30,7 +31,6 @@ type Props = {
 const Row: FC<Props> = (props) => {
     const {
         city,
-        country,
         duration,
         durationUnit,
         fee,
@@ -43,9 +43,11 @@ const Row: FC<Props> = (props) => {
         school
     } = props;
 
+    const country = countries.find((c) => c.value === props.country)?.label || '';
+
+    const { t } = useTranslation();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
-    const { t } = useTranslation();
 
     const convertedDuration = useMemo(
         () =>
@@ -105,7 +107,7 @@ const Row: FC<Props> = (props) => {
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
-                                        {city}, {country}
+                                        {city}, {t(`common:${country}`)}
                                     </div>
                                 </div>
                             </div>

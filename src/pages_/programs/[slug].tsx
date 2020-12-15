@@ -2,10 +2,28 @@ import '@utils/services/amplify';
 
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 import Button from '@components/core/button/Button';
+import Container from '@components/core/container/Container';
 import Cover from '@components/core/cover/Cover';
+import IconPanel from '@components/core/icon-panel/IconPanel';
 import SubHeader from '@components/core/sub-header/SubHeader';
+import Tooltip from '@components/core/tooltip/Tooltip';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import { faHeart } from '@fortawesome/pro-light-svg-icons';
+import Indicators from '@components/programs/indicators/Indicators';
+import {
+    faArrowLeft,
+    faArrowRight,
+    faBirthdayCake,
+    faBook,
+    faCalendar,
+    faClock,
+    faGlobe,
+    faGraduationCap,
+    faHeart,
+    faInfoCircle,
+    faLock,
+    faMoneyBill,
+    faSuitcase
+} from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
@@ -14,6 +32,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
+import { countries } from '@utils/forms/countries';
+import { currency } from '@utils/helpers/currency';
+import { date } from '@utils/helpers/date';
+import { convertDuration } from '@utils/helpers/duration';
+import { markdown } from '@utils/helpers/markdown';
 import { API } from 'aws-amplify';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
@@ -26,8 +49,10 @@ type Props = {
 };
 
 const ProgramPage: FC<Props> = (props) => {
-    const { t } = useTranslation();
     const program = props.program?.data?.getProgramBySlug?.items?.[0];
+
+    const { t } = useTranslation();
+    const country = countries.find((c) => c.value === program?.country)?.label || '';
     const router = useRouter();
 
     console.log(program);
@@ -66,7 +91,7 @@ const ProgramPage: FC<Props> = (props) => {
                         <div className="flex items-baseline space-x-1">
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                             <div>
-                                {program?.city}, {program?.country}
+                                {program?.city}, {t(`common:${country}`)}
                             </div>
                         </div>
                         <div className="flex items-baseline space-x-1">
@@ -79,6 +104,15 @@ const ProgramPage: FC<Props> = (props) => {
                 }
                 title={program.name}
             />
+            <Indicators program={program} />
+            <Container title={t('programs:program-description')}>
+                <div
+                    className="markdown"
+                    dangerouslySetInnerHTML={{
+                        __html: markdown({ value: program?.description })
+                    }}
+                />
+            </Container>
         </DashboardLayout>
     );
 };

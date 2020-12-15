@@ -11,7 +11,7 @@ const SubHeader: FC<Props> = (props) => {
     const { actions, title, src, subtitle } = props;
 
     return (
-        <div className="mb-8 bg-white rounded-b-lg shadow overflow-hidden">
+        <div className="mb-6 bg-white rounded-b-lg shadow overflow-hidden">
             <div className="px-4 py-5 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="flex items-center space-x-0 md:space-x-4">

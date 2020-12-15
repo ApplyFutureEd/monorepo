@@ -792,3 +792,5 @@ export const countries = [
 export const supportedCountries = countries.filter((country) =>
     ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT'].includes(country.value)
 );
+
+console.log(supportedCountries);
