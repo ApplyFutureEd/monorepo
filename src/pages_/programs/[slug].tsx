@@ -5,18 +5,11 @@ import Button from '@components/core/button/Button';
 import Container from '@components/core/container/Container';
 import Cover from '@components/core/cover/Cover';
 import IconPanel from '@components/core/icon-panel/IconPanel';
-import KPI from '@components/core/icon-panel/IconPanel';
 import SubHeader from '@components/core/sub-header/SubHeader';
 import Tooltip from '@components/core/tooltip/Tooltip';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Indicators from '@components/programs/indicators/Indicators';
-import {
-    faBook,
-    faCalendar,
-    faHeart,
-    faInfoCircle,
-    faMoneyBill
-} from '@fortawesome/pro-light-svg-icons';
+import { faBook, faCalendar, faHeart, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
