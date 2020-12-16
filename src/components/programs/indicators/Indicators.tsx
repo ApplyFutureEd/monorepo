@@ -30,7 +30,7 @@ const Indicators: FC<Props> = (props) => {
 
     return (
         <div className="mb-6 bg-white rounded-md shadow">
-            <div className="grid grid-cols-1 bg-white rounded-lg shadow lg:grid-cols-6">
+            <div className="grid grid-cols-1 bg-white rounded-lg lg:grid-cols-6">
                 <div>
                     <IconPanel icon={faClock} label={t(`programs:${program?.schedule}`)}>
                         {convertDuration({
