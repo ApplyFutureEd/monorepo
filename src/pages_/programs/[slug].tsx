@@ -45,13 +45,10 @@ type Props = {
 };
 
 const ProgramPage: FC<Props> = (props) => {
+    console.log(props);
     const program = props.program?.data?.getProgramBySlug?.items?.[0];
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
-
-    if (router.isFallback) {
-        return <div>Loading...</div>;
-    }
 
     const { t } = useTranslation();
     const country = countries.find((c) => c.value === program?.country)?.label || '';
@@ -80,6 +77,10 @@ const ProgramPage: FC<Props> = (props) => {
         'logic-and-reasoning-tests':
             program?.testGmat > 0 || program?.testGre > 0 || program?.testTagemage > 0
     };
+
+    if (router.isFallback) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <DashboardLayout description="" title="">
@@ -160,7 +161,6 @@ const ProgramPage: FC<Props> = (props) => {
                                 {program?.testToefl > 0 && (
                                     <div className="inline-flex border border-gray-200 rounded-md">
                                         <IconPanel icon={faBook} label={t('programs:toefl')}>
-                                            {/* @todo: add tooltip content image*/}
                                             <Tooltip content={<div />}>
                                                 <div className="align-center flex items-center space-x-2">
                                                     <div>{program?.testToefl}</div>
@@ -347,7 +347,7 @@ const ProgramPage: FC<Props> = (props) => {
                 <Container title={t('programs:next-intake', { count: program?.intakes?.length })}>
                     {program?.intakes?.length > 0 && (
                         <div className="inline-flex flex-col mb-4 space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-                            {program?.intakes.map((intake: any) => (
+                            {program?.intakes.split(',').map((intake: any) => (
                                 <div
                                     key={intake}
                                     className="inline-flex border border-gray-200 rounded-md">
