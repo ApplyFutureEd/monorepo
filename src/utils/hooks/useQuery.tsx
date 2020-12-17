@@ -1,34 +1,53 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { API, graphqlOperation } from 'aws-amplify';
+import { isArray, mergeWith } from 'lodash';
 import { useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 type UseQueryType<ResultType> = {
-    loading: boolean;
-    error: any;
     data: ResultType;
+    error: any;
+    fetchMore: (nextToken: string) => void;
+    isLoading: boolean;
     refetch: () => void;
+};
+
+const customizer = (objValue: any, srcValue: any) => {
+    if (isArray(objValue)) {
+        return objValue.concat(srcValue);
+    }
 };
 
 export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     query: string,
     variables?: VariablesType
 ): UseQueryType<ResultType> => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
     const [data, setData] = useState({} as ResultType);
 
-    const fetchQuery = async (query: string, variables?: VariablesType) => {
+    const fetchQuery = async (query: string, variables?: VariablesType, nextToken?: string) => {
         try {
-            const { data } = (await API.graphql(graphqlOperation(query, variables))) as {
+            setIsLoading(true);
+            const { data } = (await API.graphql(
+                graphqlOperation(query, { ...variables, nextToken })
+            )) as {
                 data: ResultType;
             };
-            setData(data);
+            if (nextToken) {
+                setData((prevData) => mergeWith(prevData, data, customizer));
+            } else {
+                setData(data);
+            }
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
+    };
+
+    const fetchMore = (nextToken: string) => {
+        fetchQuery(query, variables, nextToken);
     };
 
     const refetch = () => {
@@ -42,7 +61,8 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     return {
         data,
         error,
-        loading,
+        fetchMore,
+        isLoading,
         refetch
     };
 };

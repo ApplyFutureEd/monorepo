@@ -1,6 +1,7 @@
 import Container from '@components/core/container/Container';
 import Filters from '@components/programs/filters/Filters';
 import Row from '@components/programs/row/Row';
+import SkeletonRow from '@components/programs/row/SkeletonRow';
 import Search from '@components/programs/search/Search';
 import SortBy from '@components/programs/sort-by/SortBy';
 import {
@@ -10,19 +11,40 @@ import {
     SearchProgramsQueryVariables
 } from '@graphql/API';
 import { searchPrograms } from '@graphql/queries';
+import { usePageBottom } from '@utils/hooks/usePageBottom';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 const Programs: FC = () => {
     const { t } = useTranslation();
-    const [variables, setVariables] = useState<SearchProgramsQueryVariables>({ limit: 20 });
-    const { data } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(
-        searchPrograms,
-        variables
-    );
+    const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
+        filter: {
+            published: { eq: true }
+        },
+        limit: 20
+    });
+    const { data, fetchMore, isLoading } = useQuery<
+        SearchProgramsQuery,
+        SearchProgramsQueryVariables
+    >(searchPrograms, variables);
+    const isPageBottom = usePageBottom();
+
+    useEffect(() => {
+        if (!isLoading && isPageBottom && data.searchPrograms?.nextToken) {
+            fetchMore(data.searchPrograms?.nextToken);
+        }
+    }, [isPageBottom]);
 
     const handleSearch = (query: string) => {
+        if (!query) {
+            setVariables({
+                filter: {
+                    published: { eq: true }
+                },
+                limit: 20
+            });
+        }
         setVariables({
             filter: {
                 or: [
@@ -32,7 +54,8 @@ const Programs: FC = () => {
                     { schoolName: { matchPhrasePrefix: query } }
                 ],
                 published: { eq: true }
-            }
+            },
+            limit: 20
         });
     };
 
@@ -59,6 +82,8 @@ const Programs: FC = () => {
         <Filters key={1} handleFilter={handleFilter} />,
         <SortBy key={2} handleSort={handleSort} />
     ];
+
+    const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
     return (
         <Container
@@ -103,6 +128,7 @@ const Programs: FC = () => {
                     />
                 );
             })}
+            {isLoading && skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
         </Container>
     );
 };
