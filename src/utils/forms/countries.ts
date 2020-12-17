@@ -793,4 +793,5 @@ export const supportedCountries = countries.filter((country) =>
     ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT'].includes(country.value)
 );
 
-console.log(supportedCountries);
+export const getCountryLabel = (value: string): string =>
+    countries.find((country) => country.value === value)?.label || '';

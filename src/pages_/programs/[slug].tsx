@@ -1,6 +1,6 @@
 import '@utils/services/amplify';
 
-import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import Button from '@components/core/button/Button';
 import Container from '@components/core/container/Container';
 import Cover from '@components/core/cover/Cover';
@@ -18,10 +18,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
-import { cambridgeAdvancedResults } from '@utils/forms/cambridgeAdvancedResults';
-import { cambridgeFirstResults } from '@utils/forms/cambridgeFirstResults';
-import { countries } from '@utils/forms/countries';
-import { educationLevels } from '@utils/forms/educationLevels';
+import { getCambridgeAdvancedLabel } from '@utils/forms/cambridgeAdvancedResults';
+import { getCambridgeFirstLabel } from '@utils/forms/cambridgeFirstResults';
+import { getCountryLabel } from '@utils/forms/countries';
+import { getEducationLabel } from '@utils/forms/educationLevels';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { markdown } from '@utils/helpers/markdown';
@@ -31,29 +31,20 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
+import { Program } from 'src/models';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    program: any;
+    program: Program;
 };
 
 const ProgramPage: FC<Props> = (props) => {
-    console.log(props);
-    const program = props.program?.data?.getProgramBySlug?.items?.[0];
-    const router = useRouter();
-    const locale = router.locale as SupportedLocale;
+    const { program } = props;
 
+    const router = useRouter();
     const { t } = useTranslation();
-    const country = countries.find((c) => c.value === program?.country)?.label || '';
-    const highestEducationLevel = educationLevels.find(
-        (educationLevel) => educationLevel.value === program?.highestEducationLevel
-    )?.label;
-    const testCambridgeFirst = cambridgeFirstResults.find(
-        (result) => result.value === program?.testCambridgeFirst
-    )?.label;
-    const testCambridgeAdvanced = cambridgeAdvancedResults.find(
-        (result) => result.value === program?.testCambridgeAdvanced
-    )?.label;
+
+    const locale = router.locale as SupportedLocale;
     const requirements = {
         'age-and-work-experiences':
             program?.minimumAge > 0 ||
@@ -71,7 +62,7 @@ const ProgramPage: FC<Props> = (props) => {
             program?.testGmat > 0 || program?.testGre > 0 || program?.testTagemage > 0
     };
 
-    if (router.isFallback) {
+    if (router.isFallback || !program) {
         return <div>Loading...</div>;
     }
 
@@ -104,7 +95,7 @@ const ProgramPage: FC<Props> = (props) => {
                         <div className="flex items-baseline space-x-1">
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                             <div>
-                                {program?.city}, {t(`common:${country}`)}
+                                {program?.city}, {t(`common:${getCountryLabel(program?.country)}`)}
                             </div>
                         </div>
                         <div className="flex items-baseline space-x-1">
@@ -120,12 +111,14 @@ const ProgramPage: FC<Props> = (props) => {
             <Indicators program={program} />
             <div className="space-y-6">
                 <Container title={t('programs:program-description')}>
-                    <div
-                        className="markdown"
-                        dangerouslySetInnerHTML={{
-                            __html: markdown({ value: program?.description })
-                        }}
-                    />
+                    {program?.description && (
+                        <div
+                            className="markdown"
+                            dangerouslySetInnerHTML={{
+                                __html: markdown({ value: program?.description })
+                            }}
+                        />
+                    )}
                 </Container>
 
                 <Container title={t('programs:admission-requirements')}>
@@ -137,7 +130,7 @@ const ProgramPage: FC<Props> = (props) => {
                             <IconPanel
                                 icon={faBook}
                                 label={t('programs:minimum-level-of-education-required')}>
-                                {t(`programs:${highestEducationLevel}`)}
+                                {t(`programs:${getEducationLabel(program?.highestEducationLevel)}`)}
                             </IconPanel>
                         </div>
                     </div>
@@ -181,7 +174,7 @@ const ProgramPage: FC<Props> = (props) => {
                                         <IconPanel
                                             icon={faBook}
                                             label={t('programs:cambridge-first')}>
-                                            {testCambridgeFirst}
+                                            {getCambridgeFirstLabel(program?.testCambridgeFirst)}
                                         </IconPanel>
                                     </div>
                                 )}
@@ -190,7 +183,9 @@ const ProgramPage: FC<Props> = (props) => {
                                         <IconPanel
                                             icon={faBook}
                                             label={t('programs:cambridge-advanced')}>
-                                            {testCambridgeAdvanced}
+                                            {getCambridgeAdvancedLabel(
+                                                program?.testCambridgeAdvanced
+                                            )}
                                         </IconPanel>
                                     </div>
                                 )}
@@ -329,12 +324,14 @@ const ProgramPage: FC<Props> = (props) => {
                                 : t('programs:free-of-charge')}
                         </IconPanel>
                     </div>
-                    <div
-                        className="markdown"
-                        dangerouslySetInnerHTML={{
-                            __html: markdown({ value: program?.feesAndFinancing })
-                        }}
-                    />
+                    {program?.feesAndFinancing && (
+                        <div
+                            className="markdown"
+                            dangerouslySetInnerHTML={{
+                                __html: markdown({ value: program?.feesAndFinancing })
+                            }}
+                        />
+                    )}
                 </Container>
 
                 <Container title={t('programs:next-intake', { count: program?.intakes?.length })}>
@@ -351,12 +348,14 @@ const ProgramPage: FC<Props> = (props) => {
                             ))}
                         </div>
                     )}
-                    <div
-                        className="markdown"
-                        dangerouslySetInnerHTML={{
-                            __html: markdown({ value: program?.intakeInformation })
-                        }}
-                    />
+                    {program?.intakeInformation && (
+                        <div
+                            className="markdown"
+                            dangerouslySetInnerHTML={{
+                                __html: markdown({ value: program?.intakeInformation })
+                            }}
+                        />
+                    )}
                 </Container>
             </div>
         </DashboardLayout>
@@ -394,15 +393,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const { slug } = params as Params;
 
-        const data = (await API.graphql({
+        const { data } = (await API.graphql({
             authMode: GRAPHQL_AUTH_MODE.API_KEY,
             query: getProgramBySlug,
             variables: { slug }
-        })) as GetProgramBySlugQuery;
+        })) as GraphQLResult<GetProgramBySlugQuery>;
+
+        const program = data?.getProgramBySlug?.items?.[0] || null;
 
         return {
             props: {
-                program: data
+                program
             },
             revalidate: 1
         };
