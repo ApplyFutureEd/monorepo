@@ -3043,3 +3043,45 @@ export const onDeleteProgram = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
+      category
+      content
+      id
+      published
+      slug
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
+      category
+      content
+      id
+      published
+      slug
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
+      category
+      content
+      id
+      published
+      slug
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;

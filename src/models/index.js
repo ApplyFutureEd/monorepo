@@ -9,7 +9,7 @@ const DurationUnit = {
   "WEEK": "week"
 };
 
-const { Student, Document, Application, Program, School, SearchAlert, Feedback, SchoolAttended, WorkExperience, ApplicationStepsTemplate, ApplicationStep, RequestedDocument, Notification } = initSchema(schema);
+const { Student, Document, Application, Program, School, SearchAlert, Feedback, Post, SchoolAttended, WorkExperience, ApplicationStepsTemplate, ApplicationStep, RequestedDocument, Notification } = initSchema(schema);
 
 export {
   Student,
@@ -19,6 +19,7 @@ export {
   School,
   SearchAlert,
   Feedback,
+  Post,
   DurationUnit,
   SchoolAttended,
   WorkExperience,

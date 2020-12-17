@@ -277,3 +277,17 @@ export declare class Feedback {
         mutator: (draft: MutableModel<Feedback>) => MutableModel<Feedback> | void
     ): Feedback;
 }
+
+export declare class Post {
+    readonly id: string;
+    readonly category: string;
+    readonly content: string;
+    readonly published: boolean;
+    readonly slug: string;
+    readonly title: string;
+    constructor(init: ModelInit<Post>);
+    static copyOf(
+        source: Post,
+        mutator: (draft: MutableModel<Post>) => MutableModel<Post> | void
+    ): Post;
+}

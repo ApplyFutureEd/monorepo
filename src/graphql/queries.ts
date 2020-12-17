@@ -2261,3 +2261,67 @@ export const searchPrograms = /* GraphQL */ `
     }
   }
 `;
+export const getPost = /* GraphQL */ `
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
+      category
+      content
+      id
+      published
+      slug
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPosts = /* GraphQL */ `
+  query ListPosts(
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        category
+        content
+        id
+        published
+        slug
+        title
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPostBySlug = /* GraphQL */ `
+  query GetPostBySlug(
+    $slug: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getPostBySlug(
+      slug: $slug
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        category
+        content
+        id
+        published
+        slug
+        title
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
