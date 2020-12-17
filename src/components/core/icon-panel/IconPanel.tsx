@@ -9,7 +9,7 @@ type Props = {
     isLoading?: boolean;
 };
 
-const KPI: FC<Props> = (props) => {
+const IconPanel: FC<Props> = (props) => {
     const { icon, label, children } = props;
 
     return (
@@ -29,4 +29,4 @@ const KPI: FC<Props> = (props) => {
     );
 };
 
-export default KPI;
+export default IconPanel;
