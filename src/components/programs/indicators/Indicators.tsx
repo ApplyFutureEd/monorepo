@@ -7,6 +7,7 @@ import {
     faGraduationCap,
     faMoneyBill
 } from '@fortawesome/pro-light-svg-icons';
+import { Program } from '@models';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { convertDuration } from '@utils/helpers/duration';
@@ -16,13 +17,11 @@ import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    program: any;
+    program: Program;
 };
 
 const Indicators: FC<Props> = (props) => {
-    console.log(props);
     const { program } = props;
-    console.log(program);
 
     const { t } = useTranslation();
     const router = useRouter();

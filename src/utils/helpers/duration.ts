@@ -1,10 +1,10 @@
-import { DurationUnit } from '@graphql/API';
+import { DurationUnit } from '@models';
 
 type DurationOptions = {
     /**
      * Unit in which the provided value should be converted.
      */
-    unit: DurationUnit;
+    unit: DurationUnit | 'DAY' | 'MONTH' | 'YEAR' | 'WEEK';
     /**
      * Value in seconds to be converted in the provided unit.
      */

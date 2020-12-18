@@ -18,6 +18,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
 import { getProgramBySlug, listPrograms } from '@graphql/queries';
+import { Program } from '@models';
 import { getCambridgeAdvancedLabel } from '@utils/forms/cambridgeAdvancedResults';
 import { getCambridgeFirstLabel } from '@utils/forms/cambridgeFirstResults';
 import { getCountryLabel } from '@utils/forms/countries';
@@ -31,7 +32,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
-import { Program } from 'src/models';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
@@ -66,6 +66,36 @@ const ProgramPage: FC<Props> = (props) => {
         return <div>Loading...</div>;
     }
 
+    const actionComponents = [
+        <Button key={0} startIcon={faHeart} type="button" variant="secondary">
+            {t('programs:favorite')}
+        </Button>,
+        <Button key={1} type="button" variant="primary">
+            {t('programs:apply')}
+        </Button>
+    ];
+
+    const subtitleComponents = [
+        <Link key={0} href={`/schools/${program?.school?.slug}`}>
+            <div className="flex items-baseline hover:text-indigo-500 space-x-1">
+                <FontAwesomeIcon icon={faUniversitySolid} />
+                <div>{program?.school?.name}</div>
+            </div>
+        </Link>,
+        <div key={1} className="flex items-baseline space-x-1">
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+            <div>
+                {program?.city}, {t(`common:${getCountryLabel(program?.country)}`)}
+            </div>
+        </div>,
+        <div key={2} className="flex items-baseline space-x-1">
+            <FontAwesomeIcon icon={faPortrait} />
+            <div>
+                {t('programs:program-id')}: {program?.id?.slice(0, 6).toUpperCase()}
+            </div>
+        </div>
+    ];
+
     return (
         <DashboardLayout description="" title="">
             <Cover
@@ -73,39 +103,9 @@ const ProgramPage: FC<Props> = (props) => {
                 src={`${process.env.ASSETS_CDN_URL}/${program?.school?.coverPhoto}` || ''}
             />
             <SubHeader
-                actions={
-                    <>
-                        <Button startIcon={faHeart} type="button" variant="secondary">
-                            {t('programs:favorite')}
-                        </Button>
-                        <Button type="button" variant="primary">
-                            {t('programs:apply')}
-                        </Button>
-                    </>
-                }
+                actionComponents={actionComponents}
                 src={`${process.env.ASSETS_CDN_URL}/${program?.school?.logo}` || ''}
-                subtitle={
-                    <>
-                        <Link href={`/schools/${program?.school?.slug}`}>
-                            <div className="flex items-baseline hover:text-indigo-500 space-x-1">
-                                <FontAwesomeIcon icon={faUniversitySolid} />
-                                <div>{program?.school?.name}</div>
-                            </div>
-                        </Link>
-                        <div className="flex items-baseline space-x-1">
-                            <FontAwesomeIcon icon={faMapMarkerAlt} />
-                            <div>
-                                {program?.city}, {t(`common:${getCountryLabel(program?.country)}`)}
-                            </div>
-                        </div>
-                        <div className="flex items-baseline space-x-1">
-                            <FontAwesomeIcon icon={faPortrait} />
-                            <div>
-                                {t('programs:program-id')}: {program?.id?.slice(0, 6).toUpperCase()}
-                            </div>
-                        </div>
-                    </>
-                }
+                subtitleComponents={subtitleComponents}
                 title={program.name}
             />
             <Indicators program={program} />

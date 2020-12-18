@@ -1,14 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
-    actions?: ReactNode;
+    actionComponents?: ReactNode;
     title: string;
-    src?: string;
-    subtitle?: ReactNode;
+    src: string;
+    subtitleComponents?: ReactNode;
 };
 
 const SubHeader: FC<Props> = (props) => {
-    const { actions, title, src, subtitle } = props;
+    const { actionComponents, title, src, subtitleComponents } = props;
 
     return (
         <div className="mb-6 bg-white rounded-b-lg shadow overflow-hidden">
@@ -27,12 +27,16 @@ const SubHeader: FC<Props> = (props) => {
                                     {title}
                                 </dd>
                             </div>
-                            <dt className="inline-flex flex-col mt-2 text-gray-500 text-sm font-medium leading-5 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
-                                {subtitle}
-                            </dt>
+                            {subtitleComponents && (
+                                <dt className="inline-flex flex-col mt-2 text-gray-500 text-sm font-medium leading-5 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
+                                    {subtitleComponents}
+                                </dt>
+                            )}
                         </dl>
                     </div>
-                    <div className="flex mt-4 space-x-2 md:mt-0">{actions}</div>
+                    {actionComponents && (
+                        <div className="flex mt-4 space-x-2 md:mt-0">{actionComponents}</div>
+                    )}
                 </div>
             </div>
         </div>
