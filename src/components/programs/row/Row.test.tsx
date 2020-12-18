@@ -1,5 +1,5 @@
 import Row from '@components/programs/row/Row';
-import { DurationUnit } from '@graphql/API';
+import { DurationUnit } from '@models';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

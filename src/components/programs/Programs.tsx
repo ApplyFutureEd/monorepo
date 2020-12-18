@@ -11,6 +11,7 @@ import {
     SearchProgramsQueryVariables
 } from '@graphql/API';
 import { searchPrograms } from '@graphql/queries';
+import { DurationUnit } from '@models';
 import { usePageBottom } from '@utils/hooks/usePageBottom';
 import { useQuery } from '@utils/hooks/useQuery';
 import useTranslation from 'next-translate/useTranslation';
@@ -99,7 +100,6 @@ const Programs: FC = () => {
                     city,
                     country,
                     duration,
-                    durationUnit,
                     fee,
                     feeCurrency,
                     feeUnit,
@@ -109,6 +109,8 @@ const Programs: FC = () => {
                     school,
                     slug
                 } = program;
+
+                const durationUnit = (program.durationUnit as unknown) as DurationUnit;
 
                 return (
                     <Row
