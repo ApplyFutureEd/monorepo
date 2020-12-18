@@ -1,5 +1,5 @@
 import Button from '@components/core/button/Button';
-import { DurationUnit } from '@graphql/API';
+import { DurationUnit } from '@models';
 import { countries } from '@utils/forms/countries';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
@@ -32,7 +32,6 @@ const Row: FC<Props> = (props) => {
     const {
         city,
         duration,
-        durationUnit,
         fee,
         feeCurrency,
         feeUnit,
@@ -42,6 +41,8 @@ const Row: FC<Props> = (props) => {
         slug,
         school
     } = props;
+
+    const durationUnit = props.durationUnit as DurationUnit;
 
     const country = countries.find((c) => c.value === props.country)?.label || '';
 
