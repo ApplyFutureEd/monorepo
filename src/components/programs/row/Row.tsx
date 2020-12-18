@@ -1,13 +1,13 @@
 import Button from '@components/core/button/Button';
 import { DurationUnit } from '@models';
-import { countries } from '@utils/forms/countries';
+import { getCountryLabel } from '@utils/forms/countries';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { convertDuration } from '@utils/helpers/duration';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
@@ -31,7 +31,9 @@ type Props = {
 const Row: FC<Props> = (props) => {
     const {
         city,
+        country,
         duration,
+        durationUnit,
         fee,
         feeCurrency,
         feeUnit,
@@ -42,32 +44,9 @@ const Row: FC<Props> = (props) => {
         school
     } = props;
 
-    const durationUnit = props.durationUnit as DurationUnit;
-
-    const country = countries.find((c) => c.value === props.country)?.label || '';
-
     const { t } = useTranslation();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
-
-    const convertedDuration = useMemo(
-        () =>
-            convertDuration({
-                unit: durationUnit,
-                value: duration
-            }),
-        [durationUnit, duration]
-    );
-
-    const localizedFee = useMemo(
-        () =>
-            currency({
-                currency: feeCurrency,
-                locale: locale,
-                value: fee
-            }),
-        [feeCurrency, locale, fee]
-    );
 
     return (
         <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
@@ -99,16 +78,22 @@ const Row: FC<Props> = (props) => {
                             <div className="w-1/2">
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
-                                        {convertedDuration}{' '}
+                                        {convertDuration({
+                                            unit: durationUnit,
+                                            value: duration
+                                        })}{' '}
                                         {t(`programs:${durationUnit}`, {
-                                            count: convertedDuration
+                                            count: convertDuration({
+                                                unit: durationUnit,
+                                                value: duration
+                                            })
                                         })}
                                         , {t('programs:full-time')}
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
-                                        {city}, {t(`common:${country}`)}
+                                        {city}, {t(`common:${getCountryLabel(country)}`)}
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +116,14 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
                                         <div>
-                                            {t(`programs:${feeUnit}`)} <b>{localizedFee}</b>
+                                            {t(`programs:${feeUnit}`)}{' '}
+                                            <b>
+                                                {currency({
+                                                    currency: feeCurrency,
+                                                    locale: locale,
+                                                    value: fee
+                                                })}
+                                            </b>
                                         </div>
                                     </div>
                                 </div>
