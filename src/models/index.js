@@ -3,10 +3,10 @@ import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
 const DurationUnit = {
-  "DAY": "day",
-  "MONTH": "month",
-  "YEAR": "year",
-  "WEEK": "week"
+  "DAY": "DAY",
+  "MONTH": "MONTH",
+  "YEAR": "YEAR",
+  "WEEK": "WEEK"
 };
 
 const { Student, Document, Application, Program, School, SearchAlert, Feedback, SchoolAttended, WorkExperience, ApplicationStepsTemplate, ApplicationStep, RequestedDocument, Notification } = initSchema(schema);

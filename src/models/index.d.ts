@@ -1,10 +1,10 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from '@aws-amplify/datastore';
 
 export enum DurationUnit {
-    DAY = 'day',
-    MONTH = 'month',
-    YEAR = 'year',
-    WEEK = 'week'
+    DAY = 'DAY',
+    MONTH = 'MONTH',
+    YEAR = 'YEAR',
+    WEEK = 'WEEK'
 }
 
 export declare class SchoolAttended {

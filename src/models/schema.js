@@ -1573,10 +1573,10 @@ export const schema = {
         "DurationUnit": {
             "name": "DurationUnit",
             "values": [
-                "day",
-                "month",
-                "year",
-                "week"
+                "DAY",
+                "MONTH",
+                "YEAR",
+                "WEEK"
             ]
         }
     },

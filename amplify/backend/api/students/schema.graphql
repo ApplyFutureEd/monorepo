@@ -101,10 +101,10 @@ type Program
 }
 
 enum DurationUnit {
-    day
-    month
-    year
-    week
+    DAY
+    MONTH
+    YEAR
+    WEEK
 }
 
 type RequestedDocument {

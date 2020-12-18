@@ -16,7 +16,7 @@ describe('Row', () => {
         city: 'Murcia',
         country: 'Spain',
         duration: 31540000,
-        durationUnit: 'year' as DurationUnit,
+        durationUnit: 'YEAR' as DurationUnit,
         fee: 9000,
         feeCurrency: 'EUR',
         feeUnit: 'total-fee',
