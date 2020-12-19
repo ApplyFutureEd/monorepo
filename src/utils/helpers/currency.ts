@@ -7,7 +7,7 @@ type CurrencyOptions = {
 };
 
 export const currency = (options: CurrencyOptions): string => {
-    const { currency = 'EUR', locale = 'en', value } = options;
+    const { currency, locale = 'en', value } = options;
 
     return Intl.NumberFormat(locale, {
         currency,

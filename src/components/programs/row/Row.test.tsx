@@ -1,5 +1,5 @@
 import Row from '@components/programs/row/Row';
-import { DurationUnit } from '@graphql/API';
+import { DurationUnit } from '@models';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -16,7 +16,7 @@ describe('Row', () => {
         city: 'Murcia',
         country: 'Spain',
         duration: 31540000,
-        durationUnit: 'year' as DurationUnit,
+        durationUnit: 'YEAR' as DurationUnit,
         fee: 9000,
         feeCurrency: 'EUR',
         feeUnit: 'total-fee',

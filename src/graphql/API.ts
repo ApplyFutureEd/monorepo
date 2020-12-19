@@ -107,10 +107,10 @@ export type ModelBooleanInput = {
 };
 
 export enum DurationUnit {
-  day = "day",
-  month = "month",
-  year = "year",
-  week = "week",
+  DAY = "DAY",
+  MONTH = "MONTH",
+  YEAR = "YEAR",
+  WEEK = "WEEK",
 }
 
 

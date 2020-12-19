@@ -1,12 +1,13 @@
 import Button from '@components/core/button/Button';
-import { DurationUnit } from '@graphql/API';
+import { DurationUnit } from '@models';
+import { getCountryLabel } from '@utils/forms/countries';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { convertDuration } from '@utils/helpers/duration';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
@@ -43,33 +44,14 @@ const Row: FC<Props> = (props) => {
         school
     } = props;
 
+    const { t } = useTranslation();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
-    const { t } = useTranslation();
-
-    const convertedDuration = useMemo(
-        () =>
-            convertDuration({
-                unit: durationUnit,
-                value: duration
-            }),
-        [durationUnit, duration]
-    );
-
-    const localizedFee = useMemo(
-        () =>
-            currency({
-                currency: feeCurrency,
-                locale: locale,
-                value: fee
-            }),
-        [feeCurrency, locale, fee]
-    );
 
     return (
         <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
             <Link href={`/programs/${slug}`}>
-                <div className="w-11/12">
+                <div className="w-11/12 cursor-pointer">
                     <div className="flex items-center w-full">
                         <div className="flex items-center w-full space-x-4 md:w-1/2">
                             <img
@@ -96,16 +78,22 @@ const Row: FC<Props> = (props) => {
                             <div className="w-1/2">
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
-                                        {convertedDuration}{' '}
+                                        {convertDuration({
+                                            unit: durationUnit,
+                                            value: duration
+                                        })}{' '}
                                         {t(`programs:${durationUnit}`, {
-                                            count: convertedDuration
+                                            count: convertDuration({
+                                                unit: durationUnit,
+                                                value: duration
+                                            })
                                         })}
                                         , {t('programs:full-time')}
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
-                                        {city}, {country}
+                                        {city}, {t(`common:${getCountryLabel(country)}`)}
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +116,14 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
                                         <div>
-                                            {t(`programs:${feeUnit}`)} <b>{localizedFee}</b>
+                                            {t(`programs:${feeUnit}`)}{' '}
+                                            <b>
+                                                {currency({
+                                                    currency: feeCurrency,
+                                                    locale: locale,
+                                                    value: fee
+                                                })}
+                                            </b>
                                         </div>
                                     </div>
                                 </div>

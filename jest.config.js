@@ -6,7 +6,7 @@ module.exports = {
         '!**/node_modules/**',
         '!**/*.story.tsx',
         '!**/pages/*.{js,tsx}',
-        '!**/pages_/*.tsx',
+        '!**/pages_/**/*.tsx',
         '!**/utils/**/*.{ts,tsx}',
         '!**/graphql/**/*.ts',
         '!**/amplify/**/*'
@@ -14,6 +14,7 @@ module.exports = {
     moduleNameMapper: {
         '@components/(.*)': '<rootDir>/src/components/$1',
         '@graphql/(.*)': '<rootDir>/src/graphql/$1',
+        '@models': '<rootDir>/src/models/index',
         '@pages/(.*)': '<rootDir>/src/pages/$1',
         '@styles/(.*)': '<rootDir>/src/styles/$1',
         '@utils/(.*)': '<rootDir>/src/utils/$1',
