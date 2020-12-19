@@ -1,6 +1,6 @@
-import UserMenu from '@components/auth/user-menu/UserMenu';
 import Button from '@components/core/button/Button';
 import Logo from '@components/core/logo/Logo';
+import UserMenu from '@components/core/user-menu/UserMenu';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';
