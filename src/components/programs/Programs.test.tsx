@@ -26,7 +26,11 @@ let mockedData = {
                 id: '28f4b32b-a65e-479c-a26c-f7d8e8939dc5',
                 intakes: '2021-09-18T00:00:00.000Z, 2022-09-18T00:00:00.000Z',
                 name: 'Master of Science in Creative Project Management, Culture and Design',
-                school: '6c13495b-cb3a-4ee1-ae7b-f8240ea8a10c',
+                schedule: 'FULL_TIME',
+                school: {
+                    logo: '8ddb22ed-8510-460b-a51f-860d345cfbea',
+                    name: 'Rennes School of Business'
+                },
                 slug:
                     'master-of-science-in-creative-project-management-culture-and-design-rennes-school-of-business-rennes'
             }

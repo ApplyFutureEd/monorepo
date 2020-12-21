@@ -1,5 +1,617 @@
 export const schema = {
     "models": {
+        "School": {
+            "name": "School",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "city": {
+                    "name": "city",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "country": {
+                    "name": "country",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Country"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "coverPhoto": {
+                    "name": "coverPhoto",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "contactEmail": {
+                    "name": "contactEmail",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "contactJobTitle": {
+                    "name": "contactJobTitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "contactName": {
+                    "name": "contactName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "contactPhone": {
+                    "name": "contactPhone",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "creationYear": {
+                    "name": "creationYear",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "institutionType": {
+                    "name": "institutionType",
+                    "isArray": false,
+                    "type": {
+                        "enum": "InstitutionType"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "internationalStudents": {
+                    "name": "internationalStudents",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "logo": {
+                    "name": "logo",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "totalStudents": {
+                    "name": "totalStudents",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "slug": {
+                    "name": "slug",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "published": {
+                    "name": "published",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "programs": {
+                    "name": "programs",
+                    "isArray": true,
+                    "type": {
+                        "model": "Program"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "school"
+                    }
+                },
+                "stepsTemplates": {
+                    "name": "stepsTemplates",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "ApplicationStepsTemplate"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "contractStatus": {
+                    "name": "contractStatus",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Schools",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "searchable",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySlug",
+                        "fields": [
+                            "slug"
+                        ],
+                        "queryField": "getSchoolBySlug"
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "read"
+                                ],
+                                "provider": "apiKey"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admin"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "read",
+                                    "delete"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Program": {
+            "name": "Program",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "applicationFee": {
+                    "name": "applicationFee",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "applicationFeeCurrency": {
+                    "name": "applicationFeeCurrency",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Currency"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "city": {
+                    "name": "city",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "costOfLiving": {
+                    "name": "costOfLiving",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "costOfLivingCurrency": {
+                    "name": "costOfLivingCurrency",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Currency"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "country": {
+                    "name": "country",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Country"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "degree": {
+                    "name": "degree",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Degree"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "discipline": {
+                    "name": "discipline",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Discipline"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "duration": {
+                    "name": "duration",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "durationUnit": {
+                    "name": "durationUnit",
+                    "isArray": false,
+                    "type": {
+                        "enum": "DurationUnit"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "fee": {
+                    "name": "fee",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "feeCurrency": {
+                    "name": "feeCurrency",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Currency"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "feesAndFinancing": {
+                    "name": "feesAndFinancing",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "feeUnit": {
+                    "name": "feeUnit",
+                    "isArray": false,
+                    "type": {
+                        "enum": "FeeUnit"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "gradePointAverage": {
+                    "name": "gradePointAverage",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "highestEducationLevel": {
+                    "name": "highestEducationLevel",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "intakes": {
+                    "name": "intakes",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "intakeInformation": {
+                    "name": "intakeInformation",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "languages": {
+                    "name": "languages",
+                    "isArray": true,
+                    "type": {
+                        "enum": "Language"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "minimumAge": {
+                    "name": "minimumAge",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "minimumWorkExperience": {
+                    "name": "minimumWorkExperience",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "minimumWorkExperienceUnit": {
+                    "name": "minimumWorkExperienceUnit",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "otherRequirements": {
+                    "name": "otherRequirements",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "published": {
+                    "name": "published",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "requestedDocuments": {
+                    "name": "requestedDocuments",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "RequestedDocument"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "schedule": {
+                    "name": "schedule",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Schedule"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "school": {
+                    "name": "school",
+                    "isArray": false,
+                    "type": {
+                        "model": "School"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "schoolId"
+                    }
+                },
+                "schoolName": {
+                    "name": "schoolName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "slug": {
+                    "name": "slug",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "submissionDeadline": {
+                    "name": "submissionDeadline",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testCambridgeAdvanced": {
+                    "name": "testCambridgeAdvanced",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testCambridgeFirst": {
+                    "name": "testCambridgeFirst",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testDelfdalf": {
+                    "name": "testDelfdalf",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testGmat": {
+                    "name": "testGmat",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testGre": {
+                    "name": "testGre",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testIelts": {
+                    "name": "testIelts",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testTagemage": {
+                    "name": "testTagemage",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testTcftef": {
+                    "name": "testTcftef",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testToefl": {
+                    "name": "testToefl",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "testToeic": {
+                    "name": "testToeic",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Programs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "searchable",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySlug",
+                        "fields": [
+                            "slug"
+                        ],
+                        "queryField": "getProgramBySlug"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySchool",
+                        "fields": [
+                            "schoolId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "read"
+                                ],
+                                "provider": "apiKey"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admin"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "read",
+                                    "delete"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Student": {
             "name": "Student",
             "fields": {
@@ -819,596 +1431,6 @@ export const schema = {
                 }
             ]
         },
-        "Program": {
-            "name": "Program",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "schoolName": {
-                    "name": "schoolName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "school": {
-                    "name": "school",
-                    "isArray": false,
-                    "type": {
-                        "model": "School"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "schoolId"
-                    }
-                },
-                "slug": {
-                    "name": "slug",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "city": {
-                    "name": "city",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "country": {
-                    "name": "country",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "discipline": {
-                    "name": "discipline",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "degree": {
-                    "name": "degree",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "duration": {
-                    "name": "duration",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "durationUnit": {
-                    "name": "durationUnit",
-                    "isArray": false,
-                    "type": {
-                        "enum": "DurationUnit"
-                    },
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "schedule": {
-                    "name": "schedule",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "languages": {
-                    "name": "languages",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "fee": {
-                    "name": "fee",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "feeUnit": {
-                    "name": "feeUnit",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "feeCurrency": {
-                    "name": "feeCurrency",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "intakes": {
-                    "name": "intakes",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "intakeInformation": {
-                    "name": "intakeInformation",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "submissionDeadline": {
-                    "name": "submissionDeadline",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "costOfLiving": {
-                    "name": "costOfLiving",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "costOfLivingCurrency": {
-                    "name": "costOfLivingCurrency",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "gradePointAverage": {
-                    "name": "gradePointAverage",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "highestEducationLevel": {
-                    "name": "highestEducationLevel",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testToefl": {
-                    "name": "testToefl",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testIelts": {
-                    "name": "testIelts",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testToeic": {
-                    "name": "testToeic",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testTcftef": {
-                    "name": "testTcftef",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testDelfdalf": {
-                    "name": "testDelfdalf",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testGre": {
-                    "name": "testGre",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testGmat": {
-                    "name": "testGmat",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testTagemage": {
-                    "name": "testTagemage",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testCambridgeFirst": {
-                    "name": "testCambridgeFirst",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "testCambridgeAdvanced": {
-                    "name": "testCambridgeAdvanced",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "requestedDocuments": {
-                    "name": "requestedDocuments",
-                    "isArray": true,
-                    "type": {
-                        "nonModel": "RequestedDocument"
-                    },
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "minimumAge": {
-                    "name": "minimumAge",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "minimumWorkExperience": {
-                    "name": "minimumWorkExperience",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "minimumWorkExperienceUnit": {
-                    "name": "minimumWorkExperienceUnit",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "otherRequirements": {
-                    "name": "otherRequirements",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "applicationFee": {
-                    "name": "applicationFee",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "applicationFeeCurrency": {
-                    "name": "applicationFeeCurrency",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "feesAndFinancing": {
-                    "name": "feesAndFinancing",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "published": {
-                    "name": "published",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "Programs",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "searchable",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "bySlug",
-                        "fields": [
-                            "slug"
-                        ],
-                        "queryField": "getProgramBySlug"
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "bySchool",
-                        "fields": [
-                            "schoolId"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "read"
-                                ],
-                                "provider": "apiKey"
-                            },
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "read"
-                                ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "admin"
-                                ],
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "read",
-                                    "delete"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "School": {
-            "name": "School",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "slug": {
-                    "name": "slug",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "city": {
-                    "name": "city",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "country": {
-                    "name": "country",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "totalStudents": {
-                    "name": "totalStudents",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "internationalStudents": {
-                    "name": "internationalStudents",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "institutionType": {
-                    "name": "institutionType",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "creationYear": {
-                    "name": "creationYear",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "logo": {
-                    "name": "logo",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "coverPhoto": {
-                    "name": "coverPhoto",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "contactJobTitle": {
-                    "name": "contactJobTitle",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "contactName": {
-                    "name": "contactName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "contactPhone": {
-                    "name": "contactPhone",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "contactEmail": {
-                    "name": "contactEmail",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "published": {
-                    "name": "published",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "programs": {
-                    "name": "programs",
-                    "isArray": true,
-                    "type": {
-                        "model": "Program"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "school"
-                    }
-                },
-                "stepsTemplates": {
-                    "name": "stepsTemplates",
-                    "isArray": true,
-                    "type": {
-                        "nonModel": "ApplicationStepsTemplate"
-                    },
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "contractStatus": {
-                    "name": "contractStatus",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "Schools",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "searchable",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "bySlug",
-                        "fields": [
-                            "slug"
-                        ],
-                        "queryField": "getSchoolBySlug"
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "read"
-                                ],
-                                "provider": "apiKey"
-                            },
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "read"
-                                ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "admin"
-                                ],
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "read",
-                                    "delete"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "SearchAlert": {
             "name": "SearchAlert",
             "fields": {
@@ -1570,6 +1592,247 @@ export const schema = {
         }
     },
     "enums": {
+        "Country": {
+            "name": "Country",
+            "values": [
+                "AF",
+                "AL",
+                "DZ",
+                "AD",
+                "AO",
+                "AG",
+                "AR",
+                "AM",
+                "AU",
+                "AT",
+                "AZ",
+                "BS",
+                "BH",
+                "BD",
+                "BB",
+                "BY",
+                "BE",
+                "BZ",
+                "BJ",
+                "BT",
+                "BO",
+                "BA",
+                "BW",
+                "BR",
+                "BG",
+                "BF",
+                "BI",
+                "KH",
+                "CM",
+                "CA",
+                "CV",
+                "CF",
+                "TD",
+                "CL",
+                "CN",
+                "CO",
+                "KM",
+                "CG",
+                "CD",
+                "CR",
+                "CI",
+                "HR",
+                "CU",
+                "CY",
+                "CZ",
+                "DK",
+                "DJ",
+                "DM",
+                "DO",
+                "EC",
+                "EG",
+                "SV",
+                "GQ",
+                "ER",
+                "EE",
+                "ET",
+                "FJ",
+                "FI",
+                "FR",
+                "GA",
+                "GM",
+                "GE",
+                "DE",
+                "GH",
+                "GR",
+                "GD",
+                "GP",
+                "GT",
+                "GN",
+                "GW",
+                "GY",
+                "HT",
+                "VA",
+                "HN",
+                "HK",
+                "HU",
+                "IS",
+                "IN",
+                "ID",
+                "IR",
+                "IQ",
+                "IE",
+                "IL",
+                "IT",
+                "JM",
+                "JP",
+                "JO",
+                "KZ",
+                "KE",
+                "KI",
+                "KP",
+                "KR",
+                "KW",
+                "KG",
+                "LA",
+                "LV",
+                "LB",
+                "LS",
+                "LR",
+                "LY",
+                "LI",
+                "LT",
+                "LU",
+                "MO",
+                "MK",
+                "MG",
+                "MW",
+                "MY",
+                "MV",
+                "ML",
+                "MT",
+                "MH",
+                "MR",
+                "MU",
+                "MX",
+                "FM",
+                "MD",
+                "MC",
+                "MN",
+                "ME",
+                "MA",
+                "MZ",
+                "MM",
+                "NA",
+                "NR",
+                "NP",
+                "NL",
+                "NZ",
+                "NI",
+                "NE",
+                "NG",
+                "NO",
+                "OM",
+                "PK",
+                "PW",
+                "PS",
+                "PA",
+                "PG",
+                "PY",
+                "PE",
+                "PH",
+                "PL",
+                "PT",
+                "QA",
+                "RO",
+                "RU",
+                "RW",
+                "KN",
+                "LC",
+                "VC",
+                "WS",
+                "SM",
+                "ST",
+                "SA",
+                "SN",
+                "RS",
+                "SC",
+                "SL",
+                "SG",
+                "SK",
+                "SI",
+                "SB",
+                "SO",
+                "ZA",
+                "SS",
+                "ES",
+                "LK",
+                "SD",
+                "SR",
+                "SE",
+                "CH",
+                "SY",
+                "TW",
+                "TJ",
+                "TZ",
+                "TH",
+                "TL",
+                "TG",
+                "TO",
+                "TT",
+                "TN",
+                "TR",
+                "TM",
+                "TV",
+                "UG",
+                "UA",
+                "AE",
+                "GB",
+                "US",
+                "UY",
+                "UZ",
+                "VU",
+                "VE",
+                "VN",
+                "YE",
+                "ZM",
+                "ZW"
+            ]
+        },
+        "ContractStatus": {
+            "name": "ContractStatus",
+            "values": [
+                "PRIORITY",
+                "CONTACTED",
+                "IN_NEGOCIATION",
+                "SIGNED"
+            ]
+        },
+        "Currency": {
+            "name": "Currency",
+            "values": [
+                "CHF",
+                "CNY",
+                "EUR",
+                "GBP"
+            ]
+        },
+        "Degree": {
+            "name": "Degree",
+            "values": [
+                "BACHELOR",
+                "MASTER",
+                "DOCTORATE"
+            ]
+        },
+        "Discipline": {
+            "name": "Discipline",
+            "values": [
+                "BUSINESS_MANAGEMENT_AND_ECONOMICS",
+                "ENGINEERING_AND_TECHNOLOGY",
+                "SCIENCES",
+                "CULINARY_ARTS",
+                "LAW_POLITICS_SOCIAL_COMMUNITY_SERVICE_AND_TEACHING",
+                "ARTS",
+                "HEALTH_SCIENCES_MEDICINE_NURSING_PARAMEDIC_AND_KINESIOLOGY",
+                "ENGLISH_FOR_ACADEMIC_STUDIES"
+            ]
+        },
         "DurationUnit": {
             "name": "DurationUnit",
             "values": [
@@ -1578,9 +1841,208 @@ export const schema = {
                 "YEAR",
                 "WEEK"
             ]
+        },
+        "FeeUnit": {
+            "name": "FeeUnit",
+            "values": [
+                "YEAR",
+                "TOTAL"
+            ]
+        },
+        "InstitutionType": {
+            "name": "InstitutionType",
+            "values": [
+                "PRIVATE",
+                "PUBLIC"
+            ]
+        },
+        "Language": {
+            "name": "Language",
+            "values": [
+                "AF",
+                "SQ",
+                "AR",
+                "HY",
+                "EU",
+                "BN",
+                "BG",
+                "CA",
+                "KM",
+                "ZH",
+                "HR",
+                "CS",
+                "DA",
+                "NL",
+                "EN",
+                "ET",
+                "FJ",
+                "FI",
+                "FR",
+                "KA",
+                "DE",
+                "EL",
+                "GU",
+                "HE",
+                "HI",
+                "HU",
+                "IS",
+                "ID",
+                "GA",
+                "IT",
+                "JA",
+                "JW",
+                "KO",
+                "LA",
+                "LV",
+                "LT",
+                "MK",
+                "MS",
+                "ML",
+                "MT",
+                "MI",
+                "MR",
+                "MN",
+                "NE",
+                "NO",
+                "FA",
+                "PL",
+                "PT",
+                "PA",
+                "QU",
+                "RO",
+                "RU",
+                "SM",
+                "SR",
+                "SK",
+                "SL",
+                "ES",
+                "SW",
+                "SV",
+                "TA",
+                "TT",
+                "TE",
+                "TH",
+                "BO",
+                "TO",
+                "TR",
+                "UK",
+                "UR",
+                "UZ",
+                "VI",
+                "CY",
+                "XH"
+            ]
+        },
+        "Schedule": {
+            "name": "Schedule",
+            "values": [
+                "FULL_TIME",
+                "PART_TIME"
+            ]
         }
     },
     "nonModels": {
+        "RequestedDocument": {
+            "name": "RequestedDocument",
+            "fields": {
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isMandatory": {
+                    "name": "isMandatory",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "storageKey": {
+                    "name": "storageKey",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "condition": {
+                    "name": "condition",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isSpecific": {
+                    "name": "isSpecific",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
+        "ApplicationStepsTemplate": {
+            "name": "ApplicationStepsTemplate",
+            "fields": {
+                "targets": {
+                    "name": "targets",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "steps": {
+                    "name": "steps",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "ApplicationStep"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
+        "ApplicationStep": {
+            "name": "ApplicationStep",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "status": {
+                    "name": "status",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isMandatory": {
+                    "name": "isMandatory",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
         "SchoolAttended": {
             "name": "SchoolAttended",
             "fields": {
@@ -1696,107 +2158,6 @@ export const schema = {
                 }
             }
         },
-        "ApplicationStepsTemplate": {
-            "name": "ApplicationStepsTemplate",
-            "fields": {
-                "targets": {
-                    "name": "targets",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "steps": {
-                    "name": "steps",
-                    "isArray": true,
-                    "type": {
-                        "nonModel": "ApplicationStep"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        },
-        "ApplicationStep": {
-            "name": "ApplicationStep",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "status": {
-                    "name": "status",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "date": {
-                    "name": "date",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isMandatory": {
-                    "name": "isMandatory",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        },
-        "RequestedDocument": {
-            "name": "RequestedDocument",
-            "fields": {
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isMandatory": {
-                    "name": "isMandatory",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "storageKey": {
-                    "name": "storageKey",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "condition": {
-                    "name": "condition",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isSpecific": {
-                    "name": "isSpecific",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        },
         "Notification": {
             "name": "Notification",
             "fields": {
@@ -1852,5 +2213,5 @@ export const schema = {
             }
         }
     },
-    "version": "1241fe4fda4f94425a6645598a7a1420"
+    "version": "9f5060978cacc65bfb83e1edfa68db50"
 };

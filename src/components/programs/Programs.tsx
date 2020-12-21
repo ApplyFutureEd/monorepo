@@ -38,7 +38,7 @@ const Programs: FC = () => {
 
     const handleSearch = (query: string) => {
         if (!query) {
-            setVariables({
+            return setVariables({
                 filter: {
                     published: { eq: true }
                 },
@@ -107,6 +107,7 @@ const Programs: FC = () => {
                     intakes,
                     name,
                     school,
+                    schedule,
                     slug
                 } = program;
 
@@ -122,6 +123,7 @@ const Programs: FC = () => {
                         feeUnit={feeUnit}
                         intakes={intakes}
                         name={name}
+                        schedule={schedule}
                         school={{ logo: school.logo, name: school.name }}
                         slug={slug}
                         onClick={handleClick}
