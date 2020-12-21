@@ -4,6 +4,23 @@ import Recruiters from '@pages/recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
 
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 describe('Recruiters', () => {
     const fakeRecruiter = {
         additionalComments: 'Lorem ipsum',

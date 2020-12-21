@@ -2,6 +2,23 @@ import Help from '@pages/help';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 describe('Help', () => {
     it('can render without crashing', () => {
         render(<Help />);

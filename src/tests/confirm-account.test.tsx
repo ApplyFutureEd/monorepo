@@ -12,6 +12,23 @@ jest.mock('next/router', () => ({
     }
 }));
 
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 Auth.confirmSignUp = jest.fn().mockImplementation(() => {
     return true;
 });

@@ -12,6 +12,23 @@ jest.mock('next/router', () => ({
     }
 }));
 
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 let mockedData = {
     searchPrograms: {
         items: [
@@ -182,7 +199,7 @@ describe('Programs', () => {
     it('can handle the sort by', () => {
         render(<Programs />);
 
-        const button = screen.getAllByRole('button')[1];
+        const button = screen.getAllByText(/programs:sort-by-option-alphabetical-order/)[0];
 
         fireEvent.click(button);
 
