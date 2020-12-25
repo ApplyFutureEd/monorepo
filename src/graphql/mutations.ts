@@ -8,22 +8,22 @@ export const createSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     createSchool(input: $input, condition: $condition) {
-      id
-      slug
-      name
       city
       country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
       coverPhoto
+      contactEmail
       contactJobTitle
       contactName
       contactPhone
-      contactEmail
+      creationYear
+      description
+      id
+      institutionType
+      internationalStudents
+      logo
+      name
+      totalStudents
+      slug
       published
       stepsTemplates {
         targets
@@ -39,48 +39,48 @@ export const createSchool = /* GraphQL */ `
       updatedAt
       programs {
         items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }
@@ -95,22 +95,22 @@ export const updateSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     updateSchool(input: $input, condition: $condition) {
-      id
-      slug
-      name
       city
       country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
       coverPhoto
+      contactEmail
       contactJobTitle
       contactName
       contactPhone
-      contactEmail
+      creationYear
+      description
+      id
+      institutionType
+      internationalStudents
+      logo
+      name
+      totalStudents
+      slug
       published
       stepsTemplates {
         targets
@@ -126,48 +126,48 @@ export const updateSchool = /* GraphQL */ `
       updatedAt
       programs {
         items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }
@@ -182,22 +182,22 @@ export const deleteSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     deleteSchool(input: $input, condition: $condition) {
-      id
-      slug
-      name
       city
       country
-      totalStudents
-      internationalStudents
-      institutionType
-      creationYear
-      description
-      logo
       coverPhoto
+      contactEmail
       contactJobTitle
       contactName
       contactPhone
-      contactEmail
+      creationYear
+      description
+      id
+      institutionType
+      internationalStudents
+      logo
+      name
+      totalStudents
+      slug
       published
       stepsTemplates {
         targets
@@ -213,48 +213,48 @@ export const deleteSchool = /* GraphQL */ `
       updatedAt
       programs {
         items {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }
@@ -269,40 +269,33 @@ export const createProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     createProgram(input: $input, condition: $condition) {
-      id
-      schoolId
-      schoolName
-      slug
-      name
+      applicationFee
+      applicationFeeCurrency
       city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
       costOfLiving
       costOfLivingCurrency
+      country
+      degree
       description
+      discipline
+      duration
+      durationUnit
+      fee
+      feeCurrency
+      feesAndFinancing
+      feeUnit
       gradePointAverage
       highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
+      id
+      intakes
+      intakeInformation
+      languages
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      name
+      otherRequirements
+      published
       requestedDocuments {
         name
         isMandatory
@@ -311,33 +304,40 @@ export const createProgram = /* GraphQL */ `
         condition
         isSpecific
       }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
+      schedule
+      schoolId
+      schoolName
+      slug
+      submissionDeadline
+      testCambridgeAdvanced
+      testCambridgeFirst
+      testDelfdalf
+      testGmat
+      testGre
+      testIelts
+      testTagemage
+      testTcftef
+      testToefl
+      testToeic
       createdAt
       updatedAt
       school {
-        id
-        slug
-        name
         city
         country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
         coverPhoto
+        contactEmail
         contactJobTitle
         contactName
         contactPhone
-        contactEmail
+        creationYear
+        description
+        id
+        institutionType
+        internationalStudents
+        logo
+        name
+        totalStudents
+        slug
         published
         stepsTemplates {
           targets
@@ -358,40 +358,33 @@ export const updateProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     updateProgram(input: $input, condition: $condition) {
-      id
-      schoolId
-      schoolName
-      slug
-      name
+      applicationFee
+      applicationFeeCurrency
       city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
       costOfLiving
       costOfLivingCurrency
+      country
+      degree
       description
+      discipline
+      duration
+      durationUnit
+      fee
+      feeCurrency
+      feesAndFinancing
+      feeUnit
       gradePointAverage
       highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
+      id
+      intakes
+      intakeInformation
+      languages
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      name
+      otherRequirements
+      published
       requestedDocuments {
         name
         isMandatory
@@ -400,33 +393,40 @@ export const updateProgram = /* GraphQL */ `
         condition
         isSpecific
       }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
+      schedule
+      schoolId
+      schoolName
+      slug
+      submissionDeadline
+      testCambridgeAdvanced
+      testCambridgeFirst
+      testDelfdalf
+      testGmat
+      testGre
+      testIelts
+      testTagemage
+      testTcftef
+      testToefl
+      testToeic
       createdAt
       updatedAt
       school {
-        id
-        slug
-        name
         city
         country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
         coverPhoto
+        contactEmail
         contactJobTitle
         contactName
         contactPhone
-        contactEmail
+        creationYear
+        description
+        id
+        institutionType
+        internationalStudents
+        logo
+        name
+        totalStudents
+        slug
         published
         stepsTemplates {
           targets
@@ -447,40 +447,33 @@ export const deleteProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     deleteProgram(input: $input, condition: $condition) {
-      id
-      schoolId
-      schoolName
-      slug
-      name
+      applicationFee
+      applicationFeeCurrency
       city
-      country
-      discipline
-      degree
-      duration
-      durationUnit
-      schedule
-      languages
-      fee
-      feeUnit
-      feeCurrency
-      intakes
-      intakeInformation
-      submissionDeadline
       costOfLiving
       costOfLivingCurrency
+      country
+      degree
       description
+      discipline
+      duration
+      durationUnit
+      fee
+      feeCurrency
+      feesAndFinancing
+      feeUnit
       gradePointAverage
       highestEducationLevel
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
+      id
+      intakes
+      intakeInformation
+      languages
+      minimumAge
+      minimumWorkExperience
+      minimumWorkExperienceUnit
+      name
+      otherRequirements
+      published
       requestedDocuments {
         name
         isMandatory
@@ -489,33 +482,40 @@ export const deleteProgram = /* GraphQL */ `
         condition
         isSpecific
       }
-      minimumAge
-      minimumWorkExperience
-      minimumWorkExperienceUnit
-      otherRequirements
-      applicationFee
-      applicationFeeCurrency
-      feesAndFinancing
-      published
+      schedule
+      schoolId
+      schoolName
+      slug
+      submissionDeadline
+      testCambridgeAdvanced
+      testCambridgeFirst
+      testDelfdalf
+      testGmat
+      testGre
+      testIelts
+      testTagemage
+      testTcftef
+      testToefl
+      testToeic
       createdAt
       updatedAt
       school {
-        id
-        slug
-        name
         city
         country
-        totalStudents
-        internationalStudents
-        institutionType
-        creationYear
-        description
-        logo
         coverPhoto
+        contactEmail
         contactJobTitle
         contactName
         contactPhone
-        contactEmail
+        creationYear
+        description
+        id
+        institutionType
+        internationalStudents
+        logo
+        name
+        totalStudents
+        slug
         published
         stepsTemplates {
           targets
@@ -1420,40 +1420,33 @@ export const createApplication = /* GraphQL */ `
       createdAt
       updatedAt
       program {
-        id
-        schoolId
-        schoolName
-        slug
-        name
+        applicationFee
+        applicationFeeCurrency
         city
-        country
-        discipline
-        degree
-        duration
-        durationUnit
-        schedule
-        languages
-        fee
-        feeUnit
-        feeCurrency
-        intakes
-        intakeInformation
-        submissionDeadline
         costOfLiving
         costOfLivingCurrency
+        country
+        degree
         description
+        discipline
+        duration
+        durationUnit
+        fee
+        feeCurrency
+        feesAndFinancing
+        feeUnit
         gradePointAverage
         highestEducationLevel
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
+        id
+        intakes
+        intakeInformation
+        languages
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        name
+        otherRequirements
+        published
         requestedDocuments {
           name
           isMandatory
@@ -1462,33 +1455,40 @@ export const createApplication = /* GraphQL */ `
           condition
           isSpecific
         }
-        minimumAge
-        minimumWorkExperience
-        minimumWorkExperienceUnit
-        otherRequirements
-        applicationFee
-        applicationFeeCurrency
-        feesAndFinancing
-        published
+        schedule
+        schoolId
+        schoolName
+        slug
+        submissionDeadline
+        testCambridgeAdvanced
+        testCambridgeFirst
+        testDelfdalf
+        testGmat
+        testGre
+        testIelts
+        testTagemage
+        testTcftef
+        testToefl
+        testToeic
         createdAt
         updatedAt
         school {
-          id
-          slug
-          name
           city
           country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
           coverPhoto
+          contactEmail
           contactJobTitle
           contactName
           contactPhone
-          contactEmail
+          creationYear
+          description
+          id
+          institutionType
+          internationalStudents
+          logo
+          name
+          totalStudents
+          slug
           published
           contractStatus
           createdAt
@@ -1636,40 +1636,33 @@ export const updateApplication = /* GraphQL */ `
       createdAt
       updatedAt
       program {
-        id
-        schoolId
-        schoolName
-        slug
-        name
+        applicationFee
+        applicationFeeCurrency
         city
-        country
-        discipline
-        degree
-        duration
-        durationUnit
-        schedule
-        languages
-        fee
-        feeUnit
-        feeCurrency
-        intakes
-        intakeInformation
-        submissionDeadline
         costOfLiving
         costOfLivingCurrency
+        country
+        degree
         description
+        discipline
+        duration
+        durationUnit
+        fee
+        feeCurrency
+        feesAndFinancing
+        feeUnit
         gradePointAverage
         highestEducationLevel
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
+        id
+        intakes
+        intakeInformation
+        languages
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        name
+        otherRequirements
+        published
         requestedDocuments {
           name
           isMandatory
@@ -1678,33 +1671,40 @@ export const updateApplication = /* GraphQL */ `
           condition
           isSpecific
         }
-        minimumAge
-        minimumWorkExperience
-        minimumWorkExperienceUnit
-        otherRequirements
-        applicationFee
-        applicationFeeCurrency
-        feesAndFinancing
-        published
+        schedule
+        schoolId
+        schoolName
+        slug
+        submissionDeadline
+        testCambridgeAdvanced
+        testCambridgeFirst
+        testDelfdalf
+        testGmat
+        testGre
+        testIelts
+        testTagemage
+        testTcftef
+        testToefl
+        testToeic
         createdAt
         updatedAt
         school {
-          id
-          slug
-          name
           city
           country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
           coverPhoto
+          contactEmail
           contactJobTitle
           contactName
           contactPhone
-          contactEmail
+          creationYear
+          description
+          id
+          institutionType
+          internationalStudents
+          logo
+          name
+          totalStudents
+          slug
           published
           contractStatus
           createdAt
@@ -1852,40 +1852,33 @@ export const deleteApplication = /* GraphQL */ `
       createdAt
       updatedAt
       program {
-        id
-        schoolId
-        schoolName
-        slug
-        name
+        applicationFee
+        applicationFeeCurrency
         city
-        country
-        discipline
-        degree
-        duration
-        durationUnit
-        schedule
-        languages
-        fee
-        feeUnit
-        feeCurrency
-        intakes
-        intakeInformation
-        submissionDeadline
         costOfLiving
         costOfLivingCurrency
+        country
+        degree
         description
+        discipline
+        duration
+        durationUnit
+        fee
+        feeCurrency
+        feesAndFinancing
+        feeUnit
         gradePointAverage
         highestEducationLevel
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
+        id
+        intakes
+        intakeInformation
+        languages
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        name
+        otherRequirements
+        published
         requestedDocuments {
           name
           isMandatory
@@ -1894,33 +1887,40 @@ export const deleteApplication = /* GraphQL */ `
           condition
           isSpecific
         }
-        minimumAge
-        minimumWorkExperience
-        minimumWorkExperienceUnit
-        otherRequirements
-        applicationFee
-        applicationFeeCurrency
-        feesAndFinancing
-        published
+        schedule
+        schoolId
+        schoolName
+        slug
+        submissionDeadline
+        testCambridgeAdvanced
+        testCambridgeFirst
+        testDelfdalf
+        testGmat
+        testGre
+        testIelts
+        testTagemage
+        testTcftef
+        testToefl
+        testToeic
         createdAt
         updatedAt
         school {
-          id
-          slug
-          name
           city
           country
-          totalStudents
-          internationalStudents
-          institutionType
-          creationYear
-          description
-          logo
           coverPhoto
+          contactEmail
           contactJobTitle
           contactName
           contactPhone
-          contactEmail
+          creationYear
+          description
+          id
+          institutionType
+          internationalStudents
+          logo
+          name
+          totalStudents
+          slug
           published
           contractStatus
           createdAt
@@ -2389,48 +2389,48 @@ export const createFeedback = /* GraphQL */ `
         createdAt
         updatedAt
         program {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }
@@ -2549,48 +2549,48 @@ export const updateFeedback = /* GraphQL */ `
         createdAt
         updatedAt
         program {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }
@@ -2709,48 +2709,48 @@ export const deleteFeedback = /* GraphQL */ `
         createdAt
         updatedAt
         program {
-          id
-          schoolId
-          schoolName
-          slug
-          name
+          applicationFee
+          applicationFeeCurrency
           city
-          country
-          discipline
-          degree
-          duration
-          durationUnit
-          schedule
-          languages
-          fee
-          feeUnit
-          feeCurrency
-          intakes
-          intakeInformation
-          submissionDeadline
           costOfLiving
           costOfLivingCurrency
+          country
+          degree
           description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feesAndFinancing
+          feeUnit
           gradePointAverage
           highestEducationLevel
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
+          id
+          intakes
+          intakeInformation
+          languages
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
+          name
           otherRequirements
-          applicationFee
-          applicationFeeCurrency
-          feesAndFinancing
           published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
           createdAt
           updatedAt
         }

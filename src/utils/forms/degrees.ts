@@ -1,14 +1,14 @@
 export const degrees = [
     {
         label: 'bachelor-degree',
-        value: 'bachelor'
+        value: 'BACHELOR'
     },
     {
         label: 'master-degree',
-        value: 'master'
+        value: 'MASTER'
     },
     {
         label: 'doctor-degree',
-        value: 'doctor'
+        value: 'DOCTORATE'
     }
 ];

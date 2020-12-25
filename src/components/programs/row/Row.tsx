@@ -1,5 +1,5 @@
 import Button from '@components/core/button/Button';
-import { DurationUnit } from '@models';
+import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@models';
 import { getCountryLabel } from '@utils/forms/countries';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
@@ -12,20 +12,21 @@ import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
     city: string;
-    country: string;
+    country: Country;
     duration: number;
     durationUnit: DurationUnit;
     fee: number;
-    feeCurrency: string;
-    feeUnit: string;
+    feeCurrency: Currency;
+    feeUnit: FeeUnit;
     intakes: string;
     name: string;
     onClick: () => void;
-    slug: string;
+    schedule: Schedule;
     school: {
         name: string;
         logo: string;
     };
+    slug: string;
 };
 
 const Row: FC<Props> = (props) => {
@@ -40,8 +41,9 @@ const Row: FC<Props> = (props) => {
         intakes,
         name,
         onClick,
-        slug,
-        school
+        schedule,
+        school,
+        slug
     } = props;
 
     const { t } = useTranslation();
@@ -82,13 +84,13 @@ const Row: FC<Props> = (props) => {
                                             unit: durationUnit,
                                             value: duration
                                         })}{' '}
-                                        {t(`programs:${durationUnit}`, {
+                                        {t(`programs:${durationUnit.toLowerCase()}`, {
                                             count: convertDuration({
                                                 unit: durationUnit,
                                                 value: duration
                                             })
                                         })}
-                                        , {t('programs:full-time')}
+                                        , {t(`programs:${schedule.toLowerCase()}`)}
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -116,7 +118,7 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between">
                                     <div className="truncate text-sm leading-5">
                                         <div>
-                                            {t(`programs:${feeUnit}`)}{' '}
+                                            {t(`programs:${feeUnit.toLowerCase()}`)}{' '}
                                             <b>
                                                 {currency({
                                                     currency: feeCurrency,

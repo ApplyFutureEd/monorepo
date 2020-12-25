@@ -337,7 +337,7 @@ const ProgramPage: FC<Props> = (props) => {
                 <Container title={t('programs:next-intake', { count: program?.intakes?.length })}>
                     {program?.intakes?.length > 0 && (
                         <div className="inline-flex flex-col mb-4 space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-                            {program?.intakes.split(',').map((intake: any) => (
+                            {program?.intakes.split(',').map((intake) => (
                                 <div
                                     key={intake}
                                     className="inline-flex border border-gray-200 rounded-md">
