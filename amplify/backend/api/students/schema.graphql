@@ -1,7 +1,329 @@
-type Subscription {
-    subscribeToStudentUpdate(id: ID!): Student @aws_subscribe(mutations: ["updateStudent"])
-    subscribeToApplicationUpdate(id: ID!): Application
-        @aws_subscribe(mutations: ["updateApplication"])
+enum Country {
+    AF
+    AL
+    DZ
+    AD
+    AO
+    AG
+    AR
+    AM
+    AU
+    AT
+    AZ
+    BS
+    BH
+    BD
+    BB
+    BY
+    BE
+    BZ
+    BJ
+    BT
+    BO
+    BA
+    BW
+    BR
+    BG
+    BF
+    BI
+    KH
+    CM
+    CA
+    CV
+    CF
+    TD
+    CL
+    CN
+    CO
+    KM
+    CG
+    CD
+    CR
+    CI
+    HR
+    CU
+    CY
+    CZ
+    DK
+    DJ
+    DM
+    DO
+    EC
+    EG
+    SV
+    GQ
+    ER
+    EE
+    ET
+    FJ
+    FI
+    FR
+    GA
+    GM
+    GE
+    DE
+    GH
+    GR
+    GD
+    GP
+    GT
+    GN
+    GW
+    GY
+    HT
+    VA
+    HN
+    HK
+    HU
+    IS
+    IN
+    ID
+    IR
+    IQ
+    IE
+    IL
+    IT
+    JM
+    JP
+    JO
+    KZ
+    KE
+    KI
+    KP
+    KR
+    KW
+    KG
+    LA
+    LV
+    LB
+    LS
+    LR
+    LY
+    LI
+    LT
+    LU
+    MO
+    MK
+    MG
+    MW
+    MY
+    MV
+    ML
+    MT
+    MH
+    MR
+    MU
+    MX
+    FM
+    MD
+    MC
+    MN
+    ME
+    MA
+    MZ
+    MM
+    NA
+    NR
+    NP
+    NL
+    NZ
+    NI
+    NE
+    NG
+    NO
+    OM
+    PK
+    PW
+    PS
+    PA
+    PG
+    PY
+    PE
+    PH
+    PL
+    PT
+    QA
+    RO
+    RU
+    RW
+    KN
+    LC
+    VC
+    WS
+    SM
+    ST
+    SA
+    SN
+    RS
+    SC
+    SL
+    SG
+    SK
+    SI
+    SB
+    SO
+    ZA
+    SS
+    ES
+    LK
+    SD
+    SR
+    SE
+    CH
+    SY
+    TW
+    TJ
+    TZ
+    TH
+    TL
+    TG
+    TO
+    TT
+    TN
+    TR
+    TM
+    TV
+    UG
+    UA
+    AE
+    GB
+    US
+    UY
+    UZ
+    VU
+    VE
+    VN
+    YE
+    ZM
+    ZW
+}
+
+enum ContractStatus {
+    PRIORITY
+    CONTACTED
+    IN_NEGOCIATION
+    SIGNED
+}
+
+enum Currency {
+    CHF
+    CNY
+    EUR
+    GBP
+}
+
+enum Degree {
+    BACHELOR
+    MASTER
+    DOCTORATE
+}
+
+enum Discipline {
+    BUSINESS_MANAGEMENT_AND_ECONOMICS
+    ENGINEERING_AND_TECHNOLOGY
+    SCIENCES
+    CULINARY_ARTS
+    LAW_POLITICS_SOCIAL_COMMUNITY_SERVICE_AND_TEACHING
+    ARTS
+    HEALTH_SCIENCES_MEDICINE_NURSING_PARAMEDIC_AND_KINESIOLOGY
+    ENGLISH_FOR_ACADEMIC_STUDIES
+}
+
+enum DurationUnit {
+    DAY
+    MONTH
+    YEAR
+    WEEK
+}
+
+enum FeeUnit {
+    ANNUAL
+    TOTAL
+}
+
+enum InstitutionType {
+    PRIVATE
+    PUBLIC
+}
+
+enum Language {
+    AF
+    SQ
+    AR
+    HY
+    EU
+    BN
+    BG
+    CA
+    KM
+    ZH
+    HR
+    CS
+    DA
+    NL
+    EN
+    ET
+    FJ
+    FI
+    FR
+    KA
+    DE
+    EL
+    GU
+    HE
+    HI
+    HU
+    IS
+    ID
+    GA
+    IT
+    JA
+    JW
+    KO
+    LA
+    LV
+    LT
+    MK
+    MS
+    ML
+    MT
+    MI
+    MR
+    MN
+    NE
+    NO
+    FA
+    PL
+    PT
+    PA
+    QU
+    RO
+    RU
+    SM
+    SR
+    SK
+    SL
+    ES
+    SW
+    SV
+    TA
+    TT
+    TE
+    TH
+    BO
+    TO
+    TR
+    UK
+    UR
+    UZ
+    VI
+    CY
+    XH
+}
+
+enum Schedule {
+    FULL_TIME
+    PART_TIME
 }
 
 type School
@@ -15,22 +337,23 @@ type School
     @model
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getSchoolBySlug") {
-    id: ID!
-    slug: String!
-    name: String!
     city: String!
-    country: String!
-    totalStudents: String!
-    internationalStudents: String!
-    institutionType: String!
-    creationYear: String!
-    description: String
-    logo: String!
+    country: Country!
     coverPhoto: String!
+    contactEmail: String
     contactJobTitle: String
     contactName: String
     contactPhone: String
-    contactEmail: String
+    creationYear: String!
+    description: String
+    id: ID!
+    institutionType: InstitutionType!
+    internationalStudents: Float!
+    logo: String!
+    name: String!
+    totalStudents: Float!
+    slug: String!
+
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
     stepsTemplates: [ApplicationStepsTemplate]!
@@ -54,57 +377,50 @@ type Program
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getProgramBySlug")
     @key(name: "bySchool", fields: ["schoolId"]) {
-    id: ID!
-    schoolId: ID!
-    schoolName: String!
-    school: School @connection(fields: ["schoolId"])
-    slug: String!
-    name: String!
+    applicationFee: Float!
+    applicationFeeCurrency: Currency!
     city: String!
-    country: String!
-    discipline: String!
-    degree: String!
+    costOfLiving: Float!
+    costOfLivingCurrency: Currency!
+    country: Country!
+    degree: Degree!
+    description: String
+    discipline: Discipline!
     duration: Float!
     durationUnit: DurationUnit!
-    schedule: String!
-    languages: [String]!
     fee: Float!
-    feeUnit: String!
-    feeCurrency: String!
-    intakes: String!
-    intakeInformation: String
-    submissionDeadline: String!
-    costOfLiving: Float!
-    costOfLivingCurrency: String!
-    description: String
+    feeCurrency: Currency!
+    feesAndFinancing: String
+    feeUnit: FeeUnit!
     gradePointAverage: Float!
     highestEducationLevel: Float!
-    testToefl: Float!
-    testIelts: Float!
-    testToeic: Float!
-    testTcftef: Float!
-    testDelfdalf: Float!
-    testGre: Float!
-    testGmat: Float!
-    testTagemage: Float!
-    testCambridgeFirst: Float!
-    testCambridgeAdvanced: Float!
-    requestedDocuments: [RequestedDocument]!
+    id: ID!
+    intakes: String!
+    intakeInformation: String
+    languages: [Language]!
     minimumAge: Float!
     minimumWorkExperience: Float!
-    minimumWorkExperienceUnit: String!
+    minimumWorkExperienceUnit: DurationUnit!
+    name: String!
     otherRequirements: String
-    applicationFee: Float!
-    applicationFeeCurrency: String!
-    feesAndFinancing: String
     published: Boolean!
-}
-
-enum DurationUnit {
-    day
-    month
-    year
-    week
+    requestedDocuments: [RequestedDocument]!
+    schedule: Schedule!
+    school: School @connection(fields: ["schoolId"])
+    schoolId: ID!
+    schoolName: String!
+    slug: String!
+    submissionDeadline: String!
+    testCambridgeAdvanced: Float!
+    testCambridgeFirst: Float!
+    testDelfdalf: Float!
+    testGmat: Float!
+    testGre: Float!
+    testIelts: Float!
+    testTagemage: Float!
+    testTcftef: Float!
+    testToefl: Float!
+    testToeic: Float!
 }
 
 type RequestedDocument {
