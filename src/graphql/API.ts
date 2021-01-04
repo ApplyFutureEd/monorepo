@@ -1389,10 +1389,9 @@ export type ModelProgramFilterInput = {
 export type SearchableProgramFilterInput = {
   applicationFee?: SearchableFloatFilterInput | null,
   city?: SearchableStringFilterInput | null,
-  country?:  SearchableStringFilterInput | null,
+  country?: SearchableStringFilterInput | null
   costOfLiving?: SearchableFloatFilterInput | null,
   description?: SearchableStringFilterInput | null,
-  discipline?: SearchableStringFilterInput | null,
   duration?: SearchableFloatFilterInput | null,
   fee?: SearchableFloatFilterInput | null,
   feesAndFinancing?: SearchableStringFilterInput | null,
@@ -1433,7 +1432,6 @@ export type SearchableProgramSortInput = {
 export enum SearchableProgramSortableFields {
   applicationFee = "applicationFee",
   city = "city",
-  country = 'country',
   costOfLiving = "costOfLiving",
   description = "description",
   duration = "duration",
@@ -6827,6 +6825,74 @@ export type SearchProgramsQuery = {
     } | null > | null,
     nextToken: string | null,
     total: number | null,
+  } | null,
+};
+
+export type GetPostQueryVariables = {
+  id: string,
+};
+
+export type GetPostQuery = {
+  getPost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListPostsQueryVariables = {
+  filter?: ModelPostFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPostsQuery = {
+  listPosts:  {
+    __typename: "ModelPostConnection",
+    items:  Array< {
+      __typename: "Post",
+      category: string,
+      content: string,
+      id: string,
+      published: boolean,
+      slug: string,
+      title: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPostBySlugQueryVariables = {
+  slug?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelPostFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetPostBySlugQuery = {
+  getPostBySlug:  {
+    __typename: "ModelPostConnection",
+    items:  Array< {
+      __typename: "Post",
+      category: string,
+      content: string,
+      id: string,
+      published: boolean,
+      slug: string,
+      title: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 

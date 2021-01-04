@@ -398,7 +398,9 @@ export const schema = {
                 "minimumWorkExperienceUnit": {
                     "name": "minimumWorkExperienceUnit",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "DurationUnit"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -1944,7 +1946,7 @@ export const schema = {
         "FeeUnit": {
             "name": "FeeUnit",
             "values": [
-                "YEAR",
+                "ANNUAL",
                 "TOTAL"
             ]
         },
@@ -2312,5 +2314,5 @@ export const schema = {
             }
         }
     },
-    "version": "9f5060978cacc65bfb83e1edfa68db50"
+    "version": "8557fd50c850e0bd555590dbf423bd98"
 };

@@ -241,7 +241,7 @@ const DurationUnit = {
 };
 
 const FeeUnit = {
-  "YEAR": "YEAR",
+  "ANNUAL": "ANNUAL",
   "TOTAL": "TOTAL"
 };
 
@@ -330,7 +330,7 @@ const Schedule = {
   "PART_TIME": "PART_TIME"
 };
 
-const { School, Program, Student, Document, Application, SearchAlert, Feedback, RequestedDocument, ApplicationStepsTemplate, ApplicationStep, SchoolAttended, WorkExperience, Notification } = initSchema(schema);
+const { School, Program, Student, Document, Application, SearchAlert, Feedback, Post, RequestedDocument, ApplicationStepsTemplate, ApplicationStep, SchoolAttended, WorkExperience, Notification } = initSchema(schema);
 
 export {
   School,
@@ -340,6 +340,7 @@ export {
   Application,
   SearchAlert,
   Feedback,
+  Post,
   Country,
   ContractStatus,
   Currency,

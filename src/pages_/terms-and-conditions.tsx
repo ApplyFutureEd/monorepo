@@ -2,6 +2,7 @@ import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { GetPostBySlugQuery } from '@graphql/API';
 import { getPostBySlug } from '@graphql/queries';
+import { markdown } from '@utils/helpers/mardown';
 import { API } from 'aws-amplify';
 import { GetStaticProps } from 'next';
 import React, { FC } from 'react';
@@ -15,8 +16,17 @@ const TermsAndConditionsPage: FC<Props> = (props) => {
     const { post } = props;
 
     return (
-        <LandingLayout description={''} title={''}>
-            {' '}
+        <LandingLayout title={post.title}>
+            <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
+                <div className="px-4 sm:px-0">
+                    <div
+                        className="markdown"
+                        dangerouslySetInnerHTML={{
+                            __html: markdown({ value: post?.content })
+                        }}
+                    />
+                </div>
+            </div>
         </LandingLayout>
     );
 };

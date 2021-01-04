@@ -438,7 +438,7 @@ export declare class Program {
     readonly languages: Language[];
     readonly minimumAge: number;
     readonly minimumWorkExperience: number;
-    readonly minimumWorkExperienceUnit: string;
+    readonly minimumWorkExperienceUnit: DurationUnit | keyof typeof DurationUnit;
     readonly name: string;
     readonly otherRequirements?: string;
     readonly published: boolean;
