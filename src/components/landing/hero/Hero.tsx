@@ -47,7 +47,7 @@ const Hero: FC = () => {
                     </div>
                     <div className="relative -mx-4 mt-10 lg:mt-0">
                         <Image
-                            alt=""
+                            alt={t('landing:hero-illustration-alt')}
                             className="relative mx-auto"
                             height="360"
                             src="/assets/images/landing/landing-hero.svg"

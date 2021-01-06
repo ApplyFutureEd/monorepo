@@ -108,7 +108,7 @@ const Arguments: FC = () => {
                             />
                         </svg>
                         <Image
-                            alt=""
+                            alt={t('landing:why-illustration-alt')}
                             className="relative mx-auto"
                             height="373"
                             src="/assets/images/landing/landing-arguments.svg"

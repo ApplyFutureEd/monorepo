@@ -92,7 +92,7 @@ const Recruiters: FC = () => {
                                     />
                                 </svg>
                                 <Image
-                                    alt=""
+                                    alt={t('landing:recruiters-illustration-alt')}
                                     className="relative mx-auto"
                                     height="349"
                                     src="/assets/images/landing/landing-recruiters.svg"

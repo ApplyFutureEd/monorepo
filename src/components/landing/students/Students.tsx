@@ -97,7 +97,7 @@ const Students: FC = () => {
                                     />
                                 </svg>
                                 <Image
-                                    alt=""
+                                    alt={t('landing:students-illustration-alt')}
                                     className="relative mx-auto"
                                     height="242"
                                     src="/assets/images/landing/landing-students.svg"
