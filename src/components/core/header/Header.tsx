@@ -1,10 +1,10 @@
-import UserMenu from '@components/auth/user-menu/UserMenu';
 import Button from '@components/core/button/Button';
 import LanguageMenu from '@components/core/language-menu/LanguageMenu';
 import Logo from '@components/core/logo/Logo';
 import MobileMenu from '@components/core/mobile-menu/MobileMenu';
 import Nav from '@components/core/nav/Nav';
 import Transition from '@components/core/transition/Transition';
+import UserMenu from '@components/core/user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuthenticatedUser from '@utils/hooks/useAuthenticatedUser';

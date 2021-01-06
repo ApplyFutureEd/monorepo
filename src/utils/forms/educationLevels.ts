@@ -8,3 +8,6 @@ export const educationLevels = [
     { label: 'graduate-year-2', value: 7 },
     { label: 'doctoral-degree', value: 8 }
 ];
+
+export const getEducationLabel = (value: number): string =>
+    educationLevels.find((educationLevel) => educationLevel.value === value)?.label || '';

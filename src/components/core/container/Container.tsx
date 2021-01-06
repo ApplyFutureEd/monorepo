@@ -34,11 +34,11 @@ const Container: FC<Props> = (props) => {
                             <h3 className="text-gray-900 text-lg font-medium leading-6">{title}</h3>
                         </div>
                     </div>
-                    <div className="flex">
-                        <div className="flex flex-shrink-0 items-center ml-4 mt-2 space-x-2">
+                    {headerComponents && (
+                        <div className="flex items-center ml-4 mt-2 space-x-2">
                             {headerComponents}
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
             <div className={classes}>{children}</div>

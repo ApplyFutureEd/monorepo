@@ -1,5 +1,5 @@
 import Row from '@components/programs/row/Row';
-import { DurationUnit } from '@graphql/API';
+import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@models';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -14,15 +14,16 @@ jest.mock('next/router', () => ({
 describe('Row', () => {
     const program = {
         city: 'Murcia',
-        country: 'Spain',
+        country: 'ES' as Country,
         duration: 31540000,
-        durationUnit: 'year' as DurationUnit,
+        durationUnit: 'YEAR' as DurationUnit,
         fee: 9000,
-        feeCurrency: 'EUR',
-        feeUnit: 'total-fee',
+        feeCurrency: 'EUR' as Currency,
+        feeUnit: 'TOTAL' as FeeUnit,
         intakes: '2021-11-09T00:00:00.000Z',
         name: 'Master’s Degree in Business Administration - MBA',
         onClick: jest.fn(),
+        schedule: 'FULL_TIME' as Schedule,
         school: {
             logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
             name: ' UCAM Universidad Católica San Antonio de Murcia'

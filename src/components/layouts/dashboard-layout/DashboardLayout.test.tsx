@@ -17,6 +17,7 @@ jest.mock('@components/core/language-menu/LanguageMenu', () => {
         }
     };
 });
+
 describe('DashboardLayout', () => {
     it('can render without crashing', () => {
         render(
