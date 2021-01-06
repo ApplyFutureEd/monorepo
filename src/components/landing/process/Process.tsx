@@ -195,7 +195,7 @@ const Process: FC = () => {
                                 />
                             </svg>
                             <Image
-                                alt=""
+                                alt={t('landing:how-illustration-alt')}
                                 className="relative mx-auto"
                                 height="398"
                                 src="/assets/images/landing/landing-process.svg"

@@ -114,6 +114,5 @@
   "week_0": "周",
   "work-experience-too-low": "您的工作经验总时长({{studentValue}} {{studentUnit}})）低于专业要求的工作经验时长({{programValue}} {{programUnit}})。",
   "year": "年",
-  "year_0": "年",
-  "years": "年"
+  "year_0": "年"
 }

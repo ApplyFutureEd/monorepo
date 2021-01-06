@@ -118,6 +118,5 @@
   "week_plural": "Weeks",
   "work-experience-too-low": "Your total Work experiences duration ({{studentValue}} {{studentUnit}}) is below program's required Work experiences duration ({{programValue}} {{programUnit}})",
   "year": "Year",
-  "year_plural": "Years",
-  "years": "Year"
+  "year_plural": "Years"
 }
