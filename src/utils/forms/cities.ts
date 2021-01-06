@@ -210,5 +210,9 @@ export const cities = [
     {
         country: 'IT',
         label: 'Belluno'
+    },
+    {
+        country: 'FR',
+        label: 'Angers'
     }
 ];
