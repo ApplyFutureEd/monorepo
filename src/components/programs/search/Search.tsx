@@ -38,7 +38,7 @@ const Search: FC<Props> = (props) => {
             onSubmit={onSubmit}>
             {() => {
                 return (
-                    <Form className="space-y-6">
+                    <Form>
                         <Field id="query" name="query">
                             {(fieldProps: FieldProps) => (
                                 <Input
