@@ -8,6 +8,7 @@ import {
     faMoneyBill
 } from '@fortawesome/pro-light-svg-icons';
 import { Program } from '@models';
+import { getLanguageLabel } from '@utils/forms/languages';
 import { currency } from '@utils/helpers/currency';
 import { date } from '@utils/helpers/date';
 import { convertDuration } from '@utils/helpers/duration';
@@ -31,18 +32,25 @@ const Indicators: FC<Props> = (props) => {
         <div className="mb-6 bg-white rounded-md shadow">
             <div className="grid grid-cols-1 bg-white rounded-lg lg:grid-cols-6">
                 <div>
-                    <IconPanel icon={faClock} label={t(`programs:${program?.schedule}`)}>
+                    <IconPanel
+                        icon={faClock}
+                        label={t(`programs:${program?.schedule.toLowerCase()}`)}>
                         {convertDuration({
                             unit: program?.durationUnit,
                             value: program?.duration
                         })}{' '}
-                        {t(`programs:${program?.durationUnit}`, {
-                            count: program?.duration
+                        {t(`programs:${program?.durationUnit.toLowerCase()}`, {
+                            count: convertDuration({
+                                unit: program?.durationUnit,
+                                value: program?.duration
+                            })
                         })}
                     </IconPanel>
                 </div>
                 <div className="border-t border-gray-200 md:border-0 md:border-l">
-                    <IconPanel icon={faGraduationCap} label={t(`programs:${program?.feeUnit}`)}>
+                    <IconPanel
+                        icon={faGraduationCap}
+                        label={t(`programs:${program?.feeUnit.toLowerCase()}`)}>
                         {currency({
                             currency: program?.feeCurrency,
                             locale: locale,
@@ -59,14 +67,17 @@ const Indicators: FC<Props> = (props) => {
                         {program?.languages?.length > 1 ? (
                             <Tooltip
                                 content={program?.languages?.map((language: string) => (
-                                    <div key={language}>{t(`common:${language}`)}</div>
+                                    <div key={language}>
+                                        {t(`common:${getLanguageLabel(language)}`)}
+                                    </div>
                                 ))}>
                                 {t('programs:multilingual')}
                             </Tooltip>
                         ) : (
-                            t(`common:${program?.languages[0]}`)
+                            t(`common:${getLanguageLabel(program?.languages[0])}`)
                         )}
                     </IconPanel>
+                    {console.log(program?.languages[0])}
                 </div>
                 <div className="border-t border-gray-200 md:border-0 md:border-l">
                     <IconPanel icon={faCalendar} label={t('programs:next-intake', { count: 1 })}>

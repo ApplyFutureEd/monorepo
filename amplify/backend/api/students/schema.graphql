@@ -353,7 +353,6 @@ type School
     name: String!
     totalStudents: Float!
     slug: String!
-
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
     stepsTemplates: [ApplicationStepsTemplate]!
