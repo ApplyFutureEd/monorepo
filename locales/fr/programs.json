@@ -118,6 +118,5 @@
   "week_plural": "Semaines",
   "work-experience-too-low": "Votre montant total d'expérience de travail ({{studentValue}} {{studentUnit}}) est inférieur à celui requis pour ce programme ({{programValue}} {{programUnit}})",
   "year": "An",
-  "year_plural": "Ans",
-  "years": "An"
+  "year_plural": "Ans"
 }

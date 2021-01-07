@@ -62,7 +62,7 @@ const Schools: FC = () => {
                                 />
                             </svg>
                             <Image
-                                alt=""
+                                alt={t('landing:schools-illustration-alt')}
                                 className="relative mx-auto"
                                 height="377"
                                 src="/assets/images/landing/landing-schools.svg"
