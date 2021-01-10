@@ -619,3 +619,21 @@ type Feedback
     applicationId: ID!
     application: Application @connection(fields: ["applicationId"])
 }
+
+type Post
+    @auth(
+        rules: [
+            { allow: public, operations: [read], provider: apiKey }
+            { allow: private, operations: [read] }
+            { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
+        ]
+    )
+    @model
+    @key(name: "bySlug", fields: ["slug"], queryField: "getPostBySlug") {
+    category: String!
+    content: String!
+    id: ID!
+    published: Boolean!
+    slug: String!
+    title: String!
+}

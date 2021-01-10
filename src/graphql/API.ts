@@ -1060,6 +1060,39 @@ export type DeleteFeedbackInput = {
   id?: string | null,
 };
 
+export type CreatePostInput = {
+  category: string,
+  content: string,
+  id?: string | null,
+  published: boolean,
+  slug: string,
+  title: string,
+};
+
+export type ModelPostConditionInput = {
+  category?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  published?: ModelBooleanInput | null,
+  slug?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  and?: Array< ModelPostConditionInput | null > | null,
+  or?: Array< ModelPostConditionInput | null > | null,
+  not?: ModelPostConditionInput | null,
+};
+
+export type UpdatePostInput = {
+  category?: string | null,
+  content?: string | null,
+  id: string,
+  published?: boolean | null,
+  slug?: string | null,
+  title?: string | null,
+};
+
+export type DeletePostInput = {
+  id?: string | null,
+};
+
 export type ModelStudentFilterInput = {
   id?: ModelIDInput | null,
   email?: ModelStringInput | null,
@@ -1356,10 +1389,9 @@ export type ModelProgramFilterInput = {
 export type SearchableProgramFilterInput = {
   applicationFee?: SearchableFloatFilterInput | null,
   city?: SearchableStringFilterInput | null,
-  country?:  SearchableStringFilterInput | null,
+  country?: SearchableStringFilterInput | null
   costOfLiving?: SearchableFloatFilterInput | null,
   description?: SearchableStringFilterInput | null,
-  discipline?: SearchableStringFilterInput | null,
   duration?: SearchableFloatFilterInput | null,
   fee?: SearchableFloatFilterInput | null,
   feesAndFinancing?: SearchableStringFilterInput | null,
@@ -1400,7 +1432,6 @@ export type SearchableProgramSortInput = {
 export enum SearchableProgramSortableFields {
   applicationFee = "applicationFee",
   city = "city",
-  country = 'country',
   costOfLiving = "costOfLiving",
   description = "description",
   duration = "duration",
@@ -1432,6 +1463,18 @@ export enum SearchableProgramSortableFields {
   testToeic = "testToeic",
 }
 
+
+export type ModelPostFilterInput = {
+  category?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  published?: ModelBooleanInput | null,
+  slug?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  and?: Array< ModelPostFilterInput | null > | null,
+  or?: Array< ModelPostFilterInput | null > | null,
+  not?: ModelPostFilterInput | null,
+};
 
 export type CreateSchoolMutationVariables = {
   input: CreateSchoolInput,
@@ -4364,6 +4407,63 @@ export type DeleteFeedbackMutation = {
   } | null,
 };
 
+export type CreatePostMutationVariables = {
+  input: CreatePostInput,
+  condition?: ModelPostConditionInput | null,
+};
+
+export type CreatePostMutation = {
+  createPost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdatePostMutationVariables = {
+  input: UpdatePostInput,
+  condition?: ModelPostConditionInput | null,
+};
+
+export type UpdatePostMutation = {
+  updatePost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeletePostMutationVariables = {
+  input: DeletePostInput,
+  condition?: ModelPostConditionInput | null,
+};
+
+export type DeletePostMutation = {
+  deletePost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetStudentQueryVariables = {
   id: string,
 };
@@ -6725,6 +6825,74 @@ export type SearchProgramsQuery = {
     } | null > | null,
     nextToken: string | null,
     total: number | null,
+  } | null,
+};
+
+export type GetPostQueryVariables = {
+  id: string,
+};
+
+export type GetPostQuery = {
+  getPost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListPostsQueryVariables = {
+  filter?: ModelPostFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPostsQuery = {
+  listPosts:  {
+    __typename: "ModelPostConnection",
+    items:  Array< {
+      __typename: "Post",
+      category: string,
+      content: string,
+      id: string,
+      published: boolean,
+      slug: string,
+      title: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPostBySlugQueryVariables = {
+  slug?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelPostFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetPostBySlugQuery = {
+  getPostBySlug:  {
+    __typename: "ModelPostConnection",
+    items:  Array< {
+      __typename: "Post",
+      category: string,
+      content: string,
+      id: string,
+      published: boolean,
+      slug: string,
+      title: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
@@ -9611,5 +9779,47 @@ export type OnDeleteProgramSubscription = {
         nextToken: string | null,
       } | null,
     } | null,
+  } | null,
+};
+
+export type OnCreatePostSubscription = {
+  onCreatePost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdatePostSubscription = {
+  onUpdatePost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeletePostSubscription = {
+  onDeletePost:  {
+    __typename: "Post",
+    category: string,
+    content: string,
+    id: string,
+    published: boolean,
+    slug: string,
+    title: string,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
