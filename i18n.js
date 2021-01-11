@@ -9,6 +9,7 @@ module.exports = {
         '/': ['landing'],
         '/about': ['landing'],
         '/help': ['help'],
+        '/privacy-policy': ['landing'],
         '/programs': ['programs', 'profile'],
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],
