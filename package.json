@@ -80,8 +80,8 @@
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
         "@next/bundle-analyzer": "10.0.2",
-        "@storybook/addon-essentials": "6.1.10",
-        "@storybook/react": "6.1.10",
+        "@storybook/addon-essentials": "6.1.14",
+        "@storybook/react": "6.1.14",
         "@tailwindcss/ui": "0.7.2",
         "@testing-library/dom": "7.28.1",
         "@testing-library/jest-dom": "5.11.6",
