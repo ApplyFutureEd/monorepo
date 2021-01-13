@@ -1,6 +1,31 @@
 import PrivacyPolicyPage from '@pages/privacy-policy';
 import { render, screen } from '@testing-library/react';
 
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
+
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 describe('PrivacyPolicyPage', () => {
     const fakePrivacyPolicyPage = {
         category: 'Legal Page',

@@ -1,6 +1,31 @@
 import TermsOfUsePage from '@pages/terms-of-use';
 import { render, screen } from '@testing-library/react';
 
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
+
+jest.mock('@components/core/nav/Nav', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav />;
+        }
+    };
+});
+jest.mock('@components/core/language-menu/LanguageMenu', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <div />;
+        }
+    };
+});
+
 describe('TermsOfUsePage', () => {
     const fakeTermsOfUsePage = {
         category: 'Legal Page',
