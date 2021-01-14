@@ -1,6 +1,7 @@
 import 'yup-phone';
 
-import { Button, PhoneInput } from '..';
+import { PhoneInput } from './PhoneInput';
+import { Button } from './../button/Button';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { ReactNode } from 'react';

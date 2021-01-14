@@ -1,7 +1,7 @@
 import Programs from '@pages/programs';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import React, { FC } from 'react';
 import selectEvent from 'react-select-event';
 
 jest.mock('next/router', () => ({
@@ -12,22 +12,10 @@ jest.mock('next/router', () => ({
     }
 }));
 
-jest.mock('@components/core/nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
-jest.mock('@components/core/language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    Header: jest.fn().mockImplementation(() => <div />)
+}));
 
 let mockedData = {
     searchPrograms: {
@@ -58,20 +46,15 @@ let mockedData = {
 const mockedFetchMore = jest.fn();
 let mockedIsLoading = jest.fn().mockReturnValue(false);
 
-jest.mock('@utils/hooks/useQuery', () => ({
-    useQuery() {
-        return {
-            data: mockedData,
-            fetchMore: mockedFetchMore,
-            isLoading: mockedIsLoading()
-        };
-    }
-}));
-
-jest.mock('@utils/hooks/usePageBottom', () => ({
-    usePageBottom() {
-        return true;
-    }
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    isBrowser: jest.fn().mockImplementation(() => true),
+    useQuery: () => ({
+        data: mockedData,
+        fetchMore: mockedFetchMore,
+        isLoading: mockedIsLoading()
+    }),
+    usePageBottom: () => true
 }));
 
 describe('Programs', () => {

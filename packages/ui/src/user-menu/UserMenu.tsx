@@ -1,4 +1,4 @@
-import { Dropdown, DropdownItem } from '..';
+import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
 import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faUser } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

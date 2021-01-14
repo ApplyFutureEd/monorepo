@@ -1,4 +1,5 @@
-import { Button, Stepper } from '..';
+import { Button } from './../button/Button';
+import { Stepper } from './Stepper';
 import { faArrowLeft, faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { ReactNode, useState } from 'react';
 

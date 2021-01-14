@@ -1,4 +1,4 @@
-import { Logo } from '..';
+import { Logo } from './Logo';
 import { render, screen } from '@testing-library/react';
 
 describe('Logo', () => {

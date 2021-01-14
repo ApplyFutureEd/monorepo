@@ -6,7 +6,8 @@
         "test": "jest --coverage --config ../../jest.config.js ./*"
     },
     "dependencies": {
-        "@applyfuture/utils": "*"
+        "@applyfuture/utils": "*",
+        "yup-phone": "1.2.12"
     },
     "keywords": [],
     "author": "",

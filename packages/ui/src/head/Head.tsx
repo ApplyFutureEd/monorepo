@@ -135,5 +135,3 @@ export const Head: FC<HeadProps> = (props) => {
         </NextHead>
     );
 };
-
-export default Head;

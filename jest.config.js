@@ -10,10 +10,11 @@ module.exports = {
         '!**/graphql/**/*.ts',
         '!**/amplify/**/*'
     ],
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     moduleNameMapper: {
         '\\.(css|scss)$': 'identity-obj-proxy'
     },
+    projects: ['<rootDir>/packages/*/jest.config.js'],
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testEnvironment: 'jsdom',
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     testResultsProcessor: 'jest-sonar-reporter',

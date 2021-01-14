@@ -1,4 +1,4 @@
-import { LanguageMenu } from '..';
+import { LanguageMenu } from './LanguageMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Cookies from 'js-cookie';
 

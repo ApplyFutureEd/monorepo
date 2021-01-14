@@ -1,4 +1,4 @@
-import {UserMenu} from '..';
+import { UserMenu } from './UserMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
 

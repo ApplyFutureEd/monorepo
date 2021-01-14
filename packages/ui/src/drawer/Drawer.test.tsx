@@ -1,4 +1,4 @@
-import { Drawer } from '..';
+import { Drawer } from './Drawer';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 describe('Drawer', () => {

@@ -1,4 +1,4 @@
-import { Nav } from '..';
+import { Nav } from './Nav';
 import { render, screen } from '@testing-library/react';
 
 jest.mock('next/router', () => ({

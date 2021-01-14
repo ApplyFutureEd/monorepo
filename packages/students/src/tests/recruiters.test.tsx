@@ -3,23 +3,12 @@ import 'yup-phone';
 import Recruiters from '@pages/recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
+import { FC } from 'react';
 
-jest.mock('@components/core/nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
-jest.mock('@components/core/language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    Header: jest.fn().mockImplementation(() => <div />)
+}));
 
 describe('Recruiters', () => {
     const fakeRecruiter = {
@@ -61,10 +50,11 @@ describe('Recruiters', () => {
     };
 
     beforeEach(() => {
+        require('yup-phone');
         jest.clearAllMocks();
     });
 
-    it.skip('can render without crashing', () => {
+    it('can render without crashing', () => {
         render(<Recruiters />);
 
         const heading = screen.getByRole('heading');
@@ -72,7 +62,7 @@ describe('Recruiters', () => {
         expect(heading).toBeInTheDocument();
     });
 
-    it.skip('can fill the form', async () => {
+    it('can fill the form', async () => {
         API.post = jest.fn().mockImplementation(() => {
             return true;
         });

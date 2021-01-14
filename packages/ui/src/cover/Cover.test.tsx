@@ -1,4 +1,4 @@
-import { Cover } from '..';
+import { Cover } from './Cover';
 import { render, screen } from '@testing-library/react';
 
 describe('Cover', () => {

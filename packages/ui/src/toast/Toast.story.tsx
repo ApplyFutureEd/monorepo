@@ -1,4 +1,4 @@
-import { Toast } from '..';
+import { Toast } from './Toast';
 import React, { ReactNode } from 'react';
 
 export default {

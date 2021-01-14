@@ -1,4 +1,5 @@
-import { Button, Container } from '..';
+import { Button } from './../button/Button';
+import { Container } from './Container';
 import { faFilter, faSort } from '@fortawesome/pro-light-svg-icons';
 import React, { ReactNode } from 'react';
 

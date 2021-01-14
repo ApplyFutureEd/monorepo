@@ -1,4 +1,4 @@
-import { Container } from '..';
+import { Container } from './Container';
 import { render, screen } from '@testing-library/react';
 
 describe('Container', () => {

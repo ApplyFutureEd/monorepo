@@ -1,4 +1,4 @@
-import { IconPanel } from '..';
+import { IconPanel } from './IconPanel';
 import { faBook } from '@fortawesome/pro-light-svg-icons';
 import { render, screen } from '@testing-library/react';
 

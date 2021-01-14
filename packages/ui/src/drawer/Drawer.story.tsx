@@ -1,4 +1,5 @@
-import { Button, Drawer } from '..';
+import { Button } from './../button/Button';
+import { Drawer } from './Drawer';
 import React, { ReactNode, useState } from 'react';
 
 export default {

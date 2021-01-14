@@ -1,22 +1,11 @@
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { render, screen } from '@testing-library/react';
+import { FC } from 'react';
 
-jest.mock('@components/core/nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
-jest.mock('@components/core/language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    Header: jest.fn().mockImplementation(() => <div />)
+}));
 
 describe('DashboardLayout', () => {
     it('can render without crashing', () => {

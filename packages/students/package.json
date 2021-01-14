@@ -8,7 +8,6 @@
         "storybook": "start-storybook -p 6006",
         "storybook:build": "build-storybook",
         "unused": "next-unused",
-        "commit": "git add . && cz",
         "lint": "eslint --fix .",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "test": "jest --coverage",
@@ -78,8 +77,8 @@
         "use-debounce": "5.1.0",
         "use-deep-compare-effect": "1.5.0",
         "webfontloader": "1.6.28",
-        "yup": "0.32.5",
-        "yup-phone": "1.2.16"
+        "yup": "0.29.1",
+        "yup-phone": "1.2.12"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",

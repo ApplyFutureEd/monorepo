@@ -1,4 +1,4 @@
-import { Dropdown, DropdownItem } from '..';
+import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
 import Flags from 'country-flag-icons/react/3x2';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';

@@ -1,4 +1,4 @@
-import { Toast } from '..';
+import { Toast } from './Toast';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 describe('Toast', () => {

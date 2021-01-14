@@ -9,7 +9,8 @@
         "storybook": "start-storybook -p 6006",
         "storybook:build": "build-storybook",
         "commit": "git add . && cz",
-        "test:ui": "cd packages/ui && yarn test"
+        "test": "jest --coverage",
+        "test:watch": "jest --watch"
     },
     "workspaces": [
         "packages/*"

@@ -1,4 +1,4 @@
-import { Collapse } from '..';
+import { Collapse } from './Collapse';
 import React, { ReactNode, useState } from 'react';
 
 export default {

@@ -1,4 +1,4 @@
-import { Collapse } from '..';
+import { Collapse } from './Collapse';
 import { render, screen } from '@testing-library/react';
 
 describe('Collapse', () => {

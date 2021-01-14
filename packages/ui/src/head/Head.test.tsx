@@ -1,8 +1,8 @@
-import { Head } from '..';
+import { Head } from './Head';
 import { render } from '@testing-library/react';
 import React from 'react';
 
-jest.mock('@utils/helpers/isBrowser', () => ({
+jest.mock('@applyfuture/utils', () => ({
     isBrowser: jest.fn().mockImplementation(() => true)
 }));
 

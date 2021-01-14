@@ -1,4 +1,4 @@
-import { Stepper } from '..';
+import { Stepper } from './Stepper';
 import { render, screen } from '@testing-library/react';
 
 describe('Stepper', () => {

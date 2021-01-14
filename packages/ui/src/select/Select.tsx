@@ -1,4 +1,4 @@
-import {Tooltip} from '..';
+import { Tooltip } from './../tooltip/Tooltip';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';

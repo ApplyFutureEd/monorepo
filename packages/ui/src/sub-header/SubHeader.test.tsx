@@ -1,4 +1,4 @@
-import { SubHeader } from '..';
+import { SubHeader } from './SubHeader';
 import { render, screen } from '@testing-library/react';
 
 describe('SubHeader', () => {

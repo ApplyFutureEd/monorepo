@@ -1,4 +1,10 @@
-import { Button, LanguageMenu, Logo, MobileMenu, Nav, Transition, UserMenu } from '..';
+import { Button } from './../button/Button';
+import { LanguageMenu } from './../language-menu/LanguageMenu';
+import { Logo } from './../logo/Logo';
+import { MobileMenu } from './../mobile-menu/MobileMenu';
+import { Nav } from './../nav/Nav';
+import { Transition } from './../transition/Transition';
+import { UserMenu } from './../user-menu/UserMenu';
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuthenticatedUser } from '@applyfuture/utils';
@@ -76,6 +82,7 @@ export const Header: FC = () => {
                                 <FontAwesomeIcon icon={faBars} size="lg" />
                             </button>
                         </div>
+
                         <Nav routes={user ? loggedRoutes : unloggedRoutes} />
                         <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
                             <LanguageMenu />
@@ -101,5 +108,3 @@ export const Header: FC = () => {
         </div>
     );
 };
-
-export default Header;

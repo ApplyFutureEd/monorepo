@@ -1,4 +1,4 @@
-import { Checkbox } from '..';
+import { Checkbox } from './Checkbox';
 import { render, screen } from '@testing-library/react';
 
 describe('Checkbox', () => {

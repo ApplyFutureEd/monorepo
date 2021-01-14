@@ -1,4 +1,4 @@
-import {Tooltip} from '..';
+import { Tooltip } from './../tooltip/Tooltip';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';

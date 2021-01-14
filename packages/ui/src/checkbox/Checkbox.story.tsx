@@ -1,4 +1,5 @@
-import { Button, Checkbox } from '..';
+import { Button } from './../button/Button';
+import { Checkbox } from './Checkbox';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import React, { ReactNode } from 'react';
 import { boolean, object } from 'yup';

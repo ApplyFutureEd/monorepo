@@ -1,7 +1,8 @@
+import { AmplifyError } from '@applyfuture/utils';
 import ConfirmForgotPassword from '@pages/confirm-forgot-password';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import AmplifyError from '../utils/services/AmplifyError';
 import { Auth } from 'aws-amplify';
+import { FC } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -12,22 +13,10 @@ jest.mock('next/router', () => ({
     }
 }));
 
-jest.mock('@components/core/nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
-jest.mock('@components/core/language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    Header: jest.fn().mockImplementation(() => <div />)
+}));
 
 Auth.forgotPasswordSubmit = jest.fn().mockImplementation(() => {
     return true;

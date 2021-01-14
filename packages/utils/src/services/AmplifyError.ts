@@ -1,4 +1,4 @@
-class AmplifyError extends Error {
+export class AmplifyError extends Error {
     code: string;
     constructor(code: string) {
         super();
@@ -6,5 +6,3 @@ class AmplifyError extends Error {
         Object.setPrototypeOf(this, AmplifyError.prototype);
     }
 }
-
-export default AmplifyError;

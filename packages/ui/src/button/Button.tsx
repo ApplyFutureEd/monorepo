@@ -1,4 +1,4 @@
-import { Loader } from '..';
+import { Loader } from './../loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';

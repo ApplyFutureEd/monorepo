@@ -1,22 +1,11 @@
-import About from '@pages/about';
+import About from '../pages_/about';
 import { render, screen } from '@testing-library/react';
+import { FC } from 'react';
 
-jest.mock('@components/core/nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
-jest.mock('@components/core/language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    Header: jest.fn().mockImplementation(() => <div />)
+}));
 
 describe('About page', () => {
     it('can render without crashing', () => {

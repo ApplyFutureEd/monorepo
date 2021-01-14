@@ -1,4 +1,4 @@
-import { PhoneInput } from '..';
+import { PhoneInput } from './PhoneInput';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 describe('PhoneInput', () => {

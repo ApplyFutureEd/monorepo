@@ -1,4 +1,7 @@
-import { Button, Logo, UserMenu } from '..';
+import { Button } from './../button/Button';
+import { Logo } from './../logo/Logo';
+import { UserMenu } from './../user-menu/UserMenu';
+
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuthenticatedUser } from '@applyfuture/utils';

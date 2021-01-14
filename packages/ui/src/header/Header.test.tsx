@@ -1,32 +1,36 @@
-import { Header } from '..';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { Header } from './Header';
 import { useAuthenticatedUser } from '@applyfuture/utils';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React, { useState as useStateMock } from 'react';
 
-jest.mock('nav/Nav', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <nav />;
-        }
-    };
-});
+/* jest.mock('..', () => ({
+    ...(jest.requireActual('..') as Record<string, unknown>),
+    Nav: jest.fn().mockImplementation(() => <nav />),
+    LanguageMenu: jest.fn().mockImplementation(() => <div />),
+    UserMenu: jest.fn().mockImplementation(() => <div />)
+})); */
 
-jest.mock('language-menu/LanguageMenu', () => {
-    return {
-        __esModule: true,
-        default: () => {
-            return <div />;
-        }
-    };
-});
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
 
 jest.mock('react', () => ({
     ...(jest.requireActual('react') as Record<string, unknown>),
     useState: jest.fn()
 }));
 
-jest.mock('@utils/hooks/useAuthenticatedUser');
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        attributes: {
+            email: 'awesome.student@gmail.com'
+        }
+    }))
+}));
 
 const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
     typeof useAuthenticatedUser
