@@ -8,6 +8,7 @@
         "start:students": "cd packages/students && yarn start",
         "storybook": "start-storybook -p 6006",
         "storybook:build": "build-storybook",
+        "chromatic": "npx chromatic storybook:build --project-token otsu2eoqeps",
         "commit": "git add . && cz",
         "test": "jest --coverage",
         "test:watch": "jest --watch"
