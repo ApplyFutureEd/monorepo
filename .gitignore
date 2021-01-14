@@ -12,7 +12,7 @@ pages
 /coverage
 
 # next.js
-/.next/
+packages/**/.next
 /out/
 
 # production

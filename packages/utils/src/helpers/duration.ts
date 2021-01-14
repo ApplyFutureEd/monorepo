@@ -1,4 +1,4 @@
-import { DurationUnit } from '@models';
+import { DurationUnit } from '@applyfuture/models';
 
 type DurationOptions = {
     /**
