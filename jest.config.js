@@ -10,21 +10,20 @@ module.exports = {
         '!**/graphql/**/*.ts',
         '!**/amplify/**/*'
     ],
-    moduleNameMapper: {
-        '@components/(.*)': '<rootDir>/src/components/$1',
-        '@graphql/(.*)': '<rootDir>/src/graphql/$1',
-        '@models': '<rootDir>/src/models/index',
-        '@pages/(.*)': '<rootDir>/src/pages_/$1',
-        '@styles/(.*)': '<rootDir>/src/styles/$1',
-        '@utils/(.*)': '<rootDir>/src/utils/$1',
-        '\\.(css|less)$': 'identity-obj-proxy'
-    },
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    moduleNameMapper: {
+        '\\.(css|scss)$': 'identity-obj-proxy'
+    },
     testEnvironment: 'jsdom',
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
     testResultsProcessor: 'jest-sonar-reporter',
     transform: {
-        '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
+        '\\.[jt]sx?$': [
+            'babel-jest',
+            {
+                rootMode: 'upward'
+            }
+        ],
     },
     transformIgnorePatterns: ['/node_modules/']
 };
