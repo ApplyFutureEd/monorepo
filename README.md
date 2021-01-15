@@ -56,6 +56,6 @@ Continous Integration and Continous Deployment process is trigger on:
 
 -   Pull Requests opening
 -   Pull Requests synchronization
--   Push on `dev` and `master` branches
+-   Push on `master` branch
 
 It will run unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud.
