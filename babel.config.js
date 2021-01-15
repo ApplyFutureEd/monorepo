@@ -1,3 +1,7 @@
 module.exports = {
-    presets: [require.resolve('next/babel')]
+    presets: [require.resolve('next/babel')],
+    babelrcRoots: [
+        ".",
+        "./packages/*"
+    ]
 }
