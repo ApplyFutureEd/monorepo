@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "applyfuture-monorepo",
+    "name": "@applyfuture/monorepo",
     "version": "0.0.1",
     "main": "index.js",
     "license": "MIT",
