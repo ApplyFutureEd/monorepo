@@ -1,0 +1,16 @@
+exports.ids = [0];
+exports.modules = {
+
+/***/ "./locales/en/auth.json":
+/*!******************************!*\
+  !*** ./locales/en/auth.json ***!
+  \******************************/
+/*! exports provided: and, cancel, choose-a-new-password, confirm, confirm-account-page-title, confirm-forgot-password-page-title, confirm-your-account, create-your-account, email, error-email-format, error-email-required, error-generic-exception, error-not-authorized-exception, error-password-required, error-password-strengh, error-required, error-username-exists-exception, error-verification-code-required, forgot-password, forgot-password-page-title, im-a-recruiter, legal-notice, new-password, new-password-description-toast, new-password-title-toast, or, password, privacy-policy, reset-password, sign-in, sign-in-page-title, sign-in-to-your-account, sign-up, sign-up-meta-description, sign-up-page-title, terms-and-conditions, terms-of-use, verification-code, welcome-back, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"and\":\"and\",\"cancel\":\"Cancel\\n\",\"choose-a-new-password\":\"Choose a new password\\n\",\"confirm\":\"Confirm\\n\",\"confirm-account-page-title\":\"Confirm your account\",\"confirm-forgot-password-page-title\":\"Choose your new password\",\"confirm-your-account\":\"Confirm your account\\n\",\"create-your-account\":\"create your account\",\"email\":\"Email\",\"error-email-format\":\"Something is wrong with this email\",\"error-email-required\":\"Please enter your email\",\"error-generic-exception\":\"Sorry, an error occurred\",\"error-not-authorized-exception\":\"Email or password is incorrect\",\"error-password-required\":\"Please enter your password\",\"error-password-strengh\":\"Must contain 8 characters\",\"error-required\":\"Required\",\"error-username-exists-exception\":\"An account with the given email already exists\\n\",\"error-verification-code-required\":\"Please enter the verification code received by email\",\"forgot-password\":\"Forgot password\",\"forgot-password-page-title\":\"Reset your password\",\"im-a-recruiter\":\"I'm a recruiter\",\"legal-notice\":\"By joining ApplyFuture, you agree to ApplyFuture's\",\"new-password\":\"New Password\\n\",\"new-password-description-toast\":\"You can now login with your new password\",\"new-password-title-toast\":\"Your password has been updated\",\"or\":\"Or\",\"password\":\"Password\",\"privacy-policy\":\"Privacy Policy\",\"reset-password\":\"Reset password\\n\",\"sign-in\":\"Sign In\",\"sign-in-page-title\":\"Sign in to your account\",\"sign-in-to-your-account\":\"sign in to your account\",\"sign-up\":\"Sign Up\",\"sign-up-meta-description\":\"Sign in to apply to the best programs in Europe\",\"sign-up-page-title\":\"Create your account\",\"terms-and-conditions\":\"Terms & Conditions\",\"terms-of-use\":\"Terms of Use\",\"verification-code\":\"Verification Code\\n\",\"welcome-back\":\"Welcome back\"}");
+
+/***/ })
+
+};;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIwLmpzIiwic291cmNlUm9vdCI6IiJ9

@@ -1,14 +1,10 @@
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=ncloc&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=coverage&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=sqale_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=reliability_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ApplyFutureEd_students&metric=security_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=ApplyFutureEd_students)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=applyfuture%2Fmonorepo&metric=ncloc&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=applyfuture%2Fmonorepo&metric=coverage&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=applyfuture%2Fmonorepo&metric=sqale_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=applyfuture%2Fmonorepo&metric=reliability_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=applyfuture%2Fmonorepo&metric=security_rating&token=3d70e9ad498ddc4ff4e7e82124ed96f9c99eb48d)](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
 
 > “The only way to go fast, is to go well.” ― Robert C. Martin, Clean Architecture
-
-## 🔗 Links
-
--   [Design System](https://master--5fb5c6529fbaa1002192c5e0.chromatic.com/?path=/docs/button--primary) : Our library of components based on [TailwindUI](https://tailwindui.com/)
 
 ## 🤖 Scripts
 
@@ -19,13 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will automatically refresh if you make changes to the code.<br>
 You will see the build errors and lint warnings in the console.
-
-### `yarn storybook`
-
-Runs Storybook locally. Depending on your system configuration, it will automatically open the address in a new browser tab.<br>
-Open [http://localhost:6000](http://localhost:6000) to view it in the browser.
-
-[Storybook](https://storybook.js.org) is an open source tool for developing UI components in isolation.
 
 ### `yarn test:watch`
 
@@ -43,8 +32,6 @@ You'll be prompted to fill out any required commit fields at commit time.
 -   [GraphQL](https://graphql.org/) : Open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data.
 -   [AWS Amplify](https://docs.amplify.aws/) : AWS Amplify is a set of products and tools that enables mobile and front-end web developers to build and deploy secure, scalable full stack applications, powered by AWS.
 -   [Next.js](https://nextjs.org/) : Open-source React front-end development web framework that enables functionality such as server-side rendering and generating static websites for React based web applications.
--   [Storybook](https://storybook.js.org/) : Storybook is an open source tool for developing UI components in isolation.
--   [Chromatic](https://www.chromatic.com/) : Chromatic automates gathering UI feedback, visual testing, and documentation.
 -   [TailwindCSS](https://tailwindcss.com/) : Utility-first CSS framework for rapid UI development.
 -   [Jest](https://jestjs.io/) : JavaScript testing framework designed to ensure correctness of any JavaScript codebase.
 -   [Cypress](https://cypress.io/) : Javascript End to End testing framework.
@@ -52,22 +39,19 @@ You'll be prompted to fill out any required commit fields at commit time.
 -   [Sentry](https://sentry.io/) : Open-source error tracking with full stacktraces & asynchronous context.
 -   [Vercel](https://vercel.com) : Cloud platform for static sites and serverless functions.
 
-## 📚 Folder structure
+## 📚 Packages
 
-    src
-    ├── components              # Components splitted in domain folders
-        ├── core                # Low level components like Button, Select, Modal
-        └── [domain]            # Domain level components like ProgramCard
+ApplyFuture follows monorepo software development strategy where code for many projects is stored in the same repository.
 
-    ├── graphql                 # GraphQL schema, queries and mutations
-    ├── pages                   # Page level components for each path
-    ├── styles                  # Styling related files
-    ├── utils                   # Helpers, hooks, and third-party integrations
-    └── types                   # Types declarations
+The following packages are available
+
+    packages
+    ├── admin                   # NextJS frontend for admins
+    ├── models                 # Entities models generated by Amplify
+    ├── students                   # Main NextJS frontend for students
+    ├── ui                  # Shared React components library
+    └──  utils                   # Helpers, hooks, and third-party integrations
 
 ## 🚀 Deployment
 
-Continous Integration and Continous Deployment and is trigger on Pull Requests, push on `dev` branch and push on `master` branch. It will run the following jobs:
-
--   `code-quality` : runs unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud
--   `design-system` : publish Storybook on Chromatic and runs UI tests
+Continous Integration and Continous Deployment and is trigger on Pull Requests opening, Pull Requests synchronization and push on `dev` and `master` branches. It will run unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud.
