@@ -1,16 +1,16 @@
 projects:
-  students:
-    schemaPath: src/graphql/schema.json
-    includes:
-      - src/graphql/**/*.ts
-    excludes:
-      - ./amplify/**
-    extensions:
-      amplify:
-        codeGenTarget: typescript
-        generatedFileName: src/graphql/API.ts
-        docsFilePath: src/graphql
-        maxDepth: 3
+    students:
+        schemaPath: packages/graphql/src/schema.json
+        includes:
+            - packages/graphql/src/**/*.ts
+        excludes:
+            - ./amplify/**
+        extensions:
+            amplify:
+                codeGenTarget: typescript
+                generatedFileName: packages/graphql/src/API.ts
+                docsFilePath: packages/graphql/src
+                maxDepth: 3
 extensions:
-  amplify:
-    version: 3
+    amplify:
+        version: 3

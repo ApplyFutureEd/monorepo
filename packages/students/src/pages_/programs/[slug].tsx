@@ -1,5 +1,11 @@
 import '@applyfuture/utils/src/services/amplify';
 
+import {
+    getProgramBySlug,
+    GetProgramBySlugQuery,
+    listPrograms,
+    ListProgramsQuery
+} from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
 import {
@@ -22,8 +28,6 @@ import {
     faUniversity as faUniversitySolid
 } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GetProgramBySlugQuery, ListProgramsQuery } from '@graphql/API';
-import { getProgramBySlug, listPrograms } from '@graphql/queries';
 import { API } from 'aws-amplify';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';

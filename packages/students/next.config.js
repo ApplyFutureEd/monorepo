@@ -29,74 +29,75 @@ process.env.SENTRY_DSN = SENTRY_DSN;
 const basePath = '';
 
 const withTM = require('next-transpile-modules')([
+    '@applyfuture/graphql',
     '@applyfuture/ui',
     '@applyfuture/utils',
-    '@applyfuture/models',
+    '@applyfuture/models'
 ]);
 
+module.exports = withTM(
+    withBundleAnalyzer(
+        withSourceMaps(
+            withPWA({
+                basePath,
+                env: {
+                    ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
+                    NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
+                },
+                i18n: { defaultLocale, localeDetection: true, locales },
+                images: {
+                    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+                    domains: ['ik.imagekit.io'],
+                    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+                    loader: 'default',
+                    path: '/_next/image'
+                },
+                poweredByHeader: false,
+                pwa: {
+                    dest: 'public',
+                    disable: process.env.NODE_ENV === 'development'
+                },
+                webpack: (config, options) => {
+                    config.node = {
+                        fs: 'empty'
+                    };
 
-module.exports = withTM(withBundleAnalyzer(
-    withSourceMaps(
-        withPWA({
-            basePath,
-            env: {
-                ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
-                NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
-            },
-            i18n: { defaultLocale, localeDetection: true, locales },
-            images: {
-                deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-                domains: ['ik.imagekit.io'],
-                imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-                loader: 'default',
-                path: '/_next/image'
-            },
-            poweredByHeader: false,
-            pwa: {
-                dest: 'public',
-                disable: process.env.NODE_ENV === 'development'
-            },
-            webpack: (config, options) => {
-                config.node = {
-                    fs: 'empty'
-                };
-
-                if (!options.isServer) {
-                    config.resolve.alias['@sentry/node'] = '@sentry/browser';
-                }
-                config.plugins.push(
-                    new options.webpack.DefinePlugin({
-                        'process.env.NEXT_IS_SERVER': JSON.stringify(options.isServer.toString())
-                    })
-                );
-                if (
-                    SENTRY_DSN &&
-                    SENTRY_ORG &&
-                    SENTRY_PROJECT &&
-                    SENTRY_AUTH_TOKEN &&
-                    COMMIT_SHA &&
-                    NODE_ENV === 'production'
-                ) {
+                    if (!options.isServer) {
+                        config.resolve.alias['@sentry/node'] = '@sentry/browser';
+                    }
                     config.plugins.push(
-                        new SentryWebpackPlugin({
-                            ignore: ['node_modules'],
-                            include: '.next',
-                            release: COMMIT_SHA,
-                            stripPrefix: ['webpack://_N_E/'],
-                            urlPrefix: `~${basePath}/_next`
+                        new options.webpack.DefinePlugin({
+                            'process.env.NEXT_IS_SERVER': JSON.stringify(
+                                options.isServer.toString()
+                            )
                         })
                     );
+                    if (
+                        SENTRY_DSN &&
+                        SENTRY_ORG &&
+                        SENTRY_PROJECT &&
+                        SENTRY_AUTH_TOKEN &&
+                        COMMIT_SHA &&
+                        NODE_ENV === 'production'
+                    ) {
+                        config.plugins.push(
+                            new SentryWebpackPlugin({
+                                ignore: ['node_modules'],
+                                include: '.next',
+                                release: COMMIT_SHA,
+                                stripPrefix: ['webpack://_N_E/'],
+                                urlPrefix: `~${basePath}/_next`
+                            })
+                        );
+                    }
+
+                    config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
+                    config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages_');
+                    config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
+
+                    return config;
                 }
-
-                config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-                config.resolve.alias['@graphql'] = path.join(__dirname, 'src/graphql');
-                config.resolve.alias['@models'] = path.join(__dirname, 'src/models/index');
-                config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
-                config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
-                config.resolve.alias['@utils'] = path.join(__dirname, 'src/utils');
-
-                return config;
-            }
-        })
+            })
+        )
     )
-));
+);

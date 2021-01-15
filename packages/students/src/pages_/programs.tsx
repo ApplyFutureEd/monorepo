@@ -1,3 +1,10 @@
+import {
+    searchPrograms,
+    SearchableProgramFilterInput,
+    SearchableProgramSortInput,
+    SearchProgramsQuery,
+    SearchProgramsQueryVariables
+} from '@applyfuture/graphql';
 import { Container } from '@applyfuture/ui';
 import { usePageBottom, useQuery } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
@@ -6,13 +13,6 @@ import Row from '@components/programs/row/Row';
 import SkeletonRow from '@components/programs/row/SkeletonRow';
 import Search from '@components/programs/search/Search';
 import SortBy from '@components/programs/sort-by/SortBy';
-import {
-    SearchableProgramFilterInput,
-    SearchableProgramSortInput,
-    SearchProgramsQuery,
-    SearchProgramsQueryVariables
-} from '@graphql/API';
-import { searchPrograms } from '@graphql/queries';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 

@@ -2,12 +2,6 @@
     "name": "@applyfuture/models",
     "version": "0.0.1",
     "main": "src/index.ts",
-    "scripts": {
-        "test": "jest --coverage --config ../../jest.config.js ./*"
-    },
-    "dependencies": {
-        "@applyfuture/utils": "*"
-    },
     "keywords": [],
     "author": "",
     "license": "ISC"

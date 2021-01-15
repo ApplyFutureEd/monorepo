@@ -398,7 +398,9 @@ export const schema = {
                 "minimumWorkExperienceUnit": {
                     "name": "minimumWorkExperienceUnit",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "DurationUnit"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -1589,6 +1591,105 @@ export const schema = {
                     }
                 }
             ]
+        },
+        "Post": {
+            "name": "Post",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "category": {
+                    "name": "category",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "content": {
+                    "name": "content",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "published": {
+                    "name": "published",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "slug": {
+                    "name": "slug",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Posts",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySlug",
+                        "fields": [
+                            "slug"
+                        ],
+                        "queryField": "getPostBySlug"
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "read"
+                                ],
+                                "provider": "apiKey"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admin"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "read",
+                                    "delete"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     },
     "enums": {
@@ -1845,7 +1946,7 @@ export const schema = {
         "FeeUnit": {
             "name": "FeeUnit",
             "values": [
-                "YEAR",
+                "ANNUAL",
                 "TOTAL"
             ]
         },
@@ -2213,5 +2314,5 @@ export const schema = {
             }
         }
     },
-    "version": "9f5060978cacc65bfb83e1edfa68db50"
+    "version": "8557fd50c850e0bd555590dbf423bd98"
 };

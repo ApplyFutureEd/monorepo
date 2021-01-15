@@ -1,10 +1,10 @@
-import { Button, Dropdown, DropdownItem } from '@applyfuture/ui';
-import { faSort } from '@fortawesome/pro-light-svg-icons';
 import {
     SearchableProgramSortableFields,
     SearchableProgramSortInput,
     SearchableSortDirection
-} from '@graphql/API';
+} from '@applyfuture/graphql';
+import { Button, Dropdown, DropdownItem } from '@applyfuture/ui';
+import { faSort } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 

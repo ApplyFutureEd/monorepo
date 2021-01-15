@@ -1,8 +1,8 @@
+import { SearchableProgramFilterInput } from '@applyfuture/graphql';
 import { Button, Drawer } from '@applyfuture/ui';
 import FiltersForm from '@components/programs/filters/FiltersForm';
 import Tabs from '@components/programs/filters/Tabs';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
-import { SearchableProgramFilterInput } from '@graphql/API';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 
