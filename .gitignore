@@ -53,3 +53,6 @@ test-report.xml
 #pwa
 public/*.js
 public/*.js.map
+
+#packages
+packages/students/.next
