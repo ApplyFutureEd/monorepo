@@ -1,4 +1,4 @@
-import { SupportedLocale } from 'src/types/SupportedLocale';
+import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 
 type CurrencyOptions = {
     currency: string;
