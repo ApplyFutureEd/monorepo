@@ -41,9 +41,7 @@ You'll be prompted to fill out any required commit fields at commit time.
 
 ## 📚 Packages
 
-ApplyFuture follows monorepo software development strategy where code for many projects is stored in the same repository.
-
-The following packages are available
+We follow monorepo software development strategy where code for many projects is stored in the same repository. The following packages are available :
 
     packages
     ├── admin                   # NextJS frontend for admins
@@ -54,4 +52,10 @@ The following packages are available
 
 ## 🚀 Deployment
 
-Continous Integration and Continous Deployment and is trigger on Pull Requests opening, Pull Requests synchronization and push on `dev` and `master` branches. It will run unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud.
+Continous Integration and Continous Deployment process is trigger on:
+
+-   Pull Requests opening
+-   Pull Requests synchronization
+-   Merge on `dev` and `master` branches
+
+It will run unit tests with Jest, end-to-end tests with Cypress and static analysis with Sonarcloud.
