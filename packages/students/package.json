@@ -69,7 +69,7 @@
         "react-toastify": "6.1.0",
         "react-transition-group": "4.4.1",
         "showdown": "1.9.1",
-        "use-debounce": "5.1.0",
+        "use-debounce": "5.2.0",
         "use-deep-compare-effect": "1.5.0",
         "webfontloader": "1.6.28",
         "yup": "0.29.1",
