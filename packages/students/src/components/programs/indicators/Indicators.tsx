@@ -1,7 +1,6 @@
 import { Program } from '@applyfuture/models';
 import { IconPanel, Tooltip } from '@applyfuture/ui';
-import { getLanguageLabel, currency, date, convertDuration } from '@applyfuture/utils';
-
+import { convertDuration, currency, date, getLanguageLabel } from '@applyfuture/utils';
 import {
     faCalendar,
     faClock,
@@ -9,7 +8,6 @@ import {
     faGraduationCap,
     faMoneyBill
 } from '@fortawesome/pro-light-svg-icons';
-
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
