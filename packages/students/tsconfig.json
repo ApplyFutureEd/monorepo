@@ -1,24 +1,6 @@
 {
+    "extends": "./../../tsconfig.json",
     "compilerOptions": {
-        "allowJs": true,
-        "alwaysStrict": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "lib": ["dom", "es2017"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "target": "esnext",
-        "baseUrl": ".",
         "paths": {
             "@components/*": ["src/components/*"],
             "@graphql/*": ["src/graphql/*"],
@@ -29,14 +11,6 @@
             "@utils/*": ["src/utils/*"]
         }
     },
-    "exclude": [
-        ".next",
-        "coverage",
-        "cypress",
-        "node_modules",
-        "public",
-        "amplify",
-        "**/aws-exports.js"
-    ],
+    "exclude": [".next", "node_modules", "public"],
     "include": ["**/*.ts", "**/*.tsx"]
 }
