@@ -6,6 +6,7 @@
     "license": "MIT",
     "scripts": {
         "start:students": "cd packages/students && yarn start",
+        "build:students": "cd packages/students && yarn build",
         "commit": "git add . && cz",
         "test": "jest --coverage",
         "test:watch": "jest --watch"

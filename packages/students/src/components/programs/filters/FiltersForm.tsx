@@ -1,3 +1,4 @@
+import { SearchableProgramFilterInput } from '@applyfuture/graphql';
 import { Button, Input, Select } from '@applyfuture/ui';
 import {
     cambridgeAdvancedResults,
@@ -12,7 +13,6 @@ import {
     createFilter
 } from '@applyfuture/utils';
 import { faCheck, faUndo } from '@fortawesome/pro-light-svg-icons';
-import { SearchableProgramFilterInput } from '@graphql/API';
 import cx from 'classnames';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEmpty } from 'lodash';

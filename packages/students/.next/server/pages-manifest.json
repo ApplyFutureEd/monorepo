@@ -1,8 +1,19 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
+  "/about": "pages/about.js",
+  "/confirm-account": "pages/confirm-account.js",
+  "/confirm-forgot-password": "pages/confirm-forgot-password.js",
+  "/forgot-password": "pages/forgot-password.js",
+  "/help": "pages/help.js",
+  "/": "pages/index.js",
   "/programs": "pages/programs.js",
   "/programs/[slug]": "pages/programs/[slug].js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/recruiters": "pages/recruiters.js",
+  "/sign-in": "pages/sign-in.js",
+  "/sign-up": "pages/sign-up.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/en/404": "pages/en/404.html",
+  "/fr/404": "pages/fr/404.html",
+  "/zh/404": "pages/zh/404.html"
 }

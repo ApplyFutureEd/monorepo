@@ -36,6 +36,7 @@
         ]
     },
     "dependencies": {
+        "@applyfuture/graphql": "*",
         "@applyfuture/models": "*",
         "@applyfuture/ui": "*",
         "@applyfuture/utils": "*",
