@@ -9284,7 +9284,7 @@ next-translate@0.20.2:
   resolved "https://registry.yarnpkg.com/next-translate/-/next-translate-0.20.2.tgz#b9d3e48c51cd3487c0a4a4d21211895ac99c4f8a"
   integrity sha512-MZ6NK654pOFF2GCao+QTZcAn5dFU2CO+0BnZSgNnbwT2rwHQ9jDjHdOipGM/HyghP/OGv88J2ZcWxYAHfPRTUQ==
 
-next-transpile-modules@^6.0.0:
+next-transpile-modules@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-6.0.0.tgz#ba2d9c944de34a6e04c8834b6a06dbc4b28e4611"
   integrity sha512-+Xdn4Upb8FeOXorzqVFyqww3kR9ML6S7y6Q3gFnoLdsqC5Jim3fwGNGTHENLOwedoKxcM6bCyRBuMYzyxru/wA==
