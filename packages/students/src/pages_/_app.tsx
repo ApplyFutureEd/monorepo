@@ -2,7 +2,7 @@ import '@styles/index.css';
 import '@applyfuture/utils/src/services/amplify';
 import 'yup-phone';
 
-import { initWhyDidYouRender, AuthenticatedUserProvider, initSentry } from '@applyfuture/utils';
+import { AuthenticatedUserProvider, initSentry, initWhyDidYouRender } from '@applyfuture/utils';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';

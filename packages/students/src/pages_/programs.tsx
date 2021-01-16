@@ -1,7 +1,7 @@
 import {
-    searchPrograms,
     SearchableProgramFilterInput,
     SearchableProgramSortInput,
+    searchPrograms,
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';

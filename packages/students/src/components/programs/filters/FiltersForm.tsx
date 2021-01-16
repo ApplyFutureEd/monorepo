@@ -5,12 +5,12 @@ import {
     cambridgeFirstResults,
     cities,
     countries,
-    supportedCountries,
+    createFilter,
     degrees,
     disciplines,
     educationLevels,
     languageLevels,
-    createFilter
+    supportedCountries
 } from '@applyfuture/utils';
 import { faCheck, faUndo } from '@fortawesome/pro-light-svg-icons';
 import cx from 'classnames';

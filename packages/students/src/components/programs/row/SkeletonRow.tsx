@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-const SkeletonRow = () => (
-    <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
+const SkeletonRow: FC = () => (
+    <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
         <div className="w-11/12">
             <div className="flex items-center w-full">
                 <div className="flex items-center w-1/2 space-x-4">

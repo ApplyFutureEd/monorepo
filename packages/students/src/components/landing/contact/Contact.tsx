@@ -11,10 +11,10 @@ const Contact: FC = () => {
         <section className="-mt-16 pt-16" id="contact">
             <div className="relative bg-white">
                 <div className="absolute inset-0">
-                    <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50"></div>
+                    <div className="bg-gray-50 absolute inset-y-0 left-0 w-1/2"></div>
                 </div>
-                <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5">
-                    <div className="px-4 py-8 bg-gray-50 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
+                <div className="max-w-7xl relative mx-auto lg:grid lg:grid-cols-5">
+                    <div className="bg-gray-50 px-4 py-8 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-gray-900 text-2xl font-extrabold tracking-tight leading-8 sm:text-3xl sm:leading-9">
                                 {t('landing:contact-headline')}

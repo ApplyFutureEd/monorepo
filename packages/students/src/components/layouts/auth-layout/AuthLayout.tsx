@@ -15,7 +15,7 @@ const AuthLayout: FC<Props> = (props) => {
             <Head description={description} title={title} />
             <div className="flex min-h-screen bg-white">
                 <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-                    <div className="mx-auto w-full max-w-sm lg:w-96">{children}</div>
+                    <div className="lg:w-96 mx-auto w-full max-w-sm">{children}</div>
                 </div>
                 <div className="relative hidden flex-1 w-0 lg:block">
                     <img

@@ -14,7 +14,7 @@ const DashboardLayout: FC<Props> = (props) => {
             <Head description={description} title={title} />
             <Header />
             <main className="main pt-header min-h-screen bg-gray-100">
-                <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
+                <div className="max-w-7xl mx-auto py-0 sm:px-6 md:py-6 lg:px-8">
                     <div className="px-4 sm:px-0">{children}</div>
                 </div>
             </main>

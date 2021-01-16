@@ -16,7 +16,7 @@ const PrivacyPolicyPage: FC<Props> = (props) => {
 
     return (
         <LandingLayout title={post.title}>
-            <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
+            <div className="max-w-7xl mx-auto py-0 sm:px-6 md:py-6 lg:px-8">
                 <div className="px-4 sm:px-0">
                     <div
                         className="markdown"

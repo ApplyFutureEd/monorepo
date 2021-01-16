@@ -1,6 +1,6 @@
 import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { getCountryLabel, currency, date, convertDuration } from '@applyfuture/utils';
+import { convertDuration, currency, date, getCountryLabel } from '@applyfuture/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -48,7 +48,7 @@ const Row: FC<Props> = (props) => {
     const locale = router.locale as SupportedLocale;
 
     return (
-        <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
+        <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
             <Link href={`/programs/${slug}`}>
                 <div className="w-11/12 cursor-pointer">
                     <div className="flex items-center w-full">

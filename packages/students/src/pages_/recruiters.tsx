@@ -34,9 +34,9 @@ const RecruitersPage: FC = () => {
                         />
                     </div>
                 </div>
-                <div className="relative pb-16 pt-12 px-4 sm:pt-16 sm:px-6 lg:grid lg:grid-cols-2 lg:mx-auto lg:px-8 lg:max-w-7xl">
+                <div className="lg:max-w-7xl relative pb-16 pt-12 px-4 sm:pt-16 sm:px-6 lg:grid lg:grid-cols-2 lg:mx-auto lg:px-8">
                     <div className="lg:col-start-2 lg:pl-8">
-                        <div className="mx-auto max-w-prose text-base lg:ml-auto lg:mr-0 lg:max-w-lg">
+                        <div className="max-w-prose mx-auto text-base lg:ml-auto lg:mr-0 lg:max-w-lg">
                             <h1 className="mb-8 mt-2 text-gray-900 text-3xl font-extrabold tracking-tight leading-8 sm:text-4xl sm:leading-10">
                                 {t('landing:recruiters-page-heading')}
                             </h1>
