@@ -1,6 +1,6 @@
-const baseConfig = require('../../jest.config')
+const baseConfig = require('../../jest.config');
 
-const packageName = require('./package.json').name.split('@applyfuture/').pop()
+const packageName = require('./package.json').name.split('@applyfuture/').pop();
 
 module.exports = {
     ...baseConfig,
@@ -9,6 +9,6 @@ module.exports = {
         '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,
         '@graphql/(.*)': `<rootDir>/packages/${packageName}/src/graphql/$1`,
         '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages_/$1`,
-        '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`,
-    },
+        '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`
+    }
 };

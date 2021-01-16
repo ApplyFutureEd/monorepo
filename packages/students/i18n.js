@@ -16,4 +16,4 @@ module.exports = {
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }
-}
+};
