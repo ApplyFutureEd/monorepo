@@ -1,6 +1,6 @@
 import { Stepper } from '@applyfuture/ui';
-import RecruitersForm from '@components/forms/recruiters/RecruitersForm';
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import RecruitersForm from '@applyfuture/students/components/forms/recruiters/RecruitersForm';
+import LandingLayout from '@applyfuture/students/components/layouts/landing-layout/LandingLayout';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 

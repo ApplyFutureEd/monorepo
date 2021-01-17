@@ -1,4 +1,4 @@
-import Filters from '@components/programs/filters/Filters';
+import Filters from '@applyfuture/students/components/programs/filters/Filters';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import selectEvent from 'react-select-event';

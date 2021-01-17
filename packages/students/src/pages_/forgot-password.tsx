@@ -1,6 +1,6 @@
 import { Logo } from '@applyfuture/ui';
-import ForgotPasswordForm from '@components/forms/forgot-password/ForgotPasswordForm';
-import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
+import ForgotPasswordForm from '@applyfuture/students/components/forms/forgot-password/ForgotPasswordForm';
+import AuthLayout from '@applyfuture/students/components/layouts/auth-layout/AuthLayout';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';

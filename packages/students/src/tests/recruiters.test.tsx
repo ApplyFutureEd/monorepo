@@ -1,4 +1,4 @@
-import Recruiters from '@pages/recruiters';
+import Recruiters from '@applyfuture/students/pages/recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
 import { FC } from 'react';

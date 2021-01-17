@@ -1,4 +1,4 @@
-import Process from '@components/landing/process/Process';
+import Process from '@applyfuture/students/components/landing/process/Process';
 import { render, screen } from '@testing-library/react';
 
 describe('Process', () => {

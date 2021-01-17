@@ -1,4 +1,4 @@
-import PrivacyPolicyPage from '@pages/privacy-policy';
+import PrivacyPolicyPage from '@applyfuture/students/pages/privacy-policy';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 

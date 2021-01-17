@@ -2,7 +2,7 @@ import { getPostBySlug, GetPostBySlugQuery } from '@applyfuture/graphql';
 import { Post } from '@applyfuture/models';
 import { markdown } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import LandingLayout from '@applyfuture/students/components/layouts/landing-layout/LandingLayout';
 import { API } from 'aws-amplify';
 import { GetStaticProps } from 'next';
 import React, { FC } from 'react';

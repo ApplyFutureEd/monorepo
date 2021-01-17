@@ -1,4 +1,4 @@
-import Arguments from '@components/landing/arguments/Arguments';
+import Arguments from '@applyfuture/students/components/landing/arguments/Arguments';
 import { render, screen } from '@testing-library/react';
 
 describe('Arguments', () => {

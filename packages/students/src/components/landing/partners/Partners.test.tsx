@@ -1,4 +1,4 @@
-import Partners from '@components/landing/partners/Partners';
+import Partners from '@applyfuture/students/components/landing/partners/Partners';
 import { render, screen } from '@testing-library/react';
 
 describe('Partners', () => {

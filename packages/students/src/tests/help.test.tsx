@@ -1,4 +1,4 @@
-import Help from '@pages/help';
+import Help from '@applyfuture/students/pages/help';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FC } from 'react';

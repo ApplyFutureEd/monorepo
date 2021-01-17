@@ -9,7 +9,7 @@ import {
     RequestedDocument,
     Schedule
 } from '@applyfuture/models';
-import Indicators from '@components/programs/indicators/Indicators';
+import Indicators from '@applyfuture/students/components/programs/indicators/Indicators';
 import { render } from '@testing-library/react';
 
 jest.mock('next/router', () => ({

@@ -1,4 +1,4 @@
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
+import LandingLayout from '@applyfuture/students/components/layouts/landing-layout/LandingLayout';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 

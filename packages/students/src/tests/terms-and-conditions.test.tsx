@@ -1,4 +1,4 @@
-import TermsAndConditionsPage from '@pages/terms-and-conditions';
+import TermsAndConditionsPage from '@applyfuture/students/pages/terms-and-conditions';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 

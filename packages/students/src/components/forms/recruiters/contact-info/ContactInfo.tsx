@@ -1,6 +1,6 @@
 import { Button, Input, PhoneInput, Select } from '@applyfuture/ui';
 import { countries } from '@applyfuture/utils';
-import { FormValues } from '@components/forms/recruiters/RecruitersForm';
+import { FormValues } from '@applyfuture/students/components/forms/recruiters/RecruitersForm';
 import { faArrowLeft, faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';

@@ -1,4 +1,4 @@
-import Students from '@components/landing/students/Students';
+import Students from '@applyfuture/students/components/landing/students/Students';
 import { render, screen } from '@testing-library/react';
 
 describe('Students', () => {

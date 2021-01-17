@@ -20,9 +20,9 @@
         "target": "esnext",
         "baseUrl": ".",
         "paths": {
-            "@components/*": ["src/components/*"],
-            "@pages/*": ["src/pages_/*"],
-            "@styles/*": ["src/styles/*"]
+            "@applyfuture/students/components/*": ["src/components/*"],
+            "@applyfuture/students/pages/*": ["src/pages_/*"],
+            "@applyfuture/students/styles/*": ["src/styles/*"]
         }
     },
     "exclude": [".next", "node_modules", "public"],

@@ -1,7 +1,7 @@
 import 'yup-phone';
 
-import CompagnyInfo from '@components/forms/recruiters/compagny-info/CompagnyInfo';
-import ContactInfo from '@components/forms/recruiters/contact-info/ContactInfo';
+import CompagnyInfo from '@applyfuture/students/components/forms/recruiters/compagny-info/CompagnyInfo';
+import ContactInfo from '@applyfuture/students/components/forms/recruiters/contact-info/ContactInfo';
 import { API } from 'aws-amplify';
 import cx from 'classnames';
 import { Form, Formik, FormikHelpers } from 'formik';

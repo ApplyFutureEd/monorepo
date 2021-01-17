@@ -1,4 +1,4 @@
-import '@styles/index.css';
+import '../../../admin/src/pages/node_modules/@applyfuture/students/styles/index.css';
 import '@applyfuture/utils/src/services/amplify';
 import 'yup-phone';
 

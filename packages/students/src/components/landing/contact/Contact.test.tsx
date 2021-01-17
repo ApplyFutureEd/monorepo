@@ -1,4 +1,4 @@
-import Contact from '@components/landing/contact/Contact';
+import Contact from '@applyfuture/students/components/landing/contact/Contact';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
 
