@@ -71,7 +71,7 @@
         "react-transition-group": "4.4.1",
         "showdown": "1.9.1",
         "use-debounce": "5.1.0",
-        "use-deep-compare-effect": "1.5.0",
+        "use-deep-compare-effect": "1.6.1",
         "webfontloader": "1.6.28",
         "yup": "0.29.1",
         "yup-phone": "1.2.12"
