@@ -1,0 +1,16 @@
+html {
+    scroll-behavior: smooth;
+}
+
+button:focus {
+    outline: none;
+}
+input:focus {
+    outline: none;
+}
+select:focus {
+    outline: none;
+}
+textarea:focus {
+    outline: none;
+}

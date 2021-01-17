@@ -1,0 +1,12 @@
+@tailwind base;
+
+@import './loader.css';
+@import './markdown.css';
+@import './reset.css';
+@import './scrollbar.css';
+@import './toast.css';
+
+/* Start purging... */
+@tailwind components;
+@tailwind utilities;
+/* Stop purging. */
