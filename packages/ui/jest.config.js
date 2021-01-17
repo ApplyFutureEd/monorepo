@@ -6,10 +6,6 @@ module.exports = {
     ...baseConfig,
     displayName: packageName,
     moduleNameMapper: {
-        '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,
-        '@graphql/(.*)': `<rootDir>/packages/${packageName}/src/graphql/$1`,
-        '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages_/$1`,
-        '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`,
         '\\.(css|scss)$': 'identity-obj-proxy'
     },
     modulePaths: [`<rootDir>/packages/${packageName}/src/`],
