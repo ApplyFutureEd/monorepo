@@ -1,4 +1,4 @@
-import TermsOfUsePage from '@applyfuture/students/pages/terms-of-use';
+import TermsOfUsePage from '@pages/terms-of-use';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 

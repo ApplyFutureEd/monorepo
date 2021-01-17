@@ -1,5 +1,5 @@
-import { FormValues } from '@applyfuture/students/components/forms/recruiters/RecruitersForm';
 import { Button, Input } from '@applyfuture/ui';
+import { FormValues } from '@components/forms/recruiters/RecruitersForm';
 import { faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';

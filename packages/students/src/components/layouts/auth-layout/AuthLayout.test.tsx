@@ -1,4 +1,4 @@
-import AuthLayout from '@applyfuture/students/components/layouts/auth-layout/AuthLayout';
+import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { render, screen } from '@testing-library/react';
 
 describe('AuthLayout', () => {

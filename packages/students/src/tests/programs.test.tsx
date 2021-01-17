@@ -1,4 +1,4 @@
-import Programs from '@applyfuture/students/pages/programs';
+import Programs from '@pages/programs';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { FC } from 'react';

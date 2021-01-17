@@ -7,12 +7,12 @@ import {
 } from '@applyfuture/graphql';
 import { Container } from '@applyfuture/ui';
 import { usePageBottom, useQuery } from '@applyfuture/utils';
-import DashboardLayout from '@applyfuture/students/components/layouts/dashboard-layout/DashboardLayout';
-import Filters from '@applyfuture/students/components/programs/filters/Filters';
-import Row from '@applyfuture/students/components/programs/row/Row';
-import SkeletonRow from '@applyfuture/students/components/programs/row/SkeletonRow';
-import Search from '@applyfuture/students/components/programs/search/Search';
-import SortBy from '@applyfuture/students/components/programs/sort-by/SortBy';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import Filters from '@components/programs/filters/Filters';
+import Row from '@components/programs/row/Row';
+import SkeletonRow from '@components/programs/row/SkeletonRow';
+import Search from '@components/programs/search/Search';
+import SortBy from '@components/programs/sort-by/SortBy';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import ContactForm from '@applyfuture/students/components/landing/contact/ContactForm';
+import ContactForm from '@components/landing/contact/ContactForm';
 import { faEnvelope, faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useTranslation from 'next-translate/useTranslation';

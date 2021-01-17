@@ -1,5 +1,5 @@
-import DashboardLayout from '@applyfuture/students/components/layouts/dashboard-layout/DashboardLayout';
 import { Collapse } from '@applyfuture/ui';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 

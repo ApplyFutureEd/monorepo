@@ -1,5 +1,5 @@
 import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
-import Row from '@applyfuture/students/components/programs/row/Row';
+import Row from '@components/programs/row/Row';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

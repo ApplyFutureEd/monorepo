@@ -1,11 +1,14 @@
 const baseConfig = require('../../jest.config');
 
+const packageName = require('./package.json').name.split('@applyfuture/').pop();
+
 module.exports = {
     ...baseConfig,
     moduleNameMapper: {
         ...baseConfig.moduleNameMapper,
-        '@applyfuture/admin/components/(.*)': `<rootDir>/packages/admin/src/components/$1`,
-        '@applyfuture/admin/pages/(.*)': `<rootDir>/packages/admin/src/pages/$1`,
-        '@applyfuture/admin/styles/(.*)': `<rootDir>/packages/admin/src/styles/$1`
+        '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,
+        '@graphql/(.*)': `<rootDir>/packages/${packageName}/src/graphql/$1`,
+        '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages_/$1`,
+        '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`
     }
 };

@@ -1,5 +1,5 @@
 import { AmplifyError } from '@applyfuture/utils';
-import SignUp from '@applyfuture/students/pages/sign-up';
+import SignUp from '@pages/sign-up';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
 import React, { FC } from 'react';

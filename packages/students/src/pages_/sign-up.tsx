@@ -1,6 +1,6 @@
-import SignUpForm from '@applyfuture/students/components/forms/sign-up/SignUpForm';
-import AuthLayout from '@applyfuture/students/components/layouts/auth-layout/AuthLayout';
 import { Logo } from '@applyfuture/ui';
+import SignUpForm from '@components/forms/sign-up/SignUpForm';
+import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { capitalize } from 'lodash';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';

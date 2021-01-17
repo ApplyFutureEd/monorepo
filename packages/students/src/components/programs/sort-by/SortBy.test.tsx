@@ -1,4 +1,4 @@
-import SortBy from '@applyfuture/students/components/programs/sort-by/SortBy';
+import SortBy from '@components/programs/sort-by/SortBy';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('SortBy', () => {

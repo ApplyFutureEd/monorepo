@@ -19,8 +19,8 @@ import {
 } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import { Button } from '@applyfuture/ui';
-import DashboardLayout from '@applyfuture/students/components/layouts/dashboard-layout/DashboardLayout';
-import Indicators from '@applyfuture/students/components/programs/indicators/Indicators';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import Indicators from '@components/programs/indicators/Indicators';
 import { faBook, faCalendar, faHeart, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,

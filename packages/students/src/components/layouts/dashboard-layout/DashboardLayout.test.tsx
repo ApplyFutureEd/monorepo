@@ -1,4 +1,4 @@
-import DashboardLayout from '@applyfuture/students/components/layouts/dashboard-layout/DashboardLayout';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 

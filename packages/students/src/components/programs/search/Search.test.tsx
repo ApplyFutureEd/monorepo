@@ -1,4 +1,4 @@
-import Search from '@applyfuture/students/components/programs/search/Search';
+import Search from '@components/programs/search/Search';
 import { render, screen } from '@testing-library/react';
 
 describe('Search', () => {

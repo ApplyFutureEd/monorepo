@@ -24,7 +24,7 @@ module.exports = {
             {
                 rootMode: 'upward'
             }
-        ]
+        ],
     },
     transformIgnorePatterns: ['/node_modules/']
 };
