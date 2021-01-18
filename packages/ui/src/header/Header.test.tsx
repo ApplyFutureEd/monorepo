@@ -4,13 +4,6 @@ import React, { useState as useStateMock } from 'react';
 
 import { Header } from './Header';
 
-/* jest.mock('..', () => ({
-    ...(jest.requireActual('..') as Record<string, unknown>),
-    Nav: jest.fn().mockImplementation(() => <nav />),
-    LanguageMenu: jest.fn().mockImplementation(() => <div />),
-    UserMenu: jest.fn().mockImplementation(() => <div />)
-})); */
-
 jest.mock('next/router', () => ({
     useRouter() {
         return {
@@ -38,6 +31,48 @@ const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
     typeof useAuthenticatedUser
 >;
 
+const loggedRoutes = [
+    {
+        href: '/profile',
+        label: 'navigation:profile'
+    },
+    {
+        href: '/programs',
+        label: 'navigation:programs'
+    },
+    {
+        href: '/schools',
+        label: 'navigation:schools'
+    },
+    {
+        href: '/applications',
+        label: 'navigation:applications'
+    },
+    {
+        href: '/help',
+        label: 'navigation:help'
+    }
+];
+
+const unloggedRoutes = [
+    {
+        href: '/programs',
+        label: 'navigation:programs'
+    },
+    {
+        href: '/schools',
+        label: 'navigation:schools'
+    },
+    {
+        href: '/about',
+        label: 'navigation:about-us'
+    },
+    {
+        href: '/#contact',
+        label: 'navigation:contact'
+    }
+];
+
 describe('Header', () => {
     const setOpen = jest.fn();
 
@@ -50,7 +85,7 @@ describe('Header', () => {
     });
 
     it('can render without crashing', () => {
-        render(<Header />);
+        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
 
         const nav = screen.getByRole('navigation');
 
@@ -58,7 +93,7 @@ describe('Header', () => {
     });
 
     it('can call the open callback function when clicking on an anchor', () => {
-        render(<Header />);
+        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
 
         const anchor = screen.getByLabelText(/open/i);
         fireEvent.click(anchor);
@@ -70,7 +105,7 @@ describe('Header', () => {
         useAuthenticatedUserMock.mockReturnValue({
             attributes: { email: 'awesome.student@gmail.com' }
         });
-        render(<Header />);
+        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
 
         const button = screen.getByLabelText(/user menu/i);
 

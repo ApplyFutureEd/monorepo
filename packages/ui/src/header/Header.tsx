@@ -13,49 +13,24 @@ import { Nav } from './../nav/Nav';
 import { Transition } from './../transition/Transition';
 import { UserMenu } from './../user-menu/UserMenu';
 
-const unloggedRoutes = [
-    {
-        href: '/programs',
-        label: 'navigation:programs'
-    },
-    {
-        href: '/schools',
-        label: 'navigation:schools'
-    },
-    {
-        href: '/about',
-        label: 'navigation:about-us'
-    },
-    {
-        href: '/#contact',
-        label: 'navigation:contact'
-    }
-];
+export type Route = {
+    href: string;
+    label: string;
+};
 
-const loggedRoutes = [
-    {
-        href: '/profile',
-        label: 'navigation:profile'
-    },
-    {
-        href: '/programs',
-        label: 'navigation:programs'
-    },
-    {
-        href: '/schools',
-        label: 'navigation:schools'
-    },
-    {
-        href: '/applications',
-        label: 'navigation:applications'
-    },
-    {
-        href: '/help',
-        label: 'navigation:help'
-    }
-];
+export type HeaderProps = {
+    /**
+     * Routes displayed if logged.
+     */
+    loggedRoutes: Array<Route>;
+    /**
+     * Routes displayed if not logged.
+     */
+    unloggedRoutes: Array<Route>;
+};
 
-export const Header: FC = () => {
+export const Header: FC<HeaderProps> = (props) => {
+    const { loggedRoutes, unloggedRoutes } = props;
     const { t } = useTranslation();
     const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
