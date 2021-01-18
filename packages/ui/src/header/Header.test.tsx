@@ -30,7 +30,8 @@ jest.mock('@applyfuture/utils', () => ({
         attributes: {
             email: 'awesome.student@gmail.com'
         }
-    }))
+    })),
+    useOutsideAlerter: jest.fn()
 }));
 
 const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
