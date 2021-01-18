@@ -1,6 +1,7 @@
-import { Button } from './Button';
 import { faArrowLeft, faArrowRight } from '@fortawesome/pro-light-svg-icons';
 import { render, screen } from '@testing-library/react';
+
+import { Button } from './Button';
 
 describe('Button', () => {
     const baseClasses =

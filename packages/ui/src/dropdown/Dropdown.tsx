@@ -1,8 +1,9 @@
-import { OutsideAlerter } from './../outside-alerter/OutsideAlerter';
-import { Transition } from './../transition/Transition';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, ReactNode } from 'react';
+
+import { OutsideAlerter } from './../outside-alerter/OutsideAlerter';
+import { Transition } from './../transition/Transition';
 
 export type DropdownItem = {
     label: ReactNode;

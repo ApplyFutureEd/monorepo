@@ -1,3 +1,10 @@
+import { useAuthenticatedUser } from '@applyfuture/utils';
+import { faBars } from '@fortawesome/pro-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
+import { FC, useState } from 'react';
+
 import { Button } from './../button/Button';
 import { LanguageMenu } from './../language-menu/LanguageMenu';
 import { Logo } from './../logo/Logo';
@@ -5,12 +12,6 @@ import { MobileMenu } from './../mobile-menu/MobileMenu';
 import { Nav } from './../nav/Nav';
 import { Transition } from './../transition/Transition';
 import { UserMenu } from './../user-menu/UserMenu';
-import { faBars } from '@fortawesome/pro-light-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useAuthenticatedUser } from '@applyfuture/utils';
-import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
-import { FC, useState } from 'react';
 
 const unloggedRoutes = [
     {

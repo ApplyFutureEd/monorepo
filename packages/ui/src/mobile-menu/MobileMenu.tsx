@@ -1,13 +1,13 @@
-import { Button } from './../button/Button';
-import { Logo } from './../logo/Logo';
-import { UserMenu } from './../user-menu/UserMenu';
-
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useAuthenticatedUser } from '@applyfuture/utils';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
+
+import { Button } from './../button/Button';
+import { Logo } from './../logo/Logo';
+import { UserMenu } from './../user-menu/UserMenu';
 
 type Props = {
     routes: {

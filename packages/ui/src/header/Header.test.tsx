@@ -1,7 +1,8 @@
-import { Header } from './Header';
 import { useAuthenticatedUser } from '@applyfuture/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React, { useState as useStateMock } from 'react';
+
+import { Header } from './Header';
 
 /* jest.mock('..', () => ({
     ...(jest.requireActual('..') as Record<string, unknown>),

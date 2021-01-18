@@ -32,7 +32,7 @@ export const Toast: FC<Props> = (props) => {
                 <div className="p-4">
                     <div className="flex items-start">
                         {icons[variant]}
-                        <div className="flex-1 ml-3 pt-0.5 w-0">
+                        <div className="pt-0.5 flex-1 ml-3 w-0">
                             <p className="text-gray-900 text-sm font-medium leading-5">{title}</p>
                             <p className="mt-1 text-gray-500 text-sm leading-5">{description}</p>
                         </div>

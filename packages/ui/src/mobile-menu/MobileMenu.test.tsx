@@ -1,7 +1,8 @@
-import { MobileMenu } from './MobileMenu';
-import { fireEvent, render, screen } from '@testing-library/react';
 import { useAuthenticatedUser } from '@applyfuture/utils';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { ReactNode } from 'react';
+
+import { MobileMenu } from './MobileMenu';
 
 type LinkProps = {
     children: ReactNode;

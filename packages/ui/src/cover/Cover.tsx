@@ -11,7 +11,7 @@ export const Cover: FC<Props> = (props: Props) => {
     return (
         <img
             alt={alt}
-            className="w-full h-48 bg-cover bg-center bg-no-repeat rounded-t-lg shadow md:h-96"
+            className="md:h-96 w-full h-48 bg-cover bg-center bg-no-repeat rounded-t-lg shadow"
             style={{
                 backgroundImage: `url(${src})`
             }}

@@ -1,12 +1,13 @@
-import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faUser } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
+
+import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
 
 export const UserMenu: FC = () => {
     const router = useRouter();

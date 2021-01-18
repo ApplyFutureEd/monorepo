@@ -1,4 +1,3 @@
-import { Tooltip } from './../tooltip/Tooltip';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +7,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { ChangeEvent, FC, ReactNode, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useDebouncedCallback } from 'use-debounce';
+
+import { Tooltip } from './../tooltip/Tooltip';
 
 type Props = {
     /**

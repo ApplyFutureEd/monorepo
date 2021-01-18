@@ -8,17 +8,17 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
+import { Button } from '@applyfuture/ui';
 import {
+    currency,
+    date,
     getCambridgeAdvancedLabel,
     getCambridgeFirstLabel,
     getCountryLabel,
     getEducationLabel,
-    currency,
-    date,
     markdown
 } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
-import { Button } from '@applyfuture/ui';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Indicators from '@components/programs/indicators/Indicators';
 import { faBook, faCalendar, faHeart, faMoneyBill } from '@fortawesome/pro-light-svg-icons';

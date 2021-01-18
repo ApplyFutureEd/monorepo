@@ -1,5 +1,6 @@
-import { Collapse } from './Collapse';
 import { render, screen } from '@testing-library/react';
+
+import { Collapse } from './Collapse';
 
 describe('Collapse', () => {
     const handleClick = jest.fn();

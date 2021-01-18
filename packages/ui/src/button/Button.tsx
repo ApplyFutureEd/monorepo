@@ -1,8 +1,9 @@
-import { Loader } from './../loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { forwardRef, ReactNode } from 'react';
+
+import { Loader } from './../loader/Loader';
 
 type Ref = HTMLButtonElement;
 
@@ -106,4 +107,3 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         </span>
     );
 });
-

@@ -1,5 +1,6 @@
-import { Toast } from './Toast';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
+import { Toast } from './Toast';
 
 describe('Toast', () => {
     const closeToast = jest.fn();

@@ -1,5 +1,6 @@
-import { PhoneInput } from './PhoneInput';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
+import { PhoneInput } from './PhoneInput';
 
 describe('PhoneInput', () => {
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';

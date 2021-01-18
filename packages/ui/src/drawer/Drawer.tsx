@@ -46,7 +46,7 @@ export const Drawer: FC<Props> = (props) => {
                                     <h2 className="text-white text-lg font-medium leading-7">
                                         {title}
                                     </h2>
-                                    <div className="flex items-center h-7">
+                                    <div className="h-7 flex items-center">
                                         <button
                                             aria-label={t('common:close')}
                                             className="text-indigo-200 hover:text-white transition duration-150 ease-in-out"

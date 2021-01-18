@@ -1,6 +1,7 @@
-import { IconPanel } from './IconPanel';
 import { faBook } from '@fortawesome/pro-light-svg-icons';
 import { render, screen } from '@testing-library/react';
+
+import { IconPanel } from './IconPanel';
 
 describe('IconPanel', () => {
     it('can render without crashing', () => {

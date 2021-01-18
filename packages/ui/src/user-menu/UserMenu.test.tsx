@@ -1,6 +1,7 @@
-import { UserMenu } from './UserMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
+
+import { UserMenu } from './UserMenu';
 
 jest.mock('next/router', () => ({
     useRouter() {
