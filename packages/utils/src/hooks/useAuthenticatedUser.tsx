@@ -8,18 +8,19 @@ type AuthenticatedUser = {
     attributes: {
         email: string;
     };
+    signInUserSession: any;
 };
 
 type Props = {
     children: ReactNode;
 };
 
-const AuthenticatedUserContext = createContext<AuthenticatedUser | null>(null);
+const AuthenticatedUserContext = createContext<AuthenticatedUser | null | undefined>(null);
 
 export const AuthenticatedUserProvider: FC<Props> = (props) => {
     const { children } = props;
     const { pathname } = useRouter();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<AuthenticatedUser | null | undefined>();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,6 +28,7 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
                 const user = await Auth.currentAuthenticatedUser();
                 setUser(user);
             } catch (error) {
+                setUser(null);
                 Amplify.configure({
                     ...config,
                     aws_appsync_authenticationType: 'API_KEY'
@@ -43,5 +45,5 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
     );
 };
 
-export const useAuthenticatedUser = (): AuthenticatedUser | null =>
+export const useAuthenticatedUser = (): AuthenticatedUser | null | undefined =>
     useContext(AuthenticatedUserContext);

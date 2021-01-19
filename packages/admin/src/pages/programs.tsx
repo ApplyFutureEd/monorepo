@@ -2,11 +2,11 @@ import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { FC } from 'react';
 
-const LandingPage: FC = () => {
-    return <DashboardLayout title="Dashboard">Admin</DashboardLayout>;
+const ProgramsPage: FC = () => {
+    return <DashboardLayout title="Programs">Programs</DashboardLayout>;
 };
 
-export default withPrivateAccess(LandingPage, {
+export default withPrivateAccess(ProgramsPage, {
     groups: ['admin'],
     redirection: '/sign-in'
 });

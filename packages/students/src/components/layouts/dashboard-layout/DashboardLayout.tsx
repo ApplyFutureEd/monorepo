@@ -78,10 +78,27 @@ const DashboardLayout: FC<Props> = (props) => {
         </div>
     ];
 
+    const mobileComponents = [
+        <div key={0}>
+            {user ? (
+                <UserMenu items={items} />
+            ) : (
+                <div className="flex space-x-4">
+                    <Link href="/sign-in">
+                        <Button variant="secondary">{t('auth:sign-in')}</Button>
+                    </Link>
+                    <Link href="/sign-up">
+                        <Button variant="primary">{t('auth:sign-up')}</Button>
+                    </Link>
+                </div>
+            )}
+        </div>
+    ];
+
     const mobileMenu = (
         <Transition show={openMobileMenu}>
             <MobileMenu
-                components={components}
+                components={mobileComponents}
                 handleCloseMobileMenu={handleCloseMobileMenu}
                 routes={user ? loggedRoutes : unloggedRoutes}
             />

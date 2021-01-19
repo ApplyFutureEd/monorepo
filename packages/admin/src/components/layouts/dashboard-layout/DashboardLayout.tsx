@@ -1,5 +1,4 @@
 import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@applyfuture/ui';
-import { withAuth } from '@applyfuture/utils';
 import { routes } from '@components/layouts/routes';
 import { faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { Auth } from 'aws-amplify';
@@ -64,4 +63,4 @@ const DashboardLayout: FC<Props> = (props) => {
     );
 };
 
-export default withAuth(DashboardLayout);
+export default DashboardLayout;
