@@ -13,7 +13,7 @@ export type Route = {
     label: string;
 };
 
-export type Props = {
+type Props = {
     /**
      * Components displayed in the header.
      */

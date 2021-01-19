@@ -5,7 +5,7 @@ import { FC, useState } from 'react';
 
 import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
 
-export type Props = {
+type Props = {
     /**
      * User menu items
      */
