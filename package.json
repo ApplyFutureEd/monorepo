@@ -10,7 +10,8 @@
         "lint": "eslint --fix .",
         "test": "jest --coverage",
         "test:watch": "jest --watch",
-        "commit": "git add . && cz"
+        "commit": "git add . && cz",
+        "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'"
     },
     "workspaces": [
         "packages/*"
