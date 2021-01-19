@@ -1,25 +1,29 @@
-import { useAuthenticatedUser } from '@applyfuture/utils';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { Button } from './../button/Button';
+import { Route } from '../header/Header';
 import { Logo } from './../logo/Logo';
-import { UserMenu } from './../user-menu/UserMenu';
 
 type Props = {
-    routes: {
-        href: string;
-        label: string;
-    }[];
-    setOpen: (value: boolean) => void;
+    /**
+     * Components displayed at the bottom of the mobile menu.
+     */
+    components?: Array<ReactNode>;
+    /**
+     * Callback function to close the mobile menu.
+     */
+    handleCloseMobileMenu: () => void;
+    /**
+     * Routes displayed in the header.
+     */
+    routes: Array<Route>;
 };
 
 export const MobileMenu: FC<Props> = (props) => {
-    const { routes, setOpen } = props;
-    const user = useAuthenticatedUser();
+    const { components, handleCloseMobileMenu, routes } = props;
     const { t } = useTranslation();
 
     return (
@@ -38,7 +42,7 @@ export const MobileMenu: FC<Props> = (props) => {
                                     aria-label={t('common:close')}
                                     className="inline-flex items-center justify-center p-2 text-gray-500 focus:text-gray-500 hover:text-indigo-500 hover:bg-gray-100 focus:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out"
                                     type="button"
-                                    onClick={() => setOpen(false)}>
+                                    onClick={handleCloseMobileMenu}>
                                     <FontAwesomeIcon icon={faTimes} size="lg" />
                                 </button>
                             </div>
@@ -49,7 +53,7 @@ export const MobileMenu: FC<Props> = (props) => {
                                     <button
                                         key={route.href}
                                         type="button"
-                                        onClick={() => setOpen(false)}>
+                                        onClick={handleCloseMobileMenu}>
                                         <Link href={route.href}>
                                             <div className="hover:bg-gray-50 flex -m-3 p-3 transition duration-150 ease-in-out">
                                                 {t(route.label)}
@@ -60,20 +64,7 @@ export const MobileMenu: FC<Props> = (props) => {
                             </nav>
                         </div>
                     </div>
-                    <div className="flex items-center p-3 space-x-4">
-                        {user ? (
-                            <UserMenu />
-                        ) : (
-                            <>
-                                <Link href="/sign-in">
-                                    <Button variant="secondary">{t('auth:sign-in')}</Button>
-                                </Link>
-                                <Link href="/sign-up">
-                                    <Button variant="primary">{t('auth:sign-up')}</Button>
-                                </Link>
-                            </>
-                        )}
-                    </div>
+                    <div className="flex items-center p-3 space-x-4">{components}</div>
                 </div>
             </div>
         </div>

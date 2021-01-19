@@ -2,14 +2,11 @@ import { Logo } from '@applyfuture/ui';
 import SignInForm from '@components/forms/sign-in/SignInForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 const SignInPage: FC = () => {
-    const { t } = useTranslation();
-
     return (
-        <AuthLayout title={t('auth:sign-in-page-title')}>
+        <AuthLayout title="Sign in">
             <div>
                 <Link href="/">
                     <div className="inline-flex cursor-pointer">

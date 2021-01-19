@@ -79,7 +79,15 @@ const SortBy: FC<Props> = (props) => {
         };
     });
 
-    return <Dropdown items={items} open={open} trigger={trigger} onOutsideClick={handleClose} />;
+    return (
+        <Dropdown
+            handleClose={handleClose}
+            items={items}
+            open={open}
+            trigger={trigger}
+            onOutsideClick={handleClose}
+        />
+    );
 };
 
 export default SortBy;

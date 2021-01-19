@@ -1,41 +1,26 @@
-export const loggedRoutes = [
+export const routes = [
     {
-        href: '/profile',
-        label: 'navigation:profile'
-    },
-    {
-        href: '/programs',
-        label: 'navigation:programs'
-    },
-    {
-        href: '/schools',
-        label: 'navigation:schools'
+        href: '/students',
+        label: 'Students'
     },
     {
         href: '/applications',
-        label: 'navigation:applications'
+        label: 'Applications'
     },
     {
-        href: '/help',
-        label: 'navigation:help'
-    }
-];
-
-export const unloggedRoutes = [
+        href: '/search-alerts',
+        label: 'Search Alerts'
+    },
     {
-        href: '/programs',
-        label: 'navigation:programs'
+        href: '/feedbacks',
+        label: 'Feedbacks'
     },
     {
         href: '/schools',
-        label: 'navigation:schools'
+        label: 'Schools'
     },
     {
-        href: '/about',
-        label: 'navigation:about-us'
-    },
-    {
-        href: '/#contact',
-        label: 'navigation:contact'
+        href: '/programs',
+        label: 'Programs'
     }
 ];

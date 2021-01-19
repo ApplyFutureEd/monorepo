@@ -59,5 +59,13 @@ export const LanguageMenu: FC = () => {
         };
     });
 
-    return <Dropdown items={items} open={open} trigger={trigger} onOutsideClick={handleClose} />;
+    return (
+        <Dropdown
+            handleClose={handleClose}
+            items={items}
+            open={open}
+            trigger={trigger}
+            onOutsideClick={handleClose}
+        />
+    );
 };

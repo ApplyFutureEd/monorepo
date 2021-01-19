@@ -1,17 +1,20 @@
 import { useAuthenticatedUser } from '@applyfuture/utils';
-import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faUser } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Auth } from 'aws-amplify';
-import { useRouter } from 'next/router';
-import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 
 import { Dropdown, DropdownItem } from './../dropdown/Dropdown';
 
-export const UserMenu: FC = () => {
-    const router = useRouter();
-    const { t } = useTranslation();
+export type Props = {
+    /**
+     * User menu items
+     */
+    items: Array<DropdownItem>;
+};
+
+export const UserMenu: FC<Props> = (props) => {
+    const { items } = props;
+
     const user = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 
@@ -19,16 +22,6 @@ export const UserMenu: FC = () => {
 
     const handleClose = () => {
         setOpen(false);
-    };
-
-    const handleFavorites = () => {
-        handleClose();
-        router.push('/favorites');
-    };
-
-    const handleSignOut = () => {
-        Auth.signOut();
-        window.location.reload();
     };
 
     const trigger = (
@@ -46,18 +39,13 @@ export const UserMenu: FC = () => {
         </button>
     );
 
-    const items: Array<DropdownItem> = [
-        {
-            label: t('navigation:favorites'),
-            onClick: handleFavorites,
-            startIcon: faHeart
-        },
-        {
-            label: t('navigation:sign-out'),
-            onClick: handleSignOut,
-            startIcon: faSignOut
-        }
-    ];
-
-    return <Dropdown items={items} open={open} trigger={trigger} onOutsideClick={handleClose} />;
+    return (
+        <Dropdown
+            handleClose={handleClose}
+            items={items}
+            open={open}
+            trigger={trigger}
+            onOutsideClick={handleClose}
+        />
+    );
 };

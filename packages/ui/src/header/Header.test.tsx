@@ -1,6 +1,5 @@
-import { useAuthenticatedUser } from '@applyfuture/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React, { useState as useStateMock } from 'react';
+import React from 'react';
 
 import { Header } from './Header';
 
@@ -10,11 +9,6 @@ jest.mock('next/router', () => ({
             locale: 'en'
         };
     }
-}));
-
-jest.mock('react', () => ({
-    ...(jest.requireActual('react') as Record<string, unknown>),
-    useState: jest.fn()
 }));
 
 jest.mock('@applyfuture/utils', () => ({
@@ -27,65 +21,42 @@ jest.mock('@applyfuture/utils', () => ({
     useOutsideAlerter: jest.fn()
 }));
 
-const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
-    typeof useAuthenticatedUser
->;
-
-const loggedRoutes = [
-    {
-        href: '/profile',
-        label: 'navigation:profile'
-    },
-    {
-        href: '/programs',
-        label: 'navigation:programs'
-    },
-    {
-        href: '/schools',
-        label: 'navigation:schools'
-    },
-    {
-        href: '/applications',
-        label: 'navigation:applications'
-    },
-    {
-        href: '/help',
-        label: 'navigation:help'
-    }
-];
-
-const unloggedRoutes = [
-    {
-        href: '/programs',
-        label: 'navigation:programs'
-    },
-    {
-        href: '/schools',
-        label: 'navigation:schools'
-    },
-    {
-        href: '/about',
-        label: 'navigation:about-us'
-    },
-    {
-        href: '/#contact',
-        label: 'navigation:contact'
-    }
-];
-
 describe('Header', () => {
-    const setOpen = jest.fn();
+    const mobileMenu = <button>user menu</button>;
 
-    beforeEach(() => {
-        (useStateMock as jest.Mock).mockImplementation((init) => [init, setOpen]);
-    });
+    const routes = [
+        {
+            href: '/profile',
+            label: 'navigation:profile'
+        },
+        {
+            href: '/programs',
+            label: 'navigation:programs'
+        },
+        {
+            href: '/schools',
+            label: 'navigation:schools'
+        },
+        {
+            href: '/applications',
+            label: 'navigation:applications'
+        },
+        {
+            href: '/help',
+            label: 'navigation:help'
+        }
+    ];
 
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
+    const handleOpenMobileMenu = jest.fn();
 
     it('can render without crashing', () => {
-        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
+        render(
+            <Header
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                mobileMenu={mobileMenu}
+                routes={routes}
+            />
+        );
 
         const nav = screen.getByRole('navigation');
 
@@ -93,22 +64,17 @@ describe('Header', () => {
     });
 
     it('can call the open callback function when clicking on an anchor', () => {
-        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
+        render(
+            <Header
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                mobileMenu={mobileMenu}
+                routes={routes}
+            />
+        );
 
         const anchor = screen.getByLabelText(/open/i);
         fireEvent.click(anchor);
 
-        expect(setOpen).toHaveBeenNthCalledWith(1, true);
-    });
-
-    it('display UserMenu if logged', () => {
-        useAuthenticatedUserMock.mockReturnValue({
-            attributes: { email: 'awesome.student@gmail.com' }
-        });
-        render(<Header loggedRoutes={loggedRoutes} unloggedRoutes={unloggedRoutes} />);
-
-        const button = screen.getByLabelText(/user menu/i);
-
-        expect(button).toBeVisible();
+        expect(handleOpenMobileMenu).toHaveBeenCalled();
     });
 });

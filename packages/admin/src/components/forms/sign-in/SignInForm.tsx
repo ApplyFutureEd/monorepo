@@ -30,7 +30,7 @@ const SignInForm: FC = () => {
                 password,
                 username: email.toLowerCase()
             });
-            return router.push('/programs');
+            return router.push('/');
         } catch (error) {
             let message = 'Sorry, an error occurred';
             if (error.code === 'NotAuthorizedException') {
