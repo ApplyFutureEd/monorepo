@@ -25,7 +25,7 @@ type Props = {
 
 const DashboardLayout: FC<Props> = (props) => {
     const { children, description, title } = props;
-    const user = useAuthenticatedUser();
+    const { user } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
     const [openMobileMenu, setOpenMobileMenu] = useState(false);

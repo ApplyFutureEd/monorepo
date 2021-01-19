@@ -8,19 +8,39 @@ type AuthenticatedUser = {
     attributes: {
         email: string;
     };
-    signInUserSession: any;
+    signInUserSession: {
+        accessToken: {
+            payload: {
+                'cognito:groups': Array<string>;
+            };
+        };
+    };
 };
 
 type Props = {
     children: ReactNode;
 };
 
-const AuthenticatedUserContext = createContext<AuthenticatedUser | null | undefined>(null);
+type AuthContext = {
+    handleAuth: (user: AuthenticatedUser | null) => void;
+    user: AuthenticatedUser | null | undefined;
+};
+
+const AuthenticatedUserContext = createContext<AuthContext>({
+    handleAuth: () => {
+        return 0;
+    },
+    user: undefined
+});
 
 export const AuthenticatedUserProvider: FC<Props> = (props) => {
     const { children } = props;
     const { pathname } = useRouter();
     const [user, setUser] = useState<AuthenticatedUser | null | undefined>();
+
+    const handleAuth = (user: AuthenticatedUser | null) => {
+        setUser(user);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,11 +59,10 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
     }, [pathname]);
 
     return (
-        <AuthenticatedUserContext.Provider value={user}>
+        <AuthenticatedUserContext.Provider value={{ handleAuth, user }}>
             {children}
         </AuthenticatedUserContext.Provider>
     );
 };
 
-export const useAuthenticatedUser = (): AuthenticatedUser | null | undefined =>
-    useContext(AuthenticatedUserContext);
+export const useAuthenticatedUser = (): AuthContext => useContext(AuthenticatedUserContext);

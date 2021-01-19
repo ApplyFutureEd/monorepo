@@ -1,7 +1,7 @@
 import intersection from 'lodash/intersection';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { isClientRender } from '../helpers/ssr';
 import { useAuthenticatedUser } from '../hooks/useAuthenticatedUser';
@@ -15,14 +15,19 @@ type PrivatePageProps = {
     isStaticExport?: boolean;
 };
 
-export const withPrivateAccess = (Page: NextPage, options: WithPrivateAccessOptions): any => {
+export const withPrivateAccess = (
+    Page: NextPage,
+    options: WithPrivateAccessOptions
+): FC<PrivatePageProps> => {
     const PrivatePage: NextPage<PrivatePageProps> = (props) => {
         const { isStaticExport } = props;
-        const user = useAuthenticatedUser();
+        const { user } = useAuthenticatedUser();
         const router = useRouter();
         const [isAllowedState, setAllowedState] = useState(false);
 
         useEffect(() => {
+            console.log('withPrivateAccess', { user });
+
             const checkAccess = async () => {
                 if (user === undefined) {
                     return;
@@ -34,7 +39,8 @@ export const withPrivateAccess = (Page: NextPage, options: WithPrivateAccessOpti
                     ).length > 0;
 
                 if (!isAllowed) {
-                    router.push(options.redirection);
+                    console.log('withPrivateAccess', 'isNOTAllowed');
+                    router.push(options.redirection + `?from=${router.pathname}`);
                 } else {
                     setAllowedState(true);
                 }

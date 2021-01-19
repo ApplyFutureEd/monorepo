@@ -15,7 +15,7 @@ type Props = {
 export const UserMenu: FC<Props> = (props) => {
     const { items } = props;
 
-    const user = useAuthenticatedUser();
+    const { user } = useAuthenticatedUser();
     const [open, setOpen] = useState(false);
 
     const handleToggle = () => setOpen((prev) => !prev);

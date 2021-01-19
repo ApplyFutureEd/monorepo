@@ -1,4 +1,5 @@
 import { Button, Input } from '@applyfuture/ui';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { FC, useState } from 'react';
 import { object, string } from 'yup';
 
 const SignInForm: FC = () => {
+    const { handleAuth } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
@@ -29,11 +31,12 @@ const SignInForm: FC = () => {
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { password, email } = values;
         try {
-            await Auth.signIn({
+            const user = await Auth.signIn({
                 password,
                 username: email.toLowerCase()
             });
-            return router.push('/programs');
+            handleAuth(user);
+            return router.push((router.query.from as string) || '/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
             if (error.code === 'NotAuthorizedException') {
