@@ -1,17 +1,8 @@
-import {
-    Button,
-    DropdownItem,
-    Head,
-    Header,
-    MobileMenu,
-    Transition,
-    UserMenu
-} from '@applyfuture/ui';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@applyfuture/ui';
+import { withAuth } from '@applyfuture/utils';
 import { routes } from '@components/layouts/routes';
 import { faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { Auth } from 'aws-amplify';
-import Link from 'next/link';
 import React, { FC, ReactNode, useState } from 'react';
 
 type Props = {
@@ -21,7 +12,6 @@ type Props = {
 };
 const DashboardLayout: FC<Props> = (props) => {
     const { children, description, title } = props;
-    const user = useAuthenticatedUser();
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -45,19 +35,7 @@ const DashboardLayout: FC<Props> = (props) => {
         }
     ];
 
-    const components = [
-        <div key={0}>
-            {user ? (
-                <UserMenu items={items} />
-            ) : (
-                <div className="flex space-x-4">
-                    <Link href="/sign-in">
-                        <Button variant="secondary">Sign in</Button>
-                    </Link>
-                </div>
-            )}
-        </div>
-    ];
+    const components = [<UserMenu key={0} items={items} />];
 
     const mobileMenu = (
         <Transition show={openMobileMenu}>
@@ -86,4 +64,4 @@ const DashboardLayout: FC<Props> = (props) => {
     );
 };
 
-export default DashboardLayout;
+export default withAuth(DashboardLayout);

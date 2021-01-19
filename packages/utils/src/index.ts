@@ -17,6 +17,8 @@ export * from './helpers/markdown';
 export * from './helpers/toast';
 export * from './helpers/whyDidYouRender';
 
+export * from './hocs/withAuth';
+
 export * from './hooks/useAuthenticatedUser';
 export * from './hooks/useOutsideAlerter';
 export * from './hooks/usePageBottom';
