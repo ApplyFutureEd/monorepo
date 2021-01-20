@@ -7,7 +7,13 @@ import { isClientRender } from '../helpers/ssr';
 import { useAuthenticatedUser } from '../hooks/useAuthenticatedUser';
 
 type WithPrivateAccessOptions = {
+    /**
+     * Groups of users allowed to access the page.
+     */
     groups: Array<string>;
+    /**
+     * Redirection path if not allowed
+     */
     redirection: string;
 };
 
@@ -26,8 +32,6 @@ export const withPrivateAccess = (
         const [isAllowedState, setAllowedState] = useState(false);
 
         useEffect(() => {
-            console.log('withPrivateAccess', { user });
-
             const checkAccess = async () => {
                 if (user === undefined) {
                     return;
@@ -39,7 +43,6 @@ export const withPrivateAccess = (
                     ).length > 0;
 
                 if (!isAllowed) {
-                    console.log('withPrivateAccess', 'isNOTAllowed');
                     router.push(options.redirection + `?from=${router.pathname}`);
                 } else {
                     setAllowedState(true);
