@@ -85,6 +85,8 @@ const ProgramsPage: FC = () => {
 
     const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
+    const total = data.searchPrograms?.total ? `(${data.searchPrograms?.total})` : '';
+
     return (
         <DashboardLayout
             description={t('programs:meta-description')}
@@ -92,7 +94,7 @@ const ProgramsPage: FC = () => {
             <Container
                 headerComponents={headerComponents}
                 innerPadding={false}
-                title={t('programs:programs')}>
+                title={`${t('programs:programs')} ${total}`}>
                 {data.searchPrograms?.items?.map((program) => {
                     if (!program || !program.school) {
                         return;
