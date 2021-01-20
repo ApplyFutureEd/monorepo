@@ -2,7 +2,7 @@ import { isBrowser } from '@applyfuture/utils';
 import NextHead from 'next/head';
 import { FC } from 'react';
 
-export type HeadProps = {
+type Props = {
     /**
      * Description that includes keywords relating to the content of your page.
      */
@@ -13,7 +13,7 @@ export type HeadProps = {
     title?: string;
 };
 
-export const Head: FC<HeadProps> = (props) => {
+export const Head: FC<Props> = (props) => {
     const defaultTitle = 'ApplyFuture';
     const defaultDescription =
         'ApplyFuture is an online school application platform, totally free for students who want to apply for European Higher Education Institutions.';

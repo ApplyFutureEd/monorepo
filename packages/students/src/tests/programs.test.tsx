@@ -49,12 +49,12 @@ let mockedIsLoading = jest.fn().mockReturnValue(false);
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     isBrowser: jest.fn().mockImplementation(() => true),
+    usePageBottom: () => true,
     useQuery: () => ({
         data: mockedData,
         fetchMore: mockedFetchMore,
         isLoading: mockedIsLoading()
-    }),
-    usePageBottom: () => true
+    })
 }));
 
 describe('Programs', () => {

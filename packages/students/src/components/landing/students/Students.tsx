@@ -7,7 +7,7 @@ import { FC } from 'react';
 
 const Students: FC = () => {
     const { t } = useTranslation();
-    const user = useAuthenticatedUser();
+    const { user } = useAuthenticatedUser();
 
     return (
         <section className="-mt-16 pt-16" id="students">

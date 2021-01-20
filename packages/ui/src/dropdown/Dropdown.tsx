@@ -13,6 +13,10 @@ export type DropdownItem = {
 
 type Props = {
     /**
+     * Callback function called when clicking on an item to close the menu.
+     */
+    handleClose: () => void;
+    /**
      * Dropdown menu's items that should include a `label: ReactNode` and an `onClick: () => void` callback function. You can also provide a `startIcon: IconProp`.
      */
     items: Array<DropdownItem>;
@@ -31,7 +35,7 @@ type Props = {
 };
 
 export const Dropdown: FC<Props> = (props) => {
-    const { items, onOutsideClick, open, trigger } = props;
+    const { handleClose, items, onOutsideClick, open, trigger } = props;
 
     return (
         <OutsideAlerter callback={onOutsideClick}>
@@ -55,7 +59,10 @@ export const Dropdown: FC<Props> = (props) => {
                                         <button
                                             key={index}
                                             className="flex items-center px-4 py-2 w-full text-gray-700 text-sm hover:bg-gray-100 cursor-pointer"
-                                            onClick={onClick}>
+                                            onClick={() => {
+                                                handleClose();
+                                                onClick();
+                                            }}>
                                             {startIcon && (
                                                 <FontAwesomeIcon
                                                     className="mr-2"
