@@ -40,7 +40,6 @@ type Props = {
 
 const Table: FC<Props> = (props) => {
     const { data, handleContextMenu, setVariables } = props;
-
     const [columns] = useState([
         { name: 'updatedAt', title: 'Last update' },
         { name: 'name', title: 'Name' },
@@ -86,9 +85,11 @@ const Table: FC<Props> = (props) => {
     const handleResetWidths = () => {
         setColumnWidths(defaultColumnWidths);
     };
+
     const handleColumnWidthsChange = (nextColumnWidths: TableColumnWidthInfo[]) => {
         setColumnWidths(nextColumnWidths);
     };
+
     const handleSearch = (gridSearchValue: string) => {
         if (!gridSearchValue) {
             return setVariables({
@@ -106,9 +107,11 @@ const Table: FC<Props> = (props) => {
             limit: 20
         });
     };
+
     const debouncedSearch = useDebouncedCallback((gridSearchValue: string) => {
         handleSearch(gridSearchValue);
     }, 2000);
+
     const handleFilters = (gridFilters: Filter[]) => {
         const filter: SearchableProgramFilterInput = {
             and: gridFilters.map((gridFilter) => ({
@@ -116,7 +119,8 @@ const Table: FC<Props> = (props) => {
             }))
         };
 
-        if (filter?.and?.length || 0 > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        if (typeof filter?.and !== 'undefined' && filter?.and!.length > 0) {
             setVariables((prev: SearchProgramsQueryVariables) => ({
                 ...prev,
                 filter
@@ -127,9 +131,11 @@ const Table: FC<Props> = (props) => {
             }));
         }
     };
+
     const debouncedFilter = useDebouncedCallback((gridFilters: Filter[]) => {
         handleFilters(gridFilters);
     }, 2000);
+
     const handleSort = (gridSorts: Sorting[]) => {
         const sort: SearchableProgramSortInput = {
             direction: gridSorts[0].direction as SearchableSortDirection,
