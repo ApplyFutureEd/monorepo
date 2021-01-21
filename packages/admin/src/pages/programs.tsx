@@ -38,22 +38,22 @@ const ProgramsPage: FC = () => {
         {
             icon: faPencil,
             label: 'Edit',
-            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+            onClick: ({ props }: any) => console.log(props)
         },
         {
             icon: faCopy,
             label: 'Duplicate',
-            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+            onClick: ({ props }: any) => console.log(props)
         },
         {
             icon: faExternalLinkSquare,
             label: 'Visit',
-            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+            onClick: ({ props }: any) => console.log(props)
         },
         {
             icon: faTrash,
             label: 'Delete',
-            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+            onClick: ({ props }: any) => console.log(props)
         }
     ];
 
