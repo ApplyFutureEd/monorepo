@@ -12,7 +12,6 @@ import { Container, Loader } from '@applyfuture/ui';
 import { useQuery, withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import DateFormatter from '@components/tables/DateFormatter';
-import ProgramActionFormatter from '@components/tables/ProgramActionFormatter';
 import ResizingPanel from '@components/tables/ResizingPanel';
 import {
     DataTypeProvider,
@@ -26,14 +25,18 @@ import {
 import {
     Grid,
     SearchPanel,
+    Table,
     TableColumnResizing,
     TableFilterRow,
     TableHeaderRow,
     Toolbar,
     VirtualTable
 } from '@devexpress/dx-react-grid-material-ui';
+import { faEye, faPencil } from '@fortawesome/pro-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import min from 'date-fns/min';
 import React, { FC, useState } from 'react';
+import { Item, Menu, useContextMenu } from 'react-contexify';
 import { useDebouncedCallback } from 'use-debounce';
 
 const ProgramsPage: FC = () => {
@@ -72,26 +75,23 @@ const ProgramsPage: FC = () => {
             getCellValue: (row: Program) => row.submissionDeadline,
             name: 'submissionDeadline',
             title: 'Submission Deadline'
-        },
-        {
-            getCellValue: (row: Program) => row,
-            name: 'actions',
-            title: 'Actions'
         }
     ]);
     const [defaultColumnWidths] = useState([
         { columnName: 'updatedAt', width: 140 },
-        { columnName: 'name', width: 480 },
+        { columnName: 'name', width: 440 },
         { columnName: 'schoolName', width: 180 },
         { columnName: 'city', width: 80 },
         { columnName: 'published', width: 80 },
         { columnName: 'degree', width: 80 },
         { columnName: 'intakes', width: 80 },
-        { columnName: 'submissionDeadline', width: 80 },
-        { columnName: 'actions', width: 120 }
+        { columnName: 'submissionDeadline', width: 80 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');
+    const { show } = useContextMenu({
+        id: 'program-menu'
+    });
 
     const handleResetWidths = () => {
         setColumnWidths(defaultColumnWidths);
@@ -158,8 +158,46 @@ const ProgramsPage: FC = () => {
         }));
     };
 
+    const handleContextMenu = (e: React.MouseEvent, row: Program) => {
+        show(e, { props: { row } });
+    };
+
+    interface TableRowProps extends Table.DataRowProps {
+        row: Program;
+    }
+
+    const TableRow: FC<TableRowProps> = ({ row, ...rest }) => {
+        const style = {
+            backgroundColor: Number(rest.tableRow.rowId) % 2 ? '#F3F4F6' : 'white'
+        };
+
+        return (
+            <Table.Row
+                {...rest}
+                row={row}
+                style={style}
+                onContextMenu={(e: React.MouseEvent) => handleContextMenu(e, row)}
+            />
+        );
+    };
+
+    const handleItemClick = ({ event, props, triggerEvent, data }: any) => {
+        console.log(event, props, triggerEvent, data);
+    };
+
     return (
         <DashboardLayout title="Programs">
+            <Menu id="program-menu">
+                <Item onClick={handleItemClick}>
+                    <FontAwesomeIcon fixedWidth icon={faPencil} />
+                    <span className="ml-2">Edit</span>
+                </Item>
+                <Item onClick={handleItemClick}>
+                    <FontAwesomeIcon fixedWidth icon={faEye} />
+                    <span className="ml-2">Preview</span>
+                </Item>
+            </Menu>
+
             <Container innerPadding={false} title="Programs">
                 <div className="relative">
                     {isLoading && (
@@ -173,10 +211,6 @@ const ProgramsPage: FC = () => {
                             for={['intakes', 'submissionDeadline']}
                             formatterComponent={DateFormatter}
                         />
-                        <DataTypeProvider
-                            for={['actions']}
-                            formatterComponent={ProgramActionFormatter}
-                        />
                         <SearchState
                             defaultValue=""
                             onValueChange={(gridSearchValue) =>
@@ -188,7 +222,7 @@ const ProgramsPage: FC = () => {
                             onFiltersChange={(gridFilters) => debouncedFilter.callback(gridFilters)}
                         />
                         <SortingState defaultSorting={[]} onSortingChange={handleSort} />
-                        <VirtualTable />
+                        <VirtualTable rowComponent={TableRow} />
                         <TableColumnResizing
                             columnWidths={columnWidths}
                             resizingMode={resizingMode}

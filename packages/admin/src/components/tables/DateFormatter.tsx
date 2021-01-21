@@ -1,11 +1,8 @@
 import { date } from '@applyfuture/utils';
+import { DataTypeProvider } from '@devexpress/dx-react-grid';
 import React, { FC } from 'react';
 
-type Props = {
-    value: string;
-};
-
-const DateFormatter: FC<Props> = (props) => {
+const DateFormatter: FC<DataTypeProvider.ValueFormatterProps> = (props) => {
     const { value } = props;
 
     return <>{date({ value: value })}</>;

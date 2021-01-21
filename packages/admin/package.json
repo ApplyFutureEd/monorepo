@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "next dev",
+        "start": "NODE_OPTIONS=--max_old_space_size=8192 next dev",
         "build": "next build",
         "unused": "next-unused",
         "lint": "eslint --fix .",
@@ -65,6 +65,7 @@
         "next-translate": "0.20.2",
         "next-transpile-modules": "6.0.0",
         "react": "17.0.1",
+        "react-contexify": "^5.0.0",
         "react-dom": "17.0.1",
         "react-loading-skeleton": "2.1.1",
         "react-phone-number-input": "3.1.6",
