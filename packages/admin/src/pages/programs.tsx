@@ -8,11 +8,13 @@ import {
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
-import { Container, Loader } from '@applyfuture/ui';
+import { Button, Container, Loader } from '@applyfuture/ui';
 import { useQuery, withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import ContextMenu, { ContextMenuItem } from '@components/tables/ContextMenu';
 import DateFormatter from '@components/tables/DateFormatter';
 import ResizingPanel from '@components/tables/ResizingPanel';
+import TableRow from '@components/tables/TableRow';
 import {
     DataTypeProvider,
     Filter,
@@ -25,18 +27,22 @@ import {
 import {
     Grid,
     SearchPanel,
-    Table,
     TableColumnResizing,
     TableFilterRow,
     TableHeaderRow,
     Toolbar,
     VirtualTable
 } from '@devexpress/dx-react-grid-material-ui';
-import { faEye, faPencil } from '@fortawesome/pro-light-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faCopy,
+    faExternalLinkSquare,
+    faPencil,
+    faPlus,
+    faTrash
+} from '@fortawesome/pro-light-svg-icons';
 import min from 'date-fns/min';
 import React, { FC, useState } from 'react';
-import { Item, Menu, useContextMenu } from 'react-contexify';
+import { useContextMenu } from 'react-contexify';
 import { useDebouncedCallback } from 'use-debounce';
 
 const ProgramsPage: FC = () => {
@@ -47,6 +53,7 @@ const ProgramsPage: FC = () => {
         searchPrograms,
         variables
     );
+
     const [columns] = useState([
         { name: 'updatedAt', title: 'Last update' },
         { name: 'name', title: 'Name' },
@@ -89,9 +96,6 @@ const ProgramsPage: FC = () => {
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');
-    const { show } = useContextMenu({
-        id: 'program-menu'
-    });
 
     const handleResetWidths = () => {
         setColumnWidths(defaultColumnWidths);
@@ -158,47 +162,57 @@ const ProgramsPage: FC = () => {
         }));
     };
 
+    const { show } = useContextMenu({
+        id: 'programs'
+    });
+
     const handleContextMenu = (e: React.MouseEvent, row: Program) => {
         show(e, { props: { row } });
     };
 
-    interface TableRowProps extends Table.DataRowProps {
-        row: Program;
-    }
+    const contextMenuItems: Array<ContextMenuItem> = [
+        {
+            icon: faPencil,
+            label: 'Edit',
+            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+        },
+        {
+            icon: faCopy,
+            label: 'Duplicate',
+            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+        },
+        {
+            icon: faExternalLinkSquare,
+            label: 'Visit',
+            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+        },
+        {
+            icon: faTrash,
+            label: 'Delete',
+            onClick: ({ event, props, triggerEvent, data }: any) => console.log(props)
+        }
+    ];
 
-    const TableRow: FC<TableRowProps> = ({ row, ...rest }) => {
-        const style = {
-            backgroundColor: Number(rest.tableRow.rowId) % 2 ? '#F3F4F6' : 'white'
-        };
+    const headerComponents = [
+        <Button
+            key={0}
+            startIcon={faPlus}
+            onClick={() => {
+                console.log('go to /programs/create');
+            }}>
+            New
+        </Button>
+    ];
 
-        return (
-            <Table.Row
-                {...rest}
-                row={row}
-                style={style}
-                onContextMenu={(e: React.MouseEvent) => handleContextMenu(e, row)}
-            />
-        );
-    };
-
-    const handleItemClick = ({ event, props, triggerEvent, data }: any) => {
-        console.log(event, props, triggerEvent, data);
-    };
+    const total = data.searchPrograms?.total ? `(${data.searchPrograms?.total})` : '';
 
     return (
         <DashboardLayout title="Programs">
-            <Menu id="program-menu">
-                <Item onClick={handleItemClick}>
-                    <FontAwesomeIcon fixedWidth icon={faPencil} />
-                    <span className="ml-2">Edit</span>
-                </Item>
-                <Item onClick={handleItemClick}>
-                    <FontAwesomeIcon fixedWidth icon={faEye} />
-                    <span className="ml-2">Preview</span>
-                </Item>
-            </Menu>
-
-            <Container innerPadding={false} title="Programs">
+            <ContextMenu id="programs" items={contextMenuItems} />
+            <Container
+                headerComponents={headerComponents}
+                innerPadding={false}
+                title={`Programs ${total}`}>
                 <div className="relative">
                     {isLoading && (
                         <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
@@ -206,7 +220,12 @@ const ProgramsPage: FC = () => {
                         </div>
                     )}
                     <Grid columns={columns} rows={data?.searchPrograms?.items || []}>
-                        <DataTypeProvider for={['updatedAt']} formatterComponent={DateFormatter} />
+                        <DataTypeProvider
+                            for={['updatedAt']}
+                            formatterComponent={(props) => (
+                                <DateFormatter {...props} scheme="dd/MM/yy HH:MM" />
+                            )}
+                        />
                         <DataTypeProvider
                             for={['intakes', 'submissionDeadline']}
                             formatterComponent={DateFormatter}
@@ -222,7 +241,11 @@ const ProgramsPage: FC = () => {
                             onFiltersChange={(gridFilters) => debouncedFilter.callback(gridFilters)}
                         />
                         <SortingState defaultSorting={[]} onSortingChange={handleSort} />
-                        <VirtualTable rowComponent={TableRow} />
+                        <VirtualTable
+                            rowComponent={(props) => (
+                                <TableRow {...props} handleContextMenu={handleContextMenu} />
+                            )}
+                        />
                         <TableColumnResizing
                             columnWidths={columnWidths}
                             resizingMode={resizingMode}
