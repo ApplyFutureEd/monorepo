@@ -1,12 +1,12 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
-import { Item, Menu } from 'react-contexify';
+import { Item, ItemParams, Menu } from 'react-contexify';
 
 export type ContextMenuItem = {
     icon: IconProp;
     label: string;
-    onClick: ({ event, props, triggerEvent, data }: any) => void;
+    onClick: (args: ItemParams<any, any>) => void;
 };
 
 type Props = {
@@ -18,7 +18,7 @@ const ContextMenu: FC<Props> = (props) => {
     const { id, items } = props;
 
     return (
-        <Menu id={id}>
+        <Menu data-testid={id} id={id}>
             {items.map((item, index) => {
                 return (
                     <Item key={index} onClick={item.onClick}>

@@ -7,9 +7,9 @@ import {
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
-import DateFormatter from '@components/tables/common/DateFormatter';
-import ResizingPanel from '@components/tables/common/ResizingPanel';
-import TableRow from '@components/tables/common/TableRow';
+import DateFormatter from '@components/common/date-formatter/DateFormatter';
+import ResizingPanel from '@components/common/resizing-panel/ResizingPanel';
+import TableRow from '@components/common/table-row/TableRow';
 import {
     DataTypeProvider,
     Filter,

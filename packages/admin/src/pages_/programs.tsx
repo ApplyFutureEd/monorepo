@@ -6,9 +6,9 @@ import {
 import { Program } from '@applyfuture/models';
 import { Button, Container, Loader } from '@applyfuture/ui';
 import { useQuery, withPrivateAccess } from '@applyfuture/utils';
+import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import ContextMenu, { ContextMenuItem } from '@components/tables/common/ContextMenu';
-import Table from '@components/tables/programs/Table';
+import Table from '@components/programs/Table';
 import {
     faCopy,
     faExternalLinkSquare,
@@ -17,7 +17,7 @@ import {
     faTrash
 } from '@fortawesome/pro-light-svg-icons';
 import React, { FC, useState } from 'react';
-import { useContextMenu } from 'react-contexify';
+import { ItemParams, useContextMenu } from 'react-contexify';
 
 const ProgramsPage: FC = () => {
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
@@ -34,26 +34,27 @@ const ProgramsPage: FC = () => {
     const handleContextMenu = (e: React.MouseEvent, row: Program) => {
         show(e, { props: { row } });
     };
+
     const contextMenuItems: Array<ContextMenuItem> = [
         {
             icon: faPencil,
             label: 'Edit',
-            onClick: ({ props }: any) => console.log(props)
+            onClick: (args: ItemParams<any, any>) => console.log(args.props)
         },
         {
             icon: faCopy,
             label: 'Duplicate',
-            onClick: ({ props }: any) => console.log(props)
+            onClick: (args: ItemParams<any, any>) => console.log(args.props)
         },
         {
             icon: faExternalLinkSquare,
             label: 'Visit',
-            onClick: ({ props }: any) => console.log(props)
+            onClick: (args: ItemParams<any, any>) => console.log(args.props)
         },
         {
             icon: faTrash,
             label: 'Delete',
-            onClick: ({ props }: any) => console.log(props)
+            onClick: (args: ItemParams<any, any>) => console.log(args.props)
         }
     ];
 
