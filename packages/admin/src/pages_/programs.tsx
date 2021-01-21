@@ -16,10 +16,12 @@ import {
     faPlus,
     faTrash
 } from '@fortawesome/pro-light-svg-icons';
+import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
 import { ItemParams, useContextMenu } from 'react-contexify';
 
 const ProgramsPage: FC = () => {
+    const router = useRouter();
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
         limit: 20
     });
@@ -63,7 +65,7 @@ const ProgramsPage: FC = () => {
             key={0}
             startIcon={faPlus}
             onClick={() => {
-                console.log('go to /programs/create');
+                router.push(`/program/create`);
             }}>
             New
         </Button>

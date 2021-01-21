@@ -1,11 +1,14 @@
 import Programs from '@pages/programs';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
+
+const mockedPush = jest.fn();
 
 jest.mock('next/router', () => ({
     useRouter() {
         return {
-            push: jest.fn(),
+            push: mockedPush,
             query: {}
         };
     }
@@ -62,5 +65,15 @@ describe('Programs', () => {
         const heading = screen.getByRole('heading');
 
         expect(heading).toBeInTheDocument();
+    });
+
+    it('can redirect to /programs/create when clicking "New" button', () => {
+        render(<Programs />);
+
+        const newButton = screen.getByText('New');
+
+        userEvent.click(newButton);
+
+        expect(mockedPush).toHaveBeenCalled();
     });
 });
