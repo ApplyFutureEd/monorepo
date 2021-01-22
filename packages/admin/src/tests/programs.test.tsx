@@ -1,4 +1,4 @@
-import Programs from '@pages/programs';
+import ProgramsPage from '@pages/programs';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -58,9 +58,9 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe('Programs', () => {
+describe('ProgramsPage', () => {
     it('can render without crashing', () => {
-        render(<Programs />);
+        render(<ProgramsPage />);
 
         const heading = screen.getByRole('heading');
 
@@ -68,7 +68,7 @@ describe('Programs', () => {
     });
 
     it('can redirect to /programs/create when clicking "New" button', () => {
-        render(<Programs />);
+        render(<ProgramsPage />);
 
         const newButton = screen.getByText('New');
 

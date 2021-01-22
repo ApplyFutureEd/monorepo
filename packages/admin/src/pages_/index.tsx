@@ -3,7 +3,11 @@ import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayou
 import { FC } from 'react';
 
 const LandingPage: FC = () => {
-    return <DashboardLayout title="Dashboard">Admin</DashboardLayout>;
+    return (
+        <DashboardLayout title="Dashboard">
+            <h1>Dashboard page</h1>
+        </DashboardLayout>
+    );
 };
 
 export default withPrivateAccess(LandingPage, {

@@ -3,7 +3,11 @@ import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayou
 import { FC } from 'react';
 
 const CreateProgramPage: FC = () => {
-    return <DashboardLayout title="Program">Program create</DashboardLayout>;
+    return (
+        <DashboardLayout title="Program">
+            <h1>Program create</h1>
+        </DashboardLayout>
+    );
 };
 
 export default withPrivateAccess(CreateProgramPage, {

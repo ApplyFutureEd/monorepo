@@ -1,5 +1,5 @@
 import { AmplifyError } from '@applyfuture/utils';
-import SignIn from '@pages/sign-in';
+import SignInPage from '@pages/sign-in';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
 import React from 'react';
@@ -17,14 +17,14 @@ Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('SignIn', () => {
+describe('SignInPage', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         password: '$tR0nGPaSsw0rd'
     };
 
     it('can render without crashing', () => {
-        render(<SignIn />);
+        render(<SignInPage />);
 
         const heading = screen.getByRole('heading');
 
@@ -32,7 +32,7 @@ describe('SignIn', () => {
     });
 
     it('can submit the form', async () => {
-        render(<SignIn />);
+        render(<SignInPage />);
 
         const email = screen.getByLabelText(/email/i);
         const password = screen.getByLabelText(/password/i);
@@ -71,7 +71,7 @@ describe('SignIn', () => {
             throw new AmplifyError('NotAuthorizedException');
         });
 
-        render(<SignIn />);
+        render(<SignInPage />);
 
         const email = screen.getByLabelText(/email/i);
         const password = screen.getByLabelText(/password/i);
@@ -110,7 +110,7 @@ describe('SignIn', () => {
             throw new Error();
         });
 
-        render(<SignIn />);
+        render(<SignInPage />);
 
         const email = screen.getByLabelText(/email/i);
         const password = screen.getByLabelText(/password/i);
