@@ -4,6 +4,7 @@ const packageName = require('./package.json').name.split('@applyfuture/').pop();
 
 module.exports = {
     ...baseConfig,
+    collectCoverageFrom: ['**/*.{ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
     displayName: packageName,
     moduleNameMapper: {
         '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,

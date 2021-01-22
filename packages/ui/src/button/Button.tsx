@@ -11,7 +11,7 @@ type Props = {
     /**
      * The content of the button.
      */
-    children: ReactNode;
+    children?: ReactNode;
     /**
      * If `true`, the button will be disabled.
      */

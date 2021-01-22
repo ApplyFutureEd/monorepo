@@ -10,6 +10,8 @@ const withBundleAnalyzer = bundleAnalyzer({
     enabled: process.env.ANALYZE_BUNDLE === 'true'
 });
 
+const { locales, defaultLocale } = require('./i18n');
+
 const {
     NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
     SENTRY_ORG,
@@ -43,6 +45,7 @@ module.exports = withTM(
                     ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
                     NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
                 },
+                i18n: { defaultLocale, localeDetection: true, locales },
                 images: {
                     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
                     domains: ['ik.imagekit.io'],
