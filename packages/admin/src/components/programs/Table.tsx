@@ -44,7 +44,6 @@ const Table: FC<Props> = (props) => {
         { name: 'updatedAt', title: 'Last update' },
         { name: 'name', title: 'Name' },
         {
-            getCellValue: (row: Program) => row.school?.name,
             name: 'schoolName',
             title: 'School'
         },
@@ -65,7 +64,6 @@ const Table: FC<Props> = (props) => {
             title: 'Next Intake'
         },
         {
-            getCellValue: (row: Program) => row.submissionDeadline,
             name: 'submissionDeadline',
             title: 'Submission Deadline'
         }
@@ -112,6 +110,9 @@ const Table: FC<Props> = (props) => {
         handleSearch(gridSearchValue);
     }, 2000);
 
+    const handleDebouncedSearch = (gridSearchValue: string) =>
+        debouncedSearch.callback(gridSearchValue);
+
     const handleFilters = (gridFilters: Filter[]) => {
         const filter: SearchableProgramFilterInput = {
             and: gridFilters.map((gridFilter) => ({
@@ -136,6 +137,8 @@ const Table: FC<Props> = (props) => {
         handleFilters(gridFilters);
     }, 2000);
 
+    const handleDebouncedFilter = (gridFilters: Filter[]) => debouncedFilter.callback(gridFilters);
+
     const handleSort = (gridSorts: Sorting[]) => {
         const sort: SearchableProgramSortInput = {
             direction: gridSorts[0].direction as SearchableSortDirection,
@@ -158,15 +161,9 @@ const Table: FC<Props> = (props) => {
                 for={['intakes', 'submissionDeadline']}
                 formatterComponent={DateFormatter}
             />
-            <SearchState
-                defaultValue=""
-                onValueChange={(gridSearchValue) => debouncedSearch.callback(gridSearchValue)}
-            />
-            <FilteringState
-                defaultFilters={[]}
-                onFiltersChange={(gridFilters) => debouncedFilter.callback(gridFilters)}
-            />
-            <SortingState defaultSorting={[]} onSortingChange={handleSort} />
+            <SearchState onValueChange={handleDebouncedSearch} />
+            <FilteringState onFiltersChange={handleDebouncedFilter} />
+            <SortingState onSortingChange={handleSort} />
             <VirtualTable
                 rowComponent={(props) => (
                     <TableRow {...props} handleContextMenu={handleContextMenu} />

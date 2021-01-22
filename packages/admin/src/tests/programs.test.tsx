@@ -1,3 +1,4 @@
+import { SearchProgramsQuery } from '@applyfuture/graphql';
 import ProgramsPage from '@pages/programs';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +15,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-const mockedData = {
+const mockedData = ({
     searchPrograms: {
         items: [
             {
@@ -37,9 +38,11 @@ const mockedData = {
                     'master-of-science-in-creative-project-management-culture-and-design-rennes-school-of-business-rennes'
             }
         ],
-        nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5'
+        nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5',
+        total: 1
     }
-};
+} as unknown) as SearchProgramsQuery;
+
 const mockedIsLoading = jest.fn().mockReturnValue(false);
 
 jest.mock('@applyfuture/utils', () => ({
