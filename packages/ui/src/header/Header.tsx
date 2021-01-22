@@ -1,10 +1,6 @@
-import { faBars } from '@fortawesome/pro-light-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
 import { FC, ReactNode } from 'react';
 
-import { LanguageMenu } from './../language-menu/LanguageMenu';
 import { Logo } from './../logo/Logo';
 import { Nav } from './../nav/Nav';
 
@@ -19,9 +15,9 @@ type Props = {
      */
     components?: Array<ReactNode>;
     /**
-     * Callback function to open the mobile menu.
+     * Mobile components displayed in the header.
      */
-    handleOpenMobileMenu: () => void;
+    mobileComponents?: Array<ReactNode>;
     /**
      * Mobile menu component.
      */
@@ -33,8 +29,7 @@ type Props = {
 };
 
 export const Header: FC<Props> = (props) => {
-    const { components, handleOpenMobileMenu, mobileMenu, routes } = props;
-    const { t } = useTranslation();
+    const { components, mobileComponents, mobileMenu, routes } = props;
 
     return (
         <div className="bg-gray-50 fixed z-40 w-full border-b border-gray-200">
@@ -50,14 +45,7 @@ export const Header: FC<Props> = (props) => {
                         </div>
 
                         <div className="flex items-center -mr-2 -my-2 space-x-4 lg:hidden">
-                            <LanguageMenu />
-                            <button
-                                aria-label={t('common:open')}
-                                className="inline-flex items-center justify-center p-2 text-gray-500 focus:text-gray-500 hover:text-indigo-500 hover:bg-gray-100 focus:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out"
-                                type="button"
-                                onClick={handleOpenMobileMenu}>
-                                <FontAwesomeIcon icon={faBars} size="lg" />
-                            </button>
+                            {mobileComponents}
                         </div>
 
                         <Nav routes={routes} />

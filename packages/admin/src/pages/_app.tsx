@@ -1,5 +1,6 @@
 import '@styles/index.css';
 import '@applyfuture/utils/src/services/amplify';
+import 'react-contexify/dist/ReactContexify.css';
 
 import { AuthenticatedUserProvider, initSentry, initWhyDidYouRender } from '@applyfuture/utils';
 import type { AppProps } from 'next/app';

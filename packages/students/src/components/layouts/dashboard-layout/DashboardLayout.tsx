@@ -10,7 +10,8 @@ import {
 } from '@applyfuture/ui';
 import { useAuthenticatedUser } from '@applyfuture/utils';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
-import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -47,7 +48,7 @@ const DashboardLayout: FC<Props> = (props) => {
         window.location.reload();
     };
 
-    const items: Array<DropdownItem> = [
+    const userMenuItems: Array<DropdownItem> = [
         {
             label: t('navigation:favorites'),
             onClick: handleFavorites,
@@ -60,11 +61,11 @@ const DashboardLayout: FC<Props> = (props) => {
         }
     ];
 
-    const components = [
+    const headerComponents = [
         <LanguageMenu key={0} />,
         <div key={1}>
             {user ? (
-                <UserMenu items={items} />
+                <UserMenu items={userMenuItems} />
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">
@@ -78,10 +79,22 @@ const DashboardLayout: FC<Props> = (props) => {
         </div>
     ];
 
-    const mobileComponents = [
+    const headerMobileComponents = [
+        <LanguageMenu key={0} />,
+        <button
+            key={1}
+            aria-label={t('common:open')}
+            className="inline-flex items-center justify-center p-2 text-gray-500 focus:text-gray-500 hover:text-indigo-500 hover:bg-gray-100 focus:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out"
+            type="button"
+            onClick={handleOpenMobileMenu}>
+            <FontAwesomeIcon icon={faBars} size="lg" />
+        </button>
+    ];
+
+    const mobileMenuComponents = [
         <div key={0}>
             {user ? (
-                <UserMenu items={items} />
+                <UserMenu items={userMenuItems} />
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">
@@ -98,7 +111,7 @@ const DashboardLayout: FC<Props> = (props) => {
     const mobileMenu = (
         <Transition show={openMobileMenu}>
             <MobileMenu
-                components={mobileComponents}
+                components={mobileMenuComponents}
                 handleCloseMobileMenu={handleCloseMobileMenu}
                 routes={user ? loggedRoutes : unloggedRoutes}
             />
@@ -109,8 +122,8 @@ const DashboardLayout: FC<Props> = (props) => {
         <>
             <Head description={description} title={title} />
             <Header
-                components={components}
-                handleOpenMobileMenu={handleOpenMobileMenu}
+                components={headerComponents}
+                mobileComponents={headerMobileComponents}
                 mobileMenu={mobileMenu}
                 routes={user ? loggedRoutes : unloggedRoutes}
             />
