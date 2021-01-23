@@ -125,19 +125,6 @@ export const Select: FC<Props> = (props) => {
         valueContainer: (provided: any) => ({ ...provided, padding: 0 })
     };
 
-    if (isLoading) {
-        return (
-            <div>
-                <div>
-                    <Skeleton height="15px" width="120px" />
-                </div>
-                <div className="rounded-md">
-                    <Skeleton height="47px" width="100%" />
-                </div>
-            </div>
-        );
-    }
-
     let value: ValueType<any> = options.find((option) => option.value === field.value);
     let onChange = (option: ValueType<any>) => {
         return form.setFieldValue(field.name, option.value);
@@ -155,6 +142,19 @@ export const Select: FC<Props> = (props) => {
                 options.map((option: any) => option.value)
             );
         };
+    }
+
+    if (isLoading) {
+        return (
+            <div>
+                <div>
+                    <Skeleton height="15px" width="120px" />
+                </div>
+                <div className="rounded-md">
+                    <Skeleton height="47px" width="100%" />
+                </div>
+            </div>
+        );
     }
 
     return (

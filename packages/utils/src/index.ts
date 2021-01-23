@@ -2,11 +2,14 @@ export * from './forms/cambridgeAdvancedResults';
 export * from './forms/cambridgeFirstResults';
 export * from './forms/cities';
 export * from './forms/countries';
+export * from './forms/currencies';
 export * from './forms/degrees';
 export * from './forms/disciplines';
+export * from './forms/durationUnits';
 export * from './forms/educationLevels';
 export * from './forms/languages';
 export * from './forms/languagesLevels';
+export * from './forms/schedules';
 
 export * from './helpers/currency';
 export * from './helpers/date';

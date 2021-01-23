@@ -1,6 +1,7 @@
 import '@styles/index.css';
 import '@applyfuture/utils/src/services/amplify';
 import 'yup-phone';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { AuthenticatedUserProvider, initSentry, initWhyDidYouRender } from '@applyfuture/utils';
 import type { AppProps } from 'next/app';

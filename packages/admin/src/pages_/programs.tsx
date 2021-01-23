@@ -65,7 +65,7 @@ const ProgramsPage: FC = () => {
             key={0}
             startIcon={faPlus}
             onClick={() => {
-                router.push(`/program/create`);
+                router.push(`/programs/create`);
             }}>
             New
         </Button>
