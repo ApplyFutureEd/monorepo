@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { FC } from 'react';
 
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
+
 jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
     Header: jest.fn().mockImplementation(() => <div />)
