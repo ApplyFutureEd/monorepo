@@ -249,7 +249,7 @@ export const FileUploader: FC<Props> = (props) => {
                                         <img
                                             alt=""
                                             src={previewUrl}
-                                            onError={(e) => setPreviewImageLoadError(true)}
+                                            onError={() => setPreviewImageLoadError(true)}
                                         />
                                     )}
                                 </div>
