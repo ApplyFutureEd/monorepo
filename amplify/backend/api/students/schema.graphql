@@ -539,7 +539,7 @@ type Document
     )
     @model
     @key(name: "byStudent", fields: ["studentId"], queryField: "getDocumentByStudent")
-    @key(name: "byStorageKey", fields: ["storageKey"], queryField: "getByStorageKey") {
+    @key(name: "byStorageKey", fields: ["storageKey"], queryField: "getDocumentByStorageKey") {
     id: ID!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])

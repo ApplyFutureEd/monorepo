@@ -1,9 +1,11 @@
 import {
-    createProgram,
+    getProgram,
+    GetProgramQuery,
     getSchool,
     GetSchoolQuery,
     listSchools,
-    ListSchoolsQuery
+    ListSchoolsQuery,
+    updateProgram
 } from '@applyfuture/graphql';
 import {
     convertUnitToSeconds,
@@ -19,9 +21,16 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-const CreateProgramPage: FC = () => {
+const UpdateProgramPage: FC = () => {
     const router = useRouter();
-    const { data: schoolsData, isLoading } = useQuery<ListSchoolsQuery>(listSchools, {});
+    const { data: schoolsData, isLoading: schoolsIsLoading } = useQuery<ListSchoolsQuery>(
+        listSchools,
+        {}
+    );
+    const { data: programData, isLoading: programIsLoading } = useQuery<GetProgramQuery>(
+        getProgram,
+        { id: router.query.id as string }
+    );
 
     const handleSubmit = async (
         values: ProgramFormValues,
@@ -41,13 +50,13 @@ const CreateProgramPage: FC = () => {
                 schoolName: school?.name,
                 slug: kebabCase(`${values.name} ${school?.slug}`)
             };
-            mutation(createProgram, {
+            mutation(updateProgram, {
                 input: program
             });
             actions.setSubmitting(false);
             toast({
-                description: `${values.name} successfully created`,
-                title: 'Program created',
+                description: `${values.name} successfully updated`,
+                title: 'Program updated',
                 variant: 'success'
             });
             router.push('/programs');
@@ -64,14 +73,15 @@ const CreateProgramPage: FC = () => {
         <DashboardLayout title="Program">
             <ProgramForm
                 handleSubmit={handleSubmit}
-                isLoading={isLoading}
+                isLoading={schoolsIsLoading || programIsLoading}
+                programData={programData}
                 schoolsData={schoolsData}
             />
         </DashboardLayout>
     );
 };
 
-export default withPrivateAccess(CreateProgramPage, {
+export default withPrivateAccess(UpdateProgramPage, {
     groups: ['admin'],
     redirection: '/sign-in'
 });

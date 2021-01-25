@@ -1,4 +1,4 @@
-import { ListSchoolsQuery } from '@applyfuture/graphql';
+import { GetProgramQuery, ListSchoolsQuery } from '@applyfuture/graphql';
 import {
     Country,
     Currency,
@@ -10,10 +10,20 @@ import {
     RequestedDocument,
     Schedule
 } from '@applyfuture/models';
-import { Button, DateInput, Editor, Input, Section, Select } from '@applyfuture/ui';
+import {
+    Button,
+    DateInput,
+    Editor,
+    FileUploader,
+    Input,
+    Section,
+    Select,
+    Toggle
+} from '@applyfuture/ui';
 import {
     cambridgeAdvancedResults,
     cambridgeFirstResults,
+    convertSecondsToUnit,
     countries,
     currencies,
     degrees,
@@ -22,9 +32,10 @@ import {
     educationLevels,
     languageLevels,
     languages,
+    requestedDocuments,
     schedules
 } from '@applyfuture/utils';
-import { faPlus, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faPencil, faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
     Field,
     FieldArray,
@@ -35,65 +46,72 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { object } from 'yup';
 
 type Props = {
-    data: ListSchoolsQuery;
+    handleSubmit: (
+        values: ProgramFormValues,
+        actions: FormikHelpers<ProgramFormValues>
+    ) => Promise<void>;
     isLoading: boolean;
+    programData?: GetProgramQuery;
+    schoolsData: ListSchoolsQuery;
 };
 
-const CreateProgramForm: FC<Props> = (props) => {
-    const { data, isLoading } = props;
+export type ProgramFormValues = {
+    applicationFee: number;
+    applicationFeeCurrency: Currency;
+    city: string;
+    costOfLiving: number;
+    costOfLivingCurrency: Currency;
+    country: Country;
+    degree: Degree;
+    description: string | null;
+    discipline: Discipline;
+    duration: number;
+    durationUnit: DurationUnit;
+    fee: number;
+    feeCurrency: Currency;
+    feesAndFinancing: string | null;
+    feeUnit: FeeUnit;
+    gradePointAverage: number;
+    highestEducationLevel: number;
+    intakes: Array<Date>;
+    intakeInformation: string;
+    languages: Array<Language>;
+    minimumAge: number;
+    minimumWorkExperience: number;
+    minimumWorkExperienceUnit: DurationUnit;
+    name: string;
+    otherRequirements: string;
+    published: boolean;
+    requestedDocuments: Array<RequestedDocument>;
+    schedule: Schedule;
+    schoolId: string;
+    schoolName: string;
+    slug: string;
+    submissionDeadline: Date;
+    testCambridgeAdvanced: number;
+    testCambridgeFirst: number;
+    testDelfdalf: number;
+    testGmat: number;
+    testGre: number;
+    testIelts: number;
+    testTagemage: number;
+    testTcftef: number;
+    testToefl: number;
+    testToeic: number;
+};
+
+const ProgramForm: FC<Props> = (props) => {
+    const { handleSubmit, isLoading, programData, schoolsData } = props;
     const { t } = useTranslation();
+    const [toggle, setToggle] = useState(-1);
+
     const validationSchema = object().shape({});
 
-    type FormValues = {
-        applicationFee: number;
-        applicationFeeCurrency: Currency;
-        city: string;
-        costOfLiving: number;
-        costOfLivingCurrency: Currency;
-        country: Country;
-        degree: Degree;
-        description: string;
-        discipline: Discipline;
-        duration: number;
-        durationUnit: DurationUnit;
-        fee: number;
-        feeCurrency: Currency;
-        feesAndFinancing: string;
-        feeUnit: FeeUnit;
-        gradePointAverage: number;
-        highestEducationLevel: number;
-        intakes: Array<Date>;
-        intakeInformation: string;
-        languages: Array<Language>;
-        minimumAge: number;
-        minimumWorkExperience: number;
-        minimumWorkExperienceUnit: DurationUnit;
-        name: string;
-        otherRequirements: string;
-        published: boolean;
-        requestedDocuments: Array<RequestedDocument>;
-        schedule: Schedule;
-        schoolId: string;
-        schoolName: string;
-        slug: string;
-        submissionDeadline: Date;
-        testCambridgeAdvanced: number;
-        testCambridgeFirst: number;
-        testDelfdalf: number;
-        testGmat: number;
-        testGre: number;
-        testIelts: number;
-        testTagemage: number;
-        testTcftef: number;
-        testToefl: number;
-        testToeic: number;
-    };
-
-    const initialValues: FormValues = {
+    const [initialValues, setInitialValues] = useState<ProgramFormValues>({
         applicationFee: 0,
         applicationFeeCurrency: 'EUR' as Currency,
         city: '',
@@ -120,7 +138,96 @@ const CreateProgramForm: FC<Props> = (props) => {
         name: '',
         otherRequirements: '',
         published: false,
-        requestedDocuments: [],
+        requestedDocuments: [
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'passport',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'passport-photo',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'resume',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'last-3-transcript-1',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'last-3-transcript-2',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'last-3-transcript-3',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'toefl',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'ielts',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'toeic',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'fce',
+                storageKey: ''
+            },
+            {
+                condition: '',
+                description: '',
+                isMandatory: true,
+                isSpecific: false,
+                name: 'cae',
+                storageKey: ''
+            }
+        ],
         schedule: 'FULL_TIME' as Schedule,
         schoolId: '',
         schoolName: '',
@@ -136,14 +243,31 @@ const CreateProgramForm: FC<Props> = (props) => {
         testTcftef: -1,
         testToefl: -1,
         testToeic: -1
-    };
+    });
 
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        actions.setSubmitting(false);
-    };
+    useEffect(() => {
+        if (programData?.getProgram) {
+            const program: any = programData?.getProgram;
+
+            program.duration = convertSecondsToUnit({
+                unit: programData?.getProgram.durationUnit,
+                value: programData?.getProgram.duration
+            });
+            program.intakes = programData?.getProgram.intakes
+                .split(',')
+                .map((intake) => new Date(intake));
+
+            delete program.__typename;
+            delete program.updatedAt;
+            delete program.createdAt;
+            delete program.school;
+
+            setInitialValues(program);
+        }
+    }, [programData]);
 
     const schoolsOptions =
-        data.listSchools?.items?.map((school) => ({
+        schoolsData.listSchools?.items?.map((school) => ({
             label: school?.name || '',
             value: school?.id || ''
         })) || [];
@@ -194,11 +318,17 @@ const CreateProgramForm: FC<Props> = (props) => {
 
     const languageLevelsOptions = languageLevels;
 
+    const requestedDocumentsOptions = requestedDocuments.map((requestedDocument) => ({
+        label: t(`profile:${requestedDocument.label}`),
+        value: requestedDocument.value
+    }));
+
     return (
         <Formik
+            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}>
+            onSubmit={handleSubmit}>
             {(props) => {
                 const { isSubmitting } = props;
 
@@ -371,7 +501,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                             <div className="flex flex-col space-y-2">
                                                 {fieldArrayProps.form.values.intakes?.length > 0 &&
                                                     fieldArrayProps.form.values.intakes.map(
-                                                        (intake: any, index: number) => (
+                                                        (_intake: Date, index: number) => (
                                                             <div
                                                                 key={index}
                                                                 className="flex flex-col w-full sm:flex-row sm:space-x-4">
@@ -379,9 +509,11 @@ const CreateProgramForm: FC<Props> = (props) => {
                                                                     <div className="flex-grow">
                                                                         <Field
                                                                             name={`intakes.${index}`}>
-                                                                            {(props: any) => (
+                                                                            {(
+                                                                                fieldProps: FieldProps
+                                                                            ) => (
                                                                                 <DateInput
-                                                                                    {...props}
+                                                                                    {...fieldProps}
                                                                                 />
                                                                             )}
                                                                         </Field>
@@ -508,6 +640,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                             name="highestEducationLevel">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
+                                                    isLoading={isLoading}
                                                     label={t('profile:highest-education-level')}
                                                     options={educationLevelsOptions}
                                                     {...fieldProps}
@@ -519,9 +652,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="gradePointAverage" name="gradePointAverage">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:gpa')} (0-4)`}
                                                     max={4}
-                                                    min={0}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -540,9 +674,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testToefl" name="testToefl">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:toefl')} (310 - 667)`}
                                                     max={667}
-                                                    min={310}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -554,9 +689,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testIelts" name="testIelts">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:ielts')} (0 - 9)`}
                                                     max={9}
-                                                    min={0}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -568,9 +704,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testToeic" name="testToeic">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:toeic')} (0 - 990)`}
                                                     max={990}
-                                                    min={0}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -585,6 +722,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testCambridgeFirst" name="testCambridgeFirst">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:fce')} (A - E)`}
                                                     options={cambridgeFirstResultsOptions}
                                                     {...fieldProps}
@@ -598,6 +736,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                             name="testCambridgeAdvanced">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:cae')} (A - C)`}
                                                     options={cambridgeAdvancedResultsOptions}
                                                     {...fieldProps}
@@ -618,6 +757,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testTcftef" name="testTcftef">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:tcf-tef')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
                                                     {...fieldProps}
@@ -629,6 +769,7 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testDelfdalf" name="testDelfdalf">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:delf-dalf')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
                                                     {...fieldProps}
@@ -649,9 +790,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testGre" name="testGre">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:gre')} (260 - 344)`}
                                                     max={344}
-                                                    min={260}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -663,9 +805,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testGmat" name="testGmat">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:gmat')} (200 - 800)`}
                                                     max={800}
-                                                    min={200}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -677,9 +820,10 @@ const CreateProgramForm: FC<Props> = (props) => {
                                         <Field id="testTagemage" name="testTagemage">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
+                                                    isLoading={isLoading}
                                                     label={`${t('profile:tage-mage')} (0 - 600)`}
                                                     max={600}
-                                                    min={0}
+                                                    min={-1}
                                                     step="any"
                                                     type="number"
                                                     {...fieldProps}
@@ -706,6 +850,197 @@ const CreateProgramForm: FC<Props> = (props) => {
                                     </Field>
                                 </div>
                             </div>
+
+                            <div>
+                                <div className="my-6 w-full border-t border-gray-200" />
+                            </div>
+
+                            <FieldArray name="requestedDocuments">
+                                {(fieldArrayProps: FieldArrayRenderProps) => (
+                                    <div>
+                                        <div className="block text-gray-700 text-sm font-medium leading-5">
+                                            Requested documents
+                                        </div>
+                                        <div className="space-y-2">
+                                            {fieldArrayProps.form.values.requestedDocuments
+                                                ?.length > 0 &&
+                                                fieldArrayProps.form.values.requestedDocuments.map(
+                                                    (
+                                                        _requestedDocument: RequestedDocument,
+                                                        index: number
+                                                    ) => {
+                                                        return (
+                                                            <div key={index}>
+                                                                <div className="flex space-x-2">
+                                                                    <div className="flex-grow">
+                                                                        <Field
+                                                                            name={`requestedDocuments.${index}.name`}>
+                                                                            {(
+                                                                                fieldProps: FieldProps
+                                                                            ) => (
+                                                                                <Select
+                                                                                    {...fieldProps}
+                                                                                    options={
+                                                                                        requestedDocumentsOptions
+                                                                                    }
+                                                                                />
+                                                                            )}
+                                                                        </Field>
+                                                                    </div>
+                                                                    <div className="mt-1">
+                                                                        <Button
+                                                                            startIcon={faPencil}
+                                                                            type="button"
+                                                                            variant={
+                                                                                toggle === index
+                                                                                    ? 'primary'
+                                                                                    : 'secondary'
+                                                                            }
+                                                                            onClick={() =>
+                                                                                toggle === index
+                                                                                    ? setToggle(-1)
+                                                                                    : setToggle(
+                                                                                          index
+                                                                                      )
+                                                                            }>
+                                                                            Edit
+                                                                        </Button>
+                                                                    </div>
+                                                                    <div className="mt-1">
+                                                                        <Button
+                                                                            startIcon={faTrash}
+                                                                            type="button"
+                                                                            variant="secondary"
+                                                                            onClick={() =>
+                                                                                fieldArrayProps.remove(
+                                                                                    index
+                                                                                )
+                                                                            }>
+                                                                            Remove
+                                                                        </Button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    className={
+                                                                        toggle === index
+                                                                            ? 'mt-4 block bg-indigo-50 p-4 rounded-md border-gray-300 border'
+                                                                            : 'hidden'
+                                                                    }>
+                                                                    <div className="flex mb-4 space-x-4">
+                                                                        <div className="w-1/2">
+                                                                            <Field
+                                                                                name={`requestedDocuments.${index}.description`}>
+                                                                                {(
+                                                                                    fieldProps: FieldProps
+                                                                                ) => (
+                                                                                    <Input
+                                                                                        isLoading={
+                                                                                            isLoading
+                                                                                        }
+                                                                                        label="Description"
+                                                                                        {...fieldProps}
+                                                                                    />
+                                                                                )}
+                                                                            </Field>
+                                                                        </div>
+                                                                        <div className="w-1/2">
+                                                                            <Field
+                                                                                name={`requestedDocuments.${index}.condition`}>
+                                                                                {(
+                                                                                    fieldProps: FieldProps
+                                                                                ) => (
+                                                                                    <Input
+                                                                                        isLoading={
+                                                                                            isLoading
+                                                                                        }
+                                                                                        label="Condition"
+                                                                                        {...fieldProps}
+                                                                                    />
+                                                                                )}
+                                                                            </Field>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="align-items flex mb-4 space-x-4">
+                                                                        <Field
+                                                                            name={`requestedDocuments.${index}.isMandatory`}>
+                                                                            {(
+                                                                                fieldProps: FieldProps
+                                                                            ) => (
+                                                                                <Toggle
+                                                                                    label="Mandatory"
+                                                                                    {...fieldProps}
+                                                                                />
+                                                                            )}
+                                                                        </Field>
+                                                                        <Field
+                                                                            name={`requestedDocuments.${index}.isSpecific`}>
+                                                                            {(
+                                                                                fieldProps: FieldProps
+                                                                            ) => (
+                                                                                <Toggle
+                                                                                    label="Specific"
+                                                                                    {...fieldProps}
+                                                                                />
+                                                                            )}
+                                                                        </Field>
+                                                                    </div>
+
+                                                                    <div className="mb-4">
+                                                                        <Field
+                                                                            name={`requestedDocuments.${index}.storageKey`}>
+                                                                            {(
+                                                                                fieldProps: FieldProps
+                                                                            ) => (
+                                                                                <FileUploader
+                                                                                    bypassAcceptedFileFormat
+                                                                                    isLoading={
+                                                                                        isLoading
+                                                                                    }
+                                                                                    label="Template"
+                                                                                    {...fieldProps}
+                                                                                />
+                                                                            )}
+                                                                        </Field>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                        </div>
+                                        <div className="mt-3">
+                                            <Button
+                                                startIcon={faPlus}
+                                                variant="secondary"
+                                                onClick={() =>
+                                                    fieldArrayProps.push({
+                                                        condition: '',
+                                                        description: '',
+                                                        isMandatory: true,
+                                                        isSpecific: false,
+                                                        name: '',
+                                                        storageKey: ''
+                                                    })
+                                                }>
+                                                New document
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </FieldArray>
+
+                            <div className="align-items flex justify-end mt-6 space-x-4">
+                                <Field id="published" name="published">
+                                    {(fieldProps: FieldProps) => (
+                                        <Toggle label="Published" {...fieldProps} />
+                                    )}
+                                </Field>
+                                <Button isLoading={isSubmitting} startIcon={faSave} type="submit">
+                                    Save
+                                </Button>
+                            </div>
                         </Section>
                     </Form>
                 );
@@ -714,4 +1049,4 @@ const CreateProgramForm: FC<Props> = (props) => {
     );
 };
 
-export default CreateProgramForm;
+export default ProgramForm;

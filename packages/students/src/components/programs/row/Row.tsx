@@ -1,6 +1,6 @@
 import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { convertDuration, currency, date, getCountryLabel } from '@applyfuture/utils';
+import { convertSecondsToUnit, currency, date, getCountryLabel } from '@applyfuture/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -77,12 +77,12 @@ const Row: FC<Props> = (props) => {
                             <div className="w-1/2">
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
-                                        {convertDuration({
+                                        {convertSecondsToUnit({
                                             unit: durationUnit,
                                             value: duration
                                         })}{' '}
                                         {t(`programs:${durationUnit.toLowerCase()}`, {
-                                            count: convertDuration({
+                                            count: convertSecondsToUnit({
                                                 unit: durationUnit,
                                                 value: duration
                                             })

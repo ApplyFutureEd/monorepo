@@ -32,7 +32,7 @@ type Props = {
     /**
      * The label displayed above the select.
      */
-    label: string;
+    label?: string;
     /**
      * An object that contains relevant computed metadata.
      *
@@ -76,7 +76,7 @@ export const Select: FC<Props> = (props) => {
     const { t } = useTranslation();
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const customStyles = {
+    const styles = {
         clearIndicator: (provided: any) => ({ ...provided, padding: 0 }),
         control: (provided: any, state: any) => {
             const appearance = 'none';
@@ -177,7 +177,7 @@ export const Select: FC<Props> = (props) => {
                         name={field.name}
                         options={options}
                         placeholder={placeholder}
-                        styles={customStyles}
+                        styles={styles}
                         value={value}
                         onChange={onChange}
                         onError={onError}

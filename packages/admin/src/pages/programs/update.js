@@ -1,7 +1,7 @@
 // @ts-nocheck
 import I18nProvider from 'next-translate/I18nProvider'
 import React from 'react'
-import C from '../../../src/pages_/programs/create'
+import C from '../../../src/pages_/programs/update'
 
 export default function Page({ _ns, _lang, ...p }){
   return (
