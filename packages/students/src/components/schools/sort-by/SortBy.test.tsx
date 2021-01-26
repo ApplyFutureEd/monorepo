@@ -1,4 +1,4 @@
-import SortBy from '@components/programs/sort-by/SortBy';
+import SortBy from '@components/schools/sort-by/SortBy';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('SortBy', () => {
@@ -20,7 +20,7 @@ describe('SortBy', () => {
         fireEvent.click(button);
 
         const alphabeticalOrder = screen.getAllByText(
-            /programs:sort-by-option-alphabetical-order/
+            /schools:sort-by-option-alphabetical-order/
         )[1];
 
         expect(alphabeticalOrder).toBeVisible();
@@ -34,7 +34,7 @@ describe('SortBy', () => {
         fireEvent.click(button);
 
         const alphabeticalOrder = screen.getAllByText(
-            /programs:sort-by-option-alphabetical-order/
+            /schools:sort-by-option-alphabetical-order/
         )[1];
 
         fireEvent.click(alphabeticalOrder);

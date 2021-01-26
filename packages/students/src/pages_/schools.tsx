@@ -63,12 +63,6 @@ const SchoolsPage: FC = () => {
 
     const total = data.searchSchools?.total ? `(${data.searchSchools?.total})` : '';
 
-    console.log(
-        '%cdata :',
-        'background: #444; color: #bada55; padding: 2px; border-radius:2px',
-        data
-    );
-
     return (
         <DashboardLayout
             description={t('schools:meta-description')}
@@ -76,29 +70,29 @@ const SchoolsPage: FC = () => {
             <Container
                 headerComponents={headerComponents}
                 innerPadding={false}
-                title={`${t('schools:schools')} ${total}`}>
-                <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
-                    {data.searchSchools?.items?.map((school) => {
-                        if (!school) {
-                            return;
-                        }
+                title={`${t('schools:schools')} ${total}`}
+            />
+            <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
+                {data.searchSchools?.items?.map((school) => {
+                    if (!school) {
+                        return;
+                    }
 
-                        const { city, country, id, logo, name, slug } = school;
+                    const { city, country, id, logo, name, slug } = school;
 
-                        return (
-                            <Card
-                                key={id}
-                                city={city}
-                                country={country}
-                                logo={logo}
-                                name={name}
-                                slug={slug}
-                            />
-                        );
-                    })}
-                </div>
-                {isLoading && skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)}
-            </Container>
+                    return (
+                        <Card
+                            key={id}
+                            city={city}
+                            country={country}
+                            logo={logo}
+                            name={name}
+                            slug={slug}
+                        />
+                    );
+                })}
+            </div>
+            {isLoading && skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)}
         </DashboardLayout>
     );
 };
