@@ -16,8 +16,21 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
+const mockedData = {
+    listSchools: {
+        items: [],
+        nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5'
+    }
+};
+
+const mockedIsLoading = jest.fn().mockReturnValue(false);
+
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    useQuery: () => ({
+        data: mockedData,
+        isLoading: mockedIsLoading()
+    }),
     withPrivateAccess: jest.fn().mockImplementation((Page) => {
         const PrivatePage = (props: any) => {
             return <Page {...props} />;
@@ -31,7 +44,7 @@ describe('CreateProgramPage', () => {
     it('can render without crashing', () => {
         render(<CreateProgramPage />);
 
-        const heading = screen.getByRole('heading');
+        const heading = screen.getByText('Program info');
 
         expect(heading).toBeInTheDocument();
     });
