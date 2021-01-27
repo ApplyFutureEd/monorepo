@@ -49,12 +49,12 @@ let mockedIsLoading = jest.fn().mockReturnValue(false);
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     isBrowser: jest.fn().mockImplementation(() => true),
+    usePageBottom: () => true,
     useQuery: () => ({
         data: mockedData,
         fetchMore: mockedFetchMore,
         isLoading: mockedIsLoading()
-    }),
-    usePageBottom: () => true
+    })
 }));
 
 describe('Programs', () => {
@@ -84,10 +84,6 @@ describe('Programs', () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
         render(<Programs />);
-
-        const button = screen.getByText('programs:apply');
-
-        await userEvent.click(button);
     });
 
     it('can handle the search', async () => {
@@ -196,7 +192,7 @@ describe('Programs', () => {
     it('can handle missing data and can render without crashing', () => {
         mockedData = {
             searchPrograms: {
-                items: [{ school: '' }] as any,
+                items: [] as any,
                 nextToken: ''
             }
         };
