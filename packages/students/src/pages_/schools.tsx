@@ -91,8 +91,8 @@ const SchoolsPage: FC = () => {
                         />
                     );
                 })}
+                {isLoading && skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)}
             </div>
-            {isLoading && skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)}
         </DashboardLayout>
     );
 };

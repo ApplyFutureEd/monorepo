@@ -35,7 +35,6 @@ const SortBy: FC<Props> = (props) => {
     const handleClick = (option: SortByOption) => {
         setCurrentLabel(option.label);
         handleSort({ direction: option.direction, field: option.field });
-        handleClose();
     };
 
     const sortByOptions: Array<SortByOption> = [
@@ -66,7 +65,15 @@ const SortBy: FC<Props> = (props) => {
         };
     });
 
-    return <Dropdown items={items} open={open} trigger={trigger} onOutsideClick={handleClose} />;
+    return (
+        <Dropdown
+            handleClose={handleClose}
+            items={items}
+            open={open}
+            trigger={trigger}
+            onOutsideClick={handleClose}
+        />
+    );
 };
 
 export default SortBy;

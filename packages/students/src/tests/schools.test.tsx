@@ -84,7 +84,7 @@ describe('Schools', () => {
         });
     });
 
-    it.skip('can handle the sort by', () => {
+    it('can handle the sort by', () => {
         render(<Schools />);
 
         const button = screen.getAllByText(/schools:sort-by-option-alphabetical-order/)[0];
