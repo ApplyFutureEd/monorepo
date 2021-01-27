@@ -1,7 +1,7 @@
 import SortBy from '@components/schools/sort-by/SortBy';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-describe('SortBy', () => {
+describe.skip('SortBy', () => {
     const handleSort = jest.fn();
 
     it('can render without crashing', () => {
