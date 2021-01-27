@@ -13,6 +13,7 @@ module.exports = {
         '/programs': ['programs', 'profile'],
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],
+        '/schools': ['schools'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

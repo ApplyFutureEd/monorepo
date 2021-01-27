@@ -5,7 +5,7 @@ type Props = {
     /**
      * Content of the container.
      */
-    children: ReactNode;
+    children?: ReactNode;
     /**
      * Components displayed in the header of the container.
      */
@@ -41,7 +41,7 @@ export const Container: FC<Props> = (props) => {
                     )}
                 </div>
             </div>
-            <div className={classes}>{children}</div>
+            {children && <div className={classes}>{children}</div>}
         </div>
     );
 };
