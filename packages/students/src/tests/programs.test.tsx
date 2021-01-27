@@ -84,10 +84,6 @@ describe('Programs', () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
         render(<Programs />);
-
-        const button = screen.getByText('programs:apply');
-
-        await userEvent.click(button);
     });
 
     it('can handle the search', async () => {
@@ -196,7 +192,7 @@ describe('Programs', () => {
     it('can handle missing data and can render without crashing', () => {
         mockedData = {
             searchPrograms: {
-                items: [{ school: '' }] as any,
+                items: [] as any,
                 nextToken: ''
             }
         };

@@ -1,6 +1,6 @@
 import {
-    SearchableProgramSortableFields,
-    SearchableProgramSortInput,
+    SearchableSchoolSortableFields,
+    SearchableSchoolSortInput,
     SearchableSortDirection
 } from '@applyfuture/graphql';
 import { Button, Dropdown, DropdownItem } from '@applyfuture/ui';
@@ -10,19 +10,19 @@ import { FC, useState } from 'react';
 
 type SortByOption = {
     direction: SearchableSortDirection | null | undefined;
-    field: SearchableProgramSortableFields | null | undefined;
+    field: SearchableSchoolSortableFields | null | undefined;
     label: string;
 };
 
 type Props = {
-    handleSort: (sort: SearchableProgramSortInput) => void;
+    handleSort: (sort: SearchableSchoolSortInput) => void;
 };
 
 const SortBy: FC<Props> = (props) => {
     const { handleSort } = props;
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
-    const [currentLabel, setCurrentLabel] = useState('programs:sort-by-option-alphabetical-order');
+    const [currentLabel, setCurrentLabel] = useState('schools:sort-by-option-alphabetical-order');
 
     const handleToggle = () => {
         setOpen((prev) => !prev);
@@ -40,28 +40,13 @@ const SortBy: FC<Props> = (props) => {
     const sortByOptions: Array<SortByOption> = [
         {
             direction: SearchableSortDirection['asc'],
-            field: SearchableProgramSortableFields['schoolName'],
-            label: 'programs:sort-by-option-alphabetical-order'
+            field: SearchableSchoolSortableFields['name'],
+            label: 'schools:sort-by-option-alphabetical-order'
         },
         {
             direction: SearchableSortDirection['asc'],
-            field: SearchableProgramSortableFields['country'],
-            label: 'programs:sort-by-option-country-alphabetical-order'
-        },
-        {
-            direction: SearchableSortDirection['asc'],
-            field: SearchableProgramSortableFields['duration'],
-            label: 'programs:sort-by-option-low-to-high-duration'
-        },
-        {
-            direction: SearchableSortDirection['desc'],
-            field: SearchableProgramSortableFields['fee'],
-            label: 'programs:sort-by-option-high-to-low-fee'
-        },
-        {
-            direction: SearchableSortDirection['asc'],
-            field: SearchableProgramSortableFields['fee'],
-            label: 'programs:sort-by-option-low-to-high-fee'
+            field: SearchableSchoolSortableFields['country'],
+            label: 'schools:sort-by-option-country-alphabetical-order'
         }
     ];
 
