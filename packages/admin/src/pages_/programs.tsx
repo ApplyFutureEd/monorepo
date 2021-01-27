@@ -9,7 +9,7 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Button, Container, Loader } from '@applyfuture/ui';
-import { mutation, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
+import { delay, mutation, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Table from '@components/programs/Table';
@@ -77,7 +77,6 @@ const ProgramsPage: FC = () => {
                         title: 'Program duplicated',
                         variant: 'success'
                     });
-
                     refetch();
                 } catch (error) {
                     toast({
