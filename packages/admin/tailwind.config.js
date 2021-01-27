@@ -24,6 +24,9 @@ module.exports = {
             },
             padding: {
                 header: '90px'
+            },
+            zIndex: {
+                1000: '1000'
             }
         },
         filter: {

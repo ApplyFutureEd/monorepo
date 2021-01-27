@@ -1,7 +1,7 @@
-import { MobileMenu } from './MobileMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useAuthenticatedUser } from '@applyfuture/utils';
 import { ReactNode } from 'react';
+
+import { MobileMenu } from './MobileMenu';
 
 type LinkProps = {
     children: ReactNode;
@@ -15,11 +15,7 @@ jest.mock('next/link', () => {
 
 jest.mock('@applyfuture/utils');
 
-const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
-    typeof useAuthenticatedUser
->;
-
-const setOpen = jest.fn();
+const handleCloseMobileMenu = jest.fn();
 
 describe('MobileMenu', () => {
     const routes = [
@@ -42,7 +38,7 @@ describe('MobileMenu', () => {
     ];
 
     it('can render without crashing', () => {
-        render(<MobileMenu routes={routes} setOpen={setOpen} />);
+        render(<MobileMenu handleCloseMobileMenu={handleCloseMobileMenu} routes={routes} />);
 
         const nav = screen.getByRole('navigation');
 
@@ -50,33 +46,20 @@ describe('MobileMenu', () => {
     });
 
     it('can call the close callback function when clicking on the close icon', () => {
-        render(<MobileMenu routes={routes} setOpen={setOpen} />);
+        render(<MobileMenu handleCloseMobileMenu={handleCloseMobileMenu} routes={routes} />);
 
         const button = screen.getByLabelText(/close/i);
         fireEvent.click(button);
 
-        expect(setOpen).toHaveBeenNthCalledWith(1, false);
+        expect(handleCloseMobileMenu).toHaveBeenCalled();
     });
 
     it('can call the close callback function when clicking on an anchor', () => {
-        render(<MobileMenu routes={routes} setOpen={setOpen} />);
+        render(<MobileMenu handleCloseMobileMenu={handleCloseMobileMenu} routes={routes} />);
 
         const anchor = screen.getByText(/programs/i);
         fireEvent.click(anchor);
 
-        expect(setOpen).toHaveBeenNthCalledWith(1, false);
-    });
-
-    it('display UserMenu if logged', () => {
-        useAuthenticatedUserMock.mockReturnValue({
-            attributes: { email: 'awesome.student@gmail.com' }
-        });
-        render(<MobileMenu routes={routes} setOpen={setOpen} />);
-
-        const button = screen.getByLabelText(/user menu/i);
-        const email = screen.getByText(/awesome.student@gmail.com/i);
-
-        expect(button).toBeVisible();
-        expect(email).toBeVisible();
+        expect(handleCloseMobileMenu).toHaveBeenCalled();
     });
 });

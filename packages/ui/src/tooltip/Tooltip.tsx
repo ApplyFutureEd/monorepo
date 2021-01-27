@@ -57,4 +57,3 @@ export const Tooltip: FC<Props> = (props) => {
         </div>
     );
 };
-

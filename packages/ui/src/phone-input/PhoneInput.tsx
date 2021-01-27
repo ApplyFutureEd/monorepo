@@ -1,4 +1,3 @@
-import { Tooltip } from './../tooltip/Tooltip';
 import { faExclamationCircle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
@@ -7,6 +6,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { FC, ReactNode, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import ReactPhoneNumberInput, { getCountryCallingCode } from 'react-phone-number-input';
+
+import { Tooltip } from './../tooltip/Tooltip';
 
 type Props = {
     /**

@@ -1,6 +1,7 @@
-import { LanguageMenu } from './LanguageMenu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Cookies from 'js-cookie';
+
+import { LanguageMenu } from './LanguageMenu';
 
 jest.mock('next/router', () => ({
     useRouter() {

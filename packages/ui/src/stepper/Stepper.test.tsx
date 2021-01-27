@@ -1,5 +1,6 @@
-import { Stepper } from './Stepper';
 import { render, screen } from '@testing-library/react';
+
+import { Stepper } from './Stepper';
 
 describe('Stepper', () => {
     const steps = ['Your project', 'Your information', 'Your results'];

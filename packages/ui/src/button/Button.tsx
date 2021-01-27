@@ -1,8 +1,9 @@
-import { Loader } from './../loader/Loader';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { forwardRef, ReactNode } from 'react';
+
+import { Loader } from './../loader/Loader';
 
 type Ref = HTMLButtonElement;
 
@@ -10,7 +11,7 @@ type Props = {
     /**
      * The content of the button.
      */
-    children: ReactNode;
+    children?: ReactNode;
     /**
      * If `true`, the button will be disabled.
      */
@@ -106,4 +107,3 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         </span>
     );
 });
-

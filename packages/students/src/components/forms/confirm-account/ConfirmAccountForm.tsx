@@ -1,4 +1,5 @@
 import { Button, Input } from '@applyfuture/ui';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
@@ -7,6 +8,7 @@ import { FC, useState } from 'react';
 import { object, string } from 'yup';
 
 const ConfirmAccountForm: FC = () => {
+    const { handleAuth } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
@@ -35,7 +37,8 @@ const ConfirmAccountForm: FC = () => {
         const { email, password, verificationCode } = values;
         try {
             await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
-            await Auth.signIn({ password, username: email });
+            const user = await Auth.signIn({ password, username: email });
+            handleAuth(user);
             return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');

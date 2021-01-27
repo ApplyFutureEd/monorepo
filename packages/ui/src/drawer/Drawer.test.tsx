@@ -1,5 +1,6 @@
-import { Drawer } from './Drawer';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
+import { Drawer } from './Drawer';
 
 describe('Drawer', () => {
     const handleClose = jest.fn();

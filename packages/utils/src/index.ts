@@ -14,8 +14,12 @@ export * from './helpers/duration';
 export * from './helpers/filters';
 export * from './helpers/isBrowser';
 export * from './helpers/markdown';
+export * from './helpers/mutation';
+export * from './helpers/ssr';
 export * from './helpers/toast';
 export * from './helpers/whyDidYouRender';
+
+export * from './hocs/withPrivateAccess';
 
 export * from './hooks/useAuthenticatedUser';
 export * from './hooks/useOutsideAlerter';

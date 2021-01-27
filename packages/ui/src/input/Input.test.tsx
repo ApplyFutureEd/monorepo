@@ -1,6 +1,7 @@
-import { Input } from './Input';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+
+import { Input } from './Input';
 
 describe('Input', () => {
     const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';

@@ -43,4 +43,3 @@ export const Checkbox: FC<Props> = (props) => {
         </div>
     );
 };
-

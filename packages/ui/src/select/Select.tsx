@@ -1,9 +1,10 @@
-import { Tooltip } from './../tooltip/Tooltip';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import ReactSelect, { ValueType } from 'react-select';
+
+import { Tooltip } from './../tooltip/Tooltip';
 
 type Props = {
     /**
@@ -191,4 +192,3 @@ export const Select: FC<Props> = (props) => {
         </label>
     );
 };
-

@@ -2,6 +2,8 @@
 
 #i18n
 packages/students/pages
+packages/admin/pages
+
 
 # dependencies
 /node_modules

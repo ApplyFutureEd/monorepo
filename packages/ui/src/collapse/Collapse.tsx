@@ -42,7 +42,7 @@ export const Collapse: FC<Props> = (props) => {
                             className="flex items-start justify-between w-full text-left text-gray-400 focus:text-gray-900 focus:outline-none"
                             onClick={onClick}>
                             <span className="text-gray-900 font-medium">{title}</span>
-                            <span className="flex items-center ml-6 h-7">
+                            <span className="h-7 flex items-center ml-6">
                                 <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />
                             </span>
                         </button>
@@ -57,4 +57,3 @@ export const Collapse: FC<Props> = (props) => {
         </div>
     );
 };
-

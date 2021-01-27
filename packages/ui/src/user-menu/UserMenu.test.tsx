@@ -1,6 +1,9 @@
-import { UserMenu } from './UserMenu';
+import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
+
+import { DropdownItem } from './../dropdown/Dropdown';
+import { UserMenu } from './UserMenu';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -21,8 +24,24 @@ delete window.location;
 window.location = ({ reload: jest.fn() } as unknown) as Location;
 
 describe('UserMenu', () => {
+    const items: Array<DropdownItem> = [
+        {
+            label: 'navigation:favorites',
+            onClick: jest.fn(),
+            startIcon: faHeart
+        },
+        {
+            label: 'navigation:sign-out',
+            onClick: jest.fn().mockImplementation(() => {
+                Auth.signOut();
+                window.location.reload();
+            }),
+            startIcon: faSignOut
+        }
+    ];
+
     it('can render without crashing', () => {
-        render(<UserMenu />);
+        render(<UserMenu items={items} />);
 
         const button = screen.getByRole('button');
 
@@ -30,7 +49,7 @@ describe('UserMenu', () => {
     });
 
     it('can open the menu and display the options', () => {
-        render(<UserMenu />);
+        render(<UserMenu items={items} />);
 
         const button = screen.getByRole('button');
 
@@ -44,7 +63,7 @@ describe('UserMenu', () => {
     });
 
     it('can close the menu and navigate to /favorites', () => {
-        render(<UserMenu />);
+        render(<UserMenu items={items} />);
 
         const button = screen.getByRole('button');
 
@@ -56,7 +75,7 @@ describe('UserMenu', () => {
     });
 
     it('can sign out and reload the page', () => {
-        render(<UserMenu />);
+        render(<UserMenu items={items} />);
 
         const button = screen.getByRole('button');
 

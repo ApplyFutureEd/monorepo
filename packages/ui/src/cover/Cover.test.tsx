@@ -1,5 +1,6 @@
-import { Cover } from './Cover';
 import { render, screen } from '@testing-library/react';
+
+import { Cover } from './Cover';
 
 describe('Cover', () => {
     it('can render without crashing', () => {

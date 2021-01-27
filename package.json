@@ -7,9 +7,13 @@
     "scripts": {
         "start:students": "cd packages/students && yarn start",
         "build:students": "cd packages/students && yarn build",
-        "commit": "git add . && cz",
+        "start:admin": "cd packages/admin && yarn start",
+        "build:admin": "cd packages/admin && yarn build",
+        "lint": "eslint --fix .",
         "test": "jest --coverage",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "commit": "git add . && cz",
+        "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'"
     },
     "workspaces": [
         "packages/*"

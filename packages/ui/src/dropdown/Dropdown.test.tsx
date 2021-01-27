@@ -1,8 +1,9 @@
-import { Dropdown, DropdownItem } from './Dropdown';
 import { faHeart, faSignOut, faUser } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+
+import { Dropdown, DropdownItem } from './Dropdown';
 
 describe('UserMenu', () => {
     const handleToggle = jest.fn();
@@ -40,7 +41,13 @@ describe('UserMenu', () => {
 
     it('can render without crashing', () => {
         render(
-            <Dropdown items={items} open={false} trigger={trigger} onOutsideClick={handleClose} />
+            <Dropdown
+                handleClose={handleClose}
+                items={items}
+                open={false}
+                trigger={trigger}
+                onOutsideClick={handleClose}
+            />
         );
 
         const button = screen.getByRole('button');
@@ -50,7 +57,13 @@ describe('UserMenu', () => {
 
     it('can render inner items without crashing', () => {
         render(
-            <Dropdown items={items} open={true} trigger={trigger} onOutsideClick={handleClose} />
+            <Dropdown
+                handleClose={handleClose}
+                items={items}
+                open={true}
+                trigger={trigger}
+                onOutsideClick={handleClose}
+            />
         );
 
         const favorites = screen.getByText(/favorites/i);
@@ -62,7 +75,13 @@ describe('UserMenu', () => {
 
     it('can call onClick callback function when clicking on the menu trigger', () => {
         render(
-            <Dropdown items={items} open={false} trigger={trigger} onOutsideClick={handleClose} />
+            <Dropdown
+                handleClose={handleClose}
+                items={items}
+                open={false}
+                trigger={trigger}
+                onOutsideClick={handleClose}
+            />
         );
 
         const button = screen.getByRole('button');
@@ -74,7 +93,13 @@ describe('UserMenu', () => {
 
     it('can call onClick callback functions when clicking on menu items', () => {
         render(
-            <Dropdown items={items} open={true} trigger={trigger} onOutsideClick={handleClose} />
+            <Dropdown
+                handleClose={handleClose}
+                items={items}
+                open={true}
+                trigger={trigger}
+                onOutsideClick={handleClose}
+            />
         );
 
         const favorites = screen.getByText(/favorites/i);

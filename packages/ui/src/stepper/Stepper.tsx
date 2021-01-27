@@ -129,4 +129,3 @@ export const Stepper: FC<Props> = (props) => {
         </>
     );
 };
-

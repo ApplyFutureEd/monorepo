@@ -1,8 +1,8 @@
+import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 import { format } from 'date-fns';
 import { enUS, fr, zhCN } from 'date-fns/locale';
-import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 
-type DateOptions = {
+export type DateOptions = {
     locale?: SupportedLocale;
     scheme?: string;
     value: Date | string;

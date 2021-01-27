@@ -1,5 +1,6 @@
-import { SubHeader } from './SubHeader';
 import { render, screen } from '@testing-library/react';
+
+import { SubHeader } from './SubHeader';
 
 describe('SubHeader', () => {
     const actionComponents = [

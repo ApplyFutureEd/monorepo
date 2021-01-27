@@ -31,5 +31,3 @@ export const Loader: FC<Props> = (props) => {
         </div>
     );
 };
-
-

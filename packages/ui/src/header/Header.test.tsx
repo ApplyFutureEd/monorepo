@@ -1,14 +1,9 @@
-import { Header } from './Header';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { faBars } from '@fortawesome/pro-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React, { useState as useStateMock } from 'react';
+import React from 'react';
 
-/* jest.mock('..', () => ({
-    ...(jest.requireActual('..') as Record<string, unknown>),
-    Nav: jest.fn().mockImplementation(() => <nav />),
-    LanguageMenu: jest.fn().mockImplementation(() => <div />),
-    UserMenu: jest.fn().mockImplementation(() => <div />)
-})); */
+import { Header } from './Header';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -18,37 +13,59 @@ jest.mock('next/router', () => ({
     }
 }));
 
-jest.mock('react', () => ({
-    ...(jest.requireActual('react') as Record<string, unknown>),
-    useState: jest.fn()
-}));
-
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     useAuthenticatedUser: jest.fn().mockImplementation(() => ({
         attributes: {
             email: 'awesome.student@gmail.com'
         }
-    }))
+    })),
+    useOutsideAlerter: jest.fn()
 }));
 
-const useAuthenticatedUserMock = useAuthenticatedUser as jest.MockedFunction<
-    typeof useAuthenticatedUser
->;
-
 describe('Header', () => {
-    const setOpen = jest.fn();
+    const handleOpenMobileMenu = jest.fn();
 
-    beforeEach(() => {
-        (useStateMock as jest.Mock).mockImplementation((init) => [init, setOpen]);
-    });
+    const mobileComponents = [
+        <button
+            key={1}
+            aria-label={'common:open'}
+            className="inline-flex items-center justify-center p-2 text-gray-500 focus:text-gray-500 hover:text-indigo-500 hover:bg-gray-100 focus:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out"
+            type="button"
+            onClick={handleOpenMobileMenu}>
+            <FontAwesomeIcon icon={faBars} size="lg" />
+        </button>
+    ];
 
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
+    const mobileMenu = <div>user menu</div>;
+
+    const routes = [
+        {
+            href: '/profile',
+            label: 'navigation:profile'
+        },
+        {
+            href: '/programs',
+            label: 'navigation:programs'
+        },
+        {
+            href: '/schools',
+            label: 'navigation:schools'
+        },
+        {
+            href: '/applications',
+            label: 'navigation:applications'
+        },
+        {
+            href: '/help',
+            label: 'navigation:help'
+        }
+    ];
 
     it('can render without crashing', () => {
-        render(<Header />);
+        render(
+            <Header mobileComponents={mobileComponents} mobileMenu={mobileMenu} routes={routes} />
+        );
 
         const nav = screen.getByRole('navigation');
 
@@ -56,22 +73,13 @@ describe('Header', () => {
     });
 
     it('can call the open callback function when clicking on an anchor', () => {
-        render(<Header />);
+        render(
+            <Header mobileComponents={mobileComponents} mobileMenu={mobileMenu} routes={routes} />
+        );
 
         const anchor = screen.getByLabelText(/open/i);
         fireEvent.click(anchor);
 
-        expect(setOpen).toHaveBeenNthCalledWith(1, true);
-    });
-
-    it('display UserMenu if logged', () => {
-        useAuthenticatedUserMock.mockReturnValue({
-            attributes: { email: 'awesome.student@gmail.com' }
-        });
-        render(<Header />);
-
-        const button = screen.getByLabelText(/user menu/i);
-
-        expect(button).toBeVisible();
+        expect(handleOpenMobileMenu).toHaveBeenCalled();
     });
 });
