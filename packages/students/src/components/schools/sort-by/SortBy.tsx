@@ -24,7 +24,9 @@ const SortBy: FC<Props> = (props) => {
     const [open, setOpen] = useState(false);
     const [currentLabel, setCurrentLabel] = useState('schools:sort-by-option-alphabetical-order');
 
-    const handleToggle = () => setOpen((prev) => !prev);
+    const handleToggle = () => {
+        setOpen((prev) => !prev);
+    };
 
     const handleClose = () => {
         setOpen(false);
