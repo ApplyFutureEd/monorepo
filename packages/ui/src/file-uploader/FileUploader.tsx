@@ -1,6 +1,6 @@
 import { deleteDocument, getByStorageKey } from '@applyfuture/graphql';
 import { Program, Student } from '@applyfuture/models';
-import { mutation } from '@applyfuture/utils';
+import { graphql } from '@applyfuture/utils';
 import { faDownload, faEye, faTimes, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '@material-ui/core';
@@ -354,7 +354,7 @@ export const FileUploader: FC<Props> = (props) => {
                                     })
                                 );
                                 if (existingDocument.data.getByStorageKey.items[0]) {
-                                    mutation(deleteDocument, {
+                                    graphql(deleteDocument, {
                                         input: {
                                             id: existingDocument.data.getByStorageKey.items[0].id
                                         }

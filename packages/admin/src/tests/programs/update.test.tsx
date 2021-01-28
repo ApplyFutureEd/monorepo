@@ -1,5 +1,5 @@
 import { graphql, toast } from '@applyfuture/utils';
-import CreateProgramPage from '@pages/programs/create';
+import UpdateProgramPage from '@pages/programs/update';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { FC } from 'react';
@@ -9,7 +9,10 @@ jest.mock('next/router', () => ({
     useRouter() {
         return {
             locale: 'en',
-            push: jest.fn()
+            push: jest.fn(),
+            query: {
+                id: 'fe2851b6-ef6c-439f-bf47-fc934d356511'
+            }
         };
     }
 }));
@@ -74,17 +77,17 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe('CreateProgramPage', () => {
+describe('UpdateProgramPage', () => {
     it('can render without crashing', () => {
-        render(<CreateProgramPage />);
+        render(<UpdateProgramPage />);
 
         const heading = screen.getByText('Program info');
 
         expect(heading).toBeInTheDocument();
     });
 
-    it('can create a program', async () => {
-        render(<CreateProgramPage />);
+    it('can update a program', async () => {
+        render(<UpdateProgramPage />);
 
         const schoolInput = screen.getByLabelText(/school/i);
         const nameInput = screen.getByLabelText(/name/i);

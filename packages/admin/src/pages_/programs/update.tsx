@@ -5,11 +5,12 @@ import {
     GetSchoolQuery,
     listSchools,
     ListSchoolsQuery,
-    updateProgram
+    updateProgram,
+    UpdateProgramMutation
 } from '@applyfuture/graphql';
 import {
     convertUnitToSeconds,
-    mutation,
+    graphql,
     toast,
     useQuery,
     withPrivateAccess
@@ -37,7 +38,7 @@ const UpdateProgramPage: FC = () => {
         actions: FormikHelpers<ProgramFormValues>
     ) => {
         try {
-            const { getSchool: school } = await mutation<GetSchoolQuery>(getSchool, {
+            const { getSchool: school } = await graphql<GetSchoolQuery>(getSchool, {
                 id: values.schoolId
             });
             const program = {
@@ -50,7 +51,7 @@ const UpdateProgramPage: FC = () => {
                 schoolName: school?.name,
                 slug: kebabCase(`${values.name} ${school?.slug}`)
             };
-            mutation(updateProgram, {
+            graphql<UpdateProgramMutation>(updateProgram, {
                 input: program
             });
             actions.setSubmitting(false);

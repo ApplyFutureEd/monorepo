@@ -1,6 +1,8 @@
 import {
     createProgram,
+    CreateProgramMutation,
     deleteProgram,
+    DeleteProgramMutation,
     getSchool,
     GetSchoolQuery,
     searchPrograms,
@@ -9,7 +11,7 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Button, Container, Loader } from '@applyfuture/ui';
-import { delay, mutation, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
+import { graphql, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Table from '@components/programs/Table';
@@ -54,7 +56,7 @@ const ProgramsPage: FC = () => {
             label: 'Duplicate',
             onClick: async (args: ItemParams<any, any>) => {
                 try {
-                    const { getSchool: school } = await mutation<GetSchoolQuery>(getSchool, {
+                    const { getSchool: school } = await graphql<GetSchoolQuery>(getSchool, {
                         id: args.props.row.schoolId
                     });
                     const program = {
@@ -69,7 +71,7 @@ const ProgramsPage: FC = () => {
                     delete program.createdAt;
                     delete program.school;
 
-                    await mutation(createProgram, {
+                    await graphql<CreateProgramMutation>(createProgram, {
                         input: program
                     });
                     toast({
@@ -103,7 +105,9 @@ const ProgramsPage: FC = () => {
             label: 'Delete',
             onClick: async (args: ItemParams<any, any>) => {
                 try {
-                    await mutation(deleteProgram, { input: { id: args.props.row.id } });
+                    await graphql<DeleteProgramMutation>(deleteProgram, {
+                        input: { id: args.props.row.id }
+                    });
                     toast({
                         description: `${args.props.row.name} successfully deleted`,
                         title: 'Program deleted',

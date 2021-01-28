@@ -1,5 +1,6 @@
 import {
     createProgram,
+    CreateProgramMutation,
     getSchool,
     GetSchoolQuery,
     listSchools,
@@ -7,7 +8,7 @@ import {
 } from '@applyfuture/graphql';
 import {
     convertUnitToSeconds,
-    mutation,
+    graphql,
     toast,
     useQuery,
     withPrivateAccess
@@ -28,9 +29,10 @@ const CreateProgramPage: FC = () => {
         actions: FormikHelpers<ProgramFormValues>
     ) => {
         try {
-            const { getSchool: school } = await mutation<GetSchoolQuery>(getSchool, {
+            const { getSchool: school } = await graphql<GetSchoolQuery>(getSchool, {
                 id: values.schoolId
             });
+
             const program = {
                 ...values,
                 duration: convertUnitToSeconds({
@@ -41,7 +43,7 @@ const CreateProgramPage: FC = () => {
                 schoolName: school?.name,
                 slug: kebabCase(`${values.name} ${school?.slug}`)
             };
-            mutation(createProgram, {
+            graphql<CreateProgramMutation>(createProgram, {
                 input: program
             });
             actions.setSubmitting(false);
@@ -52,6 +54,7 @@ const CreateProgramPage: FC = () => {
             });
             router.push('/programs');
         } catch (error) {
+            console.log(error);
             toast({
                 description: `${error.message}`,
                 title: 'An error occured',

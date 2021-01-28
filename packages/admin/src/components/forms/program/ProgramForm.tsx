@@ -47,7 +47,7 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import { object } from 'yup';
+import { number, object, string } from 'yup';
 
 type Props = {
     handleSubmit: (
@@ -109,7 +109,38 @@ const ProgramForm: FC<Props> = (props) => {
     const { t } = useTranslation();
     const [toggle, setToggle] = useState(-1);
 
-    const validationSchema = object().shape({});
+    const validationSchema = object().shape({
+        gradePointAverage: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(4, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        name: string().required(t('common:required')),
+        schoolId: string().required(t('common:required')),
+        testGmat: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(800, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        testGre: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(344, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        testIelts: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(9, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        testTagemage: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(600, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        testToefl: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(667, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable(),
+        testToeic: number()
+            .min(-1, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(990, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
+            .nullable()
+    });
 
     const [initialValues, setInitialValues] = useState<ProgramFormValues>({
         applicationFee: 0,
