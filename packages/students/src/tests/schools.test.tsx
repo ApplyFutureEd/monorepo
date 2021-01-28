@@ -68,10 +68,14 @@ describe('Schools', () => {
         expect(title).toBeInTheDocument();
     });
 
-    it('can call display skeletons when isLoading is true', async () => {
+    it('can display skeletons when isLoading is true', async () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
-        render(<Schools />);
+        const { container } = render(<Schools />);
+
+        const skeleton = container.querySelector('.react-loading-skeleton');
+
+        expect(skeleton).toBeInTheDocument();
     });
 
     it('can handle the search', async () => {

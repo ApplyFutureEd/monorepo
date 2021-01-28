@@ -80,10 +80,14 @@ describe('Programs', () => {
         await userEvent.click(button);
     });
 
-    it('can call display skeletons when isLoading is true', async () => {
+    it('can display skeletons when isLoading is true', async () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
-        render(<Programs />);
+        const { container } = render(<Programs />);
+
+        const skeleton = container.querySelector('.react-loading-skeleton');
+
+        expect(skeleton).toBeInTheDocument();
     });
 
     it('can handle the search', async () => {
