@@ -102,7 +102,7 @@ const ContactForm: FC = () => {
                             ) : (
                                 <Button
                                     disabled={isSubmitting}
-                                    isLoading={isSubmitting}
+                                    isSubmitting={isSubmitting}
                                     startIcon={faPaperPlane}
                                     type="submit"
                                     variant="primary">

@@ -71,7 +71,7 @@ const ForgotPasswordForm: FC = () => {
                             </div>
                             <Button
                                 disabled={isSubmitting}
-                                isLoading={isSubmitting}
+                                isSubmitting={isSubmitting}
                                 type="submit"
                                 variant="primary">
                                 {t('auth:reset-password')}

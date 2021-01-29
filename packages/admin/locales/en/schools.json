@@ -15,6 +15,7 @@
   "no-results-heading": "No results",
   "no-results-paragraph-1": "Sorry we are working on getting more interesting schools related to your criteria.",
   "no-results-paragraph-2": "Click on the button bellow to get notified when available.",
+  "page-title": "Schools",
   "private": "Private",
   "public": "Public",
   "school-id": "School ID",
@@ -22,5 +23,7 @@
   "search-alert-created": "Search alert created",
   "search-placeholder": "Search for anything",
   "sort-by": "Sort by",
+  "sort-by-option-alphabetical-order": "By name (A-Z)",
+  "sort-by-option-country-alphabetical-order": "By country (A-Z)",
   "total-students": "Total Students"
 }
