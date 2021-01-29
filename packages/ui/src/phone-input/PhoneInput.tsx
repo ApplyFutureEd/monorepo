@@ -80,9 +80,11 @@ export const PhoneInput: FC<Props> = (props) => {
     if (isLoading) {
         return (
             <div>
-                <div>
-                    <Skeleton height="15px" width="120px" />
-                </div>
+                {label && (
+                    <div>
+                        <Skeleton height="15px" width="120px" />
+                    </div>
+                )}
                 <div className="rounded-md">
                     <Skeleton height="47px" width="100%" />
                 </div>

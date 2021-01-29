@@ -340,18 +340,6 @@ const ProgramForm: FC<Props> = (props) => {
                         <Section isLoading={isLoading} title="Program info">
                             <div className="space-y-3">
                                 <div className="w-full">
-                                    <Field id="schoolId" name="schoolId">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                isLoading={isLoading}
-                                                label="School"
-                                                options={schoolsOptions}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                </div>
-                                <div className="w-full">
                                     <Field id="name" name="name">
                                         {(fieldProps: FieldProps) => (
                                             <Input
@@ -364,7 +352,19 @@ const ProgramForm: FC<Props> = (props) => {
                                     </Field>
                                 </div>
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                    <div className="w-full sm:w-1/2">
+                                    <div className="w-full sm:w-1/3">
+                                        <Field id="schoolId" name="schoolId">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label="School"
+                                                    options={schoolsOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/3">
                                         <Field id="city" name="city">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
@@ -376,7 +376,7 @@ const ProgramForm: FC<Props> = (props) => {
                                             )}
                                         </Field>
                                     </div>
-                                    <div className="w-full sm:mt-0 sm:w-1/2">
+                                    <div className="w-full sm:mt-0 sm:w-1/3">
                                         <Field id="country" name="country">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
@@ -482,6 +482,77 @@ const ProgramForm: FC<Props> = (props) => {
                         <Section isLoading={isLoading} title="Intakes">
                             <div className="space-y-3">
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="sm:w-1/2">
+                                        <FieldArray name="intakes">
+                                            {(fieldArrayProps: FieldArrayRenderProps) => (
+                                                <div>
+                                                    <div className="block text-gray-700 text-sm font-medium leading-5">
+                                                        Intakes
+                                                    </div>
+                                                    <div className="flex flex-col space-y-2">
+                                                        {fieldArrayProps.form.values.intakes
+                                                            ?.length > 0 &&
+                                                            fieldArrayProps.form.values.intakes.map(
+                                                                (_intake: Date, index: number) => (
+                                                                    <div
+                                                                        key={index}
+                                                                        className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                                                        <div className="flex w-full space-x-4">
+                                                                            <div className="flex-grow">
+                                                                                <Field
+                                                                                    name={`intakes.${index}`}>
+                                                                                    {(
+                                                                                        fieldProps: FieldProps
+                                                                                    ) => (
+                                                                                        <DateInput
+                                                                                            isLoading={
+                                                                                                isLoading
+                                                                                            }
+                                                                                            {...fieldProps}
+                                                                                        />
+                                                                                    )}
+                                                                                </Field>
+                                                                            </div>
+                                                                            <div className="mt-1">
+                                                                                <Button
+                                                                                    isLoading={
+                                                                                        isLoading
+                                                                                    }
+                                                                                    startIcon={
+                                                                                        faTrash
+                                                                                    }
+                                                                                    type="button"
+                                                                                    variant="secondary"
+                                                                                    onClick={() =>
+                                                                                        fieldArrayProps.remove(
+                                                                                            index
+                                                                                        )
+                                                                                    }>
+                                                                                    Delete
+                                                                                </Button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            )}
+                                                    </div>
+
+                                                    <div className="mt-3">
+                                                        <Button
+                                                            isLoading={isLoading}
+                                                            startIcon={faPlus}
+                                                            type="button"
+                                                            variant="secondary"
+                                                            onClick={() =>
+                                                                fieldArrayProps.push('')
+                                                            }>
+                                                            New intake
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </FieldArray>
+                                    </div>
                                     <div className="w-full sm:w-1/2">
                                         <Field id="submissionDeadline" name="submissionDeadline">
                                             {(fieldProps: FieldProps) => (
@@ -493,65 +564,7 @@ const ProgramForm: FC<Props> = (props) => {
                                             )}
                                         </Field>
                                     </div>
-                                    <div className="w-1/2" />
                                 </div>
-                                <FieldArray name="intakes">
-                                    {(fieldArrayProps: FieldArrayRenderProps) => (
-                                        <div>
-                                            <div className="block text-gray-700 text-sm font-medium leading-5">
-                                                Intakes
-                                            </div>
-                                            <div className="flex flex-col space-y-2">
-                                                {fieldArrayProps.form.values.intakes?.length > 0 &&
-                                                    fieldArrayProps.form.values.intakes.map(
-                                                        (_intake: Date, index: number) => (
-                                                            <div
-                                                                key={index}
-                                                                className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                                                <div className="flex w-full space-x-4 sm:w-1/2">
-                                                                    <div className="flex-grow">
-                                                                        <Field
-                                                                            name={`intakes.${index}`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <DateInput
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
-                                                                    </div>
-                                                                    <div className="mt-1">
-                                                                        <Button
-                                                                            startIcon={faTrash}
-                                                                            type="button"
-                                                                            variant="secondary"
-                                                                            onClick={() =>
-                                                                                fieldArrayProps.remove(
-                                                                                    index
-                                                                                )
-                                                                            }>
-                                                                            Delete
-                                                                        </Button>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="w-1/2" />
-                                                            </div>
-                                                        )
-                                                    )}
-                                            </div>
-                                            <div className="mt-3">
-                                                <Button
-                                                    startIcon={faPlus}
-                                                    type="button"
-                                                    variant="secondary"
-                                                    onClick={() => fieldArrayProps.push('')}>
-                                                    New intake
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </FieldArray>
                                 <div className="w-full">
                                     <Field id="intakeInformation" name="intakeInformation">
                                         {(fieldProps: FieldProps) => (
@@ -882,16 +895,20 @@ const ProgramForm: FC<Props> = (props) => {
                                                                                 fieldProps: FieldProps
                                                                             ) => (
                                                                                 <Select
-                                                                                    {...fieldProps}
+                                                                                    isLoading={
+                                                                                        isLoading
+                                                                                    }
                                                                                     options={
                                                                                         requestedDocumentsOptions
                                                                                     }
+                                                                                    {...fieldProps}
                                                                                 />
                                                                             )}
                                                                         </Field>
                                                                     </div>
                                                                     <div className="mt-1">
                                                                         <Button
+                                                                            isLoading={isLoading}
                                                                             startIcon={faPencil}
                                                                             type="button"
                                                                             variant={
@@ -911,6 +928,7 @@ const ProgramForm: FC<Props> = (props) => {
                                                                     </div>
                                                                     <div className="mt-1">
                                                                         <Button
+                                                                            isLoading={isLoading}
                                                                             startIcon={faTrash}
                                                                             type="button"
                                                                             variant="secondary"
@@ -1015,6 +1033,7 @@ const ProgramForm: FC<Props> = (props) => {
                                         </div>
                                         <div className="mt-3">
                                             <Button
+                                                isLoading={isLoading}
                                                 startIcon={faPlus}
                                                 variant="secondary"
                                                 onClick={() =>
@@ -1040,7 +1059,11 @@ const ProgramForm: FC<Props> = (props) => {
                                         <Toggle label="Published" {...fieldProps} />
                                     )}
                                 </Field>
-                                <Button isLoading={isSubmitting} startIcon={faSave} type="submit">
+                                <Button
+                                    isLoading={isLoading}
+                                    isSubmitting={isSubmitting}
+                                    startIcon={faSave}
+                                    type="submit">
                                     Save
                                 </Button>
                             </div>

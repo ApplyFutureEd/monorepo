@@ -15,6 +15,7 @@
   "no-results-heading": "Aucun résultat",
   "no-results-paragraph-1": "Désolé, nous travaillons à obtenir de meilleurs résultats pour cette recherche.",
   "no-results-paragraph-2": "Cliquer sur le bouton ci-dessous pour être notifié quand une école correspondant à vos critères sera disponible",
+  "page-title": "Ecoles",
   "private": "Privée",
   "public": "Publique",
   "school-id": "Ecole ID",
@@ -22,5 +23,7 @@
   "search-alert-created": "Alerte créée",
   "search-placeholder": "Rechercher",
   "sort-by": "Trier par",
+  "sort-by-option-alphabetical-order": "Par école (A-Z)",
+  "sort-by-option-country-alphabetical-order": "Par pays (A-Z)",
   "total-students": "Nombre d'étudiants"
 }

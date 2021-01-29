@@ -92,7 +92,7 @@ const SignInForm: FC = () => {
 
                             <Button
                                 disabled={isSubmitting}
-                                isLoading={isSubmitting}
+                                isSubmitting={isSubmitting}
                                 type="submit"
                                 variant="primary">
                                 {t('auth:sign-in')}
