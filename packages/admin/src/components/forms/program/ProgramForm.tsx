@@ -47,7 +47,7 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import { number, object, string } from 'yup';
+import { object, string } from 'yup';
 
 type Props = {
     handleSubmit: (
