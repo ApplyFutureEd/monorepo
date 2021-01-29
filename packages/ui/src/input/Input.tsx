@@ -132,6 +132,17 @@ export const Input: FC<Props> = (props) => {
         [`${withStartIconClasses}`]: withStartIcon
     });
 
+    const onDebouncedChange = (
+        event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        const { value } = event.target;
+        setDebouncedValue(value);
+        debounced.callback(value);
+    };
+
+    const value = withDebounce ? debouncedValue : field.value;
+    const onChange = withDebounce ? onDebouncedChange : field.onChange;
+
     if (isLoading) {
         return (
             <div>
@@ -144,17 +155,6 @@ export const Input: FC<Props> = (props) => {
             </div>
         );
     }
-
-    const onDebouncedChange = (
-        event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-    ) => {
-        const { value } = event.target;
-        setDebouncedValue(value);
-        debounced.callback(value);
-    };
-
-    const value = withDebounce ? debouncedValue : field.value;
-    const onChange = withDebounce ? onDebouncedChange : field.onChange;
 
     return (
         <label className="block font-sans" htmlFor={field.name} {...rest}>

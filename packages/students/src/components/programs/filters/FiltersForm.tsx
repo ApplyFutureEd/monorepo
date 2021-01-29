@@ -346,7 +346,8 @@ const FiltersForm: FC<Props> = (props) => {
                                             <Select
                                                 label={t('profile:nationality')}
                                                 options={countriesOptions}
-                                                {...fieldProps}></Select>
+                                                {...fieldProps}
+                                            />
                                         )}
                                     </Field>
                                 </div>
@@ -356,7 +357,8 @@ const FiltersForm: FC<Props> = (props) => {
                                             <Select
                                                 label={t('profile:education-country')}
                                                 options={countriesOptions}
-                                                {...fieldProps}></Select>
+                                                {...fieldProps}
+                                            />
                                         )}
                                     </Field>
                                 </div>
@@ -470,6 +472,7 @@ const FiltersForm: FC<Props> = (props) => {
                                     </Field>
                                 </div>
                             </div>
+
                             <div>
                                 <div className="my-6 w-full border-t border-gray-200" />
                             </div>

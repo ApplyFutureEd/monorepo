@@ -1,4 +1,5 @@
 import ContactForm from '@components/landing/contact/ContactForm';
+import { faWeixin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useTranslation from 'next-translate/useTranslation';
@@ -27,6 +28,30 @@ const Contact: FC = () => {
                             </p>
                             <dl className="mt-8 text-gray-500 text-base leading-6">
                                 <div className="mt-6">
+                                    <dt className="sr-only">Whatsapp</dt>
+                                    <dd className="flex">
+                                        <FontAwesomeIcon
+                                            className="flex-shrink-0 w-6 h-6 text-gray-400"
+                                            fixedWidth={true}
+                                            icon={faWhatsapp}
+                                            size="lg"
+                                        />
+                                        <span className="ml-3">0033 763623167</span>
+                                    </dd>
+                                </div>
+                                <div className="mt-3">
+                                    <dt className="sr-only">Wechat</dt>
+                                    <dd className="flex">
+                                        <FontAwesomeIcon
+                                            className="flex-shrink-0 w-6 h-6 text-gray-400"
+                                            fixedWidth={true}
+                                            icon={faWeixin}
+                                            size="lg"
+                                        />
+                                        <span className="ml-3">ApplyFuture</span>
+                                    </dd>
+                                </div>
+                                <div className="mt-3">
                                     <dt className="sr-only">Postal address</dt>
                                     <dd className="flex">
                                         <FontAwesomeIcon

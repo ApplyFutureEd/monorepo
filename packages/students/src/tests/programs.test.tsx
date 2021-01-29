@@ -80,14 +80,14 @@ describe('Programs', () => {
         await userEvent.click(button);
     });
 
-    it('can call display skeletons when isLoading is true', async () => {
+    it('can display skeletons when isLoading is true', async () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
-        render(<Programs />);
+        const { container } = render(<Programs />);
 
-        const button = screen.getByText('programs:apply');
+        const skeleton = container.querySelector('.react-loading-skeleton');
 
-        await userEvent.click(button);
+        expect(skeleton).toBeInTheDocument();
     });
 
     it('can handle the search', async () => {
@@ -196,7 +196,7 @@ describe('Programs', () => {
     it('can handle missing data and can render without crashing', () => {
         mockedData = {
             searchPrograms: {
-                items: [{ school: '' }] as any,
+                items: [] as any,
                 nextToken: ''
             }
         };

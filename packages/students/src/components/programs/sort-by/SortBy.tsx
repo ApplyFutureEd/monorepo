@@ -24,7 +24,9 @@ const SortBy: FC<Props> = (props) => {
     const [open, setOpen] = useState(false);
     const [currentLabel, setCurrentLabel] = useState('programs:sort-by-option-alphabetical-order');
 
-    const handleToggle = () => setOpen((prev) => !prev);
+    const handleToggle = () => {
+        setOpen((prev) => !prev);
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -33,7 +35,6 @@ const SortBy: FC<Props> = (props) => {
     const handleClick = (option: SortByOption) => {
         setCurrentLabel(option.label);
         handleSort({ direction: option.direction, field: option.field });
-        handleClose();
     };
 
     const sortByOptions: Array<SortByOption> = [

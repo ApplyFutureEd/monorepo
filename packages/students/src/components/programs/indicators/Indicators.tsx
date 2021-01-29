@@ -1,6 +1,6 @@
 import { Program } from '@applyfuture/models';
 import { IconPanel, Tooltip } from '@applyfuture/ui';
-import { convertDuration, currency, date, getLanguageLabel } from '@applyfuture/utils';
+import { convertSecondsToUnit, currency, date, getLanguageLabel } from '@applyfuture/utils';
 import {
     faCalendar,
     faClock,
@@ -31,12 +31,12 @@ const Indicators: FC<Props> = (props) => {
                     <IconPanel
                         icon={faClock}
                         label={t(`programs:${program?.schedule.toLowerCase()}`)}>
-                        {convertDuration({
+                        {convertSecondsToUnit({
                             unit: program?.durationUnit,
                             value: program?.duration
                         })}{' '}
                         {t(`programs:${program?.durationUnit.toLowerCase()}`, {
-                            count: convertDuration({
+                            count: convertSecondsToUnit({
                                 unit: program?.durationUnit,
                                 value: program?.duration
                             })
