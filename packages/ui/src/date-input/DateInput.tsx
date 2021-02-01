@@ -53,17 +53,7 @@ type Props = {
 };
 
 export const DateInput: FC<Props> = (props) => {
-    const {
-        field,
-        meta,
-        form,
-        label,
-        disabled = false,
-        optional = false,
-        isLoading = false,
-        maxDate,
-        ...rest
-    } = props;
+    const { field, meta, form, label, disabled, optional, isLoading, maxDate, ...rest } = props;
 
     const router = useRouter();
     const { t } = useTranslation();

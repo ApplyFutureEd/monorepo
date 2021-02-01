@@ -81,11 +81,11 @@ export const FileUploader: FC<Props> = (props) => {
         level = 'public',
         student,
         program,
-        optional = false,
+        optional,
         template,
-        isLoading = false,
-        isSpecific = false,
-        bypassAcceptedFileFormat = false,
+        isLoading,
+        isSpecific,
+        bypassAcceptedFileFormat,
         ...rest
     } = props;
     const { t } = useTranslation();

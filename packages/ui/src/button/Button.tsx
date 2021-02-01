@@ -50,10 +50,10 @@ type Props = {
 export const Button = forwardRef<Ref, Props>((props, ref) => {
     const {
         children,
-        disabled = false,
+        disabled,
         endIcon,
-        isLoading = false,
-        isSubmitting = false,
+        isLoading,
+        isSubmitting,
         onClick,
         startIcon,
         type = 'button',

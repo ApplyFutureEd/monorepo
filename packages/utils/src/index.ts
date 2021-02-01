@@ -7,8 +7,10 @@ export * from './forms/degrees';
 export * from './forms/disciplines';
 export * from './forms/durationUnits';
 export * from './forms/educationLevels';
+export * from './forms/genders';
 export * from './forms/languages';
 export * from './forms/languagesLevels';
+export * from './forms/maritalStatus';
 export * from './forms/requestedDocuments';
 export * from './forms/schedules';
 
@@ -33,4 +35,5 @@ export * from './hooks/useQuery';
 
 export * from './services/amplify';
 export * from './services/AmplifyError';
+export * from './services/ip';
 export * from './services/sentry';

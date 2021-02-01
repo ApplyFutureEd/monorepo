@@ -50,17 +50,7 @@ type Props = {
 };
 
 export const PhoneInput: FC<Props> = (props) => {
-    const {
-        disabled = false,
-        field,
-        form,
-        isLoading = false,
-        label,
-        meta,
-        optional = false,
-        tooltip,
-        ...rest
-    } = props;
+    const { disabled, field, form, isLoading, label, meta, optional, tooltip, ...rest } = props;
 
     const { t } = useTranslation();
     const [countryCallingCode, setCountryCallingCode] = useState('33');

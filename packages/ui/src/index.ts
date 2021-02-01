@@ -1,3 +1,4 @@
+export * from './autocomplete-input/AutocompleteInput';
 export * from './button/Button';
 export * from './checkbox/Checkbox';
 export * from './collapse/Collapse';

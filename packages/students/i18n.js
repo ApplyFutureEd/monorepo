@@ -10,6 +10,7 @@ module.exports = {
         '/about': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],
+        '/profile/general-information': ['profile'],
         '/programs': ['programs', 'profile'],
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],

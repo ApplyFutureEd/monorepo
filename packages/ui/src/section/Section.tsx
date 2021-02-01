@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Section: FC<Props> = (props) => {
-    const { title, description, children, isLoading = false, optional = false } = props;
+    const { title, description, children, isLoading, optional } = props;
     const { t } = useTranslation();
 
     return (
