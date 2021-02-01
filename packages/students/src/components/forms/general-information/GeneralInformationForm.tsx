@@ -141,7 +141,7 @@ const GeneralInformationForm: FC = () => {
         parentsEmail: string;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({
+    const [initialValues] = useState<FormValues>({
         address: '',
         birthday: null,
         city: '',
@@ -170,7 +170,9 @@ const GeneralInformationForm: FC = () => {
         studentId: ''
     });
 
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {};
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        console.log(values, actions);
+    };
 
     const countriesOptions = countries.map((country) => ({
         label: t(`common:${country.label}`),
@@ -197,7 +199,7 @@ const GeneralInformationForm: FC = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
-            {(props) => {
+            {() => {
                 return (
                     <Form>
                         <Section
