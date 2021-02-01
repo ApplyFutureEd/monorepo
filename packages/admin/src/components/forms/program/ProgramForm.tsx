@@ -339,18 +339,6 @@ const ProgramForm: FC<Props> = (props) => {
                     <Form className="space-y-6">
                         <Section isLoading={isLoading} title="Program info">
                             <div className="space-y-3">
-                                <div className="w-full">
-                                    <Field id="name" name="name">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Name"
-                                                type="text"
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                </div>
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/3">
                                         <Field id="schoolId" name="schoolId">
@@ -388,6 +376,18 @@ const ProgramForm: FC<Props> = (props) => {
                                             )}
                                         </Field>
                                     </div>
+                                </div>
+                                <div className="w-full">
+                                    <Field id="name" name="name">
+                                        {(fieldProps: FieldProps) => (
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Name"
+                                                type="text"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
                                 </div>
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/2">
