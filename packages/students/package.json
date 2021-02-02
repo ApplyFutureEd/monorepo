@@ -63,6 +63,7 @@
         "next-translate": "0.20.2",
         "next-transpile-modules": "6.0.0",
         "react": "17.0.1",
+        "react-datepicker": "^3.4.1",
         "react-dom": "17.0.1",
         "react-loading-skeleton": "2.1.1",
         "react-phone-number-input": "3.1.6",

@@ -99,7 +99,7 @@ const ConfirmAccountForm: FC = () => {
                         <div className="flex items-center justify-end">
                             <Button
                                 disabled={isSubmitting}
-                                isLoading={isSubmitting}
+                                isSubmitting={isSubmitting}
                                 type="submit"
                                 variant="primary">
                                 {t('auth:confirm')}

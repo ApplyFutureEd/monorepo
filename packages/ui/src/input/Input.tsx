@@ -132,19 +132,6 @@ export const Input: FC<Props> = (props) => {
         [`${withStartIconClasses}`]: withStartIcon
     });
 
-    if (isLoading) {
-        return (
-            <div>
-                <div>
-                    <Skeleton height="15px" width="120px" />
-                </div>
-                <div className="rounded-md">
-                    <Skeleton height="47px" width="100%" />
-                </div>
-            </div>
-        );
-    }
-
     const onDebouncedChange = (
         event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
     ) => {
@@ -155,6 +142,21 @@ export const Input: FC<Props> = (props) => {
 
     const value = withDebounce ? debouncedValue : field.value;
     const onChange = withDebounce ? onDebouncedChange : field.onChange;
+
+    if (isLoading) {
+        return (
+            <div>
+                {label && (
+                    <div>
+                        <Skeleton height="15px" width="120px" />
+                    </div>
+                )}
+                <div className="rounded-md">
+                    <Skeleton height="47px" width="100%" />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <label className="block font-sans" htmlFor={field.name} {...rest}>

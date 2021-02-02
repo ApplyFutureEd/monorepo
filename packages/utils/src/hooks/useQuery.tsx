@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import { isArray, mergeWith } from 'lodash';
 import { useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+
+import config from './../services/aws-exports';
 
 type UseQueryType<ResultType> = {
     data: ResultType;
@@ -41,6 +43,13 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
             }
         } catch (error) {
             setError(error);
+            if (error === 'No current user') {
+                Amplify.configure({
+                    ...config,
+                    aws_appsync_authenticationType: 'API_KEY'
+                });
+                refetch();
+            }
         } finally {
             setIsLoading(false);
         }

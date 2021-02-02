@@ -389,13 +389,13 @@ type Program
     durationUnit: DurationUnit!
     fee: Float!
     feeCurrency: Currency!
-    feesAndFinancing: String
     feeUnit: FeeUnit!
+    feesAndFinancing: String
     gradePointAverage: Float!
     highestEducationLevel: Float!
     id: ID!
-    intakes: String!
     intakeInformation: String
+    intakes: String!
     languages: [Language]!
     minimumAge: Float!
     minimumWorkExperience: Float!
@@ -539,7 +539,7 @@ type Document
     )
     @model
     @key(name: "byStudent", fields: ["studentId"], queryField: "getDocumentByStudent")
-    @key(name: "byStorageKey", fields: ["storageKey"], queryField: "getByStorageKey") {
+    @key(name: "byStorageKey", fields: ["storageKey"], queryField: "getDocumentByStorageKey") {
     id: ID!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
