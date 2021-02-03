@@ -1,6 +1,8 @@
 @tailwind base;
 
 @import './context-menu.css';
+@import './date-input.css';
+@import './editor.css';
 @import './loader.css';
 @import './markdown.css';
 @import './reset.css';

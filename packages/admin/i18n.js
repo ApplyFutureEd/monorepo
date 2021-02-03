@@ -5,6 +5,8 @@ module.exports = {
     locales: ['en'],
     localesPath: 'locales',
     pages: {
-        '*': ['common']
+        '*': ['common'],
+        '/programs/create': ['profile', 'programs', 'application'],
+        '/programs/update': ['profile', 'programs', 'application']
     }
 };

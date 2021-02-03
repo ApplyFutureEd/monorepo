@@ -1,6 +1,6 @@
 import { SearchProgramsQuery } from '@applyfuture/graphql';
 import ProgramsPage from '@pages/programs';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -61,6 +61,15 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
+const mockedShow = jest.fn();
+
+jest.mock('react-contexify', () => ({
+    ...(jest.requireActual('react-contexify') as Record<string, unknown>),
+    useContextMenu: () => ({
+        show: mockedShow
+    })
+}));
+
 describe('ProgramsPage', () => {
     it('can render without crashing', () => {
         render(<ProgramsPage />);
@@ -78,5 +87,15 @@ describe('ProgramsPage', () => {
         userEvent.click(newButton);
 
         expect(mockedPush).toHaveBeenCalled();
+    });
+
+    it('can open context menu', () => {
+        render(<ProgramsPage />);
+
+        const program = screen.getByText(/Master of Science/i);
+
+        fireEvent.contextMenu(program);
+
+        expect(mockedShow).toHaveBeenCalled();
     });
 });

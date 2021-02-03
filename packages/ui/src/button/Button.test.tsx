@@ -129,9 +129,9 @@ describe('Button', () => {
         expect(icon).toBeInTheDocument();
     });
 
-    it('can render a loading button', () => {
+    it('can render a submitting button', () => {
         render(
-            <Button isLoading variant="primary">
+            <Button isSubmitting variant="primary">
                 Apply
             </Button>
         );
@@ -143,5 +143,17 @@ describe('Button', () => {
         expect(button).toBeInTheDocument();
         expect(iconContainer).toBeInTheDocument();
         expect(icon).toBeInTheDocument();
+    });
+
+    it('can render a loading button', () => {
+        const { container } = render(
+            <Button isLoading variant="primary">
+                Apply
+            </Button>
+        );
+
+        const skeleton = container.querySelector('.react-loading-skeleton');
+
+        expect(skeleton).toBeInTheDocument();
     });
 });

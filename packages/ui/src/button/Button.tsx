@@ -2,6 +2,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import { forwardRef, ReactNode } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { Loader } from './../loader/Loader';
 
@@ -21,9 +22,13 @@ type Props = {
      */
     endIcon?: IconProp;
     /**
-     * If `true`, the button will display a loader before the children.
+     * If `true`, the button will display a skeleton.
      */
     isLoading?: boolean;
+    /**
+     * If `true`, the button will display a loader before the children.
+     */
+    isSubmitting?: boolean;
     /**
      * The function called on the `click` event.
      */
@@ -48,6 +53,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         disabled = false,
         endIcon,
         isLoading = false,
+        isSubmitting = false,
         onClick,
         startIcon,
         type = 'button',
@@ -76,6 +82,14 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         [`${disabledClasses}`]: disabled
     });
 
+    if (isLoading) {
+        return (
+            <div className="rounded-md">
+                <Skeleton height="47px" width="120px" />
+            </div>
+        );
+    }
+
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
             <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
@@ -87,7 +101,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
                         size="sm"
                     />
                 )}
-                {isLoading ? (
+                {isSubmitting ? (
                     <span className="flex items-center">
                         <Loader />
                         <span className="flex-shrink-0 ml-2">{children}</span>

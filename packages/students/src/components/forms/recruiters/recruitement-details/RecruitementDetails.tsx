@@ -265,7 +265,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 ) : (
                     <Button
                         disabled={validate(values)}
-                        isLoading={isSubmitting}
+                        isSubmitting={isSubmitting}
                         startIcon={faPaperPlane}
                         type="submit"
                         variant="primary">
