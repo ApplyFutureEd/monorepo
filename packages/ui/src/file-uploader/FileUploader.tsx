@@ -267,7 +267,7 @@ export const FileUploader: FC<Props> = (props) => {
                     <div className="flex justify-between w-full">
                         <div>{label}</div>
                         {optional && (
-                            <div className="ml-2 text-xs italic">({t('common:optional')})</div>
+                            <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
                         )}
                     </div>
                     {onError && (

@@ -3,7 +3,7 @@ import {
     GetStudentByEmailQuery,
     GetStudentByEmailQueryVariables
 } from '@applyfuture/graphql';
-import { DateInput, Input, PhoneInput, Section, Select } from '@applyfuture/ui';
+import { Button, DateInput, Input, PhoneInput, Section, Select } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
     countries,
@@ -14,6 +14,8 @@ import {
     useAuthenticatedUser,
     useQuery
 } from '@applyfuture/utils';
+import Navigation from '@components/profile/navigation/Navigation';
+import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -199,11 +201,14 @@ const GeneralInformationForm: FC = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
-            {() => {
+            {(props) => {
+                const { isSubmitting } = props;
+
                 return (
-                    <Form>
+                    <Form className="space-y-6">
                         <Section
                             description={t('profile:personal-information-description')}
+                            headerComponent={<Navigation completion={{}} isLoading={isLoading} />}
                             isLoading={isLoading}
                             title={t('profile:personal-information-title')}>
                             <div className="mb-8 space-y-8">
@@ -288,8 +293,8 @@ const GeneralInformationForm: FC = () => {
                                 ) : (
                                     <ReactGoogleMapLoader
                                         params={{
-                                            key: 'AIzaSyCHoshDgCrSnZB20N-KqSvr0LtQGrnwmq4', // Define your api key here
-                                            libraries: 'places' // To request multiple libraries, separate them with a comma
+                                            key: 'AIzaSyCHoshDgCrSnZB20N-KqSvr0LtQGrnwmq4',
+                                            libraries: 'places'
                                         }}
                                         render={(googleMaps: any) =>
                                             googleMaps && (
@@ -425,6 +430,179 @@ const GeneralInformationForm: FC = () => {
                                         </Field>
                                     </div>
                                 </div>
+                            </div>
+                        </Section>
+                        <Section
+                            description={t('profile:parents-information-description')}
+                            isLoading={isLoading}
+                            title={t('profile:parents-information-title')}>
+                            <div className="mb-8 space-y-8">
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="fatherFirstName" name="fatherFirstName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label={t('profile:fathers-first-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
+                                        <Field id="fatherLastName" name="fatherLastName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label={t('profile:fathers-last-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="motherFirstName" name="motherFirstName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label={t('profile:mothers-first-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
+                                        <Field id="motherMaidenName" name="motherMaidenName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label={t('profile:mothers-maiden-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="guardianFirstName" name="guardianFirstName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    optional
+                                                    isLoading={isLoading}
+                                                    label={t('profile:guardians-first-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
+                                        <Field id="guardianLastName" name="guardianLastName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    optional
+                                                    isLoading={isLoading}
+                                                    label={t('profile:guardians-last-name')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                {isChina() ? (
+                                    <div className="flex w-full space-x-4">
+                                        <div className="w-6/12">
+                                            <Field id="parentsAddress" name="parentsAddress">
+                                                {(fieldProps: FieldProps) => (
+                                                    <Input
+                                                        isLoading={isLoading}
+                                                        label={t('profile:address')}
+                                                        type="text"
+                                                        {...fieldProps}
+                                                    />
+                                                )}
+                                            </Field>
+                                        </div>
+                                        <div className="w-3/12">
+                                            <Field id="parentsCity" name="parentsCity">
+                                                {(fieldProps: FieldProps) => (
+                                                    <Input
+                                                        isLoading={isLoading}
+                                                        label={t('profile:city')}
+                                                        type="text"
+                                                        {...fieldProps}
+                                                    />
+                                                )}
+                                            </Field>
+                                        </div>
+                                        <div className="w-3/12">
+                                            <Field id="parentsCountry" name="parentsCountry">
+                                                {(fieldProps: FieldProps) => (
+                                                    <Select
+                                                        isLoading={isLoading}
+                                                        label={t('profile:country')}
+                                                        options={countriesOptions}
+                                                        {...fieldProps}
+                                                    />
+                                                )}
+                                            </Field>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <Field id="parentsAddress" name="parentsAddress">
+                                        {(fieldProps: FieldProps) => (
+                                            <AutocompleteInput
+                                                isLoading={isLoading}
+                                                label={t('profile:address')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                )}
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="parentsPhoneNumber" name="parentsPhoneNumber">
+                                            {(fieldProps: FieldProps) => (
+                                                <PhoneInput
+                                                    isLoading={isLoading}
+                                                    label={t('profile:parents-phone-number')}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
+                                        <Field id="parentsEmail" name="parentsEmail">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label={t('profile:parents-email')}
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex justify-end space-x-4">
+                                <Button
+                                    disabled={isSubmitting}
+                                    isLoading={isLoading}
+                                    isSubmitting={isSubmitting}
+                                    startIcon={faSave}
+                                    type="submit"
+                                    variant="primary">
+                                    {t('profile:save')}
+                                </Button>
                             </div>
                         </Section>
                     </Form>

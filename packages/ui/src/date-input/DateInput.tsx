@@ -64,6 +64,7 @@ export const DateInput: FC<Props> = (props) => {
 
     const baseClasses = 'form-input block w-full sm:text-sm sm:leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
+    const withLabelClasses = 'mt-1';
 
     const classes = cx({
         [`${baseClasses}`]: true,
@@ -91,16 +92,18 @@ export const DateInput: FC<Props> = (props) => {
             htmlFor={field.name}
             {...rest}>
             {label && (
-                <div className="flex items-center space-x-2">
-                    <div className="flex w-full">
-                        <div>{label}</div>
-                        {optional && (
-                            <div className="ml-2 text-xs italic">({t('common:optional')})</div>
-                        )}
-                    </div>
+                <div>
+                    <span className="text-gray-700 text-sm font-medium leading-5">{label}</span>
+                    {optional && (
+                        <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
+                    )}
                 </div>
             )}
-            <div className="relative mt-1 rounded-md shadow-sm">
+            <div
+                className={cx({
+                    ['relative rounded-md shadow-sm']: true,
+                    [`${withLabelClasses}`]: label
+                })}>
                 <DatePicker
                     showMonthDropdown
                     showYearDropdown

@@ -1,22 +1,22 @@
 import Banner from '@applyfuture/ui/src/banner/Banner';
 import { withPrivateAccess } from '@applyfuture/utils';
-import GeneralInformationForm from '@components/forms/general-information/GeneralInformationForm';
+import EducationHistoryForm from '@components/forms/education-history/EducationHistoryForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
-const GeneralInformationPage: FC = () => {
+const EducationHistoryPage: FC = () => {
     const { t } = useTranslation();
 
     return (
-        <DashboardLayout title={t('profile:general-information-page-title')}>
+        <DashboardLayout title={t('profile:education-history-page-title')}>
             <Banner content={t('profile:disclaimer')} />
-            <GeneralInformationForm />
+            <EducationHistoryForm />
         </DashboardLayout>
     );
 };
 
-export default withPrivateAccess(GeneralInformationPage, {
+export default withPrivateAccess(EducationHistoryPage, {
     groups: ['student'],
     redirection: '/sign-in'
 });
