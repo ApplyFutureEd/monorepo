@@ -1,5 +1,6 @@
+import { createStudent, CreateStudentMutation } from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { graphql, useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
@@ -39,6 +40,8 @@ const ConfirmAccountForm: FC = () => {
             await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
             const user = await Auth.signIn({ password, username: email });
             handleAuth(user);
+            await Auth.currentAuthenticatedUser();
+            await graphql<CreateStudentMutation>(createStudent, { input: { email } });
             return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
