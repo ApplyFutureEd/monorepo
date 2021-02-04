@@ -1,17 +1,21 @@
 import '@applyfuture/utils/src/services/amplify';
 
 import {
+    getProgramBySchool,
+    GetProgramBySchoolQuery,
+    GetProgramBySlugQuery,
     getSchoolBySlug,
     GetSchoolBySlugQuery,
     listSchools,
     ListSchoolsQuery
 } from '@applyfuture/graphql';
-import { School } from '@applyfuture/models';
+import { Program, School } from '@applyfuture/models';
 import { Container, Cover, SubHeader } from '@applyfuture/ui';
 import { Button } from '@applyfuture/ui';
 import { getCountryLabel, markdown } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import Row from '@components/programs/row/Row';
 import Indicators from '@components/schools/indicators/Indicators';
 import { faHeart } from '@fortawesome/pro-light-svg-icons';
 import { faMapMarkerAlt, faPortrait } from '@fortawesome/pro-solid-svg-icons';
@@ -23,11 +27,12 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
+    programs: Program[];
     school: School;
 };
 
 const SchoolPage: FC<Props> = (props) => {
-    const { school } = props;
+    const { programs, school } = props;
 
     const router = useRouter();
     const { t } = useTranslation();
@@ -57,6 +62,22 @@ const SchoolPage: FC<Props> = (props) => {
         </div>
     ];
 
+    const handleClick = () => {
+        console.log('Apply - to be implemented');
+    };
+
+    const bachelors = programs
+        ?.filter((program) => program.published)
+        .filter((program) => program.degree === 'BACHELOR');
+
+    const masters = programs
+        ?.filter((program) => program.published)
+        .filter((program) => program.degree === 'MASTER');
+
+    const doctorates = programs
+        ?.filter((program) => program.published)
+        .filter((program) => program.degree === 'DOCTORATE');
+
     return (
         <DashboardLayout description="" title="">
             <Cover alt={''} src={`${process.env.ASSETS_CDN_URL}/${school?.coverPhoto}` || ''} />
@@ -66,7 +87,7 @@ const SchoolPage: FC<Props> = (props) => {
                 subtitleComponents={subtitleComponents}
                 title={school.name}
             />
-            <Indicators school={school} />
+            <Indicators programs={programs} school={school} />
             <div className="space-y-6">
                 <Container title={t('schools:about')}>
                     {school?.description && (
@@ -78,6 +99,30 @@ const SchoolPage: FC<Props> = (props) => {
                         />
                     )}
                 </Container>
+
+                {bachelors.length > 0 && (
+                    <Container innerPadding={false} title={t('schools:bachelors-programs')}>
+                        {bachelors.map((bachelor) => (
+                            <Row key={bachelor.id} program={bachelor} onClick={handleClick} />
+                        ))}
+                    </Container>
+                )}
+
+                {masters.length > 0 && (
+                    <Container innerPadding={false} title={t('schools:masters-programs')}>
+                        {masters.map((master) => (
+                            <Row key={master.id} program={master} onClick={handleClick} />
+                        ))}
+                    </Container>
+                )}
+
+                {doctorates.length > 0 && (
+                    <Container innerPadding={false} title={t('schools:doctorates-programs')}>
+                        {doctorates.map((doctorate) => (
+                            <Row key={doctorate.id} program={doctorate} onClick={handleClick} />
+                        ))}
+                    </Container>
+                )}
             </div>
         </DashboardLayout>
     );
@@ -122,8 +167,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
         const school = schoolData?.getSchoolBySlug?.items?.[0] || null;
 
+        const { data: programsData } = (await API.graphql({
+            authMode: GRAPHQL_AUTH_MODE.API_KEY,
+            query: getProgramBySchool,
+            variables: { schoolId: school?.id }
+        })) as GraphQLResult<GetProgramBySchoolQuery>;
+
+        const programs = programsData?.getProgramBySchool?.items || null;
+
         return {
             props: {
+                programs,
                 school
             },
             revalidate: 1

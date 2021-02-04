@@ -7,6 +7,7 @@ export * from './forms/degrees';
 export * from './forms/disciplines';
 export * from './forms/durationUnits';
 export * from './forms/educationLevels';
+export * from './forms/institutionTypes';
 export * from './forms/languages';
 export * from './forms/languagesLevels';
 export * from './forms/requestedDocuments';

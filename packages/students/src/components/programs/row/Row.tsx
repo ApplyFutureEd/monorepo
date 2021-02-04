@@ -1,4 +1,4 @@
-import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
+import { Country, Currency, DurationUnit, FeeUnit, Program, Schedule } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
 import { convertSecondsToUnit, currency, date, getCountryLabel } from '@applyfuture/utils';
 import Link from 'next/link';
@@ -8,25 +8,12 @@ import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    city: string;
-    country: Country;
-    duration: number;
-    durationUnit: DurationUnit;
-    fee: number;
-    feeCurrency: Currency;
-    feeUnit: FeeUnit;
-    intakes: string;
-    name: string;
+    program: Program;
     onClick: () => void;
-    schedule: Schedule;
-    school: {
-        name: string;
-        logo: string;
-    };
-    slug: string;
 };
 
 const Row: FC<Props> = (props) => {
+    const { program, onClick } = props;
     const {
         city,
         country,
@@ -37,11 +24,10 @@ const Row: FC<Props> = (props) => {
         feeUnit,
         intakes,
         name,
-        onClick,
         schedule,
         school,
         slug
-    } = props;
+    } = program;
 
     const { t } = useTranslation();
     const router = useRouter();

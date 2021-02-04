@@ -14,7 +14,7 @@ module.exports = {
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['schools'],
-        '/schools/[slug]': ['schools'],
+        '/schools/[slug]': ['programs', 'schools'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

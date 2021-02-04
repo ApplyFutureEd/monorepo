@@ -593,13 +593,13 @@ export const getApplication = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -777,13 +777,13 @@ export const listApplications = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -1133,13 +1133,13 @@ export const getFeedback = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -1424,15 +1424,15 @@ export const getDocumentByStudent = /* GraphQL */ `
     }
   }
 `;
-export const getByStorageKey = /* GraphQL */ `
-  query GetByStorageKey(
+export const getDocumentByStorageKey = /* GraphQL */ `
+  query GetDocumentByStorageKey(
     $storageKey: String
     $sortDirection: ModelSortDirection
     $filter: ModelDocumentFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    getByStorageKey(
+    getDocumentByStorageKey(
       storageKey: $storageKey
       sortDirection: $sortDirection
       filter: $filter
@@ -1645,13 +1645,13 @@ export const getApplicationByStudent = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -1769,13 +1769,13 @@ export const getSchool = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -1920,13 +1920,13 @@ export const listPrograms = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -2002,13 +2002,13 @@ export const getProgram = /* GraphQL */ `
       durationUnit
       fee
       feeCurrency
-      feesAndFinancing
       feeUnit
+      feesAndFinancing
       gradePointAverage
       highestEducationLevel
       id
-      intakes
       intakeInformation
+      intakes
       languages
       minimumAge
       minimumWorkExperience
@@ -2101,13 +2101,108 @@ export const getProgramBySlug = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
+        languages
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        name
+        otherRequirements
+        published
+        requestedDocuments {
+          name
+          isMandatory
+          storageKey
+          description
+          condition
+          isSpecific
+        }
+        schedule
+        schoolId
+        schoolName
+        slug
+        submissionDeadline
+        testCambridgeAdvanced
+        testCambridgeFirst
+        testDelfdalf
+        testGmat
+        testGre
+        testIelts
+        testTagemage
+        testTcftef
+        testToefl
+        testToeic
+        createdAt
+        updatedAt
+        school {
+          city
+          country
+          coverPhoto
+          contactEmail
+          contactJobTitle
+          contactName
+          contactPhone
+          creationYear
+          description
+          id
+          institutionType
+          internationalStudents
+          logo
+          name
+          totalStudents
+          slug
+          published
+          contractStatus
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getProgramBySchool = /* GraphQL */ `
+  query GetProgramBySchool(
+    $schoolId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelProgramFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getProgramBySchool(
+      schoolId: $schoolId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        applicationFee
+        applicationFeeCurrency
+        city
+        costOfLiving
+        costOfLivingCurrency
+        country
+        degree
+        description
+        discipline
+        duration
+        durationUnit
+        fee
+        feeCurrency
+        feeUnit
+        feesAndFinancing
+        gradePointAverage
+        highestEducationLevel
+        id
+        intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -2194,13 +2289,13 @@ export const searchPrograms = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience

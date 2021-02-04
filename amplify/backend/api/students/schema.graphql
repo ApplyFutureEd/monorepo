@@ -375,7 +375,7 @@ type Program
     @model
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getProgramBySlug")
-    @key(name: "bySchool", fields: ["schoolId"]) {
+    @key(name: "bySchool", fields: ["schoolId"], queryField: "getProgramBySchool") {
     applicationFee: Float!
     applicationFeeCurrency: Currency!
     city: String!

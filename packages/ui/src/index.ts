@@ -6,7 +6,7 @@ export * from './cover/Cover';
 export * from './date-input/DateInput';
 export * from './drawer/Drawer';
 export * from './dropdown/Dropdown';
-export * from './file-uploader/FileUploader';
+/* export * from './file-uploader/FileUploader'; */
 export * from './editor/Editor';
 export * from './footer/Footer';
 export * from './head/Head';
