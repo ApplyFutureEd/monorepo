@@ -3,7 +3,7 @@ import {
     GetStudentByEmailQuery,
     GetStudentByEmailQueryVariables
 } from '@applyfuture/graphql';
-import { Button, DateInput, Input, Section, Select, Tooltip } from '@applyfuture/ui';
+import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
     countries,
@@ -14,8 +14,7 @@ import {
     useQuery
 } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
-import { faInfoCircle, faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
     Field,
     FieldArray,
@@ -39,18 +38,18 @@ const GeneralInformationForm: FC = () => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        refusedVisa: boolean().required(t('error-field-required')),
+        refusedVisa: boolean().required(t('common:error-field-required')),
         refusedVisaReason: string(),
-        validVisa: boolean().required(t('error-field-required')),
+        validVisa: boolean().required(t('common:error-field-required')),
         workExperiences: array().of(
             object().shape({
                 compagnyName: string().test({
-                    message: t('error-latin-characters'),
+                    message: t('common:error-latin-characters'),
                     name: 'latinCharacters',
                     test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
                 }),
                 workExperienceTitle: string().test({
-                    message: t('error-latin-characters'),
+                    message: t('common:error-latin-characters'),
                     name: 'latinCharacters',
                     test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
                 })

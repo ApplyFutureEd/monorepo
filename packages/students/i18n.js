@@ -14,6 +14,7 @@ module.exports = {
         '/profile/education-history': ['profile', 'programs'],
         '/profile/general-information': ['profile'],
         '/profile/test-scores': ['profile'],
+        '/profile/upload-documents': ['profile'],
         '/programs': ['profile', 'programs'],
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],

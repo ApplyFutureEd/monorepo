@@ -110,7 +110,7 @@ const Tabs: FC<Props> = (props) => {
         },
         {
             completion: false,
-            href: '/profile/documents',
+            href: '/profile/upload-documents',
             label: 'profile:upload-documents-page-title'
         }
     ];
