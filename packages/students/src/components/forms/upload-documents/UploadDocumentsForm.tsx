@@ -16,6 +16,8 @@ const UploadDocumentForm: FC<Props> = (props) => {
     const { data, isLoading } = props;
     const { t } = useTranslation();
 
+    console.log(data);
+
     const validationSchema = object().shape({
         passport: mixed().required(t('common:error-field-required')),
         passportPhoto: mixed().required(t('common:error-field-required')),

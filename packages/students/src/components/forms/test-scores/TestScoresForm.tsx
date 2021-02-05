@@ -1,7 +1,5 @@
 import {
-    getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables,
     updateStudent,
     UpdateStudentMutation,
     UpdateStudentMutationVariables

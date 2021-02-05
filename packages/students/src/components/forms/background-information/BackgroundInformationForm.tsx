@@ -6,7 +6,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import { countries, educationLevels, graphql, isChina, languages, toast } from '@applyfuture/utils';
+import { graphql, isChina, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
