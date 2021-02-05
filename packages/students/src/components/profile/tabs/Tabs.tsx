@@ -12,7 +12,6 @@ type Props = {
 };
 
 const Tabs: FC<Props> = (props) => {
-    const { completion } = props;
     const { pathname } = useRouter();
     const { t } = useTranslation();
     const [profileNavWidth, setProfileNavWidth] = useState<number | undefined>(undefined);
