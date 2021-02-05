@@ -1240,6 +1240,7 @@ export type ModelSchoolFilterInput = {
 
 export type SearchableSchoolFilterInput = {
   city?: SearchableStringFilterInput | null,
+  country?: SearchableStringFilterInput | null,
   coverPhoto?: SearchableStringFilterInput | null,
   contactEmail?: SearchableStringFilterInput | null,
   contactJobTitle?: SearchableStringFilterInput | null,
@@ -1314,6 +1315,7 @@ export type SearchableSchoolSortInput = {
 
 export enum SearchableSchoolSortableFields {
   city = "city",
+  country = "country",
   coverPhoto = "coverPhoto",
   contactEmail = "contactEmail",
   contactJobTitle = "contactJobTitle",
@@ -1389,6 +1391,7 @@ export type ModelProgramFilterInput = {
 export type SearchableProgramFilterInput = {
   applicationFee?: SearchableFloatFilterInput | null,
   city?: SearchableStringFilterInput | null,
+  country?: SearchableStringFilterInput | null,
   costOfLiving?: SearchableFloatFilterInput | null,
   description?: SearchableStringFilterInput | null,
   duration?: SearchableFloatFilterInput | null,
@@ -1431,6 +1434,7 @@ export type SearchableProgramSortInput = {
 export enum SearchableProgramSortableFields {
   applicationFee = "applicationFee",
   city = "city",
+  country = "country",
   costOfLiving = "costOfLiving",
   description = "description",
   duration = "duration",
