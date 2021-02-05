@@ -1,18 +1,12 @@
 import {
-    getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
+    updateStudent,
+    UpdateStudentMutation,
+    UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import {
-    countries,
-    educationLevels,
-    isChina,
-    languages,
-    useAuthenticatedUser,
-    useQuery
-} from '@applyfuture/utils';
+import { countries, educationLevels, graphql, isChina, languages, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -25,16 +19,17 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { array, boolean, object, string } from 'yup';
 
-const GeneralInformationForm: FC = () => {
-    const { user } = useAuthenticatedUser();
-    const { isLoading } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
-        getStudentByEmail,
-        { email: user?.attributes.email }
-    );
+type Props = {
+    data: GetStudentByEmailQuery;
+    isLoading: boolean;
+};
+
+const BackgroundInformationForm: FC<Props> = (props) => {
+    const { data, isLoading } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -70,7 +65,7 @@ const GeneralInformationForm: FC = () => {
         }>;
     };
 
-    const [initialValues] = useState<FormValues>({
+    const [initialValues, setInitialValues] = useState<FormValues>({
         refusedVisa: false,
         refusedVisaReason: '',
         validVisa: false,
@@ -85,27 +80,46 @@ const GeneralInformationForm: FC = () => {
         ]
     });
 
+    useEffect(() => {
+        if (data?.getStudentByEmail) {
+            const student: any = data?.getStudentByEmail?.items?.[0];
+            setInitialValues(student);
+        }
+    }, [data]);
+
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        console.log(values, actions);
+        try {
+            const student: any = { ...values };
+            delete student.__typename;
+            delete student.updatedAt;
+            delete student.createdAt;
+            delete student.owner;
+            delete student.documents;
+            delete student.applications;
+            delete student.studentId;
+
+            await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
+                input: student
+            });
+
+            toast({
+                description: `General information successfully updated`,
+                title: t('profile:toast-information-updated'),
+                variant: 'success'
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
+            });
+        }
+        actions.setSubmitting(false);
     };
-
-    const countriesOptions = countries.map((country) => ({
-        label: t(`common:${country.label}`),
-        value: country.value
-    }));
-
-    const educationLevelsOptions = educationLevels.map((educationLevel) => ({
-        label: t(`programs:${educationLevel.label}`),
-        value: educationLevel.value
-    }));
-
-    const languagesOptions = languages.map((language) => ({
-        label: t(`common:${language.label}`),
-        value: language.value
-    }));
 
     return (
         <Formik
+            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
@@ -376,4 +390,4 @@ const GeneralInformationForm: FC = () => {
     );
 };
 
-export default GeneralInformationForm;
+export default BackgroundInformationForm;

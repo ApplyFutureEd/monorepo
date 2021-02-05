@@ -1,10 +1,5 @@
-import {
-    getStudentByEmail,
-    GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
-} from '@applyfuture/graphql';
+import { GetStudentByEmailQuery } from '@applyfuture/graphql';
 import { Button, FileUploader, Section } from '@applyfuture/ui';
-import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -12,12 +7,13 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 import { mixed, object } from 'yup';
 
-const UploadDocumentForm: FC = () => {
-    const { user } = useAuthenticatedUser();
-    const { isLoading } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
-        getStudentByEmail,
-        { email: user?.attributes.email }
-    );
+type Props = {
+    data: GetStudentByEmailQuery;
+    isLoading: boolean;
+};
+
+const UploadDocumentForm: FC<Props> = (props) => {
+    const { data, isLoading } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({

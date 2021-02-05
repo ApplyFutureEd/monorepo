@@ -1,29 +1,33 @@
 import {
     getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
+    GetStudentByEmailQueryVariables,
+    updateStudent,
+    UpdateStudentMutation,
+    UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
 import { Button, Checkbox, DateInput, Input, Section, Select } from '@applyfuture/ui';
 import {
     cambridgeAdvancedResults,
     cambridgeFirstResults,
+    graphql,
     languageLevels,
-    useAuthenticatedUser,
-    useQuery
+    toast
 } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { number, object } from 'yup';
 
-const GeneralInformationForm: FC = () => {
-    const { user } = useAuthenticatedUser();
-    const { isLoading } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
-        getStudentByEmail,
-        { email: user?.attributes.email }
-    );
+type Props = {
+    data: GetStudentByEmailQuery;
+    isLoading: boolean;
+};
+
+const TestScoreForm: FC<Props> = (props) => {
+    const { data, isLoading } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -105,8 +109,41 @@ const GeneralInformationForm: FC = () => {
         testToeicDate: null
     });
 
+    useEffect(() => {
+        if (data?.getStudentByEmail) {
+            const student: any = data?.getStudentByEmail?.items?.[0];
+            setInitialValues(student);
+        }
+    }, [data]);
+
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        console.log(values, actions);
+        try {
+            const student: any = { ...values };
+            delete student.__typename;
+            delete student.updatedAt;
+            delete student.createdAt;
+            delete student.owner;
+            delete student.documents;
+            delete student.applications;
+            delete student.studentId;
+
+            await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
+                input: student
+            });
+
+            toast({
+                description: `General information successfully updated`,
+                title: t('profile:toast-information-updated'),
+                variant: 'success'
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
+            });
+        }
+        actions.setSubmitting(false);
     };
 
     const cambridgeFirstResultsOptions = cambridgeFirstResults;
@@ -576,4 +613,4 @@ const GeneralInformationForm: FC = () => {
     );
 };
 
-export default GeneralInformationForm;
+export default TestScoreForm;

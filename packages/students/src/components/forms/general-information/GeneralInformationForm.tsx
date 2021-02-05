@@ -1,33 +1,37 @@
 import {
-    getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
+    updateStudent,
+    UpdateStudentMutation,
+    UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, PhoneInput, Section, Select } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
     countries,
     genders,
+    graphql,
     isChina,
     languages,
     maritalStatus,
-    useAuthenticatedUser,
-    useQuery
+    toast,
+    toShortId
 } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import { toUpper } from 'lodash';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import { object, string } from 'yup';
 
-const GeneralInformationForm: FC = () => {
-    const { user } = useAuthenticatedUser();
-    const { isLoading } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
-        getStudentByEmail,
-        { email: user?.attributes.email }
-    );
+type Props = {
+    data: GetStudentByEmailQuery;
+    isLoading: boolean;
+};
+
+const GeneralInformationForm: FC<Props> = (props) => {
+    const { data, isLoading } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -115,35 +119,35 @@ const GeneralInformationForm: FC = () => {
     });
 
     type FormValues = {
-        studentId: string;
-        email: string;
-        phoneNumber: string;
         address: string;
+        birthday: Date | null;
         city: string;
         country: string;
-        firstName: string;
-        middleName: string;
-        lastName: string;
-        birthday: Date | null;
-        firstLanguage: string;
-        nationality: string;
-        passportNumber: string;
-        gender: string;
-        maritalStatus: string;
-        fatherLastName: string;
+        email: string;
         fatherFirstName: string;
-        motherMaidenName: string;
-        motherFirstName: string;
-        guardianLastName: string;
+        fatherLastName: string;
+        firstLanguage: string;
+        firstName: string;
+        gender: string;
         guardianFirstName: string;
+        guardianLastName: string;
+        lastName: string;
+        maritalStatus: string;
+        middleName: string;
+        motherFirstName: string;
+        motherMaidenName: string;
+        nationality: string;
         parentsAddress: string;
         parentsCity: string;
         parentsCountry: string;
-        parentsPhoneNumber: string;
         parentsEmail: string;
+        parentsPhoneNumber: string;
+        passportNumber: string;
+        phoneNumber: string;
+        studentId: string;
     };
 
-    const [initialValues] = useState<FormValues>({
+    const [initialValues, setInitialValues] = useState<FormValues>({
         address: '',
         birthday: null,
         city: '',
@@ -172,8 +176,46 @@ const GeneralInformationForm: FC = () => {
         studentId: ''
     });
 
+    useEffect(() => {
+        if (data?.getStudentByEmail) {
+            const student: any = data?.getStudentByEmail?.items?.[0];
+            setInitialValues({ ...student, studentId: toShortId(student?.id) });
+        }
+    }, [data]);
+
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        console.log(values, actions);
+        try {
+            values.lastName = toUpper(values.lastName);
+            values.fatherLastName = toUpper(values.fatherLastName);
+            values.motherMaidenName = toUpper(values.motherMaidenName);
+            values.guardianLastName = toUpper(values.guardianLastName);
+
+            const student: any = { ...values };
+            delete student.__typename;
+            delete student.updatedAt;
+            delete student.createdAt;
+            delete student.owner;
+            delete student.documents;
+            delete student.applications;
+            delete student.studentId;
+
+            await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
+                input: student
+            });
+
+            toast({
+                description: `General information successfully updated`,
+                title: t('profile:toast-information-updated'),
+                variant: 'success'
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
+            });
+        }
+        actions.setSubmitting(false);
     };
 
     const countriesOptions = countries.map((country) => ({
@@ -198,6 +240,7 @@ const GeneralInformationForm: FC = () => {
 
     return (
         <Formik
+            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>

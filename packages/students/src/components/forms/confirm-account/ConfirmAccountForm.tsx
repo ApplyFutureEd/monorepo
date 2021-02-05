@@ -40,8 +40,87 @@ const ConfirmAccountForm: FC = () => {
             await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
             const user = await Auth.signIn({ password, username: email });
             handleAuth(user);
-            await Auth.currentAuthenticatedUser();
-            await graphql<CreateStudentMutation>(createStudent, { input: { email } });
+            await graphql<CreateStudentMutation>(createStudent, {
+                input: {
+                    address: '',
+                    birthday: null,
+                    city: '',
+                    country: '',
+                    educationCountry: '',
+                    email: email,
+                    fatherFirstName: '',
+                    fatherLastName: '',
+                    firstLanguage: '',
+                    firstName: '',
+                    gender: '',
+                    gradePointAverage: 0,
+                    guardianFirstName: '',
+                    guardianLastName: '',
+                    highestEducationLevel: -1,
+                    lastName: '',
+                    maritalStatus: '',
+                    middleName: '',
+                    motherFirstName: '',
+                    motherMaidenName: '',
+                    nationality: '',
+                    parentsAddress: '',
+                    parentsCity: '',
+                    parentsCountry: '',
+                    parentsEmail: '',
+                    parentsPhoneNumber: '',
+                    passportNumber: '',
+                    phoneNumber: '',
+                    refusedVisa: false,
+                    refusedVisaReason: '',
+                    schoolsAttended: [
+                        {
+                            address: '',
+                            attendedInstitutionFrom: null,
+                            attendedInstitutionTo: null,
+                            city: '',
+                            country: '',
+                            degreeAwarded: -1,
+                            degreeAwardedOn: null,
+                            educationLevel: -1,
+                            name: '',
+                            primaryLanguageInstruction: ''
+                        }
+                    ],
+                    testCambridgeAdvanced: '',
+                    testCambridgeAdvancedDate: null,
+                    testCambridgeFirst: '',
+                    testCambridgeFirstDate: null,
+                    testDelfdalf: '',
+                    testDelfdalfDate: null,
+                    testEnglishPending: false,
+                    testFrenchPending: false,
+                    testGmat: '',
+                    testGmatDate: null,
+                    testGre: '',
+                    testGreDate: null,
+                    testIelts: '',
+                    testIeltsDate: null,
+                    testLogicAndReasoningPending: false,
+                    testTagemage: '',
+                    testTagemageDate: null,
+                    testTcftef: '',
+                    testTcftefDate: null,
+                    testToefl: '',
+                    testToeflDate: null,
+                    testToeic: '',
+                    testToeicDate: null,
+                    validVisa: false,
+                    workExperiences: [
+                        {
+                            address: '',
+                            compagnyName: '',
+                            workExperienceTitle: '',
+                            workedFrom: null,
+                            workedTo: null
+                        }
+                    ]
+                }
+            });
             return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
