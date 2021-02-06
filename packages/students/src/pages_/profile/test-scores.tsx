@@ -19,7 +19,7 @@ const TestScoresPage: FC = () => {
     );
 
     return (
-        <DashboardLayout title={t('profile:general-information-page-title')}>
+        <DashboardLayout title={t('profile:test-scores-page-title')}>
             <Banner content={t('profile:disclaimer')} />
             <TestScoresForm data={data} isLoading={isLoading} />
         </DashboardLayout>

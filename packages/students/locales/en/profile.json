@@ -162,6 +162,7 @@
   "test-toeic-tooltip": "TOEIC (Test of English for International Communication) is an international standardized test of English language proficiency for non-native speakers. The total score is 990 points.",
   "toast-documents-saved": "Documents saved",
   "toast-information-updated": "Information updated",
+  "toast-information-updated-description": "{{section}} has been successfully updated",
   "toefl": "TOEFL",
   "toeic": "TOEIC",
   "upload-documents-page-title": "Upload Documents",

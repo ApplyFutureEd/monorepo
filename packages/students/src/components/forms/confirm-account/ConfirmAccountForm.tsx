@@ -86,35 +86,12 @@ const ConfirmAccountForm: FC = () => {
                             primaryLanguageInstruction: ''
                         }
                     ],
-                    testCambridgeAdvanced: '',
-                    testCambridgeAdvancedDate: null,
-                    testCambridgeFirst: '',
-                    testCambridgeFirstDate: null,
-                    testDelfdalf: '',
-                    testDelfdalfDate: null,
-                    testEnglishPending: false,
-                    testFrenchPending: false,
-                    testGmat: '',
-                    testGmatDate: null,
-                    testGre: '',
-                    testGreDate: null,
-                    testIelts: '',
-                    testIeltsDate: null,
-                    testLogicAndReasoningPending: false,
-                    testTagemage: '',
-                    testTagemageDate: null,
-                    testTcftef: '',
-                    testTcftefDate: null,
-                    testToefl: '',
-                    testToeflDate: null,
-                    testToeic: '',
-                    testToeicDate: null,
                     validVisa: false,
                     workExperiences: [
                         {
                             address: '',
                             compagnyName: '',
-                            workExperienceTitle: '',
+                            title: '',
                             workedFrom: null,
                             workedTo: null
                         }

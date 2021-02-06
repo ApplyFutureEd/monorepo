@@ -1,4 +1,4 @@
-import { useWindowSize } from '@applyfuture/utils';
+import { Completion, useWindowSize } from '@applyfuture/utils';
 import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons';
 import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,10 +8,11 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
 type Props = {
-    completion: any;
+    completion: Completion;
 };
 
-const Tabs: FC<Props> = () => {
+const Tabs: FC<Props> = (props) => {
+    const { completion } = props;
     const { pathname } = useRouter();
     const { t } = useTranslation();
     const [profileNavWidth, setProfileNavWidth] = useState<number | undefined>(undefined);
@@ -88,27 +89,27 @@ const Tabs: FC<Props> = () => {
 
     const routes = [
         {
-            completion: false,
+            completion: completion.generalInformation,
             href: '/profile/general-information',
             label: 'profile:general-information-page-title'
         },
         {
-            completion: false,
+            completion: completion.educationHistory,
             href: '/profile/education-history',
             label: 'profile:education-history-page-title'
         },
         {
-            completion: false,
+            completion: completion.testScores,
             href: '/profile/test-scores',
             label: 'profile:test-scores-page-title'
         },
         {
-            completion: false,
+            completion: completion.backgroundInformation,
             href: '/profile/background-information',
             label: 'profile:background-information-page-title'
         },
         {
-            completion: false,
+            completion: completion.uploadDocuments,
             href: '/profile/upload-documents',
             label: 'profile:upload-documents-page-title'
         }

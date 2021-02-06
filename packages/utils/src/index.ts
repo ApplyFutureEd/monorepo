@@ -23,6 +23,7 @@ export * from './helpers/graphql';
 export * from './helpers/isBrowser';
 export * from './helpers/id';
 export * from './helpers/markdown';
+export * from './helpers/profile';
 export * from './helpers/ssr';
 export * from './helpers/toast';
 export * from './helpers/whyDidYouRender';

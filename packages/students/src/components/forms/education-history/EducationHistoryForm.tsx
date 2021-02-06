@@ -6,7 +6,15 @@ import {
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import { countries, educationLevels, graphql, isChina, languages, toast } from '@applyfuture/utils';
+import {
+    countries,
+    educationLevels,
+    graphql,
+    isChina,
+    isCompleted,
+    languages,
+    toast
+} from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -140,14 +148,16 @@ const EducationHistoryForm: FC<Props> = (props) => {
             });
 
             toast({
-                description: `General information successfully updated`,
+                description: t('profile:toast-information-updated-description', {
+                    section: t('profile:education-history-page-title')
+                }),
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
         } catch (error) {
             toast({
                 description: `${error.message}`,
-                title: 'An error occured',
+                title: t('common:toast-error-generic-message'),
                 variant: 'error'
             });
         }
@@ -181,7 +191,12 @@ const EducationHistoryForm: FC<Props> = (props) => {
                 return (
                     <Form className="space-y-6">
                         <Section
-                            headerComponent={<Navigation completion={{}} isLoading={isLoading} />}
+                            headerComponent={
+                                <Navigation
+                                    completion={isCompleted(values)}
+                                    isLoading={isLoading}
+                                />
+                            }
                             isLoading={isLoading}
                             title={t('profile:education-summary-title')}>
                             <div className="sm:mb-8 sm:space-y-8">

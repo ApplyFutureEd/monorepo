@@ -1,6 +1,6 @@
 import { deleteDocument, getByStorageKey } from '@applyfuture/graphql';
 import { Program, Student } from '@applyfuture/models';
-import { graphql } from '@applyfuture/utils';
+import { graphql, toShortId } from '@applyfuture/utils';
 import { faDownload, faEye, faTimes, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '@material-ui/core';
@@ -12,7 +12,6 @@ import React, { FC, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
-import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '../button/Button';
 import { Loader } from '../loader/Loader';
@@ -110,7 +109,9 @@ export const FileUploader: FC<Props> = (props) => {
 
     const previewDocument = async (storageKey: string) => {
         try {
-            const result: any = await Storage.get(storageKey, { level: level });
+            const result: any = await Storage.get(storageKey, {
+                level: level
+            });
             setPreviewUrl(result);
             setModalOpen(true);
         } catch (error) {
@@ -147,21 +148,23 @@ export const FileUploader: FC<Props> = (props) => {
             toast.error(t('common:upload-file-input-error-file-too-big'));
             return;
         }
-        let storageKey = uuidv4();
+
+        let storageKey = '';
+
         if (student) {
-            const studentShortenedId = student.id.substring(0, 8);
+            const studentId = toShortId(student.id);
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
-            storageKey = `${studentName}-${studentShortenedId}-${fileName}`;
+            storageKey = `${studentName}-${studentId}-${fileName}`;
         }
 
         if (student && program && isSpecific) {
-            const programShortenedId = program.id.substring(0, 8);
-            const studentShortenedId = student.id.substring(0, 8);
+            const programId = toShortId(program.id);
+            const studentId = toShortId(student.id);
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
 
-            storageKey = `${studentName}-${programShortenedId}-${studentShortenedId}-${fileName}`;
+            storageKey = `${studentName}-${programId}-${studentId}-${fileName}`;
         }
 
         try {

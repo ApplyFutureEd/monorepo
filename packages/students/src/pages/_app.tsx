@@ -16,7 +16,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
             <AuthenticatedUserProvider>
-                <ToastContainer hideProgressBar autoClose={3000} />
+                <ToastContainer />
                 <Component {...pageProps} />
             </AuthenticatedUserProvider>
         </>

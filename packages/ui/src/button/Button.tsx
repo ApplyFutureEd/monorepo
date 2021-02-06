@@ -93,7 +93,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
             <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
-                {startIcon && (
+                {!isSubmitting && startIcon && (
                     <FontAwesomeIcon
                         fixedWidth
                         className={cx({ 'mr-2': children })}

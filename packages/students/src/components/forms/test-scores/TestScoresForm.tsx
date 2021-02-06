@@ -9,6 +9,7 @@ import {
     cambridgeAdvancedResults,
     cambridgeFirstResults,
     graphql,
+    isCompleted,
     languageLevels,
     toast
 } from '@applyfuture/utils';
@@ -130,14 +131,16 @@ const TestScoreForm: FC<Props> = (props) => {
             });
 
             toast({
-                description: `General information successfully updated`,
+                description: t('profile:toast-information-updated-description', {
+                    section: t('profile:test-scores-page-title')
+                }),
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
         } catch (error) {
             toast({
                 description: `${error.message}`,
-                title: 'An error occured',
+                title: t('common:toast-error-generic-message'),
                 variant: 'error'
             });
         }
@@ -191,7 +194,12 @@ const TestScoreForm: FC<Props> = (props) => {
                                     )}
                                 </Field>
                             }
-                            headerComponent={<Navigation completion={{}} isLoading={isLoading} />}
+                            headerComponent={
+                                <Navigation
+                                    completion={isCompleted(values)}
+                                    isLoading={isLoading}
+                                />
+                            }
                             isLoading={isLoading}
                             title={t('profile:english-tests')}>
                             <div className="mb-8 space-y-8">

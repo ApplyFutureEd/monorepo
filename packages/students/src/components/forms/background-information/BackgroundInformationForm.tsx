@@ -6,7 +6,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import { graphql, isChina, toast } from '@applyfuture/utils';
+import { graphql, isChina, isCompleted, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -43,7 +43,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                     name: 'latinCharacters',
                     test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
                 }),
-                workExperienceTitle: string().test({
+                title: string().test({
                     message: t('common:error-latin-characters'),
                     name: 'latinCharacters',
                     test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
@@ -59,7 +59,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
         workExperiences: Array<{
             address: string;
             compagnyName: string;
-            workExperienceTitle: string;
+            title: string;
             workedFrom: Date | null;
             workedTo: Date | null;
         }>;
@@ -73,7 +73,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
             {
                 address: '',
                 compagnyName: '',
-                workExperienceTitle: '',
+                title: '',
                 workedFrom: null,
                 workedTo: null
             }
@@ -103,14 +103,16 @@ const BackgroundInformationForm: FC<Props> = (props) => {
             });
 
             toast({
-                description: `General information successfully updated`,
+                description: t('profile:toast-information-updated-description', {
+                    section: t('profile:background-information-page-title')
+                }),
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
         } catch (error) {
             toast({
                 description: `${error.message}`,
-                title: 'An error occured',
+                title: t('common:toast-error-generic-message'),
                 variant: 'error'
             });
         }
@@ -129,7 +131,12 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                 return (
                     <Form className="space-y-6">
                         <Section
-                            headerComponent={<Navigation completion={{}} isLoading={isLoading} />}
+                            headerComponent={
+                                <Navigation
+                                    completion={isCompleted(values)}
+                                    isLoading={isLoading}
+                                />
+                            }
                             isLoading={isLoading}
                             title={t('profile:background-information-title')}>
                             <div className="mb-8 space-y-8">
@@ -221,7 +228,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                     (_workExperience: any, index: number) => (
                                                         <div key={index} className="mb-4 space-y-4">
                                                             <Field
-                                                                name={`workExperiences.${index}.workExperienceTitle`}>
+                                                                name={`workExperiences.${index}.title`}>
                                                                 {(fieldProps: FieldProps) => (
                                                                     <Input
                                                                         isLoading={isLoading}
@@ -359,7 +366,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                     fieldArrayProps.push({
                                                         address: '',
                                                         compagnyName: '',
-                                                        workExperienceTitle: '',
+                                                        title: '',
                                                         workedFrom: null,
                                                         workedTo: null
                                                     })
