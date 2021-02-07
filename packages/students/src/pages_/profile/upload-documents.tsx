@@ -16,14 +16,23 @@ import React, { FC } from 'react';
 const UploadDocumentPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
-    const { data: studentData, isLoading: studentIsLoading, refetch } = useQuery<
+    const { data: studentData, isLoading: studentIsLoading, refetch: studentRefetch } = useQuery<
         GetStudentByEmailQuery,
         GetStudentByEmailQueryVariables
     >(getStudentByEmail, { email: user?.attributes.email });
-    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
-        GetDocumentByStudentQuery,
-        GetDocumentByStudentQueryVariables
-    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+    const {
+        data: documentsData,
+        isLoading: documentsIsLoading,
+        refetch: documentsRefetch
+    } = useQuery<GetDocumentByStudentQuery, GetDocumentByStudentQueryVariables>(
+        getDocumentByStudent,
+        { studentId: studentData.getStudentByEmail?.items?.[0]?.id }
+    );
+
+    const refetch = () => {
+        studentRefetch();
+        documentsRefetch();
+    };
 
     return (
         <DashboardLayout title={t('profile:upload-documents-page-title')}>
