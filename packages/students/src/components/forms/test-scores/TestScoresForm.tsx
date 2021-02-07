@@ -1,4 +1,5 @@
 import {
+    GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
     updateStudent,
     UpdateStudentMutation,
@@ -21,12 +22,16 @@ import React, { FC, useEffect, useState } from 'react';
 import { number, object } from 'yup';
 
 type Props = {
-    data: GetStudentByEmailQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
+    refetch: () => void;
+    studentData: GetStudentByEmailQuery;
 };
 
 const TestScoreForm: FC<Props> = (props) => {
-    const { data, isLoading } = props;
+    const { documentsData, isLoading, refetch, studentData } = props;
+    const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -57,77 +62,95 @@ const TestScoreForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        testCambridgeAdvanced: string;
-        testCambridgeAdvancedDate: Date | null;
-        testCambridgeFirst: string;
-        testCambridgeFirstDate: Date | null;
-        testDelfdalf: string;
-        testDelfdalfDate: Date | null;
-        testEnglishPending: boolean;
-        testFrenchPending: boolean;
-        testGmat: string;
-        testGmatDate: Date | null;
-        testGre: string;
-        testGreDate: Date | null;
-        testIelts: string;
-        testIeltsDate: Date | null;
-        testLogicAndReasoningPending: boolean;
-        testTagemage: string;
-        testTagemageDate: Date | null;
-        testTcftef: string;
-        testTcftefDate: Date | null;
-        testToefl: string;
-        testToeflDate: Date | null;
-        testToeic: string;
-        testToeicDate: Date | null;
+        testCambridgeAdvanced: number | null;
+        testCambridgeAdvancedDate: string | null;
+        testCambridgeFirst: number | null;
+        testCambridgeFirstDate: string | null;
+        testDelfdalf: number | null;
+        testDelfdalfDate: string | null;
+        testEnglishPending: boolean | null;
+        testFrenchPending: boolean | null;
+        testGmat: number | null;
+        testGmatDate: string | null;
+        testGre: number | null;
+        testGreDate: string | null;
+        testIelts: number | null;
+        testIeltsDate: string | null;
+        testLogicAndReasoningPending: boolean | null;
+        testTagemage: number | null;
+        testTagemageDate: string | null;
+        testTcftef: number | null;
+        testTcftefDate: string | null;
+        testToefl: number | null;
+        testToeflDate: string | null;
+        testToeic: number | null;
+        testToeicDate: string | null;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
-        testCambridgeAdvanced: '',
+        testCambridgeAdvanced: null,
         testCambridgeAdvancedDate: null,
-        testCambridgeFirst: '',
+        testCambridgeFirst: null,
         testCambridgeFirstDate: null,
-        testDelfdalf: '',
+        testDelfdalf: null,
         testDelfdalfDate: null,
         testEnglishPending: false,
         testFrenchPending: false,
-        testGmat: '',
+        testGmat: null,
         testGmatDate: null,
-        testGre: '',
+        testGre: null,
         testGreDate: null,
-        testIelts: '',
+        testIelts: null,
         testIeltsDate: null,
         testLogicAndReasoningPending: false,
-        testTagemage: '',
+        testTagemage: null,
         testTagemageDate: null,
-        testTcftef: '',
+        testTcftef: null,
         testTcftefDate: null,
-        testToefl: '',
+        testToefl: null,
         testToeflDate: null,
-        testToeic: '',
+        testToeic: null,
         testToeicDate: null
     });
 
     useEffect(() => {
-        if (data?.getStudentByEmail) {
-            const student: any = data?.getStudentByEmail?.items?.[0];
-            setInitialValues(student);
+        if (student) {
+            setInitialValues({
+                testCambridgeAdvanced: student.testCambridgeAdvanced,
+                testCambridgeAdvancedDate: student.testCambridgeAdvancedDate,
+                testCambridgeFirst: student.testCambridgeFirst,
+                testCambridgeFirstDate: student.testCambridgeFirstDate,
+                testDelfdalf: student.testDelfdalf,
+                testDelfdalfDate: student.testDelfdalfDate,
+                testEnglishPending: student.testEnglishPending,
+                testFrenchPending: student.testFrenchPending,
+                testGmat: student.testGmat,
+                testGmatDate: student.testGmatDate,
+                testGre: student.testGre,
+                testGreDate: student.testGreDate,
+                testIelts: student.testIelts,
+                testIeltsDate: student.testIeltsDate,
+                testLogicAndReasoningPending: student.testLogicAndReasoningPending,
+                testTagemage: student.testTagemage,
+                testTagemageDate: student.testTagemageDate,
+                testTcftef: student.testTcftef,
+                testTcftefDate: student.testTcftefDate,
+                testToefl: student.testToefl,
+                testToeflDate: student.testToeflDate,
+                testToeic: student.testToeic,
+                testToeicDate: student.testToeicDate
+            });
         }
-    }, [data]);
+    }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const student: any = { ...values };
-            delete student.__typename;
-            delete student.updatedAt;
-            delete student.createdAt;
-            delete student.owner;
-            delete student.documents;
-            delete student.applications;
-            delete student.studentId;
+            if (!student) {
+                throw Error();
+            }
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: student
+                input: { ...values, id: student?.id }
             });
 
             toast({
@@ -137,6 +160,8 @@ const TestScoreForm: FC<Props> = (props) => {
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
+
+            refetch();
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -176,16 +201,16 @@ const TestScoreForm: FC<Props> = (props) => {
                                                 onChange: () => {
                                                     setInitialValues({
                                                         ...values,
-                                                        testCambridgeAdvanced: '',
+                                                        testCambridgeAdvanced: null,
                                                         testCambridgeAdvancedDate: null,
-                                                        testCambridgeFirst: '',
+                                                        testCambridgeFirst: null,
                                                         testCambridgeFirstDate: null,
                                                         testEnglishPending: !values.testEnglishPending,
-                                                        testIelts: '',
+                                                        testIelts: null,
                                                         testIeltsDate: null,
-                                                        testToefl: '',
+                                                        testToefl: null,
                                                         testToeflDate: null,
-                                                        testToeic: '',
+                                                        testToeic: null,
                                                         testToeicDate: null
                                                     });
                                                 }
@@ -196,7 +221,7 @@ const TestScoreForm: FC<Props> = (props) => {
                             }
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(values)}
+                                    completion={isCompleted(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }
@@ -208,7 +233,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testToefl" name="testToefl">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:toefl')} (310 - 667)`}
                                                     max={667}
@@ -225,7 +250,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testToeflDate" name="testToeflDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TOEFL'
@@ -239,7 +264,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testIelts" name="testIelts">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:ielts')} (0 - 9)`}
                                                     max={9}
@@ -256,7 +281,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testIeltsDate" name="testIeltsDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'IELTS'
@@ -273,7 +298,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testToeic" name="testToeic">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:toeic')} (0 - 990)`}
                                                     max={990}
@@ -290,7 +315,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testToeicDate" name="testToeicDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TOEIC'
@@ -310,7 +335,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testCambridgeFirst" name="testCambridgeFirst">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:fce')} (A - E)`}
                                                     options={cambridgeFirstResultsOptions}
@@ -328,7 +353,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                             name="testCambridgeFirstDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'FCE'
@@ -345,7 +370,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                             name="testCambridgeAdvanced">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:cae')} (A - C)`}
                                                     options={cambridgeAdvancedResultsOptions}
@@ -363,7 +388,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                             name="testCambridgeAdvancedDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testEnglishPending}
+                                                    disabled={Boolean(values.testEnglishPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'CAE'
@@ -389,10 +414,10 @@ const TestScoreForm: FC<Props> = (props) => {
                                                 onChange: () => {
                                                     setInitialValues({
                                                         ...values,
-                                                        testDelfdalf: '',
+                                                        testDelfdalf: null,
                                                         testDelfdalfDate: null,
                                                         testFrenchPending: !values.testFrenchPending,
-                                                        testTcftef: '',
+                                                        testTcftef: null,
                                                         testTcftefDate: null
                                                     });
                                                 }
@@ -409,7 +434,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testTcftef" name="testTcftef">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={values.testFrenchPending}
+                                                    disabled={Boolean(values.testFrenchPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:tcf-tef')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
@@ -423,7 +448,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testTcftefDate" name="testTcftefDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testFrenchPending}
+                                                    disabled={Boolean(values.testFrenchPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TCF / TEF'
@@ -438,7 +463,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testDelfdalf" name="testDelfdalf">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={values.testFrenchPending}
+                                                    disabled={Boolean(values.testFrenchPending)}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:delf-dalf')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
@@ -452,7 +477,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testDelfdalfDate" name="testDelfdalfDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testFrenchPending}
+                                                    disabled={Boolean(values.testFrenchPending)}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'DELF / DALF'
@@ -480,12 +505,12 @@ const TestScoreForm: FC<Props> = (props) => {
                                                 onChange: () => {
                                                     setInitialValues({
                                                         ...values,
-                                                        testGmat: '',
+                                                        testGmat: null,
                                                         testGmatDate: null,
-                                                        testGre: '',
+                                                        testGre: null,
                                                         testGreDate: null,
                                                         testLogicAndReasoningPending: !values.testLogicAndReasoningPending,
-                                                        testTagemage: '',
+                                                        testTagemage: null,
                                                         testTagemageDate: null
                                                     });
                                                 }
@@ -502,7 +527,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testGre" name="testGre">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:gre')} (260 - 344)`}
                                                     max={344}
@@ -519,7 +546,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testGreDate" name="testGreDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'GRE'
@@ -534,7 +563,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testGmat" name="testGmat">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label="GMAT (200 - 800)"
                                                     max={800}
@@ -551,7 +582,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testGmatDate" name="testGmatDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'GMAT'
@@ -568,7 +601,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testTagemage" name="testTagemage">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label="TAGE MAGE (0 - 600)"
                                                     max={600}
@@ -585,7 +620,9 @@ const TestScoreForm: FC<Props> = (props) => {
                                         <Field id="testTagemageDate" name="testTagemageDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={values.testLogicAndReasoningPending}
+                                                    disabled={Boolean(
+                                                        values.testLogicAndReasoningPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TAGE MAGE'

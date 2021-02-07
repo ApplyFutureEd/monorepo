@@ -1,4 +1,5 @@
 import {
+    GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
     updateStudent,
     UpdateStudentMutation,
@@ -24,12 +25,16 @@ import Skeleton from 'react-loading-skeleton';
 import { array, boolean, object, string } from 'yup';
 
 type Props = {
-    data: GetStudentByEmailQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
+    refetch: () => void;
+    studentData: GetStudentByEmailQuery;
 };
 
 const BackgroundInformationForm: FC<Props> = (props) => {
-    const { data, isLoading } = props;
+    const { documentsData, isLoading, refetch, studentData } = props;
+    const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -53,16 +58,16 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        refusedVisa: boolean;
-        refusedVisaReason: string;
-        validVisa: boolean;
+        refusedVisa: boolean | null;
+        refusedVisaReason: string | null;
+        validVisa: boolean | null;
         workExperiences: Array<{
-            address: string;
-            compagnyName: string;
-            title: string;
-            workedFrom: Date | null;
-            workedTo: Date | null;
-        }>;
+            address: string | null;
+            compagnyName: string | null;
+            title: string | null;
+            workedFrom: string | null;
+            workedTo: string | null;
+        } | null> | null;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
@@ -81,25 +86,24 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     });
 
     useEffect(() => {
-        if (data?.getStudentByEmail) {
-            const student: any = data?.getStudentByEmail?.items?.[0];
-            setInitialValues(student);
+        if (student) {
+            setInitialValues({
+                refusedVisa: student.refusedVisa,
+                refusedVisaReason: student.refusedVisaReason,
+                validVisa: student.validVisa,
+                workExperiences: student.workExperiences
+            });
         }
-    }, [data]);
+    }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const student: any = { ...values };
-            delete student.__typename;
-            delete student.updatedAt;
-            delete student.createdAt;
-            delete student.owner;
-            delete student.documents;
-            delete student.applications;
-            delete student.studentId;
+            if (!student) {
+                throw Error();
+            }
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: student
+                input: { ...values, id: student?.id }
             });
 
             toast({
@@ -109,6 +113,8 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
+
+            refetch();
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -133,7 +139,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                         <Section
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(values)}
+                                    completion={isCompleted(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }
@@ -342,19 +348,21 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                 </div>
                                                             </div>
 
-                                                            {values.workExperiences.length > 1 && (
-                                                                <Button
-                                                                    isLoading={isLoading}
-                                                                    startIcon={faTrash}
-                                                                    variant="secondary"
-                                                                    onClick={() =>
-                                                                        fieldArrayProps.remove(
-                                                                            index
-                                                                        )
-                                                                    }>
-                                                                    {t('profile:remove')}
-                                                                </Button>
-                                                            )}
+                                                            {values.workExperiences &&
+                                                                values.workExperiences.length >
+                                                                    1 && (
+                                                                    <Button
+                                                                        isLoading={isLoading}
+                                                                        startIcon={faTrash}
+                                                                        variant="secondary"
+                                                                        onClick={() =>
+                                                                            fieldArrayProps.remove(
+                                                                                index
+                                                                            )
+                                                                        }>
+                                                                        {t('profile:remove')}
+                                                                    </Button>
+                                                                )}
                                                         </div>
                                                     )
                                                 )}

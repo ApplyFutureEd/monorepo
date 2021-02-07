@@ -17,6 +17,7 @@ export * from './forms/schedules';
 export * from './helpers/currency';
 export * from './helpers/date';
 export * from './helpers/delay';
+export * from './helpers/documents';
 export * from './helpers/duration';
 export * from './helpers/filters';
 export * from './helpers/graphql';

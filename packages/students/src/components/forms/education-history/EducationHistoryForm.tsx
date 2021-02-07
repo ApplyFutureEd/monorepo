@@ -1,4 +1,5 @@
 import {
+    GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
     updateStudent,
     UpdateStudentMutation,
@@ -31,12 +32,16 @@ import React, { FC, useEffect, useState } from 'react';
 import { array, mixed, number, object, string } from 'yup';
 
 type Props = {
-    data: GetStudentByEmailQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
+    refetch: () => void;
+    studentData: GetStudentByEmailQuery;
 };
 
 const EducationHistoryForm: FC<Props> = (props) => {
-    const { data, isLoading } = props;
+    const { documentsData, isLoading, refetch, studentData } = props;
+    const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -88,21 +93,21 @@ const EducationHistoryForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        educationCountry: string;
-        gradePointAverage: number;
-        highestEducationLevel: number;
+        educationCountry: string | null;
+        gradePointAverage: number | null;
+        highestEducationLevel: number | null;
         schoolsAttended: Array<{
-            address: string;
-            attendedInstitutionFrom: Date | null;
-            attendedInstitutionTo: Date | null;
-            city: string;
-            country: string;
-            degreeAwarded: number;
-            degreeAwardedOn: Date | null;
-            educationLevel: number;
-            name: string;
-            primaryLanguageInstruction: string;
-        }>;
+            address: string | null;
+            attendedInstitutionFrom: string | null;
+            attendedInstitutionTo: string | null;
+            city: string | null;
+            country: string | null;
+            degreeAwarded: number | null;
+            degreeAwardedOn: string | null;
+            educationLevel: number | null;
+            name: string | null;
+            primaryLanguageInstruction: string | null;
+        } | null> | null;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
@@ -126,25 +131,24 @@ const EducationHistoryForm: FC<Props> = (props) => {
     });
 
     useEffect(() => {
-        if (data?.getStudentByEmail) {
-            const student: any = data?.getStudentByEmail?.items?.[0];
-            setInitialValues(student);
+        if (student) {
+            setInitialValues({
+                educationCountry: student.educationCountry,
+                gradePointAverage: student.gradePointAverage,
+                highestEducationLevel: student.highestEducationLevel,
+                schoolsAttended: student.schoolsAttended
+            });
         }
-    }, [data]);
+    }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const student: any = { ...values };
-            delete student.__typename;
-            delete student.updatedAt;
-            delete student.createdAt;
-            delete student.owner;
-            delete student.documents;
-            delete student.applications;
-            delete student.studentId;
+            if (!student) {
+                throw Error();
+            }
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: student
+                input: { ...values, id: student?.id }
             });
 
             toast({
@@ -154,6 +158,8 @@ const EducationHistoryForm: FC<Props> = (props) => {
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
+
+            refetch();
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -193,7 +199,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                         <Section
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(values)}
+                                    completion={isCompleted(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }
@@ -497,20 +503,22 @@ const EducationHistoryForm: FC<Props> = (props) => {
                                                                 </div>
                                                             </div>
 
-                                                            {values.schoolsAttended.length > 1 && (
-                                                                <Button
-                                                                    isLoading={isLoading}
-                                                                    startIcon={faTrash}
-                                                                    type="button"
-                                                                    variant="secondary"
-                                                                    onClick={() =>
-                                                                        fieldArrayProps.remove(
-                                                                            index
-                                                                        )
-                                                                    }>
-                                                                    {t('profile:remove')}
-                                                                </Button>
-                                                            )}
+                                                            {values.schoolsAttended &&
+                                                                values.schoolsAttended.length >
+                                                                    1 && (
+                                                                    <Button
+                                                                        isLoading={isLoading}
+                                                                        startIcon={faTrash}
+                                                                        type="button"
+                                                                        variant="secondary"
+                                                                        onClick={() =>
+                                                                            fieldArrayProps.remove(
+                                                                                index
+                                                                            )
+                                                                        }>
+                                                                        {t('profile:remove')}
+                                                                    </Button>
+                                                                )}
                                                         </div>
                                                     )
                                                 )}

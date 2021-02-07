@@ -1,10 +1,11 @@
+import { Completion } from '@applyfuture/utils';
 import React, { FC } from 'react';
 
 import Tabs from '../tabs/Tabs';
 import TabsSkeleton from '../tabs/TabsSkeleton';
 
 type Props = {
-    completion: any;
+    completion: Completion;
     isLoading?: boolean;
 };
 

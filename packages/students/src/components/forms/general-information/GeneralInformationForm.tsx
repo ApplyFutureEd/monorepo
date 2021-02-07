@@ -1,4 +1,5 @@
 import {
+    GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
     updateStudent,
     UpdateStudentMutation,
@@ -27,12 +28,15 @@ import ReactGoogleMapLoader from 'react-google-maps-loader';
 import { object, string } from 'yup';
 
 type Props = {
-    data: GetStudentByEmailQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
+    refetch: () => void;
+    studentData: GetStudentByEmailQuery;
 };
-
 const GeneralInformationForm: FC<Props> = (props) => {
-    const { data, isLoading } = props;
+    const { documentsData, isLoading, refetch, studentData } = props;
+    const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
@@ -120,32 +124,32 @@ const GeneralInformationForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        address: string;
-        birthday: Date | null;
-        city: string;
-        country: string;
-        email: string;
-        fatherFirstName: string;
-        fatherLastName: string;
-        firstLanguage: string;
-        firstName: string;
-        gender: string;
-        guardianFirstName: string;
-        guardianLastName: string;
-        lastName: string;
-        maritalStatus: string;
-        middleName: string;
-        motherFirstName: string;
-        motherMaidenName: string;
-        nationality: string;
-        parentsAddress: string;
-        parentsCity: string;
-        parentsCountry: string;
-        parentsEmail: string;
-        parentsPhoneNumber: string;
-        passportNumber: string;
-        phoneNumber: string;
-        studentId: string;
+        address: string | null;
+        birthday: string | null;
+        city: string | null;
+        country: string | null;
+        email: string | null;
+        fatherFirstName: string | null;
+        fatherLastName: string | null;
+        firstLanguage: string | null;
+        firstName: string | null;
+        gender: string | null;
+        guardianFirstName: string | null;
+        guardianLastName: string | null;
+        lastName: string | null;
+        maritalStatus: string | null;
+        middleName: string | null;
+        motherFirstName: string | null;
+        motherMaidenName: string | null;
+        nationality: string | null;
+        parentsAddress: string | null;
+        parentsCity: string | null;
+        parentsCountry: string | null;
+        parentsEmail: string | null;
+        parentsPhoneNumber: string | null;
+        passportNumber: string | null;
+        phoneNumber: string | null;
+        studentId?: string | null;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
@@ -178,30 +182,54 @@ const GeneralInformationForm: FC<Props> = (props) => {
     });
 
     useEffect(() => {
-        if (data?.getStudentByEmail) {
-            const student: any = data?.getStudentByEmail?.items?.[0];
-            setInitialValues({ ...student, studentId: toShortId(student?.id) });
+        if (student) {
+            setInitialValues({
+                address: student.address,
+                birthday: student.birthday,
+                city: student.city,
+                country: student.country,
+                email: student.email,
+                fatherFirstName: student.fatherFirstName,
+                fatherLastName: student.fatherLastName,
+                firstLanguage: student.firstLanguage,
+                firstName: student.firstName,
+                gender: student.gender,
+                guardianFirstName: student.guardianFirstName,
+                guardianLastName: student.guardianLastName,
+                lastName: student.lastName,
+                maritalStatus: student.maritalStatus,
+                middleName: student.middleName,
+                motherFirstName: student.motherFirstName,
+                motherMaidenName: student.motherMaidenName,
+                nationality: student.nationality,
+                parentsAddress: student.parentsAddress,
+                parentsCity: student.parentsCity,
+                parentsCountry: student.parentsCountry,
+                parentsEmail: student.parentsEmail,
+                parentsPhoneNumber: student.parentsPhoneNumber,
+                passportNumber: student.passportNumber,
+                phoneNumber: student.phoneNumber,
+                studentId: toShortId(student?.id)
+            });
         }
-    }, [data]);
+    }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            values.lastName = toUpper(values.lastName);
-            values.fatherLastName = toUpper(values.fatherLastName);
-            values.motherMaidenName = toUpper(values.motherMaidenName);
-            values.guardianLastName = toUpper(values.guardianLastName);
+            if (!student) {
+                throw Error();
+            }
 
-            const student: any = { ...values };
-            delete student.__typename;
-            delete student.updatedAt;
-            delete student.createdAt;
-            delete student.owner;
-            delete student.documents;
-            delete student.applications;
-            delete student.studentId;
+            values.lastName = toUpper(values.lastName || '');
+            values.fatherLastName = toUpper(values.fatherLastName || '');
+            values.motherMaidenName = toUpper(values.motherMaidenName || '');
+            values.guardianLastName = toUpper(values.guardianLastName || '');
+
+            const newStudent = { ...values };
+            delete newStudent.studentId;
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: student
+                input: { ...newStudent, id: student?.id }
             });
 
             toast({
@@ -211,6 +239,8 @@ const GeneralInformationForm: FC<Props> = (props) => {
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
+
+            refetch();
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -248,7 +278,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting, values } = props;
+                const { isSubmitting } = props;
 
                 return (
                     <Form className="space-y-6">
@@ -256,7 +286,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                             description={t('profile:personal-information-description')}
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(values)}
+                                    completion={isCompleted(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

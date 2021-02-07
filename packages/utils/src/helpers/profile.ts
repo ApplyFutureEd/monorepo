@@ -1,3 +1,7 @@
+import { GetDocumentByStudentQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
+
+import { findDocument } from './documents';
+
 export type Completion = {
     backgroundInformation: boolean;
     educationHistory: boolean;
@@ -6,14 +10,28 @@ export type Completion = {
     uploadDocuments: boolean;
 };
 
-export const isCompleted = (student: any): Completion => {
+export const isCompleted = (
+    student:
+        | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
+        | null
+        | undefined,
+    documents:
+        | NonNullable<GetDocumentByStudentQuery['getDocumentByStudent']>['items']
+        | null
+        | undefined
+): Completion => {
     const completion = {
         backgroundInformation: false,
         educationHistory: false,
         generalInformation: false,
         testScores: false,
-        uploadDocuments: true
+        uploadDocuments: false
     };
+
+    if (!student) {
+        return completion;
+    }
+
     try {
         const {
             email,
@@ -84,7 +102,7 @@ export const isCompleted = (student: any): Completion => {
             gradePointAverage &&
             schoolsAttended &&
             schoolsAttended.length > 0 &&
-            schoolsAttended[0].name
+            schoolsAttended?.[0]?.name
         ) {
             completion.educationHistory = true;
         }
@@ -110,6 +128,15 @@ export const isCompleted = (student: any): Completion => {
         if (validVisa !== null && refusedVisa !== null) {
             completion.backgroundInformation = true;
         }
+
+        if (
+            findDocument(documents, 'passport') &&
+            findDocument(documents, 'passport-photo') &&
+            findDocument(documents, 'resume')
+        ) {
+            completion.uploadDocuments = true;
+        }
+
         return completion;
     } catch (error) {
         return completion;

@@ -72,7 +72,7 @@ const ConfirmAccountForm: FC = () => {
                     parentsPhoneNumber: '',
                     passportNumber: '',
                     phoneNumber: '',
-                    refusedVisa: false,
+                    refusedVisa: null,
                     refusedVisaReason: '',
                     schoolsAttended: [
                         {
@@ -88,7 +88,7 @@ const ConfirmAccountForm: FC = () => {
                             primaryLanguageInstruction: ''
                         }
                     ],
-                    validVisa: false,
+                    validVisa: null,
                     workExperiences: [
                         {
                             address: '',

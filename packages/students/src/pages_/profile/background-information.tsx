@@ -1,4 +1,7 @@
 import {
+    getDocumentByStudent,
+    GetDocumentByStudentQuery,
+    GetDocumentByStudentQueryVariables,
     getStudentByEmail,
     GetStudentByEmailQuery,
     GetStudentByEmailQueryVariables
@@ -13,15 +16,23 @@ import React, { FC } from 'react';
 const BackgroundInformationPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
-    const { data, isLoading } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
-        getStudentByEmail,
-        { email: user?.attributes.email }
-    );
-
+    const { data: studentData, isLoading: studentIsLoading, refetch } = useQuery<
+        GetStudentByEmailQuery,
+        GetStudentByEmailQueryVariables
+    >(getStudentByEmail, { email: user?.attributes.email });
+    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
+        GetDocumentByStudentQuery,
+        GetDocumentByStudentQueryVariables
+    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
     return (
         <DashboardLayout title={t('profile:background-information-page-title')}>
             <Banner content={t('profile:disclaimer')} />
-            <BackgroundInformationForm data={data} isLoading={isLoading} />
+            <BackgroundInformationForm
+                documentsData={documentsData}
+                isLoading={studentIsLoading || documentsIsLoading}
+                refetch={refetch}
+                studentData={studentData}
+            />
         </DashboardLayout>
     );
 };

@@ -1,5 +1,9 @@
-import { deleteDocument, getByStorageKey } from '@applyfuture/graphql';
-import { Program, Student } from '@applyfuture/models';
+import {
+    deleteDocument,
+    getDocumentByStorageKey,
+    GetProgramQuery,
+    GetStudentByEmailQuery
+} from '@applyfuture/graphql';
 import { graphql, toShortId } from '@applyfuture/utils';
 import { faDownload, faEye, faTimes, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -56,7 +60,7 @@ type Props = {
     /**
      * If a program is provided, the storageKey will be composed from the program shortened id.
      */
-    program?: Program;
+    program?: GetProgramQuery['getProgram'] | null | undefined;
     /**
      * If `true`, the input will display an `(optional)` mention next to the label.
      */
@@ -64,7 +68,10 @@ type Props = {
     /**
      * If a student is provided, the storageKey will be composed from the student shortened id.
      */
-    student?: Student;
+    student?:
+        | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
+        | null
+        | undefined;
     /**
      * If a document's storageKey is provided, the input will display a "Download template" button.
      */
@@ -156,6 +163,7 @@ export const FileUploader: FC<Props> = (props) => {
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
             storageKey = `${studentName}-${studentId}-${fileName}`;
+            console.log(storageKey);
         }
 
         if (student && program && isSpecific) {
@@ -354,14 +362,16 @@ export const FileUploader: FC<Props> = (props) => {
                             variant="secondary"
                             onClick={async () => {
                                 const existingDocument: any = await API.graphql(
-                                    graphqlOperation(getByStorageKey, {
+                                    graphqlOperation(getDocumentByStorageKey, {
                                         storageKey: value
                                     })
                                 );
-                                if (existingDocument.data.getByStorageKey.items[0]) {
+                                if (existingDocument.data.getDocumentByStorageKey.items[0]) {
                                     graphql(deleteDocument, {
                                         input: {
-                                            id: existingDocument.data.getByStorageKey.items[0].id
+                                            id:
+                                                existingDocument.data.getDocumentByStorageKey
+                                                    .items[0].id
                                         }
                                     });
                                 }
