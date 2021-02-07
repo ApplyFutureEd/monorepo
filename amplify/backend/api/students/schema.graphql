@@ -434,7 +434,6 @@ type RequestedDocument {
 type Student
     @auth(
         rules: [
-            { allow: public, operations: [create], provider: apiKey }
             { allow: owner, operations: [create, update, read] }
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
