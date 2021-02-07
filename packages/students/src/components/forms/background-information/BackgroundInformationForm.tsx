@@ -103,7 +103,12 @@ const BackgroundInformationForm: FC<Props> = (props) => {
             }
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: { ...values, id: student?.id }
+                input: {
+                    ...values,
+                    id: student?.id,
+                    refusedVisa: Boolean(values.refusedVisa),
+                    validVisa: Boolean(values.validVisa)
+                }
             });
 
             toast({

@@ -116,7 +116,7 @@ const UploadDocumentForm: FC<Props> = (props) => {
                 .map((id) => ({
                     name: kebabCase(id),
                     storageKey: values[id],
-                    studentId: values.id
+                    studentId: student?.id
                 }))
                 .filter((document) => document.storageKey);
 

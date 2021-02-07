@@ -140,7 +140,7 @@ export const Input: FC<Props> = (props) => {
         debounced.callback(value);
     };
 
-    const value = withDebounce ? debouncedValue : field.value;
+    const value = withDebounce ? debouncedValue : String(field.value);
     const onChange = withDebounce ? onDebouncedChange : field.onChange;
 
     if (isLoading) {
