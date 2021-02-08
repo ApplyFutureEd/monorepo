@@ -15,6 +15,7 @@ import {
     toast
 } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
+import { ToeflTooltip } from '@components/profile/toefl-tooltip/ToeflTooltip';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
@@ -239,7 +240,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                                     max={667}
                                                     min={310}
                                                     step="any"
-                                                    tooltip={<div />}
+                                                    tooltip={<ToeflTooltip />}
                                                     type="number"
                                                     {...fieldProps}
                                                 />
@@ -255,6 +256,7 @@ const TestScoreForm: FC<Props> = (props) => {
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TOEFL'
                                                     })}
+                                                    maxDate={new Date()}
                                                     {...fieldProps}
                                                 />
                                             )}
