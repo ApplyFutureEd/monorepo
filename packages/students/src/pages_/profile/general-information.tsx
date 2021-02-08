@@ -6,7 +6,7 @@ import {
     GetStudentByEmailQuery,
     GetStudentByEmailQueryVariables
 } from '@applyfuture/graphql';
-import Banner from '@applyfuture/ui/src/banner/Banner';
+import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import GeneralInformationForm from '@components/forms/general-information/GeneralInformationForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';

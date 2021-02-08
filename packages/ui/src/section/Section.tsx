@@ -36,9 +36,13 @@ export const Section: FC<Props> = (props) => {
                             )}
                         </h3>
                         {description && (
-                            <p className="flex justify-center mt-1 text-center text-gray-500 text-sm leading-5 sm:block sm:text-left">
-                                {isLoading ? <Skeleton height="20px" width="240px" /> : description}
-                            </p>
+                            <div className="flex justify-center mt-1 text-center text-gray-500 text-sm leading-5 sm:block sm:text-left">
+                                {isLoading ? (
+                                    <Skeleton height="20divx" width="240px" />
+                                ) : (
+                                    description
+                                )}
+                            </div>
                         )}
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">{children}</div>

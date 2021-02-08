@@ -5,7 +5,7 @@ type Props = {
     cta?: ReactNode;
 };
 
-const Banner: FC<Props> = (props) => {
+export const Banner: FC<Props> = (props) => {
     const { content, cta } = props;
     return (
         <div className="min-h-banner flex items-center mb-4 px-4 py-2 w-full bg-indigo-600 rounded-lg shadow-lg">
@@ -20,5 +20,3 @@ const Banner: FC<Props> = (props) => {
         </div>
     );
 };
-
-export default Banner;
