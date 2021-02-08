@@ -163,7 +163,6 @@ export const FileUploader: FC<Props> = (props) => {
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
             storageKey = `${studentName}-${studentId}-${fileName}`;
-            console.log(storageKey);
         }
 
         if (student && program && isSpecific) {

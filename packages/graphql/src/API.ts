@@ -5971,7 +5971,7 @@ export type GetDocumentByStudentQuery = {
   } | null,
 };
 
-export type GetByStorageKeyQueryVariables = {
+export type GetDocumentByStorageKeyQueryVariables = {
   storageKey?: string | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelDocumentFilterInput | null,
@@ -5979,8 +5979,8 @@ export type GetByStorageKeyQueryVariables = {
   nextToken?: string | null,
 };
 
-export type GetByStorageKeyQuery = {
-  getByStorageKey:  {
+export type GetDocumentByStorageKeyQuery = {
+  getDocumentByStorageKey:  {
     __typename: "ModelDocumentConnection",
     items:  Array< {
       __typename: "Document",

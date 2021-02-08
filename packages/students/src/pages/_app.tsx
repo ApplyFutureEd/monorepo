@@ -7,10 +7,11 @@ import {
     AuthenticatedUserProvider,
     configure,
     initSentry,
-    initWhyDidYouRender
+    initWhyDidYouRender,
+    setCountryCode
 } from '@applyfuture/utils';
 import type { AppProps } from 'next/app';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 configure();
@@ -18,6 +19,10 @@ initSentry();
 initWhyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
+    useEffect(() => {
+        setCountryCode();
+    }, []);
+
     return (
         <>
             <AuthenticatedUserProvider>

@@ -1,7 +1,7 @@
 import {
     createDocument,
-    GetByStorageKeyQuery,
-    GetByStorageKeyQueryVariables,
+    GetDocumentByStorageKeyQuery,
+    GetDocumentByStorageKeyQueryVariables,
     getDocumentByStorageKey,
     GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
@@ -120,34 +120,35 @@ const UploadDocumentForm: FC<Props> = (props) => {
                 }))
                 .filter((document) => document.storageKey);
 
-            const promises: Array<Promise<any>> = [];
+            const promises = documents.map((document) => {
+                const fetch = async () => {
+                    try {
+                        const existingDocument = await graphql<
+                            GetDocumentByStorageKeyQuery,
+                            GetDocumentByStorageKeyQueryVariables
+                        >(getDocumentByStorageKey, {
+                            storageKey: document.storageKey
+                        });
 
-            documents.forEach(async (document) => {
-                const existingDocument = await graphql<
-                    GetByStorageKeyQuery,
-                    GetByStorageKeyQueryVariables
-                >(getDocumentByStorageKey, {
-                    storageKey: document.storageKey
-                });
-
-                if (existingDocument?.getByStorageKey?.items?.[0]) {
-                    promises.push(
-                        graphql(updateDocument, {
-                            input: {
-                                ...document,
-                                id: existingDocument?.getByStorageKey?.items?.[0]?.id
-                            }
-                        })
-                    );
-                }
-
-                promises.push(
-                    graphql(createDocument, {
-                        input: {
-                            ...document
+                        if (existingDocument?.getDocumentByStorageKey?.items?.[0]) {
+                            return await graphql(updateDocument, {
+                                input: {
+                                    ...document,
+                                    id: existingDocument?.getDocumentByStorageKey?.items?.[0]?.id
+                                }
+                            });
                         }
-                    })
-                );
+
+                        return await graphql(createDocument, {
+                            input: {
+                                ...document
+                            }
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                };
+                return fetch();
             });
 
             await Promise.all(promises);
