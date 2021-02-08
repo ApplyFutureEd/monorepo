@@ -108,6 +108,7 @@ export const DateInput: FC<Props> = (props) => {
                     showMonthDropdown
                     showYearDropdown
                     withPortal
+                    autoComplete="off"
                     className={classes}
                     dateFormat="d MMMM yyyy"
                     disabled={disabled}

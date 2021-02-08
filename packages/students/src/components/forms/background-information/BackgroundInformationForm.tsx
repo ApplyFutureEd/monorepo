@@ -298,7 +298,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                             params={{
                                                                                 key:
                                                                                     process.env
-                                                                                        .GOOGLE_MAP_PUBLIC_KEY,
+                                                                                        .NEXT_PUBLIC_GOOGLE_MAP_KEY,
                                                                                 libraries: 'places'
                                                                             }}
                                                                             render={(

@@ -374,7 +374,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                 ) : (
                                     <ReactGoogleMapLoader
                                         params={{
-                                            key: process.env.GOOGLE_MAP_PUBLIC_KEY,
+                                            key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY,
                                             libraries: 'places'
                                         }}
                                         render={(googleMaps: any) =>
@@ -641,7 +641,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                 ) : (
                                     <ReactGoogleMapLoader
                                         params={{
-                                            key: process.env.GOOGLE_MAP_PUBLIC_KEY,
+                                            key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY,
                                             libraries: 'places'
                                         }}
                                         render={(googleMaps: any) =>
