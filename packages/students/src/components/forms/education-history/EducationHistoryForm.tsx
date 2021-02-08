@@ -29,6 +29,7 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
+import ReactGoogleMapLoader from 'react-google-maps-loader';
 import { array, mixed, number, object, string } from 'yup';
 
 type Props = {
@@ -260,7 +261,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                             description={t('profile:schools-attended-description')}
                             isLoading={isLoading}
                             title={t('profile:schools-attended-title')}>
-                            <div className="sm:mb-8 sm:space-y-8">
+                            <div className="mb-8 space-y-8">
                                 <FieldArray name="schoolsAttended">
                                     {(fieldArrayProps: FieldArrayRenderProps) => (
                                         <div>
@@ -311,22 +312,36 @@ const EducationHistoryForm: FC<Props> = (props) => {
                                                                     </div>
                                                                 ) : (
                                                                     <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <Field
-                                                                            name={`schoolsAttended.${index}.address`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <AutocompleteInput
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:address'
-                                                                                    )}
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
+                                                                        <ReactGoogleMapLoader
+                                                                            params={{
+                                                                                key:
+                                                                                    process.env
+                                                                                        .GOOGLE_MAP_PUBLIC_KEY,
+                                                                                libraries: 'places'
+                                                                            }}
+                                                                            render={(
+                                                                                googleMaps: any
+                                                                            ) =>
+                                                                                googleMaps && (
+                                                                                    <Field
+                                                                                        name={`schoolsAttended.${index}.address`}>
+                                                                                        {(
+                                                                                            fieldProps: FieldProps
+                                                                                        ) => (
+                                                                                            <AutocompleteInput
+                                                                                                isLoading={
+                                                                                                    isLoading
+                                                                                                }
+                                                                                                label={t(
+                                                                                                    'profile:address'
+                                                                                                )}
+                                                                                                {...fieldProps}
+                                                                                            />
+                                                                                        )}
+                                                                                    </Field>
+                                                                                )
+                                                                            }
+                                                                        />
                                                                     </div>
                                                                 )}
                                                             </div>

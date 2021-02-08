@@ -21,6 +21,7 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
+import ReactGoogleMapLoader from 'react-google-maps-loader';
 import Skeleton from 'react-loading-skeleton';
 import { array, boolean, object, string } from 'yup';
 
@@ -293,22 +294,36 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                     </div>
                                                                 ) : (
                                                                     <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <Field
-                                                                            name={`workExperiences.${index}.address`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <AutocompleteInput
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:address'
-                                                                                    )}
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
+                                                                        <ReactGoogleMapLoader
+                                                                            params={{
+                                                                                key:
+                                                                                    process.env
+                                                                                        .GOOGLE_MAP_PUBLIC_KEY,
+                                                                                libraries: 'places'
+                                                                            }}
+                                                                            render={(
+                                                                                googleMaps: any
+                                                                            ) =>
+                                                                                googleMaps && (
+                                                                                    <Field
+                                                                                        name={`workExperiences.${index}.address`}>
+                                                                                        {(
+                                                                                            fieldProps: FieldProps
+                                                                                        ) => (
+                                                                                            <AutocompleteInput
+                                                                                                isLoading={
+                                                                                                    isLoading
+                                                                                                }
+                                                                                                label={t(
+                                                                                                    'profile:address'
+                                                                                                )}
+                                                                                                {...fieldProps}
+                                                                                            />
+                                                                                        )}
+                                                                                    </Field>
+                                                                                )
+                                                                            }
+                                                                        />
                                                                     </div>
                                                                 )}
                                                             </div>

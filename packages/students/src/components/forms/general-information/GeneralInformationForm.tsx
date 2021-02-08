@@ -374,7 +374,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                 ) : (
                                     <ReactGoogleMapLoader
                                         params={{
-                                            key: 'AIzaSyCHoshDgCrSnZB20N-KqSvr0LtQGrnwmq4',
+                                            key: process.env.GOOGLE_MAP_PUBLIC_KEY,
                                             libraries: 'places'
                                         }}
                                         render={(googleMaps: any) =>
@@ -611,6 +611,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                                     />
                                                 )}
                                             </Field>
+                                            )
                                         </div>
                                         <div className="w-3/12">
                                             <Field id="parentsCity" name="parentsCity">
@@ -638,15 +639,25 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                         </div>
                                     </div>
                                 ) : (
-                                    <Field id="parentsAddress" name="parentsAddress">
-                                        {(fieldProps: FieldProps) => (
-                                            <AutocompleteInput
-                                                isLoading={isLoading}
-                                                label={t('profile:address')}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
+                                    <ReactGoogleMapLoader
+                                        params={{
+                                            key: process.env.GOOGLE_MAP_PUBLIC_KEY,
+                                            libraries: 'places'
+                                        }}
+                                        render={(googleMaps: any) =>
+                                            googleMaps && (
+                                                <Field id="parentsAddress" name="parentsAddress">
+                                                    {(fieldProps: FieldProps) => (
+                                                        <AutocompleteInput
+                                                            isLoading={isLoading}
+                                                            label={t('profile:address')}
+                                                            {...fieldProps}
+                                                        />
+                                                    )}
+                                                </Field>
+                                            )
+                                        }
+                                    />
                                 )}
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/2">

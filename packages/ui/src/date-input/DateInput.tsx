@@ -107,6 +107,7 @@ export const DateInput: FC<Props> = (props) => {
                 <DatePicker
                     showMonthDropdown
                     showYearDropdown
+                    withPortal
                     className={classes}
                     dateFormat="d MMMM yyyy"
                     disabled={disabled}

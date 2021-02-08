@@ -1,8 +1,8 @@
 import {
     createDocument,
+    getDocumentByStorageKey,
     GetDocumentByStorageKeyQuery,
     GetDocumentByStorageKeyQueryVariables,
-    getDocumentByStorageKey,
     GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
     updateDocument
