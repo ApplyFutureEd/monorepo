@@ -120,6 +120,8 @@ const UploadDocumentForm: FC<Props> = (props) => {
                 }))
                 .filter((document) => document.storageKey);
 
+            const promises: Array<Promise<any>> = [];
+
             documents.forEach(async (document) => {
                 const existingDocument = await graphql<
                     GetByStorageKeyQuery,
@@ -129,20 +131,26 @@ const UploadDocumentForm: FC<Props> = (props) => {
                 });
 
                 if (existingDocument?.getByStorageKey?.items?.[0]) {
-                    return await graphql(updateDocument, {
-                        input: {
-                            ...document,
-                            id: existingDocument?.getByStorageKey?.items?.[0]?.id
-                        }
-                    });
+                    promises.push(
+                        graphql(updateDocument, {
+                            input: {
+                                ...document,
+                                id: existingDocument?.getByStorageKey?.items?.[0]?.id
+                            }
+                        })
+                    );
                 }
 
-                return await graphql(createDocument, {
-                    input: {
-                        ...document
-                    }
-                });
+                promises.push(
+                    graphql(createDocument, {
+                        input: {
+                            ...document
+                        }
+                    })
+                );
             });
+
+            await Promise.all(promises);
 
             toast({
                 description: t('profile:toast-documents-saved'),
