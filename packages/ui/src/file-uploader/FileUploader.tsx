@@ -60,7 +60,7 @@ type Props = {
     /**
      * If a program is provided, the storageKey will be composed from the program shortened id.
      */
-    program?: GetProgramQuery['getProgram'] | null | undefined;
+    program?: GetProgramQuery['getProgram'] | null;
     /**
      * If `true`, the input will display an `(optional)` mention next to the label.
      */
@@ -70,8 +70,7 @@ type Props = {
      */
     student?:
         | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
-        | null
-        | undefined;
+        | null;
     /**
      * If a document's storageKey is provided, the input will display a "Download template" button.
      */

@@ -44,7 +44,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         birthday: string()
@@ -52,7 +52,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-field-required'),
                 name: 'nullDate',
-                test: (string) => string
+                test: (value) => value
             })
             .required(t('common:error-field-required')),
         email: string()
@@ -62,14 +62,14 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         fatherLastName: string()
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         firstLanguage: string().required(t('common:error-field-required')),
@@ -77,7 +77,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         gender: string().required(t('common:error-field-required')),
@@ -85,7 +85,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         maritalStatus: string().required(t('common:error-field-required')),
@@ -93,14 +93,14 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         motherMaidenName: string()
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         nationality: string().required(t('common:error-field-required')),
@@ -108,7 +108,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             .test({
                 message: t('common:error-latin-characters'),
                 name: 'latinCharacters',
-                test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
         parentsEmail: string()

@@ -29,17 +29,18 @@ const Tabs: FC<Props> = (props) => {
         'px-1 py-4 text-indigo-600 focus:text-indigo-800 whitespace-no-wrap text-sm font-medium leading-5 border-b-2 border-indigo-500 focus:border-indigo-700 focus:outline-none';
 
     useEffect(() => {
-        const profileNavWidth = document.getElementById('profile-nav')?.getBoundingClientRect()
-            .width;
+        const currentProfileNavWidth = document
+            .getElementById('profile-nav')
+            ?.getBoundingClientRect().width;
 
-        setProfileNavWidth(profileNavWidth);
+        setProfileNavWidth(currentProfileNavWidth);
     }, []);
 
     useEffect(() => {
-        const profileNavContainerWidth = document
+        const newProfileNavContainerWidth = document
             .getElementById('profile-nav-container')
             ?.getBoundingClientRect().width;
-        setProfileNavContainerWidth(profileNavContainerWidth);
+        setProfileNavContainerWidth(newProfileNavContainerWidth);
     }, [width]);
 
     useEffect(() => {

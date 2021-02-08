@@ -60,7 +60,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                     .test({
                         message: t('common:error-latin-characters'),
                         name: 'latinCharacters',
-                        test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                        test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
                     })
                     .required(t('common:error-field-required')),
                 attendedInstitutionFrom: string()
@@ -68,7 +68,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                     .test({
                         message: t('common:error-field-required'),
                         name: 'nullDate',
-                        test: (string) => string
+                        test: (value) => value
                     })
                     .required(t('common:error-field-required')),
                 attendedInstitutionTo: string()
@@ -76,7 +76,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                     .test({
                         message: t('common:error-field-required'),
                         name: 'nullDate',
-                        test: (string) => string
+                        test: (value) => value
                     })
                     .required(t('common:error-field-required')),
                 educationLevel: number().moreThan(0, t('common:error-field-required')),
@@ -84,7 +84,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                     .test({
                         message: t('common:error-latin-characters'),
                         name: 'latinCharacters',
-                        test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                        test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
                     })
                     .required(t('common:error-field-required')),
 

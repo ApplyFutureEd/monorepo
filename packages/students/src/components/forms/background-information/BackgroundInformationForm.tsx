@@ -47,12 +47,12 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                 compagnyName: string().test({
                     message: t('common:error-latin-characters'),
                     name: 'latinCharacters',
-                    test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                    test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
                 }),
                 title: string().test({
                     message: t('common:error-latin-characters'),
                     name: 'latinCharacters',
-                    test: (string) => !/^[\u4E00-\u9FA5]+$/.test(string)
+                    test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
                 })
             })
         )
