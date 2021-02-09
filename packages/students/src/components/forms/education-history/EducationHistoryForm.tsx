@@ -48,10 +48,8 @@ const EducationHistoryForm: FC<Props> = (props) => {
     const validationSchema = object().shape({
         educationCountry: mixed().required(t('common:error-field-required')),
         gradePointAverage: number()
-            .min(0, (props) => t('common:must-be-superior-validator', { value: props.min }))
-            .max(4, (props) =>
-                t('common:must-be-inferior-or-equal-validator', { value: props.max })
-            )
+            .min(0, ({ min }) => t('common:must-be-superior-validator', { value: min }))
+            .max(4, ({ max }) => t('common:must-be-inferior-or-equal-validator', { value: max }))
             .required(t('common:error-field-required')),
         highestEducationLevel: mixed().required(t('common:error-field-required')),
         schoolsAttended: array().of(

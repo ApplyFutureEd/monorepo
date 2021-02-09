@@ -29,7 +29,7 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const TestScoreForm: FC<Props> = (props) => {
+const TestScoresForm: FC<Props> = (props) => {
     const { documentsData, isLoading, refetch, studentData } = props;
     const student = studentData?.getStudentByEmail?.items?.[0];
     const documents = documentsData?.getDocumentByStudent?.items;
@@ -658,4 +658,4 @@ const TestScoreForm: FC<Props> = (props) => {
     );
 };
 
-export default TestScoreForm;
+export default TestScoresForm;
