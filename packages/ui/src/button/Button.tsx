@@ -50,10 +50,10 @@ type Props = {
 export const Button = forwardRef<Ref, Props>((props, ref) => {
     const {
         children,
-        disabled = false,
+        disabled,
         endIcon,
-        isLoading = false,
-        isSubmitting = false,
+        isLoading,
+        isSubmitting,
         onClick,
         startIcon,
         type = 'button',
@@ -93,7 +93,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
             <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
-                {startIcon && (
+                {!isSubmitting && startIcon && (
                     <FontAwesomeIcon
                         fixedWidth
                         className={cx({ 'mr-2': children })}

@@ -1,6 +1,10 @@
-import { deleteDocument, getByStorageKey } from '@applyfuture/graphql';
-import { Program, Student } from '@applyfuture/models';
-import { graphql } from '@applyfuture/utils';
+import {
+    deleteDocument,
+    getDocumentByStorageKey,
+    GetProgramQuery,
+    GetStudentByEmailQuery
+} from '@applyfuture/graphql';
+import { graphql, toShortId } from '@applyfuture/utils';
 import { faDownload, faEye, faTimes, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '@material-ui/core';
@@ -12,7 +16,6 @@ import React, { FC, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
-import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '../button/Button';
 import { Loader } from '../loader/Loader';
@@ -57,7 +60,7 @@ type Props = {
     /**
      * If a program is provided, the storageKey will be composed from the program shortened id.
      */
-    program?: Program;
+    program?: GetProgramQuery['getProgram'] | null;
     /**
      * If `true`, the input will display an `(optional)` mention next to the label.
      */
@@ -65,7 +68,9 @@ type Props = {
     /**
      * If a student is provided, the storageKey will be composed from the student shortened id.
      */
-    student?: Student;
+    student?:
+        | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
+        | null;
     /**
      * If a document's storageKey is provided, the input will display a "Download template" button.
      */
@@ -81,11 +86,11 @@ export const FileUploader: FC<Props> = (props) => {
         level = 'public',
         student,
         program,
-        optional = false,
+        optional,
         template,
-        isLoading = false,
-        isSpecific = false,
-        bypassAcceptedFileFormat = false,
+        isLoading,
+        isSpecific,
+        bypassAcceptedFileFormat,
         ...rest
     } = props;
     const { t } = useTranslation();
@@ -110,7 +115,9 @@ export const FileUploader: FC<Props> = (props) => {
 
     const previewDocument = async (storageKey: string) => {
         try {
-            const result: any = await Storage.get(storageKey, { level: level });
+            const result: any = await Storage.get(storageKey, {
+                level: level
+            });
             setPreviewUrl(result);
             setModalOpen(true);
         } catch (error) {
@@ -147,21 +154,23 @@ export const FileUploader: FC<Props> = (props) => {
             toast.error(t('common:upload-file-input-error-file-too-big'));
             return;
         }
-        let storageKey = uuidv4();
+
+        let storageKey = '';
+
         if (student) {
-            const studentShortenedId = student.id.substring(0, 8);
+            const studentId = toShortId(student.id);
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
-            storageKey = `${studentName}-${studentShortenedId}-${fileName}`;
+            storageKey = `${studentName}-${studentId}-${fileName}`;
         }
 
         if (student && program && isSpecific) {
-            const programShortenedId = program.id.substring(0, 8);
-            const studentShortenedId = student.id.substring(0, 8);
+            const programId = toShortId(program.id);
+            const studentId = toShortId(student.id);
             const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
             const fileName = kebabCase(name);
 
-            storageKey = `${studentName}-${programShortenedId}-${studentShortenedId}-${fileName}`;
+            storageKey = `${studentName}-${programId}-${studentId}-${fileName}`;
         }
 
         try {
@@ -267,7 +276,7 @@ export const FileUploader: FC<Props> = (props) => {
                     <div className="flex justify-between w-full">
                         <div>{label}</div>
                         {optional && (
-                            <div className="ml-2 text-xs italic">({t('common:optional')})</div>
+                            <span className="text-gray-500 text-xs"> - {t('common:optional')}</span>
                         )}
                     </div>
                     {onError && (
@@ -351,14 +360,16 @@ export const FileUploader: FC<Props> = (props) => {
                             variant="secondary"
                             onClick={async () => {
                                 const existingDocument: any = await API.graphql(
-                                    graphqlOperation(getByStorageKey, {
+                                    graphqlOperation(getDocumentByStorageKey, {
                                         storageKey: value
                                     })
                                 );
-                                if (existingDocument.data.getByStorageKey.items[0]) {
+                                if (existingDocument.data.getDocumentByStorageKey.items[0]) {
                                     graphql(deleteDocument, {
                                         input: {
-                                            id: existingDocument.data.getByStorageKey.items[0].id
+                                            id:
+                                                existingDocument.data.getDocumentByStorageKey
+                                                    .items[0].id
                                         }
                                     });
                                 }

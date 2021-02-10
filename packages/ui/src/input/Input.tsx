@@ -89,15 +89,15 @@ export const Input: FC<Props> = (props) => {
     const {
         autoCapitalize = 'on',
         debounce,
-        disabled = false,
+        disabled,
         field,
         form,
-        isLoading = false,
+        isLoading,
         label,
         max,
         meta,
         min,
-        optional = false,
+        optional,
         placeholder = '',
         rows = 0,
         startIcon,
@@ -140,7 +140,7 @@ export const Input: FC<Props> = (props) => {
         debounced.callback(value);
     };
 
-    const value = withDebounce ? debouncedValue : field.value;
+    const value = withDebounce ? debouncedValue : String(field.value);
     const onChange = withDebounce ? onDebouncedChange : field.onChange;
 
     if (isLoading) {

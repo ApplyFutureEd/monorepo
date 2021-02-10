@@ -1,6 +1,6 @@
 export const loggedRoutes = [
     {
-        href: '/profile',
+        href: '/profile/general-information',
         label: 'navigation:profile'
     },
     {

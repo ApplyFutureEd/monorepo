@@ -12,13 +12,14 @@ import {
     languageLevels,
     supportedCountries
 } from '@applyfuture/utils';
+import { ToeflTooltip } from '@components/profile/toefl-tooltip/ToeflTooltip';
 import { faCheck, faUndo } from '@fortawesome/pro-light-svg-icons';
 import cx from 'classnames';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEmpty } from 'lodash';
 import sortBy from 'lodash/sortBy';
 import useTranslation from 'next-translate/useTranslation';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { number, object } from 'yup';
 
 type Props = {
@@ -406,7 +407,7 @@ const FiltersForm: FC<Props> = (props) => {
                                                 max={667}
                                                 min={310}
                                                 step="any"
-                                                tooltip={<div />}
+                                                tooltip={<ToeflTooltip />}
                                                 type="number"
                                                 {...fieldProps}
                                             />

@@ -1,5 +1,4 @@
 export const cambridgeFirstResults = [
-    { label: '-', value: -1 },
     { label: 'A', value: 6 },
     { label: 'B', value: 5 },
     { label: 'C', value: 4 },

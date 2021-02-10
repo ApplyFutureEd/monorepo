@@ -1,7 +1,10 @@
 .react-datepicker-wrapper {
     width: 100%;
 }
-
+.react-datepicker__day--selected,
+.react-datepicker__month--selected,
+.react-datepicker__quarter--selected,
+.react-datepicker__year--selected,
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,

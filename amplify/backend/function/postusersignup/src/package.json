@@ -1,0 +1,16 @@
+{
+    "name": "postusersignup",
+    "version": "2.0.0",
+    "description": "Lambda function called after user sign up",
+    "main": "index.js",
+    "license": "Apache-2.0",
+    "scripts": {
+        "compile": "tsc"
+    },
+    "devDependencies": {
+        "aws-sdk": "2.797.0",
+        "@types/aws-lambda": "8.10.64",
+        "@types/node": "13.13.32",
+        "typescript": "4.0.5"
+    }
+}

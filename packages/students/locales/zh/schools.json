@@ -2,6 +2,7 @@
   "about": "关于学校",
   "bachelors": "本科",
   "bachelors-programs": "本科项目",
+  "certificates-programs": "认证课程",
   "creation-year": "创建年份",
   "doctors-programs": "博士项目",
   "favorite": "收藏",
@@ -15,6 +16,7 @@
   "no-results-heading": "无匹配结果",
   "no-results-paragraph-1": "抱歉，我们正在努力获取更多与您的条件有关的有趣的专业。",
   "no-results-paragraph-2": "当该专业上线时，单击下面的按钮自动接收提醒。",
+  "page-title": "学校",
   "private": "私立",
   "public": "公立",
   "school-id": "学校ID",
@@ -22,5 +24,7 @@
   "search-alert-created": "提醒已设置",
   "search-placeholder": "搜索您需要的内容",
   "sort-by": "排序",
+  "sort-by-option-alphabetical-order": "按名称（A-Z）",
+  "sort-by-option-country-alphabetical-order": "按国家（A-Z）",
   "total-students": "学生总数"
 }
