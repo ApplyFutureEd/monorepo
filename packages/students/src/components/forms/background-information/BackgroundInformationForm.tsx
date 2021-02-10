@@ -23,7 +23,7 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import Skeleton from 'react-loading-skeleton';
-import { array, boolean, object, string } from 'yup';
+import { array, mixed, object, string } from 'yup';
 
 type Props = {
     documentsData: GetDocumentByStudentQuery;
@@ -39,9 +39,9 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        refusedVisa: boolean().required(t('common:error-field-required')),
+        refusedVisa: mixed(),
         refusedVisaReason: string(),
-        validVisa: boolean().required(t('common:error-field-required')),
+        validVisa: mixed(),
         workExperiences: array().of(
             object().shape({
                 compagnyName: string().test({
@@ -98,7 +98,10 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        console.log(values);
         try {
+            console.log(values);
+
             if (!student) {
                 throw Error();
             }
