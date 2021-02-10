@@ -126,7 +126,7 @@ const Tabs: FC<Props> = (props) => {
             <nav
                 className={`flex space-x-8 ${
                     displayArrows ? 'mx-8' : 'mx-0'
-                } overflow-scroll scrollbar-disable`}
+                } overflow-scroll scrollbar-hidden`}
                 id="profile-nav"
                 style={{
                     maxWidth:
