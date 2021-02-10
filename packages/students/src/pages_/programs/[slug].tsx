@@ -1,5 +1,3 @@
-import '@applyfuture/utils/src/services/amplify';
-
 import {
     getProgramBySlug,
     GetProgramBySlugQuery,

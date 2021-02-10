@@ -213,6 +213,7 @@ enum Currency {
 }
 
 enum Degree {
+    CERTIFICAT
     BACHELOR
     MASTER
     DOCTORATE

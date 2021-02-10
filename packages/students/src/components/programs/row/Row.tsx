@@ -34,7 +34,7 @@ const Row: FC<Props> = (props) => {
     const locale = router.locale as SupportedLocale;
 
     return (
-        <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
+        <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 border-b border-gray-200 focus:outline-none transition duration-150 ease-in-out">
             <Link href={`/programs/${slug}`}>
                 <div className="w-11/12 cursor-pointer">
                     <div className="flex items-center w-full">
@@ -117,7 +117,9 @@ const Row: FC<Props> = (props) => {
                     </div>
                 </div>
             </Link>
-            <Button onClick={onClick}>{t('programs:apply')}</Button>
+            <div className="hidden sm:block">
+                <Button onClick={onClick}>{t('programs:apply')}</Button>
+            </div>
         </li>
     );
 };

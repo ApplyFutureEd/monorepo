@@ -1,5 +1,9 @@
 export const degrees = [
     {
+        label: 'certificate-degree',
+        value: 'CERTIFICATE'
+    },
+    {
         label: 'bachelor-degree',
         value: 'BACHELOR'
     },
