@@ -5,9 +5,7 @@ import {
     GetStudentByEmailQuery
 } from '@applyfuture/graphql';
 import { graphql, toShortId } from '@applyfuture/utils';
-import { faDownload, faEye, faTimes, faTrash } from '@fortawesome/pro-light-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Modal } from '@material-ui/core';
+import { faDownload, faEye, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import kebabCase from 'lodash/kebabCase';
@@ -19,6 +17,7 @@ import { toast } from 'react-toastify';
 
 import { Button } from '../button/Button';
 import { Loader } from '../loader/Loader';
+import { Modal } from '../modal/Modal';
 
 type Props = {
     /**
@@ -203,70 +202,29 @@ export const FileUploader: FC<Props> = (props) => {
         );
     }
 
+    const onModalClose = () => {
+        setModalOpen(false);
+        setPreviewImageLoadError(false);
+    };
+
     return (
         <>
-            <Modal
-                hideBackdrop
-                open={isModalOpen}
-                onClose={() => {
-                    setModalOpen(false);
-                    setPreviewImageLoadError(false);
-                }}>
-                <div className="fixed z-10 inset-0 overflow-y-auto">
-                    <div className="flex items-end justify-center min-h-screen text-center sm:block sm:p-0 md:pb-20 md:pt-4 md:px-4">
-                        <div className="fixed inset-0 transition-opacity">
-                            <div
-                                className="absolute inset-0 bg-gray-500 opacity-75"
-                                role="button"
-                                tabIndex={0}
-                                onClick={() => {
-                                    setModalOpen(false);
-                                    setPreviewImageLoadError(false);
-                                }}
-                                onKeyDown={() => {
-                                    setModalOpen(false);
-                                    setPreviewImageLoadError(false);
-                                }}
-                            />
-                        </div>
-                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-                        <div
-                            aria-labelledby="modal-headline"
-                            aria-modal="true"
-                            className="inline-block align-bottom w-screen h-screen text-left bg-white shadow-xl overflow-hidden transform transition-all sm:align-middle sm:my-8 sm:p-6 sm:pb-4 sm:pt-5 sm:px-4 sm:max-w-3xl sm:rounded-lg md:w-full md:h-full"
-                            role="dialog">
-                            <div className="absolute right-0 top-0 mb-4 pr-4 pt-4">
-                                <button
-                                    aria-label={t('common:close')}
-                                    className="text-gray-400 hover:text-gray-500 focus:text-gray-500 focus:outline-none transition duration-150 ease-in-out"
-                                    type="button"
-                                    onClick={() => {
-                                        setModalOpen(false);
-                                        setPreviewImageLoadError(false);
-                                    }}>
-                                    <FontAwesomeIcon icon={faTimes} size="lg" />
-                                </button>
-                            </div>
-                            <div className="pt-14 mx-auto text-center sm:px-6 lg:px-8 lg:py-6">
-                                <div className="align-items flex justify-center">
-                                    {previewImageLoadError ? (
-                                        <iframe
-                                            className="h-preview w-full md:h-40"
-                                            id="frame"
-                                            src={previewUrl}
-                                            title="frame"
-                                        />
-                                    ) : (
-                                        <img
-                                            alt=""
-                                            src={previewUrl}
-                                            onError={() => setPreviewImageLoadError(true)}
-                                        />
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <Modal open={isModalOpen} onClose={onModalClose}>
+                <div className="align-items flex justify-center">
+                    {previewImageLoadError ? (
+                        <iframe
+                            className="h-preview w-full md:h-40"
+                            id="frame"
+                            src={previewUrl}
+                            title="frame"
+                        />
+                    ) : (
+                        <img
+                            alt=""
+                            src={previewUrl}
+                            onError={() => setPreviewImageLoadError(true)}
+                        />
+                    )}
                 </div>
             </Modal>
             <div className="flex flex-col justify-between sm:flex-row" {...rest}>
