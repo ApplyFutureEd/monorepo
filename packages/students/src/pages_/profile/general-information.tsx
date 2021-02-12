@@ -10,6 +10,7 @@ import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import GeneralInformationForm from '@components/forms/general-information/GeneralInformationForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -27,6 +28,7 @@ const GeneralInformationPage: FC = () => {
 
     return (
         <DashboardLayout title={t('profile:general-information-page-title')}>
+            <CompletionModal documentsData={documentsData} studentData={studentData} />
             <Banner content={t('profile:disclaimer')} />
             <GeneralInformationForm
                 documentsData={documentsData}

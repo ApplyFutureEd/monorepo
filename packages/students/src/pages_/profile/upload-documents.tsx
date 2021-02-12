@@ -10,6 +10,7 @@ import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import UploadDocumentsForm from '@components/forms/upload-documents/UploadDocumentsForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -36,6 +37,7 @@ const UploadDocumentPage: FC = () => {
 
     return (
         <DashboardLayout title={t('profile:upload-documents-page-title')}>
+            <CompletionModal documentsData={documentsData} studentData={studentData} />
             <Banner content={t('profile:disclaimer')} />
             <UploadDocumentsForm
                 documentsData={documentsData}
