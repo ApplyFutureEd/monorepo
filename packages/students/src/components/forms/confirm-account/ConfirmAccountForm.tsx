@@ -1,7 +1,6 @@
 import { createStudent, CreateStudentMutation } from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { configure, graphql, useAuthenticatedUser } from '@applyfuture/utils';
-import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { graphql, useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
