@@ -41,7 +41,6 @@ const ConfirmAccountForm: FC = () => {
             await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
             const user = await Auth.signIn({ password, username: email });
             handleAuth(user);
-            configure(GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS);
             await graphql<CreateStudentMutation>(createStudent, {
                 input: {
                     address: '',
