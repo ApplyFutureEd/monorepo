@@ -48,7 +48,7 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
         const fetchData = async () => {
             try {
                 const user = await Auth.currentAuthenticatedUser();
-                setUser(user);
+                handleAuth(user);
             } catch (error) {
                 setUser(null);
                 configure(GRAPHQL_AUTH_MODE.API_KEY);
