@@ -1,5 +1,5 @@
 import { Button, Input } from '@applyfuture/ui';
-import { configure, useAuthenticatedUser } from '@applyfuture/utils';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
