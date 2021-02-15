@@ -21,7 +21,7 @@ const Card: FC<Props> = (props) => {
 
     return (
         <Link href={`/schools/${slug}`}>
-            <div className="hover:bg-gray-50 focus:bg-gray-50 h-full bg-white rounded-lg focus:outline-none shadow overflow-hidden transition duration-150 ease-in-out">
+            <div className="hover:bg-gray-50 focus:bg-gray-50 h-full bg-white rounded-lg focus:outline-none shadow cursor-pointer overflow-hidden transition duration-150 ease-in-out">
                 <div className="flex items-center px-4 py-5 h-full space-x-4 sm:p-6">
                     <img
                         alt={`${name} logo`}
