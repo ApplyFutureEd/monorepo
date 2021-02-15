@@ -214,13 +214,5 @@ export const cities = [
     {
         country: 'FR',
         label: 'Angers'
-    },
-    {
-        country: 'HU',
-        label: 'Pécs'
-    },
-    {
-        country: 'IT',
-        label: 'Sansepolcro'
     }
 ];

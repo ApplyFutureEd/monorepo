@@ -26,8 +26,8 @@ export const Container: FC<Props> = (props) => {
     const classes = cx({ ['px-4 py-5 sm:px-6']: innerPadding });
 
     return (
-        <div className="bg-white rounded-md shadow">
-            <div className="px-4 py-5 bg-white border-b border-gray-200 rounded-md rounded-t-md sm:px-6">
+        <div className="bg-white rounded-md shadow overflow-hidden overflow-hidden">
+            <div className="px-4 py-5 bg-white border-b border-gray-200 rounded-t-md sm:px-6">
                 <div className="flex flex-wrap items-center justify-between -ml-4 -mt-2 sm:flex-no-wrap">
                     <div className="ml-4 mt-2">
                         <div className="flex items-center space-x-4">

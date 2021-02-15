@@ -1,7 +1,5 @@
-import { createStudent, CreateStudentMutation } from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { configure, graphql, useAuthenticatedUser } from '@applyfuture/utils';
-import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
@@ -41,65 +39,6 @@ const ConfirmAccountForm: FC = () => {
             await Auth.confirmSignUp(email.toLowerCase(), verificationCode);
             const user = await Auth.signIn({ password, username: email });
             handleAuth(user);
-            configure(GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS);
-            await graphql<CreateStudentMutation>(createStudent, {
-                input: {
-                    address: '',
-                    birthday: null,
-                    city: '',
-                    country: '',
-                    educationCountry: '',
-                    email: email,
-                    fatherFirstName: '',
-                    fatherLastName: '',
-                    firstLanguage: '',
-                    firstName: '',
-                    gender: '',
-                    gradePointAverage: 0,
-                    guardianFirstName: '',
-                    guardianLastName: '',
-                    highestEducationLevel: -1,
-                    lastName: '',
-                    maritalStatus: '',
-                    middleName: '',
-                    motherFirstName: '',
-                    motherMaidenName: '',
-                    nationality: '',
-                    parentsAddress: '',
-                    parentsCity: '',
-                    parentsCountry: '',
-                    parentsEmail: '',
-                    parentsPhoneNumber: '',
-                    passportNumber: '',
-                    phoneNumber: '',
-                    refusedVisa: null,
-                    refusedVisaReason: '',
-                    schoolsAttended: [
-                        {
-                            address: '',
-                            attendedInstitutionFrom: null,
-                            attendedInstitutionTo: null,
-                            city: '',
-                            country: '',
-                            degreeAwarded: -1,
-                            degreeAwardedOn: null,
-                            educationLevel: -1,
-                            name: '',
-                            primaryLanguageInstruction: ''
-                        }
-                    ],
-                    validVisa: null,
-                    workExperiences: [
-                        {
-                            address: '',
-                            compagnyName: '',
-                            title: '',
-                            workedFrom: null,
-                            workedTo: null
-                        }
-                    ]
-                }
-            });
             return router.push('/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');

@@ -17,11 +17,11 @@
     @apply bg-transparent;
 }
 
-.scrollbar-hidden {
-    scrollbar-width: none;
+.scrollbar-disable {
+    scrollbar-width: 'none';
 }
 
-.scrollbar-hidden::-webkit-scrollbar {
+.scrollbar-disable::-webkit-scrollbar {
     width: 0px;
     height: 0px;
 }

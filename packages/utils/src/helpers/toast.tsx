@@ -11,20 +11,14 @@ export const toast = (options: ToastOptions): void => {
     const { description, title, variant } = options;
 
     toastify(
-        ({ closeToast, ...rest }) => {
-            setTimeout(() => {
-                closeToast && closeToast();
-            }, 3000);
-            return (
-                <Toast
-                    closeToast={closeToast}
-                    description={description}
-                    title={title}
-                    variant={variant}
-                    {...rest}
-                />
-            );
-        },
+        ({ closeToast }) => (
+            <Toast
+                closeToast={closeToast}
+                description={description}
+                title={title}
+                variant={variant}
+            />
+        ),
         {
             position: 'top-right'
         }

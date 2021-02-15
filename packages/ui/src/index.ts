@@ -1,5 +1,3 @@
-export * from './autocomplete-input/AutocompleteInput';
-export * from './banner/Banner';
 export * from './button/Button';
 export * from './checkbox/Checkbox';
 export * from './collapse/Collapse';

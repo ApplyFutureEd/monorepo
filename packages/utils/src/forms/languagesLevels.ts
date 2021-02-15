@@ -1,4 +1,5 @@
 export const languageLevels = [
+    { label: '-', value: -1 },
     { label: 'A1', value: 1 },
     { label: 'A2', value: 2 },
     { label: 'B1', value: 3 },

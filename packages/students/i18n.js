@@ -10,15 +10,11 @@ module.exports = {
         '/about': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],
-        '/profile/background-information': ['profile'],
-        '/profile/education-history': ['profile', 'programs'],
-        '/profile/general-information': ['profile'],
-        '/profile/test-scores': ['profile'],
-        '/profile/upload-documents': ['profile'],
-        '/programs': ['profile', 'programs'],
+        '/programs': ['programs', 'profile'],
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],
-        '/schools': ['programs', 'schools'],
+        '/schools': ['schools'],
+        '/schools/[slug]': ['programs', 'schools'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

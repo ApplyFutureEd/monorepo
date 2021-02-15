@@ -16,7 +16,7 @@ const SignUpForm: FC = () => {
         email: string()
             .required(t('common:error-email-required'))
             .email(t('common:error-email-format')),
-        password: string().required(t('auth:error-password-required'))
+        password: string().required(t('common:error-password-required'))
     });
 
     type FormValues = {

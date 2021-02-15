@@ -8,7 +8,6 @@ import {
 import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
 import { usePageBottom, useQuery } from '@applyfuture/utils';
-import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
 import Row from '@components/programs/row/Row';
@@ -93,7 +92,6 @@ const ProgramsPage: FC = () => {
         <DashboardLayout
             description={t('programs:meta-description')}
             title={t('programs:page-title')}>
-            <ApplicationJourneySteps />
             <Container
                 headerComponents={headerComponents}
                 innerPadding={false}

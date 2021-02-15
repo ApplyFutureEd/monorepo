@@ -6,7 +6,6 @@ import {
 } from '@applyfuture/graphql';
 import { Container } from '@applyfuture/ui';
 import { useQuery } from '@applyfuture/utils';
-import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Card from '@components/schools/card/Card';
 import SkeletonCard from '@components/schools/card/SkeletonCard';
@@ -68,7 +67,6 @@ const SchoolsPage: FC = () => {
         <DashboardLayout
             description={t('schools:meta-description')}
             title={t('schools:page-title')}>
-            <ApplicationJourneySteps />
             <Container
                 headerComponents={headerComponents}
                 innerPadding={false}
