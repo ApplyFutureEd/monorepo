@@ -10,6 +10,7 @@ import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import EducationHistoryForm from '@components/forms/education-history/EducationHistoryForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -26,6 +27,7 @@ const EducationHistoryPage: FC = () => {
     >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
     return (
         <DashboardLayout title={t('profile:education-history-page-title')}>
+            <CompletionModal documentsData={documentsData} studentData={studentData} />
             <Banner content={t('profile:disclaimer')} />
             <EducationHistoryForm
                 documentsData={documentsData}

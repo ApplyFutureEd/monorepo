@@ -1,8 +1,9 @@
-import Amplify, { Auth } from 'aws-amplify';
+import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { Auth } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 
-import config from './../services/aws-exports';
+import { configure } from './../services/amplify';
 
 type AuthenticatedUser = {
     attributes: {
@@ -40,19 +41,17 @@ export const AuthenticatedUserProvider: FC<Props> = (props) => {
 
     const handleAuth = (user: AuthenticatedUser | null) => {
         setUser(user);
+        configure(GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS);
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const user = await Auth.currentAuthenticatedUser();
-                setUser(user);
+                handleAuth(user);
             } catch (error) {
                 setUser(null);
-                Amplify.configure({
-                    ...config,
-                    aws_appsync_authenticationType: 'API_KEY'
-                });
+                configure(GRAPHQL_AUTH_MODE.API_KEY);
             }
         };
         fetchData();
