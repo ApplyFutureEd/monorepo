@@ -1315,6 +1315,7 @@ export type SearchableSchoolSortInput = {
 };
 
 export enum SearchableSchoolSortableFields {
+  country = "country",
   city = "city",
   coverPhoto = "coverPhoto",
   contactEmail = "contactEmail",
@@ -1432,6 +1433,7 @@ export type SearchableProgramSortInput = {
 };
 
 export enum SearchableProgramSortableFields {
+  country = "country",
   applicationFee = "applicationFee",
   city = "city",
   costOfLiving = "costOfLiving",
