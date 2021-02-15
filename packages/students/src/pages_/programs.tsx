@@ -5,6 +5,7 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
+import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
 import { usePageBottom, useQuery } from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
@@ -102,37 +103,10 @@ const ProgramsPage: FC = () => {
                         return;
                     }
 
-                    const {
-                        city,
-                        country,
-                        duration,
-                        durationUnit,
-                        fee,
-                        feeCurrency,
-                        feeUnit,
-                        id,
-                        intakes,
-                        name,
-                        schedule,
-                        school,
-                        slug
-                    } = program;
-
                     return (
                         <Row
-                            key={id}
-                            city={city}
-                            country={country}
-                            duration={duration}
-                            durationUnit={durationUnit}
-                            fee={fee}
-                            feeCurrency={feeCurrency}
-                            feeUnit={feeUnit}
-                            intakes={intakes}
-                            name={name}
-                            schedule={schedule}
-                            school={{ logo: school.logo, name: school.name }}
-                            slug={slug}
+                            key={program.id}
+                            program={(program as unknown) as Program}
                             onClick={handleClick}
                         />
                     );

@@ -215,6 +215,7 @@ export enum Currency {
 }
 
 export enum Degree {
+    CERTIFICATE = 'CERTIFICATE',
     BACHELOR = 'BACHELOR',
     MASTER = 'MASTER',
     DOCTORATE = 'DOCTORATE'
