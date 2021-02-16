@@ -36,7 +36,7 @@ const CreateProgramPage: FC = () => {
             const program = {
                 ...values,
                 duration: convertUnitToSeconds({
-                    unit: values.durationUnit,
+                    unit: values.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                     value: values.duration
                 }),
                 intakes: values.intakes.join(),
