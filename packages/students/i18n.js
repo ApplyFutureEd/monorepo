@@ -19,6 +19,7 @@ module.exports = {
         '/programs/[slug]': ['programs'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['programs', 'schools'],
+        '/schools/[slug]': ['programs', 'schools'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

@@ -1,3 +1,4 @@
+import { Program } from '@applyfuture/models';
 import Row from '@components/programs/row/Row';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -21,7 +22,6 @@ describe('Row', () => {
         feeUnit: 'TOTAL',
         intakes: '2021-11-09T00:00:00.000Z',
         name: 'Master’s Degree in Business Administration - MBA',
-        onClick: jest.fn(),
         schedule: 'FULL_TIME',
         school: {
             logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
@@ -29,10 +29,12 @@ describe('Row', () => {
         },
         slug:
             'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia'
-    };
+    } as Program;
+
+    const onClick = jest.fn();
 
     it('can render without crashing', () => {
-        render(<Row {...program} />);
+        render(<Row program={program} onClick={onClick} />);
 
         const name = screen.getByText('Master’s Degree in Business Administration - MBA');
 
@@ -40,7 +42,7 @@ describe('Row', () => {
     });
 
     it('can call onClick callback function when clicking the CTA button', async () => {
-        render(<Row {...program} />);
+        render(<Row program={program} onClick={onClick} />);
 
         const button = screen.getByRole('button');
 
@@ -48,6 +50,6 @@ describe('Row', () => {
             userEvent.click(button);
         });
 
-        expect(program.onClick).toHaveBeenCalled();
+        expect(onClick).toHaveBeenCalled();
     });
 });
