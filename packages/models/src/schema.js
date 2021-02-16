@@ -532,7 +532,8 @@ export const schema = {
                     type: 'key',
                     properties: {
                         name: 'bySchool',
-                        fields: ['schoolId']
+                        fields: ['schoolId'],
+                        queryField: 'getProgramBySchool'
                     }
                 },
                 {
@@ -1840,5 +1841,5 @@ export const schema = {
             }
         }
     },
-    version: 'a8ffc4ba8fe777a27bc8465073c13a5e'
+    version: 'bf9e37186781212220044649c80637e0'
 };
