@@ -1,16 +1,5 @@
 import { GetProgramQuery, ListSchoolsQuery } from '@applyfuture/graphql';
 import {
-    Country,
-    Currency,
-    Degree,
-    Discipline,
-    DurationUnit,
-    FeeUnit,
-    Language,
-    RequestedDocument,
-    Schedule
-} from '@applyfuture/models';
-import {
     Button,
     DateInput,
     Editor,
@@ -61,33 +50,40 @@ type Props = {
 
 export type ProgramFormValues = {
     applicationFee: number;
-    applicationFeeCurrency: Currency;
+    applicationFeeCurrency: string;
     city: string;
     costOfLiving: number;
-    costOfLivingCurrency: Currency;
-    country: Country;
-    degree: Degree;
+    costOfLivingCurrency: string;
+    country: string;
+    degree: string;
     description: string | null;
-    discipline: Discipline;
+    discipline: string;
     duration: number;
-    durationUnit: DurationUnit;
+    durationUnit: string;
     fee: number;
-    feeCurrency: Currency;
+    feeCurrency: string;
     feesAndFinancing: string | null;
-    feeUnit: FeeUnit;
+    feeUnit: string;
     gradePointAverage: number;
     highestEducationLevel: number;
     intakes: Array<Date>;
     intakeInformation: string;
-    languages: Array<Language>;
+    languages: Array<string>;
     minimumAge: number;
     minimumWorkExperience: number;
-    minimumWorkExperienceUnit: DurationUnit;
+    minimumWorkExperienceUnit: string;
     name: string;
     otherRequirements: string;
     published: boolean;
-    requestedDocuments: Array<RequestedDocument>;
-    schedule: Schedule;
+    requestedDocuments: Array<{
+        condition: string;
+        description: string;
+        isMandatory: boolean;
+        isSpecific: boolean;
+        name: string;
+        storageKey: string;
+    }>;
+    schedule: string;
     schoolId: string;
     schoolName: string;
     slug: string;
@@ -116,28 +112,28 @@ const ProgramForm: FC<Props> = (props) => {
 
     const [initialValues, setInitialValues] = useState<ProgramFormValues>({
         applicationFee: 0,
-        applicationFeeCurrency: 'EUR' as Currency,
+        applicationFeeCurrency: 'EUR',
         city: '',
         costOfLiving: 0,
-        costOfLivingCurrency: 'EUR' as Currency,
-        country: 'FR' as Country,
-        degree: 'MASTER' as Degree,
+        costOfLivingCurrency: 'EUR',
+        country: 'FR',
+        degree: 'MASTER',
         description: '',
-        discipline: 'BUSINESS_MANAGEMENT_AND_ECONOMICS' as Discipline,
+        discipline: 'BUSINESS_MANAGEMENT_AND_ECONOMICS',
         duration: 1,
-        durationUnit: 'YEAR' as DurationUnit,
+        durationUnit: 'YEAR',
         fee: 0,
-        feeCurrency: 'EUR' as Currency,
-        feeUnit: 'ANNUAL' as FeeUnit,
+        feeCurrency: 'EUR',
+        feeUnit: 'ANNUAL',
         feesAndFinancing: '',
         gradePointAverage: -1,
         highestEducationLevel: -1,
         intakeInformation: '',
         intakes: [new Date()],
-        languages: ['FR' as Language],
+        languages: ['FR'],
         minimumAge: -1,
         minimumWorkExperience: -1,
-        minimumWorkExperienceUnit: 'YEAR' as DurationUnit,
+        minimumWorkExperienceUnit: 'YEAR',
         name: '',
         otherRequirements: '',
         published: false,
@@ -231,7 +227,7 @@ const ProgramForm: FC<Props> = (props) => {
                 storageKey: ''
             }
         ],
-        schedule: 'FULL_TIME' as Schedule,
+        schedule: 'FULL_TIME',
         schoolId: '',
         schoolName: '',
         slug: '',
@@ -253,7 +249,7 @@ const ProgramForm: FC<Props> = (props) => {
             const program: any = programData?.getProgram;
 
             program.duration = convertSecondsToUnit({
-                unit: programData?.getProgram.durationUnit,
+                unit: programData?.getProgram.durationUnit as 'YEAR' | 'DAY' | 'MONTH' | 'WEEK',
                 value: programData?.getProgram.duration
             });
             program.intakes = programData?.getProgram.intakes
@@ -881,10 +877,7 @@ const ProgramForm: FC<Props> = (props) => {
                                             {fieldArrayProps.form.values.requestedDocuments
                                                 ?.length > 0 &&
                                                 fieldArrayProps.form.values.requestedDocuments.map(
-                                                    (
-                                                        _requestedDocument: RequestedDocument,
-                                                        index: number
-                                                    ) => {
+                                                    (_requestedDocument: any, index: number) => {
                                                         return (
                                                             <div key={index}>
                                                                 <div className="flex space-x-2">

@@ -32,12 +32,12 @@ const Indicators: FC<Props> = (props) => {
                         icon={faClock}
                         label={t(`programs:${program?.schedule.toLowerCase()}`)}>
                         {convertSecondsToUnit({
-                            unit: program?.durationUnit,
+                            unit: program?.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                             value: program?.duration
                         })}{' '}
                         {t(`programs:${program?.durationUnit.toLowerCase()}`, {
                             count: convertSecondsToUnit({
-                                unit: program?.durationUnit,
+                                unit: program?.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                                 value: program?.duration
                             })
                         })}

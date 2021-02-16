@@ -1,4 +1,3 @@
-import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
 import { convertSecondsToUnit, currency, date, getCountryLabel } from '@applyfuture/utils';
 import Link from 'next/link';
@@ -9,16 +8,16 @@ import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
     city: string;
-    country: Country;
+    country: string;
     duration: number;
-    durationUnit: DurationUnit;
+    durationUnit: string;
     fee: number;
-    feeCurrency: Currency;
-    feeUnit: FeeUnit;
+    feeCurrency: string;
+    feeUnit: string;
     intakes: string;
     name: string;
     onClick: () => void;
-    schedule: Schedule;
+    schedule: string;
     school: {
         name: string;
         logo: string;
@@ -78,12 +77,16 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
                                         {convertSecondsToUnit({
-                                            unit: durationUnit,
+                                            unit: durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                                             value: duration
                                         })}{' '}
                                         {t(`programs:${durationUnit.toLowerCase()}`, {
                                             count: convertSecondsToUnit({
-                                                unit: durationUnit,
+                                                unit: durationUnit as
+                                                    | 'DAY'
+                                                    | 'MONTH'
+                                                    | 'YEAR'
+                                                    | 'WEEK',
                                                 value: duration
                                             })
                                         })}
