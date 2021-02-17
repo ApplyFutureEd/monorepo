@@ -30,22 +30,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     type FormValues = {
-        passport: string;
-        passportPhoto: string;
-        resume: string;
-        toefl: string;
-        ielts: string;
-        toeic: string;
-        fce: string;
         cae: string;
+        'dalf-delf': string;
+        fce: string;
         gmat: string;
         gre: string;
-        tageMage: string;
-        'tef-tcf': string;
-        'dalf-delf': string;
+        ielts: string;
         'last-3-transcript-1': string;
         'last-3-transcript-2': string;
         'last-3-transcript-3': string;
+        passport: string;
+        passportPhoto: string;
+        resume: string;
+        tageMage: string;
+        'tef-tcf': string;
+        toefl: string;
+        toeic: string;
         [documentId: string]: string;
     };
 

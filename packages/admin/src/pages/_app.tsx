@@ -2,6 +2,8 @@ import '@styles/index.css';
 import 'react-contexify/dist/ReactContexify.css';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-phone-number-input/style.css';
 
 import {
     AuthenticatedUserProvider,
