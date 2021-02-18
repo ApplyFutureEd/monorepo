@@ -54,26 +54,26 @@ export type StudentFormValues = {
     address: string | null;
     birthday: string | null;
     educationCountry: string | null;
-    cae: string;
+    cae?: string;
     city: string | null;
     country: string | null;
-    'dalf-delf': string;
+    'dalf-delf'?: string;
     email: string | null;
     fatherFirstName: string | null;
     fatherLastName: string | null;
-    fce: string;
+    fce?: string;
     firstLanguage: string | null;
     firstName: string | null;
     gender: string | null;
-    gmat: string;
+    gmat?: string;
     gradePointAverage: number | null;
     guardianFirstName: string | null;
     guardianLastName: string | null;
     highestEducationLevel: number | null;
-    ielts: string;
-    'last-3-transcript-1': string;
-    'last-3-transcript-2': string;
-    'last-3-transcript-3': string;
+    ielts?: string;
+    'last-3-transcript-1'?: string;
+    'last-3-transcript-2'?: string;
+    'last-3-transcript-3'?: string;
     lastName: string | null;
     maritalStatus: string | null;
     middleName: string | null;
@@ -85,13 +85,13 @@ export type StudentFormValues = {
     parentsCountry: string | null;
     parentsEmail: string | null;
     parentsPhoneNumber: string | null;
-    passport: string;
+    passport?: string;
     passportNumber: string | null;
-    passportPhoto: string;
+    passportPhoto?: string;
     phoneNumber: string | null;
     refusedVisa: boolean | null;
     refusedVisaReason: string | null;
-    resume: string;
+    resume?: string;
     studentId?: string | null;
     schoolsAttended: Array<{
         address: string | null;
@@ -105,8 +105,8 @@ export type StudentFormValues = {
         name: string | null;
         primaryLanguageInstruction: string | null;
     } | null> | null;
-    tageMage: string;
-    'tef-tcf': string;
+    tageMage?: string;
+    'tef-tcf'?: string;
     testCambridgeAdvanced: number | null;
     testCambridgeAdvancedDate: string | null;
     testCambridgeFirst: number | null;
@@ -130,8 +130,8 @@ export type StudentFormValues = {
     testToeflDate: string | null;
     testToeic: number | null;
     testToeicDate: string | null;
-    toefl: string;
-    toeic: string;
+    toefl?: string;
+    toeic?: string;
     validVisa: boolean | null;
     workExperiences: Array<{
         address: string | null;
@@ -140,6 +140,7 @@ export type StudentFormValues = {
         workedFrom: string | null;
         workedTo: string | null;
     } | null> | null;
+    [documentId: string]: any;
 };
 
 const StudentForm: FC<Props> = (props) => {
