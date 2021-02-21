@@ -24,7 +24,7 @@ import {
     requestedDocuments,
     schedules
 } from '@applyfuture/utils';
-import { faPencil, faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faArrowLeft, faPencil, faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
     Field,
     FieldArray,
@@ -34,6 +34,7 @@ import {
     Formik,
     FormikHelpers
 } from 'formik';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 import { object, string } from 'yup';
@@ -1045,20 +1046,30 @@ const ProgramForm: FC<Props> = (props) => {
                                     </div>
                                 )}
                             </FieldArray>
-
-                            <div className="align-items flex justify-end mt-6 space-x-4">
-                                <Field id="published" name="published">
-                                    {(fieldProps: FieldProps) => (
-                                        <Toggle label="Published" {...fieldProps} />
-                                    )}
-                                </Field>
-                                <Button
-                                    isLoading={isLoading}
-                                    isSubmitting={isSubmitting}
-                                    startIcon={faSave}
-                                    type="submit">
-                                    Save
-                                </Button>
+                            <div className="align-items flex justify-between mt-6">
+                                <Link href="/programs">
+                                    <Button
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        startIcon={faArrowLeft}
+                                        variant="secondary">
+                                        Back
+                                    </Button>
+                                </Link>
+                                <div className="align-items flex space-x-4">
+                                    <Field id="published" name="published">
+                                        {(fieldProps: FieldProps) => (
+                                            <Toggle label="Published" {...fieldProps} />
+                                        )}
+                                    </Field>
+                                    <Button
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        startIcon={faSave}
+                                        type="submit">
+                                        Save
+                                    </Button>
+                                </div>
                             </div>
                         </Section>
                     </Form>

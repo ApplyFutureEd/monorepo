@@ -24,7 +24,7 @@ import {
     maritalStatus,
     toShortId
 } from '@applyfuture/utils';
-import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faArrowLeft, faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
     Field,
     FieldArray,
@@ -34,6 +34,7 @@ import {
     Formik,
     FormikHelpers
 } from 'formik';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
@@ -2167,7 +2168,16 @@ const StudentForm: FC<Props> = (props) => {
                                     )}
                                 </Field>
                             </div>
-                            <div className="flex justify-end space-x-4">
+                            <div className="flex justify-between">
+                                <Link href="/students">
+                                    <Button
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        startIcon={faArrowLeft}
+                                        variant="secondary">
+                                        Back
+                                    </Button>
+                                </Link>
                                 <Button
                                     disabled={isSubmitting}
                                     isLoading={isLoading}
