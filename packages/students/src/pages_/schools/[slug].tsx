@@ -7,8 +7,7 @@ import {
     ListSchoolsQuery
 } from '@applyfuture/graphql';
 import { Program, School } from '@applyfuture/models';
-import { Container, Cover, SubHeader } from '@applyfuture/ui';
-import { Button } from '@applyfuture/ui';
+import { Button, Container, Cover, SubHeader } from '@applyfuture/ui';
 import { getCountryLabel, markdown } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';

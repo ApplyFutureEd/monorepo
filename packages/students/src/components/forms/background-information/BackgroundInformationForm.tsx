@@ -98,20 +98,18 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     }, [student]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        console.log(values);
         try {
-            console.log(values);
-
             if (!student) {
                 throw Error();
             }
 
+            values.refusedVisa = Boolean(values.refusedVisa);
+            values.validVisa = Boolean(values.validVisa);
+
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
                 input: {
                     ...values,
-                    id: student?.id,
-                    refusedVisa: Boolean(values.refusedVisa),
-                    validVisa: Boolean(values.validVisa)
+                    id: student?.id
                 }
             });
 

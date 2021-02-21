@@ -64,12 +64,16 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
                                         {convertSecondsToUnit({
-                                            unit: durationUnit,
+                                            unit: durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                                             value: duration
                                         })}{' '}
                                         {t(`programs:${durationUnit.toLowerCase()}`, {
                                             count: convertSecondsToUnit({
-                                                unit: durationUnit,
+                                                unit: durationUnit as
+                                                    | 'DAY'
+                                                    | 'MONTH'
+                                                    | 'YEAR'
+                                                    | 'WEEK',
                                                 value: duration
                                             })
                                         })}

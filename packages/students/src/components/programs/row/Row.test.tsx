@@ -1,4 +1,3 @@
-import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
 import { Program } from '@applyfuture/models';
 import Row from '@components/programs/row/Row';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -13,24 +12,24 @@ jest.mock('next/router', () => ({
 }));
 
 describe('Row', () => {
-    const program = ({
+    const program = {
         city: 'Murcia',
-        country: 'ES' as Country,
+        country: 'ES',
         duration: 31540000,
-        durationUnit: 'YEAR' as DurationUnit,
+        durationUnit: 'YEAR',
         fee: 9000,
-        feeCurrency: 'EUR' as Currency,
-        feeUnit: 'TOTAL' as FeeUnit,
+        feeCurrency: 'EUR',
+        feeUnit: 'TOTAL',
         intakes: '2021-11-09T00:00:00.000Z',
         name: 'Master’s Degree in Business Administration - MBA',
-        schedule: 'FULL_TIME' as Schedule,
+        schedule: 'FULL_TIME',
         school: {
             logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
             name: ' UCAM Universidad Católica San Antonio de Murcia'
         },
         slug:
             'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia'
-    } as unknown) as Program;
+    } as Program;
 
     const onClick = jest.fn();
 

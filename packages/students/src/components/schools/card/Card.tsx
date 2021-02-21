@@ -1,4 +1,3 @@
-import { Country } from '@applyfuture/models';
 import { getCountryLabel } from '@applyfuture/utils';
 import { faMapMarkerAlt } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +7,7 @@ import React, { FC } from 'react';
 
 type Props = {
     city: string;
-    country: Country;
+    country: string;
     logo: string;
     name: string;
     slug: string;

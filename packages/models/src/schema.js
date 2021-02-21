@@ -20,9 +20,7 @@ export const schema = {
                 country: {
                     name: 'country',
                     isArray: false,
-                    type: {
-                        enum: 'Country'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -78,9 +76,7 @@ export const schema = {
                 institutionType: {
                     name: 'institutionType',
                     isArray: false,
-                    type: {
-                        enum: 'InstitutionType'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -220,9 +216,7 @@ export const schema = {
                 applicationFeeCurrency: {
                     name: 'applicationFeeCurrency',
                     isArray: false,
-                    type: {
-                        enum: 'Currency'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -243,27 +237,21 @@ export const schema = {
                 costOfLivingCurrency: {
                     name: 'costOfLivingCurrency',
                     isArray: false,
-                    type: {
-                        enum: 'Currency'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
                 country: {
                     name: 'country',
                     isArray: false,
-                    type: {
-                        enum: 'Country'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
                 degree: {
                     name: 'degree',
                     isArray: false,
-                    type: {
-                        enum: 'Degree'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -277,9 +265,7 @@ export const schema = {
                 discipline: {
                     name: 'discipline',
                     isArray: false,
-                    type: {
-                        enum: 'Discipline'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -293,9 +279,7 @@ export const schema = {
                 durationUnit: {
                     name: 'durationUnit',
                     isArray: false,
-                    type: {
-                        enum: 'DurationUnit'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -309,9 +293,14 @@ export const schema = {
                 feeCurrency: {
                     name: 'feeCurrency',
                     isArray: false,
-                    type: {
-                        enum: 'Currency'
-                    },
+                    type: 'String',
+                    isRequired: true,
+                    attributes: []
+                },
+                feeUnit: {
+                    name: 'feeUnit',
+                    isArray: false,
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -320,15 +309,6 @@ export const schema = {
                     isArray: false,
                     type: 'String',
                     isRequired: false,
-                    attributes: []
-                },
-                feeUnit: {
-                    name: 'feeUnit',
-                    isArray: false,
-                    type: {
-                        enum: 'FeeUnit'
-                    },
-                    isRequired: true,
                     attributes: []
                 },
                 gradePointAverage: {
@@ -345,13 +325,6 @@ export const schema = {
                     isRequired: true,
                     attributes: []
                 },
-                intakes: {
-                    name: 'intakes',
-                    isArray: false,
-                    type: 'String',
-                    isRequired: true,
-                    attributes: []
-                },
                 intakeInformation: {
                     name: 'intakeInformation',
                     isArray: false,
@@ -359,12 +332,17 @@ export const schema = {
                     isRequired: false,
                     attributes: []
                 },
+                intakes: {
+                    name: 'intakes',
+                    isArray: false,
+                    type: 'String',
+                    isRequired: true,
+                    attributes: []
+                },
                 languages: {
                     name: 'languages',
                     isArray: true,
-                    type: {
-                        enum: 'Language'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -385,9 +363,7 @@ export const schema = {
                 minimumWorkExperienceUnit: {
                     name: 'minimumWorkExperienceUnit',
                     isArray: false,
-                    type: {
-                        enum: 'DurationUnit'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -424,9 +400,7 @@ export const schema = {
                 schedule: {
                     name: 'schedule',
                     isArray: false,
-                    type: {
-                        enum: 'Schedule'
-                    },
+                    type: 'String',
                     isRequired: true,
                     attributes: []
                 },
@@ -558,7 +532,8 @@ export const schema = {
                     type: 'key',
                     properties: {
                         name: 'bySchool',
-                        fields: ['schoolId']
+                        fields: ['schoolId'],
+                        queryField: 'getProgramBySchool'
                     }
                 },
                 {
@@ -1085,6 +1060,10 @@ export const schema = {
                     properties: {}
                 },
                 {
+                    type: 'searchable',
+                    properties: {}
+                },
+                {
                     type: 'key',
                     properties: {
                         name: 'byEmail',
@@ -1173,7 +1152,7 @@ export const schema = {
                     properties: {
                         name: 'byStorageKey',
                         fields: ['storageKey'],
-                        queryField: 'getByStorageKey'
+                        queryField: 'getDocumentByStorageKey'
                     }
                 },
                 {
@@ -1329,6 +1308,10 @@ export const schema = {
             attributes: [
                 {
                     type: 'model',
+                    properties: {}
+                },
+                {
+                    type: 'searchable',
                     properties: {}
                 },
                 {
@@ -1585,328 +1568,7 @@ export const schema = {
             ]
         }
     },
-    enums: {
-        Country: {
-            name: 'Country',
-            values: [
-                'AF',
-                'AL',
-                'DZ',
-                'AD',
-                'AO',
-                'AG',
-                'AR',
-                'AM',
-                'AU',
-                'AT',
-                'AZ',
-                'BS',
-                'BH',
-                'BD',
-                'BB',
-                'BY',
-                'BE',
-                'BZ',
-                'BJ',
-                'BT',
-                'BO',
-                'BA',
-                'BW',
-                'BR',
-                'BG',
-                'BF',
-                'BI',
-                'KH',
-                'CM',
-                'CA',
-                'CV',
-                'CF',
-                'TD',
-                'CL',
-                'CN',
-                'CO',
-                'KM',
-                'CG',
-                'CD',
-                'CR',
-                'CI',
-                'HR',
-                'CU',
-                'CY',
-                'CZ',
-                'DK',
-                'DJ',
-                'DM',
-                'DO',
-                'EC',
-                'EG',
-                'SV',
-                'GQ',
-                'ER',
-                'EE',
-                'ET',
-                'FJ',
-                'FI',
-                'FR',
-                'GA',
-                'GM',
-                'GE',
-                'DE',
-                'GH',
-                'GR',
-                'GD',
-                'GP',
-                'GT',
-                'GN',
-                'GW',
-                'GY',
-                'HT',
-                'VA',
-                'HN',
-                'HK',
-                'HU',
-                'IS',
-                'IN',
-                'ID',
-                'IR',
-                'IQ',
-                'IE',
-                'IL',
-                'IT',
-                'JM',
-                'JP',
-                'JO',
-                'KZ',
-                'KE',
-                'KI',
-                'KP',
-                'KR',
-                'KW',
-                'KG',
-                'LA',
-                'LV',
-                'LB',
-                'LS',
-                'LR',
-                'LY',
-                'LI',
-                'LT',
-                'LU',
-                'MO',
-                'MK',
-                'MG',
-                'MW',
-                'MY',
-                'MV',
-                'ML',
-                'MT',
-                'MH',
-                'MR',
-                'MU',
-                'MX',
-                'FM',
-                'MD',
-                'MC',
-                'MN',
-                'ME',
-                'MA',
-                'MZ',
-                'MM',
-                'NA',
-                'NR',
-                'NP',
-                'NL',
-                'NZ',
-                'NI',
-                'NE',
-                'NG',
-                'NO',
-                'OM',
-                'PK',
-                'PW',
-                'PS',
-                'PA',
-                'PG',
-                'PY',
-                'PE',
-                'PH',
-                'PL',
-                'PT',
-                'QA',
-                'RO',
-                'RU',
-                'RW',
-                'KN',
-                'LC',
-                'VC',
-                'WS',
-                'SM',
-                'ST',
-                'SA',
-                'SN',
-                'RS',
-                'SC',
-                'SL',
-                'SG',
-                'SK',
-                'SI',
-                'SB',
-                'SO',
-                'ZA',
-                'SS',
-                'ES',
-                'LK',
-                'SD',
-                'SR',
-                'SE',
-                'CH',
-                'SY',
-                'TW',
-                'TJ',
-                'TZ',
-                'TH',
-                'TL',
-                'TG',
-                'TO',
-                'TT',
-                'TN',
-                'TR',
-                'TM',
-                'TV',
-                'UG',
-                'UA',
-                'AE',
-                'GB',
-                'US',
-                'UY',
-                'UZ',
-                'VU',
-                'VE',
-                'VN',
-                'YE',
-                'ZM',
-                'ZW'
-            ]
-        },
-        ContractStatus: {
-            name: 'ContractStatus',
-            values: ['PRIORITY', 'CONTACTED', 'IN_NEGOCIATION', 'SIGNED']
-        },
-        Currency: {
-            name: 'Currency',
-            values: ['CHF', 'CNY', 'EUR', 'GBP']
-        },
-        Degree: {
-            name: 'Degree',
-            values: ['BACHELOR', 'MASTER', 'DOCTORATE']
-        },
-        Discipline: {
-            name: 'Discipline',
-            values: [
-                'BUSINESS_MANAGEMENT_AND_ECONOMICS',
-                'ENGINEERING_AND_TECHNOLOGY',
-                'SCIENCES',
-                'CULINARY_ARTS',
-                'LAW_POLITICS_SOCIAL_COMMUNITY_SERVICE_AND_TEACHING',
-                'ARTS',
-                'HEALTH_SCIENCES_MEDICINE_NURSING_PARAMEDIC_AND_KINESIOLOGY',
-                'ENGLISH_FOR_ACADEMIC_STUDIES'
-            ]
-        },
-        DurationUnit: {
-            name: 'DurationUnit',
-            values: ['DAY', 'MONTH', 'YEAR', 'WEEK']
-        },
-        FeeUnit: {
-            name: 'FeeUnit',
-            values: ['ANNUAL', 'TOTAL']
-        },
-        InstitutionType: {
-            name: 'InstitutionType',
-            values: ['PRIVATE', 'PUBLIC']
-        },
-        Language: {
-            name: 'Language',
-            values: [
-                'AF',
-                'SQ',
-                'AR',
-                'HY',
-                'EU',
-                'BN',
-                'BG',
-                'CA',
-                'KM',
-                'ZH',
-                'HR',
-                'CS',
-                'DA',
-                'NL',
-                'EN',
-                'ET',
-                'FJ',
-                'FI',
-                'FR',
-                'KA',
-                'DE',
-                'EL',
-                'GU',
-                'HE',
-                'HI',
-                'HU',
-                'IS',
-                'ID',
-                'GA',
-                'IT',
-                'JA',
-                'JW',
-                'KO',
-                'LA',
-                'LV',
-                'LT',
-                'MK',
-                'MS',
-                'ML',
-                'MT',
-                'MI',
-                'MR',
-                'MN',
-                'NE',
-                'NO',
-                'FA',
-                'PL',
-                'PT',
-                'PA',
-                'QU',
-                'RO',
-                'RU',
-                'SM',
-                'SR',
-                'SK',
-                'SL',
-                'ES',
-                'SW',
-                'SV',
-                'TA',
-                'TT',
-                'TE',
-                'TH',
-                'BO',
-                'TO',
-                'TR',
-                'UK',
-                'UR',
-                'UZ',
-                'VI',
-                'CY',
-                'XH'
-            ]
-        },
-        Schedule: {
-            name: 'Schedule',
-            values: ['FULL_TIME', 'PART_TIME']
-        }
-    },
+    enums: {},
     nonModels: {
         RequestedDocument: {
             name: 'RequestedDocument',
@@ -2179,5 +1841,5 @@ export const schema = {
             }
         }
     },
-    version: '8557fd50c850e0bd555590dbf423bd98'
+    version: 'bf9e37186781212220044649c80637e0'
 };

@@ -1,4 +1,5 @@
 import { GetDocumentByStudentQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
+import { Student } from '@applyfuture/models';
 
 import { findDocument } from './documents';
 
@@ -13,6 +14,7 @@ export type Completion = {
 export const isCompleted = (
     student:
         | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
+        | Student
         | null
         | undefined,
     documents:

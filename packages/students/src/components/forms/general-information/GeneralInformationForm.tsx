@@ -611,7 +611,6 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                                     />
                                                 )}
                                             </Field>
-                                            )
                                         </div>
                                         <div className="w-3/12">
                                             <Field id="parentsCity" name="parentsCity">

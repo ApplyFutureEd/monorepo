@@ -1,4 +1,3 @@
-import { Country } from '@applyfuture/models';
 import Card from '@components/schools/card/Card';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
@@ -14,7 +13,7 @@ jest.mock('next/router', () => ({
 describe('Card', () => {
     const school = {
         city: 'Roma',
-        country: 'IT' as Country,
+        country: 'IT',
         logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
         name: 'Accademia delle Arti e Nuove Tecnologie',
         slug: 'aant-accademia-delle-arti-e-nuove-tecnologie-roma'

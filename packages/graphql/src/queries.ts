@@ -1683,6 +1683,288 @@ export const getApplicationByStudent = /* GraphQL */ `
     }
   }
 `;
+export const searchStudents = /* GraphQL */ `
+  query SearchStudents(
+    $filter: SearchableStudentFilterInput
+    $sort: SearchableStudentSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchStudents(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        email
+        phoneNumber
+        address
+        city
+        country
+        firstName
+        middleName
+        lastName
+        birthday
+        firstLanguage
+        passportNumber
+        gender
+        maritalStatus
+        fatherFirstName
+        fatherLastName
+        motherFirstName
+        motherMaidenName
+        guardianLastName
+        guardianFirstName
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsPhoneNumber
+        parentsEmail
+        disciplines
+        degrees
+        nationality
+        educationCountry
+        highestEducationLevel
+        gradePointAverage
+        schoolsAttended {
+          name
+          address
+          city
+          country
+          primaryLanguageInstruction
+          educationLevel
+          degreeAwarded
+          degreeAwardedOn
+          attendedInstitutionFrom
+          attendedInstitutionTo
+        }
+        testToefl
+        testIelts
+        testToeic
+        testTcftef
+        testDelfdalf
+        testGre
+        testGmat
+        testTagemage
+        testCambridgeFirst
+        testCambridgeAdvanced
+        testToeflDate
+        testIeltsDate
+        testToeicDate
+        testTcftefDate
+        testDelfdalfDate
+        testGreDate
+        testGmatDate
+        testTagemageDate
+        testCambridgeFirstDate
+        testCambridgeAdvancedDate
+        testEnglishPending
+        testFrenchPending
+        testLogicAndReasoningPending
+        validVisa
+        refusedVisa
+        refusedVisaReason
+        workExperiences {
+          title
+          compagnyName
+          address
+          workedFrom
+          workedTo
+        }
+        documents {
+          nextToken
+        }
+        favoritePrograms
+        favoriteSchools
+        applications {
+          nextToken
+        }
+        hasMandatoryDocuments
+        modalProfileCompletedViewed
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        locale
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchApplications = /* GraphQL */ `
+  query SearchApplications(
+    $filter: SearchableApplicationFilterInput
+    $sort: SearchableApplicationSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchApplications(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        studentId
+        student {
+          id
+          email
+          phoneNumber
+          address
+          city
+          country
+          firstName
+          middleName
+          lastName
+          birthday
+          firstLanguage
+          passportNumber
+          gender
+          maritalStatus
+          fatherFirstName
+          fatherLastName
+          motherFirstName
+          motherMaidenName
+          guardianLastName
+          guardianFirstName
+          parentsAddress
+          parentsCity
+          parentsCountry
+          parentsPhoneNumber
+          parentsEmail
+          disciplines
+          degrees
+          nationality
+          educationCountry
+          highestEducationLevel
+          gradePointAverage
+          testToefl
+          testIelts
+          testToeic
+          testTcftef
+          testDelfdalf
+          testGre
+          testGmat
+          testTagemage
+          testCambridgeFirst
+          testCambridgeAdvanced
+          testToeflDate
+          testIeltsDate
+          testToeicDate
+          testTcftefDate
+          testDelfdalfDate
+          testGreDate
+          testGmatDate
+          testTagemageDate
+          testCambridgeFirstDate
+          testCambridgeAdvancedDate
+          testEnglishPending
+          testFrenchPending
+          testLogicAndReasoningPending
+          validVisa
+          refusedVisa
+          refusedVisaReason
+          favoritePrograms
+          favoriteSchools
+          hasMandatoryDocuments
+          modalProfileCompletedViewed
+          locale
+          createdAt
+          updatedAt
+          owner
+        }
+        programId
+        intake
+        document
+        steps {
+          id
+          status
+          date
+          isMandatory
+        }
+        interviewDate
+        admissionResult
+        tuitionsFeePaymentDate
+        decisionLetterDate
+        visaDate
+        todo
+        notifications {
+          title
+          titleOptions
+          description
+          descriptionOptions
+          date
+          seen
+          link
+        }
+        modalApplicationCompletedViewed
+        createdAt
+        updatedAt
+        program {
+          applicationFee
+          applicationFeeCurrency
+          city
+          costOfLiving
+          costOfLivingCurrency
+          country
+          degree
+          description
+          discipline
+          duration
+          durationUnit
+          fee
+          feeCurrency
+          feeUnit
+          feesAndFinancing
+          gradePointAverage
+          highestEducationLevel
+          id
+          intakeInformation
+          intakes
+          languages
+          minimumAge
+          minimumWorkExperience
+          minimumWorkExperienceUnit
+          name
+          otherRequirements
+          published
+          schedule
+          schoolId
+          schoolName
+          slug
+          submissionDeadline
+          testCambridgeAdvanced
+          testCambridgeFirst
+          testDelfdalf
+          testGmat
+          testGre
+          testIelts
+          testTagemage
+          testTcftef
+          testToefl
+          testToeic
+          createdAt
+          updatedAt
+        }
+        owner
+      }
+      nextToken
+      total
+    }
+  }
+`;
 export const listSchools = /* GraphQL */ `
   query ListSchools(
     $filter: ModelSchoolFilterInput
