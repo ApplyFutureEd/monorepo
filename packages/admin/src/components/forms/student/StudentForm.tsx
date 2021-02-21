@@ -156,13 +156,7 @@ const StudentForm: FC<Props> = (props) => {
             name: 'latinCharacters',
             test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
         }),
-        birthday: string()
-            .nullable()
-            .test({
-                message: t('common:error-field-required'),
-                name: 'nullDate',
-                test: (value) => value
-            }),
+        birthday: string().nullable(),
         educationCountry: mixed(),
         email: string().email(t('common:error-email-format')),
         fatherFirstName: string().test({
