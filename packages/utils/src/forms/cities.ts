@@ -222,5 +222,77 @@ export const cities = [
     {
         country: 'IT',
         label: 'Sansepolcro'
+    },
+    {
+        country: 'NL',
+        label: 'Apeldoorn'
+    },
+    {
+        country: 'NL',
+        label: 'Arnhem'
+    },
+    {
+        country: 'NL',
+        label: 'Breda'
+    },
+    {
+        country: 'NL',
+        label: 'Den Haag'
+    },
+    {
+        country: 'NL',
+        label: 'Deventer'
+    },
+    {
+        country: 'NL',
+        label: 'Eindhoven'
+    },
+    {
+        country: 'NL',
+        label: 'Emmen'
+    },
+    {
+        country: 'NL',
+        label: 'Enschede'
+    },
+    {
+        country: 'NL',
+        label: 'Groningen'
+    },
+    {
+        country: 'NL',
+        label: 'Leeuwarden'
+    },
+    {
+        country: 'NL',
+        label: 'Maastricht'
+    },
+    {
+        country: 'NL',
+        label: 'Meppel'
+    },
+    {
+        country: 'NL',
+        label: 'Nijmegen'
+    },
+    {
+        country: 'NL',
+        label: 'Rotterdam'
+    },
+    {
+        country: 'NL',
+        label: 'Terschelling'
+    },
+    {
+        country: 'NL',
+        label: 'Tilburg'
+    },
+    {
+        country: 'NL',
+        label: 'Utrecht'
+    },
+    {
+        country: 'NL',
+        label: 'Venlo'
     }
 ];
