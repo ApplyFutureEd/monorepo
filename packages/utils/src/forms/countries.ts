@@ -790,7 +790,9 @@ export const countries = [
 ];
 
 export const supportedCountries = countries.filter((country) =>
-    ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT', 'HU'].includes(country.value)
+    ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT', 'HU', 'NL'].includes(
+        country.value
+    )
 );
 
 export const getCountryLabel = (value: string): string =>
