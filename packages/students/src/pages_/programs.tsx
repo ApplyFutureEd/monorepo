@@ -111,7 +111,7 @@ const ProgramsPage: FC = () => {
         : '';
 
     const displayProfileActionPanel = Boolean(
-        user && !studentIsLoading && !documentsIsLoading && isCompleted(student, documents)
+        user && !studentIsLoading && !documentsIsLoading && !isCompleted(student, documents)
     );
 
     return (
