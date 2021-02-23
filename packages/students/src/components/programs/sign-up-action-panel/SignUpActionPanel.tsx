@@ -16,7 +16,7 @@ const SignUpActionPanel: FC = () => {
         <div className="mb-4">
             <ActionPanel
                 actions={actions}
-                backgroundClass="sign-up-action-panel"
+                backgroundClass="profile-action-panel"
                 description={t('programs:sign-up-action-panel-description')}
                 title={t('programs:sign-up-action-panel-title')}
             />
