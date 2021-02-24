@@ -3,8 +3,6 @@ import {
     CreateSchoolMutation,
     deleteSchool,
     DeleteSchoolMutation,
-    getSchool,
-    GetSchoolQuery,
     searchSchools,
     SearchSchoolsQuery,
     SearchSchoolsQueryVariables

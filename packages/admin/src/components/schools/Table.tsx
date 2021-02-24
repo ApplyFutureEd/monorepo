@@ -41,11 +41,8 @@ const Table: FC<Props> = (props) => {
     const { data, handleContextMenu, setVariables } = props;
     const [columns] = useState([
         { name: 'updatedAt', title: 'Last update' },
+        { name: 'contractStatus', title: 'Contract status' },
         { name: 'name', title: 'Name' },
-        {
-            name: 'schoolName',
-            title: 'School'
-        },
         {
             name: 'city',
             title: 'City'
@@ -55,21 +52,25 @@ const Table: FC<Props> = (props) => {
             name: 'published',
             title: 'Published'
         },
-        { name: 'degree', title: 'Degree' },
+        { name: 'contactJobTitle', title: 'Job title' },
         {
-            name: 'submissionDeadline',
-            title: 'Submission Deadline'
+            name: 'contactName',
+            title: 'Contact name'
+        },
+        {
+            name: 'contactEmail',
+            title: 'Contact email'
         }
     ]);
     const [defaultColumnWidths] = useState([
         { columnName: 'updatedAt', width: 140 },
-        { columnName: 'name', width: 440 },
-        { columnName: 'schoolName', width: 180 },
+        { columnName: 'name', width: 360 },
+        { columnName: 'contractStatus', width: 80 },
         { columnName: 'city', width: 80 },
-        { columnName: 'published', width: 80 },
-        { columnName: 'degree', width: 80 },
-        { columnName: 'intakes', width: 80 },
-        { columnName: 'submissionDeadline', width: 80 }
+        { columnName: 'published', width: 70 },
+        { columnName: 'contactJobTitle', width: 160 },
+        { columnName: 'contactName', width: 160 },
+        { columnName: 'contactEmail', width: 160 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');
