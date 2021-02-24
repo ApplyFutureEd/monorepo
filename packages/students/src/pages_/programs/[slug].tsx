@@ -28,7 +28,7 @@ import {
 } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import EligiblityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
+import EligibilityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
 import Indicators from '@components/programs/indicators/Indicators';
 import { faBook, faCalendar, faHeart, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -143,7 +143,7 @@ const ProgramPage: FC<Props> = (props) => {
                         title={program.name}
                     />
                 </div>
-                <EligiblityWarning
+                <EligibilityWarning
                     isCompleted={isCompleted}
                     isEligible={isEligible}
                     reasons={reasons}

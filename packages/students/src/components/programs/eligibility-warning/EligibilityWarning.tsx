@@ -16,7 +16,7 @@ type Props = {
     reasons: Array<NonEligibilityReason>;
 };
 
-const EligiblityWarning: FC<Props> = (props) => {
+const EligibilityWarning: FC<Props> = (props) => {
     const { isCompleted, isEligible, reasons } = props;
     const { t } = useTranslation();
 
@@ -92,4 +92,4 @@ const EligiblityWarning: FC<Props> = (props) => {
     );
 };
 
-export default EligiblityWarning;
+export default EligibilityWarning;
