@@ -541,14 +541,15 @@ export const checkEligibility = (
 
         const workExperiences = student?.workExperiences as any;
 
-        const cumulatedDays =
+        const cumulatedDays = Number(
             workExperiences &&
-            workExperiences.length > 0 &&
-            sumBy(workExperiences, (workExperience: any) => {
-                const from = new Date(workExperience.workedFrom);
-                const to = new Date(workExperience.workedTo);
-                return differenceInDays(to, from);
-            });
+                workExperiences.length > 0 &&
+                sumBy(workExperiences, (workExperience: any) => {
+                    const from = new Date(workExperience.workedFrom);
+                    const to = new Date(workExperience.workedTo);
+                    return differenceInDays(to, from);
+                })
+        );
 
         if (
             program.minimumWorkExperienceUnit === 'year' &&
