@@ -1,11 +1,11 @@
 import { cities } from '../forms/cities';
-import { supportedCountries } from '../forms/countries';
+import {
+    englishSpokenCountries,
+    frenchSpokenCountries,
+    supportedCountries
+} from '../forms/countries';
 import { degrees } from '../forms/degrees';
 import { disciplines } from '../forms/disciplines';
-
-export const englishSpeakingCountries = ['EN', 'US', 'GB', 'CA', 'AU', 'ZA', 'IE', 'NZ'];
-
-export const frenchSpeakingCountries = ['FR', 'BE'];
 
 const cartesian = (...args: any[]) => {
     const result: any[] = [];
@@ -337,9 +337,9 @@ export const createFilter = (values: any) => {
     }
 
     if (
-        englishSpeakingCountries.includes(values.nationality) ||
-        englishSpeakingCountries.includes(values.educationCountry) ||
-        englishSpeakingCountries.includes(values.firstLanguage)
+        englishSpokenCountries.includes(values.nationality) ||
+        englishSpokenCountries.includes(values.educationCountry) ||
+        englishSpokenCountries.includes(values.firstLanguage)
     ) {
         if (newFilter.testToefl) {
             delete newFilter.testCambridgeFirst;
@@ -359,9 +359,9 @@ export const createFilter = (values: any) => {
     }
 
     if (
-        frenchSpeakingCountries.includes(values.nationality) ||
-        frenchSpeakingCountries.includes(values.educationCountry) ||
-        frenchSpeakingCountries.includes(values.firstLanguage)
+        frenchSpokenCountries.includes(values.nationality) ||
+        frenchSpokenCountries.includes(values.educationCountry) ||
+        frenchSpokenCountries.includes(values.firstLanguage)
     ) {
         if (newFilter.testTcftef) {
             delete newFilter.testTcftef;

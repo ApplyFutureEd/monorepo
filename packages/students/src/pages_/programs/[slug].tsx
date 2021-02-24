@@ -1,6 +1,12 @@
 import {
+    getDocumentByStudent,
+    GetDocumentByStudentQuery,
+    GetDocumentByStudentQueryVariables,
     getProgramBySlug,
     GetProgramBySlugQuery,
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables,
     listPrograms,
     ListProgramsQuery
 } from '@applyfuture/graphql';
@@ -8,18 +14,23 @@ import { Program } from '@applyfuture/models';
 import { Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
 import { Button } from '@applyfuture/ui';
 import {
+    checkCompletion,
+    checkEligibility,
     currency,
     date,
     getCambridgeAdvancedLabel,
     getCambridgeFirstLabel,
     getCountryLabel,
     getEducationLabel,
-    markdown
+    markdown,
+    useAuthenticatedUser,
+    useQuery
 } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import EligiblityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
 import Indicators from '@components/programs/indicators/Indicators';
-import { faBook, faCalendar, faHeart, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
+import { faBook, faCalendar, faHeart, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
@@ -31,7 +42,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
@@ -40,9 +51,22 @@ type Props = {
 
 const ProgramPage: FC<Props> = (props) => {
     const { program } = props;
-
     const router = useRouter();
     const { t } = useTranslation();
+    const { user } = useAuthenticatedUser();
+    const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+        getStudentByEmail,
+        { email: user?.attributes.email }
+    );
+    const { data: documentsData } = useQuery<
+        GetDocumentByStudentQuery,
+        GetDocumentByStudentQueryVariables
+    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+    const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
+
+    const isCompleted = Boolean(checkCompletion(student, documents));
+    const { isEligible, reasons } = checkEligibility(program, student, t);
 
     const locale = router.locale as SupportedLocale;
     const requirements = {
@@ -70,9 +94,17 @@ const ProgramPage: FC<Props> = (props) => {
         <Button key={0} startIcon={faHeart} type="button" variant="secondary">
             {t('programs:favorite')}
         </Button>,
-        <Button key={1} type="button" variant="primary">
-            {t('programs:apply')}
-        </Button>
+        <Fragment key={1}>
+            {isEligible ? (
+                <Button type="button" variant="primary">
+                    {t('programs:apply')}
+                </Button>
+            ) : (
+                <Button disabled startIcon={faLock} type="button" variant="primary">
+                    {t('programs:not-eligible')}
+                </Button>
+            )}
+        </Fragment>
     ];
 
     const subtitleComponents = [
@@ -98,18 +130,26 @@ const ProgramPage: FC<Props> = (props) => {
 
     return (
         <DashboardLayout description="" title="">
-            <Cover
-                alt={''}
-                src={`${process.env.ASSETS_CDN_URL}/${program?.school?.coverPhoto}` || ''}
-            />
-            <SubHeader
-                actionComponents={actionComponents}
-                src={`${process.env.ASSETS_CDN_URL}/${program?.school?.logo}` || ''}
-                subtitleComponents={subtitleComponents}
-                title={program.name}
-            />
-            <Indicators program={program} />
             <div className="space-y-6">
+                <div>
+                    <Cover
+                        alt={''}
+                        src={`${process.env.ASSETS_CDN_URL}/${program?.school?.coverPhoto}` || ''}
+                    />
+                    <SubHeader
+                        actionComponents={actionComponents}
+                        src={`${process.env.ASSETS_CDN_URL}/${program?.school?.logo}` || ''}
+                        subtitleComponents={subtitleComponents}
+                        title={program.name}
+                    />
+                </div>
+                <EligiblityWarning
+                    isCompleted={isCompleted}
+                    isEligible={isEligible}
+                    reasons={reasons}
+                />
+                <Indicators program={program} />
+
                 <Container title={t('programs:program-description')}>
                     {program?.description && (
                         <div

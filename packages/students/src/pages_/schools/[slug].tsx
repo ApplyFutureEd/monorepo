@@ -80,15 +80,20 @@ const SchoolPage: FC<Props> = (props) => {
 
     return (
         <DashboardLayout description="" title="">
-            <Cover alt={''} src={`${process.env.ASSETS_CDN_URL}/${school?.coverPhoto}` || ''} />
-            <SubHeader
-                actionComponents={actionComponents}
-                src={`${process.env.ASSETS_CDN_URL}/${school?.logo}` || ''}
-                subtitleComponents={subtitleComponents}
-                title={school.name}
-            />
-            <Indicators programs={programs} school={school} />
             <div className="space-y-6">
+                <div>
+                    <Cover
+                        alt={''}
+                        src={`${process.env.ASSETS_CDN_URL}/${school?.coverPhoto}` || ''}
+                    />
+                    <SubHeader
+                        actionComponents={actionComponents}
+                        src={`${process.env.ASSETS_CDN_URL}/${school?.logo}` || ''}
+                        subtitleComponents={subtitleComponents}
+                        title={school.name}
+                    />
+                    <Indicators programs={programs} school={school} />
+                </div>
                 <Container title={t('schools:about')}>
                     {school?.description && (
                         <div

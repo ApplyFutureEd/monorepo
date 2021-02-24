@@ -7,7 +7,7 @@ import {
     SearchStudentsQueryVariables
 } from '@applyfuture/graphql';
 import { Student } from '@applyfuture/models';
-import { isCompleted } from '@applyfuture/utils';
+import { checkCompletion } from '@applyfuture/utils';
 import DateFormatter from '@components/common/date-formatter/DateFormatter';
 import ResizingPanel from '@components/common/resizing-panel/ResizingPanel';
 import TableRow from '@components/common/table-row/TableRow';
@@ -48,7 +48,7 @@ const Table: FC<Props> = (props) => {
         { name: 'passportNumber', title: 'Passport Number' },
         {
             getCellValue: (row: Student) => {
-                const completion = isCompleted(row, null);
+                const completion = checkCompletion(row, null);
                 if (
                     completion.backgroundInformation &&
                     completion.educationHistory &&

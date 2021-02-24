@@ -8,11 +8,11 @@ import {
 import { Button, DateInput, Input, PhoneInput, Section, Select } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
+    checkCompletion,
     countries,
     genders,
     graphql,
     isChina,
-    isCompleted,
     languages,
     maritalStatus,
     toast,
@@ -286,7 +286,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                             description={t('profile:personal-information-description')}
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(student, documents)}
+                                    completion={checkCompletion(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

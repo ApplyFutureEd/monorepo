@@ -8,7 +8,7 @@ import {
     updateDocument
 } from '@applyfuture/graphql';
 import { Button, FileUploader, Section } from '@applyfuture/ui';
-import { findDocument, graphql, isCompleted, toast } from '@applyfuture/utils';
+import { checkCompletion, findDocument, graphql, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -180,7 +180,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                             description={t('profile:required-by-all-schools-description')}
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(student, documents)}
+                                    completion={checkCompletion(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

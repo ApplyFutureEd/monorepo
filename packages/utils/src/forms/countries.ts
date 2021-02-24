@@ -789,6 +789,10 @@ export const countries = [
     }
 ];
 
+export const englishSpokenCountries = ['EN', 'US', 'GB', 'CA', 'AU', 'ZA', 'IE', 'NZ'];
+
+export const frenchSpokenCountries = ['FR'];
+
 export const supportedCountries = countries.filter((country) =>
     ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT', 'HU', 'NL'].includes(
         country.value
