@@ -3,7 +3,8 @@ import {
     englishTests,
     frenchTests,
     logicAndReasoningTests,
-    NonEligibilityReason
+    NonEligibilityReason,
+    useAuthenticatedUser
 } from '@applyfuture/utils';
 import { faArrowLeft } from '@fortawesome/pro-solid-svg-icons';
 import Link from 'next/link';
@@ -18,9 +19,10 @@ type Props = {
 
 const EligibilityWarning: FC<Props> = (props) => {
     const { isCompleted, isEligible, reasons } = props;
+    const { user } = useAuthenticatedUser();
     const { t } = useTranslation();
 
-    if (isCompleted && isEligible) {
+    if ((isCompleted && isEligible) || !user) {
         return null;
     }
 
