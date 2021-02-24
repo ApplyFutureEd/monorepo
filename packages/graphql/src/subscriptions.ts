@@ -884,13 +884,13 @@ export const onCreateApplication = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -1097,13 +1097,13 @@ export const onUpdateApplication = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -1310,13 +1310,13 @@ export const onDeleteApplication = /* GraphQL */ `
         durationUnit
         fee
         feeCurrency
-        feesAndFinancing
         feeUnit
+        feesAndFinancing
         gradePointAverage
         highestEducationLevel
         id
-        intakes
         intakeInformation
+        intakes
         languages
         minimumAge
         minimumWorkExperience
@@ -1835,13 +1835,13 @@ export const onCreateFeedback = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -1992,13 +1992,13 @@ export const onUpdateFeedback = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -2149,13 +2149,13 @@ export const onDeleteFeedback = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -2236,13 +2236,13 @@ export const onCreateSchool = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -2320,13 +2320,13 @@ export const onUpdateSchool = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -2404,13 +2404,13 @@ export const onDeleteSchool = /* GraphQL */ `
           durationUnit
           fee
           feeCurrency
-          feesAndFinancing
           feeUnit
+          feesAndFinancing
           gradePointAverage
           highestEducationLevel
           id
-          intakes
           intakeInformation
+          intakes
           languages
           minimumAge
           minimumWorkExperience
@@ -2457,13 +2457,13 @@ export const onCreateProgram = /* GraphQL */ `
       durationUnit
       fee
       feeCurrency
-      feesAndFinancing
       feeUnit
+      feesAndFinancing
       gradePointAverage
       highestEducationLevel
       id
-      intakes
       intakeInformation
+      intakes
       languages
       minimumAge
       minimumWorkExperience
@@ -2543,13 +2543,13 @@ export const onUpdateProgram = /* GraphQL */ `
       durationUnit
       fee
       feeCurrency
-      feesAndFinancing
       feeUnit
+      feesAndFinancing
       gradePointAverage
       highestEducationLevel
       id
-      intakes
       intakeInformation
+      intakes
       languages
       minimumAge
       minimumWorkExperience
@@ -2629,13 +2629,13 @@ export const onDeleteProgram = /* GraphQL */ `
       durationUnit
       fee
       feeCurrency
-      feesAndFinancing
       feeUnit
+      feesAndFinancing
       gradePointAverage
       highestEducationLevel
       id
-      intakes
       intakeInformation
+      intakes
       languages
       minimumAge
       minimumWorkExperience

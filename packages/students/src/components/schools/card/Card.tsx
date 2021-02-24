@@ -1,4 +1,3 @@
-import { Country } from '@applyfuture/models';
 import { getCountryLabel } from '@applyfuture/utils';
 import { faMapMarkerAlt } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +7,7 @@ import React, { FC } from 'react';
 
 type Props = {
     city: string;
-    country: Country;
+    country: string;
     logo: string;
     name: string;
     slug: string;
@@ -21,7 +20,7 @@ const Card: FC<Props> = (props) => {
 
     return (
         <Link href={`/schools/${slug}`}>
-            <div className="hover:bg-gray-50 focus:bg-gray-50 h-full bg-white rounded-lg focus:outline-none shadow overflow-hidden transition duration-150 ease-in-out">
+            <div className="hover:bg-gray-50 focus:bg-gray-50 h-full bg-white rounded-lg focus:outline-none shadow cursor-pointer overflow-hidden transition duration-150 ease-in-out">
                 <div className="flex items-center px-4 py-5 h-full space-x-4 sm:p-6">
                     <img
                         alt={`${name} logo`}

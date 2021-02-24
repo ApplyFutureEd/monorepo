@@ -1,7 +1,5 @@
-import { DurationUnit } from '@applyfuture/models';
-
 type DurationOptions = {
-    unit: DurationUnit | 'DAY' | 'MONTH' | 'YEAR' | 'WEEK';
+    unit: 'DAY' | 'MONTH' | 'YEAR' | 'WEEK';
     value: number;
 };
 

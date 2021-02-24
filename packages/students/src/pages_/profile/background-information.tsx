@@ -10,6 +10,7 @@ import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import BackgroundInformationForm from '@components/forms/background-information/BackgroundInformationForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -26,6 +27,7 @@ const BackgroundInformationPage: FC = () => {
     >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
     return (
         <DashboardLayout title={t('profile:background-information-page-title')}>
+            <CompletionModal documentsData={documentsData} studentData={studentData} />
             <Banner content={t('profile:disclaimer')} />
             <BackgroundInformationForm
                 documentsData={documentsData}

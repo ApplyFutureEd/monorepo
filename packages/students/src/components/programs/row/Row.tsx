@@ -1,4 +1,4 @@
-import { Country, Currency, DurationUnit, FeeUnit, Schedule } from '@applyfuture/models';
+import { Program } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
 import { convertSecondsToUnit, currency, date, getCountryLabel } from '@applyfuture/utils';
 import Link from 'next/link';
@@ -8,25 +8,12 @@ import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    city: string;
-    country: Country;
-    duration: number;
-    durationUnit: DurationUnit;
-    fee: number;
-    feeCurrency: Currency;
-    feeUnit: FeeUnit;
-    intakes: string;
-    name: string;
+    program: Program;
     onClick: () => void;
-    schedule: Schedule;
-    school: {
-        name: string;
-        logo: string;
-    };
-    slug: string;
 };
 
 const Row: FC<Props> = (props) => {
+    const { program, onClick } = props;
     const {
         city,
         country,
@@ -37,18 +24,17 @@ const Row: FC<Props> = (props) => {
         feeUnit,
         intakes,
         name,
-        onClick,
         schedule,
         school,
         slug
-    } = props;
+    } = program;
 
     const { t } = useTranslation();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
 
     return (
-        <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 border-b border-gray-200 focus:outline-none transition duration-150 ease-in-out">
+        <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
             <Link href={`/programs/${slug}`}>
                 <div className="w-11/12 cursor-pointer">
                     <div className="flex items-center w-full">
@@ -78,12 +64,16 @@ const Row: FC<Props> = (props) => {
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="truncate text-sm leading-5">
                                         {convertSecondsToUnit({
-                                            unit: durationUnit,
+                                            unit: durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                                             value: duration
                                         })}{' '}
                                         {t(`programs:${durationUnit.toLowerCase()}`, {
                                             count: convertSecondsToUnit({
-                                                unit: durationUnit,
+                                                unit: durationUnit as
+                                                    | 'DAY'
+                                                    | 'MONTH'
+                                                    | 'YEAR'
+                                                    | 'WEEK',
                                                 value: duration
                                             })
                                         })}
@@ -131,9 +121,7 @@ const Row: FC<Props> = (props) => {
                     </div>
                 </div>
             </Link>
-            <div className="hidden sm:block">
-                <Button onClick={onClick}>{t('programs:apply')}</Button>
-            </div>
+            <Button onClick={onClick}>{t('programs:apply')}</Button>
         </li>
     );
 };
