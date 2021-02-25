@@ -1,3 +1,4 @@
+export * from './action-panel/ActionPanel';
 export * from './autocomplete-input/AutocompleteInput';
 export * from './banner/Banner';
 export * from './button/Button';
