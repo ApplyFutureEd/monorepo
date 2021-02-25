@@ -79,7 +79,7 @@ const SchoolPage: FC<Props> = (props) => {
         .filter((program) => program.degree === 'CERTIFICATE');
 
     return (
-        <DashboardLayout description="" title="">
+        <DashboardLayout title={school.name}>
             <div className="space-y-6">
                 <div>
                     <Cover

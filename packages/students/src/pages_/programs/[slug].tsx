@@ -93,7 +93,7 @@ const ProgramPage: FC<Props> = (props) => {
     const mainActionButton = () => {
         if (!user) {
             return (
-                <Link href={`/sign-in?from=${router.pathname}`}>
+                <Link href={`/sign-in?from=${router.asPath}`}>
                     <Button type="button" variant="primary">
                         {t('programs:apply')}
                     </Button>
@@ -143,7 +143,7 @@ const ProgramPage: FC<Props> = (props) => {
     ];
 
     return (
-        <DashboardLayout description="" title="">
+        <DashboardLayout title={program.name}>
             <div className="space-y-6">
                 <div>
                     <Cover
