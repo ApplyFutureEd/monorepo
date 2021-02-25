@@ -90,21 +90,35 @@ const ProgramPage: FC<Props> = (props) => {
         return <div>Loading...</div>;
     }
 
+    const mainActionButton = () => {
+        if (!user) {
+            return (
+                <Link href={`/sign-in?from=${router.pathname}`}>
+                    <Button type="button" variant="primary">
+                        {t('programs:apply')}
+                    </Button>
+                </Link>
+            );
+        }
+        if (!isEligible) {
+            return (
+                <Button disabled startIcon={faLock} type="button" variant="primary">
+                    {t('programs:not-eligible')}
+                </Button>
+            );
+        }
+        return (
+            <Button type="button" variant="primary">
+                {t('programs:apply')}
+            </Button>
+        );
+    };
+
     const actionComponents = [
         <Button key={0} startIcon={faHeart} type="button" variant="secondary">
             {t('programs:favorite')}
         </Button>,
-        <Fragment key={1}>
-            {isEligible ? (
-                <Button type="button" variant="primary">
-                    {t('programs:apply')}
-                </Button>
-            ) : (
-                <Button disabled startIcon={faLock} type="button" variant="primary">
-                    {t('programs:not-eligible')}
-                </Button>
-            )}
-        </Fragment>
+        <Fragment key={1}>{mainActionButton()}</Fragment>
     ];
 
     const subtitleComponents = [

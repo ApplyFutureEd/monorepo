@@ -22,7 +22,7 @@ const EligibilityWarning: FC<Props> = (props) => {
     const { user } = useAuthenticatedUser();
     const { t } = useTranslation();
 
-    if ((isCompleted && isEligible) || !user) {
+    if ((isCompleted && isEligible) || reasons.length === 0 || !user) {
         return null;
     }
 
