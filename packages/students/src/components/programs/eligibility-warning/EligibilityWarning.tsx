@@ -3,8 +3,7 @@ import {
     englishTests,
     frenchTests,
     logicAndReasoningTests,
-    NonEligibilityReason,
-    useAuthenticatedUser
+    NonEligibilityReason
 } from '@applyfuture/utils';
 import { faArrowLeft } from '@fortawesome/pro-solid-svg-icons';
 import Link from 'next/link';
