@@ -19,10 +19,9 @@ type Props = {
 
 const EligibilityWarning: FC<Props> = (props) => {
     const { isCompleted, isEligible, reasons } = props;
-    const { user } = useAuthenticatedUser();
     const { t } = useTranslation();
 
-    if ((isCompleted && isEligible) || reasons.length === 0 || !user) {
+    if ((isCompleted && isEligible) || reasons.length === 0) {
         return null;
     }
 
