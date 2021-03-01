@@ -1,6 +1,5 @@
 import { Completion, useWindowSize } from '@applyfuture/utils';
-import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import { faCheckCircle, faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

@@ -11,8 +11,7 @@ import {
     ListProgramsQuery
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
-import { Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
-import { Button } from '@applyfuture/ui';
+import { Button, Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
 import {
     checkCompletion,
     checkEligibility,
