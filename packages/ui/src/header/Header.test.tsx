@@ -16,8 +16,10 @@ jest.mock('next/router', () => ({
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     useAuthenticatedUser: jest.fn().mockImplementation(() => ({
-        attributes: {
-            email: 'awesome.student@gmail.com'
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
         }
     })),
     useOutsideAlerter: jest.fn()

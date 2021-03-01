@@ -11,7 +11,7 @@ export type Completion = {
     uploadDocuments: boolean;
 };
 
-export const isCompleted = (
+export const checkCompletion = (
     student:
         | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
         | Student

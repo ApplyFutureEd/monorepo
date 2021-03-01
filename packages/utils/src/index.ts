@@ -20,6 +20,7 @@ export * from './helpers/date';
 export * from './helpers/delay';
 export * from './helpers/documents';
 export * from './helpers/duration';
+export * from './helpers/eligibility';
 export * from './helpers/filters';
 export * from './helpers/graphql';
 export * from './helpers/isBrowser';
@@ -27,6 +28,7 @@ export * from './helpers/id';
 export * from './helpers/markdown';
 export * from './helpers/profile';
 export * from './helpers/ssr';
+export * from './helpers/tests';
 export * from './helpers/toast';
 export * from './helpers/whyDidYouRender';
 

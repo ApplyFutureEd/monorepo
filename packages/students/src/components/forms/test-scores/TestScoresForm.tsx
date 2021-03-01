@@ -9,8 +9,8 @@ import { Button, Checkbox, DateInput, Input, Section, Select } from '@applyfutur
 import {
     cambridgeAdvancedResults,
     cambridgeFirstResults,
+    checkCompletion,
     graphql,
-    isCompleted,
     languageLevels,
     toast
 } from '@applyfuture/utils';
@@ -222,7 +222,7 @@ const TestScoresForm: FC<Props> = (props) => {
                             }
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(student, documents)}
+                                    completion={checkCompletion(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

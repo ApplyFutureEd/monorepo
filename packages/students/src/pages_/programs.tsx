@@ -13,7 +13,7 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
-import { isCompleted, useAuthenticatedUser, usePageBottom, useQuery } from '@applyfuture/utils';
+import { checkCompletion, useAuthenticatedUser, usePageBottom, useQuery } from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
@@ -112,7 +112,7 @@ const ProgramsPage: FC = () => {
         : '';
 
     const displayProfileActionPanel = Boolean(
-        user && !studentIsLoading && !documentsIsLoading && !isCompleted(student, documents)
+        user && !studentIsLoading && !documentsIsLoading && !checkCompletion(student, documents)
     );
     const displaySignUpActionPanel = Boolean(!user && !studentIsLoading && !documentsIsLoading);
 

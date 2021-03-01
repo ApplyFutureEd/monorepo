@@ -16,7 +16,7 @@ const Indicators: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     return (
-        <div className="mb-6 bg-white rounded-md shadow">
+        <div className="bg-white rounded-md shadow">
             <div className="grid grid-cols-1 bg-white rounded-lg lg:grid-cols-6">
                 <div>
                     <IconPanel icon={faBooks} label={t('schools:bachelors')}>

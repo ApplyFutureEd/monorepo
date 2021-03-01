@@ -7,7 +7,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import { graphql, isChina, isCompleted, toast } from '@applyfuture/utils';
+import { checkCompletion, graphql, isChina, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -146,7 +146,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                         <Section
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(student, documents)}
+                                    completion={checkCompletion(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

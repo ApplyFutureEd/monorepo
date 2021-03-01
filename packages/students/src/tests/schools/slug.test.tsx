@@ -261,7 +261,7 @@ describe('SchoolPage', () => {
         expect(programName).not.toBeInTheDocument();
     });
 
-    it('does not render a non published program', () => {
+    it('can render a loading message if fallback', () => {
         mockIsFallback = true;
 
         render(<SchoolPage programs={programs} school={school} />);

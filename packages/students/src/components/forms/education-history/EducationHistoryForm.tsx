@@ -8,11 +8,11 @@ import {
 import { Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
+    checkCompletion,
     countries,
     educationLevels,
     graphql,
     isChina,
-    isCompleted,
     languages,
     toast
 } from '@applyfuture/utils';
@@ -198,7 +198,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                         <Section
                             headerComponent={
                                 <Navigation
-                                    completion={isCompleted(student, documents)}
+                                    completion={checkCompletion(student, documents)}
                                     isLoading={isLoading}
                                 />
                             }

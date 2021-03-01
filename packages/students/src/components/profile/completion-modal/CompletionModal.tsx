@@ -4,7 +4,7 @@ import {
     updateStudent
 } from '@applyfuture/graphql';
 import { Button, Modal } from '@applyfuture/ui';
-import { graphql, isCompleted } from '@applyfuture/utils';
+import { checkCompletion, graphql } from '@applyfuture/utils';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -40,7 +40,7 @@ const CompletionModal: FC<Props> = (props) => {
         if (!student) {
             return;
         }
-        const completion = isCompleted(student, documents);
+        const completion = checkCompletion(student, documents);
         if (
             completion.backgroundInformation &&
             completion.educationHistory &&
