@@ -79,10 +79,16 @@ const FiltersForm: FC<Props> = (props) => {
         nationality: string;
         testCambridgeAdvanced: string;
         testCambridgeFirst: string;
+        testCeli: string;
+        testCils: string;
+        testDele: string;
         testDelfdalf: string;
         testGmat: string;
+        testGoethe: string;
         testGre: string;
         testIelts: string;
+        testIt: string;
+        testPlida: string;
         testTagemage: string;
         testTcftef: string;
         testToefl: string;
@@ -105,10 +111,16 @@ const FiltersForm: FC<Props> = (props) => {
         nationality: '',
         testCambridgeAdvanced: '',
         testCambridgeFirst: '',
+        testCeli: '',
+        testCils: '',
+        testDele: '',
         testDelfdalf: '',
         testGmat: '',
+        testGoethe: '',
         testGre: '',
         testIelts: '',
+        testIt: '',
+        testPlida: '',
         testTagemage: '',
         testTcftef: '',
         testToefl: '',
@@ -138,10 +150,16 @@ const FiltersForm: FC<Props> = (props) => {
                 nationality: '',
                 testCambridgeAdvanced: '',
                 testCambridgeFirst: '',
+                testCeli: '',
+                testCils: '',
+                testDele: '',
                 testDelfdalf: '',
                 testGmat: '',
+                testGoethe: '',
                 testGre: '',
                 testIelts: '',
+                testIt: '',
+                testPlida: '',
                 testTagemage: '',
                 testTcftef: '',
                 testToefl: '',
@@ -498,6 +516,81 @@ const FiltersForm: FC<Props> = (props) => {
                                                 label={`${t('profile:delf-dalf')} (C2 - A1)`}
                                                 options={languageLevelsOptions}
                                                 tooltip={t('profile:test-delf-dalf-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="w-1/4">
+                                    <Field id="testGoethe" name="testGoethe">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:goethe')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-goethe-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="w-1/4">
+                                    <Field id="testDele" name="testDele">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:dele')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-dele-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                            </div>
+
+                            <div className="flex space-x-4">
+                                <div className="w-1/4">
+                                    <Field id="testCeli" name="testCeli">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:celi')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-celi-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="w-1/4">
+                                    <Field id="testCils" name="testCils">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:cils')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-cils-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="w-1/4">
+                                    <Field id="testIt" name="testIt">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:it')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-it-tooltip')}
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="w-1/4">
+                                    <Field id="testPlida" name="testPlida">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                label={`${t('profile:plida')} (C2 - A1)`}
+                                                options={languageLevelsOptions}
+                                                tooltip={t('profile:test-plida-tooltip')}
                                                 {...fieldProps}
                                             />
                                         )}

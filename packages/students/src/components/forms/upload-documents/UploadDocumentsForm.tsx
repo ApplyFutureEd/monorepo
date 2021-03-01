@@ -31,16 +31,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     type FormValues = {
         cae: string;
+        celi: string;
+        cils: string;
         'dalf-delf': string;
+        dele: string;
         fce: string;
         gmat: string;
+        goethe: string;
         gre: string;
         ielts: string;
+        it: string;
         'last-3-transcript-1': string;
         'last-3-transcript-2': string;
         'last-3-transcript-3': string;
         passport: string;
         passportPhoto: string;
+        plida: string;
         resume: string;
         tageMage: string;
         'tef-tcf': string;
@@ -51,16 +57,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     const [initialValues, setInitialValues] = useState<FormValues>({
         cae: '',
+        celi: '',
+        cils: '',
         'dalf-delf': '',
+        dele: '',
         fce: '',
         gmat: '',
+        goethe: '',
         gre: '',
         ielts: '',
+        it: '',
         'last-3-transcript-1': '',
         'last-3-transcript-2': '',
         'last-3-transcript-3': '',
         passport: '',
         passportPhoto: '',
+        plida: '',
         resume: '',
         tageMage: '',
         'tef-tcf': '',
@@ -72,16 +84,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         if (student && documents) {
             setInitialValues({
                 cae: findDocument(documents, 'cae') || '',
+                celi: findDocument(documents, 'celi') || '',
+                cils: findDocument(documents, 'cils') || '',
                 'dalf-delf': findDocument(documents, 'dalf-delf') || '',
+                dele: findDocument(documents, 'dele') || '',
                 fce: findDocument(documents, 'fce') || '',
                 gmat: findDocument(documents, 'gmat') || '',
+                goethe: findDocument(documents, 'goethe') || '',
                 gre: findDocument(documents, 'gre') || '',
                 ielts: findDocument(documents, 'ielts') || '',
+                it: findDocument(documents, 'it') || '',
                 'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
                 'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
                 'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
                 passport: findDocument(documents, 'passport') || '',
                 passportPhoto: findDocument(documents, 'passport-photo') || '',
+                plida: findDocument(documents, 'plida') || '',
                 resume: findDocument(documents, 'resume') || '',
                 tageMage: findDocument(documents, 'tage-mage') || '',
                 'tef-tcf': findDocument(documents, 'tef-tcf') || '',
@@ -95,16 +113,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         try {
             const documentIds = [
                 'cae',
+                'cils',
+                'celi',
                 'dalf-delf',
+                'dele',
                 'fce',
                 'gmat',
+                'goethe',
                 'gre',
                 'ielts',
+                'it',
                 'last-3-transcript-1',
                 'last-3-transcript-2',
                 'last-3-transcript-3',
                 'passport',
                 'passportPhoto',
+                'plida',
                 'resume',
                 'tageMage',
                 'tef-tcf',
@@ -235,6 +259,36 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                             isLoading={isLoading}
                             title={t('profile:certificates-title')}>
                             <div className="mb-8 space-y-8">
+                                <Field id="last-3-transcript-1" name="last-3-transcript-1">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:last-3-transcript', { number: 1 })}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+                                <Field id="last-3-transcript-2" name="last-3-transcript-2">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:last-3-transcript', { number: 2 })}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+                                <Field id="last-3-transcript-3" name="last-3-transcript-3">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:last-3-transcript', { number: 3 })}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
                                 <Field id="toefl" name="toefl">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
@@ -325,31 +379,61 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="last-3-transcript-1" name="last-3-transcript-1">
+                                <Field id="goethe" name="goethe">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
-                                            label={t('profile:last-3-transcript', { number: 1 })}
+                                            label={t('profile:goethe')}
                                             student={student}
                                             {...fieldProps}
                                         />
                                     )}
                                 </Field>
-                                <Field id="last-3-transcript-2" name="last-3-transcript-2">
+                                <Field id="dele" name="dele">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
-                                            label={t('profile:last-3-transcript', { number: 2 })}
+                                            label={t('profile:dele')}
                                             student={student}
                                             {...fieldProps}
                                         />
                                     )}
                                 </Field>
-                                <Field id="last-3-transcript-3" name="last-3-transcript-3">
+                                <Field id="celi" name="celi">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
-                                            label={t('profile:last-3-transcript', { number: 3 })}
+                                            label={t('profile:celi')}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+                                <Field id="cils" name="cils">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:cils')}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+                                <Field id="it" name="it">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:it')}
+                                            student={student}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+                                <Field id="plida" name="plida">
+                                    {(fieldProps: FieldProps) => (
+                                        <FileUploader
+                                            isLoading={isLoading}
+                                            label={t('profile:plida')}
                                             student={student}
                                             {...fieldProps}
                                         />

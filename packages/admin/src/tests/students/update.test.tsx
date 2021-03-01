@@ -91,7 +91,7 @@ const mockedStudent = {
     testDelfdalf: null,
     testDelfdalfDate: null,
     testEnglishPending: null,
-    testFrenchPending: null,
+    testOtherLanguagesPending: null,
     testGmat: null,
     testGmatDate: null,
     testGre: null,

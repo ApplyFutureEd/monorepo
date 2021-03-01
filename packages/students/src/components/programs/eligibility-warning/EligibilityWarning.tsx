@@ -1,9 +1,9 @@
 import { Button, Container } from '@applyfuture/ui';
 import {
     englishTests,
-    frenchTests,
     logicAndReasoningTests,
-    NonEligibilityReason
+    NonEligibilityReason,
+    otherLanguagesTests
 } from '@applyfuture/utils';
 import { faArrowLeft } from '@fortawesome/pro-solid-svg-icons';
 import Link from 'next/link';
@@ -35,7 +35,7 @@ const EligibilityWarning: FC<Props> = (props) => {
                     ?.filter(
                         (reason) =>
                             !englishTests.includes(reason.id) &&
-                            !frenchTests.includes(reason.id) &&
+                            !otherLanguagesTests.includes(reason.id) &&
                             !logicAndReasoningTests.includes(reason.id)
                     )
                     .map((reason) => (
@@ -53,11 +53,10 @@ const EligibilityWarning: FC<Props> = (props) => {
                             {reason.message}
                         </li>
                     ))}
-                {reasons?.filter((reason) => frenchTests.includes(reason.id)).length > 0 && (
-                    <li className="pl-8">{t('programs:fulfill-french-tests')}</li>
-                )}
+                {reasons?.filter((reason) => otherLanguagesTests.includes(reason.id)).length >
+                    0 && <li className="pl-8">{t('programs:fulfill-other-languages-tests')}</li>}
                 {reasons
-                    ?.filter((reason) => frenchTests.includes(reason.id))
+                    ?.filter((reason) => otherLanguagesTests.includes(reason.id))
                     .map((reason) => (
                         <li key={reason.id} className="pl-16">
                             {reason.message}

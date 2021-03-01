@@ -49,16 +49,22 @@ const UpdateStudentPage: FC = () => {
         try {
             const documentIds = [
                 'cae',
+                'cils',
+                'celi',
                 'dalf-delf',
+                'dele',
                 'fce',
                 'gmat',
+                'goethe',
                 'gre',
                 'ielts',
+                'it',
                 'last-3-transcript-1',
                 'last-3-transcript-2',
                 'last-3-transcript-3',
                 'passport',
                 'passportPhoto',
+                'plida',
                 'resume',
                 'tageMage',
                 'tef-tcf',
@@ -117,16 +123,22 @@ const UpdateStudentPage: FC = () => {
             const newStudent = { ...values };
             delete newStudent.studentId;
             delete newStudent.cae;
+            delete newStudent.celi;
+            delete newStudent.cils;
             delete newStudent['dalf-delf'];
+            delete newStudent.dele;
             delete newStudent.fce;
             delete newStudent.gmat;
+            delete newStudent.goethe;
             delete newStudent.gre;
             delete newStudent.ielts;
+            delete newStudent.it;
             delete newStudent['last-3-transcript-1'];
             delete newStudent['last-3-transcript-2'];
             delete newStudent['last-3-transcript-3'];
             delete newStudent.passport;
             delete newStudent.passportPhoto;
+            delete newStudent.plida;
             delete newStudent.resume;
             delete newStudent.tageMage;
             delete newStudent['tef-tcf'];

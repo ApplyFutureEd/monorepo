@@ -84,10 +84,16 @@ type Program
     submissionDeadline: String!
     testCambridgeAdvanced: Float!
     testCambridgeFirst: Float!
+    testCeli: Float!
+    testCils: Float!
+    testDele: Float!
     testDelfdalf: Float!
     testGmat: Float!
+    testGoethe: Float!
     testGre: Float!
     testIelts: Float!
+    testIt: Float!
+    testPlida: Float!
     testTagemage: Float!
     testTcftef: Float!
     testToefl: Float!
@@ -155,6 +161,12 @@ type Student
     testTagemage: Float
     testCambridgeFirst: Float
     testCambridgeAdvanced: Float
+    testGoethe: Float
+    testDele: Float
+    testCeli: Float
+    testCils: Float
+    testPlida: Float
+    testIt: Float
     testToeflDate: String
     testIeltsDate: String
     testToeicDate: String
@@ -165,8 +177,14 @@ type Student
     testTagemageDate: String
     testCambridgeFirstDate: String
     testCambridgeAdvancedDate: String
+    testGoetheDate: String
+    testDeleDate: String
+    testCeliDate: String
+    testCilsDate: String
+    testPlidaDate: String
+    testItDate: String
     testEnglishPending: Boolean
-    testFrenchPending: Boolean
+    testOtherLanguagesPending: Boolean
     testLogicAndReasoningPending: Boolean
     validVisa: Boolean
     refusedVisa: Boolean
