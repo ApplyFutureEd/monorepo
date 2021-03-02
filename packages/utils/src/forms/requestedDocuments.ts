@@ -96,6 +96,30 @@ export const requestedDocuments = [
         value: 'dalf-delf'
     },
     {
+        label: 'goethe',
+        value: 'goethe'
+    },
+    {
+        label: 'dele',
+        value: 'dele'
+    },
+    {
+        label: 'celi',
+        value: 'celi'
+    },
+    {
+        label: 'cils',
+        value: 'cils'
+    },
+    {
+        label: 'it',
+        value: 'it'
+    },
+    {
+        label: 'plida',
+        value: 'plida'
+    },
+    {
         label: 'application-form',
         value: 'application-form'
     },
