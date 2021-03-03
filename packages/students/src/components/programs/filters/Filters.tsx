@@ -1,6 +1,6 @@
-import { SearchableProgramFilterInput } from '@applyfuture/graphql';
+import { GetStudentByEmailQuery, SearchableProgramFilterInput } from '@applyfuture/graphql';
 import { Button, Drawer } from '@applyfuture/ui';
-import FiltersForm from '@components/programs/filters/FiltersForm';
+import FiltersForm from '@components/forms/filters/FiltersForm';
 import Tabs from '@components/programs/filters/Tabs';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -8,10 +8,11 @@ import React, { FC, useState } from 'react';
 
 type Props = {
     handleFilter: (filter: SearchableProgramFilterInput) => void;
+    studentData: GetStudentByEmailQuery;
 };
 
 const Filters: FC<Props> = (props) => {
-    const { handleFilter } = props;
+    const { handleFilter, studentData } = props;
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [currentTab, setCurrentTab] = useState(0);
@@ -44,6 +45,7 @@ const Filters: FC<Props> = (props) => {
                         currentTab={currentTab}
                         handleClose={handleClose}
                         handleFilter={handleFilter}
+                        studentData={studentData}
                     />
                 </div>
             </Drawer>

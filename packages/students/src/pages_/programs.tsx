@@ -101,7 +101,7 @@ const ProgramsPage: FC = () => {
 
     const headerComponents = [
         <Search key={0} handleSearch={handleSearch} />,
-        <Filters key={1} handleFilter={handleFilter} />,
+        <Filters key={1} handleFilter={handleFilter} studentData={studentData} />,
         <SortBy key={2} handleSort={handleSort} />
     ];
 
