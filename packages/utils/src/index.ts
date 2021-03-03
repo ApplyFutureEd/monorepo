@@ -1,6 +1,7 @@
 export * from './forms/cambridgeAdvancedResults';
 export * from './forms/cambridgeFirstResults';
 export * from './forms/cities';
+export * from './forms/contractStatus';
 export * from './forms/countries';
 export * from './forms/currencies';
 export * from './forms/degrees';
