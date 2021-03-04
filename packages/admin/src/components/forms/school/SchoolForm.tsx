@@ -1,8 +1,9 @@
 import { GetSchoolQuery } from '@applyfuture/graphql';
-import { Editor, Input, Section, Select } from '@applyfuture/ui';
+import { Button, Editor, FileUploader, Input, Section, Select, Toggle } from '@applyfuture/ui';
 import { contractStatus, countries, institutionTypes } from '@applyfuture/utils';
-// import { faArrowLeft, faPencil, faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faArrowLeft, faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 import { object, string } from 'yup';
@@ -18,13 +19,21 @@ type Props = {
 
 export type SchoolFormValues = {
     city: string;
+    contactEmail: string;
+    contactJobTitle: string;
+    contactName: string;
+    contactPhone: string;
     contractStatusOptions: string;
     country: string;
-    creationYear: number;
+    coverPhoto: string | null;
+    creationYear: number | null;
     description: string | null;
     institutionType: string;
+    internationalStudents: number | null;
+    logo: string | null;
     name: string;
     slug: string;
+    totalStudents: number | null;
 };
 
 const SchoolForm: FC<Props> = (props) => {
@@ -38,13 +47,21 @@ const SchoolForm: FC<Props> = (props) => {
 
     const [initialValues, setInitialValues] = useState<SchoolFormValues>({
         city: '',
+        contactEmail: '',
+        contactJobTitle: '',
+        contactName: '',
+        contactPhone: '',
         contractStatusOptions: '',
         country: 'FR',
-        creationYear: -1,
+        coverPhoto: null,
+        creationYear: null,
         description: '',
         institutionType: '',
+        internationalStudents: null,
+        logo: null,
         name: '',
-        slug: ''
+        slug: '',
+        totalStudents: null
     });
 
     useEffect(() => {
@@ -60,10 +77,7 @@ const SchoolForm: FC<Props> = (props) => {
         }
     }, [schoolData]);
 
-    const contractStatusOptions = contractStatus.map((status) => ({
-        label: t(`common:${status.label}`),
-        value: status.value
-    }));
+    const contractStatusOptions = contractStatus;
 
     const countriesOptions = countries.map((country) => ({
         label: t(`common:${country.label}`),
@@ -146,7 +160,7 @@ const SchoolForm: FC<Props> = (props) => {
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
-                                                    label="Overseas students"
+                                                    label="International students"
                                                     type="number"
                                                     {...fieldProps}
                                                 />
@@ -193,25 +207,13 @@ const SchoolForm: FC<Props> = (props) => {
                         </Section>
                         <Section isLoading={isLoading} title="Media">
                             <div className="space-y-3">
-                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                <div className="flex flex-col">
                                     <Field id="logo" name="logo">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Logo"
-                                                type="number"
-                                                {...fieldProps}
-                                            />
-                                        )}
+                                        {(props: any) => <FileUploader label="Logo" {...props} />}
                                     </Field>
                                     <Field id="coverPhoto" name="coverPhoto">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Cover photo"
-                                                type="number"
-                                                {...fieldProps}
-                                            />
+                                        {(props: any) => (
+                                            <FileUploader label="Cover photo" {...props} />
                                         )}
                                     </Field>
                                 </div>
@@ -220,7 +222,7 @@ const SchoolForm: FC<Props> = (props) => {
                         <Section isLoading={isLoading} title="Contact">
                             <div className="space-y-3">
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                    <div className="w-full sm:w-1/2">
+                                    <div className="w-full sm:w-1/4">
                                         <Field id="contractStatus" name="contractStatus">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
@@ -231,6 +233,75 @@ const SchoolForm: FC<Props> = (props) => {
                                                 />
                                             )}
                                         </Field>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <Field id="contactJobTitle" name="contactJobTitle">
+                                        {(fieldProps: FieldProps) => (
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Contact job title"
+                                                type="text"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                    <Field id="contactName" name="contactName">
+                                        {(fieldProps: FieldProps) => (
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Contact name"
+                                                type="text"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <Field id="contactEmail" name="contactEmail">
+                                        {(fieldProps: FieldProps) => (
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Contact email"
+                                                type="text"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                    <Field id="contactPhone" name="contactPhone">
+                                        {(fieldProps: FieldProps) => (
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Contact phone"
+                                                type="text"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="align-items flex justify-between mt-6">
+                                    <Link href="/schools">
+                                        <Button
+                                            isLoading={isLoading}
+                                            isSubmitting={isSubmitting}
+                                            startIcon={faArrowLeft}
+                                            variant="secondary">
+                                            Back
+                                        </Button>
+                                    </Link>
+                                    <div className="align-items flex space-x-4">
+                                        <Field id="published" name="published">
+                                            {(fieldProps: FieldProps) => (
+                                                <Toggle label="Published" {...fieldProps} />
+                                            )}
+                                        </Field>
+                                        <Button
+                                            isLoading={isLoading}
+                                            isSubmitting={isSubmitting}
+                                            startIcon={faSave}
+                                            type="submit">
+                                            Save
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
