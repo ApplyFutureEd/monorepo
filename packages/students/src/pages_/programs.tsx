@@ -13,7 +13,13 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
-import { checkCompletion, useAuthenticatedUser, usePageBottom, useQuery } from '@applyfuture/utils';
+import {
+    checkCompletion,
+    createFilter,
+    useAuthenticatedUser,
+    usePageBottom,
+    useQuery
+} from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
@@ -41,9 +47,7 @@ const ProgramsPage: FC = () => {
     const documents = documentsData?.getDocumentByStudent?.items;
 
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
-        filter: {
-            published: { eq: true }
-        },
+        filter: createFilter({}),
         limit: 20
     });
     const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
@@ -57,6 +61,32 @@ const ProgramsPage: FC = () => {
             fetchMore(programsData.searchPrograms?.nextToken);
         }
     }, [isPageBottom]);
+
+    useEffect(() => {
+        const filter = createFilter({
+            educationCountry: student?.educationCountry || '',
+            gradePointAverage: student?.gradePointAverage || '',
+            highestEducationLevel: student?.highestEducationLevel || '',
+            nationality: student?.nationality || '',
+            testCambridgeAdvanced: student?.testCambridgeAdvanced || '',
+            testCambridgeFirst: student?.testCambridgeFirst || '',
+            testCeli: student?.testCeli || '',
+            testCils: student?.testCils || '',
+            testDele: student?.testDele || '',
+            testDelfdalf: student?.testDelfdalf || '',
+            testGmat: student?.testGmat || '',
+            testGoethe: student?.testGoethe || '',
+            testGre: student?.testGre || '',
+            testIelts: student?.testIelts || '',
+            testIt: student?.testIt || '',
+            testPlida: student?.testPlida || '',
+            testTagemage: student?.testTagemage || '',
+            testTcftef: student?.testTcftef || '',
+            testToefl: student?.testToefl || '',
+            testToeic: student?.testToeic || ''
+        });
+        handleFilter(filter);
+    }, [student]);
 
     const handleSearch = (query: string) => {
         if (!query) {
