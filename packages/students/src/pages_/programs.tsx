@@ -35,14 +35,17 @@ import React, { FC, useEffect, useState } from 'react';
 const ProgramsPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
+
     const { data: studentData, isLoading: studentIsLoading } = useQuery<
         GetStudentByEmailQuery,
         GetStudentByEmailQueryVariables
     >(getStudentByEmail, { email: user?.attributes.email });
+
     const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
         GetDocumentByStudentQuery,
         GetDocumentByStudentQueryVariables
     >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+
     const student = studentData?.getStudentByEmail?.items?.[0];
     const documents = documentsData?.getDocumentByStudent?.items;
 
@@ -50,43 +53,13 @@ const ProgramsPage: FC = () => {
         filter: createFilter({}),
         limit: 20
     });
+
     const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
         SearchProgramsQuery,
         SearchProgramsQueryVariables
     >(searchPrograms, variables);
+
     const isPageBottom = usePageBottom();
-
-    useEffect(() => {
-        if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
-            fetchMore(programsData.searchPrograms?.nextToken);
-        }
-    }, [isPageBottom]);
-
-    useEffect(() => {
-        const filter = createFilter({
-            educationCountry: student?.educationCountry || '',
-            gradePointAverage: student?.gradePointAverage || '',
-            highestEducationLevel: student?.highestEducationLevel || '',
-            nationality: student?.nationality || '',
-            testCambridgeAdvanced: student?.testCambridgeAdvanced || '',
-            testCambridgeFirst: student?.testCambridgeFirst || '',
-            testCeli: student?.testCeli || '',
-            testCils: student?.testCils || '',
-            testDele: student?.testDele || '',
-            testDelfdalf: student?.testDelfdalf || '',
-            testGmat: student?.testGmat || '',
-            testGoethe: student?.testGoethe || '',
-            testGre: student?.testGre || '',
-            testIelts: student?.testIelts || '',
-            testIt: student?.testIt || '',
-            testPlida: student?.testPlida || '',
-            testTagemage: student?.testTagemage || '',
-            testTcftef: student?.testTcftef || '',
-            testToefl: student?.testToefl || '',
-            testToeic: student?.testToeic || ''
-        });
-        handleFilter(filter);
-    }, [student]);
 
     const handleSearch = (query: string) => {
         if (!query) {
@@ -128,6 +101,38 @@ const ProgramsPage: FC = () => {
     const handleClick = () => {
         console.log('Apply - to be implemented');
     };
+
+    useEffect(() => {
+        if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
+            fetchMore(programsData.searchPrograms?.nextToken);
+        }
+    }, [isPageBottom]);
+
+    useEffect(() => {
+        const filter = createFilter({
+            educationCountry: student?.educationCountry,
+            gradePointAverage: student?.gradePointAverage,
+            highestEducationLevel: student?.highestEducationLevel,
+            nationality: student?.nationality,
+            testCambridgeAdvanced: student?.testCambridgeAdvanced,
+            testCambridgeFirst: student?.testCambridgeFirst,
+            testCeli: student?.testCeli,
+            testCils: student?.testCils,
+            testDele: student?.testDele,
+            testDelfdalf: student?.testDelfdalf,
+            testGmat: student?.testGmat,
+            testGoethe: student?.testGoethe,
+            testGre: student?.testGre,
+            testIelts: student?.testIelts,
+            testIt: student?.testIt,
+            testPlida: student?.testPlida,
+            testTagemage: student?.testTagemage,
+            testTcftef: student?.testTcftef,
+            testToefl: student?.testToefl,
+            testToeic: student?.testToeic
+        });
+        handleFilter(filter);
+    }, [student]);
 
     const headerComponents = [
         <Search key={0} handleSearch={handleSearch} />,
