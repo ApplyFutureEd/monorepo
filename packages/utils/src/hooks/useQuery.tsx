@@ -22,7 +22,8 @@ const customizer = (objValue: any, srcValue: any) => {
 
 export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     query: string,
-    variables?: VariablesType
+    variables?: VariablesType,
+    lock?: boolean
 ): UseQueryType<ResultType> => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
@@ -64,8 +65,10 @@ export const useQuery = <ResultType extends {}, VariablesType extends {} = {}>(
     };
 
     useDeepCompareEffect(() => {
-        fetchQuery(query, variables);
-    }, [query, variables]);
+        if (!lock) {
+            fetchQuery(query, variables);
+        }
+    }, [query, variables, lock]);
 
     return {
         data,

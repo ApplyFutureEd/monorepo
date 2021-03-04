@@ -54,10 +54,21 @@ const ProgramsPage: FC = () => {
         limit: 20
     });
 
+    const lock = () => {
+        let lock = true;
+        if (user !== undefined && student !== undefined) {
+            lock = false;
+        }
+        if (user === null) {
+            lock = false;
+        }
+        return lock;
+    };
+
     const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
         SearchProgramsQuery,
         SearchProgramsQueryVariables
-    >(searchPrograms, variables);
+    >(searchPrograms, variables, lock());
 
     const isPageBottom = usePageBottom();
 
