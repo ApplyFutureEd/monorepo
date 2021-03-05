@@ -109,10 +109,6 @@ const ProgramsPage: FC = () => {
         }));
     };
 
-    const handleClick = () => {
-        console.log('Apply - to be implemented');
-    };
-
     useEffect(() => {
         if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
             fetchMore(programsData.searchPrograms?.nextToken);
@@ -178,13 +174,7 @@ const ProgramsPage: FC = () => {
                         return;
                     }
 
-                    return (
-                        <Row
-                            key={program.id}
-                            program={(program as unknown) as Program}
-                            onClick={handleClick}
-                        />
-                    );
+                    return <Row key={program.id} program={(program as unknown) as Program} />;
                 })}
                 {programsIsLoading &&
                     skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
