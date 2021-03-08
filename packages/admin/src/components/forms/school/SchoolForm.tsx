@@ -93,7 +93,7 @@ const SchoolForm: FC<Props> = (props) => {
         <Formik
             enableReinitialize
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            // validationSchema={validationSchema}
             onSubmit={handleSubmit}>
             {(props) => {
                 const { isSubmitting } = props;
