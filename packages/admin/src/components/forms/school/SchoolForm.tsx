@@ -23,7 +23,7 @@ export type SchoolFormValues = {
     contactJobTitle: string;
     contactName: string;
     contactPhone: string;
-    contractStatusOptions: string;
+    contractStatus: string;
     country: string;
     coverPhoto: string | null;
     creationYear: number | null;
@@ -32,6 +32,7 @@ export type SchoolFormValues = {
     internationalStudents: number | null;
     logo: string | null;
     name: string;
+    published: boolean;
     slug: string;
     totalStudents: number | null;
 };
@@ -41,8 +42,7 @@ const SchoolForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        name: string().required(t('common:required')),
-        schoolId: string().required(t('common:required'))
+        name: string().required(t('common:required'))
     });
 
     const [initialValues, setInitialValues] = useState<SchoolFormValues>({
@@ -51,7 +51,7 @@ const SchoolForm: FC<Props> = (props) => {
         contactJobTitle: '',
         contactName: '',
         contactPhone: '',
-        contractStatusOptions: '',
+        contractStatus: '',
         country: 'FR',
         coverPhoto: null,
         creationYear: null,
@@ -60,6 +60,7 @@ const SchoolForm: FC<Props> = (props) => {
         internationalStudents: null,
         logo: null,
         name: '',
+        published: false,
         slug: '',
         totalStudents: null
     });
@@ -93,7 +94,7 @@ const SchoolForm: FC<Props> = (props) => {
         <Formik
             enableReinitialize
             initialValues={initialValues}
-            // validationSchema={validationSchema}
+            validationSchema={validationSchema}
             onSubmit={handleSubmit}>
             {(props) => {
                 const { isSubmitting } = props;

@@ -13,10 +13,9 @@ const {
     Feedback,
     Post,
     RequestedDocument,
-    ApplicationStepsTemplate,
-    ApplicationStep,
     SchoolAttended,
     WorkExperience,
+    ApplicationStep,
     Notification
 } = initSchema(schema);
 
@@ -30,9 +29,8 @@ export {
     Feedback,
     Post,
     RequestedDocument,
-    ApplicationStepsTemplate,
-    ApplicationStep,
     SchoolAttended,
     WorkExperience,
+    ApplicationStep,
     Notification
 };

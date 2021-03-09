@@ -10,20 +10,6 @@ export declare class RequestedDocument {
     constructor(init: ModelInit<RequestedDocument>);
 }
 
-export declare class ApplicationStepsTemplate {
-    readonly targets?: string[];
-    readonly steps?: ApplicationStep[];
-    constructor(init: ModelInit<ApplicationStepsTemplate>);
-}
-
-export declare class ApplicationStep {
-    readonly id: string;
-    readonly status?: string;
-    readonly date?: string;
-    readonly isMandatory?: boolean;
-    constructor(init: ModelInit<ApplicationStep>);
-}
-
 export declare class SchoolAttended {
     readonly name?: string;
     readonly address?: string;
@@ -45,6 +31,14 @@ export declare class WorkExperience {
     readonly workedFrom?: string;
     readonly workedTo?: string;
     constructor(init: ModelInit<WorkExperience>);
+}
+
+export declare class ApplicationStep {
+    readonly id: string;
+    readonly status?: string;
+    readonly date?: string;
+    readonly isMandatory?: boolean;
+    constructor(init: ModelInit<ApplicationStep>);
 }
 
 export declare class Notification {
@@ -77,7 +71,6 @@ export declare class School {
     readonly slug: string;
     readonly published: boolean;
     readonly programs?: Program[];
-    readonly stepsTemplates: ApplicationStepsTemplate[];
     readonly contractStatus: string;
     constructor(init: ModelInit<School>);
     static copyOf(
@@ -122,16 +115,13 @@ export declare class Program {
     readonly submissionDeadline: string;
     readonly testCambridgeAdvanced: number;
     readonly testCambridgeFirst: number;
-    readonly testCeli: number;
-    readonly testCils: number;
+    readonly testCeliCilsItPlida: number;
     readonly testDele: number;
     readonly testDelfdalf: number;
     readonly testGmat: number;
     readonly testGoethe: number;
     readonly testGre: number;
     readonly testIelts: number;
-    readonly testIt: number;
-    readonly testPlida: number;
     readonly testTagemage: number;
     readonly testTcftef: number;
     readonly testToefl: number;
@@ -188,10 +178,7 @@ export declare class Student {
     readonly testCambridgeAdvanced?: number;
     readonly testGoethe?: number;
     readonly testDele?: number;
-    readonly testCeli?: number;
-    readonly testCils?: number;
-    readonly testPlida?: number;
-    readonly testIt?: number;
+    readonly testCeliCilsItPlida?: number;
     readonly testToeflDate?: string;
     readonly testIeltsDate?: string;
     readonly testToeicDate?: string;
@@ -204,10 +191,7 @@ export declare class Student {
     readonly testCambridgeAdvancedDate?: string;
     readonly testGoetheDate?: string;
     readonly testDeleDate?: string;
-    readonly testCeliDate?: string;
-    readonly testCilsDate?: string;
-    readonly testPlidaDate?: string;
-    readonly testItDate?: string;
+    readonly testCeliCilsItPlidaDate?: string;
     readonly testEnglishPending?: boolean;
     readonly testOtherLanguagesPending?: boolean;
     readonly testLogicAndReasoningPending?: boolean;

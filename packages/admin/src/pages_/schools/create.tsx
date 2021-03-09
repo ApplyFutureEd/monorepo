@@ -10,6 +10,7 @@ import { graphql, toast, useQuery, withPrivateAccess } from '@applyfuture/utils'
 import SchoolForm, { SchoolFormValues } from '@components/forms/school/SchoolForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { FormikHelpers } from 'formik';
+import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
@@ -22,10 +23,10 @@ const CreateSchoolPage: FC = () => {
         actions: FormikHelpers<SchoolFormValues>
     ) => {
         try {
-            const { getSchool: school } = await graphql<GetSchoolQuery>(getSchool, {
-                id: values.schoolId
-            });
-
+            const school = {
+                ...values,
+                slug: kebabCase(`${values.name}`)
+            };
             graphql<CreateSchoolMutation>(createSchool, {
                 input: school
             });

@@ -29,6 +29,13 @@ const UpdateSchoolPage: FC = () => {
         actions: FormikHelpers<SchoolFormValues>
     ) => {
         try {
+            const school = {
+                ...values,
+                slug: kebabCase(`${values.name}`)
+            };
+            graphql<UpdateSchoolMutation>(updateSchool, {
+                input: school
+            });
             actions.setSubmitting(false);
             toast({
                 description: `${values.name} successfully updated`,
