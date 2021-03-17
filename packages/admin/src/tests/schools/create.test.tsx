@@ -1,9 +1,8 @@
 import { toast } from '@applyfuture/utils';
 import CreateSchoolPage from '@pages/schools/create';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { FC } from 'react';
-import selectEvent from 'react-select-event';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -18,30 +17,6 @@ jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
     Header: jest.fn().mockImplementation(() => <div />)
 }));
-
-const mockedSchool = {
-    city: 'Paris',
-    contactEmail: null,
-    contactJobTitle: null,
-    contactName: null,
-    contactPhone: null,
-    contractStatus: 'CONTACTED',
-    country: 'FR',
-    coverPhoto: '10d77697-2165-4b89-bb3c-a57f81e9c9d0',
-    createdAt: '2020-09-18T11:05:22.059Z',
-    creationYear: '1871',
-    description: 'Lorem ipsum',
-    id: 'fe2851b6-ef6c-439f-bf47-fc934d356511',
-    institutionType: 'PRIVATE',
-    internationalStudents: 700,
-    logo: 'a340753b-28d6-40da-8f2c-72b5379ec66c',
-    name: 'EM Normandie',
-    published: true,
-    schools: { nextToken: null },
-    slug: 'em-normandie-paris',
-    totalStudents: 4500,
-    updatedAt: '2020-09-23T11:32:28.030Z'
-};
 
 const mockedIsLoading = jest.fn().mockReturnValue(false);
 
