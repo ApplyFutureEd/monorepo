@@ -2,8 +2,10 @@ import {
     getSchool,
     GetSchoolQuery,
     updateSchool,
+    UpdateSchoolInput,
     UpdateSchoolMutation
 } from '@applyfuture/graphql';
+import { School } from '@applyfuture/models';
 import {
     convertUnitToSeconds,
     graphql,
@@ -29,10 +31,13 @@ const UpdateSchoolPage: FC = () => {
         actions: FormikHelpers<SchoolFormValues>
     ) => {
         try {
-            const school = {
+            const school: any = {
                 ...values,
                 slug: kebabCase(`${values.name}`)
             };
+
+            delete school.programs;
+
             graphql<UpdateSchoolMutation>(updateSchool, {
                 input: school
             });
