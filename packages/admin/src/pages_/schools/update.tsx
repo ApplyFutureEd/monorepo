@@ -2,17 +2,9 @@ import {
     getSchool,
     GetSchoolQuery,
     updateSchool,
-    UpdateSchoolInput,
     UpdateSchoolMutation
 } from '@applyfuture/graphql';
-import { School } from '@applyfuture/models';
-import {
-    convertUnitToSeconds,
-    graphql,
-    toast,
-    useQuery,
-    withPrivateAccess
-} from '@applyfuture/utils';
+import { graphql, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import SchoolForm, { SchoolFormValues } from '@components/forms/school/SchoolForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { FormikHelpers } from 'formik';

@@ -1,8 +1,6 @@
 import {
     createSchool,
     CreateSchoolMutation,
-    getSchool,
-    GetSchoolQuery,
     listSchools,
     ListSchoolsQuery
 } from '@applyfuture/graphql';

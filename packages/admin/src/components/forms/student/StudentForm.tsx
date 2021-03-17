@@ -56,8 +56,7 @@ export type StudentFormValues = {
     birthday: string | null;
     educationCountry: string | null;
     cae?: string;
-    celi?: string;
-    cils?: string;
+    'celi-cils-it-plida'?: string;
     city: string | null;
     country: string | null;
     'dalf-delf'?: string;
@@ -76,7 +75,6 @@ export type StudentFormValues = {
     guardianLastName: string | null;
     highestEducationLevel: number | null;
     ielts?: string;
-    it?: string;
     'last-3-transcript-1'?: string;
     'last-3-transcript-2'?: string;
     'last-3-transcript-3'?: string;
@@ -95,7 +93,6 @@ export type StudentFormValues = {
     passportNumber: string | null;
     passportPhoto?: string;
     phoneNumber: string | null;
-    plida?: string;
     refusedVisa: boolean | null;
     refusedVisaReason: string | null;
     resume?: string;
@@ -285,9 +282,11 @@ const StudentForm: FC<Props> = (props) => {
         address: '',
         birthday: null,
         cae: '',
+        'celi-cils-it-plida': '',
         city: '',
         country: '',
         'dalf-delf': '',
+        dele: '',
         educationCountry: '',
         email: '',
         fatherFirstName: '',
@@ -297,6 +296,7 @@ const StudentForm: FC<Props> = (props) => {
         firstName: '',
         gender: '',
         gmat: '',
+        goethe: '',
         gradePointAverage: 0,
         guardianFirstName: '',
         guardianLastName: '',
@@ -389,9 +389,11 @@ const StudentForm: FC<Props> = (props) => {
                 address: student.address,
                 birthday: student.birthday,
                 cae: findDocument(documents, 'cae') || '',
+                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
                 city: student.city,
                 country: student.country,
                 'dalf-delf': findDocument(documents, 'dalf-delf') || '',
+                dele: findDocument(documents, 'dele') || '',
                 educationCountry: student.educationCountry,
                 email: student.email,
                 fatherFirstName: student.fatherFirstName,
@@ -401,6 +403,7 @@ const StudentForm: FC<Props> = (props) => {
                 firstName: student.firstName,
                 gender: student.gender,
                 gmat: findDocument(documents, 'gmat') || '',
+                goethe: findDocument(documents, 'goethe') || '',
                 gradePointAverage: student.gradePointAverage,
                 guardianFirstName: student.guardianFirstName,
                 guardianLastName: student.guardianLastName,
