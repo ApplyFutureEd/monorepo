@@ -1,6 +1,6 @@
 import { SearchableProgramFilterInput } from '@applyfuture/graphql';
 import { Button, Drawer } from '@applyfuture/ui';
-import FiltersForm from '@components/programs/filters/FiltersForm';
+import ProgramsFilterForm from '@components/forms/programs-filter/ProgramsFilterForm';
 import Tabs from '@components/programs/filters/Tabs';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -40,7 +40,7 @@ const Filters: FC<Props> = (props) => {
             <Drawer open={open} title={t('programs:filters')} onClose={handleClose}>
                 <Tabs currentTab={currentTab} handleCurrentTab={handleCurrentTab} />
                 <div className="px-4 py-6 h-full sm:px-6">
-                    <FiltersForm
+                    <ProgramsFilterForm
                         currentTab={currentTab}
                         handleClose={handleClose}
                         handleFilter={handleFilter}

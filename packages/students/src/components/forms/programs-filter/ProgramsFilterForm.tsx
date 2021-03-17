@@ -28,7 +28,7 @@ type Props = {
     handleFilter: (filter: SearchableProgramFilterInput) => void;
 };
 
-const FiltersForm: FC<Props> = (props) => {
+const ProgramsFilterForm: FC<Props> = (props) => {
     const { currentTab, handleClose, handleFilter } = props;
     const { t } = useTranslation();
 
@@ -79,16 +79,13 @@ const FiltersForm: FC<Props> = (props) => {
         nationality: string;
         testCambridgeAdvanced: string;
         testCambridgeFirst: string;
-        testCeli: string;
-        testCils: string;
+        testCeliCilsItPlida: string;
         testDele: string;
         testDelfdalf: string;
         testGmat: string;
         testGoethe: string;
         testGre: string;
         testIelts: string;
-        testIt: string;
-        testPlida: string;
         testTagemage: string;
         testTcftef: string;
         testToefl: string;
@@ -111,16 +108,13 @@ const FiltersForm: FC<Props> = (props) => {
         nationality: '',
         testCambridgeAdvanced: '',
         testCambridgeFirst: '',
-        testCeli: '',
-        testCils: '',
+        testCeliCilsItPlida: '',
         testDele: '',
         testDelfdalf: '',
         testGmat: '',
         testGoethe: '',
         testGre: '',
         testIelts: '',
-        testIt: '',
-        testPlida: '',
         testTagemage: '',
         testTcftef: '',
         testToefl: '',
@@ -150,16 +144,13 @@ const FiltersForm: FC<Props> = (props) => {
                 nationality: '',
                 testCambridgeAdvanced: '',
                 testCambridgeFirst: '',
-                testCeli: '',
-                testCils: '',
+                testCeliCilsItPlida: '',
                 testDele: '',
                 testDelfdalf: '',
                 testGmat: '',
                 testGoethe: '',
                 testGre: '',
                 testIelts: '',
-                testIt: '',
-                testPlida: '',
                 testTagemage: '',
                 testTcftef: '',
                 testToefl: '',
@@ -549,48 +540,16 @@ const FiltersForm: FC<Props> = (props) => {
 
                             <div className="flex space-x-4">
                                 <div className="w-1/4">
-                                    <Field id="testCeli" name="testCeli">
+                                    <Field id="testCeliCilsItPlida" name="testCeliCilsItPlida">
                                         {(fieldProps: FieldProps) => (
                                             <Select
-                                                label={`${t('profile:celi')} (C2 - A1)`}
+                                                label={`${t(
+                                                    'profile:celi-cils-it-plida'
+                                                )} (C2 - A1)`}
                                                 options={languageLevelsOptions}
-                                                tooltip={t('profile:test-celi-tooltip')}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                </div>
-                                <div className="w-1/4">
-                                    <Field id="testCils" name="testCils">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                label={`${t('profile:cils')} (C2 - A1)`}
-                                                options={languageLevelsOptions}
-                                                tooltip={t('profile:test-cils-tooltip')}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                </div>
-                                <div className="w-1/4">
-                                    <Field id="testIt" name="testIt">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                label={`${t('profile:it')} (C2 - A1)`}
-                                                options={languageLevelsOptions}
-                                                tooltip={t('profile:test-it-tooltip')}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                </div>
-                                <div className="w-1/4">
-                                    <Field id="testPlida" name="testPlida">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                label={`${t('profile:plida')} (C2 - A1)`}
-                                                options={languageLevelsOptions}
-                                                tooltip={t('profile:test-plida-tooltip')}
+                                                tooltip={t(
+                                                    'profile:test-celi-cils-it-plida-tooltip'
+                                                )}
                                                 {...fieldProps}
                                             />
                                         )}
@@ -669,4 +628,4 @@ const FiltersForm: FC<Props> = (props) => {
     );
 };
 
-export default FiltersForm;
+export default ProgramsFilterForm;

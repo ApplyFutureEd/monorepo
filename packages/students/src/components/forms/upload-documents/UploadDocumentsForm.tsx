@@ -31,8 +31,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     type FormValues = {
         cae: string;
-        celi: string;
-        cils: string;
+        'celi-cils-it-plida': string;
         'dalf-delf': string;
         dele: string;
         fce: string;
@@ -40,13 +39,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         goethe: string;
         gre: string;
         ielts: string;
-        it: string;
         'last-3-transcript-1': string;
         'last-3-transcript-2': string;
         'last-3-transcript-3': string;
         passport: string;
         passportPhoto: string;
-        plida: string;
         resume: string;
         tageMage: string;
         'tef-tcf': string;
@@ -57,8 +54,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     const [initialValues, setInitialValues] = useState<FormValues>({
         cae: '',
-        celi: '',
-        cils: '',
+        'celi-cils-it-plida': '',
         'dalf-delf': '',
         dele: '',
         fce: '',
@@ -66,13 +62,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         goethe: '',
         gre: '',
         ielts: '',
-        it: '',
         'last-3-transcript-1': '',
         'last-3-transcript-2': '',
         'last-3-transcript-3': '',
         passport: '',
         passportPhoto: '',
-        plida: '',
         resume: '',
         tageMage: '',
         'tef-tcf': '',
@@ -84,8 +78,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         if (student && documents) {
             setInitialValues({
                 cae: findDocument(documents, 'cae') || '',
-                celi: findDocument(documents, 'celi') || '',
-                cils: findDocument(documents, 'cils') || '',
+                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
                 'dalf-delf': findDocument(documents, 'dalf-delf') || '',
                 dele: findDocument(documents, 'dele') || '',
                 fce: findDocument(documents, 'fce') || '',
@@ -93,13 +86,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 goethe: findDocument(documents, 'goethe') || '',
                 gre: findDocument(documents, 'gre') || '',
                 ielts: findDocument(documents, 'ielts') || '',
-                it: findDocument(documents, 'it') || '',
                 'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
                 'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
                 'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
                 passport: findDocument(documents, 'passport') || '',
                 passportPhoto: findDocument(documents, 'passport-photo') || '',
-                plida: findDocument(documents, 'plida') || '',
                 resume: findDocument(documents, 'resume') || '',
                 tageMage: findDocument(documents, 'tage-mage') || '',
                 'tef-tcf': findDocument(documents, 'tef-tcf') || '',
@@ -113,8 +104,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         try {
             const documentIds = [
                 'cae',
-                'cils',
-                'celi',
+                'celi-cils-it-plida',
                 'dalf-delf',
                 'dele',
                 'fce',
@@ -122,13 +112,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 'goethe',
                 'gre',
                 'ielts',
-                'it',
                 'last-3-transcript-1',
                 'last-3-transcript-2',
                 'last-3-transcript-3',
                 'passport',
                 'passportPhoto',
-                'plida',
                 'resume',
                 'tageMage',
                 'tef-tcf',
@@ -399,41 +387,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="celi" name="celi">
+                                <Field id="celi-cils-it-plida" name="celi-cils-it-plida">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
-                                            label={t('profile:celi')}
-                                            student={student}
-                                            {...fieldProps}
-                                        />
-                                    )}
-                                </Field>
-                                <Field id="cils" name="cils">
-                                    {(fieldProps: FieldProps) => (
-                                        <FileUploader
-                                            isLoading={isLoading}
-                                            label={t('profile:cils')}
-                                            student={student}
-                                            {...fieldProps}
-                                        />
-                                    )}
-                                </Field>
-                                <Field id="it" name="it">
-                                    {(fieldProps: FieldProps) => (
-                                        <FileUploader
-                                            isLoading={isLoading}
-                                            label={t('profile:it')}
-                                            student={student}
-                                            {...fieldProps}
-                                        />
-                                    )}
-                                </Field>
-                                <Field id="plida" name="plida">
-                                    {(fieldProps: FieldProps) => (
-                                        <FileUploader
-                                            isLoading={isLoading}
-                                            label={t('profile:plida')}
+                                            label={t('profile:celi-cils-it-plida')}
                                             student={student}
                                             {...fieldProps}
                                         />

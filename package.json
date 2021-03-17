@@ -13,7 +13,8 @@
         "test": "jest --coverage",
         "test:watch": "jest --watch",
         "commit": "git add . && cz",
-        "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'"
+        "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
+        "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src"
     },
     "workspaces": [
         "packages/*"
