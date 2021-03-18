@@ -25,15 +25,6 @@ export const createSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -73,8 +64,11 @@ export const createSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage
@@ -112,15 +106,6 @@ export const updateSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -160,8 +145,11 @@ export const updateSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage
@@ -199,15 +187,6 @@ export const deleteSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -247,8 +226,11 @@ export const deleteSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage
@@ -311,8 +293,11 @@ export const createProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
+      testCeliCilsItPlida
+      testDele
       testDelfdalf
       testGmat
+      testGoethe
       testGre
       testIelts
       testTagemage
@@ -339,9 +324,6 @@ export const createProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt
@@ -400,8 +382,11 @@ export const updateProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
+      testCeliCilsItPlida
+      testDele
       testDelfdalf
       testGmat
+      testGoethe
       testGre
       testIelts
       testTagemage
@@ -428,9 +413,6 @@ export const updateProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt
@@ -489,8 +471,11 @@ export const deleteProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
+      testCeliCilsItPlida
+      testDele
       testDelfdalf
       testGmat
+      testGoethe
       testGre
       testIelts
       testTagemage
@@ -517,9 +502,6 @@ export const deleteProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt
@@ -589,6 +571,9 @@ export const createStudent = /* GraphQL */ `
       testTagemage
       testCambridgeFirst
       testCambridgeAdvanced
+      testGoethe
+      testDele
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -599,8 +584,11 @@ export const createStudent = /* GraphQL */ `
       testTagemageDate
       testCambridgeFirstDate
       testCambridgeAdvancedDate
+      testGoetheDate
+      testDeleDate
+      testCeliCilsItPlidaDate
       testEnglishPending
-      testFrenchPending
+      testOtherLanguagesPending
       testLogicAndReasoningPending
       validVisa
       refusedVisa
@@ -723,6 +711,9 @@ export const updateStudent = /* GraphQL */ `
       testTagemage
       testCambridgeFirst
       testCambridgeAdvanced
+      testGoethe
+      testDele
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -733,8 +724,11 @@ export const updateStudent = /* GraphQL */ `
       testTagemageDate
       testCambridgeFirstDate
       testCambridgeAdvancedDate
+      testGoetheDate
+      testDeleDate
+      testCeliCilsItPlidaDate
       testEnglishPending
-      testFrenchPending
+      testOtherLanguagesPending
       testLogicAndReasoningPending
       validVisa
       refusedVisa
@@ -857,6 +851,9 @@ export const deleteStudent = /* GraphQL */ `
       testTagemage
       testCambridgeFirst
       testCambridgeAdvanced
+      testGoethe
+      testDele
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -867,8 +864,11 @@ export const deleteStudent = /* GraphQL */ `
       testTagemageDate
       testCambridgeFirstDate
       testCambridgeAdvancedDate
+      testGoetheDate
+      testDeleDate
+      testCeliCilsItPlidaDate
       testEnglishPending
-      testFrenchPending
+      testOtherLanguagesPending
       testLogicAndReasoningPending
       validVisa
       refusedVisa
@@ -994,6 +994,9 @@ export const createDocument = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1004,8 +1007,11 @@ export const createDocument = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1111,6 +1117,9 @@ export const updateDocument = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1121,8 +1130,11 @@ export const updateDocument = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1228,6 +1240,9 @@ export const deleteDocument = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1238,8 +1253,11 @@ export const deleteDocument = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1345,6 +1363,9 @@ export const createApplication = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1355,8 +1376,11 @@ export const createApplication = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1462,8 +1486,11 @@ export const createApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
+        testCeliCilsItPlida
+        testDele
         testDelfdalf
         testGmat
+        testGoethe
         testGre
         testIelts
         testTagemage
@@ -1561,6 +1588,9 @@ export const updateApplication = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1571,8 +1601,11 @@ export const updateApplication = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1678,8 +1711,11 @@ export const updateApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
+        testCeliCilsItPlida
+        testDele
         testDelfdalf
         testGmat
+        testGoethe
         testGre
         testIelts
         testTagemage
@@ -1777,6 +1813,9 @@ export const deleteApplication = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1787,8 +1826,11 @@ export const deleteApplication = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -1894,8 +1936,11 @@ export const deleteApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
+        testCeliCilsItPlida
+        testDele
         testDelfdalf
         testGmat
+        testGoethe
         testGre
         testIelts
         testTagemage
@@ -1995,6 +2040,9 @@ export const createSearchAlert = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -2005,8 +2053,11 @@ export const createSearchAlert = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -2112,6 +2163,9 @@ export const updateSearchAlert = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -2122,8 +2176,11 @@ export const updateSearchAlert = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -2229,6 +2286,9 @@ export const deleteSearchAlert = /* GraphQL */ `
         testTagemage
         testCambridgeFirst
         testCambridgeAdvanced
+        testGoethe
+        testDele
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -2239,8 +2299,11 @@ export const deleteSearchAlert = /* GraphQL */ `
         testTagemageDate
         testCambridgeFirstDate
         testCambridgeAdvancedDate
+        testGoetheDate
+        testDeleDate
+        testCeliCilsItPlidaDate
         testEnglishPending
-        testFrenchPending
+        testOtherLanguagesPending
         testLogicAndReasoningPending
         validVisa
         refusedVisa
@@ -2336,6 +2399,9 @@ export const createFeedback = /* GraphQL */ `
           testTagemage
           testCambridgeFirst
           testCambridgeAdvanced
+          testGoethe
+          testDele
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -2346,8 +2412,11 @@ export const createFeedback = /* GraphQL */ `
           testTagemageDate
           testCambridgeFirstDate
           testCambridgeAdvancedDate
+          testGoetheDate
+          testDeleDate
+          testCeliCilsItPlidaDate
           testEnglishPending
-          testFrenchPending
+          testOtherLanguagesPending
           testLogicAndReasoningPending
           validVisa
           refusedVisa
@@ -2423,8 +2492,11 @@ export const createFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage
@@ -2496,6 +2568,9 @@ export const updateFeedback = /* GraphQL */ `
           testTagemage
           testCambridgeFirst
           testCambridgeAdvanced
+          testGoethe
+          testDele
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -2506,8 +2581,11 @@ export const updateFeedback = /* GraphQL */ `
           testTagemageDate
           testCambridgeFirstDate
           testCambridgeAdvancedDate
+          testGoetheDate
+          testDeleDate
+          testCeliCilsItPlidaDate
           testEnglishPending
-          testFrenchPending
+          testOtherLanguagesPending
           testLogicAndReasoningPending
           validVisa
           refusedVisa
@@ -2583,8 +2661,11 @@ export const updateFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage
@@ -2656,6 +2737,9 @@ export const deleteFeedback = /* GraphQL */ `
           testTagemage
           testCambridgeFirst
           testCambridgeAdvanced
+          testGoethe
+          testDele
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -2666,8 +2750,11 @@ export const deleteFeedback = /* GraphQL */ `
           testTagemageDate
           testCambridgeFirstDate
           testCambridgeAdvancedDate
+          testGoetheDate
+          testDeleDate
+          testCeliCilsItPlidaDate
           testEnglishPending
-          testFrenchPending
+          testOtherLanguagesPending
           testLogicAndReasoningPending
           validVisa
           refusedVisa
@@ -2743,8 +2830,11 @@ export const deleteFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
+          testCeliCilsItPlida
+          testDele
           testDelfdalf
           testGmat
+          testGoethe
           testGre
           testIelts
           testTagemage

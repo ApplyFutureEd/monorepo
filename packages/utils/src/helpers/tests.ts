@@ -5,5 +5,14 @@ export const englishTests = [
     'testCambridgeFirst',
     'testCambridgeAdvanced'
 ];
-export const frenchTests = ['testTcftef', 'testDelfdalf'];
+export const otherLanguagesTests = [
+    'testTcftef',
+    'testDelfdalf',
+    'testGoethe',
+    'testDele',
+    'testCeli',
+    'testCils',
+    'testIt',
+    'testPlida'
+];
 export const logicAndReasoningTests = ['testGre', 'testGmat', 'testTagemage'];

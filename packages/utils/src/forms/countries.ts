@@ -793,6 +793,12 @@ export const englishSpokenCountries = ['EN', 'US', 'GB', 'CA', 'AU', 'ZA', 'IE',
 
 export const frenchSpokenCountries = ['FR'];
 
+export const spanishSpokenCountries = ['ES'];
+
+export const germanSpokenCountries = ['DE'];
+
+export const italianSpokenCountries = ['IT'];
+
 export const supportedCountries = countries.filter((country) =>
     ['FR', 'CH', 'LV', 'DE', 'UK', 'ES', 'IE', 'CN', 'MT', 'HR', 'IT', 'HU', 'NL'].includes(
         country.value

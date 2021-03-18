@@ -4,7 +4,13 @@ import { differenceInDays } from 'date-fns';
 import intersection from 'lodash/intersection';
 import sumBy from 'lodash/sumBy';
 
-import { englishSpokenCountries, frenchSpokenCountries } from '../forms/countries';
+import {
+    englishSpokenCountries,
+    frenchSpokenCountries,
+    germanSpokenCountries,
+    italianSpokenCountries,
+    spanishSpokenCountries
+} from '../forms/countries';
 
 export const formatTestCambridgeFirstValue = (
     value: number
@@ -174,10 +180,10 @@ export const checkEligibility = (
                             ? t('programs:test-too-low', {
                                   programValue: `(${program.testToefl})`,
                                   studentValue: `(${student?.testToefl})`,
-                                  test: t('programs:toefl')
+                                  test: t('profile:toefl')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:toefl')
+                                  test: t('profile:toefl')
                               })
                     }
                 ]
@@ -195,10 +201,10 @@ export const checkEligibility = (
                             ? t('programs:test-too-low', {
                                   programValue: `(${program.testIelts})`,
                                   studentValue: `(${student?.testIelts})`,
-                                  test: t('programs:ielts')
+                                  test: t('profile:ielts')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:ielts')
+                                  test: t('profile:ielts')
                               })
                     }
                 ]
@@ -216,10 +222,10 @@ export const checkEligibility = (
                             ? t('programs:test-too-low', {
                                   programValue: `(${program.testToeic})`,
                                   studentValue: `(${student?.testToeic})`,
-                                  test: t('programs:toeic')
+                                  test: t('profile:toeic')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:toeic')
+                                  test: t('profile:toeic')
                               })
                     }
                 ]
@@ -244,10 +250,10 @@ export const checkEligibility = (
                                   studentValue: `(${formatTestCambridgeFirstValue(
                                       student?.testCambridgeFirst
                                   )})`,
-                                  test: t('programs:cambridge-first')
+                                  test: t('profile:cambridge-first')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:cambridge-first')
+                                  test: t('profile:cambridge-first')
                               })
                     }
                 ]
@@ -272,10 +278,10 @@ export const checkEligibility = (
                                   studentValue: `(${formatTestCambridgeAdvancedValue(
                                       student?.testCambridgeAdvanced
                                   )})`,
-                                  test: t('programs:cambridge-advanced')
+                                  test: t('profile:cambridge-advanced')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:cambridge-advanced')
+                                  test: t('profile:cambridge-advanced')
                               })
                     }
                 ]
@@ -326,7 +332,7 @@ export const checkEligibility = (
             };
         }
 
-        /* French tests */
+        /* Other languages tests */
 
         if (student?.testTcftef && student?.testTcftef < program.testTcftef) {
             eligibility = {
@@ -343,10 +349,10 @@ export const checkEligibility = (
                                   studentValue: `(${formatLanguageTestLevelsValue(
                                       student?.testTcftef
                                   )})`,
-                                  test: t('programs:tcf-tef')
+                                  test: t('profile:tcf-tef')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:tcf-tef')
+                                  test: t('profile:tcf-tef')
                               })
                     }
                 ]
@@ -368,10 +374,10 @@ export const checkEligibility = (
                                   studentValue: `(${formatLanguageTestLevelsValue(
                                       student?.testDelfdalf
                                   )})`,
-                                  test: t('programs:delf-dalf')
+                                  test: t('profile:delf-dalf')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:delf-dalf')
+                                  test: t('profile:delf-dalf')
                               })
                     }
                 ]
@@ -404,6 +410,84 @@ export const checkEligibility = (
             };
         }
 
+        if (student?.testGoethe && student?.testGoethe < program.testGoethe) {
+            eligibility = {
+                isEligible: false,
+                reasons: [
+                    ...eligibility.reasons,
+                    {
+                        id: 'testGoethe',
+                        message: student?.testGoethe
+                            ? t('programs:test-too-low', {
+                                  programValue: `(${formatLanguageTestLevelsValue(
+                                      program.testGoethe
+                                  )})`,
+                                  studentValue: `(${formatLanguageTestLevelsValue(
+                                      student?.testGoethe
+                                  )})`,
+                                  test: t('profile:goethe')
+                              })
+                            : t('programs:test-not-provided', {
+                                  test: t('profile:goethe')
+                              })
+                    }
+                ]
+            };
+        }
+
+        if (student?.testDele && student?.testDele < program.testDele) {
+            eligibility = {
+                isEligible: false,
+                reasons: [
+                    ...eligibility.reasons,
+                    {
+                        id: 'testDele',
+                        message: student?.testDele
+                            ? t('programs:test-too-low', {
+                                  programValue: `(${formatLanguageTestLevelsValue(
+                                      program.testDele
+                                  )})`,
+                                  studentValue: `(${formatLanguageTestLevelsValue(
+                                      student?.testDele
+                                  )})`,
+                                  test: t('profile:dele')
+                              })
+                            : t('programs:test-not-provided', {
+                                  test: t('profile:dele')
+                              })
+                    }
+                ]
+            };
+        }
+
+        if (
+            student?.testCeliCilsItPlida &&
+            student?.testCeliCilsItPlida < program.testCeliCilsItPlida
+        ) {
+            eligibility = {
+                isEligible: false,
+                reasons: [
+                    ...eligibility.reasons,
+                    {
+                        id: 'testCeliCilsItPlida',
+                        message: student?.testCeliCilsItPlida
+                            ? t('programs:test-too-low', {
+                                  programValue: `(${formatLanguageTestLevelsValue(
+                                      program.testCeliCilsItPlida
+                                  )})`,
+                                  studentValue: `(${formatLanguageTestLevelsValue(
+                                      student?.testCeliCilsItPlida
+                                  )})`,
+                                  test: t('profile:celi-cils-it-plida')
+                              })
+                            : t('programs:test-not-provided', {
+                                  test: t('profile:celi-cils-it-plida')
+                              })
+                    }
+                ]
+            };
+        }
+
         /* Logic and reasoning tests */
 
         if (student?.testGre && student?.testGre < program.testGre) {
@@ -417,10 +501,10 @@ export const checkEligibility = (
                             ? t('programs:test-too-low', {
                                   programValue: `(${program.testGre})`,
                                   studentValue: `(${student?.testGre})`,
-                                  test: t('programs:gre')
+                                  test: t('profile:gre')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:gre')
+                                  test: t('profile:gre')
                               })
                     }
                 ]
@@ -438,10 +522,10 @@ export const checkEligibility = (
                             ? t('programs:test-too-low', {
                                   programValue: `(${program.testGmat})`,
                                   studentValue: `(${student?.testGmat})`,
-                                  test: t('programs:gmat')
+                                  test: t('profile:gmat')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('programs:gmat')
+                                  test: t('profile:gmat')
                               })
                     }
                 ]
@@ -651,6 +735,36 @@ export const checkEligibility = (
                 schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
+    const hasSpanishTestBypass =
+        (student?.nationality && spanishSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && spanishSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && spanishSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                spanishSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    const hasGermanTestBypass =
+        (student?.nationality && germanSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && germanSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && germanSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                germanSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    const hasItalianTestBypass =
+        (student?.nationality && italianSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && italianSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && italianSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                italianSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
     if (hasEnglishTestBypass) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) =>
@@ -667,6 +781,24 @@ export const checkEligibility = (
     if (hasFrenchTestBypass) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testTcftef', 'testDelfdalf'].includes(reason.id)
+        );
+    }
+
+    if (hasSpanishTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testDele'].includes(reason.id)
+        );
+    }
+
+    if (hasGermanTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testGoethe'].includes(reason.id)
+        );
+    }
+
+    if (hasItalianTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testCeliCilsItPlida'].includes(reason.id)
         );
     }
 

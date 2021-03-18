@@ -91,6 +91,7 @@ export type ProgramFormValues = {
     submissionDeadline: Date;
     testCambridgeAdvanced: number;
     testCambridgeFirst: number;
+    testCeliCilsItPlida: number;
     testDelfdalf: number;
     testGmat: number;
     testGre: number;
@@ -99,6 +100,8 @@ export type ProgramFormValues = {
     testTcftef: number;
     testToefl: number;
     testToeic: number;
+    testGoethe: number;
+    testDele: number;
 };
 
 const ProgramForm: FC<Props> = (props) => {
@@ -235,8 +238,11 @@ const ProgramForm: FC<Props> = (props) => {
         submissionDeadline: new Date(),
         testCambridgeAdvanced: -1,
         testCambridgeFirst: -1,
+        testCeliCilsItPlida: -1,
+        testDele: -1,
         testDelfdalf: -1,
         testGmat: -1,
+        testGoethe: -1,
         testGre: -1,
         testIelts: -1,
         testTagemage: -1,
@@ -790,6 +796,47 @@ const ProgramForm: FC<Props> = (props) => {
                                             )}
                                         </Field>
                                     </div>
+                                    <div className="w-1/4">
+                                        <Field id="testGoethe" name="testGoethe">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label={`${t('profile:goethe')} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-1/4">
+                                        <Field id="testDele" name="testDele">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label={`${t('profile:dele')} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex space-x-4">
+                                    <div className="w-1/4">
+                                        <Field id="testCeliCilsItPlida" name="testCeliCilsItPlida">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label={`${t(
+                                                        'profile:celicilsitplida'
+                                                    )} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-1/4" />
                                     <div className="w-1/4" />
                                     <div className="w-1/4" />
                                 </div>

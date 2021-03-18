@@ -69,7 +69,7 @@ export const checkCompletion = (
             testCambridgeFirst,
             testCambridgeAdvanced,
             testEnglishPending,
-            testFrenchPending,
+            testOtherLanguagesPending,
             testLogicAndReasoningPending,
             validVisa,
             refusedVisa
@@ -121,7 +121,7 @@ export const checkCompletion = (
             testCambridgeFirst ||
             testCambridgeAdvanced ||
             testEnglishPending ||
-            testFrenchPending ||
+            testOtherLanguagesPending ||
             testLogicAndReasoningPending
         ) {
             completion.testScores = true;

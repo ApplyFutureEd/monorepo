@@ -27,13 +27,7 @@ type School
     slug: String!
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
-    stepsTemplates: [ApplicationStepsTemplate]!
     contractStatus: String!
-}
-
-type ApplicationStepsTemplate {
-    targets: [String]
-    steps: [ApplicationStep]
 }
 
 type Program
@@ -84,8 +78,11 @@ type Program
     submissionDeadline: String!
     testCambridgeAdvanced: Float!
     testCambridgeFirst: Float!
+    testCeliCilsItPlida: Float!
+    testDele: Float!
     testDelfdalf: Float!
     testGmat: Float!
+    testGoethe: Float!
     testGre: Float!
     testIelts: Float!
     testTagemage: Float!
@@ -155,6 +152,9 @@ type Student
     testTagemage: Float
     testCambridgeFirst: Float
     testCambridgeAdvanced: Float
+    testGoethe: Float
+    testDele: Float
+    testCeliCilsItPlida: Float
     testToeflDate: String
     testIeltsDate: String
     testToeicDate: String
@@ -165,8 +165,11 @@ type Student
     testTagemageDate: String
     testCambridgeFirstDate: String
     testCambridgeAdvancedDate: String
+    testGoetheDate: String
+    testDeleDate: String
+    testCeliCilsItPlidaDate: String
     testEnglishPending: Boolean
-    testFrenchPending: Boolean
+    testOtherLanguagesPending: Boolean
     testLogicAndReasoningPending: Boolean
     validVisa: Boolean
     refusedVisa: Boolean

@@ -67,17 +67,23 @@ const TestScoresForm: FC<Props> = (props) => {
         testCambridgeAdvancedDate: string | null;
         testCambridgeFirst: number | null;
         testCambridgeFirstDate: string | null;
+        testCeliCilsItPlida: number | null;
+        testCeliCilsItPlidaDate: string | null;
+        testDele: number | null;
+        testDeleDate: string | null;
         testDelfdalf: number | null;
         testDelfdalfDate: string | null;
         testEnglishPending: boolean | null;
-        testFrenchPending: boolean | null;
         testGmat: number | null;
         testGmatDate: string | null;
+        testGoethe: number | null;
+        testGoetheDate: string | null;
         testGre: number | null;
         testGreDate: string | null;
         testIelts: number | null;
         testIeltsDate: string | null;
         testLogicAndReasoningPending: boolean | null;
+        testOtherLanguagesPending: boolean | null;
         testTagemage: number | null;
         testTagemageDate: string | null;
         testTcftef: number | null;
@@ -93,17 +99,23 @@ const TestScoresForm: FC<Props> = (props) => {
         testCambridgeAdvancedDate: null,
         testCambridgeFirst: null,
         testCambridgeFirstDate: null,
+        testCeliCilsItPlida: null,
+        testCeliCilsItPlidaDate: null,
+        testDele: null,
+        testDeleDate: null,
         testDelfdalf: null,
         testDelfdalfDate: null,
         testEnglishPending: false,
-        testFrenchPending: false,
         testGmat: null,
         testGmatDate: null,
+        testGoethe: null,
+        testGoetheDate: null,
         testGre: null,
         testGreDate: null,
         testIelts: null,
         testIeltsDate: null,
         testLogicAndReasoningPending: false,
+        testOtherLanguagesPending: false,
         testTagemage: null,
         testTagemageDate: null,
         testTcftef: null,
@@ -121,17 +133,23 @@ const TestScoresForm: FC<Props> = (props) => {
                 testCambridgeAdvancedDate: student.testCambridgeAdvancedDate,
                 testCambridgeFirst: student.testCambridgeFirst,
                 testCambridgeFirstDate: student.testCambridgeFirstDate,
+                testCeliCilsItPlida: student.testCeliCilsItPlida,
+                testCeliCilsItPlidaDate: student.testCeliCilsItPlidaDate,
+                testDele: student.testDele,
+                testDeleDate: student.testDeleDate,
                 testDelfdalf: student.testDelfdalf,
                 testDelfdalfDate: student.testDelfdalfDate,
                 testEnglishPending: student.testEnglishPending,
-                testFrenchPending: student.testFrenchPending,
                 testGmat: student.testGmat,
                 testGmatDate: student.testGmatDate,
+                testGoethe: student.testGoethe,
+                testGoetheDate: student.testGoetheDate,
                 testGre: student.testGre,
                 testGreDate: student.testGreDate,
                 testIelts: student.testIelts,
                 testIeltsDate: student.testIeltsDate,
                 testLogicAndReasoningPending: student.testLogicAndReasoningPending,
+                testOtherLanguagesPending: student.testOtherLanguagesPending,
                 testTagemage: student.testTagemage,
                 testTagemageDate: student.testTagemageDate,
                 testTcftef: student.testTcftef,
@@ -331,7 +349,6 @@ const TestScoresForm: FC<Props> = (props) => {
                                     <div className="w-full sm:w-1/4" />
                                     <div className="w-full sm:w-1/4" />
                                 </div>
-
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/4">
                                         <Field id="testCambridgeFirst" name="testCambridgeFirst">
@@ -406,19 +423,27 @@ const TestScoresForm: FC<Props> = (props) => {
                         </Section>
                         <Section
                             description={
-                                <Field id="testFrenchPending" name="testFrenchPending">
+                                <Field
+                                    id="testOtherLanguagesPending"
+                                    name="testOtherLanguagesPending">
                                     {(fieldProps: FieldProps) => (
                                         <Checkbox
-                                            label={t('profile:no-french-tests')}
+                                            label={t('profile:no-other-languages-tests')}
                                             {...fieldProps}
                                             field={{
                                                 ...fieldProps.field,
                                                 onChange: () => {
                                                     setInitialValues({
                                                         ...values,
+                                                        testCeliCilsItPlida: null,
+                                                        testCeliCilsItPlidaDate: null,
+                                                        testDele: null,
+                                                        testDeleDate: null,
                                                         testDelfdalf: null,
                                                         testDelfdalfDate: null,
-                                                        testFrenchPending: !values.testFrenchPending,
+                                                        testGoethe: null,
+                                                        testGoetheDate: null,
+                                                        testOtherLanguagesPending: !values.testOtherLanguagesPending,
                                                         testTcftef: null,
                                                         testTcftefDate: null
                                                     });
@@ -429,14 +454,16 @@ const TestScoresForm: FC<Props> = (props) => {
                                 </Field>
                             }
                             isLoading={isLoading}
-                            title={t('profile:french-tests')}>
+                            title={t('profile:other-languages-tests')}>
                             <div className="mb-8 space-y-8">
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/4">
                                         <Field id="testTcftef" name="testTcftef">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={Boolean(values.testFrenchPending)}
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:tcf-tef')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
@@ -450,7 +477,9 @@ const TestScoresForm: FC<Props> = (props) => {
                                         <Field id="testTcftefDate" name="testTcftefDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={Boolean(values.testFrenchPending)}
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'TCF / TEF'
@@ -465,7 +494,9 @@ const TestScoresForm: FC<Props> = (props) => {
                                         <Field id="testDelfdalf" name="testDelfdalf">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
-                                                    disabled={Boolean(values.testFrenchPending)}
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={`${t('profile:delf-dalf')} (C2 - A1)`}
                                                     options={languageLevelsOptions}
@@ -479,10 +510,121 @@ const TestScoresForm: FC<Props> = (props) => {
                                         <Field id="testDelfdalfDate" name="testDelfdalfDate">
                                             {(fieldProps: FieldProps) => (
                                                 <DateInput
-                                                    disabled={Boolean(values.testFrenchPending)}
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
                                                     isLoading={isLoading}
                                                     label={t('profile:test-exam-date', {
                                                         test: 'DELF / DALF'
+                                                    })}
+                                                    maxDate={new Date()}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/4">
+                                        <Field id="testGoethe" name="testGoethe">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={`${t('profile:goethe')} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    tooltip={t('profile:test-goethe-tooltip')}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/4">
+                                        <Field id="testGoetheDate" name="testGoetheDate">
+                                            {(fieldProps: FieldProps) => (
+                                                <DateInput
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={t('profile:test-exam-date', {
+                                                        test: t('profile:goethe')
+                                                    })}
+                                                    maxDate={new Date()}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/4">
+                                        <Field id="testDele" name="testDele">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={`${t('profile:dele')} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    tooltip={t('profile:test-dele-tooltip')}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/4">
+                                        <Field id="testDeleDate" name="testDeleDate">
+                                            {(fieldProps: FieldProps) => (
+                                                <DateInput
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={t('profile:test-exam-date', {
+                                                        test: t('profile:dele')
+                                                    })}
+                                                    maxDate={new Date()}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
+                                    <div className="w-full sm:w-1/4">
+                                        <Field id="testCeliCilsItPlida" name="testCeliCilsItPlida">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={`${t(
+                                                        'profile:celi-cils-it-plida'
+                                                    )} (C2 - A1)`}
+                                                    options={languageLevelsOptions}
+                                                    tooltip={t(
+                                                        'profile:test-celi-cils-it-plida-tooltip'
+                                                    )}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/4">
+                                        <Field
+                                            id="testCeliCilsItPlidaDate"
+                                            name="testCeliCilsItPlidaDate">
+                                            {(fieldProps: FieldProps) => (
+                                                <DateInput
+                                                    disabled={Boolean(
+                                                        values.testOtherLanguagesPending
+                                                    )}
+                                                    isLoading={isLoading}
+                                                    label={t('profile:test-exam-date', {
+                                                        test: t('profile:celi-cils-it-plida')
                                                     })}
                                                     maxDate={new Date()}
                                                     {...fieldProps}
