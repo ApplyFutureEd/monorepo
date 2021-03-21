@@ -16,7 +16,7 @@ type School
     contactJobTitle: String
     contactName: String
     contactPhone: String
-    creationYear: String!
+    creationYear: Float!
     description: String
     id: ID!
     institutionType: String!
