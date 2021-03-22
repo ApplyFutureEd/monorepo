@@ -60,10 +60,7 @@ export const onCreateStudent = /* GraphQL */ `
       testCambridgeAdvanced
       testGoethe
       testDele
-      testCeli
-      testCils
-      testPlida
-      testIt
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -76,10 +73,7 @@ export const onCreateStudent = /* GraphQL */ `
       testCambridgeAdvancedDate
       testGoetheDate
       testDeleDate
-      testCeliDate
-      testCilsDate
-      testPlidaDate
-      testItDate
+      testCeliCilsItPlidaDate
       testEnglishPending
       testOtherLanguagesPending
       testLogicAndReasoningPending
@@ -203,10 +197,7 @@ export const onUpdateStudent = /* GraphQL */ `
       testCambridgeAdvanced
       testGoethe
       testDele
-      testCeli
-      testCils
-      testPlida
-      testIt
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -219,10 +210,7 @@ export const onUpdateStudent = /* GraphQL */ `
       testCambridgeAdvancedDate
       testGoetheDate
       testDeleDate
-      testCeliDate
-      testCilsDate
-      testPlidaDate
-      testItDate
+      testCeliCilsItPlidaDate
       testEnglishPending
       testOtherLanguagesPending
       testLogicAndReasoningPending
@@ -346,10 +334,7 @@ export const onDeleteStudent = /* GraphQL */ `
       testCambridgeAdvanced
       testGoethe
       testDele
-      testCeli
-      testCils
-      testPlida
-      testIt
+      testCeliCilsItPlida
       testToeflDate
       testIeltsDate
       testToeicDate
@@ -362,10 +347,7 @@ export const onDeleteStudent = /* GraphQL */ `
       testCambridgeAdvancedDate
       testGoetheDate
       testDeleDate
-      testCeliDate
-      testCilsDate
-      testPlidaDate
-      testItDate
+      testCeliCilsItPlidaDate
       testEnglishPending
       testOtherLanguagesPending
       testLogicAndReasoningPending
@@ -492,10 +474,7 @@ export const onCreateDocument = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -508,10 +487,7 @@ export const onCreateDocument = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -618,10 +594,7 @@ export const onUpdateDocument = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -634,10 +607,7 @@ export const onUpdateDocument = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -744,10 +714,7 @@ export const onDeleteDocument = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -760,10 +727,7 @@ export const onDeleteDocument = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -870,10 +834,7 @@ export const onCreateApplication = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -886,10 +847,7 @@ export const onCreateApplication = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -997,16 +955,13 @@ export const onCreateApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
-        testCeli
-        testCils
+        testCeliCilsItPlida
         testDele
         testDelfdalf
         testGmat
         testGoethe
         testGre
         testIelts
-        testIt
-        testPlida
         testTagemage
         testTcftef
         testToefl
@@ -1101,10 +1056,7 @@ export const onUpdateApplication = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1117,10 +1069,7 @@ export const onUpdateApplication = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -1228,16 +1177,13 @@ export const onUpdateApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
-        testCeli
-        testCils
+        testCeliCilsItPlida
         testDele
         testDelfdalf
         testGmat
         testGoethe
         testGre
         testIelts
-        testIt
-        testPlida
         testTagemage
         testTcftef
         testToefl
@@ -1332,10 +1278,7 @@ export const onDeleteApplication = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1348,10 +1291,7 @@ export const onDeleteApplication = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -1459,16 +1399,13 @@ export const onDeleteApplication = /* GraphQL */ `
         submissionDeadline
         testCambridgeAdvanced
         testCambridgeFirst
-        testCeli
-        testCils
+        testCeliCilsItPlida
         testDele
         testDelfdalf
         testGmat
         testGoethe
         testGre
         testIelts
-        testIt
-        testPlida
         testTagemage
         testTcftef
         testToefl
@@ -1565,10 +1502,7 @@ export const onCreateSearchAlert = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1581,10 +1515,7 @@ export const onCreateSearchAlert = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -1691,10 +1622,7 @@ export const onUpdateSearchAlert = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1707,10 +1635,7 @@ export const onUpdateSearchAlert = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -1817,10 +1742,7 @@ export const onDeleteSearchAlert = /* GraphQL */ `
         testCambridgeAdvanced
         testGoethe
         testDele
-        testCeli
-        testCils
-        testPlida
-        testIt
+        testCeliCilsItPlida
         testToeflDate
         testIeltsDate
         testToeicDate
@@ -1833,10 +1755,7 @@ export const onDeleteSearchAlert = /* GraphQL */ `
         testCambridgeAdvancedDate
         testGoetheDate
         testDeleDate
-        testCeliDate
-        testCilsDate
-        testPlidaDate
-        testItDate
+        testCeliCilsItPlidaDate
         testEnglishPending
         testOtherLanguagesPending
         testLogicAndReasoningPending
@@ -1933,10 +1852,7 @@ export const onCreateFeedback = /* GraphQL */ `
           testCambridgeAdvanced
           testGoethe
           testDele
-          testCeli
-          testCils
-          testPlida
-          testIt
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -1949,10 +1865,7 @@ export const onCreateFeedback = /* GraphQL */ `
           testCambridgeAdvancedDate
           testGoetheDate
           testDeleDate
-          testCeliDate
-          testCilsDate
-          testPlidaDate
-          testItDate
+          testCeliCilsItPlidaDate
           testEnglishPending
           testOtherLanguagesPending
           testLogicAndReasoningPending
@@ -2030,16 +1943,13 @@ export const onCreateFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2108,10 +2018,7 @@ export const onUpdateFeedback = /* GraphQL */ `
           testCambridgeAdvanced
           testGoethe
           testDele
-          testCeli
-          testCils
-          testPlida
-          testIt
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -2124,10 +2031,7 @@ export const onUpdateFeedback = /* GraphQL */ `
           testCambridgeAdvancedDate
           testGoetheDate
           testDeleDate
-          testCeliDate
-          testCilsDate
-          testPlidaDate
-          testItDate
+          testCeliCilsItPlidaDate
           testEnglishPending
           testOtherLanguagesPending
           testLogicAndReasoningPending
@@ -2205,16 +2109,13 @@ export const onUpdateFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2283,10 +2184,7 @@ export const onDeleteFeedback = /* GraphQL */ `
           testCambridgeAdvanced
           testGoethe
           testDele
-          testCeli
-          testCils
-          testPlida
-          testIt
+          testCeliCilsItPlida
           testToeflDate
           testIeltsDate
           testToeicDate
@@ -2299,10 +2197,7 @@ export const onDeleteFeedback = /* GraphQL */ `
           testCambridgeAdvancedDate
           testGoetheDate
           testDeleDate
-          testCeliDate
-          testCilsDate
-          testPlidaDate
-          testItDate
+          testCeliCilsItPlidaDate
           testEnglishPending
           testOtherLanguagesPending
           testLogicAndReasoningPending
@@ -2380,16 +2275,13 @@ export const onDeleteFeedback = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2425,15 +2317,6 @@ export const onCreateSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -2473,16 +2356,13 @@ export const onCreateSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2515,15 +2395,6 @@ export const onUpdateSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -2563,16 +2434,13 @@ export const onUpdateSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2605,15 +2473,6 @@ export const onDeleteSchool = /* GraphQL */ `
       totalStudents
       slug
       published
-      stepsTemplates {
-        targets
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-      }
       contractStatus
       createdAt
       updatedAt
@@ -2653,16 +2512,13 @@ export const onDeleteSchool = /* GraphQL */ `
           submissionDeadline
           testCambridgeAdvanced
           testCambridgeFirst
-          testCeli
-          testCils
+          testCeliCilsItPlida
           testDele
           testDelfdalf
           testGmat
           testGoethe
           testGre
           testIelts
-          testIt
-          testPlida
           testTagemage
           testTcftef
           testToefl
@@ -2720,16 +2576,13 @@ export const onCreateProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
-      testCeli
-      testCils
+      testCeliCilsItPlida
       testDele
       testDelfdalf
       testGmat
       testGoethe
       testGre
       testIelts
-      testIt
-      testPlida
       testTagemage
       testTcftef
       testToefl
@@ -2754,9 +2607,6 @@ export const onCreateProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt
@@ -2812,16 +2662,13 @@ export const onUpdateProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
-      testCeli
-      testCils
+      testCeliCilsItPlida
       testDele
       testDelfdalf
       testGmat
       testGoethe
       testGre
       testIelts
-      testIt
-      testPlida
       testTagemage
       testTcftef
       testToefl
@@ -2846,9 +2693,6 @@ export const onUpdateProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt
@@ -2904,16 +2748,13 @@ export const onDeleteProgram = /* GraphQL */ `
       submissionDeadline
       testCambridgeAdvanced
       testCambridgeFirst
-      testCeli
-      testCils
+      testCeliCilsItPlida
       testDele
       testDelfdalf
       testGmat
       testGoethe
       testGre
       testIelts
-      testIt
-      testPlida
       testTagemage
       testTcftef
       testToefl
@@ -2938,9 +2779,6 @@ export const onDeleteProgram = /* GraphQL */ `
         totalStudents
         slug
         published
-        stepsTemplates {
-          targets
-        }
         contractStatus
         createdAt
         updatedAt

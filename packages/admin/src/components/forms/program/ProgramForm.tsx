@@ -91,6 +91,7 @@ export type ProgramFormValues = {
     submissionDeadline: Date;
     testCambridgeAdvanced: number;
     testCambridgeFirst: number;
+    testCeliCilsItPlida: number;
     testDelfdalf: number;
     testGmat: number;
     testGre: number;
@@ -101,10 +102,6 @@ export type ProgramFormValues = {
     testToeic: number;
     testGoethe: number;
     testDele: number;
-    testCeli: number;
-    testCils: number;
-    testIt: number;
-    testPlida: number;
 };
 
 const ProgramForm: FC<Props> = (props) => {
@@ -241,16 +238,13 @@ const ProgramForm: FC<Props> = (props) => {
         submissionDeadline: new Date(),
         testCambridgeAdvanced: -1,
         testCambridgeFirst: -1,
-        testCeli: -1,
-        testCils: -1,
+        testCeliCilsItPlida: -1,
         testDele: -1,
         testDelfdalf: -1,
         testGmat: -1,
         testGoethe: -1,
         testGre: -1,
         testIelts: -1,
-        testIt: -1,
-        testPlida: -1,
         testTagemage: -1,
         testTcftef: -1,
         testToefl: -1,
@@ -829,53 +823,22 @@ const ProgramForm: FC<Props> = (props) => {
                                 </div>
                                 <div className="flex space-x-4">
                                     <div className="w-1/4">
-                                        <Field id="testCeli" name="testCeli">
+                                        <Field id="testCeliCilsItPlida" name="testCeliCilsItPlida">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
                                                     isLoading={isLoading}
-                                                    label={`${t('profile:celi')} (C2 - A1)`}
+                                                    label={`${t(
+                                                        'profile:celicilsitplida'
+                                                    )} (C2 - A1)`}
                                                     options={languageLevelsOptions}
                                                     {...fieldProps}
                                                 />
                                             )}
                                         </Field>
                                     </div>
-                                    <div className="w-1/4">
-                                        <Field id="testCils" name="testCils">
-                                            {(fieldProps: FieldProps) => (
-                                                <Select
-                                                    isLoading={isLoading}
-                                                    label={`${t('profile:cils')} (C2 - A1)`}
-                                                    options={languageLevelsOptions}
-                                                    {...fieldProps}
-                                                />
-                                            )}
-                                        </Field>
-                                    </div>
-                                    <div className="w-1/4">
-                                        <Field id="testIt" name="testIt">
-                                            {(fieldProps: FieldProps) => (
-                                                <Select
-                                                    isLoading={isLoading}
-                                                    label={`${t('profile:it')} (C2 - A1)`}
-                                                    options={languageLevelsOptions}
-                                                    {...fieldProps}
-                                                />
-                                            )}
-                                        </Field>
-                                    </div>
-                                    <div className="w-1/4">
-                                        <Field id="testPlida" name="testPlida">
-                                            {(fieldProps: FieldProps) => (
-                                                <Select
-                                                    isLoading={isLoading}
-                                                    label={`${t('profile:plida')} (C2 - A1)`}
-                                                    options={languageLevelsOptions}
-                                                    {...fieldProps}
-                                                />
-                                            )}
-                                        </Field>
-                                    </div>
+                                    <div className="w-1/4" />
+                                    <div className="w-1/4" />
+                                    <div className="w-1/4" />
                                 </div>
 
                                 <div>

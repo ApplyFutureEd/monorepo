@@ -4,7 +4,13 @@ import { differenceInDays } from 'date-fns';
 import intersection from 'lodash/intersection';
 import sumBy from 'lodash/sumBy';
 
-import { englishSpokenCountries, frenchSpokenCountries } from '../forms/countries';
+import {
+    englishSpokenCountries,
+    frenchSpokenCountries,
+    germanSpokenCountries,
+    italianSpokenCountries,
+    spanishSpokenCountries
+} from '../forms/countries';
 
 export const formatTestCambridgeFirstValue = (
     value: number
@@ -454,100 +460,28 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testCeli && student?.testCeli < program.testCeli) {
+        if (
+            student?.testCeliCilsItPlida &&
+            student?.testCeliCilsItPlida < program.testCeliCilsItPlida
+        ) {
             eligibility = {
                 isEligible: false,
                 reasons: [
                     ...eligibility.reasons,
                     {
-                        id: 'testCeli',
-                        message: student?.testCeli
+                        id: 'testCeliCilsItPlida',
+                        message: student?.testCeliCilsItPlida
                             ? t('programs:test-too-low', {
                                   programValue: `(${formatLanguageTestLevelsValue(
-                                      program.testCeli
+                                      program.testCeliCilsItPlida
                                   )})`,
                                   studentValue: `(${formatLanguageTestLevelsValue(
-                                      student?.testCeli
+                                      student?.testCeliCilsItPlida
                                   )})`,
-                                  test: t('profile:celi')
+                                  test: t('profile:celi-cils-it-plida')
                               })
                             : t('programs:test-not-provided', {
-                                  test: t('profile:celi')
-                              })
-                    }
-                ]
-            };
-        }
-
-        if (student?.testCils && student?.testCils < program.testCils) {
-            eligibility = {
-                isEligible: false,
-                reasons: [
-                    ...eligibility.reasons,
-                    {
-                        id: 'testCils',
-                        message: student?.testCils
-                            ? t('programs:test-too-low', {
-                                  programValue: `(${formatLanguageTestLevelsValue(
-                                      program.testCils
-                                  )})`,
-                                  studentValue: `(${formatLanguageTestLevelsValue(
-                                      student?.testCils
-                                  )})`,
-                                  test: t('profile:celi')
-                              })
-                            : t('programs:test-not-provided', {
-                                  test: t('profile:celi')
-                              })
-                    }
-                ]
-            };
-        }
-
-        if (student?.testIt && student?.testIt < program.testIt) {
-            eligibility = {
-                isEligible: false,
-                reasons: [
-                    ...eligibility.reasons,
-                    {
-                        id: 'testIt',
-                        message: student?.testIt
-                            ? t('programs:test-too-low', {
-                                  programValue: `(${formatLanguageTestLevelsValue(
-                                      program.testIt
-                                  )})`,
-                                  studentValue: `(${formatLanguageTestLevelsValue(
-                                      student?.testIt
-                                  )})`,
-                                  test: t('profile:it')
-                              })
-                            : t('programs:test-not-provided', {
-                                  test: t('profile:it')
-                              })
-                    }
-                ]
-            };
-        }
-
-        if (student?.testPlida && student?.testPlida < program.testPlida) {
-            eligibility = {
-                isEligible: false,
-                reasons: [
-                    ...eligibility.reasons,
-                    {
-                        id: 'testPlida',
-                        message: student?.testPlida
-                            ? t('programs:test-too-low', {
-                                  programValue: `(${formatLanguageTestLevelsValue(
-                                      program.testPlida
-                                  )})`,
-                                  studentValue: `(${formatLanguageTestLevelsValue(
-                                      student?.testPlida
-                                  )})`,
-                                  test: t('profile:plida')
-                              })
-                            : t('programs:test-not-provided', {
-                                  test: t('profile:plida')
+                                  test: t('profile:celi-cils-it-plida')
                               })
                     }
                 ]
@@ -801,6 +735,36 @@ export const checkEligibility = (
                 schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
+    const hasSpanishTestBypass =
+        (student?.nationality && spanishSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && spanishSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && spanishSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                spanishSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    const hasGermanTestBypass =
+        (student?.nationality && germanSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && germanSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && germanSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                germanSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    const hasItalianTestBypass =
+        (student?.nationality && italianSpokenCountries.includes(student?.nationality)) ||
+        (student?.educationCountry && italianSpokenCountries.includes(student?.educationCountry)) ||
+        (student?.firstLanguage && italianSpokenCountries.includes(student?.firstLanguage)) ||
+        (schoolsAttended &&
+            intersection(
+                italianSpokenCountries,
+                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
     if (hasEnglishTestBypass) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) =>
@@ -817,6 +781,24 @@ export const checkEligibility = (
     if (hasFrenchTestBypass) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testTcftef', 'testDelfdalf'].includes(reason.id)
+        );
+    }
+
+    if (hasSpanishTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testDele'].includes(reason.id)
+        );
+    }
+
+    if (hasGermanTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testGoethe'].includes(reason.id)
+        );
+    }
+
+    if (hasItalianTestBypass) {
+        eligibility.reasons = eligibility.reasons.filter(
+            (reason) => !['testCeliCilsItPlida'].includes(reason.id)
         );
     }
 
