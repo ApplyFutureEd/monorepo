@@ -1,5 +1,14 @@
 import { GetSchoolQuery } from '@applyfuture/graphql';
-import { Button, Editor, FileUploader, Input, Section, Select, Toggle } from '@applyfuture/ui';
+import {
+    Button,
+    Editor,
+    FileUploader,
+    Input,
+    PhoneInput,
+    Section,
+    Select,
+    Toggle
+} from '@applyfuture/ui';
 import { contractStatus, countries, institutionTypes } from '@applyfuture/utils';
 import { faArrowLeft, faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -223,7 +232,7 @@ const SchoolForm: FC<Props> = (props) => {
                         <Section isLoading={isLoading} title="Contact">
                             <div className="space-y-3">
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                    <div className="w-full sm:w-1/4">
+                                    <div className="w-full sm:w-1/2">
                                         <Field id="contractStatus" name="contractStatus">
                                             {(fieldProps: FieldProps) => (
                                                 <Select
@@ -237,48 +246,55 @@ const SchoolForm: FC<Props> = (props) => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                    <Field id="contactJobTitle" name="contactJobTitle">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Contact job title"
-                                                type="text"
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                    <Field id="contactName" name="contactName">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Contact name"
-                                                type="text"
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="contactJobTitle" name="contactJobTitle">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label="Contact job title"
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="contactName" name="contactName">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label="Contact name"
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
-                                    <Field id="contactEmail" name="contactEmail">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Contact email"
-                                                type="text"
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                    <Field id="contactPhone" name="contactPhone">
-                                        {(fieldProps: FieldProps) => (
-                                            <Input
-                                                isLoading={isLoading}
-                                                label="Contact phone"
-                                                type="text"
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="contactEmail" name="contactEmail">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label="Contact email"
+                                                    type="text"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/2">
+                                        <Field id="contactPhone" name="contactPhone">
+                                            {(fieldProps: FieldProps) => (
+                                                <PhoneInput
+                                                    isLoading={isLoading}
+                                                    label="Contact phone"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
                                 </div>
                                 <div className="align-items flex justify-between mt-6">
                                     <Link href="/schools">
