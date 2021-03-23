@@ -2504,7 +2504,7 @@
   resolved "https://registry.yarnpkg.com/@devexpress/dx-grid-core/-/dx-grid-core-2.7.4.tgz#a56176b9a1b83fbc9559efae2e84bd4ff9ea012c"
   integrity sha512-4Fcs1xjnZWsvBLg5OMy9C235WXn5aWXOuCnTphk+X1J2b0VRWx9TFwtvrjATNrW1qt4e2TNOC6AXFvKIkgOCGw==
 
-"@devexpress/dx-react-core@^2.7.4":
+"@devexpress/dx-react-core@2.7.4":
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/@devexpress/dx-react-core/-/dx-react-core-2.7.4.tgz#489c51c5d568a9c1dc82b9548f695ff111c82291"
   integrity sha512-0TqHZ/uf32k3BxKq6q/Xnej9aybYQIrrErGnWd+qAEANsCpGGyOcwO1eF1KM5y55jOsE7PIpGos1HwQh+b1NUg==
@@ -2512,7 +2512,7 @@
     "@devexpress/dx-core" "2.7.4"
     prop-types "^15.7.2"
 
-"@devexpress/dx-react-grid-material-ui@^2.7.4":
+"@devexpress/dx-react-grid-material-ui@2.7.4":
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid-material-ui/-/dx-react-grid-material-ui-2.7.4.tgz#568e50dc5446a6e74d038885826b3914888964a2"
   integrity sha512-x2gCTuYfXDtZtQGHC/Ssg7J81h9oeAh+yw9GScvgzPTR1SnToonlLstYdDTAvExJG6TVh/tLwdNV/CyDuGnNoQ==
@@ -2520,7 +2520,7 @@
     clsx "^1.0.4"
     prop-types "^15.7.2"
 
-"@devexpress/dx-react-grid@^2.7.4":
+"@devexpress/dx-react-grid@2.7.4":
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/@devexpress/dx-react-grid/-/dx-react-grid-2.7.4.tgz#4170833e2ed0fe28ea7eb783d2dc3a9c113108d9"
   integrity sha512-Qv5jDEcrx4/WrN8RX8UZ/XQvqAF1T+ceGbckA2ud4zzTSBmwoC+BvwuECbpFC4W5OOiJZVp6RiAr7p06d4AI7A==
@@ -2915,7 +2915,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@material-ui/core@^4.11.2":
+"@material-ui/core@4.11.2":
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.2.tgz#f8276dfa40d88304e6ceb98962af73803d27d42d"
   integrity sha512-/D1+AQQeYX/WhT/FUk78UCRj8ch/RCglsQLYujYTIqPSJlwZHKcvHidNeVhODXeApojeXjkl0tWdk5C9ofwOkQ==
@@ -2933,7 +2933,7 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^4.11.2":
+"@material-ui/icons@4.11.2":
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz#b3a7353266519cd743b6461ae9fdfcb1b25eb4c5"
   integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
@@ -3572,7 +3572,7 @@
   dependencies:
     use-deep-compare-effect "*"
 
-"@types/uuid@^8.3.0":
+"@types/uuid@8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
   integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
@@ -11135,7 +11135,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-contexify@^5.0.0:
+react-contexify@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-contexify/-/react-contexify-5.0.0.tgz#11b477550a0ee5a9a144399bc17c7c56bbc60057"
   integrity sha512-2FIp7lxJ6dtfGr8EZ4uVV5p5TQjd0n2h/JU7PrejNIMiCeZWvSVPFh4lj1ZvjXosglBvP7q5JQQ8yUCdSaMSaw==
@@ -11147,7 +11147,7 @@ react-cool-onclickoutside@^1.5.9:
   resolved "https://registry.yarnpkg.com/react-cool-onclickoutside/-/react-cool-onclickoutside-1.5.9.tgz#2484a024a623031e5deb512d42eb2a016c6a8358"
   integrity sha512-mNuPegHmQInKzTtal+8ye8FKLvX4Xl434N8cmzmasqIr73v+qllb51cdkdpSndh/Aaf2l7g+LZhfOIoyiMFPiw==
 
-react-datepicker@^3.4.1:
+react-datepicker@3.4.1, react-datepicker@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-3.4.1.tgz#3c8e8989f1ab31a767c17170a2d1318aa3c3b9ef"
   integrity sha512-ASyVb7UmVx1vzeITidD7Cr/EXRXhKyjjbSkBndPc1MipYq4rqQ3eMFgvRQzpsXc3JmIMFgICm7nmN6Otc1GE/Q==
@@ -11181,7 +11181,7 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-google-maps-loader@^4.3.0:
+react-google-maps-loader@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-google-maps-loader/-/react-google-maps-loader-4.3.0.tgz#5844c7eb04990030532f3c2a3d4312da521703f0"
   integrity sha512-tt5pyiRbKtAKHWCIqUX/yfAa5SRNgMCCGeLMnqyqS9OmE44Nu3kelAYcyBB8/o60pOIkIsh5PECafaQtbX00nQ==
@@ -11214,7 +11214,7 @@ react-loading-skeleton@2.1.1:
   dependencies:
     "@emotion/core" "^10.0.22"
 
-react-mde@^11.0.6:
+react-mde@11.0.6, react-mde@^11.0.6:
   version "11.0.6"
   resolved "https://registry.yarnpkg.com/react-mde/-/react-mde-11.0.6.tgz#194c8bb225b244a012bb5477a0ad8f7410a2f926"
   integrity sha512-yWiPSurQvjLVD070zycQR4x5zW3f/kxPlqOMmZoUtVQvUgcM+kwpDQAba5sqtqtAurgUx0Ae9p9Xzgqwt2+ZBA==
