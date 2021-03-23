@@ -58,6 +58,7 @@ const ConfirmAccountForm: FC = () => {
                     guardianLastName: '',
                     highestEducationLevel: -1,
                     lastName: '',
+                    lastUpdate: new Date().valueOf(),
                     maritalStatus: '',
                     middleName: '',
                     motherFirstName: '',

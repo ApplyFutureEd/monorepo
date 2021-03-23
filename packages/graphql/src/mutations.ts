@@ -8,6 +8,7 @@ export const createSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     createSchool(input: $input, condition: $condition) {
+      id
       city
       country
       coverPhoto
@@ -15,21 +16,22 @@ export const createSchool = /* GraphQL */ `
       contactJobTitle
       contactName
       contactPhone
+      contractStatus
       creationYear
       description
-      id
       institutionType
       internationalStudents
+      lastUpdate
       logo
       name
       totalStudents
       slug
       published
-      contractStatus
       createdAt
       updatedAt
       programs {
         items {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -47,10 +49,10 @@ export const createSchool = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -89,6 +91,7 @@ export const updateSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     updateSchool(input: $input, condition: $condition) {
+      id
       city
       country
       coverPhoto
@@ -96,21 +99,22 @@ export const updateSchool = /* GraphQL */ `
       contactJobTitle
       contactName
       contactPhone
+      contractStatus
       creationYear
       description
-      id
       institutionType
       internationalStudents
+      lastUpdate
       logo
       name
       totalStudents
       slug
       published
-      contractStatus
       createdAt
       updatedAt
       programs {
         items {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -128,10 +132,10 @@ export const updateSchool = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -170,6 +174,7 @@ export const deleteSchool = /* GraphQL */ `
     $condition: ModelSchoolConditionInput
   ) {
     deleteSchool(input: $input, condition: $condition) {
+      id
       city
       country
       coverPhoto
@@ -177,21 +182,22 @@ export const deleteSchool = /* GraphQL */ `
       contactJobTitle
       contactName
       contactPhone
+      contractStatus
       creationYear
       description
-      id
       institutionType
       internationalStudents
+      lastUpdate
       logo
       name
       totalStudents
       slug
       published
-      contractStatus
       createdAt
       updatedAt
       programs {
         items {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -209,10 +215,10 @@ export const deleteSchool = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -251,6 +257,7 @@ export const createProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     createProgram(input: $input, condition: $condition) {
+      id
       applicationFee
       applicationFeeCurrency
       city
@@ -268,10 +275,10 @@ export const createProgram = /* GraphQL */ `
       feesAndFinancing
       gradePointAverage
       highestEducationLevel
-      id
       intakeInformation
       intakes
       languages
+      lastUpdate
       minimumAge
       minimumWorkExperience
       minimumWorkExperienceUnit
@@ -307,6 +314,7 @@ export const createProgram = /* GraphQL */ `
       createdAt
       updatedAt
       school {
+        id
         city
         country
         coverPhoto
@@ -314,17 +322,17 @@ export const createProgram = /* GraphQL */ `
         contactJobTitle
         contactName
         contactPhone
+        contractStatus
         creationYear
         description
-        id
         institutionType
         internationalStudents
+        lastUpdate
         logo
         name
         totalStudents
         slug
         published
-        contractStatus
         createdAt
         updatedAt
         programs {
@@ -340,6 +348,7 @@ export const updateProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     updateProgram(input: $input, condition: $condition) {
+      id
       applicationFee
       applicationFeeCurrency
       city
@@ -357,10 +366,10 @@ export const updateProgram = /* GraphQL */ `
       feesAndFinancing
       gradePointAverage
       highestEducationLevel
-      id
       intakeInformation
       intakes
       languages
+      lastUpdate
       minimumAge
       minimumWorkExperience
       minimumWorkExperienceUnit
@@ -396,6 +405,7 @@ export const updateProgram = /* GraphQL */ `
       createdAt
       updatedAt
       school {
+        id
         city
         country
         coverPhoto
@@ -403,17 +413,17 @@ export const updateProgram = /* GraphQL */ `
         contactJobTitle
         contactName
         contactPhone
+        contractStatus
         creationYear
         description
-        id
         institutionType
         internationalStudents
+        lastUpdate
         logo
         name
         totalStudents
         slug
         published
-        contractStatus
         createdAt
         updatedAt
         programs {
@@ -429,6 +439,7 @@ export const deleteProgram = /* GraphQL */ `
     $condition: ModelProgramConditionInput
   ) {
     deleteProgram(input: $input, condition: $condition) {
+      id
       applicationFee
       applicationFeeCurrency
       city
@@ -446,10 +457,10 @@ export const deleteProgram = /* GraphQL */ `
       feesAndFinancing
       gradePointAverage
       highestEducationLevel
-      id
       intakeInformation
       intakes
       languages
+      lastUpdate
       minimumAge
       minimumWorkExperience
       minimumWorkExperienceUnit
@@ -485,6 +496,7 @@ export const deleteProgram = /* GraphQL */ `
       createdAt
       updatedAt
       school {
+        id
         city
         country
         coverPhoto
@@ -492,17 +504,17 @@ export const deleteProgram = /* GraphQL */ `
         contactJobTitle
         contactName
         contactPhone
+        contractStatus
         creationYear
         description
-        id
         institutionType
         internationalStudents
+        lastUpdate
         logo
         name
         totalStudents
         slug
         published
-        contractStatus
         createdAt
         updatedAt
         programs {
@@ -519,87 +531,33 @@ export const createStudent = /* GraphQL */ `
   ) {
     createStudent(input: $input, condition: $condition) {
       id
-      email
-      phoneNumber
       address
+      applications {
+        items {
+          id
+          admissionResult
+          document
+          decisionLetterDate
+          intake
+          interviewDate
+          lastUpdate
+          modalApplicationCompletedViewed
+          programId
+          studentId
+          todo
+          tuitionsFeePaymentDate
+          visaDate
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      birthday
       city
       country
-      firstName
-      middleName
-      lastName
-      birthday
-      firstLanguage
-      passportNumber
-      gender
-      maritalStatus
-      fatherFirstName
-      fatherLastName
-      motherFirstName
-      motherMaidenName
-      guardianLastName
-      guardianFirstName
-      parentsAddress
-      parentsCity
-      parentsCountry
-      parentsPhoneNumber
-      parentsEmail
-      disciplines
       degrees
-      nationality
-      educationCountry
-      highestEducationLevel
-      gradePointAverage
-      schoolsAttended {
-        name
-        address
-        city
-        country
-        primaryLanguageInstruction
-        educationLevel
-        degreeAwarded
-        degreeAwardedOn
-        attendedInstitutionFrom
-        attendedInstitutionTo
-      }
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      testGoethe
-      testDele
-      testCeliCilsItPlida
-      testToeflDate
-      testIeltsDate
-      testToeicDate
-      testTcftefDate
-      testDelfdalfDate
-      testGreDate
-      testGmatDate
-      testTagemageDate
-      testCambridgeFirstDate
-      testCambridgeAdvancedDate
-      testGoetheDate
-      testDeleDate
-      testCeliCilsItPlidaDate
-      testEnglishPending
-      testOtherLanguagesPending
-      testLogicAndReasoningPending
-      validVisa
-      refusedVisa
-      refusedVisaReason
-      workExperiences {
-        title
-        compagnyName
-        address
-        workedFrom
-        workedTo
-      }
+      disciplines
       documents {
         items {
           id
@@ -612,40 +570,96 @@ export const createStudent = /* GraphQL */ `
         }
         nextToken
       }
+      educationCountry
+      email
+      fatherFirstName
+      fatherLastName
+      firstLanguage
+      firstName
       favoritePrograms
       favoriteSchools
-      applications {
-        items {
-          id
-          studentId
-          programId
-          intake
-          document
-          interviewDate
-          admissionResult
-          tuitionsFeePaymentDate
-          decisionLetterDate
-          visaDate
-          todo
-          modalApplicationCompletedViewed
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      gender
+      gradePointAverage
+      guardianFirstName
+      guardianLastName
       hasMandatoryDocuments
+      highestEducationLevel
+      lastName
+      lastUpdate
+      locale
+      maritalStatus
+      middleName
       modalProfileCompletedViewed
+      phoneNumber
+      motherFirstName
+      motherMaidenName
+      nationality
       notifications {
-        title
-        titleOptions
+        date
         description
         descriptionOptions
-        date
-        seen
         link
+        seen
+        title
+        titleOptions
       }
-      locale
+      parentsAddress
+      parentsCity
+      parentsCountry
+      parentsEmail
+      parentsPhoneNumber
+      passportNumber
+      refusedVisa
+      refusedVisaReason
+      schoolsAttended {
+        address
+        attendedInstitutionFrom
+        attendedInstitutionTo
+        city
+        country
+        degreeAwarded
+        degreeAwardedOn
+        educationLevel
+        name
+        primaryLanguageInstruction
+      }
+      testCambridgeAdvanced
+      testCambridgeAdvancedDate
+      testCambridgeFirst
+      testCambridgeFirstDate
+      testCeliCilsItPlida
+      testCeliCilsItPlidaDate
+      testDele
+      testDeleDate
+      testDelfdalf
+      testDelfdalfDate
+      testEnglishPending
+      testGmat
+      testGmatDate
+      testGoethe
+      testGoetheDate
+      testGre
+      testGreDate
+      testIelts
+      testIeltsDate
+      testLogicAndReasoningPending
+      testOtherLanguagesPending
+      testTagemage
+      testTagemageDate
+      testTcftef
+      testTcftefDate
+      testToefl
+      testToeflDate
+      testToeic
+      testToeicDate
+      validVisa
+      workExperiences {
+        address
+        compagnyName
+        title
+        workedFrom
+        workedTo
+      }
       createdAt
       updatedAt
       owner
@@ -659,87 +673,33 @@ export const updateStudent = /* GraphQL */ `
   ) {
     updateStudent(input: $input, condition: $condition) {
       id
-      email
-      phoneNumber
       address
+      applications {
+        items {
+          id
+          admissionResult
+          document
+          decisionLetterDate
+          intake
+          interviewDate
+          lastUpdate
+          modalApplicationCompletedViewed
+          programId
+          studentId
+          todo
+          tuitionsFeePaymentDate
+          visaDate
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      birthday
       city
       country
-      firstName
-      middleName
-      lastName
-      birthday
-      firstLanguage
-      passportNumber
-      gender
-      maritalStatus
-      fatherFirstName
-      fatherLastName
-      motherFirstName
-      motherMaidenName
-      guardianLastName
-      guardianFirstName
-      parentsAddress
-      parentsCity
-      parentsCountry
-      parentsPhoneNumber
-      parentsEmail
-      disciplines
       degrees
-      nationality
-      educationCountry
-      highestEducationLevel
-      gradePointAverage
-      schoolsAttended {
-        name
-        address
-        city
-        country
-        primaryLanguageInstruction
-        educationLevel
-        degreeAwarded
-        degreeAwardedOn
-        attendedInstitutionFrom
-        attendedInstitutionTo
-      }
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      testGoethe
-      testDele
-      testCeliCilsItPlida
-      testToeflDate
-      testIeltsDate
-      testToeicDate
-      testTcftefDate
-      testDelfdalfDate
-      testGreDate
-      testGmatDate
-      testTagemageDate
-      testCambridgeFirstDate
-      testCambridgeAdvancedDate
-      testGoetheDate
-      testDeleDate
-      testCeliCilsItPlidaDate
-      testEnglishPending
-      testOtherLanguagesPending
-      testLogicAndReasoningPending
-      validVisa
-      refusedVisa
-      refusedVisaReason
-      workExperiences {
-        title
-        compagnyName
-        address
-        workedFrom
-        workedTo
-      }
+      disciplines
       documents {
         items {
           id
@@ -752,40 +712,96 @@ export const updateStudent = /* GraphQL */ `
         }
         nextToken
       }
+      educationCountry
+      email
+      fatherFirstName
+      fatherLastName
+      firstLanguage
+      firstName
       favoritePrograms
       favoriteSchools
-      applications {
-        items {
-          id
-          studentId
-          programId
-          intake
-          document
-          interviewDate
-          admissionResult
-          tuitionsFeePaymentDate
-          decisionLetterDate
-          visaDate
-          todo
-          modalApplicationCompletedViewed
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      gender
+      gradePointAverage
+      guardianFirstName
+      guardianLastName
       hasMandatoryDocuments
+      highestEducationLevel
+      lastName
+      lastUpdate
+      locale
+      maritalStatus
+      middleName
       modalProfileCompletedViewed
+      phoneNumber
+      motherFirstName
+      motherMaidenName
+      nationality
       notifications {
-        title
-        titleOptions
+        date
         description
         descriptionOptions
-        date
-        seen
         link
+        seen
+        title
+        titleOptions
       }
-      locale
+      parentsAddress
+      parentsCity
+      parentsCountry
+      parentsEmail
+      parentsPhoneNumber
+      passportNumber
+      refusedVisa
+      refusedVisaReason
+      schoolsAttended {
+        address
+        attendedInstitutionFrom
+        attendedInstitutionTo
+        city
+        country
+        degreeAwarded
+        degreeAwardedOn
+        educationLevel
+        name
+        primaryLanguageInstruction
+      }
+      testCambridgeAdvanced
+      testCambridgeAdvancedDate
+      testCambridgeFirst
+      testCambridgeFirstDate
+      testCeliCilsItPlida
+      testCeliCilsItPlidaDate
+      testDele
+      testDeleDate
+      testDelfdalf
+      testDelfdalfDate
+      testEnglishPending
+      testGmat
+      testGmatDate
+      testGoethe
+      testGoetheDate
+      testGre
+      testGreDate
+      testIelts
+      testIeltsDate
+      testLogicAndReasoningPending
+      testOtherLanguagesPending
+      testTagemage
+      testTagemageDate
+      testTcftef
+      testTcftefDate
+      testToefl
+      testToeflDate
+      testToeic
+      testToeicDate
+      validVisa
+      workExperiences {
+        address
+        compagnyName
+        title
+        workedFrom
+        workedTo
+      }
       createdAt
       updatedAt
       owner
@@ -799,87 +815,33 @@ export const deleteStudent = /* GraphQL */ `
   ) {
     deleteStudent(input: $input, condition: $condition) {
       id
-      email
-      phoneNumber
       address
+      applications {
+        items {
+          id
+          admissionResult
+          document
+          decisionLetterDate
+          intake
+          interviewDate
+          lastUpdate
+          modalApplicationCompletedViewed
+          programId
+          studentId
+          todo
+          tuitionsFeePaymentDate
+          visaDate
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      birthday
       city
       country
-      firstName
-      middleName
-      lastName
-      birthday
-      firstLanguage
-      passportNumber
-      gender
-      maritalStatus
-      fatherFirstName
-      fatherLastName
-      motherFirstName
-      motherMaidenName
-      guardianLastName
-      guardianFirstName
-      parentsAddress
-      parentsCity
-      parentsCountry
-      parentsPhoneNumber
-      parentsEmail
-      disciplines
       degrees
-      nationality
-      educationCountry
-      highestEducationLevel
-      gradePointAverage
-      schoolsAttended {
-        name
-        address
-        city
-        country
-        primaryLanguageInstruction
-        educationLevel
-        degreeAwarded
-        degreeAwardedOn
-        attendedInstitutionFrom
-        attendedInstitutionTo
-      }
-      testToefl
-      testIelts
-      testToeic
-      testTcftef
-      testDelfdalf
-      testGre
-      testGmat
-      testTagemage
-      testCambridgeFirst
-      testCambridgeAdvanced
-      testGoethe
-      testDele
-      testCeliCilsItPlida
-      testToeflDate
-      testIeltsDate
-      testToeicDate
-      testTcftefDate
-      testDelfdalfDate
-      testGreDate
-      testGmatDate
-      testTagemageDate
-      testCambridgeFirstDate
-      testCambridgeAdvancedDate
-      testGoetheDate
-      testDeleDate
-      testCeliCilsItPlidaDate
-      testEnglishPending
-      testOtherLanguagesPending
-      testLogicAndReasoningPending
-      validVisa
-      refusedVisa
-      refusedVisaReason
-      workExperiences {
-        title
-        compagnyName
-        address
-        workedFrom
-        workedTo
-      }
+      disciplines
       documents {
         items {
           id
@@ -892,40 +854,96 @@ export const deleteStudent = /* GraphQL */ `
         }
         nextToken
       }
+      educationCountry
+      email
+      fatherFirstName
+      fatherLastName
+      firstLanguage
+      firstName
       favoritePrograms
       favoriteSchools
-      applications {
-        items {
-          id
-          studentId
-          programId
-          intake
-          document
-          interviewDate
-          admissionResult
-          tuitionsFeePaymentDate
-          decisionLetterDate
-          visaDate
-          todo
-          modalApplicationCompletedViewed
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      gender
+      gradePointAverage
+      guardianFirstName
+      guardianLastName
       hasMandatoryDocuments
+      highestEducationLevel
+      lastName
+      lastUpdate
+      locale
+      maritalStatus
+      middleName
       modalProfileCompletedViewed
+      phoneNumber
+      motherFirstName
+      motherMaidenName
+      nationality
       notifications {
-        title
-        titleOptions
+        date
         description
         descriptionOptions
-        date
-        seen
         link
+        seen
+        title
+        titleOptions
       }
-      locale
+      parentsAddress
+      parentsCity
+      parentsCountry
+      parentsEmail
+      parentsPhoneNumber
+      passportNumber
+      refusedVisa
+      refusedVisaReason
+      schoolsAttended {
+        address
+        attendedInstitutionFrom
+        attendedInstitutionTo
+        city
+        country
+        degreeAwarded
+        degreeAwardedOn
+        educationLevel
+        name
+        primaryLanguageInstruction
+      }
+      testCambridgeAdvanced
+      testCambridgeAdvancedDate
+      testCambridgeFirst
+      testCambridgeFirstDate
+      testCeliCilsItPlida
+      testCeliCilsItPlidaDate
+      testDele
+      testDeleDate
+      testDelfdalf
+      testDelfdalfDate
+      testEnglishPending
+      testGmat
+      testGmatDate
+      testGoethe
+      testGoetheDate
+      testGre
+      testGreDate
+      testIelts
+      testIeltsDate
+      testLogicAndReasoningPending
+      testOtherLanguagesPending
+      testTagemage
+      testTagemageDate
+      testTcftef
+      testTcftefDate
+      testToefl
+      testToeflDate
+      testToeic
+      testToeicDate
+      validVisa
+      workExperiences {
+        address
+        compagnyName
+        title
+        workedFrom
+        workedTo
+      }
       createdAt
       updatedAt
       owner
@@ -942,107 +960,108 @@ export const createDocument = /* GraphQL */ `
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
@@ -1065,107 +1084,108 @@ export const updateDocument = /* GraphQL */ `
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
@@ -1188,107 +1208,108 @@ export const deleteDocument = /* GraphQL */ `
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
@@ -1308,142 +1329,145 @@ export const createApplication = /* GraphQL */ `
   ) {
     createApplication(input: $input, condition: $condition) {
       id
+      admissionResult
+      document
+      decisionLetterDate
+      intake
+      interviewDate
+      lastUpdate
+      modalApplicationCompletedViewed
+      notifications {
+        date
+        description
+        descriptionOptions
+        link
+        seen
+        title
+        titleOptions
+      }
+      programId
+      steps {
+        id
+        date
+        isMandatory
+        status
+      }
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
-      programId
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
       todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
+      tuitionsFeePaymentDate
+      visaDate
       createdAt
       updatedAt
       program {
+        id
         applicationFee
         applicationFeeCurrency
         city
@@ -1461,10 +1485,10 @@ export const createApplication = /* GraphQL */ `
         feesAndFinancing
         gradePointAverage
         highestEducationLevel
-        id
         intakeInformation
         intakes
         languages
+        lastUpdate
         minimumAge
         minimumWorkExperience
         minimumWorkExperienceUnit
@@ -1500,6 +1524,7 @@ export const createApplication = /* GraphQL */ `
         createdAt
         updatedAt
         school {
+          id
           city
           country
           coverPhoto
@@ -1507,17 +1532,17 @@ export const createApplication = /* GraphQL */ `
           contactJobTitle
           contactName
           contactPhone
+          contractStatus
           creationYear
           description
-          id
           institutionType
           internationalStudents
+          lastUpdate
           logo
           name
           totalStudents
           slug
           published
-          contractStatus
           createdAt
           updatedAt
         }
@@ -1533,142 +1558,145 @@ export const updateApplication = /* GraphQL */ `
   ) {
     updateApplication(input: $input, condition: $condition) {
       id
+      admissionResult
+      document
+      decisionLetterDate
+      intake
+      interviewDate
+      lastUpdate
+      modalApplicationCompletedViewed
+      notifications {
+        date
+        description
+        descriptionOptions
+        link
+        seen
+        title
+        titleOptions
+      }
+      programId
+      steps {
+        id
+        date
+        isMandatory
+        status
+      }
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
-      programId
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
       todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
+      tuitionsFeePaymentDate
+      visaDate
       createdAt
       updatedAt
       program {
+        id
         applicationFee
         applicationFeeCurrency
         city
@@ -1686,10 +1714,10 @@ export const updateApplication = /* GraphQL */ `
         feesAndFinancing
         gradePointAverage
         highestEducationLevel
-        id
         intakeInformation
         intakes
         languages
+        lastUpdate
         minimumAge
         minimumWorkExperience
         minimumWorkExperienceUnit
@@ -1725,6 +1753,7 @@ export const updateApplication = /* GraphQL */ `
         createdAt
         updatedAt
         school {
+          id
           city
           country
           coverPhoto
@@ -1732,17 +1761,17 @@ export const updateApplication = /* GraphQL */ `
           contactJobTitle
           contactName
           contactPhone
+          contractStatus
           creationYear
           description
-          id
           institutionType
           internationalStudents
+          lastUpdate
           logo
           name
           totalStudents
           slug
           published
-          contractStatus
           createdAt
           updatedAt
         }
@@ -1758,142 +1787,145 @@ export const deleteApplication = /* GraphQL */ `
   ) {
     deleteApplication(input: $input, condition: $condition) {
       id
+      admissionResult
+      document
+      decisionLetterDate
+      intake
+      interviewDate
+      lastUpdate
+      modalApplicationCompletedViewed
+      notifications {
+        date
+        description
+        descriptionOptions
+        link
+        seen
+        title
+        titleOptions
+      }
+      programId
+      steps {
+        id
+        date
+        isMandatory
+        status
+      }
       studentId
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
-      programId
-      intake
-      document
-      steps {
-        id
-        status
-        date
-        isMandatory
-      }
-      interviewDate
-      admissionResult
-      tuitionsFeePaymentDate
-      decisionLetterDate
-      visaDate
       todo
-      notifications {
-        title
-        titleOptions
-        description
-        descriptionOptions
-        date
-        seen
-        link
-      }
-      modalApplicationCompletedViewed
+      tuitionsFeePaymentDate
+      visaDate
       createdAt
       updatedAt
       program {
+        id
         applicationFee
         applicationFeeCurrency
         city
@@ -1911,10 +1943,10 @@ export const deleteApplication = /* GraphQL */ `
         feesAndFinancing
         gradePointAverage
         highestEducationLevel
-        id
         intakeInformation
         intakes
         languages
+        lastUpdate
         minimumAge
         minimumWorkExperience
         minimumWorkExperienceUnit
@@ -1950,6 +1982,7 @@ export const deleteApplication = /* GraphQL */ `
         createdAt
         updatedAt
         school {
+          id
           city
           country
           coverPhoto
@@ -1957,17 +1990,17 @@ export const deleteApplication = /* GraphQL */ `
           contactJobTitle
           contactName
           contactPhone
+          contractStatus
           creationYear
           description
-          id
           institutionType
           internationalStudents
+          lastUpdate
           logo
           name
           totalStudents
           slug
           published
-          contractStatus
           createdAt
           updatedAt
         }
@@ -1983,116 +2016,118 @@ export const createSearchAlert = /* GraphQL */ `
   ) {
     createSearchAlert(input: $input, condition: $condition) {
       id
-      query
-      type
-      studentId
+      lastUpdate
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
+      studentId
+      type
+      query
       createdAt
       updatedAt
       owner
@@ -2106,116 +2141,118 @@ export const updateSearchAlert = /* GraphQL */ `
   ) {
     updateSearchAlert(input: $input, condition: $condition) {
       id
-      query
-      type
-      studentId
+      lastUpdate
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
+      studentId
+      type
+      query
       createdAt
       updatedAt
       owner
@@ -2229,116 +2266,118 @@ export const deleteSearchAlert = /* GraphQL */ `
   ) {
     deleteSearchAlert(input: $input, condition: $condition) {
       id
-      query
-      type
-      studentId
+      lastUpdate
       student {
         id
-        email
-        phoneNumber
         address
-        city
-        country
-        firstName
-        middleName
-        lastName
-        birthday
-        firstLanguage
-        passportNumber
-        gender
-        maritalStatus
-        fatherFirstName
-        fatherLastName
-        motherFirstName
-        motherMaidenName
-        guardianLastName
-        guardianFirstName
-        parentsAddress
-        parentsCity
-        parentsCountry
-        parentsPhoneNumber
-        parentsEmail
-        disciplines
-        degrees
-        nationality
-        educationCountry
-        highestEducationLevel
-        gradePointAverage
-        schoolsAttended {
-          name
-          address
-          city
-          country
-          primaryLanguageInstruction
-          educationLevel
-          degreeAwarded
-          degreeAwardedOn
-          attendedInstitutionFrom
-          attendedInstitutionTo
-        }
-        testToefl
-        testIelts
-        testToeic
-        testTcftef
-        testDelfdalf
-        testGre
-        testGmat
-        testTagemage
-        testCambridgeFirst
-        testCambridgeAdvanced
-        testGoethe
-        testDele
-        testCeliCilsItPlida
-        testToeflDate
-        testIeltsDate
-        testToeicDate
-        testTcftefDate
-        testDelfdalfDate
-        testGreDate
-        testGmatDate
-        testTagemageDate
-        testCambridgeFirstDate
-        testCambridgeAdvancedDate
-        testGoetheDate
-        testDeleDate
-        testCeliCilsItPlidaDate
-        testEnglishPending
-        testOtherLanguagesPending
-        testLogicAndReasoningPending
-        validVisa
-        refusedVisa
-        refusedVisaReason
-        workExperiences {
-          title
-          compagnyName
-          address
-          workedFrom
-          workedTo
-        }
-        documents {
-          nextToken
-        }
-        favoritePrograms
-        favoriteSchools
         applications {
           nextToken
         }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
         hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
         modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
         notifications {
-          title
-          titleOptions
+          date
           description
           descriptionOptions
-          date
-          seen
           link
+          seen
+          title
+          titleOptions
         }
-        locale
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
         createdAt
         updatedAt
         owner
       }
+      studentId
+      type
+      query
       createdAt
       updatedAt
       owner
@@ -2352,112 +2391,113 @@ export const createFeedback = /* GraphQL */ `
   ) {
     createFeedback(input: $input, condition: $condition) {
       id
-      rating
-      applicationId
       application {
         id
+        admissionResult
+        document
+        decisionLetterDate
+        intake
+        interviewDate
+        lastUpdate
+        modalApplicationCompletedViewed
+        notifications {
+          date
+          description
+          descriptionOptions
+          link
+          seen
+          title
+          titleOptions
+        }
+        programId
+        steps {
+          id
+          date
+          isMandatory
+          status
+        }
         studentId
         student {
           id
-          email
-          phoneNumber
           address
+          birthday
           city
           country
-          firstName
-          middleName
-          lastName
-          birthday
-          firstLanguage
-          passportNumber
-          gender
-          maritalStatus
+          degrees
+          disciplines
+          educationCountry
+          email
           fatherFirstName
           fatherLastName
+          firstLanguage
+          firstName
+          favoritePrograms
+          favoriteSchools
+          gender
+          gradePointAverage
+          guardianFirstName
+          guardianLastName
+          hasMandatoryDocuments
+          highestEducationLevel
+          lastName
+          lastUpdate
+          locale
+          maritalStatus
+          middleName
+          modalProfileCompletedViewed
+          phoneNumber
           motherFirstName
           motherMaidenName
-          guardianLastName
-          guardianFirstName
+          nationality
           parentsAddress
           parentsCity
           parentsCountry
-          parentsPhoneNumber
           parentsEmail
-          disciplines
-          degrees
-          nationality
-          educationCountry
-          highestEducationLevel
-          gradePointAverage
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          testGoethe
-          testDele
-          testCeliCilsItPlida
-          testToeflDate
-          testIeltsDate
-          testToeicDate
-          testTcftefDate
-          testDelfdalfDate
-          testGreDate
-          testGmatDate
-          testTagemageDate
-          testCambridgeFirstDate
-          testCambridgeAdvancedDate
-          testGoetheDate
-          testDeleDate
-          testCeliCilsItPlidaDate
-          testEnglishPending
-          testOtherLanguagesPending
-          testLogicAndReasoningPending
-          validVisa
+          parentsPhoneNumber
+          passportNumber
           refusedVisa
           refusedVisaReason
-          favoritePrograms
-          favoriteSchools
-          hasMandatoryDocuments
-          modalProfileCompletedViewed
-          locale
+          testCambridgeAdvanced
+          testCambridgeAdvancedDate
+          testCambridgeFirst
+          testCambridgeFirstDate
+          testCeliCilsItPlida
+          testCeliCilsItPlidaDate
+          testDele
+          testDeleDate
+          testDelfdalf
+          testDelfdalfDate
+          testEnglishPending
+          testGmat
+          testGmatDate
+          testGoethe
+          testGoetheDate
+          testGre
+          testGreDate
+          testIelts
+          testIeltsDate
+          testLogicAndReasoningPending
+          testOtherLanguagesPending
+          testTagemage
+          testTagemageDate
+          testTcftef
+          testTcftefDate
+          testToefl
+          testToeflDate
+          testToeic
+          testToeicDate
+          validVisa
           createdAt
           updatedAt
           owner
         }
-        programId
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
         todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
+        tuitionsFeePaymentDate
+        visaDate
         createdAt
         updatedAt
         program {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -2475,10 +2515,10 @@ export const createFeedback = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -2508,6 +2548,9 @@ export const createFeedback = /* GraphQL */ `
         }
         owner
       }
+      applicationId
+      lastUpdate
+      rating
       createdAt
       updatedAt
       owner
@@ -2521,112 +2564,113 @@ export const updateFeedback = /* GraphQL */ `
   ) {
     updateFeedback(input: $input, condition: $condition) {
       id
-      rating
-      applicationId
       application {
         id
+        admissionResult
+        document
+        decisionLetterDate
+        intake
+        interviewDate
+        lastUpdate
+        modalApplicationCompletedViewed
+        notifications {
+          date
+          description
+          descriptionOptions
+          link
+          seen
+          title
+          titleOptions
+        }
+        programId
+        steps {
+          id
+          date
+          isMandatory
+          status
+        }
         studentId
         student {
           id
-          email
-          phoneNumber
           address
+          birthday
           city
           country
-          firstName
-          middleName
-          lastName
-          birthday
-          firstLanguage
-          passportNumber
-          gender
-          maritalStatus
+          degrees
+          disciplines
+          educationCountry
+          email
           fatherFirstName
           fatherLastName
+          firstLanguage
+          firstName
+          favoritePrograms
+          favoriteSchools
+          gender
+          gradePointAverage
+          guardianFirstName
+          guardianLastName
+          hasMandatoryDocuments
+          highestEducationLevel
+          lastName
+          lastUpdate
+          locale
+          maritalStatus
+          middleName
+          modalProfileCompletedViewed
+          phoneNumber
           motherFirstName
           motherMaidenName
-          guardianLastName
-          guardianFirstName
+          nationality
           parentsAddress
           parentsCity
           parentsCountry
-          parentsPhoneNumber
           parentsEmail
-          disciplines
-          degrees
-          nationality
-          educationCountry
-          highestEducationLevel
-          gradePointAverage
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          testGoethe
-          testDele
-          testCeliCilsItPlida
-          testToeflDate
-          testIeltsDate
-          testToeicDate
-          testTcftefDate
-          testDelfdalfDate
-          testGreDate
-          testGmatDate
-          testTagemageDate
-          testCambridgeFirstDate
-          testCambridgeAdvancedDate
-          testGoetheDate
-          testDeleDate
-          testCeliCilsItPlidaDate
-          testEnglishPending
-          testOtherLanguagesPending
-          testLogicAndReasoningPending
-          validVisa
+          parentsPhoneNumber
+          passportNumber
           refusedVisa
           refusedVisaReason
-          favoritePrograms
-          favoriteSchools
-          hasMandatoryDocuments
-          modalProfileCompletedViewed
-          locale
+          testCambridgeAdvanced
+          testCambridgeAdvancedDate
+          testCambridgeFirst
+          testCambridgeFirstDate
+          testCeliCilsItPlida
+          testCeliCilsItPlidaDate
+          testDele
+          testDeleDate
+          testDelfdalf
+          testDelfdalfDate
+          testEnglishPending
+          testGmat
+          testGmatDate
+          testGoethe
+          testGoetheDate
+          testGre
+          testGreDate
+          testIelts
+          testIeltsDate
+          testLogicAndReasoningPending
+          testOtherLanguagesPending
+          testTagemage
+          testTagemageDate
+          testTcftef
+          testTcftefDate
+          testToefl
+          testToeflDate
+          testToeic
+          testToeicDate
+          validVisa
           createdAt
           updatedAt
           owner
         }
-        programId
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
         todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
+        tuitionsFeePaymentDate
+        visaDate
         createdAt
         updatedAt
         program {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -2644,10 +2688,10 @@ export const updateFeedback = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -2677,6 +2721,9 @@ export const updateFeedback = /* GraphQL */ `
         }
         owner
       }
+      applicationId
+      lastUpdate
+      rating
       createdAt
       updatedAt
       owner
@@ -2690,112 +2737,113 @@ export const deleteFeedback = /* GraphQL */ `
   ) {
     deleteFeedback(input: $input, condition: $condition) {
       id
-      rating
-      applicationId
       application {
         id
+        admissionResult
+        document
+        decisionLetterDate
+        intake
+        interviewDate
+        lastUpdate
+        modalApplicationCompletedViewed
+        notifications {
+          date
+          description
+          descriptionOptions
+          link
+          seen
+          title
+          titleOptions
+        }
+        programId
+        steps {
+          id
+          date
+          isMandatory
+          status
+        }
         studentId
         student {
           id
-          email
-          phoneNumber
           address
+          birthday
           city
           country
-          firstName
-          middleName
-          lastName
-          birthday
-          firstLanguage
-          passportNumber
-          gender
-          maritalStatus
+          degrees
+          disciplines
+          educationCountry
+          email
           fatherFirstName
           fatherLastName
+          firstLanguage
+          firstName
+          favoritePrograms
+          favoriteSchools
+          gender
+          gradePointAverage
+          guardianFirstName
+          guardianLastName
+          hasMandatoryDocuments
+          highestEducationLevel
+          lastName
+          lastUpdate
+          locale
+          maritalStatus
+          middleName
+          modalProfileCompletedViewed
+          phoneNumber
           motherFirstName
           motherMaidenName
-          guardianLastName
-          guardianFirstName
+          nationality
           parentsAddress
           parentsCity
           parentsCountry
-          parentsPhoneNumber
           parentsEmail
-          disciplines
-          degrees
-          nationality
-          educationCountry
-          highestEducationLevel
-          gradePointAverage
-          testToefl
-          testIelts
-          testToeic
-          testTcftef
-          testDelfdalf
-          testGre
-          testGmat
-          testTagemage
-          testCambridgeFirst
-          testCambridgeAdvanced
-          testGoethe
-          testDele
-          testCeliCilsItPlida
-          testToeflDate
-          testIeltsDate
-          testToeicDate
-          testTcftefDate
-          testDelfdalfDate
-          testGreDate
-          testGmatDate
-          testTagemageDate
-          testCambridgeFirstDate
-          testCambridgeAdvancedDate
-          testGoetheDate
-          testDeleDate
-          testCeliCilsItPlidaDate
-          testEnglishPending
-          testOtherLanguagesPending
-          testLogicAndReasoningPending
-          validVisa
+          parentsPhoneNumber
+          passportNumber
           refusedVisa
           refusedVisaReason
-          favoritePrograms
-          favoriteSchools
-          hasMandatoryDocuments
-          modalProfileCompletedViewed
-          locale
+          testCambridgeAdvanced
+          testCambridgeAdvancedDate
+          testCambridgeFirst
+          testCambridgeFirstDate
+          testCeliCilsItPlida
+          testCeliCilsItPlidaDate
+          testDele
+          testDeleDate
+          testDelfdalf
+          testDelfdalfDate
+          testEnglishPending
+          testGmat
+          testGmatDate
+          testGoethe
+          testGoetheDate
+          testGre
+          testGreDate
+          testIelts
+          testIeltsDate
+          testLogicAndReasoningPending
+          testOtherLanguagesPending
+          testTagemage
+          testTagemageDate
+          testTcftef
+          testTcftefDate
+          testToefl
+          testToeflDate
+          testToeic
+          testToeicDate
+          validVisa
           createdAt
           updatedAt
           owner
         }
-        programId
-        intake
-        document
-        steps {
-          id
-          status
-          date
-          isMandatory
-        }
-        interviewDate
-        admissionResult
-        tuitionsFeePaymentDate
-        decisionLetterDate
-        visaDate
         todo
-        notifications {
-          title
-          titleOptions
-          description
-          descriptionOptions
-          date
-          seen
-          link
-        }
-        modalApplicationCompletedViewed
+        tuitionsFeePaymentDate
+        visaDate
         createdAt
         updatedAt
         program {
+          id
           applicationFee
           applicationFeeCurrency
           city
@@ -2813,10 +2861,10 @@ export const deleteFeedback = /* GraphQL */ `
           feesAndFinancing
           gradePointAverage
           highestEducationLevel
-          id
           intakeInformation
           intakes
           languages
+          lastUpdate
           minimumAge
           minimumWorkExperience
           minimumWorkExperienceUnit
@@ -2846,6 +2894,9 @@ export const deleteFeedback = /* GraphQL */ `
         }
         owner
       }
+      applicationId
+      lastUpdate
+      rating
       createdAt
       updatedAt
       owner
@@ -2858,9 +2909,10 @@ export const createPost = /* GraphQL */ `
     $condition: ModelPostConditionInput
   ) {
     createPost(input: $input, condition: $condition) {
+      id
       category
       content
-      id
+      lastUpdate
       published
       slug
       title
@@ -2875,9 +2927,10 @@ export const updatePost = /* GraphQL */ `
     $condition: ModelPostConditionInput
   ) {
     updatePost(input: $input, condition: $condition) {
+      id
       category
       content
-      id
+      lastUpdate
       published
       slug
       title
@@ -2892,9 +2945,10 @@ export const deletePost = /* GraphQL */ `
     $condition: ModelPostConditionInput
   ) {
     deletePost(input: $input, condition: $condition) {
+      id
       category
       content
-      id
+      lastUpdate
       published
       slug
       title

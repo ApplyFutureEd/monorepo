@@ -1,6 +1,14 @@
 import { Program } from '@applyfuture/models';
 import { IconPanel, Tooltip } from '@applyfuture/ui';
-import { convertSecondsToUnit, currency, date, getLanguageLabel } from '@applyfuture/utils';
+import {
+    convertSecondsToUnit,
+    currency,
+    date,
+    getDurationUnitLabel,
+    getFeeUnitLabel,
+    getLanguageLabel,
+    getScheduleLabel
+} from '@applyfuture/utils';
 import {
     faCalendar,
     faClock,
@@ -30,12 +38,12 @@ const Indicators: FC<Props> = (props) => {
                 <div>
                     <IconPanel
                         icon={faClock}
-                        label={t(`programs:${program?.schedule.toLowerCase()}`)}>
+                        label={t(`programs:${getScheduleLabel(program?.schedule)}`)}>
                         {convertSecondsToUnit({
                             unit: program?.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                             value: program?.duration
                         })}{' '}
-                        {t(`programs:${program?.durationUnit.toLowerCase()}`, {
+                        {t(`programs:${getDurationUnitLabel(program?.durationUnit)}`, {
                             count: convertSecondsToUnit({
                                 unit: program?.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                                 value: program?.duration
@@ -46,7 +54,7 @@ const Indicators: FC<Props> = (props) => {
                 <div className="border-t border-gray-200 md:border-0 md:border-l">
                     <IconPanel
                         icon={faGraduationCap}
-                        label={t(`programs:${program?.feeUnit.toLowerCase()}`)}>
+                        label={t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}>
                         {currency({
                             currency: program?.feeCurrency,
                             locale: locale,

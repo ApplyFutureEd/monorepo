@@ -54,13 +54,13 @@ type Props = {
 export type StudentFormValues = {
     address: string | null;
     birthday: string | null;
-    educationCountry: string | null;
     cae?: string;
     'celi-cils-it-plida'?: string;
     city: string | null;
     country: string | null;
     'dalf-delf'?: string;
     dele?: string;
+    educationCountry: string | null;
     email: string | null;
     fatherFirstName: string | null;
     fatherLastName: string | null;
@@ -71,6 +71,7 @@ export type StudentFormValues = {
     gmat?: string;
     goethe?: string;
     gradePointAverage: number | null;
+    gre?: string;
     guardianFirstName: string | null;
     guardianLastName: string | null;
     highestEducationLevel: number | null;

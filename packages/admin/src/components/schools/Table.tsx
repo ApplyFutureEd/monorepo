@@ -108,9 +108,14 @@ const Table: FC<Props> = (props) => {
 
     const handleFilters = (gridFilters: Filter[]) => {
         const filter: SearchableSchoolFilterInput = {
-            and: gridFilters.map((gridFilter) => ({
-                [`${gridFilter.columnName}`]: { matchPhrasePrefix: gridFilter.value }
-            }))
+            and: gridFilters.map((gridFilter) => {
+                if (gridFilter.columnName === 'updatedAt') {
+                    gridFilter.columnName = 'lastUpdate';
+                }
+                return {
+                    [`${gridFilter.columnName}`]: { matchPhrasePrefix: gridFilter.value }
+                };
+            })
         };
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -133,6 +138,10 @@ const Table: FC<Props> = (props) => {
     const handleDebouncedFilter = (gridFilters: Filter[]) => debouncedFilter.callback(gridFilters);
 
     const handleSort = (gridSorts: Sorting[]) => {
+        if (gridSorts[0].columnName === 'updatedAt') {
+            gridSorts[0].columnName = 'lastUpdate';
+        }
+
         const sort: SearchableSchoolSortInput = {
             direction: gridSorts[0].direction as SearchableSortDirection,
             field: gridSorts[0].columnName as SearchableSchoolSortableFields

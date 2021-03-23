@@ -1,18 +1,21 @@
 export const durationUnits = [
     {
-        label: 'Day',
+        label: 'day',
         value: 'DAY'
     },
     {
-        label: 'Month',
+        label: 'month',
         value: 'MONTH'
     },
     {
-        label: 'Year',
+        label: 'year',
         value: 'YEAR'
     },
     {
-        label: 'Week',
+        label: 'week',
         value: 'WEEK'
     }
 ];
+
+export const getDurationUnitLabel = (value: string): string =>
+    durationUnits.find((durationUnit) => durationUnit.value === value)?.label || '';

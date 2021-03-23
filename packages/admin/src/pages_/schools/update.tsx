@@ -25,6 +25,7 @@ const UpdateSchoolPage: FC = () => {
         try {
             const school: any = {
                 ...values,
+                lastUpdate: new Date().valueOf(),
                 slug: kebabCase(`${values.name}`)
             };
 
