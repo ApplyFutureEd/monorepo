@@ -169,7 +169,7 @@ const TestScoresForm: FC<Props> = (props) => {
             }
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: { ...values, id: student?.id }
+                input: { ...values, id: student?.id, lastUpdate: new Date().valueOf() }
             });
 
             toast({

@@ -48,6 +48,7 @@ const UpdateProgramPage: FC = () => {
                     value: values.duration
                 }),
                 intakes: values.intakes.join(),
+                lastUpdate: new Date().valueOf(),
                 schoolName: school?.name,
                 slug: kebabCase(`${values.name} ${school?.slug}`)
             };
