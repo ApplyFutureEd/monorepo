@@ -13,7 +13,13 @@ import {
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
-import { checkCompletion, useAuthenticatedUser, usePageBottom, useQuery } from '@applyfuture/utils';
+import {
+    checkCompletion,
+    createFilter,
+    useAuthenticatedUser,
+    usePageBottom,
+    useQuery
+} from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
@@ -29,34 +35,31 @@ import React, { FC, useEffect, useState } from 'react';
 const ProgramsPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
+
     const { data: studentData, isLoading: studentIsLoading } = useQuery<
         GetStudentByEmailQuery,
         GetStudentByEmailQueryVariables
     >(getStudentByEmail, { email: user?.attributes.email });
+
     const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
         GetDocumentByStudentQuery,
         GetDocumentByStudentQueryVariables
     >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+
     const student = studentData?.getStudentByEmail?.items?.[0];
     const documents = documentsData?.getDocumentByStudent?.items;
 
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
-        filter: {
-            published: { eq: true }
-        },
+        filter: createFilter({}),
         limit: 20
     });
+
     const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
         SearchProgramsQuery,
         SearchProgramsQueryVariables
     >(searchPrograms, variables);
-    const isPageBottom = usePageBottom();
 
-    useEffect(() => {
-        if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
-            fetchMore(programsData.searchPrograms?.nextToken);
-        }
-    }, [isPageBottom]);
+    const isPageBottom = usePageBottom();
 
     const handleSearch = (query: string) => {
         if (!query) {
@@ -99,9 +102,38 @@ const ProgramsPage: FC = () => {
         console.log('Apply - to be implemented');
     };
 
+    useEffect(() => {
+        if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
+            fetchMore(programsData.searchPrograms?.nextToken);
+        }
+    }, [isPageBottom]);
+
+    useEffect(() => {
+        const filter = createFilter({
+            educationCountry: student?.educationCountry,
+            gradePointAverage: student?.gradePointAverage,
+            highestEducationLevel: student?.highestEducationLevel,
+            nationality: student?.nationality,
+            testCambridgeAdvanced: student?.testCambridgeAdvanced,
+            testCambridgeFirst: student?.testCambridgeFirst,
+            testCeliCilsItPlida: student?.testCeliCilsItPlida,
+            testDele: student?.testDele,
+            testDelfdalf: student?.testDelfdalf,
+            testGmat: student?.testGmat,
+            testGoethe: student?.testGoethe,
+            testGre: student?.testGre,
+            testIelts: student?.testIelts,
+            testTagemage: student?.testTagemage,
+            testTcftef: student?.testTcftef,
+            testToefl: student?.testToefl,
+            testToeic: student?.testToeic
+        });
+        handleFilter(filter);
+    }, [student]);
+
     const headerComponents = [
         <Search key={0} handleSearch={handleSearch} />,
-        <Filters key={1} handleFilter={handleFilter} />,
+        <Filters key={1} handleFilter={handleFilter} studentData={studentData} />,
         <SortBy key={2} handleSort={handleSort} />
     ];
 

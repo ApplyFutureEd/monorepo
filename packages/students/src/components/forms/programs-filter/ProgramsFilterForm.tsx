@@ -1,4 +1,4 @@
-import { SearchableProgramFilterInput } from '@applyfuture/graphql';
+import { GetStudentByEmailQuery, SearchableProgramFilterInput } from '@applyfuture/graphql';
 import { Button, Input, Select } from '@applyfuture/ui';
 import {
     cambridgeAdvancedResults,
@@ -19,18 +19,20 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEmpty } from 'lodash';
 import sortBy from 'lodash/sortBy';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { number, object } from 'yup';
 
 type Props = {
     currentTab: number;
     handleClose: () => void;
     handleFilter: (filter: SearchableProgramFilterInput) => void;
+    studentData: GetStudentByEmailQuery;
 };
 
 const ProgramsFilterForm: FC<Props> = (props) => {
-    const { currentTab, handleClose, handleFilter } = props;
+    const { currentTab, handleClose, handleFilter, studentData } = props;
     const { t } = useTranslation();
+    const student = studentData?.getStudentByEmail?.items?.[0];
 
     const validationSchema = object().shape({
         gradePointAverage: number()
@@ -69,37 +71,37 @@ const ProgramsFilterForm: FC<Props> = (props) => {
         degrees: Array<string>;
         disciplines: Array<string>;
         educationCountry: string;
-        gradePointAverage: string;
-        highestEducationLevel: string;
+        gradePointAverage: number | string | null;
+        highestEducationLevel: number | string | null;
         intake: string;
         maxApplicationFee: string;
         maxTuitionFee: string;
         minApplicationFee: string;
         minTuitionFee: string;
         nationality: string;
-        testCambridgeAdvanced: string;
-        testCambridgeFirst: string;
-        testCeliCilsItPlida: string;
-        testDele: string;
-        testDelfdalf: string;
-        testGmat: string;
-        testGoethe: string;
-        testGre: string;
-        testIelts: string;
-        testTagemage: string;
-        testTcftef: string;
-        testToefl: string;
-        testToeic: string;
+        testCambridgeAdvanced: number | string | null;
+        testCambridgeFirst: number | string | null;
+        testCeliCilsItPlida: number | string | null;
+        testDele: number | string | null;
+        testDelfdalf: number | string | null;
+        testGmat: number | string | null;
+        testGoethe: number | string | null;
+        testGre: number | string | null;
+        testIelts: number | string | null;
+        testTagemage: number | string | null;
+        testTcftef: number | string | null;
+        testToefl: number | string | null;
+        testToeic: number | string | null;
     };
 
-    const initialValues: FormValues = {
+    const [initialValues, setInitialValues] = useState<FormValues>({
         cities: [],
         countries: [],
         degrees: [],
         disciplines: [],
         educationCountry: '',
-        gradePointAverage: '',
-        highestEducationLevel: '',
+        gradePointAverage: null,
+        highestEducationLevel: null,
         intake: '',
         maxApplicationFee: '',
         maxTuitionFee: '',
@@ -119,7 +121,32 @@ const ProgramsFilterForm: FC<Props> = (props) => {
         testTcftef: '',
         testToefl: '',
         testToeic: ''
-    };
+    });
+
+    useEffect(() => {
+        if (student) {
+            setInitialValues({
+                ...initialValues,
+                educationCountry: student.educationCountry || '',
+                gradePointAverage: student.gradePointAverage || '',
+                highestEducationLevel: student.highestEducationLevel || '',
+                nationality: student.nationality || '',
+                testCambridgeAdvanced: student.testCambridgeAdvanced || '',
+                testCambridgeFirst: student.testCambridgeFirst || '',
+                testCeliCilsItPlida: student.testCeliCilsItPlida || '',
+                testDele: student.testDele || '',
+                testDelfdalf: student.testDelfdalf || '',
+                testGmat: student.testGmat || '',
+                testGoethe: student.testGoethe || '',
+                testGre: student.testGre || '',
+                testIelts: student.testIelts || '',
+                testTagemage: student.testTagemage || '',
+                testTcftef: student.testTcftef || '',
+                testToefl: student.testToefl || '',
+                testToeic: student.testToeic || ''
+            });
+        }
+    }, [student]);
 
     const handleClear = (values: FormValues, setValues: FormikHelpers<FormValues>['setValues']) => {
         if (currentTab === 0) {
