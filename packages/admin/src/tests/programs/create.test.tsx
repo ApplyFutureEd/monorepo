@@ -40,7 +40,6 @@ const mockedSchool = {
     programs: { nextToken: null },
     published: true,
     slug: 'em-normandie-paris',
-    stepsTemplates: [{ targets: ['all'] }],
     totalStudents: 4500,
     updatedAt: '2020-09-23T11:32:28.030Z'
 };

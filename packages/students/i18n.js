@@ -16,7 +16,7 @@ module.exports = {
         '/profile/test-scores': ['profile'],
         '/profile/upload-documents': ['profile'],
         '/programs': ['profile', 'programs'],
-        '/programs/[slug]': ['programs'],
+        '/programs/[slug]': ['programs', 'profile'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['programs', 'schools'],
         '/schools/[slug]': ['programs', 'schools'],

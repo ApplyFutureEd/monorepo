@@ -127,6 +127,9 @@ export const Select: FC<Props> = (props) => {
 
     let value: ValueType<any> = options.find((option) => option.value === field.value);
     let onChange = (option: ValueType<any>) => {
+        if (!option) {
+            return form.setFieldValue(field.name, null);
+        }
         return form.setFieldValue(field.name, option.value);
     };
 
@@ -173,6 +176,7 @@ export const Select: FC<Props> = (props) => {
             <div className={`mt-1 ${disabled ? 'cursor-not-allowed' : 'cursor-auto'}`}>
                 <div className="rounded-md shadow-sm">
                     <ReactSelect
+                        isClearable
                         inputId={field.name}
                         isDisabled={disabled}
                         isMulti={isMulti}

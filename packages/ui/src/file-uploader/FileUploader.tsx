@@ -14,6 +14,7 @@ import React, { FC, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '../button/Button';
 import { Loader } from '../loader/Loader';
@@ -154,7 +155,7 @@ export const FileUploader: FC<Props> = (props) => {
             return;
         }
 
-        let storageKey = '';
+        let storageKey = uuidv4();
 
         if (student) {
             const studentId = toShortId(student.id);

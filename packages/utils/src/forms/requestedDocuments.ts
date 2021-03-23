@@ -104,20 +104,8 @@ export const requestedDocuments = [
         value: 'dele'
     },
     {
-        label: 'celi',
-        value: 'celi'
-    },
-    {
-        label: 'cils',
-        value: 'cils'
-    },
-    {
-        label: 'it',
-        value: 'it'
-    },
-    {
-        label: 'plida',
-        value: 'plida'
+        label: 'celi-cils-it-plida',
+        value: 'celi-cils-it-plida'
     },
     {
         label: 'application-form',

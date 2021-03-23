@@ -9,6 +9,7 @@ type School
     @model
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getSchoolBySlug") {
+    id: ID!
     city: String!
     country: String!
     coverPhoto: String!
@@ -16,24 +17,18 @@ type School
     contactJobTitle: String
     contactName: String
     contactPhone: String
-    creationYear: String!
+    contractStatus: String!
+    creationYear: Float!
     description: String
-    id: ID!
     institutionType: String!
     internationalStudents: Float!
+    lastUpdate: Float!
     logo: String!
     name: String!
     totalStudents: Float!
     slug: String!
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
-    stepsTemplates: [ApplicationStepsTemplate]!
-    contractStatus: String!
-}
-
-type ApplicationStepsTemplate {
-    targets: [String]
-    steps: [ApplicationStep]
 }
 
 type Program
@@ -48,6 +43,7 @@ type Program
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getProgramBySlug")
     @key(name: "bySchool", fields: ["schoolId"], queryField: "getProgramBySchool") {
+    id: ID!
     applicationFee: Float!
     applicationFeeCurrency: String!
     city: String!
@@ -65,10 +61,10 @@ type Program
     feesAndFinancing: String
     gradePointAverage: Float!
     highestEducationLevel: Float!
-    id: ID!
     intakeInformation: String
     intakes: String!
     languages: [String]!
+    lastUpdate: Float!
     minimumAge: Float!
     minimumWorkExperience: Float!
     minimumWorkExperienceUnit: String!
@@ -84,16 +80,13 @@ type Program
     submissionDeadline: String!
     testCambridgeAdvanced: Float!
     testCambridgeFirst: Float!
-    testCeli: Float!
-    testCils: Float!
+    testCeliCilsItPlida: Float!
     testDele: Float!
     testDelfdalf: Float!
     testGmat: Float!
     testGoethe: Float!
     testGre: Float!
     testIelts: Float!
-    testIt: Float!
-    testPlida: Float!
     testTagemage: Float!
     testTcftef: Float!
     testToefl: Float!
@@ -120,103 +113,98 @@ type Student
     @searchable
     @key(name: "byEmail", fields: ["email"], queryField: "getStudentByEmail") {
     id: ID!
-    email: String
-    phoneNumber: String
     address: String
+    applications: [Application] @connection(keyName: "byStudent", fields: ["id"])
+    birthday: String
     city: String
     country: String
-    firstName: String
-    middleName: String
-    lastName: String
-    birthday: String
-    firstLanguage: String
-    passportNumber: String
-    gender: String
-    maritalStatus: String
+    degrees: [String]
+    disciplines: [String]
+    documents: [Document] @connection(keyName: "byStudent", fields: ["id"])
+    educationCountry: String
+    email: String
     fatherFirstName: String
     fatherLastName: String
+    firstLanguage: String
+    firstName: String
+    favoritePrograms: [String]
+    favoriteSchools: [String]
+    gender: String
+    gradePointAverage: Float
+    guardianFirstName: String
+    guardianLastName: String
+    hasMandatoryDocuments: Boolean
+    highestEducationLevel: Float
+    lastName: String
+    lastUpdate: Float!
+    locale: String
+    maritalStatus: String
+    middleName: String
+    modalProfileCompletedViewed: Boolean
+    phoneNumber: String
     motherFirstName: String
     motherMaidenName: String
-    guardianLastName: String
-    guardianFirstName: String
+    nationality: String
+    notifications: [Notification]
     parentsAddress: String
     parentsCity: String
     parentsCountry: String
-    parentsPhoneNumber: String
     parentsEmail: String
-    disciplines: [String]
-    degrees: [String]
-    nationality: String
-    educationCountry: String
-    highestEducationLevel: Float
-    gradePointAverage: Float
-    schoolsAttended: [SchoolAttended]
-    testToefl: Float
-    testIelts: Float
-    testToeic: Float
-    testTcftef: Float
-    testDelfdalf: Float
-    testGre: Float
-    testGmat: Float
-    testTagemage: Float
-    testCambridgeFirst: Float
-    testCambridgeAdvanced: Float
-    testGoethe: Float
-    testDele: Float
-    testCeli: Float
-    testCils: Float
-    testPlida: Float
-    testIt: Float
-    testToeflDate: String
-    testIeltsDate: String
-    testToeicDate: String
-    testTcftefDate: String
-    testDelfdalfDate: String
-    testGreDate: String
-    testGmatDate: String
-    testTagemageDate: String
-    testCambridgeFirstDate: String
-    testCambridgeAdvancedDate: String
-    testGoetheDate: String
-    testDeleDate: String
-    testCeliDate: String
-    testCilsDate: String
-    testPlidaDate: String
-    testItDate: String
-    testEnglishPending: Boolean
-    testOtherLanguagesPending: Boolean
-    testLogicAndReasoningPending: Boolean
-    validVisa: Boolean
+    parentsPhoneNumber: String
+    passportNumber: String
     refusedVisa: Boolean
     refusedVisaReason: String
+    schoolsAttended: [SchoolAttended]
+    testCambridgeAdvanced: Float
+    testCambridgeAdvancedDate: String
+    testCambridgeFirst: Float
+    testCambridgeFirstDate: String
+    testCeliCilsItPlida: Float
+    testCeliCilsItPlidaDate: String
+    testDele: Float
+    testDeleDate: String
+    testDelfdalf: Float
+    testDelfdalfDate: String
+    testEnglishPending: Boolean
+    testGmat: Float
+    testGmatDate: String
+    testGoethe: Float
+    testGoetheDate: String
+    testGre: Float
+    testGreDate: String
+    testIelts: Float
+    testIeltsDate: String
+    testLogicAndReasoningPending: Boolean
+    testOtherLanguagesPending: Boolean
+    testTagemage: Float
+    testTagemageDate: String
+    testTcftef: Float
+    testTcftefDate: String
+    testToefl: Float
+    testToeflDate: String
+    testToeic: Float
+    testToeicDate: String
+    validVisa: Boolean
     workExperiences: [WorkExperience]
-    documents: [Document] @connection(keyName: "byStudent", fields: ["id"])
-    favoritePrograms: [String]
-    favoriteSchools: [String]
-    applications: [Application] @connection(keyName: "byStudent", fields: ["id"])
-    hasMandatoryDocuments: Boolean
-    modalProfileCompletedViewed: Boolean
-    notifications: [Notification]
-    locale: String
 }
 
 type SchoolAttended {
-    name: String
     address: String
-    city: String
-    country: String
-    primaryLanguageInstruction: String
-    educationLevel: Float
-    degreeAwarded: Float
-    degreeAwardedOn: String
     attendedInstitutionFrom: String
     attendedInstitutionTo: String
+    city: String
+    country: String
+    degreeAwarded: Float
+    degreeAwardedOn: String
+    educationLevel: Float
+    name: String
+    primaryLanguageInstruction: String
 }
 
 type WorkExperience {
-    title: String
-    compagnyName: String
     address: String
+    compagnyName: String
+    title: String
     workedFrom: String
     workedTo: String
 }
@@ -249,38 +237,39 @@ type Application
     @searchable
     @key(name: "byStudent", fields: ["studentId"], queryField: "getApplicationByStudent") {
     id: ID!
+    admissionResult: String
+    document: String
+    decisionLetterDate: String
+    intake: String!
+    interviewDate: String
+    lastUpdate: Float!
+    modalApplicationCompletedViewed: Boolean!
+    notifications: [Notification]
+    program: Program @connection(fields: ["programId"])
+    programId: ID!
+    steps: [ApplicationStep]
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
-    programId: ID!
-    program: Program @connection(fields: ["programId"])
-    intake: String
-    document: String
-    steps: [ApplicationStep]
-    interviewDate: String
-    admissionResult: String
-    tuitionsFeePaymentDate: String
-    decisionLetterDate: String
-    visaDate: String
     todo: String
-    notifications: [Notification]
-    modalApplicationCompletedViewed: Boolean
+    tuitionsFeePaymentDate: String
+    visaDate: String
 }
 
 type ApplicationStep {
     id: String!
-    status: String
-    date: String
-    isMandatory: Boolean
+    date: String!
+    isMandatory: Boolean!
+    status: String!
 }
 
 type Notification {
-    title: String
-    titleOptions: String
-    description: String
-    descriptionOptions: String
-    date: String
-    seen: Boolean
-    link: String
+    date: String!
+    description: String!
+    descriptionOptions: String!
+    link: String!
+    seen: Boolean!
+    title: String!
+    titleOptions: String!
 }
 
 type SearchAlert
@@ -292,10 +281,11 @@ type SearchAlert
     )
     @model {
     id: ID!
-    query: String
-    type: String
-    studentId: ID!
+    lastUpdate: Float!
     student: Student @connection(fields: ["studentId"])
+    studentId: ID!
+    type: String!
+    query: String!
 }
 
 type Feedback
@@ -307,9 +297,10 @@ type Feedback
     )
     @model {
     id: ID!
-    rating: Float
-    applicationId: ID!
     application: Application @connection(fields: ["applicationId"])
+    applicationId: ID!
+    lastUpdate: Float!
+    rating: Float!
 }
 
 type Post
@@ -322,9 +313,10 @@ type Post
     )
     @model
     @key(name: "bySlug", fields: ["slug"], queryField: "getPostBySlug") {
+    id: ID!
     category: String!
     content: String!
-    id: ID!
+    lastUpdate: Float!
     published: Boolean!
     slug: String!
     title: String!

@@ -229,7 +229,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             delete newStudent.studentId;
 
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
-                input: { ...newStudent, id: student?.id }
+                input: { ...newStudent, id: student?.id, lastUpdate: new Date().valueOf() }
             });
 
             toast({
