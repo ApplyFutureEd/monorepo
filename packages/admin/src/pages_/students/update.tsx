@@ -120,11 +120,10 @@ const UpdateStudentPage: FC = () => {
             values.refusedVisa = Boolean(values.refusedVisa);
             values.validVisa = Boolean(values.validVisa);
 
-            const newStudent = { ...values };
+            const newStudent = { ...values, lastUpdate: new Date().valueOf() };
             delete newStudent.studentId;
             delete newStudent.cae;
-            delete newStudent.celi;
-            delete newStudent.cils;
+            delete newStudent['celi-cils-it-plida'];
             delete newStudent['dalf-delf'];
             delete newStudent.dele;
             delete newStudent.fce;
@@ -132,13 +131,11 @@ const UpdateStudentPage: FC = () => {
             delete newStudent.goethe;
             delete newStudent.gre;
             delete newStudent.ielts;
-            delete newStudent.it;
             delete newStudent['last-3-transcript-1'];
             delete newStudent['last-3-transcript-2'];
             delete newStudent['last-3-transcript-3'];
             delete newStudent.passport;
             delete newStudent.passportPhoto;
-            delete newStudent.plida;
             delete newStudent.resume;
             delete newStudent.tageMage;
             delete newStudent['tef-tcf'];

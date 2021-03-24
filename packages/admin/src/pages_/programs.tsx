@@ -5,6 +5,8 @@ import {
     DeleteProgramMutation,
     getSchool,
     GetSchoolQuery,
+    SearchableProgramSortableFields,
+    SearchableSortDirection,
     searchPrograms,
     SearchProgramsQuery,
     SearchProgramsQueryVariables
@@ -30,7 +32,11 @@ import { ItemParams, useContextMenu } from 'react-contexify';
 const ProgramsPage: FC = () => {
     const router = useRouter();
     const [variables, setVariables] = useState<SearchProgramsQueryVariables>({
-        limit: 20
+        limit: 20,
+        sort: {
+            direction: 'desc' as SearchableSortDirection,
+            field: 'lastUpdate' as SearchableProgramSortableFields
+        }
     });
     const { data, isLoading, refetch } = useQuery<
         SearchProgramsQuery,

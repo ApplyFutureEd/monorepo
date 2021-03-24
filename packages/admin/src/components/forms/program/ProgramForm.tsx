@@ -828,7 +828,7 @@ const ProgramForm: FC<Props> = (props) => {
                                                 <Select
                                                     isLoading={isLoading}
                                                     label={`${t(
-                                                        'profile:celicilsitplida'
+                                                        'profile:celi-cils-it-plida'
                                                     )} (C2 - A1)`}
                                                     options={languageLevelsOptions}
                                                     {...fieldProps}

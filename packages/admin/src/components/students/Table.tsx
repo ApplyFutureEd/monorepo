@@ -109,9 +109,14 @@ const Table: FC<Props> = (props) => {
 
     const handleFilters = (gridFilters: Filter[]) => {
         const filter: SearchableStudentFilterInput = {
-            and: gridFilters.map((gridFilter) => ({
-                [`${gridFilter.columnName}`]: { matchPhrasePrefix: gridFilter.value }
-            }))
+            and: gridFilters.map((gridFilter) => {
+                if (gridFilter.columnName === 'updatedAt') {
+                    gridFilter.columnName = 'lastUpdate';
+                }
+                return {
+                    [`${gridFilter.columnName}`]: { matchPhrasePrefix: gridFilter.value }
+                };
+            })
         };
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -139,6 +144,10 @@ const Table: FC<Props> = (props) => {
             field: gridSorts[0].columnName as SearchableStudentSortableFields
         };
 
+        if (sort.field === ('updatedAt' as SearchableStudentSortableFields)) {
+            sort.field = 'lastUpdate' as SearchableStudentSortableFields;
+        }
+
         setVariables((prev: SearchStudentsQueryVariables) => ({
             ...prev,
             sort
@@ -153,7 +162,10 @@ const Table: FC<Props> = (props) => {
             />
             <SearchState onValueChange={handleDebouncedSearch} />
             <FilteringState onFiltersChange={handleDebouncedFilter} />
-            <SortingState onSortingChange={handleSort} />
+            <SortingState
+                defaultSorting={[{ columnName: 'updatedAt', direction: 'desc' }]}
+                onSortingChange={handleSort}
+            />
             <VirtualTable
                 rowComponent={(props) => (
                     <TableRow {...props} handleContextMenu={handleContextMenu} />

@@ -1,5 +1,7 @@
 import {
     deleteStudent,
+    SearchableSortDirection,
+    SearchableStudentSortableFields,
     searchStudents,
     SearchStudentsQuery,
     SearchStudentsQueryVariables
@@ -18,7 +20,11 @@ import { ItemParams, useContextMenu } from 'react-contexify';
 const StudentsPage: FC = () => {
     const router = useRouter();
     const [variables, setVariables] = useState<SearchStudentsQueryVariables>({
-        limit: 20
+        limit: 20,
+        sort: {
+            direction: 'desc' as SearchableSortDirection,
+            field: 'lastUpdate' as SearchableStudentSortableFields
+        }
     });
     const { data, isLoading, refetch } = useQuery<
         SearchStudentsQuery,

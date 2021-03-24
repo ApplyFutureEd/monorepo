@@ -23,6 +23,7 @@ const CreateSchoolPage: FC = () => {
         try {
             const school = {
                 ...values,
+                lastUpdate: new Date().valueOf(),
                 slug: kebabCase(`${values.name}`)
             };
             graphql<CreateSchoolMutation>(createSchool, {

@@ -3,6 +3,8 @@ import {
     CreateSchoolMutation,
     deleteSchool,
     DeleteSchoolMutation,
+    SearchableSchoolSortableFields,
+    SearchableSortDirection,
     searchSchools,
     SearchSchoolsQuery,
     SearchSchoolsQueryVariables
@@ -28,7 +30,11 @@ import { ItemParams, useContextMenu } from 'react-contexify';
 const SchoolsPage: FC = () => {
     const router = useRouter();
     const [variables, setVariables] = useState<SearchSchoolsQueryVariables>({
-        limit: 20
+        limit: 20,
+        sort: {
+            direction: 'desc' as SearchableSortDirection,
+            field: 'lastUpdate' as SearchableSchoolSortableFields
+        }
     });
     const { data, isLoading, refetch } = useQuery<SearchSchoolsQuery, SearchSchoolsQueryVariables>(
         searchSchools,

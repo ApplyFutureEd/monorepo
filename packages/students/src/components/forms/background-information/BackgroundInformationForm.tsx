@@ -109,7 +109,8 @@ const BackgroundInformationForm: FC<Props> = (props) => {
             await graphql<UpdateStudentMutation, UpdateStudentMutationVariables>(updateStudent, {
                 input: {
                     ...values,
-                    id: student?.id
+                    id: student?.id,
+                    lastUpdate: new Date().valueOf()
                 }
             });
 

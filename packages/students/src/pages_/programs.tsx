@@ -54,21 +54,10 @@ const ProgramsPage: FC = () => {
         limit: 20
     });
 
-    const lock = () => {
-        let lock = true;
-        if (user !== undefined && student !== undefined) {
-            lock = false;
-        }
-        if (user === null) {
-            lock = false;
-        }
-        return lock;
-    };
-
     const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
         SearchProgramsQuery,
         SearchProgramsQueryVariables
-    >(searchPrograms, variables, lock());
+    >(searchPrograms, variables);
 
     const isPageBottom = usePageBottom();
 
@@ -123,16 +112,13 @@ const ProgramsPage: FC = () => {
             nationality: student?.nationality,
             testCambridgeAdvanced: student?.testCambridgeAdvanced,
             testCambridgeFirst: student?.testCambridgeFirst,
-            testCeli: student?.testCeli,
-            testCils: student?.testCils,
+            testCeliCilsItPlida: student?.testCeliCilsItPlida,
             testDele: student?.testDele,
             testDelfdalf: student?.testDelfdalf,
             testGmat: student?.testGmat,
             testGoethe: student?.testGoethe,
             testGre: student?.testGre,
             testIelts: student?.testIelts,
-            testIt: student?.testIt,
-            testPlida: student?.testPlida,
             testTagemage: student?.testTagemage,
             testTcftef: student?.testTcftef,
             testToefl: student?.testToefl,

@@ -29,13 +29,8 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-<<<<<<< HEAD:packages/students/src/components/forms/filters/FiltersForm.tsx
-const FiltersForm: FC<Props> = (props) => {
-    const { currentTab, handleClose, handleFilter, studentData } = props;
-=======
 const ProgramsFilterForm: FC<Props> = (props) => {
-    const { currentTab, handleClose, handleFilter } = props;
->>>>>>> master:packages/students/src/components/forms/programs-filter/ProgramsFilterForm.tsx
+    const { currentTab, handleClose, handleFilter, studentData } = props;
     const { t } = useTranslation();
     const student = studentData?.getStudentByEmail?.items?.[0];
 
@@ -84,38 +79,19 @@ const ProgramsFilterForm: FC<Props> = (props) => {
         minApplicationFee: string;
         minTuitionFee: string;
         nationality: string;
-<<<<<<< HEAD:packages/students/src/components/forms/filters/FiltersForm.tsx
         testCambridgeAdvanced: number | string | null;
         testCambridgeFirst: number | string | null;
-        testCeli: number | string | null;
-        testCils: number | string | null;
+        testCeliCilsItPlida: number | string | null;
         testDele: number | string | null;
         testDelfdalf: number | string | null;
         testGmat: number | string | null;
         testGoethe: number | string | null;
         testGre: number | string | null;
         testIelts: number | string | null;
-        testIt: number | string | null;
-        testPlida: number | string | null;
         testTagemage: number | string | null;
         testTcftef: number | string | null;
         testToefl: number | string | null;
         testToeic: number | string | null;
-=======
-        testCambridgeAdvanced: string;
-        testCambridgeFirst: string;
-        testCeliCilsItPlida: string;
-        testDele: string;
-        testDelfdalf: string;
-        testGmat: string;
-        testGoethe: string;
-        testGre: string;
-        testIelts: string;
-        testTagemage: string;
-        testTcftef: string;
-        testToefl: string;
-        testToeic: string;
->>>>>>> master:packages/students/src/components/forms/programs-filter/ProgramsFilterForm.tsx
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
@@ -157,16 +133,13 @@ const ProgramsFilterForm: FC<Props> = (props) => {
                 nationality: student.nationality || '',
                 testCambridgeAdvanced: student.testCambridgeAdvanced || '',
                 testCambridgeFirst: student.testCambridgeFirst || '',
-                testCeli: student.testCeli || '',
-                testCils: student.testCils || '',
+                testCeliCilsItPlida: student.testCeliCilsItPlida || '',
                 testDele: student.testDele || '',
                 testDelfdalf: student.testDelfdalf || '',
                 testGmat: student.testGmat || '',
                 testGoethe: student.testGoethe || '',
                 testGre: student.testGre || '',
                 testIelts: student.testIelts || '',
-                testIt: student.testIt || '',
-                testPlida: student.testPlida || '',
                 testTagemage: student.testTagemage || '',
                 testTcftef: student.testTcftef || '',
                 testToefl: student.testToefl || '',
