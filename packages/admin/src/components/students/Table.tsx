@@ -139,14 +139,14 @@ const Table: FC<Props> = (props) => {
     const handleDebouncedFilter = (gridFilters: Filter[]) => debouncedFilter.callback(gridFilters);
 
     const handleSort = (gridSorts: Sorting[]) => {
-        if (gridSorts[0].columnName === 'updatedAt') {
-            gridSorts[0].columnName = 'lastUpdate';
-        }
-
         const sort: SearchableStudentSortInput = {
             direction: gridSorts[0].direction as SearchableSortDirection,
             field: gridSorts[0].columnName as SearchableStudentSortableFields
         };
+
+        if (sort.field === ('updatedAt' as SearchableStudentSortableFields)) {
+            sort.field = 'lastUpdate' as SearchableStudentSortableFields;
+        }
 
         setVariables((prev: SearchStudentsQueryVariables) => ({
             ...prev,
@@ -162,7 +162,10 @@ const Table: FC<Props> = (props) => {
             />
             <SearchState onValueChange={handleDebouncedSearch} />
             <FilteringState onFiltersChange={handleDebouncedFilter} />
-            <SortingState onSortingChange={handleSort} />
+            <SortingState
+                defaultSorting={[{ columnName: 'updatedAt', direction: 'desc' }]}
+                onSortingChange={handleSort}
+            />
             <VirtualTable
                 rowComponent={(props) => (
                     <TableRow {...props} handleContextMenu={handleContextMenu} />
