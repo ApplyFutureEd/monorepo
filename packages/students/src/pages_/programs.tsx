@@ -12,9 +12,10 @@ import {
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
 import { Program } from '@applyfuture/models';
-import { Button, Container } from '@applyfuture/ui';
+import { Container } from '@applyfuture/ui';
 import { checkCompletion, useAuthenticatedUser, usePageBottom, useQuery } from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/application-journey-steps/ApplicationJourneySteps';
+import NoResult from '@components/common/no-result/NoResult';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
 import ProfileActionPanel from '@components/programs/profile-action-panel/ProfileActionPanel';
@@ -23,7 +24,6 @@ import SkeletonRow from '@components/programs/row/SkeletonRow';
 import Search from '@components/programs/search/Search';
 import SignUpActionPanel from '@components/programs/sign-up-action-panel/SignUpActionPanel';
 import SortBy from '@components/programs/sort-by/SortBy';
-import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -122,19 +122,23 @@ const ProgramsPage: FC = () => {
     const renderPrograms = () => {
         return (
             <>
-                {programs?.map((program) => {
-                    if (!program || !program.school) {
-                        return;
-                    }
+                {programs && programs?.length > 0 ? (
+                    programs?.map((program) => {
+                        if (!program || !program.school) {
+                            return;
+                        }
 
-                    return (
-                        <Row
-                            key={program.id}
-                            program={(program as unknown) as Program}
-                            onClick={handleClick}
-                        />
-                    );
-                })}
+                        return (
+                            <Row
+                                key={program.id}
+                                program={(program as unknown) as Program}
+                                onClick={handleClick}
+                            />
+                        );
+                    })
+                ) : (
+                    <NoResult />
+                )}
             </>
         );
     };
@@ -150,36 +154,9 @@ const ProgramsPage: FC = () => {
                 headerComponents={headerComponents}
                 innerPadding={false}
                 title={`${t('programs:programs')} ${total}`}>
-                {programs && programs?.length > 0 ? (
-                    renderPrograms()
-                ) : (
-                    <div className="sm:px-6 sm:py-5">
-                        <div className="bg-white">
-                            <div className="mx-auto px-4 py-12 max-w-screen-xl text-center sm:px-6 lg:px-32 lg:py-16">
-                                <h2 className="text-gray-900 text-3xl font-extrabold tracking-tight leading-9 sm:text-4xl sm:leading-10">
-                                    {t('programs:no-results-heading')}
-                                </h2>
-                                <p className="mt-8">
-                                    {t('programs:no-results-paragraph-1')}
-                                    <br />
-                                    {t('programs:no-results-paragraph-2')}
-                                </p>
-                                <div className="flex justify-center mt-8">
-                                    <Button
-                                        startIcon={faBell}
-                                        type="button"
-                                        variant="primary"
-                                        // onClick={() => createSearchAlert(values.query)}
-                                    >
-                                        {t('programs:no-results-cta')}
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                {programsIsLoading &&
-                    skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
+                {programsIsLoading
+                    ? skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)
+                    : renderPrograms()}
             </Container>
         </DashboardLayout>
     );
