@@ -9,5 +9,5 @@ export const schedules = [
     }
 ];
 
-export const getScheduleLabel = (value: string): string =>
+export const getScheduleLabel = (value: string | undefined): string =>
     schedules.find((schedule) => schedule.value === value)?.label || '';

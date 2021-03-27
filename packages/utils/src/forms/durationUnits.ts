@@ -17,5 +17,5 @@ export const durationUnits = [
     }
 ];
 
-export const getDurationUnitLabel = (value: string): string =>
+export const getDurationUnitLabel = (value: string | undefined): string =>
     durationUnits.find((durationUnit) => durationUnit.value === value)?.label || '';

@@ -4,5 +4,5 @@ export const cambridgeAdvancedResults = [
     { label: 'C', value: 1 }
 ];
 
-export const getCambridgeAdvancedLabel = (value: number): string =>
+export const getCambridgeAdvancedLabel = (value: number | undefined): string =>
     cambridgeAdvancedResults.find((result) => result.value === value)?.label || '';

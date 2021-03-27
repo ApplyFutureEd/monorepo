@@ -72,14 +72,6 @@ describe('Programs', () => {
         expect(mockedFetchMore).toHaveBeenCalled();
     });
 
-    it('can call onClick callback function when clicking on Apply button', async () => {
-        render(<Programs />);
-
-        const button = screen.getByText('programs:apply');
-
-        await userEvent.click(button);
-    });
-
     it('can display skeletons when isLoading is true', async () => {
         mockedIsLoading = jest.fn().mockReturnValue(true);
 

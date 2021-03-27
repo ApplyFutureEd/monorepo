@@ -1,4 +1,8 @@
-import { GetProgramQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
+import {
+    GetProgramBySlugQuery,
+    GetProgramQuery,
+    GetStudentByEmailQuery
+} from '@applyfuture/graphql';
 import { Program, Student } from '@applyfuture/models';
 import { differenceInDays } from 'date-fns';
 import intersection from 'lodash/intersection';
@@ -113,7 +117,12 @@ export type Eligibility = {
 };
 
 export const checkEligibility = (
-    program: NonNullable<NonNullable<GetProgramQuery['getProgram']>> | Program | null | undefined,
+    program:
+        | NonNullable<NonNullable<GetProgramBySlugQuery['getProgramBySlug']>['items']>[0]
+        | NonNullable<NonNullable<GetProgramQuery['getProgram']>>
+        | Program
+        | null
+        | undefined,
     student:
         | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
         | Student

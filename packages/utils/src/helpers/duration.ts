@@ -1,10 +1,14 @@
 type DurationOptions = {
     unit: 'DAY' | 'MONTH' | 'YEAR' | 'WEEK';
-    value: number;
+    value: number | undefined;
 };
 
 export const convertUnitToSeconds = (options: DurationOptions): number => {
     const { unit, value } = options;
+
+    if (!value) {
+        return 0;
+    }
 
     const durations = {
         DAY: value * 86400,
@@ -18,6 +22,10 @@ export const convertUnitToSeconds = (options: DurationOptions): number => {
 
 export const convertSecondsToUnit = (options: DurationOptions): number => {
     const { unit, value } = options;
+
+    if (!value) {
+        return 0;
+    }
 
     const durations = {
         DAY: value / 86400,

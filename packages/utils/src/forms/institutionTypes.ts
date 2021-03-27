@@ -9,5 +9,5 @@ export const institutionTypes = [
     }
 ];
 
-export const getInstitutionType = (value: string): string =>
+export const getInstitutionType = (value: string | undefined): string =>
     institutionTypes.find((institutionType) => institutionType.value === value)?.label || '';

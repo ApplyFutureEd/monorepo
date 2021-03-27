@@ -1,30 +1,64 @@
-import { Program } from '@applyfuture/models';
+import {
+    createApplication,
+    CreateApplicationMutation,
+    GetProgramBySlugQuery,
+    GetProgramQuery,
+    GetStudentByEmailQuery
+} from '@applyfuture/graphql';
 import { Button, Modal } from '@applyfuture/ui';
-import { date } from '@applyfuture/utils';
-import { Field, Form, Formik } from 'formik';
+import { applicationSteps, date, graphql, toast } from '@applyfuture/utils';
+import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Field, Form, Formik, FormikHelpers } from 'formik';
+import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
     handleClose: () => void;
     open: boolean;
-    program: Program;
+    program:
+        | GetProgramQuery['getProgram']
+        | NonNullable<NonNullable<GetProgramBySlugQuery['getProgramBySlug']>['items']>[0];
+    student: NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0];
 };
 
 const IntakesModal: FC<Props> = (props) => {
-    const { handleClose, open, program } = props;
+    const { handleClose, open, program, student } = props;
+    const router = useRouter();
     const { t } = useTranslation();
 
     type FormValues = {
         intake: string;
     };
 
-    const initialValues = {
+    const initialValues: FormValues = {
         intake: ''
     };
 
-    const onSubmit = () => {
-        console.log('submit');
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        const { intake } = values;
+        try {
+            const result = await graphql<CreateApplicationMutation>(createApplication, {
+                input: {
+                    intake: intake,
+                    lastUpdate: new Date().valueOf(),
+                    modalApplicationCompletedViewed: false,
+                    programId: program?.id,
+                    steps: applicationSteps,
+                    studentId: student?.id
+                }
+            });
+            const application = result.createApplication;
+            return router.push(`/applications/${application?.id}/${applicationSteps[0].id}`);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+        actions.setSubmitting(false);
     };
 
     return (
@@ -32,36 +66,45 @@ const IntakesModal: FC<Props> = (props) => {
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {({ isSubmitting, setFieldValue, values, submitForm }) => (
                     <Form>
-                        <div className="p-6 sm:p-0">
-                            <h2 className="mt-1 text-gray-900 text-3xl font-extrabold tracking-tight leading-9 sm:text-4xl sm:leading-10">
-                                {t('programs:multiple-intakes-modal-title')}
-                            </h2>
-                            <p className="mt-1">
-                                {t('programs:multiple-intakes-modal-description')}
-                            </p>
-                            <div className="mt-4">
-                                <Field key="intake" id="intake" name="intake">
-                                    {(props: any) => (
-                                        <div className="flex justify-center mt-4 space-x-4">
-                                            {program?.intakes.split(',').map((intake: any) => (
-                                                <Button
-                                                    key={intake}
-                                                    type="button"
-                                                    variant={
-                                                        values.intake === intake
-                                                            ? 'primary'
-                                                            : 'secondary'
-                                                    }
-                                                    onClick={() => {
-                                                        setFieldValue('intake', intake);
-                                                        submitForm();
-                                                    }}>
-                                                    {date({ scheme: 'LLLL y', value: intake })}
-                                                </Button>
-                                            ))}
-                                        </div>
-                                    )}
-                                </Field>
+                        <div className="sm:flex sm:items-start">
+                            <div className="flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 text-indigo-600 bg-indigo-100 rounded-full sm:mx-0 sm:w-10 sm:h-10">
+                                <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+                            </div>
+                            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <h3
+                                    className="text-gray-900 text-lg font-medium leading-6"
+                                    id="modal-headline">
+                                    {t('programs:multiple-intakes-modal-title')}
+                                </h3>
+                                <div className="mt-2">
+                                    <p className="text-gray-500 text-sm leading-5">
+                                        {t('programs:multiple-intakes-modal-description')}
+                                    </p>
+                                    <Field key="intake" id="intake" name="intake">
+                                        {() => (
+                                            <div className="flex mt-4 space-x-4">
+                                                {program?.intakes.split(',').map((intake: any) => (
+                                                    <Button
+                                                        key={intake}
+                                                        disabled={!student}
+                                                        isSubmitting={isSubmitting}
+                                                        type="button"
+                                                        variant={
+                                                            values.intake === intake
+                                                                ? 'primary'
+                                                                : 'secondary'
+                                                        }
+                                                        onClick={() => {
+                                                            setFieldValue('intake', intake);
+                                                            submitForm();
+                                                        }}>
+                                                        {date({ scheme: 'LLLL y', value: intake })}
+                                                    </Button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </Field>
+                                </div>
                             </div>
                         </div>
                     </Form>
