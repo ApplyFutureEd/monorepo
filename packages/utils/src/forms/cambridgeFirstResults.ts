@@ -7,5 +7,5 @@ export const cambridgeFirstResults = [
     { label: 'U', value: 1 }
 ];
 
-export const getCambridgeFirstLabel = (value: number): string =>
+export const getCambridgeFirstLabel = (value: number | undefined): string =>
     cambridgeFirstResults.find((result) => result.value === value)?.label || '';

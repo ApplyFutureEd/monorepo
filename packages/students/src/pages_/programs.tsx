@@ -11,7 +11,6 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
-import { Program } from '@applyfuture/models';
 import { Container } from '@applyfuture/ui';
 import {
     checkCompletion,
@@ -98,10 +97,6 @@ const ProgramsPage: FC = () => {
         }));
     };
 
-    const handleClick = () => {
-        console.log('Apply - to be implemented');
-    };
-
     useEffect(() => {
         if (!programsIsLoading && isPageBottom && programsData.searchPrograms?.nextToken) {
             fetchMore(programsData.searchPrograms?.nextToken);
@@ -160,17 +155,7 @@ const ProgramsPage: FC = () => {
                 innerPadding={false}
                 title={`${t('programs:programs')} ${total}`}>
                 {programsData.searchPrograms?.items?.map((program) => {
-                    if (!program || !program.school) {
-                        return;
-                    }
-
-                    return (
-                        <Row
-                            key={program.id}
-                            program={(program as unknown) as Program}
-                            onClick={handleClick}
-                        />
-                    );
+                    return program && <Row key={program?.id} program={program} student={student} />;
                 })}
                 {programsIsLoading &&
                     skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}

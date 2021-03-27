@@ -1,4 +1,4 @@
-import { Program } from '@applyfuture/models';
+import { GetProgramBySlugQuery, GetProgramQuery } from '@applyfuture/graphql';
 import { IconPanel, Tooltip } from '@applyfuture/ui';
 import {
     convertSecondsToUnit,
@@ -22,7 +22,9 @@ import React, { FC } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
-    program: Program;
+    program:
+        | GetProgramQuery['getProgram']
+        | NonNullable<NonNullable<GetProgramBySlugQuery['getProgramBySlug']>['items']>[0];
 };
 
 const Indicators: FC<Props> = (props) => {
@@ -66,19 +68,19 @@ const Indicators: FC<Props> = (props) => {
                     <IconPanel
                         icon={faGlobe}
                         label={t('programs:language', {
-                            count: program?.languages?.length
+                            count: program?.languages?.length || 1
                         })}>
-                        {program?.languages?.length > 1 ? (
+                        {program?.languages && program?.languages?.length > 1 ? (
                             <Tooltip
-                                content={program?.languages?.map((language: string) => (
+                                content={program?.languages?.map((language) => (
                                     <div key={language}>
-                                        {t(`common:${getLanguageLabel(language)}`)}
+                                        {t(`common:${getLanguageLabel(language || 'EN')}`)}
                                     </div>
                                 ))}>
                                 {t('programs:multilingual')}
                             </Tooltip>
                         ) : (
-                            t(`common:${getLanguageLabel(program?.languages[0])}`)
+                            t(`common:${getLanguageLabel(program?.languages[0] || 'EN')}`)
                         )}
                     </IconPanel>
                 </div>

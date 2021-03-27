@@ -17,6 +17,7 @@ export * from './forms/maritalStatus';
 export * from './forms/requestedDocuments';
 export * from './forms/schedules';
 
+export * from './helpers/applicationSteps';
 export * from './helpers/currency';
 export * from './helpers/date';
 export * from './helpers/delay';

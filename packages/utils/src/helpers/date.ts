@@ -5,7 +5,7 @@ import { enUS, fr, zhCN } from 'date-fns/locale';
 export type DateOptions = {
     locale?: SupportedLocale;
     scheme?: string;
-    value: Date | string;
+    value: Date | string | undefined;
 };
 
 export const date = (options: DateOptions): string | null => {

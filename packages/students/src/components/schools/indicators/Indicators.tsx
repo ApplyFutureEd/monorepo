@@ -1,4 +1,4 @@
-import { Program, School } from '@applyfuture/models';
+import { GetProgramBySchoolQuery, GetSchoolBySlugQuery } from '@applyfuture/graphql';
 import { IconPanel } from '@applyfuture/ui';
 import { getInstitutionType } from '@applyfuture/utils';
 import { faBooks, faGlobe, faGraduationCap, faUniversity } from '@fortawesome/pro-light-svg-icons';
@@ -6,8 +6,8 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
-    school: School;
-    programs: Program[];
+    school: NonNullable<NonNullable<GetSchoolBySlugQuery['getSchoolBySlug']>['items']>[0];
+    programs: NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>;
 };
 
 const Indicators: FC<Props> = (props) => {
@@ -22,8 +22,8 @@ const Indicators: FC<Props> = (props) => {
                     <IconPanel icon={faBooks} label={t('schools:bachelors')}>
                         {
                             programs
-                                ?.filter((program) => program.published)
-                                .filter((program) => program.degree === 'BACHELOR').length
+                                ?.filter((program) => program?.published)
+                                .filter((program) => program?.degree === 'BACHELOR').length
                         }
                     </IconPanel>
                 </div>
@@ -31,8 +31,8 @@ const Indicators: FC<Props> = (props) => {
                     <IconPanel icon={faBooks} label={t('schools:masters')}>
                         {
                             programs
-                                ?.filter((program) => program.published)
-                                .filter((program) => program.degree === 'MASTER').length
+                                ?.filter((program) => program?.published)
+                                .filter((program) => program?.degree === 'MASTER').length
                         }
                     </IconPanel>
                 </div>

@@ -289,5 +289,5 @@ export const languages = [
     }
 ];
 
-export const getLanguageLabel = (value: string): string =>
+export const getLanguageLabel = (value: string | undefined): string =>
     languages.find((language) => language.value === value)?.label || '';

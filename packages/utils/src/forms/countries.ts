@@ -805,5 +805,5 @@ export const supportedCountries = countries.filter((country) =>
     )
 );
 
-export const getCountryLabel = (value: string): string =>
+export const getCountryLabel = (value: string | undefined): string =>
     countries.find((country) => country.value === value)?.label || '';
