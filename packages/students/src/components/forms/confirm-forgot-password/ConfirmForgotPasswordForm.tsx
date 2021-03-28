@@ -42,7 +42,6 @@ const ConfirmForgotPasswordForm: FC = () => {
                 title: t('auth:new-password-title-toast'),
                 variant: 'success'
             });
-
             return router.push(`/sign-in?email=${email}`);
         } catch (error) {
             let message = t('auth:error-generic-exception');

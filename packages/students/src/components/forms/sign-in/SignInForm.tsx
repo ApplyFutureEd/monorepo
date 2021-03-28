@@ -1,5 +1,13 @@
+import {
+    createStudent,
+    CreateStudentMutation,
+    CreateStudentMutationVariables,
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables
+} from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { graphql, useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
@@ -36,6 +44,74 @@ const SignInForm: FC = () => {
                 username: email.toLowerCase()
             });
             handleAuth(user);
+            const student = await graphql<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+                getStudentByEmail,
+                { email: email.toLowerCase() }
+            );
+            if (!student) {
+                await graphql<CreateStudentMutation, CreateStudentMutationVariables>(
+                    createStudent,
+                    {
+                        input: {
+                            address: '',
+                            birthday: null,
+                            city: '',
+                            country: '',
+                            educationCountry: '',
+                            email: email,
+                            fatherFirstName: '',
+                            fatherLastName: '',
+                            firstLanguage: '',
+                            firstName: '',
+                            gender: '',
+                            gradePointAverage: 0,
+                            guardianFirstName: '',
+                            guardianLastName: '',
+                            highestEducationLevel: -1,
+                            lastName: '',
+                            lastUpdate: new Date().valueOf(),
+                            maritalStatus: '',
+                            middleName: '',
+                            motherFirstName: '',
+                            motherMaidenName: '',
+                            nationality: '',
+                            parentsAddress: '',
+                            parentsCity: '',
+                            parentsCountry: '',
+                            parentsEmail: '',
+                            parentsPhoneNumber: '',
+                            passportNumber: '',
+                            phoneNumber: '',
+                            refusedVisa: null,
+                            refusedVisaReason: '',
+                            schoolsAttended: [
+                                {
+                                    address: '',
+                                    attendedInstitutionFrom: null,
+                                    attendedInstitutionTo: null,
+                                    city: '',
+                                    country: '',
+                                    degreeAwarded: -1,
+                                    degreeAwardedOn: null,
+                                    educationLevel: -1,
+                                    name: '',
+                                    primaryLanguageInstruction: ''
+                                }
+                            ],
+                            validVisa: null,
+                            workExperiences: [
+                                {
+                                    address: '',
+                                    compagnyName: '',
+                                    title: '',
+                                    workedFrom: null,
+                                    workedTo: null
+                                }
+                            ]
+                        }
+                    }
+                );
+            }
             return router.push((router.query.from as string) || '/programs');
         } catch (error) {
             let message = t('auth:error-generic-exception');
