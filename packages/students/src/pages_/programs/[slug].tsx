@@ -83,10 +83,16 @@ const ProgramPage: FC<Props> = (props) => {
                 program?.testToeic > 0 ||
                 program?.testCambridgeFirst > 0 ||
                 program?.testCambridgeAdvanced > 0),
-        'french-tests': program && (program?.testTcftef > 0 || program?.testDelfdalf > 0),
         'grade-point-average': program && program?.gradePointAverage > 0,
         'logic-and-reasoning-tests':
-            program && (program?.testGmat > 0 || program?.testGre > 0 || program?.testTagemage > 0)
+            program && (program?.testGmat > 0 || program?.testGre > 0 || program?.testTagemage > 0),
+        'other-languages-tests':
+            program &&
+            (program?.testTcftef > 0 ||
+                program?.testDelfdalf > 0 ||
+                program?.testCeliCilsItPlida > 0 ||
+                program?.testGoethe > 0 ||
+                program?.testDele > 0)
     };
 
     if (router.isFallback || !program) {
@@ -282,13 +288,13 @@ const ProgramPage: FC<Props> = (props) => {
                             </div>
                         )}
 
-                        {requirements['french-tests'] && (
+                        {requirements['other-languages-tests'] && (
                             <div className="mb-8">
                                 <h3 className="mb-4 font-sans text-base font-medium">
-                                    {t('programs:french-test')}
+                                    {t('programs:other-languages-test')}
                                 </h3>
                                 <div className="mb-4 text-justify font-sans text-sm leading-5">
-                                    {t('programs:french-test-info')}
+                                    {t('programs:other-languages-test-info')}
                                 </div>
                                 <div className="inline-flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                                     {program?.testTcftef > 0 && (
@@ -305,6 +311,32 @@ const ProgramPage: FC<Props> = (props) => {
                                                 icon={faBook}
                                                 label={t('programs:delf-dalf')}>
                                                 {program?.testDelfdalf}
+                                            </IconPanel>
+                                        </div>
+                                    )}
+
+                                    {program?.testCeliCilsItPlida > 0 && (
+                                        <div className="inline-flex border border-gray-200 rounded-md">
+                                            <IconPanel
+                                                icon={faBook}
+                                                label={t('programs:celi-cils-it-plida')}>
+                                                {program?.testCeliCilsItPlida}
+                                            </IconPanel>
+                                        </div>
+                                    )}
+
+                                    {program?.testGoethe > 0 && (
+                                        <div className="inline-flex border border-gray-200 rounded-md">
+                                            <IconPanel icon={faBook} label={t('programs:goethe')}>
+                                                {program?.testGoethe}
+                                            </IconPanel>
+                                        </div>
+                                    )}
+
+                                    {program?.testGoethe > 0 && (
+                                        <div className="inline-flex border border-gray-200 rounded-md">
+                                            <IconPanel icon={faBook} label={t('programs:goethe')}>
+                                                {program?.testGoethe}
                                             </IconPanel>
                                         </div>
                                     )}
