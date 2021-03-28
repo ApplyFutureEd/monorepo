@@ -44,11 +44,11 @@ const SignInForm: FC = () => {
                 username: email.toLowerCase()
             });
             handleAuth(user);
-            const student = await graphql<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+            const data = await graphql<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
                 getStudentByEmail,
                 { email: email.toLowerCase() }
             );
-            if (!student) {
+            if (data.getStudentByEmail?.items?.length === 0) {
                 await graphql<CreateStudentMutation, CreateStudentMutationVariables>(
                     createStudent,
                     {
