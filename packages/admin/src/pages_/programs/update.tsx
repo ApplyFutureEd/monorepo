@@ -47,10 +47,27 @@ const UpdateProgramPage: FC = () => {
                     unit: values.durationUnit as 'DAY' | 'MONTH' | 'YEAR' | 'WEEK',
                     value: values.duration
                 }),
+                gradePointAverage: values.gradePointAverage || -1,
+                highestEducationLevel: values.highestEducationLevel || -1,
                 intakes: values.intakes.join(),
                 lastUpdate: new Date().valueOf(),
+                minimumAge: values.minimumAge || -1,
+                minimumWorkExperience: values.minimumWorkExperience || -1,
                 schoolName: school?.name,
-                slug: kebabCase(`${values.name} ${school?.slug}`)
+                slug: kebabCase(`${values.name} ${school?.slug}`),
+                testCambridgeAdvanced: values.testCambridgeAdvanced || -1,
+                testCambridgeFirst: values.testCambridgeFirst || -1,
+                testCeliCilsItPlida: values.testCeliCilsItPlida || -1,
+                testDele: values.testDele || -1,
+                testDelfdalf: values.testDelfdalf || -1,
+                testGmat: values.testGmat || -1,
+                testGoethe: values.testGoethe || -1,
+                testGre: values.testGre || -1,
+                testIelts: values.testIelts || -1,
+                testTagemage: values.testTagemage || -1,
+                testTcftef: values.testTcftef || -1,
+                testToefl: values.testToefl || -1,
+                testToeic: values.testToeic || -1
             };
             graphql<UpdateProgramMutation>(updateProgram, {
                 input: program
