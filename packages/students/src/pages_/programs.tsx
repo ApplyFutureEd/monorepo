@@ -138,8 +138,23 @@ const ProgramsPage: FC = () => {
         ? `(${programsData.searchPrograms?.total})`
         : '';
 
+    const {
+        generalInformation,
+        educationHistory,
+        testScores,
+        backgroundInformation,
+        uploadDocuments
+    } = checkCompletion(student, documents);
+
+    const isCompleted =
+        generalInformation &&
+        educationHistory &&
+        testScores &&
+        backgroundInformation &&
+        uploadDocuments;
+
     const displayProfileActionPanel = Boolean(
-        user && !studentIsLoading && !documentsIsLoading && !checkCompletion(student, documents)
+        user && !studentIsLoading && !documentsIsLoading && !isCompleted
     );
     const displaySignUpActionPanel = Boolean(!user && !studentIsLoading && !documentsIsLoading);
 

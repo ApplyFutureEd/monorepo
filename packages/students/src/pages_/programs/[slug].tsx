@@ -333,10 +333,10 @@ const ProgramPage: FC<Props> = (props) => {
                                         </div>
                                     )}
 
-                                    {program?.testGoethe > 0 && (
+                                    {program?.testDele > 0 && (
                                         <div className="inline-flex border border-gray-200 rounded-md">
-                                            <IconPanel icon={faBook} label={t('programs:goethe')}>
-                                                {program?.testGoethe}
+                                            <IconPanel icon={faBook} label={t('programs:dele')}>
+                                                {program?.testDele}
                                             </IconPanel>
                                         </div>
                                     )}
