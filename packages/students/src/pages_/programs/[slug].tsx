@@ -20,6 +20,7 @@ import {
     getCambridgeFirstLabel,
     getCountryLabel,
     getEducationLabel,
+    getLanguageLevelLabel,
     markdown,
     useAuthenticatedUser,
     useQuery
@@ -240,11 +241,7 @@ const ProgramPage: FC<Props> = (props) => {
                                     {program?.testToefl > 0 && (
                                         <div className="inline-flex border border-gray-200 rounded-md">
                                             <IconPanel icon={faBook} label={t('programs:toefl')}>
-                                                <Tooltip content={<div />}>
-                                                    <div className="align-center flex items-center space-x-2">
-                                                        <div>{program?.testToefl}</div>
-                                                    </div>
-                                                </Tooltip>
+                                                {program?.testToefl}
                                             </IconPanel>
                                         </div>
                                     )}
@@ -300,7 +297,7 @@ const ProgramPage: FC<Props> = (props) => {
                                     {program?.testTcftef > 0 && (
                                         <div className="inline-flex border border-gray-200 rounded-md">
                                             <IconPanel icon={faBook} label={t('programs:tcf-tef')}>
-                                                {program?.testTcftef}
+                                                {getLanguageLevelLabel(program?.testTcftef)}
                                             </IconPanel>
                                         </div>
                                     )}
@@ -310,7 +307,7 @@ const ProgramPage: FC<Props> = (props) => {
                                             <IconPanel
                                                 icon={faBook}
                                                 label={t('programs:delf-dalf')}>
-                                                {program?.testDelfdalf}
+                                                {getLanguageLevelLabel(program?.testDelfdalf)}
                                             </IconPanel>
                                         </div>
                                     )}
@@ -320,7 +317,9 @@ const ProgramPage: FC<Props> = (props) => {
                                             <IconPanel
                                                 icon={faBook}
                                                 label={t('programs:celi-cils-it-plida')}>
-                                                {program?.testCeliCilsItPlida}
+                                                {getLanguageLevelLabel(
+                                                    program?.testCeliCilsItPlida
+                                                )}
                                             </IconPanel>
                                         </div>
                                     )}
@@ -328,7 +327,7 @@ const ProgramPage: FC<Props> = (props) => {
                                     {program?.testGoethe > 0 && (
                                         <div className="inline-flex border border-gray-200 rounded-md">
                                             <IconPanel icon={faBook} label={t('programs:goethe')}>
-                                                {program?.testGoethe}
+                                                {getLanguageLevelLabel(program?.testGoethe)}
                                             </IconPanel>
                                         </div>
                                     )}
@@ -336,7 +335,7 @@ const ProgramPage: FC<Props> = (props) => {
                                     {program?.testDele > 0 && (
                                         <div className="inline-flex border border-gray-200 rounded-md">
                                             <IconPanel icon={faBook} label={t('programs:dele')}>
-                                                {program?.testDele}
+                                                {getLanguageLevelLabel(program?.testDele)}
                                             </IconPanel>
                                         </div>
                                     )}
