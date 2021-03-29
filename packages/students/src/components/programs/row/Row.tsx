@@ -1,10 +1,13 @@
 import {
+    GetDocumentByStudentQuery,
     GetProgramBySchoolQuery,
     GetStudentByEmailQuery,
     SearchProgramsQuery
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import {
+    checkCompletion,
+    checkEligibility,
     convertSecondsToUnit,
     currency,
     date,
@@ -17,9 +20,14 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
+import EligibilityWarningModal from '../eligibility-warning-modal/EligibilityWarningModal';
 import IntakesModal from '../intakes-modal/IntakesModal';
 
 type Props = {
+    documents:
+        | NonNullable<GetDocumentByStudentQuery['getDocumentByStudent']>['items']
+        | null
+        | undefined;
     program:
         | NonNullable<NonNullable<SearchProgramsQuery['searchPrograms']>['items']>[0]
         | NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>[0];
@@ -30,13 +38,17 @@ type Props = {
 };
 
 const Row: FC<Props> = (props) => {
-    const { program, student } = props;
+    const { program, student, documents } = props;
 
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const [openIntakesModal, setOpenIntakesModal] = useState(false);
+    const [openEligibilityWarningModal, setOpenEligibilityWarningModal] = useState(false);
+
+    const isCompleted = Boolean(checkCompletion(student, documents));
+    const { isEligible, reasons } = checkEligibility(program, student, t);
 
     const handleOpenIntakesModal = () => {
         setOpenIntakesModal(true);
@@ -46,7 +58,18 @@ const Row: FC<Props> = (props) => {
         setOpenIntakesModal(false);
     };
 
+    const handleOpenEligibilityWarningModal = () => {
+        setOpenEligibilityWarningModal(true);
+    };
+
+    const handleCloseEligibilityWarningModal = async () => {
+        setOpenEligibilityWarningModal(false);
+    };
+
     const handleClick = () => {
+        if (!isCompleted || !isEligible || reasons.length > 0) {
+            return handleOpenEligibilityWarningModal();
+        }
         if (program?.intakes && program?.intakes?.split(',').length > 1) {
             return handleOpenIntakesModal();
         }
@@ -79,6 +102,14 @@ const Row: FC<Props> = (props) => {
                     open={openIntakesModal}
                     program={program}
                     student={student}
+                />
+            )}
+            {student && (
+                <EligibilityWarningModal
+                    handleClose={handleCloseEligibilityWarningModal}
+                    isCompleted={isCompleted}
+                    open={openEligibilityWarningModal}
+                    reasons={reasons}
                 />
             )}
             <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">

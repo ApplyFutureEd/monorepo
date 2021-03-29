@@ -170,7 +170,16 @@ const ProgramsPage: FC = () => {
                 innerPadding={false}
                 title={`${t('programs:programs')} ${total}`}>
                 {programsData.searchPrograms?.items?.map((program) => {
-                    return program && <Row key={program?.id} program={program} student={student} />;
+                    return (
+                        program && (
+                            <Row
+                                key={program?.id}
+                                documents={documents}
+                                program={program}
+                                student={student}
+                            />
+                        )
+                    );
                 })}
                 {programsIsLoading &&
                     skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}

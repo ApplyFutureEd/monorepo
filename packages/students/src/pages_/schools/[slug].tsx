@@ -1,4 +1,7 @@
 import {
+    getDocumentByStudent,
+    GetDocumentByStudentQuery,
+    GetDocumentByStudentQueryVariables,
     getProgramBySchool,
     GetProgramBySchoolQuery,
     getSchoolBySlug,
@@ -40,7 +43,14 @@ const SchoolPage: FC<Props> = (props) => {
         getStudentByEmail,
         { email: user?.attributes.email }
     );
+
+    const { data: documentsData } = useQuery<
+        GetDocumentByStudentQuery,
+        GetDocumentByStudentQueryVariables
+    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+
     const student = studentData?.getStudentByEmail?.items?.[0];
+    const documents = documentsData?.getDocumentByStudent?.items;
 
     if (router.isFallback || !school) {
         return <div>Loading...</div>;
@@ -114,7 +124,12 @@ const SchoolPage: FC<Props> = (props) => {
                     {bachelors.length > 0 && (
                         <Container innerPadding={false} title={t('schools:bachelors-programs')}>
                             {bachelors.map((bachelor) => (
-                                <Row key={bachelor?.id} program={bachelor} student={student} />
+                                <Row
+                                    key={bachelor?.id}
+                                    documents={documents}
+                                    program={bachelor}
+                                    student={student}
+                                />
                             ))}
                         </Container>
                     )}
@@ -122,7 +137,12 @@ const SchoolPage: FC<Props> = (props) => {
                     {masters.length > 0 && (
                         <Container innerPadding={false} title={t('schools:masters-programs')}>
                             {masters.map((master) => (
-                                <Row key={master?.id} program={master} student={student} />
+                                <Row
+                                    key={master?.id}
+                                    documents={documents}
+                                    program={master}
+                                    student={student}
+                                />
                             ))}
                         </Container>
                     )}
@@ -130,7 +150,12 @@ const SchoolPage: FC<Props> = (props) => {
                     {doctorates.length > 0 && (
                         <Container innerPadding={false} title={t('schools:doctorates-programs')}>
                             {doctorates.map((doctorate) => (
-                                <Row key={doctorate?.id} program={doctorate} student={student} />
+                                <Row
+                                    key={doctorate?.id}
+                                    documents={documents}
+                                    program={doctorate}
+                                    student={student}
+                                />
                             ))}
                         </Container>
                     )}
@@ -140,6 +165,7 @@ const SchoolPage: FC<Props> = (props) => {
                             {certificates.map((certificate) => (
                                 <Row
                                     key={certificate?.id}
+                                    documents={documents}
                                     program={certificate}
                                     student={student}
                                 />
