@@ -10,7 +10,7 @@ import {
     listPrograms,
     ListProgramsQuery
 } from '@applyfuture/graphql';
-import { Button, Container, Cover, IconPanel, SubHeader, Tooltip } from '@applyfuture/ui';
+import { Button, Container, Cover, IconPanel, SubHeader } from '@applyfuture/ui';
 import {
     checkCompletion,
     checkEligibility,
