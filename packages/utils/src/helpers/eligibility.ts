@@ -14,7 +14,7 @@ import {
     germanSpokenCountries,
     italianSpokenCountries,
     spanishSpokenCountries
-} from '../forms/countries';
+} from '../constants/countries';
 
 export const formatTestCambridgeFirstValue = (
     value: number

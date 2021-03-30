@@ -162,13 +162,18 @@ const RecruitersForm: FC<Props> = (props) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
-            {({ isSubmitting, values }) => (
+            {({ errors, isSubmitting, values }) => (
                 <Form>
                     <div className={cx({ hidden: currentStep !== 0 })}>
-                        <CompagnyInfo handleNextStep={handleNextStep} values={values} />
+                        <CompagnyInfo
+                            errors={errors}
+                            handleNextStep={handleNextStep}
+                            values={values}
+                        />
                     </div>
                     <div className={cx({ hidden: currentStep !== 1 })}>
                         <ContactInfo
+                            errors={errors}
                             handleNextStep={handleNextStep}
                             handlePreviousStep={handlePreviousStep}
                             values={values}
@@ -177,6 +182,7 @@ const RecruitersForm: FC<Props> = (props) => {
                     <div className={cx({ hidden: currentStep !== 2 })}>
                         <RecruitementDetails
                             errorMessage={errorMessage}
+                            errors={errors}
                             handlePreviousStep={handlePreviousStep}
                             isSubmitting={isSubmitting}
                             submitted={submitted}

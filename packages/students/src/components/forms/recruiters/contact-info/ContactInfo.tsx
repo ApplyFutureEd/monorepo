@@ -1,19 +1,20 @@
 import { Button, Input, PhoneInput, Select } from '@applyfuture/ui';
-import { countries } from '@applyfuture/utils';
+import { countries, scrollToErrors } from '@applyfuture/utils';
 import { FormValues } from '@components/forms/recruiters/RecruitersForm';
 import { faArrowLeft, faArrowRight } from '@fortawesome/pro-light-svg-icons';
-import { Field, FieldProps } from 'formik';
+import { Field, FieldProps, FormikErrors } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 type Props = {
+    errors: FormikErrors<FormValues>;
     handleNextStep: () => void;
     handlePreviousStep: () => void;
     values: FormValues;
 };
 
 const ContactInfo: FC<Props> = (props) => {
-    const { handleNextStep, handlePreviousStep, values } = props;
+    const { errors, handleNextStep, handlePreviousStep, values } = props;
     const { t } = useTranslation();
 
     const validate = (formValues: FormValues) => {
@@ -126,7 +127,10 @@ const ContactInfo: FC<Props> = (props) => {
                     disabled={validate(values)}
                     endIcon={faArrowRight}
                     type="button"
-                    onClick={handleNextStep}>
+                    onClick={() => {
+                        scrollToErrors(errors);
+                        handleNextStep();
+                    }}>
                     {t('common:next-step')}
                 </Button>
             </div>

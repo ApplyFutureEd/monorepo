@@ -1,11 +1,11 @@
-import { cities } from '../forms/cities';
+import { cities } from '../constants/cities';
 import {
     englishSpokenCountries,
     frenchSpokenCountries,
     supportedCountries
-} from '../forms/countries';
-import { degrees } from '../forms/degrees';
-import { disciplines } from '../forms/disciplines';
+} from '../constants/countries';
+import { degrees } from '../constants/degrees';
+import { disciplines } from '../constants/disciplines';
 
 const cartesian = (...args: any[]) => {
     const result: any[] = [];
