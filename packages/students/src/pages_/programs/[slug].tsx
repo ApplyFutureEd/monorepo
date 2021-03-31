@@ -125,7 +125,7 @@ const ProgramPage: FC<Props> = (props) => {
                 </Link>
             );
         }
-        if (!isEligible) {
+        if (isEligible === false) {
             return (
                 <Button disabled startIcon={faLock} type="button" variant="primary">
                     {t('programs:not-eligible')}
