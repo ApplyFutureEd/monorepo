@@ -1,9 +1,4 @@
-import {
-    GetProgramBySlugQuery,
-    GetProgramQuery,
-    GetStudentByEmailQuery
-} from '@applyfuture/graphql';
-import { Program, Student } from '@applyfuture/models';
+import { GetProgramBySlugQuery, GetProgramQuery } from '@applyfuture/graphql';
 import { differenceInDays } from 'date-fns';
 import intersection from 'lodash/intersection';
 import sumBy from 'lodash/sumBy';
