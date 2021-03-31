@@ -10,9 +10,6 @@ export const otherLanguagesTests = [
     'testDelfdalf',
     'testGoethe',
     'testDele',
-    'testCeli',
-    'testCils',
-    'testIt',
-    'testPlida'
+    'testCeliCilsItPlida'
 ];
 export const logicAndReasoningTests = ['testGre', 'testGmat', 'testTagemage'];
