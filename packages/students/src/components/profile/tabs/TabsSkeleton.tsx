@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 
 const TabsSkeleton: FC = () => {
     const baseClasses =
-        'flex items-center space-x-2 whitespace-no-wrap py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300';
+        'flex items-center px-1 py-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 whitespace-no-wrap text-sm font-medium leading-5 border-b-2 hover:border-gray-300 focus:border-gray-300 border-transparent focus:outline-none space-x-2';
 
     return (
         <nav className="flex -mb-px space-x-8">

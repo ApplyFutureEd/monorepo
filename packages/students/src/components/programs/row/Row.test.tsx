@@ -90,7 +90,7 @@ describe('Row', () => {
     } as NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0];
 
     it('can render without crashing', () => {
-        render(<Row program={program} student={student} />);
+        render(<Row documents={[]} program={program} student={student} />);
 
         const name = screen.getByText('Master’s Degree in Business Administration - MBA');
 

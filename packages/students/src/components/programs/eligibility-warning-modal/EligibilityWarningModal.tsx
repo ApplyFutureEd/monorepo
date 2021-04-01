@@ -33,7 +33,7 @@ const EligibilityWarningModal: FC<Props> = (props) => {
                         {t('programs:not-eligible')}
                     </h3>
                     <div className="mt-2">
-                        <p className="text-gray-500 text-sm leading-5">
+                        <div className="text-gray-500 text-sm leading-5">
                             <div className="font-bold">{t('programs:not-eligible-headline')}</div>
                             <ul className="my-4 list-inside list-disc">
                                 {!isCompleted && (
@@ -93,7 +93,7 @@ const EligibilityWarningModal: FC<Props> = (props) => {
                                         </li>
                                     ))}
                             </ul>
-                        </p>
+                        </div>
                     </div>
                     <div className="flex justify-end mt-2 w-full">
                         <Link href="/profile/test-scores">

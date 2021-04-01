@@ -1,12 +1,15 @@
-import EligibilityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
+import EligibilityWarningModal from '@components/programs/eligibility-warning-modal/EligibilityWarningModal';
 import { render, screen } from '@testing-library/react';
 
-describe('EligibilityWarning', () => {
+const handleClose = jest.fn();
+
+describe('EligibilityWarningModal', () => {
     it('can render without crashing', () => {
         render(
-            <EligibilityWarning
+            <EligibilityWarningModal
+                handleClose={handleClose}
                 isCompleted={false}
-                isEligible={false}
+                open={true}
                 reasons={[
                     { id: 'highestEducationLevel', message: 'Lorem ipsum' },
                     { id: 'testToeic', message: 'Dolor sit amet' },
@@ -25,13 +28,5 @@ describe('EligibilityWarning', () => {
         expect(reason2).toBeInTheDocument;
         expect(reason3).toBeInTheDocument;
         expect(reason4).toBeInTheDocument;
-    });
-
-    it('can render nothing on some conditions', () => {
-        render(<EligibilityWarning isCompleted={true} isEligible={true} reasons={[]} />);
-
-        const headline = screen.queryByText('programs:not-eligible-headline');
-
-        expect(headline).not.toBeInTheDocument();
     });
 });
