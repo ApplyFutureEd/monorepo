@@ -20,7 +20,7 @@ module.exports = {
         '/programs/[slug]': ['programs', 'profile'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['programs', 'schools'],
-        '/schools/[slug]': ['programs', 'schools'],
+        '/schools/[slug]': ['programs', 'schools', 'profile'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }
