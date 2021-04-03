@@ -8,8 +8,8 @@ import React, { FC } from 'react';
 const CareersPage: FC = () => {
     const router = useRouter();
 
-    const egg = router.query.egg;
-    const to = `hello+${egg || 'careers'}@applyfuture.com`;
+    const egg = router.query.egg || '';
+    const to = `hello+careers+${egg}@applyfuture.com`;
     const subject = 'Spontaneous application';
     const body =
         'Introduce yourself and explain in why you want to join us. Also please attach your resume.';
