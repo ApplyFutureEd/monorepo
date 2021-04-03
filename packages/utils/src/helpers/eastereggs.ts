@@ -22,7 +22,7 @@ export const eggs: Array<Egg> = [
             console.log('%c Congrats 👏', styles.title);
             console.log('%c You know some internet tricks', styles.content);
             console.log(
-                `%c students-applyfuture.vercel.app/careers?egg=${uuidv4()
+                `%c https://students-applyfuture.vercel.app/careers?egg=${uuidv4()
                     .slice(0, 4)
                     .toUpperCase()}`,
                 styles.content
