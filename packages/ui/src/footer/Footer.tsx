@@ -37,6 +37,13 @@ export const Footer: FC = () => {
                             </div>
                         </Link>
                     </div>
+                    <div className="px-5 py-2">
+                        <Link href="/careers">
+                            <div className="text-gray-500 hover:text-gray-900 text-base leading-6 cursor-pointer">
+                                {t('landing:careers')}
+                            </div>
+                        </Link>
+                    </div>
                 </nav>
 
                 <div className="mt-8">

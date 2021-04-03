@@ -28,7 +28,8 @@ const ns1 = await import(`../../../locales/${_lang}/navigation`).then(m => m.def
 const ns2 = await import(`../../../locales/${_lang}/auth`).then(m => m.default)
 const ns3 = await import(`../../../locales/${_lang}/programs`).then(m => m.default)
 const ns4 = await import(`../../../locales/${_lang}/schools`).then(m => m.default)
-  const _ns = { 'common': ns0, 'navigation': ns1, 'auth': ns2, 'programs': ns3, 'schools': ns4 }
+const ns5 = await import(`../../../locales/${_lang}/profile`).then(m => m.default)
+  const _ns = { 'common': ns0, 'navigation': ns1, 'auth': ns2, 'programs': ns3, 'schools': ns4, 'profile': ns5 }
   
     let res = _rest.getStaticProps(ctx)
     if(typeof res.then === 'function') res = await res
