@@ -29,7 +29,7 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const ProgramsFilterForm: FC<Props> = (props) => {
+const FiltersForm: FC<Props> = (props) => {
     const { currentTab, handleClose, handleFilter, studentData } = props;
     const { t } = useTranslation();
     const student = studentData?.getStudentByEmail?.items?.[0];
@@ -655,4 +655,4 @@ const ProgramsFilterForm: FC<Props> = (props) => {
     );
 };
 
-export default ProgramsFilterForm;
+export default FiltersForm;

@@ -8,6 +8,7 @@ module.exports = {
         '*': ['common', 'navigation', 'auth'],
         '/': ['landing'],
         '/about': ['landing'],
+        '/careers': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],
         '/profile/background-information': ['profile'],
