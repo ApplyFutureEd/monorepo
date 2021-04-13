@@ -1,10 +1,45 @@
+import {
+    createSearchAlert,
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables
+} from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
+// import { toast } from '@applyfuture/utils';
+import { graphql, toast, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { useTranslation } from 'next-translate';
 import React, { FC } from 'react';
 
-const NoResult: FC = () => {
+type Props = {
+    query: string;
+};
+
+const NoResult: FC<Props> = (props) => {
+    const { query } = props;
     const { t } = useTranslation();
+    const { user } = useAuthenticatedUser();
+    const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+        getStudentByEmail,
+        { email: user?.attributes.email }
+    );
+
+    const handleClick = async (query: string) => {
+        const newSearchAlert = {
+            lastUpdate: new Date().valueOf(),
+            query: query,
+            studentId: studentData.getStudentByEmail?.items?.[0]?.id,
+            type: 'Programs'
+        };
+        await graphql(createSearchAlert, {
+            input: newSearchAlert
+        });
+        toast({
+            description: `${t('programs:search-alert-created')}`,
+            title: 'Alert Created',
+            variant: 'success'
+        });
+    };
 
     return (
         <div className="sm:px-6 sm:py-5">
@@ -23,8 +58,7 @@ const NoResult: FC = () => {
                             startIcon={faBell}
                             type="button"
                             variant="primary"
-                            // onClick={() => createSearchAlert(values.query)}
-                        >
+                            onClick={() => handleClick(query)}>
                             {t('programs:no-results-cta')}
                         </Button>
                     </div>
