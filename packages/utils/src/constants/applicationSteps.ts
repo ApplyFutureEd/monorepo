@@ -1,25 +1,25 @@
 export const applicationSteps = [
     {
         date: '',
-        id: 'application-documents',
+        id: 'documents',
         isMandatory: true,
         status: 'idle'
     },
     {
         date: '',
-        id: 'application-confirmation',
+        id: 'confirmation',
         isMandatory: true,
         status: 'idle'
     },
     {
         date: '',
-        id: 'application-fee-payment',
+        id: 'payment',
         isMandatory: true,
         status: 'idle'
     },
     {
         date: '',
-        id: 'application-submission',
+        id: 'submission',
         isMandatory: true,
         status: 'idle'
     },
