@@ -10,6 +10,7 @@ import ApplicationJourneySteps from '@components/common/application-journey-step
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Card from '@components/schools/card/Card';
 import SkeletonCard from '@components/schools/card/SkeletonCard';
+import NoResult from '@components/schools/no-result/NoResult';
 import Search from '@components/schools/search/Search';
 import SortBy from '@components/schools/sort-by/SortBy';
 import useTranslation from 'next-translate/useTranslation';
@@ -64,6 +65,39 @@ const SchoolsPage: FC = () => {
 
     const total = data.searchSchools?.total ? `(${data.searchSchools?.total})` : '';
 
+    const schools = data.searchSchools?.items;
+
+    const renderSchools = () => {
+        return (
+            <>
+                {schools && schools?.length > 0 ? (
+                    <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
+                        {schools?.map((school) => {
+                            if (!school) {
+                                return;
+                            }
+
+                            const { city, country, id, logo, name, slug } = school;
+
+                            return (
+                                <Card
+                                    key={id}
+                                    city={city}
+                                    country={country}
+                                    logo={logo}
+                                    name={name}
+                                    slug={slug}
+                                />
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <NoResult query={JSON.stringify(variables)} />
+                )}
+            </>
+        );
+    };
+
     return (
         <DashboardLayout
             description={t('schools:meta-description')}
@@ -74,27 +108,10 @@ const SchoolsPage: FC = () => {
                 innerPadding={false}
                 title={`${t('schools:schools')} ${total}`}
             />
-            <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
-                {data.searchSchools?.items?.map((school) => {
-                    if (!school) {
-                        return;
-                    }
 
-                    const { city, country, id, logo, name, slug } = school;
-
-                    return (
-                        <Card
-                            key={id}
-                            city={city}
-                            country={country}
-                            logo={logo}
-                            name={name}
-                            slug={slug}
-                        />
-                    );
-                })}
-                {isLoading && skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)}
-            </div>
+            {isLoading
+                ? skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)
+                : renderSchools()}
         </DashboardLayout>
     );
 };
