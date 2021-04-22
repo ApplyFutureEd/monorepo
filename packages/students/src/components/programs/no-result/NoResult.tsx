@@ -16,6 +16,11 @@ type Props = {
 
 const NoResult: FC<Props> = (props) => {
     const { query } = props;
+    console.log(
+        '%cquery :',
+        'background: #444; color: #bada55; padding: 2px; border-radius:2px',
+        query
+    );
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
     const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
