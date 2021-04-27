@@ -7,7 +7,7 @@ import {
 import { Button } from '@applyfuture/ui';
 import { graphql, toast, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
-import { useTranslation } from 'next-translate';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
@@ -16,11 +16,6 @@ type Props = {
 
 const NoResult: FC<Props> = (props) => {
     const { query } = props;
-    console.log(
-        '%cquery :',
-        'background: #444; color: #bada55; padding: 2px; border-radius:2px',
-        query
-    );
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
     const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
