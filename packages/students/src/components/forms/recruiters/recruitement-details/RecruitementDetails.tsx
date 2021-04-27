@@ -1,13 +1,14 @@
 import { Button, Checkbox, Input, PhoneInput, Select } from '@applyfuture/ui';
-import { countries } from '@applyfuture/utils';
+import { countries, scrollToErrors } from '@applyfuture/utils';
 import { FormValues } from '@components/forms/recruiters/RecruitersForm';
 import { faArrowLeft, faCheck, faPaperPlane } from '@fortawesome/pro-light-svg-icons';
-import { Field, FieldProps } from 'formik';
+import { Field, FieldProps, FormikErrors } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 type Props = {
     errorMessage: string;
+    errors: FormikErrors<FormValues>;
     handlePreviousStep: () => void;
     isSubmitting: boolean;
     submitted: boolean;
@@ -15,7 +16,7 @@ type Props = {
 };
 
 const RecruitementDetails: FC<Props> = (props) => {
-    const { errorMessage, handlePreviousStep, isSubmitting, submitted, values } = props;
+    const { errorMessage, errors, handlePreviousStep, isSubmitting, submitted, values } = props;
     const { t } = useTranslation();
 
     const validate = (formValues: FormValues) => {
@@ -268,7 +269,10 @@ const RecruitementDetails: FC<Props> = (props) => {
                         isSubmitting={isSubmitting}
                         startIcon={faPaperPlane}
                         type="submit"
-                        variant="primary">
+                        variant="primary"
+                        onClick={() => {
+                            scrollToErrors(errors);
+                        }}>
                         {t('landing:contact-form-submit-button')}
                     </Button>
                 )}

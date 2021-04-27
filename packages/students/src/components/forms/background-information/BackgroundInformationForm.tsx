@@ -7,7 +7,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
 import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
-import { checkCompletion, graphql, isChina, toast } from '@applyfuture/utils';
+import { checkCompletion, graphql, isChina, scrollToErrors, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -140,7 +140,7 @@ const BackgroundInformationForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting, setFieldValue, values } = props;
+                const { errors, isSubmitting, setFieldValue, values } = props;
 
                 return (
                     <Form className="space-y-6">
@@ -415,7 +415,8 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                     isSubmitting={isSubmitting}
                                     startIcon={faSave}
                                     type="submit"
-                                    variant="primary">
+                                    variant="primary"
+                                    onClick={() => scrollToErrors(errors)}>
                                     {t('profile:save')}
                                 </Button>
                             </div>

@@ -6,3 +6,6 @@ export const languageLevels = [
     { label: 'C1', value: 5 },
     { label: 'C2', value: 6 }
 ];
+
+export const getLanguageLevelLabel = (value: number | undefined): string =>
+    languageLevels.find((languageLevel) => languageLevel.value === value)?.label || '';

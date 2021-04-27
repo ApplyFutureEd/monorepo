@@ -1,4 +1,4 @@
-import { Program, School } from '@applyfuture/models';
+import { GetProgramBySchoolQuery, GetSchoolBySlugQuery } from '@applyfuture/graphql';
 import SchoolPage from '@pages/schools/[slug]';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -13,8 +13,6 @@ jest.mock('next/router', () => ({
         };
     }
 }));
-
-console.log = jest.fn();
 
 const programs = ([
     {
@@ -177,7 +175,7 @@ const programs = ([
         published: false,
         schedule: 'FULL_TIME'
     }
-] as unknown) as Program[];
+] as unknown) as NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>;
 
 const school = ({
     city: 'Paris',
@@ -202,7 +200,22 @@ const school = ({
     stepsTemplates: [{ targets: ['all'] }],
     totalStudents: 4500,
     updatedAt: '2020-09-23T11:32:28.030Z'
-} as unknown) as School;
+} as unknown) as NonNullable<NonNullable<GetSchoolBySlugQuery['getSchoolBySlug']>['items']>[0];
+
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    isBrowser: jest.fn().mockImplementation(() => true),
+    useQuery: () => ({
+        data: mockedData
+    })
+}));
+
+const mockedData = {
+    searchPrograms: {
+        items: [programs],
+        nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5'
+    }
+};
 
 describe('SchoolPage', () => {
     it('can render without crashing', () => {
@@ -269,17 +282,5 @@ describe('SchoolPage', () => {
         const loading = screen.getByText('Loading...');
 
         expect(loading).toBeInTheDocument();
-    });
-
-    it('calls handleClick console.log', () => {
-        mockIsFallback = false;
-
-        render(<SchoolPage programs={programs} school={school} />);
-
-        const button = screen.getAllByText('programs:apply')[0];
-
-        userEvent.click(button);
-
-        expect(console.log).toHaveBeenCalled();
     });
 });

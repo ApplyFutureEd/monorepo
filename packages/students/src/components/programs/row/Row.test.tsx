@@ -1,7 +1,7 @@
-import { Program } from '@applyfuture/models';
+import { GetProgramBySchoolQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
 import Row from '@components/programs/row/Row';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
+import { uniqueId } from 'lodash';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -29,27 +29,71 @@ describe('Row', () => {
         },
         slug:
             'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia'
-    } as Program;
+    } as NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>[0];
 
-    const onClick = jest.fn();
+    const student = {
+        address: '',
+        birthday: null,
+        city: '',
+        country: '',
+        educationCountry: '',
+        email: 'awesome.student@gmail.com',
+        fatherFirstName: '',
+        fatherLastName: '',
+        firstLanguage: '',
+        firstName: '',
+        gender: '',
+        gradePointAverage: 0,
+        guardianFirstName: '',
+        guardianLastName: '',
+        highestEducationLevel: -1,
+        id: uniqueId(),
+        lastName: '',
+        maritalStatus: '',
+        middleName: '',
+        motherFirstName: '',
+        motherMaidenName: '',
+        nationality: '',
+        parentsAddress: '',
+        parentsCity: '',
+        parentsCountry: '',
+        parentsEmail: '',
+        parentsPhoneNumber: '',
+        passportNumber: '',
+        phoneNumber: '',
+        refusedVisa: null,
+        refusedVisaReason: '',
+        schoolsAttended: [
+            {
+                address: '',
+                attendedInstitutionFrom: null,
+                attendedInstitutionTo: null,
+                city: '',
+                country: '',
+                degreeAwarded: -1,
+                degreeAwardedOn: null,
+                educationLevel: -1,
+                name: '',
+                primaryLanguageInstruction: ''
+            }
+        ],
+        validVisa: null,
+        workExperiences: [
+            {
+                address: '',
+                compagnyName: '',
+                title: '',
+                workedFrom: null,
+                workedTo: null
+            }
+        ]
+    } as NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0];
 
     it('can render without crashing', () => {
-        render(<Row program={program} onClick={onClick} />);
+        render(<Row documents={[]} program={program} student={student} />);
 
         const name = screen.getByText('Master’s Degree in Business Administration - MBA');
 
         expect(name).toBeInTheDocument();
-    });
-
-    it('can call onClick callback function when clicking the CTA button', async () => {
-        render(<Row program={program} onClick={onClick} />);
-
-        const button = screen.getByRole('button');
-
-        await waitFor(() => {
-            userEvent.click(button);
-        });
-
-        expect(onClick).toHaveBeenCalled();
     });
 });

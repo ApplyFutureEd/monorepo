@@ -79,7 +79,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         [`${secondaryClasses}`]: !disabled && variant === 'secondary',
         [`${successClasses}`]: !disabled && variant === 'success',
         [`${dangerClasses}`]: !disabled && variant === 'danger',
-        [`${disabledClasses}`]: disabled
+        [`${disabledClasses}`]: disabled || isSubmitting
     });
 
     if (isLoading) {
@@ -92,7 +92,12 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
 
     return (
         <span className="inline-flex rounded-md shadow-sm" {...rest}>
-            <button ref={ref} className={classes} disabled={disabled} type={type} onClick={onClick}>
+            <button
+                ref={ref}
+                className={classes}
+                disabled={disabled || isSubmitting}
+                type={type}
+                onClick={onClick}>
                 {!isSubmitting && startIcon && (
                     <FontAwesomeIcon
                         fixedWidth

@@ -6,6 +6,7 @@ import 'react-phone-number-input/style.css';
 import {
     AuthenticatedUserProvider,
     configure,
+    eggs,
     initSentry,
     initWhyDidYouRender,
     setCountryCode
@@ -19,6 +20,8 @@ initSentry();
 initWhyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
+    eggs[0].useEgg();
+
     useEffect(() => {
         setCountryCode();
     }, []);

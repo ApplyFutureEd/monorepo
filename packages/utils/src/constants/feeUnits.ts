@@ -9,5 +9,5 @@ export const feeUnits = [
     }
 ];
 
-export const getFeeUnitLabel = (value: string): string =>
+export const getFeeUnitLabel = (value: string | undefined): string =>
     feeUnits.find((feeUnit) => feeUnit.value === value)?.label || '';

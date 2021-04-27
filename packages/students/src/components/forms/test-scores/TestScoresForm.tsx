@@ -12,6 +12,7 @@ import {
     checkCompletion,
     graphql,
     languageLevels,
+    scrollToErrors,
     toast
 } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
@@ -204,7 +205,7 @@ const TestScoresForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting, values } = props;
+                const { errors, isSubmitting, values } = props;
 
                 return (
                     <Form className="space-y-6">
@@ -788,7 +789,8 @@ const TestScoresForm: FC<Props> = (props) => {
                                     isSubmitting={isSubmitting}
                                     startIcon={faSave}
                                     type="submit"
-                                    variant="primary">
+                                    variant="primary"
+                                    onClick={() => scrollToErrors(errors)}>
                                     {t('profile:save')}
                                 </Button>
                             </div>

@@ -8,6 +8,7 @@ module.exports = {
         '*': ['common', 'navigation', 'auth'],
         '/': ['landing'],
         '/about': ['landing'],
+        '/careers': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],
         '/profile/background-information': ['profile'],
@@ -19,7 +20,7 @@ module.exports = {
         '/programs/[slug]': ['programs', 'profile'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['programs', 'schools'],
-        '/schools/[slug]': ['programs', 'schools'],
+        '/schools/[slug]': ['programs', 'schools', 'profile'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

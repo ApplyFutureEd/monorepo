@@ -15,6 +15,7 @@ import {
     isChina,
     languages,
     maritalStatus,
+    scrollToErrors,
     toast,
     toShortId
 } from '@applyfuture/utils';
@@ -278,7 +279,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting } = props;
+                const { errors, isSubmitting } = props;
 
                 return (
                     <Form className="space-y-6">
@@ -691,7 +692,8 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                     isSubmitting={isSubmitting}
                                     startIcon={faSave}
                                     type="submit"
-                                    variant="primary">
+                                    variant="primary"
+                                    onClick={() => scrollToErrors(errors)}>
                                     {t('profile:save')}
                                 </Button>
                             </div>

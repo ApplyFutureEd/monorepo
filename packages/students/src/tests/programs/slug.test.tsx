@@ -1,4 +1,4 @@
-import { Program } from '@applyfuture/models';
+import { GetProgramBySlugQuery } from '@applyfuture/graphql';
 import ProgramPage from '@pages/programs/[slug]';
 import { render, screen } from '@testing-library/react';
 let mockIsFallback = false;
@@ -43,7 +43,7 @@ const program = ({
         'No English language test score is required for students with a degree from an English-speaking university. ',
     published: true,
     schedule: 'FULL_TIME'
-} as unknown) as Program;
+} as unknown) as NonNullable<NonNullable<GetProgramBySlugQuery['getProgramBySlug']>['items']>[0];
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),

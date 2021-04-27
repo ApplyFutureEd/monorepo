@@ -1,5 +1,4 @@
-import { GetProgramQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
-import { Program, Student } from '@applyfuture/models';
+import { GetProgramBySlugQuery, GetProgramQuery } from '@applyfuture/graphql';
 import { differenceInDays } from 'date-fns';
 import intersection from 'lodash/intersection';
 import sumBy from 'lodash/sumBy';
@@ -10,7 +9,7 @@ import {
     germanSpokenCountries,
     italianSpokenCountries,
     spanishSpokenCountries
-} from '../forms/countries';
+} from '../constants/countries';
 
 export const formatTestCambridgeFirstValue = (
     value: number
@@ -113,12 +112,12 @@ export type Eligibility = {
 };
 
 export const checkEligibility = (
-    program: NonNullable<NonNullable<GetProgramQuery['getProgram']>> | Program | null | undefined,
-    student:
-        | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
-        | Student
+    program:
+        | NonNullable<NonNullable<GetProgramBySlugQuery['getProgramBySlug']>['items']>[0]
+        | NonNullable<NonNullable<GetProgramQuery['getProgram']>>
         | null
         | undefined,
+    student: any,
     t: any
 ): Eligibility => {
     let eligibility: Eligibility = {
@@ -137,10 +136,7 @@ export const checkEligibility = (
     try {
         /* Education level */
 
-        if (
-            student?.highestEducationLevel &&
-            student?.highestEducationLevel < program.highestEducationLevel
-        ) {
+        if (student?.highestEducationLevel < program.highestEducationLevel) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -169,7 +165,7 @@ export const checkEligibility = (
 
         /* English tests */
 
-        if (student?.testToefl && student?.testToefl < program.testToefl) {
+        if (student?.testToefl < program.testToefl) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -190,7 +186,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testIelts && student?.testIelts < program.testIelts) {
+        if (student?.testIelts < program.testIelts) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -211,7 +207,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testToeic && student?.testToeic < program.testToeic) {
+        if (student?.testToeic < program.testToeic) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -232,10 +228,7 @@ export const checkEligibility = (
             };
         }
 
-        if (
-            student?.testCambridgeFirst &&
-            student?.testCambridgeFirst < program.testCambridgeFirst
-        ) {
+        if (student?.testCambridgeFirst < program.testCambridgeFirst) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -260,10 +253,7 @@ export const checkEligibility = (
             };
         }
 
-        if (
-            student?.testCambridgeAdvanced &&
-            student?.testCambridgeAdvanced < program.testCambridgeAdvanced
-        ) {
+        if (student?.testCambridgeAdvanced < program.testCambridgeAdvanced) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -289,25 +279,16 @@ export const checkEligibility = (
         }
 
         if (
-            (student?.testToefl &&
-                student?.testToefl >= program.testToefl &&
-                program.testToefl > 0) ||
-            (student?.testIelts &&
-                student?.testIelts >= program.testIelts &&
-                program.testIelts > 0) ||
-            (student?.testToeic &&
-                student?.testToeic >= program.testToeic &&
-                program.testToeic > 0) ||
-            (student?.testCambridgeFirst &&
-                student?.testCambridgeFirst > program.testCambridgeFirst &&
+            (student?.testToefl >= program.testToefl && program.testToefl > 0) ||
+            (student?.testIelts >= program.testIelts && program.testIelts > 0) ||
+            (student?.testToeic >= program.testToeic && program.testToeic > 0) ||
+            (student?.testCambridgeFirst > program.testCambridgeFirst &&
                 program.testCambridgeFirst > 0) ||
-            (student?.testCambridgeAdvanced &&
-                student?.testCambridgeAdvanced > program.testCambridgeAdvanced &&
+            (student?.testCambridgeAdvanced > program.testCambridgeAdvanced &&
                 program.testCambridgeAdvanced > 0) ||
-            (student?.nationality && englishSpokenCountries.includes(student?.nationality)) ||
-            (student?.educationCountry &&
-                englishSpokenCountries.includes(student?.educationCountry)) ||
-            (student?.firstLanguage && englishSpokenCountries.includes(student?.firstLanguage))
+            englishSpokenCountries.includes(student?.nationality) ||
+            englishSpokenCountries.includes(student?.educationCountry) ||
+            englishSpokenCountries.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
@@ -334,7 +315,7 @@ export const checkEligibility = (
 
         /* Other languages tests */
 
-        if (student?.testTcftef && student?.testTcftef < program.testTcftef) {
+        if (student?.testTcftef < program.testTcftef) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -359,7 +340,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testDelfdalf && student?.testDelfdalf < program.testDelfdalf) {
+        if (student?.testDelfdalf < program.testDelfdalf) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -385,16 +366,11 @@ export const checkEligibility = (
         }
 
         if (
-            (student?.testTcftef &&
-                student?.testTcftef >= program.testTcftef &&
-                program.testTcftef > 0) ||
-            (student?.testDelfdalf &&
-                student?.testDelfdalf >= program.testDelfdalf &&
-                program.testDelfdalf > 0) ||
-            (student?.nationality && frenchSpokenCountries.includes(student?.nationality)) ||
-            (student?.educationCountry &&
-                frenchSpokenCountries.includes(student?.educationCountry)) ||
-            (student?.firstLanguage && frenchSpokenCountries.includes(student?.firstLanguage))
+            (student?.testTcftef >= program.testTcftef && program.testTcftef > 0) ||
+            (student?.testDelfdalf >= program.testDelfdalf && program.testDelfdalf > 0) ||
+            frenchSpokenCountries.includes(student?.nationality) ||
+            frenchSpokenCountries.includes(student?.educationCountry) ||
+            frenchSpokenCountries.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
@@ -410,7 +386,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testGoethe && student?.testGoethe < program.testGoethe) {
+        if (student?.testGoethe < program.testGoethe) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -435,7 +411,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testDele && student?.testDele < program.testDele) {
+        if (student?.testDele < program.testDele) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -460,10 +436,7 @@ export const checkEligibility = (
             };
         }
 
-        if (
-            student?.testCeliCilsItPlida &&
-            student?.testCeliCilsItPlida < program.testCeliCilsItPlida
-        ) {
+        if (student?.testCeliCilsItPlida < program.testCeliCilsItPlida) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -490,7 +463,7 @@ export const checkEligibility = (
 
         /* Logic and reasoning tests */
 
-        if (student?.testGre && student?.testGre < program.testGre) {
+        if (student?.testGre < program.testGre) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -511,7 +484,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testGmat && student?.testGmat < program.testGmat) {
+        if (student?.testGmat < program.testGmat) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -532,7 +505,7 @@ export const checkEligibility = (
             };
         }
 
-        if (student?.testTagemage && student?.testTagemage < program.testTagemage) {
+        if (student?.testTagemage < program.testTagemage) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -554,11 +527,9 @@ export const checkEligibility = (
         }
 
         if (
-            (student?.testGre && student?.testGre >= program.testGre && program.testGre > 0) ||
-            (student?.testGmat && student?.testGmat >= program.testGmat && program.testGmat > 0) ||
-            (student?.testTagemage &&
-                student?.testTagemage >= program.testTagemage &&
-                program.testTagemage > 0)
+            (student?.testGre >= program.testGre && program.testGre > 0) ||
+            (student?.testGmat >= program.testGmat && program.testGmat > 0) ||
+            (student?.testTagemage >= program.testTagemage && program.testTagemage > 0)
         ) {
             eligibility = {
                 isEligible: true,
@@ -579,7 +550,7 @@ export const checkEligibility = (
 
         /* Grade point average */
 
-        if (student?.gradePointAverage && student?.gradePointAverage < program.gradePointAverage) {
+        if (student?.gradePointAverage < program.gradePointAverage) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -603,7 +574,7 @@ export const checkEligibility = (
         const studentAge =
             student?.birthday && differenceInDays(new Date(), new Date(student?.birthday)) / 365;
 
-        if (studentAge && studentAge < program.minimumAge) {
+        if (studentAge < program.minimumAge) {
             eligibility = {
                 isEligible: false,
                 reasons: [
@@ -716,9 +687,9 @@ export const checkEligibility = (
     const schoolsAttended = student?.schoolsAttended as any;
 
     const hasEnglishTestBypass =
-        (student?.nationality && englishSpokenCountries.includes(student?.nationality)) ||
-        (student?.educationCountry && englishSpokenCountries.includes(student?.educationCountry)) ||
-        (student?.firstLanguage && englishSpokenCountries.includes(student?.firstLanguage)) ||
+        englishSpokenCountries.includes(student?.nationality) ||
+        englishSpokenCountries.includes(student?.educationCountry) ||
+        englishSpokenCountries.includes(student?.firstLanguage) ||
         (schoolsAttended &&
             intersection(
                 englishSpokenCountries,
@@ -726,9 +697,9 @@ export const checkEligibility = (
             ).length > 0);
 
     const hasFrenchTestBypass =
-        (student?.nationality && frenchSpokenCountries.includes(student?.nationality)) ||
-        (student?.educationCountry && frenchSpokenCountries.includes(student?.educationCountry)) ||
-        (student?.firstLanguage && frenchSpokenCountries.includes(student?.firstLanguage)) ||
+        frenchSpokenCountries.includes(student?.nationality) ||
+        frenchSpokenCountries.includes(student?.educationCountry) ||
+        frenchSpokenCountries.includes(student?.firstLanguage) ||
         (schoolsAttended &&
             intersection(
                 frenchSpokenCountries,
@@ -736,9 +707,9 @@ export const checkEligibility = (
             ).length > 0);
 
     const hasSpanishTestBypass =
-        (student?.nationality && spanishSpokenCountries.includes(student?.nationality)) ||
-        (student?.educationCountry && spanishSpokenCountries.includes(student?.educationCountry)) ||
-        (student?.firstLanguage && spanishSpokenCountries.includes(student?.firstLanguage)) ||
+        spanishSpokenCountries.includes(student?.nationality) ||
+        spanishSpokenCountries.includes(student?.educationCountry) ||
+        spanishSpokenCountries.includes(student?.firstLanguage) ||
         (schoolsAttended &&
             intersection(
                 spanishSpokenCountries,
@@ -746,9 +717,9 @@ export const checkEligibility = (
             ).length > 0);
 
     const hasGermanTestBypass =
-        (student?.nationality && germanSpokenCountries.includes(student?.nationality)) ||
-        (student?.educationCountry && germanSpokenCountries.includes(student?.educationCountry)) ||
-        (student?.firstLanguage && germanSpokenCountries.includes(student?.firstLanguage)) ||
+        germanSpokenCountries.includes(student?.nationality) ||
+        germanSpokenCountries.includes(student?.educationCountry) ||
+        germanSpokenCountries.includes(student?.firstLanguage) ||
         (schoolsAttended &&
             intersection(
                 germanSpokenCountries,
@@ -756,9 +727,9 @@ export const checkEligibility = (
             ).length > 0);
 
     const hasItalianTestBypass =
-        (student?.nationality && italianSpokenCountries.includes(student?.nationality)) ||
-        (student?.educationCountry && italianSpokenCountries.includes(student?.educationCountry)) ||
-        (student?.firstLanguage && italianSpokenCountries.includes(student?.firstLanguage)) ||
+        italianSpokenCountries.includes(student?.nationality) ||
+        italianSpokenCountries.includes(student?.educationCountry) ||
+        italianSpokenCountries.includes(student?.firstLanguage) ||
         (schoolsAttended &&
             intersection(
                 italianSpokenCountries,

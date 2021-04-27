@@ -7,13 +7,24 @@ describe('EligibilityWarning', () => {
             <EligibilityWarning
                 isCompleted={false}
                 isEligible={false}
-                reasons={[{ id: 'testToeic', message: 'Lorem ipsum' }]}
+                reasons={[
+                    { id: 'highestEducationLevel', message: 'Lorem ipsum' },
+                    { id: 'testToeic', message: 'Dolor sit amet' },
+                    { id: 'testDele', message: 'Consectetur adipiscing elit' },
+                    { id: 'testGmat', message: 'Sed do eiusmod' }
+                ]}
             />
         );
 
-        const reason = screen.getByText('Lorem ipsum');
+        const reason1 = screen.getByText('Lorem ipsum');
+        const reason2 = screen.getByText('Dolor sit amet');
+        const reason3 = screen.getByText('Consectetur adipiscing elit');
+        const reason4 = screen.getByText('Sed do eiusmod');
 
-        expect(reason).toBeInTheDocument;
+        expect(reason1).toBeInTheDocument;
+        expect(reason2).toBeInTheDocument;
+        expect(reason3).toBeInTheDocument;
+        expect(reason4).toBeInTheDocument;
     });
 
     it('can render nothing on some conditions', () => {

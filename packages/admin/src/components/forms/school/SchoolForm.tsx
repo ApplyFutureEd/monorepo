@@ -62,16 +62,16 @@ const SchoolForm: FC<Props> = (props) => {
         contactPhone: '',
         contractStatus: '',
         country: 'FR',
-        coverPhoto: null,
-        creationYear: null,
+        coverPhoto: '',
+        creationYear: 0,
         description: '',
         institutionType: '',
-        internationalStudents: null,
-        logo: null,
+        internationalStudents: 0,
+        logo: '',
         name: '',
         published: false,
         slug: '',
-        totalStudents: null
+        totalStudents: 0
     });
 
     useEffect(() => {
