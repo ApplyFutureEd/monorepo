@@ -18,6 +18,9 @@ module.exports = {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
             },
+            maxHeight: {
+                chip: '20px'
+            },
             minHeight: {
                 button: '47px',
                 input: '47px'
@@ -32,6 +35,7 @@ module.exports = {
         },
         inset: {
             ...defaultTheme.inset,
+            '1/2': '50%',
             2: '2rem',
             4: '4rem',
             8: '8rem'

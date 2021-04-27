@@ -1,5 +1,6 @@
 import {
     deleteDocument,
+    GetApplicationQuery,
     getDocumentByStorageKey,
     GetProgramQuery,
     GetStudentByEmailQuery
@@ -60,7 +61,10 @@ type Props = {
     /**
      * If a program is provided, the storageKey will be composed from the program shortened id.
      */
-    program?: GetProgramQuery['getProgram'] | null;
+    program?:
+        | GetProgramQuery['getProgram']
+        | NonNullable<GetApplicationQuery['getApplication']>['program']
+        | null;
     /**
      * If `true`, the input will display an `(optional)` mention next to the label.
      */

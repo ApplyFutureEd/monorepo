@@ -18,6 +18,7 @@ export * from './constants/maritalStatus';
 export * from './constants/requestedDocuments';
 export * from './constants/schedules';
 
+export * from './helpers/application';
 export * from './helpers/currency';
 export * from './helpers/date';
 export * from './helpers/delay';

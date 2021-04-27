@@ -500,6 +500,7 @@ export const getApplication = /* GraphQL */ `
         id
         date
         isMandatory
+        label
         status
       }
       studentId
@@ -731,6 +732,7 @@ export const listApplications = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1113,6 +1115,7 @@ export const getFeedback = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1663,6 +1666,7 @@ export const getApplicationByStudent = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1963,6 +1967,7 @@ export const searchApplications = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId

@@ -71,7 +71,7 @@ type Program
     name: String!
     otherRequirements: String
     published: Boolean!
-    requestedDocuments: [RequestedDocument]!
+    requestedDocuments: [RequestedDocument!]!
     schedule: String!
     school: School @connection(fields: ["schoolId"])
     schoolId: ID!
@@ -94,12 +94,12 @@ type Program
 }
 
 type RequestedDocument {
-    name: String
-    isMandatory: Boolean
+    name: String!
+    isMandatory: Boolean!
     storageKey: String
-    description: String
+    description: String!
     condition: String
-    isSpecific: Boolean
+    isSpecific: Boolean!
 }
 
 type Student
@@ -222,7 +222,7 @@ type Document
     id: ID!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
-    name: String
+    name: String!
     storageKey: String
 }
 
@@ -259,6 +259,7 @@ type ApplicationStep {
     id: String!
     date: String!
     isMandatory: Boolean!
+    label: String!
     status: String!
 }
 

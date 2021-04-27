@@ -11,6 +11,7 @@ type StepProps = {
 };
 
 const Step: FC<StepProps> = (props) => {
+    const { t } = useTranslation();
     const { isCurrent, isValidated, label } = props;
 
     const iconBaseClasses = 'text-gray-400 text-lg';
@@ -36,7 +37,7 @@ const Step: FC<StepProps> = (props) => {
     return (
         <li className="flex items-center space-x-2">
             <FontAwesomeIcon className={iconClasses} icon={faCheckCircle} />
-            <div className={labelClasses}>{label}</div>
+            <div className={labelClasses}>{t(label)}</div>
         </li>
     );
 };
@@ -116,11 +117,11 @@ export const Stepper: FC<Props> = (props) => {
                     </div>
                     <div className="text-right">
                         <div className="text-gray-900 text-xl font-bold leading-5 sm:text-2xl sm:leading-6">
-                            {steps[currentStep]}
+                            {t(steps[currentStep])}
                         </div>
                         {steps[currentStep + 1] && (
                             <div className="sm:text-md mt-2 text-gray-900 leading-5 sm:leading-6">
-                                {t('common:next')}: {steps[currentStep + 1]}
+                                {t('common:next')}: {t(steps[currentStep + 1])}
                             </div>
                         )}
                     </div>
