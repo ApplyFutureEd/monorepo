@@ -92,7 +92,7 @@ const SchoolsPage: FC = () => {
                         })}
                     </div>
                 ) : (
-                    <NoResult query={JSON.stringify(variables)} />
+                    <NoResult variables={variables} />
                 )}
             </>
         );

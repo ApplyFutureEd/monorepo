@@ -2,7 +2,8 @@ import {
     createSearchAlert,
     getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
+    GetStudentByEmailQueryVariables,
+    SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
@@ -11,11 +12,11 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
-    query: string;
+    variables: SearchProgramsQueryVariables;
 };
 
 const NoResult: FC<Props> = (props) => {
-    const { query } = props;
+    const { variables } = props;
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
     const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
@@ -23,10 +24,10 @@ const NoResult: FC<Props> = (props) => {
         { email: user?.attributes.email }
     );
 
-    const handleClick = async (query: string) => {
+    const handleClick = async (stringifiedVariables: string) => {
         const newSearchAlert = {
             lastUpdate: new Date().valueOf(),
-            query: query,
+            query: stringifiedVariables,
             studentId: studentData.getStudentByEmail?.items?.[0]?.id,
             type: 'Programs'
         };
@@ -57,7 +58,7 @@ const NoResult: FC<Props> = (props) => {
                             startIcon={faBell}
                             type="button"
                             variant="primary"
-                            onClick={() => handleClick(query)}>
+                            onClick={() => handleClick(JSON.stringify(variables))}>
                             {t('programs:no-results-cta')}
                         </Button>
                     </div>

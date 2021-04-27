@@ -181,7 +181,7 @@ const ProgramsPage: FC = () => {
                         );
                     })
                 ) : (
-                    <NoResult query={JSON.stringify(variables)} />
+                    <NoResult variables={variables} />
                 )}
             </>
         );
