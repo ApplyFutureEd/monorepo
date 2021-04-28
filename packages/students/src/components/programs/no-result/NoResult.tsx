@@ -35,8 +35,7 @@ const NoResult: FC<Props> = (props) => {
             input: newSearchAlert
         });
         toast({
-            description: `${t('programs:search-alert-created')}`,
-            title: 'Alert Created',
+            title: t('programs:search-alert-created'),
             variant: 'success'
         });
     };
