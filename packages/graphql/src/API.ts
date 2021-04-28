@@ -1136,6 +1136,54 @@ export enum SearchableApplicationSortableFields {
 }
 
 
+export type SearchableSearchAlertFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  lastUpdate?: SearchableFloatFilterInput | null,
+  studentId?: SearchableIDFilterInput | null,
+  type?: SearchableStringFilterInput | null,
+  query?: SearchableStringFilterInput | null,
+  and?: Array< SearchableSearchAlertFilterInput | null > | null,
+  or?: Array< SearchableSearchAlertFilterInput | null > | null,
+  not?: SearchableSearchAlertFilterInput | null,
+};
+
+export type SearchableSearchAlertSortInput = {
+  field?: SearchableSearchAlertSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableSearchAlertSortableFields {
+  id = "id",
+  lastUpdate = "lastUpdate",
+  studentId = "studentId",
+  type = "type",
+  query = "query",
+}
+
+
+export type SearchableFeedbackFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  applicationId?: SearchableIDFilterInput | null,
+  lastUpdate?: SearchableFloatFilterInput | null,
+  rating?: SearchableFloatFilterInput | null,
+  and?: Array< SearchableFeedbackFilterInput | null > | null,
+  or?: Array< SearchableFeedbackFilterInput | null > | null,
+  not?: SearchableFeedbackFilterInput | null,
+};
+
+export type SearchableFeedbackSortInput = {
+  field?: SearchableFeedbackSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableFeedbackSortableFields {
+  id = "id",
+  applicationId = "applicationId",
+  lastUpdate = "lastUpdate",
+  rating = "rating",
+}
+
+
 export type ModelSchoolFilterInput = {
   id?: ModelIDInput | null,
   city?: ModelStringInput | null,
@@ -1385,6 +1433,35 @@ export type ModelPostFilterInput = {
   or?: Array< ModelPostFilterInput | null > | null,
   not?: ModelPostFilterInput | null,
 };
+
+export type SearchablePostFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  category?: SearchableStringFilterInput | null,
+  content?: SearchableStringFilterInput | null,
+  lastUpdate?: SearchableFloatFilterInput | null,
+  published?: SearchableBooleanFilterInput | null,
+  slug?: SearchableStringFilterInput | null,
+  title?: SearchableStringFilterInput | null,
+  and?: Array< SearchablePostFilterInput | null > | null,
+  or?: Array< SearchablePostFilterInput | null > | null,
+  not?: SearchablePostFilterInput | null,
+};
+
+export type SearchablePostSortInput = {
+  field?: SearchablePostSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchablePostSortableFields {
+  id = "id",
+  category = "category",
+  content = "content",
+  lastUpdate = "lastUpdate",
+  published = "published",
+  slug = "slug",
+  title = "title",
+}
+
 
 export type CreateSchoolMutationVariables = {
   input: CreateSchoolInput,
@@ -6706,6 +6783,151 @@ export type SearchApplicationsQuery = {
   } | null,
 };
 
+export type SearchSearchAlertsQueryVariables = {
+  filter?: SearchableSearchAlertFilterInput | null,
+  sort?: SearchableSearchAlertSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchSearchAlertsQuery = {
+  searchSearchAlerts:  {
+    __typename: "SearchableSearchAlertConnection",
+    items:  Array< {
+      __typename: "SearchAlert",
+      id: string,
+      lastUpdate: number,
+      student:  {
+        __typename: "Student",
+        id: string,
+        address: string | null,
+        birthday: string | null,
+        city: string | null,
+        country: string | null,
+        degrees: Array< string | null > | null,
+        disciplines: Array< string | null > | null,
+        educationCountry: string | null,
+        email: string | null,
+        fatherFirstName: string | null,
+        fatherLastName: string | null,
+        firstLanguage: string | null,
+        firstName: string | null,
+        favoritePrograms: Array< string | null > | null,
+        favoriteSchools: Array< string | null > | null,
+        gender: string | null,
+        gradePointAverage: number | null,
+        guardianFirstName: string | null,
+        guardianLastName: string | null,
+        hasMandatoryDocuments: boolean | null,
+        highestEducationLevel: number | null,
+        lastName: string | null,
+        lastUpdate: number,
+        locale: string | null,
+        maritalStatus: string | null,
+        middleName: string | null,
+        modalProfileCompletedViewed: boolean | null,
+        phoneNumber: string | null,
+        motherFirstName: string | null,
+        motherMaidenName: string | null,
+        nationality: string | null,
+        parentsAddress: string | null,
+        parentsCity: string | null,
+        parentsCountry: string | null,
+        parentsEmail: string | null,
+        parentsPhoneNumber: string | null,
+        passportNumber: string | null,
+        refusedVisa: boolean | null,
+        refusedVisaReason: string | null,
+        testCambridgeAdvanced: number | null,
+        testCambridgeAdvancedDate: string | null,
+        testCambridgeFirst: number | null,
+        testCambridgeFirstDate: string | null,
+        testCeliCilsItPlida: number | null,
+        testCeliCilsItPlidaDate: string | null,
+        testDele: number | null,
+        testDeleDate: string | null,
+        testDelfdalf: number | null,
+        testDelfdalfDate: string | null,
+        testEnglishPending: boolean | null,
+        testGmat: number | null,
+        testGmatDate: string | null,
+        testGoethe: number | null,
+        testGoetheDate: string | null,
+        testGre: number | null,
+        testGreDate: string | null,
+        testIelts: number | null,
+        testIeltsDate: string | null,
+        testLogicAndReasoningPending: boolean | null,
+        testOtherLanguagesPending: boolean | null,
+        testTagemage: number | null,
+        testTagemageDate: string | null,
+        testTcftef: number | null,
+        testTcftefDate: string | null,
+        testToefl: number | null,
+        testToeflDate: string | null,
+        testToeic: number | null,
+        testToeicDate: string | null,
+        validVisa: boolean | null,
+        createdAt: string,
+        updatedAt: string,
+        owner: string | null,
+      } | null,
+      studentId: string,
+      type: string,
+      query: string,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
+  } | null,
+};
+
+export type SearchFeedbacksQueryVariables = {
+  filter?: SearchableFeedbackFilterInput | null,
+  sort?: SearchableFeedbackSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchFeedbacksQuery = {
+  searchFeedbacks:  {
+    __typename: "SearchableFeedbackConnection",
+    items:  Array< {
+      __typename: "Feedback",
+      id: string,
+      application:  {
+        __typename: "Application",
+        id: string,
+        admissionResult: string | null,
+        document: string | null,
+        decisionLetterDate: string | null,
+        intake: string,
+        interviewDate: string | null,
+        lastUpdate: number,
+        modalApplicationCompletedViewed: boolean,
+        programId: string,
+        studentId: string,
+        todo: string | null,
+        tuitionsFeePaymentDate: string | null,
+        visaDate: string | null,
+        createdAt: string,
+        updatedAt: string,
+        owner: string | null,
+      } | null,
+      applicationId: string,
+      lastUpdate: number,
+      rating: number,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
+  } | null,
+};
+
 export type ListSchoolsQueryVariables = {
   filter?: ModelSchoolFilterInput | null,
   limit?: number | null,
@@ -7476,6 +7698,33 @@ export type GetPostBySlugQuery = {
       updatedAt: string,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type SearchPostsQueryVariables = {
+  filter?: SearchablePostFilterInput | null,
+  sort?: SearchablePostSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchPostsQuery = {
+  searchPosts:  {
+    __typename: "SearchablePostConnection",
+    items:  Array< {
+      __typename: "Post",
+      id: string,
+      category: string,
+      content: string,
+      lastUpdate: number,
+      published: boolean,
+      slug: string,
+      title: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
   } | null,
 };
 
