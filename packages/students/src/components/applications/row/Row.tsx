@@ -1,4 +1,4 @@
-import { GetApplicationQuery, GetStudentQuery } from '@applyfuture/graphql';
+import { GetApplicationQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
 import { Button, FileUploader } from '@applyfuture/ui';
 import { getIdentifier } from '@applyfuture/utils';
 import { faDownload } from '@fortawesome/pro-light-svg-icons';
@@ -13,7 +13,9 @@ type Props = {
         NonNullable<GetApplicationQuery['getApplication']>['program']
     >['requestedDocuments'][0];
     index: number;
-    student: GetStudentQuery['getStudent'];
+    student?:
+        | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
+        | null;
 };
 
 const Row: FC<Props> = (props) => {

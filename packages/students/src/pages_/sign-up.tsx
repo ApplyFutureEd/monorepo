@@ -1,5 +1,5 @@
 import { Logo } from '@applyfuture/ui';
-import SignUpForm from '@components/forms/sign-up/SignUpForm';
+import SignUpForm from '@components/forms/auth/sign-up/SignUpForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { capitalize } from 'lodash';
 import Link from 'next/link';

@@ -1,4 +1,8 @@
-import { GetApplicationQuery, GetStudentQuery } from '@applyfuture/graphql';
+import {
+    GetApplicationQuery,
+    GetDocumentByStudentQuery,
+    GetStudentByEmailQuery
+} from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { conditionFilter, languagesBypassFilter, toast } from '@applyfuture/utils';
 import Row from '@components/applications/row/Row';
@@ -10,13 +14,17 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
 type Props = {
-    application: GetApplicationQuery['getApplication'];
+    applicationData: GetApplicationQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
-    student: GetStudentQuery['getStudent'];
+    studentData: GetStudentByEmailQuery;
 };
 
-const ApplicationDocumentForm: FC<Props> = (props) => {
-    const { application, isLoading, student } = props;
+const UploadDocumentsForm: FC<Props> = (props) => {
+    const { applicationData, documentsData, isLoading, studentData } = props;
+    const application = applicationData.getApplication;
+    const documents = documentsData?.getDocumentByStudent?.items;
+    const student = studentData?.getStudentByEmail?.items?.[0];
     const { t } = useTranslation();
 
     type FormValues = {
@@ -45,7 +53,13 @@ const ApplicationDocumentForm: FC<Props> = (props) => {
     const skeletons = Array.from({ length: 12 }, (v, k) => k + 1);
 
     if (isLoading) {
-        skeletons.map((_document: any, index: number) => <SkeletonRow key={index} index={index} />);
+        return (
+            <>
+                {skeletons.map((_document: any, index: number) => (
+                    <SkeletonRow key={index} index={index} />
+                ))}
+            </>
+        );
     }
 
     return (
@@ -104,4 +118,4 @@ const ApplicationDocumentForm: FC<Props> = (props) => {
     );
 };
 
-export default ApplicationDocumentForm;
+export default UploadDocumentsForm;

@@ -1,6 +1,15 @@
-import { getApplication, GetApplicationQuery } from '@applyfuture/graphql';
+import {
+    getApplication,
+    GetApplicationQuery,
+    getDocumentByStudent,
+    GetDocumentByStudentQuery,
+    GetDocumentByStudentQueryVariables,
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables
+} from '@applyfuture/graphql';
 import { Stepper } from '@applyfuture/ui';
-import { getStepsLabels, useQuery } from '@applyfuture/utils';
+import { getStepsLabels, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import Documents from '@components/applications/documents/Documents';
 import Summary from '@components/applications/summary/Summary';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
@@ -9,12 +18,26 @@ import React, { FC } from 'react';
 
 const ApplicationDocumentsPage: FC = () => {
     const router = useRouter();
-    const { data, isLoading } = useQuery<GetApplicationQuery>(getApplication, {
+    const { user } = useAuthenticatedUser();
+
+    const { data: studentData, isLoading: studentIsLoading } = useQuery<
+        GetStudentByEmailQuery,
+        GetStudentByEmailQueryVariables
+    >(getStudentByEmail, { email: user?.attributes.email });
+
+    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
+        GetDocumentByStudentQuery,
+        GetDocumentByStudentQueryVariables
+    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
+
+    const {
+        data: applicationData,
+        isLoading: applicationIsLoading
+    } = useQuery<GetApplicationQuery>(getApplication, {
         id: router.query.id
     });
-    const application = data?.getApplication;
 
-    const steps = getStepsLabels(application);
+    const steps = getStepsLabels(applicationData.getApplication);
 
     return (
         <>
@@ -23,8 +46,16 @@ const ApplicationDocumentsPage: FC = () => {
                     <Stepper currentStep={0} steps={steps} />
                 </div>
                 <div className="flex items-start space-x-0 md:space-x-2">
-                    <Summary application={application} isLoading={isLoading} />
-                    <Documents application={application} isLoading={isLoading} student={null} />
+                    <Summary
+                        applicationData={applicationData}
+                        isLoading={studentIsLoading || documentsIsLoading || applicationIsLoading}
+                    />
+                    <Documents
+                        applicationData={applicationData}
+                        documentsData={documentsData}
+                        isLoading={studentIsLoading || documentsIsLoading || applicationIsLoading}
+                        studentData={studentData}
+                    />
                 </div>
             </DashboardLayout>
         </>

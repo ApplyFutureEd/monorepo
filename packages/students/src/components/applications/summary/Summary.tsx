@@ -8,12 +8,13 @@ import React, { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
-    application: GetApplicationQuery['getApplication'];
+    applicationData: GetApplicationQuery;
     isLoading: boolean;
 };
 
 const Summary: FC<Props> = (props) => {
-    const { application, isLoading } = props;
+    const { applicationData, isLoading } = props;
+    const application = applicationData.getApplication;
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();

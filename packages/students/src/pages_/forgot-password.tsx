@@ -1,5 +1,5 @@
 import { Logo } from '@applyfuture/ui';
-import ForgotPasswordForm from '@components/forms/forgot-password/ForgotPasswordForm';
+import ForgotPasswordForm from '@components/forms/auth/forgot-password/ForgotPasswordForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
