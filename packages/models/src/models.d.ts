@@ -2,11 +2,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from '@aws-amplif
 
 export declare class RequestedDocument {
     readonly name: string;
-    readonly isMandatory: boolean;
+    readonly isMandatory?: boolean;
     readonly storageKey?: string;
-    readonly description: string;
+    readonly description?: string;
     readonly condition?: string;
-    readonly isSpecific: boolean;
+    readonly isSpecific?: boolean;
     constructor(init: ModelInit<RequestedDocument>);
 }
 

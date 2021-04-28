@@ -4,7 +4,7 @@ import {
     GetStudentByEmailQuery
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
-import { conditionFilter, languagesBypassFilter, toast } from '@applyfuture/utils';
+import { conditionFilter, findDocument, languagesBypassFilter, toast } from '@applyfuture/utils';
 import Row from '@components/applications/row/Row';
 import SkeletonRow from '@components/applications/row/SkeletonRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
@@ -28,14 +28,75 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     type FormValues = {
-        [key: string]: any;
+        cae: string;
+        'celi-cils-it-plida': string;
+        'dalf-delf': string;
+        dele: string;
+        fce: string;
+        gmat: string;
+        goethe: string;
+        gre: string;
+        ielts: string;
+        'last-3-transcript-1': string;
+        'last-3-transcript-2': string;
+        'last-3-transcript-3': string;
+        passport: string;
+        passportPhoto: string;
+        resume: string;
+        tageMage: string;
+        'tef-tcf': string;
+        toefl: string;
+        toeic: string;
+        [documentId: string]: string;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({});
+    const [initialValues, setInitialValues] = useState<FormValues>({
+        cae: '',
+        'celi-cils-it-plida': '',
+        'dalf-delf': '',
+        dele: '',
+        fce: '',
+        gmat: '',
+        goethe: '',
+        gre: '',
+        ielts: '',
+        'last-3-transcript-1': '',
+        'last-3-transcript-2': '',
+        'last-3-transcript-3': '',
+        passport: '',
+        passportPhoto: '',
+        resume: '',
+        tageMage: '',
+        'tef-tcf': '',
+        toefl: '',
+        toeic: ''
+    });
 
     useEffect(() => {
-        console.log('set values');
-    }, []);
+        if (student && documents) {
+            setInitialValues({
+                cae: findDocument(documents, 'cae') || '',
+                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
+                'dalf-delf': findDocument(documents, 'dalf-delf') || '',
+                dele: findDocument(documents, 'dele') || '',
+                fce: findDocument(documents, 'fce') || '',
+                gmat: findDocument(documents, 'gmat') || '',
+                goethe: findDocument(documents, 'goethe') || '',
+                gre: findDocument(documents, 'gre') || '',
+                ielts: findDocument(documents, 'ielts') || '',
+                'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
+                'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
+                'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
+                passport: findDocument(documents, 'passport') || '',
+                passportPhoto: findDocument(documents, 'passport-photo') || '',
+                resume: findDocument(documents, 'resume') || '',
+                tageMage: findDocument(documents, 'tage-mage') || '',
+                'tef-tcf': findDocument(documents, 'tef-tcf') || '',
+                toefl: findDocument(documents, 'toefl') || '',
+                toeic: findDocument(documents, 'toeic') || ''
+            });
+        }
+    }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
