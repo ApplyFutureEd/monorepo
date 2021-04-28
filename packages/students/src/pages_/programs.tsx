@@ -19,9 +19,10 @@ import {
     usePageBottom,
     useQuery
 } from '@applyfuture/utils';
-import ApplicationJourneySteps from '@components/common/ApplicationJourneySteps';
+import ApplicationJourneySteps from '@components/common/application-journey-steps/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Filters from '@components/programs/filters/Filters';
+import NoResult from '@components/programs/no-result/NoResult';
 import ProfileActionPanel from '@components/programs/profile-action-panel/ProfileActionPanel';
 import Row from '@components/programs/row/Row';
 import SkeletonRow from '@components/programs/row/SkeletonRow';
@@ -158,6 +159,34 @@ const ProgramsPage: FC = () => {
     );
     const displaySignUpActionPanel = Boolean(!user && !studentIsLoading && !documentsIsLoading);
 
+    const programs = programsData.searchPrograms?.items;
+
+    const renderPrograms = () => {
+        return (
+            <>
+                {programs && programs?.length > 0 ? (
+                    programs?.map((program) => {
+                        if (!program || !program.school) {
+                            return;
+                        }
+                        return (
+                            program && (
+                                <Row
+                                    key={program.id}
+                                    documents={documents}
+                                    program={program}
+                                    student={student}
+                                />
+                            )
+                        );
+                    })
+                ) : (
+                    <NoResult variables={variables} />
+                )}
+            </>
+        );
+    };
+
     return (
         <DashboardLayout
             description={t('programs:meta-description')}
@@ -169,20 +198,9 @@ const ProgramsPage: FC = () => {
                 headerComponents={headerComponents}
                 innerPadding={false}
                 title={`${t('programs:programs')} ${total}`}>
-                {programsData.searchPrograms?.items?.map((program) => {
-                    return (
-                        program && (
-                            <Row
-                                key={program?.id}
-                                documents={documents}
-                                program={program}
-                                student={student}
-                            />
-                        )
-                    );
-                })}
-                {programsIsLoading &&
-                    skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
+                {programsIsLoading
+                    ? skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)
+                    : renderPrograms()}
             </Container>
         </DashboardLayout>
     );

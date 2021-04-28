@@ -2,7 +2,7 @@ import { Toast } from '@applyfuture/ui';
 import { toast as toastify } from 'react-toastify';
 
 type ToastOptions = {
-    description: string;
+    description?: string;
     title: string;
     variant: 'success' | 'error';
 };
