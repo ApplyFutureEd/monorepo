@@ -66,7 +66,7 @@ const Row: FC<Props> = (props) => {
                     <Field key={document?.name} id={document?.name} name={document?.name}>
                         {(fieldProps: FieldProps) => (
                             <FileUploader
-                                isSpecific={document?.isSpecific}
+                                isSpecific={Boolean(document?.isSpecific)}
                                 program={application?.program}
                                 student={student}
                                 {...fieldProps}
