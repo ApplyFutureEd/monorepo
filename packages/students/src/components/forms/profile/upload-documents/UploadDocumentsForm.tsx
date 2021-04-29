@@ -208,7 +208,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="passportPhoto" name="passportPhoto">
+                                <Field id="passportPhoto" name="passport-photo">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
@@ -336,7 +336,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="tageMage" name="tageMage">
+                                <Field id="tageMage" name="tage-mage">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
