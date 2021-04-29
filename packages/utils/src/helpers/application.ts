@@ -16,7 +16,7 @@ export const getStepsLabels = (application: GetApplicationQuery['getApplication'
     return steps;
 };
 
-export const conditionFilter = (document: any) => {
+export const conditionFilter = (document: any, student: any) => {
     if (!document.condition) {
         return true;
     }

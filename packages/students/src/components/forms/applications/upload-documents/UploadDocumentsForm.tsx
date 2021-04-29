@@ -209,8 +209,8 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 return (
                     <Form>
                         {application?.program?.requestedDocuments
-                            ?.filter(conditionFilter)
-                            .filter(languagesBypassFilter)
+                            ?.filter((document) => conditionFilter(document, student))
+                            .filter((document) => conditionFilter(document, student))
                             .map((document: any, index: number) => (
                                 <Row
                                     key={document.name}
