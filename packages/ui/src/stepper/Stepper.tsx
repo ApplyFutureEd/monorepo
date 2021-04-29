@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 type StepProps = {
     isCurrent: boolean;
@@ -48,6 +49,10 @@ type Props = {
      */
     currentStep: number;
     /**
+     * If `true`, the component will display a loading skeleton.
+     */
+    isLoading?: boolean;
+    /**
      * Array of strings representing each steps.
      */
     steps: Array<string>;
@@ -55,7 +60,7 @@ type Props = {
 
 export const Stepper: FC<Props> = (props) => {
     const { t } = useTranslation();
-    const { currentStep, steps } = props;
+    const { currentStep, isLoading, steps } = props;
     const progress = (currentStep / steps.length) * 100;
     const progressPourcentage = `${progress}%`;
 
@@ -68,6 +73,21 @@ export const Stepper: FC<Props> = (props) => {
     circleStyle.strokeDashoffset = `${(((100 - circleProgress) / 100) * circumference).toFixed(
         3
     )}px`;
+
+    if (isLoading) {
+        return (
+            <div className="hidden md:block">
+                <div className="mb-2">
+                    <ul className="flex justify-between">
+                        <Skeleton height="18px" width="150px" />
+                        <Skeleton height="18px" width="150px" />
+                        <Skeleton height="18px" width="150px" />
+                    </ul>
+                </div>
+                <Skeleton height="8px" width="100%" />
+            </div>
+        );
+    }
 
     return (
         <>
