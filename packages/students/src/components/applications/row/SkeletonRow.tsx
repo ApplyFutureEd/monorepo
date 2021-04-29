@@ -17,7 +17,7 @@ const SkeletonRow: FC<Props> = (props) => {
         ['bg-gray-50']: !(index % 2),
         ['bg-white']: index % 2,
         ['mt-2']: index === 0,
-        ['mt-8']: !(index === 0)
+        ['mt-8']: index !== 0
     });
 
     return (

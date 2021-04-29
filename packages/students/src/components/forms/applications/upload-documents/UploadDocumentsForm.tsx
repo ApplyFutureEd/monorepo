@@ -53,9 +53,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         'last-3-transcript-2': string;
         'last-3-transcript-3': string;
         passport: string;
-        passportPhoto: string;
+        'passport-photo': string;
         resume: string;
-        tageMage: string;
+        'tage-mage': string;
         'tef-tcf': string;
         toefl: string;
         toeic: string;
@@ -76,9 +76,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         'last-3-transcript-2': '',
         'last-3-transcript-3': '',
         passport: '',
-        passportPhoto: '',
+        'passport-photo': '',
         resume: '',
-        tageMage: '',
+        'tage-mage': '',
         'tef-tcf': '',
         toefl: '',
         toeic: ''
@@ -100,9 +100,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
                 'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
                 passport: findDocument(documents, 'passport') || '',
-                passportPhoto: findDocument(documents, 'passport-photo') || '',
+                'passport-photo': findDocument(documents, 'passport-photo') || '',
                 resume: findDocument(documents, 'resume') || '',
-                tageMage: findDocument(documents, 'tage-mage') || '',
+                'tage-mage': findDocument(documents, 'tage-mage') || '',
                 'tef-tcf': findDocument(documents, 'tef-tcf') || '',
                 toefl: findDocument(documents, 'toefl') || '',
                 toeic: findDocument(documents, 'toeic') || ''
@@ -126,9 +126,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 'last-3-transcript-2',
                 'last-3-transcript-3',
                 'passport',
-                'passportPhoto',
+                'passport-photo',
                 'resume',
-                'tageMage',
+                'tage-mage',
                 'tef-tcf',
                 'toefl',
                 'toeic'
@@ -136,7 +136,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
             const documents = documentIds
                 .map((id) => ({
-                    name: kebabCase(id),
+                    name: id,
                     storageKey: values[id],
                     studentId: student?.id
                 }))
