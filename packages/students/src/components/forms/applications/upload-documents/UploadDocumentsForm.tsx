@@ -189,7 +189,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         actions.setSubmitting(false);
     };
 
-    const skeletons = Array.from({ length: 12 }, (v, k) => k + 1);
+    const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
     if (isLoading) {
         return (
