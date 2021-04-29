@@ -16,8 +16,7 @@ export const getStepsLabels = (application: GetApplicationQuery['getApplication'
     return steps;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const conditionFilter = (document: any, student: any): boolean => {
+export const conditionFilter = (document: any, _student: any): boolean => {
     if (!document.condition) {
         return true;
     }
