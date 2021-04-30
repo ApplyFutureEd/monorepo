@@ -12,9 +12,9 @@ import { Button } from '@applyfuture/ui';
 import {
     conditionFilter,
     findDocument,
-    getDocumentId,
     graphql,
     languagesBypassFilter,
+    scrollToErrors,
     toast
 } from '@applyfuture/utils';
 import Row from '@components/applications/row/Row';
@@ -83,13 +83,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
             delete errors['tage-mage'];
         }
 
-        const firstErrorName = Object.keys(errors)[0];
-
-        if (firstErrorName) {
-            const id = getDocumentId(firstErrorName);
-            const onErrorDocument = document.querySelector(`#${id}`);
-            onErrorDocument?.scrollIntoView();
-        }
+        scrollToErrors(errors);
 
         return errors;
     };

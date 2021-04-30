@@ -1,5 +1,4 @@
 import { GetDocumentByStudentQuery } from '@applyfuture/graphql';
-import camelCase from 'lodash/camelCase';
 
 export const findDocument = (
     documents:
@@ -9,8 +8,4 @@ export const findDocument = (
     id: string
 ): string | null | undefined => {
     return documents?.find((document) => document?.name === id)?.storageKey;
-};
-
-export const getDocumentId = (name: string): string => {
-    return isNaN(Number(name.charAt(0))) ? camelCase(name) : camelCase(name.substring(1));
 };

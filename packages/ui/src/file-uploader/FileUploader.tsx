@@ -235,7 +235,7 @@ export const FileUploader: FC<Props> = (props) => {
             <div className="flex flex-col justify-between sm:flex-row" {...rest}>
                 <label
                     className="block text-gray-700 text-sm font-medium leading-5"
-                    htmlFor="cover_photo">
+                    htmlFor={field.name}>
                     <div className="flex justify-between w-full">
                         <div>{label}</div>
                         {optional && (
@@ -288,6 +288,7 @@ export const FileUploader: FC<Props> = (props) => {
                                             <p className="text-gray-600 text-sm">
                                                 <button
                                                     className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none transition duration-150 ease-in-out"
+                                                    name={field.name}
                                                     type="button">
                                                     {t('common:upload-file-input-upload-a-file')}
                                                 </button>{' '}
