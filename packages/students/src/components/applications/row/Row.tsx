@@ -3,7 +3,7 @@ import { Button, FileUploader } from '@applyfuture/ui';
 import {
     englishTestDocumentsIds,
     frenchTestDocumentsIds,
-    getIdentifier,
+    getDocumentId,
     logicAndReasoningTests,
     toast
 } from '@applyfuture/utils';
@@ -57,7 +57,7 @@ const Row: FC<Props> = (props) => {
     };
 
     return (
-        <div className={classes} id={getIdentifier(document?.name)}>
+        <div className={classes} id={getDocumentId(document?.name)}>
             <dt className="text-gray-600 text-sm font-medium leading-5">
                 <div className="flex space-x-2">
                     <span>{t(`profile:${document?.name}`)}</span>

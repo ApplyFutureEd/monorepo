@@ -10,9 +10,9 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import {
-    commonDocumentsIds,
     conditionFilter,
     findDocument,
+    getDocumentId,
     graphql,
     languagesBypassFilter,
     toast
@@ -21,7 +21,6 @@ import Row from '@components/applications/row/Row';
 import SkeletonRow from '@components/applications/row/SkeletonRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { difference } from 'lodash';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -48,6 +47,52 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({});
+
+    const validate = (values: any) => {
+        const errors: any = {};
+        Object.keys(values).forEach((e) => {
+            if (
+                application?.program?.requestedDocuments
+                    .filter((document: any) => !document.isMandatory)
+                    .map((document: any) => document.name)
+                    .includes(e)
+            ) {
+                return;
+            }
+            if (!values[e]) {
+                errors[e] = t('required');
+            }
+        });
+
+        if (values.toefl || values.ielts || values.toeic || values.fce || values.cae) {
+            delete errors.toefl;
+            delete errors.ielts;
+            delete errors.toeic;
+            delete errors.fce;
+            delete errors.cae;
+        }
+
+        if (values['tef-tcf'] || values['dalf-delf']) {
+            delete errors['tef-tcf'];
+            delete errors['dalf-delf'];
+        }
+
+        if (values.gmat || values.gre || values['tage-mage']) {
+            delete errors.gmat;
+            delete errors.gre;
+            delete errors['tage-mage'];
+        }
+
+        const firstErrorName = Object.keys(errors)[0];
+
+        if (firstErrorName) {
+            const id = getDocumentId(firstErrorName);
+            const onErrorDocument = document.querySelector(`#${id}`);
+            onErrorDocument?.scrollIntoView();
+        }
+
+        return errors;
+    };
 
     useEffect(() => {
         if (student && documents) {
@@ -133,7 +178,11 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     }
 
     return (
-        <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit}>
+        <Formik
+            enableReinitialize
+            initialValues={initialValues}
+            validate={validate}
+            onSubmit={onSubmit}>
             {(props) => {
                 const { isSubmitting } = props;
 

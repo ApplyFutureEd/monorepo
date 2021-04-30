@@ -11,6 +11,6 @@ export const findDocument = (
     return documents?.find((document) => document?.name === id)?.storageKey;
 };
 
-export const getIdentifier = (name: string): string => {
+export const getDocumentId = (name: string): string => {
     return isNaN(Number(name.charAt(0))) ? camelCase(name) : camelCase(name.substring(1));
 };
