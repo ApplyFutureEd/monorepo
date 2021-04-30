@@ -8,7 +8,13 @@ import {
     updateDocument
 } from '@applyfuture/graphql';
 import { Button, FileUploader, Section } from '@applyfuture/ui';
-import { checkCompletion, findDocument, graphql, toast } from '@applyfuture/utils';
+import {
+    checkCompletion,
+    commonDocumentsIds,
+    findDocument,
+    graphql,
+    toast
+} from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -75,55 +81,20 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     useEffect(() => {
         if (student && documents) {
-            setInitialValues({
-                cae: findDocument(documents, 'cae') || '',
-                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
-                'dalf-delf': findDocument(documents, 'dalf-delf') || '',
-                dele: findDocument(documents, 'dele') || '',
-                fce: findDocument(documents, 'fce') || '',
-                gmat: findDocument(documents, 'gmat') || '',
-                goethe: findDocument(documents, 'goethe') || '',
-                gre: findDocument(documents, 'gre') || '',
-                ielts: findDocument(documents, 'ielts') || '',
-                'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
-                'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
-                'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
-                passport: findDocument(documents, 'passport') || '',
-                'passport-photo': findDocument(documents, 'passport-photo') || '',
-                resume: findDocument(documents, 'resume') || '',
-                'tage-mage': findDocument(documents, 'tage-mage') || '',
-                'tef-tcf': findDocument(documents, 'tef-tcf') || '',
-                toefl: findDocument(documents, 'toefl') || '',
-                toeic: findDocument(documents, 'toeic') || ''
-            });
+            const initialValues = Object.assign(
+                {},
+                ...commonDocumentsIds.map((key) => ({
+                    [key]: findDocument(documents, key) || ''
+                }))
+            );
+
+            setInitialValues(initialValues);
         }
     }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const documentIds = [
-                'cae',
-                'celi-cils-it-plida',
-                'dalf-delf',
-                'dele',
-                'fce',
-                'gmat',
-                'goethe',
-                'gre',
-                'ielts',
-                'last-3-transcript-1',
-                'last-3-transcript-2',
-                'last-3-transcript-3',
-                'passport',
-                'passport-photo',
-                'resume',
-                'tage-mage',
-                'tef-tcf',
-                'toefl',
-                'toeic'
-            ];
-
-            const documents = documentIds
+            const documents = commonDocumentsIds
                 .map((id) => ({
                     name: id,
                     storageKey: values[id],

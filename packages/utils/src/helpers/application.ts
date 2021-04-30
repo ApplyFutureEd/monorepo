@@ -1,6 +1,13 @@
 import { GetApplicationQuery } from '@applyfuture/graphql';
 
 import { applicationSteps } from '../constants/applicationSteps';
+import {
+    englishTestDocumentsIds,
+    frenchTestDocumentsIds,
+    germanTestDocumentsIds,
+    italianTestDocumentsIds,
+    spanishTestDocumentsIds
+} from './../constants/documents';
 import { hasBypass } from './eligibility';
 
 export const getStepsLabels = (application: GetApplicationQuery['getApplication']): string[] => {
@@ -28,10 +35,19 @@ export const languagesBypassFilter = (document: any, student: any): boolean => {
     const bypasses = hasBypass(student);
 
     if (document.isMandatory) {
-        if (['toefl', 'ielts', 'toeic', 'fce', 'cae'].includes(document.name) && bypasses.english) {
+        if (englishTestDocumentsIds.includes(document.name) && bypasses.english) {
             return false;
         }
-        if (['tef-tcf', 'dalf-delf'].includes(document.name) && bypasses.french) {
+        if (frenchTestDocumentsIds.includes(document.name) && bypasses.french) {
+            return false;
+        }
+        if (italianTestDocumentsIds.includes(document.name) && bypasses.italian) {
+            return false;
+        }
+        if (germanTestDocumentsIds.includes(document.name) && bypasses.german) {
+            return false;
+        }
+        if (spanishTestDocumentsIds.includes(document.name) && bypasses.spanish) {
             return false;
         }
     }

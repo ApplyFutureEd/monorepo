@@ -1,7 +1,14 @@
 import { GetApplicationQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
 import { Button, FileUploader } from '@applyfuture/ui';
-import { getIdentifier } from '@applyfuture/utils';
+import {
+    englishTestDocumentsIds,
+    frenchTestDocumentsIds,
+    getIdentifier,
+    logicAndReasoningTests,
+    toast
+} from '@applyfuture/utils';
 import { faDownload } from '@fortawesome/pro-light-svg-icons';
+import { Storage } from 'aws-amplify';
 import cx from 'classnames';
 import { Field, FieldProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
@@ -33,6 +40,22 @@ const Row: FC<Props> = (props) => {
         ['mt-8']: index !== 0
     });
 
+    const downloadTemplate = async (storageKey: string | null) => {
+        if (!storageKey) {
+            throw Error('Template file is missing');
+        }
+        try {
+            const result: any = await Storage.get(storageKey, { level: 'public' });
+            window.open(result);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+    };
+
     return (
         <div className={classes} id={getIdentifier(document?.name)}>
             <dt className="text-gray-600 text-sm font-medium leading-5">
@@ -45,17 +68,21 @@ const Row: FC<Props> = (props) => {
                     )}
                 </div>
                 <div className="mt-2 text-gray-500 text-sm font-normal leading-5">
-                    {['toefl', 'ielts', 'toeic', 'fce', 'cae'].includes(document?.name) &&
+                    {englishTestDocumentsIds.includes(document?.name) &&
                         t('application:english-test-proof-details')}
-                    {['tef-tcf', 'dalf-delf'].includes(document?.name) &&
+                    {frenchTestDocumentsIds.includes(document?.name) &&
                         t('application:french-test-proof-details')}
-                    {['gre', 'gmat', 'tage-mage'].includes(document?.name) &&
+                    {logicAndReasoningTests.includes(document?.name) &&
                         t('application:logic-and-reasoning-test-proof-details')}
                     {document?.description}
                 </div>
                 {document?.storageKey && (
                     <div className="mt-2">
-                        <Button startIcon={faDownload} type="button" variant="secondary">
+                        <Button
+                            startIcon={faDownload}
+                            type="button"
+                            variant="secondary"
+                            onClick={() => downloadTemplate(document?.storageKey)}>
                             {t('application:download-template')}
                         </Button>
                     </div>

@@ -10,6 +10,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import {
+    commonDocumentsIds,
     conditionFilter,
     findDocument,
     graphql,
@@ -20,6 +21,7 @@ import Row from '@components/applications/row/Row';
 import SkeletonRow from '@components/applications/row/SkeletonRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Form, Formik, FormikHelpers } from 'formik';
+import { difference } from 'lodash';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -34,106 +36,35 @@ type Props = {
 const UploadDocumentsForm: FC<Props> = (props) => {
     const { applicationData, documentsData, isLoading, studentData } = props;
     const application = applicationData.getApplication;
+    const requestedDocumentsIds =
+        application?.program?.requestedDocuments.map((document) => document.name) || [];
     const documents = documentsData?.getDocumentByStudent?.items;
     const student = studentData?.getStudentByEmail?.items?.[0];
+
     const { t } = useTranslation();
 
     type FormValues = {
-        cae: string;
-        'celi-cils-it-plida': string;
-        'dalf-delf': string;
-        dele: string;
-        fce: string;
-        gmat: string;
-        goethe: string;
-        gre: string;
-        ielts: string;
-        'last-3-transcript-1': string;
-        'last-3-transcript-2': string;
-        'last-3-transcript-3': string;
-        passport: string;
-        'passport-photo': string;
-        resume: string;
-        'tage-mage': string;
-        'tef-tcf': string;
-        toefl: string;
-        toeic: string;
         [documentId: string]: string;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({
-        cae: '',
-        'celi-cils-it-plida': '',
-        'dalf-delf': '',
-        dele: '',
-        fce: '',
-        gmat: '',
-        goethe: '',
-        gre: '',
-        ielts: '',
-        'last-3-transcript-1': '',
-        'last-3-transcript-2': '',
-        'last-3-transcript-3': '',
-        passport: '',
-        'passport-photo': '',
-        resume: '',
-        'tage-mage': '',
-        'tef-tcf': '',
-        toefl: '',
-        toeic: ''
-    });
+    const [initialValues, setInitialValues] = useState<FormValues>({});
 
     useEffect(() => {
         if (student && documents) {
-            setInitialValues({
-                cae: findDocument(documents, 'cae') || '',
-                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
-                'dalf-delf': findDocument(documents, 'dalf-delf') || '',
-                dele: findDocument(documents, 'dele') || '',
-                fce: findDocument(documents, 'fce') || '',
-                gmat: findDocument(documents, 'gmat') || '',
-                goethe: findDocument(documents, 'goethe') || '',
-                gre: findDocument(documents, 'gre') || '',
-                ielts: findDocument(documents, 'ielts') || '',
-                'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
-                'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
-                'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
-                passport: findDocument(documents, 'passport') || '',
-                'passport-photo': findDocument(documents, 'passport-photo') || '',
-                resume: findDocument(documents, 'resume') || '',
-                'tage-mage': findDocument(documents, 'tage-mage') || '',
-                'tef-tcf': findDocument(documents, 'tef-tcf') || '',
-                toefl: findDocument(documents, 'toefl') || '',
-                toeic: findDocument(documents, 'toeic') || ''
-            });
+            const initialValues = Object.assign(
+                {},
+                ...requestedDocumentsIds.map((key) => ({
+                    [key]: findDocument(documents, key) || ''
+                }))
+            );
+
+            setInitialValues(initialValues);
         }
     }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const documentIds = [
-                'cae',
-                'celi-cils-it-plida',
-                'dalf-delf',
-                'dele',
-                'fce',
-                'gmat',
-                'goethe',
-                'gre',
-                'ielts',
-                'last-3-transcript-1',
-                'last-3-transcript-2',
-                'last-3-transcript-3',
-                'passport',
-                'passport-photo',
-                'resume',
-                'tage-mage',
-                'tef-tcf',
-                'toefl',
-                'toeic'
-            ];
-
-            const documents = documentIds
+            const documents = requestedDocumentsIds
                 .map((id) => ({
                     name: id,
                     storageKey: values[id],
