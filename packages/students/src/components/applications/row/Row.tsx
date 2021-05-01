@@ -3,6 +3,7 @@ import { Button, FileUploader } from '@applyfuture/ui';
 import {
     englishTestDocumentsIds,
     frenchTestDocumentsIds,
+    logicAndReasoningTestDocumentsIds,
     logicAndReasoningTests,
     toast
 } from '@applyfuture/utils';
@@ -39,10 +40,7 @@ const Row: FC<Props> = (props) => {
         ['mt-8']: index !== 0
     });
 
-    const downloadTemplate = async (storageKey: string | null) => {
-        if (!storageKey) {
-            throw Error('Template file is missing');
-        }
+    const downloadTemplate = async (storageKey: string) => {
         try {
             const result: any = await Storage.get(storageKey, { level: 'public' });
             window.open(result);
@@ -71,7 +69,7 @@ const Row: FC<Props> = (props) => {
                         t('application:english-test-proof-details')}
                     {frenchTestDocumentsIds.includes(document?.name) &&
                         t('application:french-test-proof-details')}
-                    {logicAndReasoningTests.includes(document?.name) &&
+                    {logicAndReasoningTestDocumentsIds.includes(document?.name) &&
                         t('application:logic-and-reasoning-test-proof-details')}
                     {document?.description}
                 </div>
@@ -81,7 +79,9 @@ const Row: FC<Props> = (props) => {
                             startIcon={faDownload}
                             type="button"
                             variant="secondary"
-                            onClick={() => downloadTemplate(document?.storageKey)}>
+                            onClick={() =>
+                                document?.storageKey && downloadTemplate(document?.storageKey)
+                            }>
                             {t('application:download-template')}
                         </Button>
                     </div>

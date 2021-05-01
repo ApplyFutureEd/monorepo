@@ -1,5 +1,6 @@
 import {
     createDocument,
+    deleteApplication,
     GetApplicationQuery,
     getDocumentByStorageKey,
     GetDocumentByStorageKeyQuery,
@@ -22,6 +23,7 @@ import SkeletonRow from '@components/applications/row/SkeletonRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -33,6 +35,7 @@ type Props = {
 };
 
 const UploadDocumentsForm: FC<Props> = (props) => {
+    const router = useRouter();
     const { applicationData, documentsData, isLoading, studentData } = props;
     const application = applicationData.getApplication;
     const requestedDocumentsIds =
@@ -159,6 +162,21 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         actions.setSubmitting(false);
     };
 
+    const handleCancelApplication = async () => {
+        try {
+            await graphql(deleteApplication, {
+                input: { id: application?.id }
+            });
+            router.push('/applications');
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+    };
+
     const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
     if (isLoading) {
@@ -203,7 +221,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                     startIcon={faTrash}
                                     type="button"
                                     variant="secondary"
-                                    onClick={() => console.log('trash')}>
+                                    onClick={handleCancelApplication}>
                                     {t('application:cancel-my-application')}
                                 </Button>
                             </div>
