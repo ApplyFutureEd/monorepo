@@ -4,7 +4,6 @@ import {
     englishTestDocumentsIds,
     frenchTestDocumentsIds,
     logicAndReasoningTestDocumentsIds,
-    logicAndReasoningTests,
     toast
 } from '@applyfuture/utils';
 import { faDownload } from '@fortawesome/pro-light-svg-icons';
