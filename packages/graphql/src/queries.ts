@@ -500,6 +500,7 @@ export const getApplication = /* GraphQL */ `
         id
         date
         isMandatory
+        label
         status
       }
       studentId
@@ -731,6 +732,7 @@ export const listApplications = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1113,6 +1115,7 @@ export const getFeedback = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1663,6 +1666,7 @@ export const getApplicationByStudent = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -1963,6 +1967,7 @@ export const searchApplications = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -2095,6 +2100,153 @@ export const searchApplications = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        owner
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchSearchAlerts = /* GraphQL */ `
+  query SearchSearchAlerts(
+    $filter: SearchableSearchAlertFilterInput
+    $sort: SearchableSearchAlertSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchSearchAlerts(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        lastUpdate
+        student {
+          id
+          address
+          birthday
+          city
+          country
+          degrees
+          disciplines
+          educationCountry
+          email
+          fatherFirstName
+          fatherLastName
+          firstLanguage
+          firstName
+          favoritePrograms
+          favoriteSchools
+          gender
+          gradePointAverage
+          guardianFirstName
+          guardianLastName
+          hasMandatoryDocuments
+          highestEducationLevel
+          lastName
+          lastUpdate
+          locale
+          maritalStatus
+          middleName
+          modalProfileCompletedViewed
+          phoneNumber
+          motherFirstName
+          motherMaidenName
+          nationality
+          parentsAddress
+          parentsCity
+          parentsCountry
+          parentsEmail
+          parentsPhoneNumber
+          passportNumber
+          refusedVisa
+          refusedVisaReason
+          testCambridgeAdvanced
+          testCambridgeAdvancedDate
+          testCambridgeFirst
+          testCambridgeFirstDate
+          testCeliCilsItPlida
+          testCeliCilsItPlidaDate
+          testDele
+          testDeleDate
+          testDelfdalf
+          testDelfdalfDate
+          testEnglishPending
+          testGmat
+          testGmatDate
+          testGoethe
+          testGoetheDate
+          testGre
+          testGreDate
+          testIelts
+          testIeltsDate
+          testLogicAndReasoningPending
+          testOtherLanguagesPending
+          testTagemage
+          testTagemageDate
+          testTcftef
+          testTcftefDate
+          testToefl
+          testToeflDate
+          testToeic
+          testToeicDate
+          validVisa
+          createdAt
+          updatedAt
+          owner
+        }
+        studentId
+        type
+        query
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchFeedbacks = /* GraphQL */ `
+  query SearchFeedbacks(
+    $filter: SearchableFeedbackFilterInput
+    $sort: SearchableFeedbackSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchFeedbacks(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        application {
+          id
+          admissionResult
+          document
+          decisionLetterDate
+          intake
+          interviewDate
+          lastUpdate
+          modalApplicationCompletedViewed
+          programId
+          studentId
+          todo
+          tuitionsFeePaymentDate
+          visaDate
+          createdAt
+          updatedAt
+          owner
+        }
+        applicationId
+        lastUpdate
+        rating
+        createdAt
+        updatedAt
         owner
       }
       nextToken
@@ -2851,6 +3003,35 @@ export const getPostBySlug = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const searchPosts = /* GraphQL */ `
+  query SearchPosts(
+    $filter: SearchablePostFilterInput
+    $sort: SearchablePostSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchPosts(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        category
+        content
+        lastUpdate
+        published
+        slug
+        title
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
     }
   }
 `;

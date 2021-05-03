@@ -3,7 +3,7 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 export declare class RequestedDocument {
-  readonly name?: string;
+  readonly name: string;
   readonly isMandatory?: boolean;
   readonly storageKey?: string;
   readonly description?: string;
@@ -27,6 +27,7 @@ export declare class ApplicationStep {
   readonly id: string;
   readonly date: string;
   readonly isMandatory: boolean;
+  readonly label: string;
   readonly status: string;
   constructor(init: ModelInit<ApplicationStep>);
 }
@@ -234,7 +235,7 @@ export declare class Application {
 export declare class Document {
   readonly id: string;
   readonly student?: Student;
-  readonly name?: string;
+  readonly name: string;
   readonly storageKey?: string;
   constructor(init: ModelInit<Document>);
   static copyOf(source: Document, mutator: (draft: MutableModel<Document>) => MutableModel<Document> | void): Document;

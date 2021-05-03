@@ -289,5 +289,15 @@ export const languages = [
     }
 ];
 
+export const englishLanguages = ['EN'];
+
+export const frenchLanguages = ['FR'];
+
+export const spanishLanguages = ['ES', 'CA'];
+
+export const germanLanguages = ['DE'];
+
+export const italianLanguages = ['IT'];
+
 export const getLanguageLabel = (value: string | undefined): string =>
     languages.find((language) => language.value === value)?.label || '';

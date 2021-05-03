@@ -71,7 +71,7 @@ type Program
     name: String!
     otherRequirements: String
     published: Boolean!
-    requestedDocuments: [RequestedDocument]!
+    requestedDocuments: [RequestedDocument!]!
     schedule: String!
     school: School @connection(fields: ["schoolId"])
     schoolId: ID!
@@ -94,7 +94,7 @@ type Program
 }
 
 type RequestedDocument {
-    name: String
+    name: String!
     isMandatory: Boolean
     storageKey: String
     description: String
@@ -222,7 +222,7 @@ type Document
     id: ID!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
-    name: String
+    name: String!
     storageKey: String
 }
 
@@ -259,6 +259,7 @@ type ApplicationStep {
     id: String!
     date: String!
     isMandatory: Boolean!
+    label: String!
     status: String!
 }
 
@@ -279,6 +280,7 @@ type SearchAlert
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
     )
+    @searchable
     @model {
     id: ID!
     lastUpdate: Float!
@@ -295,6 +297,7 @@ type Feedback
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
     )
+    @searchable
     @model {
     id: ID!
     application: Application @connection(fields: ["applicationId"])
@@ -312,6 +315,7 @@ type Post
         ]
     )
     @model
+    @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getPostBySlug") {
     id: ID!
     category: String!

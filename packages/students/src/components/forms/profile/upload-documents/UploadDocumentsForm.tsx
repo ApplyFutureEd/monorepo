@@ -8,11 +8,16 @@ import {
     updateDocument
 } from '@applyfuture/graphql';
 import { Button, FileUploader, Section } from '@applyfuture/ui';
-import { checkCompletion, findDocument, graphql, toast } from '@applyfuture/utils';
+import {
+    checkCompletion,
+    commonDocumentsIds,
+    findDocument,
+    graphql,
+    toast
+} from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import kebabCase from 'lodash/kebabCase';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -43,9 +48,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         'last-3-transcript-2': string;
         'last-3-transcript-3': string;
         passport: string;
-        passportPhoto: string;
+        'passport-photo': string;
         resume: string;
-        tageMage: string;
+        'tage-mage': string;
         'tef-tcf': string;
         toefl: string;
         toeic: string;
@@ -66,9 +71,9 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         'last-3-transcript-2': '',
         'last-3-transcript-3': '',
         passport: '',
-        passportPhoto: '',
+        'passport-photo': '',
         resume: '',
-        tageMage: '',
+        'tage-mage': '',
         'tef-tcf': '',
         toefl: '',
         toeic: ''
@@ -76,57 +81,22 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     useEffect(() => {
         if (student && documents) {
-            setInitialValues({
-                cae: findDocument(documents, 'cae') || '',
-                'celi-cils-it-plida': findDocument(documents, 'celi-cils-it-plida') || '',
-                'dalf-delf': findDocument(documents, 'dalf-delf') || '',
-                dele: findDocument(documents, 'dele') || '',
-                fce: findDocument(documents, 'fce') || '',
-                gmat: findDocument(documents, 'gmat') || '',
-                goethe: findDocument(documents, 'goethe') || '',
-                gre: findDocument(documents, 'gre') || '',
-                ielts: findDocument(documents, 'ielts') || '',
-                'last-3-transcript-1': findDocument(documents, 'last-3-transcript-1') || '',
-                'last-3-transcript-2': findDocument(documents, 'last-3-transcript-2') || '',
-                'last-3-transcript-3': findDocument(documents, 'last-3-transcript-3') || '',
-                passport: findDocument(documents, 'passport') || '',
-                passportPhoto: findDocument(documents, 'passport-photo') || '',
-                resume: findDocument(documents, 'resume') || '',
-                tageMage: findDocument(documents, 'tage-mage') || '',
-                'tef-tcf': findDocument(documents, 'tef-tcf') || '',
-                toefl: findDocument(documents, 'toefl') || '',
-                toeic: findDocument(documents, 'toeic') || ''
-            });
+            const initialValues = Object.assign(
+                {},
+                ...commonDocumentsIds.map((key) => ({
+                    [key]: findDocument(documents, key) || ''
+                }))
+            );
+
+            setInitialValues(initialValues);
         }
     }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const documentIds = [
-                'cae',
-                'celi-cils-it-plida',
-                'dalf-delf',
-                'dele',
-                'fce',
-                'gmat',
-                'goethe',
-                'gre',
-                'ielts',
-                'last-3-transcript-1',
-                'last-3-transcript-2',
-                'last-3-transcript-3',
-                'passport',
-                'passportPhoto',
-                'resume',
-                'tageMage',
-                'tef-tcf',
-                'toefl',
-                'toeic'
-            ];
-
-            const documents = documentIds
+            const documents = commonDocumentsIds
                 .map((id) => ({
-                    name: kebabCase(id),
+                    name: id,
                     storageKey: values[id],
                     studentId: student?.id
                 }))
@@ -209,7 +179,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="passportPhoto" name="passportPhoto">
+                                <Field id="passportPhoto" name="passport-photo">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}
@@ -337,7 +307,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                         />
                                     )}
                                 </Field>
-                                <Field id="tageMage" name="tageMage">
+                                <Field id="tageMage" name="tage-mage">
                                     {(fieldProps: FieldProps) => (
                                         <FileUploader
                                             isLoading={isLoading}

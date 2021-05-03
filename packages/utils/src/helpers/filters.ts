@@ -2,10 +2,20 @@ import { cities } from '../constants/cities';
 import {
     englishSpokenCountries,
     frenchSpokenCountries,
+    germanSpokenCountries,
+    italianSpokenCountries,
+    spanishSpokenCountries,
     supportedCountries
 } from '../constants/countries';
 import { degrees } from '../constants/degrees';
 import { disciplines } from '../constants/disciplines';
+import {
+    englishLanguages,
+    frenchLanguages,
+    germanLanguages,
+    italianLanguages,
+    spanishLanguages
+} from '../constants/languages';
 
 const cartesian = (...args: any[]) => {
     const result: any[] = [];
@@ -339,7 +349,7 @@ export const createFilter = (values: any) => {
     if (
         englishSpokenCountries.includes(values.nationality) ||
         englishSpokenCountries.includes(values.educationCountry) ||
-        englishSpokenCountries.includes(values.firstLanguage)
+        englishLanguages.includes(values.firstLanguage)
     ) {
         if (newFilter.testToefl) {
             delete newFilter.testCambridgeFirst;
@@ -361,13 +371,43 @@ export const createFilter = (values: any) => {
     if (
         frenchSpokenCountries.includes(values.nationality) ||
         frenchSpokenCountries.includes(values.educationCountry) ||
-        frenchSpokenCountries.includes(values.firstLanguage)
+        frenchLanguages.includes(values.firstLanguage)
     ) {
         if (newFilter.testTcftef) {
             delete newFilter.testTcftef;
         }
         if (newFilter.testDelfdalf) {
             delete newFilter.testDelfdalf;
+        }
+    }
+
+    if (
+        germanSpokenCountries.includes(values.nationality) ||
+        germanSpokenCountries.includes(values.educationCountry) ||
+        germanLanguages.includes(values.firstLanguage)
+    ) {
+        if (newFilter.testGoethe) {
+            delete newFilter.testTcftef;
+        }
+    }
+
+    if (
+        spanishSpokenCountries.includes(values.nationality) ||
+        spanishSpokenCountries.includes(values.educationCountry) ||
+        spanishLanguages.includes(values.firstLanguage)
+    ) {
+        if (newFilter.testDele) {
+            delete newFilter.testDele;
+        }
+    }
+
+    if (
+        italianSpokenCountries.includes(values.nationality) ||
+        italianSpokenCountries.includes(values.educationCountry) ||
+        italianLanguages.includes(values.firstLanguage)
+    ) {
+        if (newFilter.testCeliCilsItPlida) {
+            delete newFilter.testCeliCilsItPlida;
         }
     }
 

@@ -9,9 +9,9 @@ const RecruitersPage: FC = () => {
 
     const [currentStep, setCurrentStep] = useState(0);
     const steps = [
-        t('recruiter-form:recruiter-form-step-1'),
-        t('recruiter-form:recruiter-form-step-2'),
-        t('recruiter-form:recruiter-form-step-3')
+        'recruiter-form:recruiter-form-step-1',
+        'recruiter-form:recruiter-form-step-2',
+        'recruiter-form:recruiter-form-step-3'
     ];
 
     const handlePreviousStep = () => {

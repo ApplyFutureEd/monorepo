@@ -8,7 +8,7 @@ import {
 } from '@applyfuture/graphql';
 import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
-import UploadDocumentsForm from '@components/forms/upload-documents/UploadDocumentsForm';
+import UploadDocumentsForm from '@components/forms/profile/upload-documents/UploadDocumentsForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';
@@ -17,10 +17,12 @@ import React, { FC } from 'react';
 const UploadDocumentPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
+
     const { data: studentData, isLoading: studentIsLoading, refetch: studentRefetch } = useQuery<
         GetStudentByEmailQuery,
         GetStudentByEmailQueryVariables
     >(getStudentByEmail, { email: user?.attributes.email });
+
     const {
         data: documentsData,
         isLoading: documentsIsLoading,

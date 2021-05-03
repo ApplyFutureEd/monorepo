@@ -807,6 +807,7 @@ export const onCreateApplication = /* GraphQL */ `
         id
         date
         isMandatory
+        label
         status
       }
       studentId
@@ -1033,6 +1034,7 @@ export const onUpdateApplication = /* GraphQL */ `
         id
         date
         isMandatory
+        label
         status
       }
       studentId
@@ -1259,6 +1261,7 @@ export const onDeleteApplication = /* GraphQL */ `
         id
         date
         isMandatory
+        label
         status
       }
       studentId
@@ -1853,6 +1856,7 @@ export const onCreateFeedback = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -2023,6 +2027,7 @@ export const onUpdateFeedback = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
@@ -2193,6 +2198,7 @@ export const onDeleteFeedback = /* GraphQL */ `
           id
           date
           isMandatory
+          label
           status
         }
         studentId
