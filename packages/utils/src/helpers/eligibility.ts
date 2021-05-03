@@ -10,6 +10,13 @@ import {
     italianSpokenCountries,
     spanishSpokenCountries
 } from '../constants/countries';
+import {
+    englishLanguages,
+    frenchLanguages,
+    germanLanguages,
+    italianLanguages,
+    spanishLanguages
+} from './../constants/languages';
 
 export const formatTestCambridgeFirstValue = (
     value: number
@@ -110,86 +117,53 @@ export const hasBypass = (student: any) => {
         spanish: false
     };
 
-    console.log(
-        'nationality',
-        student?.nationality,
-        englishSpokenCountries.includes(student?.nationality)
-    );
-
-    console.log(
-        'nationality',
-        student?.nationality,
-        englishSpokenCountries.includes(student?.nationality)
-    );
-
-    console.log(
-        'educationCountry',
-        student?.educationCountry,
-        englishSpokenCountries.includes(student?.educationCountry)
-    );
-
-    console.log(
-        'firstLanguage',
-        student?.firstLanguage,
-        englishSpokenCountries.includes(student?.firstLanguage)
-    );
-
-    console.log(
-        'schools primary languages',
-        student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction),
-        intersection(
-            englishSpokenCountries,
-            student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-        )
-    );
-
     bypasses.english =
         englishSpokenCountries.includes(student?.nationality) ||
         englishSpokenCountries.includes(student?.educationCountry) ||
-        englishSpokenCountries.includes(student?.firstLanguage) ||
+        englishLanguages.includes(student?.firstLanguage) ||
         (student?.schoolsAttended &&
             intersection(
-                englishSpokenCountries,
+                englishLanguages,
                 student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
     bypasses.french =
         frenchSpokenCountries.includes(student?.nationality) ||
         frenchSpokenCountries.includes(student?.educationCountry) ||
-        frenchSpokenCountries.includes(student?.firstLanguage) ||
+        frenchLanguages.includes(student?.firstLanguage) ||
         (student?.schoolsAttended &&
             intersection(
-                frenchSpokenCountries,
+                frenchLanguages,
                 student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
     bypasses.german =
         germanSpokenCountries.includes(student?.nationality) ||
         germanSpokenCountries.includes(student?.educationCountry) ||
-        germanSpokenCountries.includes(student?.firstLanguage) ||
+        germanLanguages.includes(student?.firstLanguage) ||
         (student?.schoolsAttended &&
             intersection(
-                germanSpokenCountries,
+                germanLanguages,
                 student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
     bypasses.italian =
         italianSpokenCountries.includes(student?.nationality) ||
         italianSpokenCountries.includes(student?.educationCountry) ||
-        italianSpokenCountries.includes(student?.firstLanguage) ||
+        italianLanguages.includes(student?.firstLanguage) ||
         (student?.schoolsAttended &&
             intersection(
-                italianSpokenCountries,
+                italianLanguages,
                 student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
     bypasses.spanish =
         spanishSpokenCountries.includes(student?.nationality) ||
         spanishSpokenCountries.includes(student?.educationCountry) ||
-        spanishSpokenCountries.includes(student?.firstLanguage) ||
+        spanishLanguages.includes(student?.firstLanguage) ||
         (student?.schoolsAttended &&
             intersection(
-                spanishSpokenCountries,
+                spanishLanguages,
                 student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
             ).length > 0);
 
@@ -383,7 +357,7 @@ export const checkEligibility = (
                 program.testCambridgeAdvanced > 0) ||
             englishSpokenCountries.includes(student?.nationality) ||
             englishSpokenCountries.includes(student?.educationCountry) ||
-            englishSpokenCountries.includes(student?.firstLanguage)
+            englishLanguages.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
@@ -465,7 +439,7 @@ export const checkEligibility = (
             (student?.testDelfdalf >= program.testDelfdalf && program.testDelfdalf > 0) ||
             frenchSpokenCountries.includes(student?.nationality) ||
             frenchSpokenCountries.includes(student?.educationCountry) ||
-            frenchSpokenCountries.includes(student?.firstLanguage)
+            frenchLanguages.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
