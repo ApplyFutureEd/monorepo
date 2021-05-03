@@ -14,6 +14,7 @@ import {
     conditionFilter,
     findDocument,
     graphql,
+    hasBypass,
     languagesBypassFilter,
     scrollToErrors,
     toast
@@ -67,7 +68,16 @@ const UploadDocumentsForm: FC<Props> = (props) => {
             }
         });
 
-        if (values.toefl || values.ielts || values.toeic || values.fce || values.cae) {
+        const bypasses = hasBypass(student);
+
+        if (
+            values.toefl ||
+            values.ielts ||
+            values.toeic ||
+            values.fce ||
+            values.cae ||
+            bypasses.english
+        ) {
             delete errors.toefl;
             delete errors.ielts;
             delete errors.toeic;
@@ -75,9 +85,21 @@ const UploadDocumentsForm: FC<Props> = (props) => {
             delete errors.cae;
         }
 
-        if (values['tef-tcf'] || values['dalf-delf']) {
+        if (values['tef-tcf'] || values['dalf-delf'] || bypasses.french) {
             delete errors['tef-tcf'];
             delete errors['dalf-delf'];
+        }
+
+        if (bypasses.spanish) {
+            delete errors.dele;
+        }
+
+        if (bypasses.german) {
+            delete errors.goethe;
+        }
+
+        if (bypasses.italian) {
+            delete errors['celi-cils-it-plida'];
         }
 
         if (values.gmat || values.gre || values['tage-mage']) {
