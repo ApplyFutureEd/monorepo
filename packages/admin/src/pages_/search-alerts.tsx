@@ -14,12 +14,10 @@ import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/Co
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Table from '@components/search-alerts/Table';
 import { faTrash } from '@fortawesome/pro-light-svg-icons';
-import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
 import { ItemParams, useContextMenu } from 'react-contexify';
 
 const SearchAlertsPage: FC = () => {
-    const router = useRouter();
     const [variables, setVariables] = useState<SearchSearchAlertsQueryVariables>({
         limit: 20,
         sort: {
