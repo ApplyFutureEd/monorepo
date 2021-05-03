@@ -34,6 +34,8 @@ export const conditionFilter = (document: any, _student: any): boolean => {
 export const languagesBypassFilter = (document: any, student: any): boolean => {
     const bypasses = hasBypass(student);
 
+    console.log(bypasses);
+
     if (document.isMandatory) {
         if (englishTestDocumentsIds.includes(document.name) && bypasses.english) {
             return false;
