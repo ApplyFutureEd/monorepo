@@ -110,6 +110,39 @@ export const hasBypass = (student: any) => {
         spanish: false
     };
 
+    console.log(
+        'nationality',
+        student?.nationality,
+        englishSpokenCountries.includes(student?.nationality)
+    );
+
+    console.log(
+        'nationality',
+        student?.nationality,
+        englishSpokenCountries.includes(student?.nationality)
+    );
+
+    console.log(
+        'educationCountry',
+        student?.educationCountry,
+        englishSpokenCountries.includes(student?.educationCountry)
+    );
+
+    console.log(
+        'firstLanguage',
+        student?.firstLanguage,
+        englishSpokenCountries.includes(student?.firstLanguage)
+    );
+
+    console.log(
+        'schools primary languages',
+        student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction),
+        intersection(
+            englishSpokenCountries,
+            student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+        )
+    );
+
     bypasses.english =
         englishSpokenCountries.includes(student?.nationality) ||
         englishSpokenCountries.includes(student?.educationCountry) ||
