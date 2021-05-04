@@ -109,9 +109,15 @@ const SchoolsPage: FC = () => {
                 title={`${t('schools:schools')} ${total}`}
             />
 
-            {isLoading
-                ? skeletons.map((_skeleton, index) => <SkeletonCard key={index} />)
-                : renderSchools()}
+            {isLoading ? (
+                <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
+                    {skeletons.map((_skeleton, index) => (
+                        <SkeletonCard key={index} />
+                    ))}
+                </div>
+            ) : (
+                renderSchools()
+            )}
         </DashboardLayout>
     );
 };

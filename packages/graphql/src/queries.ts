@@ -1811,12 +1811,14 @@ export const searchStudents = /* GraphQL */ `
     $sort: SearchableStudentSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchStudents(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -1937,12 +1939,14 @@ export const searchApplications = /* GraphQL */ `
     $sort: SearchableApplicationSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchApplications(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -2113,12 +2117,14 @@ export const searchSearchAlerts = /* GraphQL */ `
     $sort: SearchableSearchAlertSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchSearchAlerts(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -2215,12 +2221,14 @@ export const searchFeedbacks = /* GraphQL */ `
     $sort: SearchableFeedbackSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchFeedbacks(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -2422,12 +2430,14 @@ export const searchSchools = /* GraphQL */ `
     $sort: SearchableSchoolSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchSchools(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -2846,12 +2856,14 @@ export const searchPrograms = /* GraphQL */ `
     $sort: SearchableProgramSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchPrograms(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
@@ -3012,12 +3024,14 @@ export const searchPosts = /* GraphQL */ `
     $sort: SearchablePostSortInput
     $limit: Int
     $nextToken: String
+    $from: Int
   ) {
     searchPosts(
       filter: $filter
       sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
     ) {
       items {
         id
