@@ -16,4 +16,12 @@ describe('Stepper', () => {
         expect(secondStep).toBeInTheDocument();
         expect(thirdStep).toBeInTheDocument();
     });
+
+    it('can render a skeleton when loading', () => {
+        const { container } = render(<Stepper isLoading currentStep={0} steps={steps} />);
+
+        const skeleton = container.querySelector('.react-loading-skeleton');
+
+        expect(skeleton).toBeInTheDocument();
+    });
 });

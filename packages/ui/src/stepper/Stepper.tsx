@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 type StepProps = {
     isCurrent: boolean;
@@ -11,6 +12,7 @@ type StepProps = {
 };
 
 const Step: FC<StepProps> = (props) => {
+    const { t } = useTranslation();
     const { isCurrent, isValidated, label } = props;
 
     const iconBaseClasses = 'text-gray-400 text-lg';
@@ -36,7 +38,7 @@ const Step: FC<StepProps> = (props) => {
     return (
         <li className="flex items-center space-x-2">
             <FontAwesomeIcon className={iconClasses} icon={faCheckCircle} />
-            <div className={labelClasses}>{label}</div>
+            <div className={labelClasses}>{t(label)}</div>
         </li>
     );
 };
@@ -47,6 +49,10 @@ type Props = {
      */
     currentStep: number;
     /**
+     * If `true`, the component will display a loading skeleton.
+     */
+    isLoading?: boolean;
+    /**
      * Array of strings representing each steps.
      */
     steps: Array<string>;
@@ -54,7 +60,7 @@ type Props = {
 
 export const Stepper: FC<Props> = (props) => {
     const { t } = useTranslation();
-    const { currentStep, steps } = props;
+    const { currentStep, isLoading, steps } = props;
     const progress = (currentStep / steps.length) * 100;
     const progressPourcentage = `${progress}%`;
 
@@ -67,6 +73,21 @@ export const Stepper: FC<Props> = (props) => {
     circleStyle.strokeDashoffset = `${(((100 - circleProgress) / 100) * circumference).toFixed(
         3
     )}px`;
+
+    if (isLoading) {
+        return (
+            <div className="hidden md:block">
+                <div className="mb-2">
+                    <ul className="flex justify-between">
+                        <Skeleton height="18px" width="150px" />
+                        <Skeleton height="18px" width="150px" />
+                        <Skeleton height="18px" width="150px" />
+                    </ul>
+                </div>
+                <Skeleton height="8px" width="100%" />
+            </div>
+        );
+    }
 
     return (
         <>
@@ -116,11 +137,11 @@ export const Stepper: FC<Props> = (props) => {
                     </div>
                     <div className="text-right">
                         <div className="text-gray-900 text-xl font-bold leading-5 sm:text-2xl sm:leading-6">
-                            {steps[currentStep]}
+                            {t(steps[currentStep])}
                         </div>
                         {steps[currentStep + 1] && (
                             <div className="sm:text-md mt-2 text-gray-900 leading-5 sm:leading-6">
-                                {t('common:next')}: {steps[currentStep + 1]}
+                                {t('common:next')}: {t(steps[currentStep + 1])}
                             </div>
                         )}
                     </div>

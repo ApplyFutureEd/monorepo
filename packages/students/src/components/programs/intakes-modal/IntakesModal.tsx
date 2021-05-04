@@ -38,7 +38,6 @@ const IntakesModal: FC<Props> = (props) => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { intake } = values;
-        console.log(intake);
         try {
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {

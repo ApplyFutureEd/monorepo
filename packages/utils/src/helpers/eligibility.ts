@@ -10,6 +10,13 @@ import {
     italianSpokenCountries,
     spanishSpokenCountries
 } from '../constants/countries';
+import {
+    englishLanguages,
+    frenchLanguages,
+    germanLanguages,
+    italianLanguages,
+    spanishLanguages
+} from './../constants/languages';
 
 export const formatTestCambridgeFirstValue = (
     value: number
@@ -99,6 +106,68 @@ export const formatEducationLevelValue = (value: number, t: any): any => {
         return t('programs:doctoral-degree');
     }
     return null;
+};
+
+export const hasBypass = (student: any) => {
+    const bypasses = {
+        english: false,
+        french: false,
+        german: false,
+        italian: false,
+        spanish: false
+    };
+
+    bypasses.english =
+        englishSpokenCountries.includes(student?.nationality) ||
+        englishSpokenCountries.includes(student?.educationCountry) ||
+        englishLanguages.includes(student?.firstLanguage) ||
+        (student?.schoolsAttended &&
+            intersection(
+                englishLanguages,
+                student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    bypasses.french =
+        frenchSpokenCountries.includes(student?.nationality) ||
+        frenchSpokenCountries.includes(student?.educationCountry) ||
+        frenchLanguages.includes(student?.firstLanguage) ||
+        (student?.schoolsAttended &&
+            intersection(
+                frenchLanguages,
+                student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    bypasses.german =
+        germanSpokenCountries.includes(student?.nationality) ||
+        germanSpokenCountries.includes(student?.educationCountry) ||
+        germanLanguages.includes(student?.firstLanguage) ||
+        (student?.schoolsAttended &&
+            intersection(
+                germanLanguages,
+                student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    bypasses.italian =
+        italianSpokenCountries.includes(student?.nationality) ||
+        italianSpokenCountries.includes(student?.educationCountry) ||
+        italianLanguages.includes(student?.firstLanguage) ||
+        (student?.schoolsAttended &&
+            intersection(
+                italianLanguages,
+                student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    bypasses.spanish =
+        spanishSpokenCountries.includes(student?.nationality) ||
+        spanishSpokenCountries.includes(student?.educationCountry) ||
+        spanishLanguages.includes(student?.firstLanguage) ||
+        (student?.schoolsAttended &&
+            intersection(
+                spanishLanguages,
+                student?.schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
+            ).length > 0);
+
+    return bypasses;
 };
 
 export type NonEligibilityReason = {
@@ -288,7 +357,7 @@ export const checkEligibility = (
                 program.testCambridgeAdvanced > 0) ||
             englishSpokenCountries.includes(student?.nationality) ||
             englishSpokenCountries.includes(student?.educationCountry) ||
-            englishSpokenCountries.includes(student?.firstLanguage)
+            englishLanguages.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
@@ -370,7 +439,7 @@ export const checkEligibility = (
             (student?.testDelfdalf >= program.testDelfdalf && program.testDelfdalf > 0) ||
             frenchSpokenCountries.includes(student?.nationality) ||
             frenchSpokenCountries.includes(student?.educationCountry) ||
-            frenchSpokenCountries.includes(student?.firstLanguage)
+            frenchLanguages.includes(student?.firstLanguage)
         ) {
             eligibility = {
                 isEligible: true,
@@ -684,59 +753,9 @@ export const checkEligibility = (
         console.log(error);
     }
 
-    const schoolsAttended = student?.schoolsAttended as any;
+    const bypasses = hasBypass(student);
 
-    const hasEnglishTestBypass =
-        englishSpokenCountries.includes(student?.nationality) ||
-        englishSpokenCountries.includes(student?.educationCountry) ||
-        englishSpokenCountries.includes(student?.firstLanguage) ||
-        (schoolsAttended &&
-            intersection(
-                englishSpokenCountries,
-                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-            ).length > 0);
-
-    const hasFrenchTestBypass =
-        frenchSpokenCountries.includes(student?.nationality) ||
-        frenchSpokenCountries.includes(student?.educationCountry) ||
-        frenchSpokenCountries.includes(student?.firstLanguage) ||
-        (schoolsAttended &&
-            intersection(
-                frenchSpokenCountries,
-                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-            ).length > 0);
-
-    const hasSpanishTestBypass =
-        spanishSpokenCountries.includes(student?.nationality) ||
-        spanishSpokenCountries.includes(student?.educationCountry) ||
-        spanishSpokenCountries.includes(student?.firstLanguage) ||
-        (schoolsAttended &&
-            intersection(
-                spanishSpokenCountries,
-                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-            ).length > 0);
-
-    const hasGermanTestBypass =
-        germanSpokenCountries.includes(student?.nationality) ||
-        germanSpokenCountries.includes(student?.educationCountry) ||
-        germanSpokenCountries.includes(student?.firstLanguage) ||
-        (schoolsAttended &&
-            intersection(
-                germanSpokenCountries,
-                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-            ).length > 0);
-
-    const hasItalianTestBypass =
-        italianSpokenCountries.includes(student?.nationality) ||
-        italianSpokenCountries.includes(student?.educationCountry) ||
-        italianSpokenCountries.includes(student?.firstLanguage) ||
-        (schoolsAttended &&
-            intersection(
-                italianSpokenCountries,
-                schoolsAttended.map((school: any) => school.primaryLanguageInstruction)
-            ).length > 0);
-
-    if (hasEnglishTestBypass) {
+    if (bypasses.english) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) =>
                 ![
@@ -749,25 +768,25 @@ export const checkEligibility = (
         );
     }
 
-    if (hasFrenchTestBypass) {
+    if (bypasses.french) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testTcftef', 'testDelfdalf'].includes(reason.id)
         );
     }
 
-    if (hasSpanishTestBypass) {
+    if (bypasses.spanish) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testDele'].includes(reason.id)
         );
     }
 
-    if (hasGermanTestBypass) {
+    if (bypasses.german) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testGoethe'].includes(reason.id)
         );
     }
 
-    if (hasItalianTestBypass) {
+    if (bypasses.italian) {
         eligibility.reasons = eligibility.reasons.filter(
             (reason) => !['testCeliCilsItPlida'].includes(reason.id)
         );

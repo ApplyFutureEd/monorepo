@@ -5,9 +5,10 @@ module.exports = {
     locales: ['en', 'fr', 'zh'],
     localesPath: 'locales',
     pages: {
-        '*': ['common', 'navigation', 'auth'],
+        '*': ['auth', 'common', 'navigation'],
         '/': ['landing'],
         '/about': ['landing'],
+        '/applications/[id]/upload-documents': ['application', 'profile', 'programs'],
         '/careers': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],
@@ -17,10 +18,10 @@ module.exports = {
         '/profile/test-scores': ['profile'],
         '/profile/upload-documents': ['profile'],
         '/programs': ['profile', 'programs'],
-        '/programs/[slug]': ['programs', 'profile'],
+        '/programs/[slug]': ['profile', 'programs'],
         '/recruiters': ['landing', 'recruiter-form'],
         '/schools': ['programs', 'schools'],
-        '/schools/[slug]': ['programs', 'schools', 'profile'],
+        '/schools/[slug]': ['profile', 'programs', 'schools'],
         '/terms-and-conditions': ['landing'],
         '/terms-of-use': ['landing']
     }

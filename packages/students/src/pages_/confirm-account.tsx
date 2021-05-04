@@ -1,5 +1,5 @@
 import { Logo } from '@applyfuture/ui';
-import ConfirmAccountForm from '@components/forms/confirm-account/ConfirmAccountForm';
+import ConfirmAccountForm from '@components/forms/auth/confirm-account/ConfirmAccountForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';

@@ -8,7 +8,7 @@ import {
 } from '@applyfuture/graphql';
 import { Banner } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery, withPrivateAccess } from '@applyfuture/utils';
-import BackgroundInformationForm from '@components/forms/background-information/BackgroundInformationForm';
+import BackgroundInformationForm from '@components/forms/profile/background-information/BackgroundInformationForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import CompletionModal from '@components/profile/completion-modal/CompletionModal';
 import useTranslation from 'next-translate/useTranslation';

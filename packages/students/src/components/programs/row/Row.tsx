@@ -1,4 +1,6 @@
 import {
+    createApplication,
+    CreateApplicationMutation,
     GetDocumentByStudentQuery,
     GetProgramBySchoolQuery,
     GetStudentByEmailQuery,
@@ -6,12 +8,15 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import {
+    applicationSteps,
     checkCompletion,
     checkEligibility,
     convertSecondsToUnit,
     currency,
     date,
     getCountryLabel,
+    graphql,
+    toast,
     useAuthenticatedUser
 } from '@applyfuture/utils';
 import Link from 'next/link';
@@ -66,14 +71,34 @@ const Row: FC<Props> = (props) => {
         setOpenEligibilityWarningModal(false);
     };
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (!isCompleted || !isEligible || reasons.length > 0) {
             return handleOpenEligibilityWarningModal();
         }
         if (program?.intakes && program?.intakes?.split(',').length > 1) {
             return handleOpenIntakesModal();
         }
-        console.log('Apply - to be implemented');
+
+        try {
+            const result = await graphql<CreateApplicationMutation>(createApplication, {
+                input: {
+                    intake: program?.intakes && program?.intakes?.split(',')[0],
+                    lastUpdate: new Date().valueOf(),
+                    modalApplicationCompletedViewed: false,
+                    programId: program?.id,
+                    steps: applicationSteps,
+                    studentId: student?.id
+                }
+            });
+            const application = result.createApplication;
+            return router.push(`/applications/${application?.id}/${applicationSteps[0].id}`);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
     };
 
     const renderMainActionButton = () => {

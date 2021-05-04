@@ -95,7 +95,7 @@ type Program
 
 type RequestedDocument {
     name: String!
-    isMandatory: Boolean!
+    isMandatory: Boolean
     storageKey: String
     description: String!
     condition: String
@@ -297,6 +297,7 @@ type Feedback
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
     )
+    @searchable
     @model {
     id: ID!
     application: Application @connection(fields: ["applicationId"])
@@ -314,6 +315,7 @@ type Post
         ]
     )
     @model
+    @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getPostBySlug") {
     id: ID!
     category: String!

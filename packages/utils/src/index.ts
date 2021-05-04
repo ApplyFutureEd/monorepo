@@ -7,6 +7,7 @@ export * from './constants/countries';
 export * from './constants/currencies';
 export * from './constants/degrees';
 export * from './constants/disciplines';
+export * from './constants/documents';
 export * from './constants/durationUnits';
 export * from './constants/educationLevels';
 export * from './constants/feeUnits';
@@ -18,6 +19,7 @@ export * from './constants/maritalStatus';
 export * from './constants/requestedDocuments';
 export * from './constants/schedules';
 
+export * from './helpers/application';
 export * from './helpers/currency';
 export * from './helpers/date';
 export * from './helpers/delay';

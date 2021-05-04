@@ -5,7 +5,7 @@ import { FC } from 'react';
 
 type Props = {
     closeToast?: () => void;
-    description: string;
+    description?: string;
     title: string;
     variant: 'success' | 'error';
 };

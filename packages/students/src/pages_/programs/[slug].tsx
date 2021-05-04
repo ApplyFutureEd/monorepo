@@ -1,4 +1,6 @@
 import {
+    createApplication,
+    CreateApplicationMutation,
     getDocumentByStudent,
     GetDocumentByStudentQuery,
     GetDocumentByStudentQueryVariables,
@@ -12,6 +14,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button, Container, Cover, IconPanel, SubHeader } from '@applyfuture/ui';
 import {
+    applicationSteps,
     checkCompletion,
     checkEligibility,
     currency,
@@ -21,7 +24,9 @@ import {
     getCountryLabel,
     getEducationLabel,
     getLanguageLevelLabel,
+    graphql,
     markdown,
+    toast,
     useAuthenticatedUser,
     useQuery
 } from '@applyfuture/utils';
@@ -108,11 +113,30 @@ const ProgramPage: FC<Props> = (props) => {
         setOpenIntakesModal(false);
     };
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (program.intakes.split(',').length > 1) {
             return handleOpenIntakesModal();
         }
-        console.log('Apply - to be implemented');
+        try {
+            const result = await graphql<CreateApplicationMutation>(createApplication, {
+                input: {
+                    intake: program?.intakes && program?.intakes?.split(',')[0],
+                    lastUpdate: new Date().valueOf(),
+                    modalApplicationCompletedViewed: false,
+                    programId: program?.id,
+                    steps: applicationSteps,
+                    studentId: student?.id
+                }
+            });
+            const application = result.createApplication;
+            return router.push(`/applications/${application?.id}/${applicationSteps[0].id}`);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
     };
 
     const renderMainActionButton = () => {
