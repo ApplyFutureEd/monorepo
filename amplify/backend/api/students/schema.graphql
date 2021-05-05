@@ -247,7 +247,7 @@ type Application
     notifications: [Notification]
     program: Program @connection(fields: ["programId"])
     programId: ID!
-    steps: [ApplicationStep]
+    steps: [ApplicationStep!]!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
     todo: String
@@ -276,6 +276,7 @@ type Notification {
 type SearchAlert
     @auth(
         rules: [
+            { allow: public, operations: [create], provider: apiKey }
             { allow: owner, operations: [create, update, read, delete] }
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
@@ -285,7 +286,7 @@ type SearchAlert
     id: ID!
     lastUpdate: Float!
     student: Student @connection(fields: ["studentId"])
-    studentId: ID!
+    studentId: ID
     type: String!
     query: String!
 }

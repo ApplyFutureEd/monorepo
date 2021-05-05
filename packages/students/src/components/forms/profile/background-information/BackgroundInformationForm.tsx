@@ -59,16 +59,19 @@ const BackgroundInformationForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        refusedVisa: boolean | null;
-        refusedVisaReason: string | null;
-        validVisa: boolean | null;
-        workExperiences: Array<{
-            address: string | null;
-            compagnyName: string | null;
-            title: string | null;
-            workedFrom: string | null;
-            workedTo: string | null;
-        } | null> | null;
+        refusedVisa: boolean | null | undefined;
+        refusedVisaReason: string | null | undefined;
+        validVisa: boolean | null | undefined;
+        workExperiences:
+            | Array<{
+                  address?: string | null | undefined;
+                  compagnyName?: string | null | undefined;
+                  title?: string | null | undefined;
+                  workedFrom?: string | null | undefined;
+                  workedTo?: string | null | undefined;
+              } | null>
+            | null
+            | undefined;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({

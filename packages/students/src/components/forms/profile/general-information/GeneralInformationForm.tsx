@@ -125,32 +125,32 @@ const GeneralInformationForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        address: string | null;
-        birthday: string | null;
-        city: string | null;
-        country: string | null;
-        email: string | null;
-        fatherFirstName: string | null;
-        fatherLastName: string | null;
-        firstLanguage: string | null;
-        firstName: string | null;
-        gender: string | null;
-        guardianFirstName: string | null;
-        guardianLastName: string | null;
-        lastName: string | null;
-        maritalStatus: string | null;
-        middleName: string | null;
-        motherFirstName: string | null;
-        motherMaidenName: string | null;
-        nationality: string | null;
-        parentsAddress: string | null;
-        parentsCity: string | null;
-        parentsCountry: string | null;
-        parentsEmail: string | null;
-        parentsPhoneNumber: string | null;
-        passportNumber: string | null;
-        phoneNumber: string | null;
-        studentId?: string | null;
+        address: string | null | undefined;
+        birthday: string | null | undefined;
+        city: string | null | undefined;
+        country: string | null | undefined;
+        email: string | null | undefined;
+        fatherFirstName: string | null | undefined;
+        fatherLastName: string | null | undefined;
+        firstLanguage: string | null | undefined;
+        firstName: string | null | undefined;
+        gender: string | null | undefined;
+        guardianFirstName: string | null | undefined;
+        guardianLastName: string | null | undefined;
+        lastName: string | null | undefined;
+        maritalStatus: string | null | undefined;
+        middleName: string | null | undefined;
+        motherFirstName: string | null | undefined;
+        motherMaidenName: string | null | undefined;
+        nationality: string | null | undefined;
+        parentsAddress: string | null | undefined;
+        parentsCity: string | null | undefined;
+        parentsCountry: string | null | undefined;
+        parentsEmail: string | null | undefined;
+        parentsPhoneNumber: string | null | undefined;
+        passportNumber: string | null | undefined;
+        phoneNumber: string | null | undefined;
+        studentId?: string | null | undefined;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
