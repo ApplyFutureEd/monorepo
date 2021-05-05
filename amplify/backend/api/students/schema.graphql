@@ -97,9 +97,9 @@ type RequestedDocument {
     name: String!
     isMandatory: Boolean
     storageKey: String
-    description: String
+    description: String!
     condition: String
-    isSpecific: Boolean
+    isSpecific: Boolean!
 }
 
 type Student
