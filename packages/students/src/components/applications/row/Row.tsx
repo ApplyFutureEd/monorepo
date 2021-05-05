@@ -18,6 +18,7 @@ type Props = {
     document: NonNullable<
         NonNullable<GetApplicationQuery['getApplication']>['program']
     >['requestedDocuments'][0];
+    immutable?: boolean;
     index: number;
     student?:
         | NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0]
@@ -25,7 +26,7 @@ type Props = {
 };
 
 const Row: FC<Props> = (props) => {
-    const { application, document, index, student } = props;
+    const { application, document, immutable, index, student } = props;
     const { t } = useTranslation();
 
     const baseClasses =
@@ -91,6 +92,7 @@ const Row: FC<Props> = (props) => {
                     <Field key={document?.name} id={document?.name} name={document?.name}>
                         {(fieldProps: FieldProps) => (
                             <FileUploader
+                                immutable={immutable}
                                 isSpecific={Boolean(document?.isSpecific)}
                                 program={application?.program}
                                 student={student}

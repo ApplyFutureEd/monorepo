@@ -610,7 +610,7 @@ export type CreateApplicationInput = {
   modalApplicationCompletedViewed: boolean,
   notifications?: Array< NotificationInput | null > | null,
   programId: string,
-  steps?: Array< ApplicationStepInput | null > | null,
+  steps: Array< ApplicationStepInput >,
   studentId: string,
   todo?: string | null,
   tuitionsFeePaymentDate?: string | null,
@@ -654,7 +654,7 @@ export type UpdateApplicationInput = {
   modalApplicationCompletedViewed?: boolean | null,
   notifications?: Array< NotificationInput | null > | null,
   programId?: string | null,
-  steps?: Array< ApplicationStepInput | null > | null,
+  steps?: Array< ApplicationStepInput > | null,
   studentId?: string | null,
   todo?: string | null,
   tuitionsFeePaymentDate?: string | null,
@@ -2895,7 +2895,7 @@ export type CreateApplicationMutation = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -3138,7 +3138,7 @@ export type UpdateApplicationMutation = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -3381,7 +3381,7 @@ export type DeleteApplicationMutation = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -4026,7 +4026,7 @@ export type CreateFeedbackMutation = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -4207,7 +4207,7 @@ export type UpdateFeedbackMutation = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -4388,7 +4388,7 @@ export type DeleteFeedbackMutation = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -5131,7 +5131,7 @@ export type GetApplicationQuery = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -5377,7 +5377,7 @@ export type ListApplicationsQuery = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -5783,7 +5783,7 @@ export type GetFeedbackQuery = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -6337,7 +6337,7 @@ export type GetApplicationByStudentQuery = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -6643,7 +6643,7 @@ export type SearchApplicationsQuery = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -8604,7 +8604,7 @@ export type OnCreateApplicationSubscription = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -8846,7 +8846,7 @@ export type OnUpdateApplicationSubscription = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -9088,7 +9088,7 @@ export type OnDeleteApplicationSubscription = {
       isMandatory: boolean,
       label: string,
       status: string,
-    } | null > | null,
+    } >,
     studentId: string,
     student:  {
       __typename: "Student",
@@ -9729,7 +9729,7 @@ export type OnCreateFeedbackSubscription = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -9909,7 +9909,7 @@ export type OnUpdateFeedbackSubscription = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",
@@ -10089,7 +10089,7 @@ export type OnDeleteFeedbackSubscription = {
         isMandatory: boolean,
         label: string,
         status: string,
-      } | null > | null,
+      } >,
       studentId: string,
       student:  {
         __typename: "Student",

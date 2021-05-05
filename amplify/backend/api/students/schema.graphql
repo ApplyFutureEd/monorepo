@@ -247,7 +247,7 @@ type Application
     notifications: [Notification]
     program: Program @connection(fields: ["programId"])
     programId: ID!
-    steps: [ApplicationStep]
+    steps: [ApplicationStep!]!
     studentId: ID!
     student: Student @connection(fields: ["studentId"])
     todo: String

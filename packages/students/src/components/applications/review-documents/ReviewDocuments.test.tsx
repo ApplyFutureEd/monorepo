@@ -7,9 +7,9 @@ import {
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import Documents from './Documents';
+import UploadDocuments from './ReviewDocuments';
 
-describe('Documents', () => {
+describe('UploadDocuments', () => {
     const applicationData = ({
         getApplication: {
             admissionResult: null,
@@ -570,7 +570,7 @@ describe('Documents', () => {
 
     it('can render without crashing', () => {
         render(
-            <Documents
+            <UploadDocuments
                 applicationData={applicationData}
                 documentsData={documentsData}
                 isLoading={false}

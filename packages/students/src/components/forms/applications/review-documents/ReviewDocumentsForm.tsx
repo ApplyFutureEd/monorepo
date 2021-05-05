@@ -1,33 +1,26 @@
 import {
-    createDocument,
     deleteApplication,
     GetApplicationQuery,
-    getDocumentByStorageKey,
-    GetDocumentByStorageKeyQuery,
-    GetDocumentByStorageKeyQueryVariables,
     GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
-    updateApplication,
-    updateDocument
+    updateApplication
 } from '@applyfuture/graphql';
-import { Button } from '@applyfuture/ui';
+import { Button, Checkbox } from '@applyfuture/ui';
 import {
     conditionFilter,
     findDocument,
     graphql,
-    hasBypass,
     languagesBypassFilter,
-    scrollToErrors,
     toast
 } from '@applyfuture/utils';
 import Row from '@components/applications/row/Row';
 import SkeletonRow from '@components/applications/row/SkeletonRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
-import { Form, Formik, FormikHelpers } from 'formik';
-import Link from 'next/link';
+import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
+import { boolean, object } from 'yup';
 
 type Props = {
     applicationData: GetApplicationQuery;
@@ -36,7 +29,7 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const UploadDocumentsForm: FC<Props> = (props) => {
+const ReviewDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
     const { applicationData, documentsData, isLoading, studentData } = props;
     const application = applicationData.getApplication;
@@ -48,76 +41,24 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     type FormValues = {
-        [documentId: string]: string;
+        applicationDocument: boolean;
+        declaration: boolean;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({});
+    const [initialValues, setInitialValues] = useState<FormValues>({
+        applicationDocument: false,
+        declaration: false
+    });
 
-    const validate = (values: any) => {
-        const errors: any = {};
-        Object.keys(values).forEach((e) => {
-            if (
-                application?.program?.requestedDocuments
-                    .filter((document: any) => !document.isMandatory)
-                    .map((document: any) => document.name)
-                    .includes(e)
-            ) {
-                return;
-            }
-            if (!values[e]) {
-                errors[e] = t('required');
-            }
-        });
-
-        const bypasses = hasBypass(student);
-
-        if (
-            values.toefl ||
-            values.ielts ||
-            values.toeic ||
-            values.fce ||
-            values.cae ||
-            bypasses.english
-        ) {
-            delete errors.toefl;
-            delete errors.ielts;
-            delete errors.toeic;
-            delete errors.fce;
-            delete errors.cae;
-        }
-
-        if (values['tef-tcf'] || values['dalf-delf'] || bypasses.french) {
-            delete errors['tef-tcf'];
-            delete errors['dalf-delf'];
-        }
-
-        if (bypasses.spanish) {
-            delete errors.dele;
-        }
-
-        if (bypasses.german) {
-            delete errors.goethe;
-        }
-
-        if (bypasses.italian) {
-            delete errors['celi-cils-it-plida'];
-        }
-
-        if (values.gmat || values.gre || values['tage-mage']) {
-            delete errors.gmat;
-            delete errors.gre;
-            delete errors['tage-mage'];
-        }
-
-        scrollToErrors(errors);
-
-        return errors;
-    };
+    const validationSchema = object().shape({
+        applicationDocument: boolean().oneOf([true], t('required')),
+        declaration: boolean().oneOf([true], t('required'))
+    });
 
     useEffect(() => {
         if (student && documents) {
             const newValues = Object.assign(
-                {},
+                initialValues,
                 ...requestedDocumentsIds.map((key) => ({
                     [key]: findDocument(documents, key) || ''
                 }))
@@ -129,63 +70,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            const documents = requestedDocumentsIds
-                .map((id) => ({
-                    name: id,
-                    storageKey: values[id],
-                    studentId: student?.id
-                }))
-                .filter((document) => document.storageKey);
-
-            const promises = documents.map((document) => {
-                const fetch = async () => {
-                    try {
-                        const existingDocument = await graphql<
-                            GetDocumentByStorageKeyQuery,
-                            GetDocumentByStorageKeyQueryVariables
-                        >(getDocumentByStorageKey, {
-                            storageKey: document.storageKey
-                        });
-
-                        if (existingDocument?.getDocumentByStorageKey?.items?.[0]) {
-                            return await graphql(updateDocument, {
-                                input: {
-                                    ...document,
-                                    id: existingDocument?.getDocumentByStorageKey?.items?.[0]?.id
-                                }
-                            });
-                        }
-
-                        return await graphql(createDocument, {
-                            input: {
-                                ...document
-                            }
-                        });
-                    } catch (error) {
-                        console.log(error);
-                    }
-                };
-                return fetch();
-            });
-
-            await Promise.all(promises);
-
-            toast({
-                description: t('profile:toast-documents-saved'),
-                title: t('profile:toast-information-updated'),
-                variant: 'success'
-            });
-
-            const updatedSteps = (application?.steps && [...application?.steps]) || [];
-            updatedSteps[0].status = 'DONE';
-            updatedSteps[1].status = 'PROGRESS';
-            updatedSteps[1].date = new Date().toString();
-
-            await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps }
-            });
-
-            router.push(`/applications/${application?.id}/review-documents`);
+            console.log('submit');
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -211,6 +96,27 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         }
     };
 
+    const handlePreviousStep = async () => {
+        try {
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+            updatedSteps[0].status = 'PROGRESS';
+            updatedSteps[1].status = 'IDLE';
+            updatedSteps[1].date = '';
+
+            await graphql(updateApplication, {
+                input: { id: application?.id, steps: updatedSteps }
+            });
+
+            router.push(`/applications/${application?.id}/upload-documents`);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+    };
+
     const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
 
     if (isLoading) {
@@ -227,10 +133,10 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         <Formik
             enableReinitialize
             initialValues={initialValues}
-            validate={validate}
+            validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting } = props;
+                const { isSubmitting, values } = props;
 
                 return (
                     <Form>
@@ -240,13 +146,44 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                             .map((document: any, index: number) => (
                                 <Row
                                     key={document.name}
+                                    immutable
                                     application={application}
                                     document={document}
                                     index={index}
                                     student={student}
                                 />
                             ))}
-
+                        <div className="justify-between pt-4 px-4 space-y-2 sm:px-6">
+                            <Field id="applicationDocument" name="applicationDocument">
+                                {(fieldProps: FieldProps) => (
+                                    <Checkbox
+                                        label={t(
+                                            'application:label-review-your-profile-information'
+                                        )}
+                                        /*  onClick={(event: any) => {
+                                            setFieldValue(
+                                                'applicationResume',
+                                                !values.applicationResume
+                                            );
+                                            event.stopPropagation();
+                                            event.preventDefault();
+                                            if (!values.applicationResume && applicationResume) {
+                                                previewDocument(applicationResume);
+                                            }
+                                        }} */
+                                        {...fieldProps}
+                                    />
+                                )}
+                            </Field>
+                            <Field id="declaration" name="declaration">
+                                {(fieldProps: FieldProps) => (
+                                    <Checkbox
+                                        label={t('application:label-declaration')}
+                                        {...fieldProps}
+                                    />
+                                )}
+                            </Field>
+                        </div>
                         <div className="flex justify-between px-4 py-5 sm:px-6">
                             <div className="hidden md:block">
                                 <Button
@@ -260,17 +197,17 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                 </Button>
                             </div>
                             <div className="flex flex-grow justify-between space-x-4 md:flex-grow-0 md:justify-start">
-                                <Link href="/applications">
-                                    <Button
-                                        isLoading={isLoading}
-                                        isSubmitting={isSubmitting}
-                                        startIcon={faArrowLeft}
-                                        type="button"
-                                        variant="secondary">
-                                        {t('application:back-to-applications')}
-                                    </Button>
-                                </Link>
                                 <Button
+                                    isLoading={isLoading}
+                                    isSubmitting={isSubmitting}
+                                    startIcon={faArrowLeft}
+                                    type="button"
+                                    variant="secondary"
+                                    onClick={handlePreviousStep}>
+                                    {t('application:previous-step')}
+                                </Button>
+                                <Button
+                                    disabled={!values.applicationDocument || !values.declaration}
                                     endIcon={faArrowRight}
                                     isLoading={isLoading}
                                     isSubmitting={isSubmitting}
@@ -287,4 +224,4 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     );
 };
 
-export default UploadDocumentsForm;
+export default ReviewDocumentsForm;

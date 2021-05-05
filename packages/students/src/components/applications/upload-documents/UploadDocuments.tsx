@@ -14,7 +14,7 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const Documents: FC<Props> = (props) => {
+const UploadDocuments: FC<Props> = (props) => {
     const { applicationData, documentsData, isLoading, studentData } = props;
 
     const { t } = useTranslation();
@@ -44,4 +44,4 @@ const Documents: FC<Props> = (props) => {
     );
 };
 
-export default Documents;
+export default UploadDocuments;

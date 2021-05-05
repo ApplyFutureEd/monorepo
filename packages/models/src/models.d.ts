@@ -223,7 +223,7 @@ export declare class Application {
   readonly notifications?: Notification[];
   readonly program?: Program;
   readonly programId: string;
-  readonly steps?: ApplicationStep[];
+  readonly steps: ApplicationStep[];
   readonly student?: Student;
   readonly todo?: string;
   readonly tuitionsFeePaymentDate?: string;
