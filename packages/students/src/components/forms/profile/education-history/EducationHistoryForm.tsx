@@ -93,21 +93,24 @@ const EducationHistoryForm: FC<Props> = (props) => {
     });
 
     type FormValues = {
-        educationCountry: string | null;
-        gradePointAverage: number | null;
-        highestEducationLevel: number | null;
-        schoolsAttended: Array<{
-            address: string | null;
-            attendedInstitutionFrom: string | null;
-            attendedInstitutionTo: string | null;
-            city: string | null;
-            country: string | null;
-            degreeAwarded: number | null;
-            degreeAwardedOn: string | null;
-            educationLevel: number | null;
-            name: string | null;
-            primaryLanguageInstruction: string | null;
-        } | null> | null;
+        educationCountry: string | null | undefined;
+        gradePointAverage: number | null | undefined;
+        highestEducationLevel: number | null | undefined;
+        schoolsAttended:
+            | Array<{
+                  address?: string | null | undefined;
+                  attendedInstitutionFrom?: string | null | undefined;
+                  attendedInstitutionTo?: string | null | undefined;
+                  city?: string | null | undefined;
+                  country?: string | null | undefined;
+                  degreeAwarded?: number | null | undefined;
+                  degreeAwardedOn?: string | null | undefined;
+                  educationLevel?: number | null | undefined;
+                  name?: string | null | undefined;
+                  primaryLanguageInstruction?: string | null | undefined;
+              } | null>
+            | null
+            | undefined;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({

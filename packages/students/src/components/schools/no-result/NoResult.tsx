@@ -25,19 +25,27 @@ const NoResult: FC<Props> = (props) => {
     );
 
     const handleClick = async (stringifiedVariables: string) => {
-        const newSearchAlert = {
-            lastUpdate: new Date().valueOf(),
-            query: stringifiedVariables,
-            studentId: studentData.getStudentByEmail?.items?.[0]?.id,
-            type: 'Programs'
-        };
-        await graphql(createSearchAlert, {
-            input: newSearchAlert
-        });
-        toast({
-            title: t('schools:search-alert-created'),
-            variant: 'success'
-        });
+        try {
+            const newSearchAlert = {
+                lastUpdate: new Date().valueOf(),
+                query: stringifiedVariables,
+                studentId: studentData?.getStudentByEmail?.items?.[0]?.id,
+                type: 'Programs'
+            };
+            await graphql(createSearchAlert, {
+                input: newSearchAlert
+            });
+            toast({
+                title: t('schools:search-alert-created'),
+                variant: 'success'
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
     };
 
     return (

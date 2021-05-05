@@ -75,7 +75,7 @@ export declare class School {
   readonly totalStudents: number;
   readonly slug: string;
   readonly published: boolean;
-  readonly programs?: Program[];
+  readonly programs?: (Program | null)[];
   constructor(init: ModelInit<School>);
   static copyOf(source: School, mutator: (draft: MutableModel<School>) => MutableModel<School> | void): School;
 }
@@ -101,7 +101,7 @@ export declare class Program {
   readonly highestEducationLevel: number;
   readonly intakeInformation?: string;
   readonly intakes: string;
-  readonly languages: string[];
+  readonly languages: (string | null)[];
   readonly lastUpdate: number;
   readonly minimumAge: number;
   readonly minimumWorkExperience: number;
@@ -135,21 +135,21 @@ export declare class Program {
 export declare class Student {
   readonly id: string;
   readonly address?: string;
-  readonly applications?: Application[];
+  readonly applications?: (Application | null)[];
   readonly birthday?: string;
   readonly city?: string;
   readonly country?: string;
-  readonly degrees?: string[];
-  readonly disciplines?: string[];
-  readonly documents?: Document[];
+  readonly degrees?: (string | null)[];
+  readonly disciplines?: (string | null)[];
+  readonly documents?: (Document | null)[];
   readonly educationCountry?: string;
   readonly email?: string;
   readonly fatherFirstName?: string;
   readonly fatherLastName?: string;
   readonly firstLanguage?: string;
   readonly firstName?: string;
-  readonly favoritePrograms?: string[];
-  readonly favoriteSchools?: string[];
+  readonly favoritePrograms?: (string | null)[];
+  readonly favoriteSchools?: (string | null)[];
   readonly gender?: string;
   readonly gradePointAverage?: number;
   readonly guardianFirstName?: string;
@@ -166,7 +166,7 @@ export declare class Student {
   readonly motherFirstName?: string;
   readonly motherMaidenName?: string;
   readonly nationality?: string;
-  readonly notifications?: Notification[];
+  readonly notifications?: (Notification | null)[];
   readonly parentsAddress?: string;
   readonly parentsCity?: string;
   readonly parentsCountry?: string;
@@ -175,7 +175,7 @@ export declare class Student {
   readonly passportNumber?: string;
   readonly refusedVisa?: boolean;
   readonly refusedVisaReason?: string;
-  readonly schoolsAttended?: SchoolAttended[];
+  readonly schoolsAttended?: (SchoolAttended | null)[];
   readonly testCambridgeAdvanced?: number;
   readonly testCambridgeAdvancedDate?: string;
   readonly testCambridgeFirst?: number;
@@ -206,7 +206,7 @@ export declare class Student {
   readonly testToeic?: number;
   readonly testToeicDate?: string;
   readonly validVisa?: boolean;
-  readonly workExperiences?: WorkExperience[];
+  readonly workExperiences?: (WorkExperience | null)[];
   constructor(init: ModelInit<Student>);
   static copyOf(source: Student, mutator: (draft: MutableModel<Student>) => MutableModel<Student> | void): Student;
 }
@@ -220,7 +220,7 @@ export declare class Application {
   readonly interviewDate?: string;
   readonly lastUpdate: number;
   readonly modalApplicationCompletedViewed: boolean;
-  readonly notifications?: Notification[];
+  readonly notifications?: (Notification | null)[];
   readonly program?: Program;
   readonly programId: string;
   readonly steps: ApplicationStep[];

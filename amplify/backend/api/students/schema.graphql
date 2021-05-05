@@ -97,9 +97,9 @@ type RequestedDocument {
     name: String!
     isMandatory: Boolean
     storageKey: String
-    description: String
+    description: String!
     condition: String
-    isSpecific: Boolean
+    isSpecific: Boolean!
 }
 
 type Student
@@ -276,6 +276,7 @@ type Notification {
 type SearchAlert
     @auth(
         rules: [
+            { allow: public, operations: [create], provider: apiKey }
             { allow: owner, operations: [create, update, read, delete] }
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
@@ -285,7 +286,7 @@ type SearchAlert
     id: ID!
     lastUpdate: Float!
     student: Student @connection(fields: ["studentId"])
-    studentId: ID!
+    studentId: ID
     type: String!
     query: String!
 }
