@@ -1,41 +1,17 @@
-import {
-    getApplication,
-    GetApplicationQuery,
-    getDocumentByStudent,
-    GetDocumentByStudentQuery,
-    GetDocumentByStudentQueryVariables,
-    getStudentByEmail,
-    GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
-} from '@applyfuture/graphql';
+import { getApplication, GetApplicationQuery } from '@applyfuture/graphql';
 import { Stepper } from '@applyfuture/ui';
-import {
-    getStepsLabels,
-    useAuthenticatedUser,
-    useQuery,
-    withPrivateAccess
-} from '@applyfuture/utils';
+import { getStepsLabels, useQuery, withPrivateAccess } from '@applyfuture/utils';
 import ReviewDocuments from '@components/applications/review-documents/ReviewDocuments';
 import Summary from '@components/applications/summary/Summary';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import { API } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 const ReviewDocumentsPage: FC = () => {
     const { t } = useTranslation();
     const router = useRouter();
-    const { user } = useAuthenticatedUser();
-
-    const { data: studentData, isLoading: studentIsLoading } = useQuery<
-        GetStudentByEmailQuery,
-        GetStudentByEmailQueryVariables
-    >(getStudentByEmail, { email: user?.attributes.email });
-
-    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
-        GetDocumentByStudentQuery,
-        GetDocumentByStudentQueryVariables
-    >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
 
     const {
         data: applicationData,
@@ -44,7 +20,15 @@ const ReviewDocumentsPage: FC = () => {
         id: router.query.id
     });
 
-    const isLoading = studentIsLoading || documentsIsLoading || applicationIsLoading;
+    useEffect(() => {
+        if (applicationData?.getApplication?.id) {
+            API.post('REST', '/application-document', {
+                body: { application: applicationData }
+            });
+        }
+    }, [applicationData]);
+
+    const isLoading = applicationIsLoading;
     const steps = getStepsLabels(applicationData.getApplication);
 
     return (
@@ -55,12 +39,7 @@ const ReviewDocumentsPage: FC = () => {
                 </div>
                 <div className="flex items-start space-x-0 md:space-x-2">
                     <Summary applicationData={applicationData} isLoading={isLoading} />
-                    <ReviewDocuments
-                        applicationData={applicationData}
-                        documentsData={documentsData}
-                        isLoading={isLoading}
-                        studentData={studentData}
-                    />
+                    <ReviewDocuments applicationData={applicationData} isLoading={isLoading} />
                 </div>
             </DashboardLayout>
         </>

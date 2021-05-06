@@ -37,10 +37,6 @@ type Props = {
      */
     form: FormikProps<any>;
     /**
-     * If `true`, the component will not display the delete button.
-     */
-    immutable?: boolean;
-    /**
      * If `true`, the component will display a loading skeleton.
      */
     isLoading?: boolean;
@@ -96,7 +92,6 @@ export const FileUploader: FC<Props> = (props) => {
         program,
         optional,
         template,
-        immutable,
         isLoading,
         isSpecific,
         bypassAcceptedFileFormat,
@@ -323,32 +318,30 @@ export const FileUploader: FC<Props> = (props) => {
                             onClick={() => previewDocument(value)}>
                             {t('common:upload-file-input-preview')}
                         </Button>
-                        {!immutable && (
-                            <Button
-                                startIcon={faTrash}
-                                type="button"
-                                variant="secondary"
-                                onClick={async () => {
-                                    const existingDocument: any = await API.graphql(
-                                        graphqlOperation(getDocumentByStorageKey, {
-                                            storageKey: value
-                                        })
-                                    );
-                                    if (existingDocument.data.getDocumentByStorageKey.items[0]) {
-                                        graphql(deleteDocument, {
-                                            input: {
-                                                id:
-                                                    existingDocument.data.getDocumentByStorageKey
-                                                        .items[0].id
-                                            }
-                                        });
-                                    }
-                                    removeDocument(value);
-                                    setFieldValue(name, '');
-                                }}>
-                                {t('common:upload-file-input-delete')}
-                            </Button>
-                        )}
+                        <Button
+                            startIcon={faTrash}
+                            type="button"
+                            variant="secondary"
+                            onClick={async () => {
+                                const existingDocument: any = await API.graphql(
+                                    graphqlOperation(getDocumentByStorageKey, {
+                                        storageKey: value
+                                    })
+                                );
+                                if (existingDocument.data.getDocumentByStorageKey.items[0]) {
+                                    graphql(deleteDocument, {
+                                        input: {
+                                            id:
+                                                existingDocument.data.getDocumentByStorageKey
+                                                    .items[0].id
+                                        }
+                                    });
+                                }
+                                removeDocument(value);
+                                setFieldValue(name, '');
+                            }}>
+                            {t('common:upload-file-input-delete')}
+                        </Button>
                     </div>
                 )}
             </div>

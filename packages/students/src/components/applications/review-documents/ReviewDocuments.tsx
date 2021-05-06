@@ -1,21 +1,15 @@
-import {
-    GetApplicationQuery,
-    GetDocumentByStudentQuery,
-    GetStudentByEmailQuery
-} from '@applyfuture/graphql';
+import { GetApplicationQuery } from '@applyfuture/graphql';
 import ReviewDocumentsForm from '@components/forms/applications/review-documents/ReviewDocumentsForm';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
-    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
-    studentData: GetStudentByEmailQuery;
 };
 
 const UploadDocuments: FC<Props> = (props) => {
-    const { applicationData, documentsData, isLoading, studentData } = props;
+    const { applicationData, isLoading } = props;
 
     const { t } = useTranslation();
 
@@ -32,12 +26,7 @@ const UploadDocuments: FC<Props> = (props) => {
 
             <div className="inside-scroll px-4 py-5 overflow-y-scroll sm:p-0">
                 <dl>
-                    <ReviewDocumentsForm
-                        applicationData={applicationData}
-                        documentsData={documentsData}
-                        isLoading={isLoading}
-                        studentData={studentData}
-                    />
+                    <ReviewDocumentsForm applicationData={applicationData} isLoading={isLoading} />
                 </dl>
             </div>
         </div>

@@ -299,5 +299,5 @@ export const germanLanguages = ['DE'];
 
 export const italianLanguages = ['IT'];
 
-export const getLanguageLabel = (value: string | undefined): string =>
+export const getLanguageLabel = (value: string | null | undefined): string =>
     languages.find((language) => language.value === value)?.label || '';

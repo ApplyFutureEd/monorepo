@@ -1,72 +1,36 @@
-import {
-    deleteApplication,
-    GetApplicationQuery,
-    GetDocumentByStudentQuery,
-    GetStudentByEmailQuery,
-    updateApplication
-} from '@applyfuture/graphql';
+import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
 import { Button, Checkbox } from '@applyfuture/ui';
-import {
-    conditionFilter,
-    findDocument,
-    graphql,
-    languagesBypassFilter,
-    toast
-} from '@applyfuture/utils';
-import Row from '@components/applications/row/Row';
-import SkeletonRow from '@components/applications/row/SkeletonRow';
+import { graphql, toast } from '@applyfuture/utils';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { boolean, object } from 'yup';
 
 type Props = {
     applicationData: GetApplicationQuery;
-    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
-    studentData: GetStudentByEmailQuery;
 };
 
 const ReviewDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
-    const { applicationData, documentsData, isLoading, studentData } = props;
+    const { applicationData, isLoading } = props;
     const application = applicationData.getApplication;
-    const requestedDocumentsIds =
-        application?.program?.requestedDocuments.map((document) => document.name) || [];
-    const documents = documentsData?.getDocumentByStudent?.items;
-    const student = studentData?.getStudentByEmail?.items?.[0];
 
     const { t } = useTranslation();
 
     type FormValues = {
-        applicationDocument: boolean;
         declaration: boolean;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({
-        applicationDocument: false,
+    const initialValues = {
         declaration: false
-    });
+    };
 
     const validationSchema = object().shape({
-        applicationDocument: boolean().oneOf([true], t('required')),
         declaration: boolean().oneOf([true], t('required'))
     });
-
-    useEffect(() => {
-        if (student && documents) {
-            const newValues = Object.assign(
-                initialValues,
-                ...requestedDocumentsIds.map((key) => ({
-                    [key]: findDocument(documents, key) || ''
-                }))
-            );
-
-            setInitialValues(newValues);
-        }
-    }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
@@ -117,16 +81,8 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
         }
     };
 
-    const skeletons = Array.from({ length: 12 }, (_v, k) => k + 1);
-
     if (isLoading) {
-        return (
-            <>
-                {skeletons.map((_document: any, index: number) => (
-                    <SkeletonRow key={index} index={index} />
-                ))}
-            </>
-        );
+        return <div>Generating application document...</div>;
     }
 
     return (
@@ -140,41 +96,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
 
                 return (
                     <Form>
-                        {application?.program?.requestedDocuments
-                            ?.filter((document) => conditionFilter(document, student))
-                            .filter((document) => languagesBypassFilter(document, student))
-                            .map((document: any, index: number) => (
-                                <Row
-                                    key={document.name}
-                                    immutable
-                                    application={application}
-                                    document={document}
-                                    index={index}
-                                    student={student}
-                                />
-                            ))}
                         <div className="justify-between pt-4 px-4 space-y-2 sm:px-6">
-                            <Field id="applicationDocument" name="applicationDocument">
-                                {(fieldProps: FieldProps) => (
-                                    <Checkbox
-                                        label={t(
-                                            'application:label-review-your-profile-information'
-                                        )}
-                                        /*  onClick={(event: any) => {
-                                            setFieldValue(
-                                                'applicationResume',
-                                                !values.applicationResume
-                                            );
-                                            event.stopPropagation();
-                                            event.preventDefault();
-                                            if (!values.applicationResume && applicationResume) {
-                                                previewDocument(applicationResume);
-                                            }
-                                        }} */
-                                        {...fieldProps}
-                                    />
-                                )}
-                            </Field>
                             <Field id="declaration" name="declaration">
                                 {(fieldProps: FieldProps) => (
                                     <Checkbox
@@ -207,7 +129,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                                     {t('application:previous-step')}
                                 </Button>
                                 <Button
-                                    disabled={!values.applicationDocument || !values.declaration}
+                                    disabled={!values.declaration}
                                     endIcon={faArrowRight}
                                     isLoading={isLoading}
                                     isSubmitting={isSubmitting}
