@@ -68,7 +68,7 @@ describe('Contact', () => {
         });
 
         await waitFor(() => {
-            expect(API.post).toHaveBeenCalledWith('REST', '/ses/contact-form', {
+            expect(API.post).toHaveBeenCalledWith('rest', '/contact-form', {
                 body: {
                     email: fakeUser.email,
                     firstName: fakeUser.firstName,

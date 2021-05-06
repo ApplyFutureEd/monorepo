@@ -14,8 +14,8 @@ const awsmobile = {
     "aws_appsync_apiKey": "da2-mgsxxjw53jfyzjhhactyn3fomi",
     "aws_cloud_logic_custom": [
         {
-            "name": "REST",
-            "endpoint": "https://2cg2y5lqq9.execute-api.ap-southeast-1.amazonaws.com/dev",
+            "name": "rest",
+            "endpoint": "https://dxf5rgz8x3.execute-api.ap-southeast-1.amazonaws.com/dev",
             "region": "ap-southeast-1"
         }
     ],

@@ -346,7 +346,7 @@ describe('Recruiters', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(API.post).toHaveBeenCalledWith('REST', '/ses/recruiters-contact-form', {
+        expect(API.post).toHaveBeenCalledWith('rest', '/recruiters-contact-form', {
             body: fakeRecruiter
         });
     });

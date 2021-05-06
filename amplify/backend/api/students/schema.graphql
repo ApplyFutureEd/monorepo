@@ -326,7 +326,3 @@ type Post
     slug: String!
     title: String!
 }
-
-type Test {
-    test: String!
-}
