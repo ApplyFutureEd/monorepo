@@ -34,7 +34,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            console.log('submit');
+            console.log(values);
         } catch (error) {
             toast({
                 description: `${error.message}`,
