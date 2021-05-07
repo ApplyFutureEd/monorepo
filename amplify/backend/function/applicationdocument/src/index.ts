@@ -3,15 +3,15 @@ import AWS from 'aws-sdk';
 import kebabCase from 'lodash/kebabCase';
 import PDFDocument from 'pdfkit';
 
-import { Student } from './../../../../../packages/graphql/src/API';
-import { getCambridgeAdvancedLabel } from './../../../../../packages/utils/src/constants/cambridgeAdvancedResults';
-import { getCambridgeFirstLabel } from './../../../../../packages/utils/src/constants/cambridgeFirstResults';
-import { getCountryLabel } from './../../../../../packages/utils/src/constants/countries';
-import { getEducationLevelLabel } from './../../../../../packages/utils/src/constants/educationLevels';
-import { getLanguageLabel } from './../../../../../packages/utils/src/constants/languages';
-import { getLanguageLevelLabel } from './../../../../../packages/utils/src/constants/languagesLevels';
-import { date } from './../../../../../packages/utils/src/helpers/date';
-import { toShortId } from './../../../../../packages/utils/src/helpers/id';
+import { Student } from './packages/graphql/src/API';
+import { getCambridgeAdvancedLabel } from './packages/utils/src/constants/cambridgeAdvancedResults';
+import { getCambridgeFirstLabel } from './packages/utils/src/constants/cambridgeFirstResults';
+import { getCountryLabel } from './packages/utils/src/constants/countries';
+import { getEducationLevelLabel } from './packages/utils/src/constants/educationLevels';
+import { getLanguageLabel } from './packages/utils/src/constants/languages';
+import { getLanguageLevelLabel } from './packages/utils/src/constants/languagesLevels';
+import { date } from './packages/utils/src/helpers/date';
+import { toShortId } from './packages/utils/src/helpers/id';
 
 const s3 = new AWS.S3();
 
