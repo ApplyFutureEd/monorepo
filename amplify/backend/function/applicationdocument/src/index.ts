@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import AWS from 'aws-sdk';
+import capitalize from 'lodash/capitalize';
 import kebabCase from 'lodash/kebabCase';
 import PDFDocument from 'pdfkit';
 
@@ -44,7 +45,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             doc.text(`School : ${application.program.school.name}`);
             doc.text(`Program : ${application.program.name}`);
             doc.text(`Campus : ${application.program.city}`);
-            doc.text(`Intake : ${date({ value: application.intake })}`);
+            doc.text(`Intake : ${date({ scheme: 'd MMMM y', value: application.intake })}`);
             doc.moveDown();
 
             doc.fontSize(14);
@@ -65,14 +66,25 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             doc.text(`Phone Number : ${application.student.phoneNumber}`);
             doc.moveDown();
 
-            doc.text(`Date of Birth : ${date({ value: application.student.birthday })}`);
-            doc.text(`First Language : ${getLanguageLabel(application.student.firstLanguage)}`);
-            doc.text(`Nationality : ${getCountryLabel(application.student.nationality)}`);
+            doc.text(
+                `Date of Birth : ${date({
+                    scheme: 'd MMMM y',
+                    value: application.student.birthday
+                })}`
+            );
+            doc.text(
+                `First Language : ${capitalize(
+                    getLanguageLabel(application.student.firstLanguage)
+                )}`
+            );
+            doc.text(
+                `Nationality : ${capitalize(getCountryLabel(application.student.nationality))}`
+            );
             doc.moveDown();
 
             doc.text(`Passport Number : ${application.student.passportNumber}`);
-            doc.text(`Gender : ${application.student.gender}`);
-            doc.text(`Marital Status : ${application.student.maritalStatus}`);
+            doc.text(`Gender : ${capitalize(application.student.gender)}`);
+            doc.text(`Marital Status : ${capitalize(application.student.maritalStatus)}`);
             doc.moveDown();
 
             doc.fontSize(12);
@@ -81,24 +93,24 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
             doc.fontSize(8);
             doc.text(`Father's First Name : ${application.student.fatherFirstName}`);
-            doc.text(`Father's Last Name  : ${application.student.fatherLastName}`);
+            doc.text(`Father's Last Name : ${application.student.fatherLastName}`);
             doc.moveDown();
 
             doc.text(`Mother's First Name : ${application.student.motherFirstName}`);
-            doc.text(`Mother's Maiden Name  : ${application.student.motherMaidenName}`);
+            doc.text(`Mother's Maiden Name : ${application.student.motherMaidenName}`);
             doc.moveDown();
 
             doc.text(
                 `Guardian/Sponsor's First Name : ${application.student.guardianFirstName || 'N/A'}`
             );
             doc.text(
-                `Guardian/Sponsor's Last Name  : ${application.student.guardianLastName || 'N/A'}`
+                `Guardian/Sponsor's Last Name : ${application.student.guardianLastName || 'N/A'}`
             );
             doc.moveDown();
 
-            doc.text(`Parent's Address  : ${application.student.parentsAddress}`);
-            doc.text(`Parent's Phone Number  : ${application.student.parentsPhoneNumber}`);
-            doc.text(`Parent's Email  : ${application.student.parentsEmail}`);
+            doc.text(`Parent's Address : ${application.student.parentsAddress}`);
+            doc.text(`Parent's Phone Number : ${application.student.parentsPhoneNumber}`);
+            doc.text(`Parent's Email : ${application.student.parentsEmail}`);
             doc.moveDown();
             doc.moveDown();
 
@@ -112,9 +124,15 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
             doc.fontSize(8);
             doc.text(
-                `Education Country : ${getCountryLabel(application.student.educationCountry)}`
+                `Education Country : ${capitalize(
+                    getCountryLabel(application.student.educationCountry)
+                )}`
             );
-            doc.text(getEducationLevelLabel(application.student.highestEducationLevel));
+            doc.text(
+                `Highest Education Level : ${capitalize(
+                    getEducationLevelLabel(application.student.highestEducationLevel)
+                )}`
+            );
             doc.text(`GPA (0 - 4): ${application.student.gradePointAverage}`);
             doc.moveDown();
 
@@ -129,24 +147,35 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                         doc.text(`Name : ${school?.name}`);
                         doc.text(`Address : ${school?.address}`);
                         doc.text(
-                            `Level of Education : ${getEducationLevelLabel(school?.educationLevel)}`
-                        );
-                        doc.text(
-                            `Primary Language Instruction : ${getLanguageLabel(
-                                school?.primaryLanguageInstruction
+                            `Level of Education : ${capitalize(
+                                getEducationLevelLabel(school?.educationLevel)
                             )}`
                         );
                         doc.text(
-                            `Degree Awarded : ${getEducationLevelLabel(school?.degreeAwarded)}`
+                            `Primary Language Instruction : ${capitalize(
+                                getLanguageLabel(school?.primaryLanguageInstruction)
+                            )}`
                         );
-                        doc.text(`Degree Awarded On : ${date({ value: school?.degreeAwardedOn })}`);
+                        doc.text(
+                            `Degree Awarded : ${capitalize(
+                                getEducationLevelLabel(school?.degreeAwarded)
+                            )}`
+                        );
+                        doc.text(
+                            `Degree Awarded On : ${date({
+                                scheme: 'd MMMM y',
+                                value: school?.degreeAwardedOn
+                            })}`
+                        );
                         doc.text(
                             `Attended Institution From : ${date({
+                                scheme: 'd MMMM y',
                                 value: school?.attendedInstitutionFrom
                             })}`
                         );
                         doc.text(
                             `Attended Institution To : ${date({
+                                scheme: 'd MMMM y',
                                 value: school?.attendedInstitutionTo
                             })}`
                         );
@@ -166,19 +195,25 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             doc.fontSize(8);
             doc.text(`TOEFL (310 - 667) : ${application.student.testToefl || 'N/A'}`);
             doc.text(
-                `TOEFL Exam Date : ${date({ value: application.student.testToeflDate }) || 'N/A'}`
+                `TOEFL Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testToeflDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
             doc.text(`IELTS (0 - 9) : ${application.student.testIelts || 'N/A'}`);
             doc.text(
-                `IELTS Exam Date : ${date({ value: application.student.testIeltsDate }) || 'N/A'}`
+                `IELTS Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testIeltsDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
             doc.text(`TOEIC (0 - 990) : ${application.student.testToeic || 'N/A'}`);
             doc.text(
-                `TOEIC Exam Date : ${date({ value: application.student.tesToeicDate }) || 'N/A'}`
+                `TOEIC Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.tesToeicDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
@@ -189,7 +224,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             );
             doc.text(
                 `FCE Exam Date : ${
-                    date({ value: application.student.testCambridgeFirstDate }) || 'N/A'
+                    date({
+                        scheme: 'd MMMM y',
+                        value: application.student.testCambridgeFirstDate
+                    }) || 'N/A'
                 }`
             );
             doc.moveDown();
@@ -201,7 +239,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             );
             doc.text(
                 `CAE Exam Date : ${
-                    date({ value: application.student.testCambridgeAdvancedDate }) || 'N/A'
+                    date({
+                        scheme: 'd MMMM y',
+                        value: application.student.testCambridgeAdvancedDate
+                    }) || 'N/A'
                 }`
             );
             doc.moveDown();
@@ -218,7 +259,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             );
             doc.text(
                 `TCF / TEF Exam Date : ${
-                    date({ value: application.student.testTcftefDate }) || 'N/A'
+                    date({ scheme: 'd MMMM y', value: application.student.testTcftefDate }) || 'N/A'
                 }`
             );
             doc.moveDown();
@@ -230,7 +271,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             );
             doc.text(
                 `DELF / DALF Exam Date : ${
-                    date({ value: application.student.testDalfdelfDate }) || 'N/A'
+                    date({ scheme: 'd MMMM y', value: application.student.testDalfdelfDate }) ||
+                    'N/A'
                 }`
             );
             doc.moveDown();
@@ -241,7 +283,9 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                 }`
             );
             doc.text(
-                `Goethe Exam Date : ${date({ value: application.student.testGoetheDate }) || 'N/A'}`
+                `Goethe Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testGoetheDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
@@ -249,7 +293,9 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                 `DELE (C2 - A1) : ${getLanguageLevelLabel(application.student.testDele) || 'N/A'}`
             );
             doc.text(
-                `DELE Exam Date : ${date({ value: application.student.testDeleDate }) || 'N/A'}`
+                `DELE Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testDeleDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
@@ -260,7 +306,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             );
             doc.text(
                 `CELI / CILS / IT / PLIDA Exam Date : ${
-                    date({ value: application.student.testCeliCilsItPlidaDate }) || 'N/A'
+                    date({
+                        scheme: 'd MMMM y',
+                        value: application.student.testCeliCilsItPlidaDate
+                    }) || 'N/A'
                 }`
             );
             doc.moveDown();
@@ -272,20 +321,25 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             doc.fontSize(8);
             doc.text(`GRE (260 - 344) : ${application.student.testGre || 'N/A'}`);
             doc.text(
-                `GRE Exam Date : ${date({ value: application.student.testGreDate }) || 'N/A'}`
+                `GRE Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testGreDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
             doc.text(`GMAT (200 - 800) : ${application.student.testGmat || 'N/A'}`);
             doc.text(
-                `GMAT Exam Date : ${date({ value: application.student.testGmatDate }) || 'N/A'}`
+                `GMAT Exam Date : ${
+                    date({ scheme: 'd MMMM y', value: application.student.testGmatDate }) || 'N/A'
+                }`
             );
             doc.moveDown();
 
             doc.text(`TAGE MAGE (0 - 600) : ${application.student.testTagemage || 'N/A'}`);
             doc.text(
                 `TAGE MAGE Exam Date : ${
-                    date({ value: application.student.testTagemageDate }) || 'N/A'
+                    date({ scheme: 'd MMMM y', value: application.student.testTagemageDate }) ||
+                    'N/A'
                 }`
             );
             doc.moveDown();
@@ -330,8 +384,18 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                           doc.text(`Job title : ${workExperience?.title}`);
                           doc.text(`Compagny Name : ${workExperience?.compagnyName}`);
                           doc.text(`Address : ${workExperience?.address}`);
-                          doc.text(`Worked From : ${date({ value: workExperience?.workedFrom })}`);
-                          doc.text(`Worked To : ${date({ value: workExperience?.workedTo })}`);
+                          doc.text(
+                              `Worked From : ${date({
+                                  scheme: 'd MMMM y',
+                                  value: workExperience?.workedFrom
+                              })}`
+                          );
+                          doc.text(
+                              `Worked To : ${date({
+                                  scheme: 'd MMMM y',
+                                  value: workExperience?.workedTo
+                              })}`
+                          );
                           doc.moveDown();
                       }
                   )
@@ -339,14 +403,14 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             doc.moveDown();
 
             doc.fontSize(8);
-            doc.text(`Date: ${date({ value: new Date() })}`);
+            doc.text(`Date: ${date({ scheme: 'd MMMM y', value: new Date() })}`);
             doc.moveDown();
             doc.text(
                 `The Student declares under his word of honour that the information provided above is true and complete and the Student is aware that any incorrect statement may invalidate my application at any point in the selection process.`
             );
             doc.moveDown();
             doc.text(
-                ` The Student agree that, if in declarations is proved something false, the Student accept the consequences provided by the law in force.`
+                `The Student agree that, if in declarations is proved something false, the Student accept the consequences provided by the law in force.`
             );
             doc.end();
 

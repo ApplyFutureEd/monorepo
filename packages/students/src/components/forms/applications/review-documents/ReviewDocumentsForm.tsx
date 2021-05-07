@@ -6,16 +6,18 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { boolean, object } from 'yup';
 
 type Props = {
     applicationData: GetApplicationQuery;
+    applicationDocumentUrl: string;
     isLoading: boolean;
 };
 
 const ReviewDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
-    const { applicationData, isLoading } = props;
+    const { applicationData, applicationDocumentUrl, isLoading } = props;
     const application = applicationData.getApplication;
 
     const { t } = useTranslation();
@@ -81,10 +83,6 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
         }
     };
 
-    if (isLoading) {
-        return <div>Generating application document...</div>;
-    }
-
     return (
         <Formik
             enableReinitialize
@@ -96,6 +94,17 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
 
                 return (
                     <Form>
+                        {isLoading ? (
+                            <Skeleton height="40vh" width="100%" />
+                        ) : (
+                            <iframe
+                                className="w-full"
+                                id="application-document-frame"
+                                src={applicationDocumentUrl}
+                                style={{ height: '40vh' }}
+                                title="Application Document"
+                            />
+                        )}
                         <div className="justify-between pt-4 px-4 space-y-2 sm:px-6">
                             <Field id="declaration" name="declaration">
                                 {(fieldProps: FieldProps) => (

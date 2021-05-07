@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
+const capitalize_1 = __importDefault(require("lodash/capitalize"));
 const kebabCase_1 = __importDefault(require("lodash/kebabCase"));
 const pdfkit_1 = __importDefault(require("pdfkit"));
 const cambridgeAdvancedResults_1 = require("./packages/utils/src/constants/cambridgeAdvancedResults");
@@ -41,7 +42,7 @@ exports.handler = async (event) => {
             doc.text(`School : ${application.program.school.name}`);
             doc.text(`Program : ${application.program.name}`);
             doc.text(`Campus : ${application.program.city}`);
-            doc.text(`Intake : ${date_1.date({ value: application.intake })}`);
+            doc.text(`Intake : ${date_1.date({ scheme: 'd MMMM y', value: application.intake })}`);
             doc.moveDown();
             doc.fontSize(14);
             doc.text(`I. General Information`);
@@ -57,30 +58,33 @@ exports.handler = async (event) => {
             doc.text(`Email : ${application.student.email}`);
             doc.text(`Phone Number : ${application.student.phoneNumber}`);
             doc.moveDown();
-            doc.text(`Date of Birth : ${date_1.date({ value: application.student.birthday })}`);
-            doc.text(`First Language : ${languages_1.getLanguageLabel(application.student.firstLanguage)}`);
-            doc.text(`Nationality : ${countries_1.getCountryLabel(application.student.nationality)}`);
+            doc.text(`Date of Birth : ${date_1.date({
+                scheme: 'd MMMM y',
+                value: application.student.birthday
+            })}`);
+            doc.text(`First Language : ${capitalize_1.default(languages_1.getLanguageLabel(application.student.firstLanguage))}`);
+            doc.text(`Nationality : ${capitalize_1.default(countries_1.getCountryLabel(application.student.nationality))}`);
             doc.moveDown();
             doc.text(`Passport Number : ${application.student.passportNumber}`);
-            doc.text(`Gender : ${application.student.gender}`);
-            doc.text(`Marital Status : ${application.student.maritalStatus}`);
+            doc.text(`Gender : ${capitalize_1.default(application.student.gender)}`);
+            doc.text(`Marital Status : ${capitalize_1.default(application.student.maritalStatus)}`);
             doc.moveDown();
             doc.fontSize(12);
             doc.text(`b) Parents' Information`);
             doc.moveDown();
             doc.fontSize(8);
             doc.text(`Father's First Name : ${application.student.fatherFirstName}`);
-            doc.text(`Father's Last Name  : ${application.student.fatherLastName}`);
+            doc.text(`Father's Last Name : ${application.student.fatherLastName}`);
             doc.moveDown();
             doc.text(`Mother's First Name : ${application.student.motherFirstName}`);
-            doc.text(`Mother's Maiden Name  : ${application.student.motherMaidenName}`);
+            doc.text(`Mother's Maiden Name : ${application.student.motherMaidenName}`);
             doc.moveDown();
             doc.text(`Guardian/Sponsor's First Name : ${application.student.guardianFirstName || 'N/A'}`);
-            doc.text(`Guardian/Sponsor's Last Name  : ${application.student.guardianLastName || 'N/A'}`);
+            doc.text(`Guardian/Sponsor's Last Name : ${application.student.guardianLastName || 'N/A'}`);
             doc.moveDown();
-            doc.text(`Parent's Address  : ${application.student.parentsAddress}`);
-            doc.text(`Parent's Phone Number  : ${application.student.parentsPhoneNumber}`);
-            doc.text(`Parent's Email  : ${application.student.parentsEmail}`);
+            doc.text(`Parent's Address : ${application.student.parentsAddress}`);
+            doc.text(`Parent's Phone Number : ${application.student.parentsPhoneNumber}`);
+            doc.text(`Parent's Email : ${application.student.parentsEmail}`);
             doc.moveDown();
             doc.moveDown();
             doc.fontSize(14);
@@ -90,8 +94,8 @@ exports.handler = async (event) => {
             doc.text(`a) Education Summary`);
             doc.moveDown();
             doc.fontSize(8);
-            doc.text(`Education Country : ${countries_1.getCountryLabel(application.student.educationCountry)}`);
-            doc.text(educationLevels_1.getEducationLevelLabel(application.student.highestEducationLevel));
+            doc.text(`Education Country : ${capitalize_1.default(countries_1.getCountryLabel(application.student.educationCountry))}`);
+            doc.text(`Highest Education Level : ${capitalize_1.default(educationLevels_1.getEducationLevelLabel(application.student.highestEducationLevel))}`);
             doc.text(`GPA (0 - 4): ${application.student.gradePointAverage}`);
             doc.moveDown();
             doc.fontSize(12);
@@ -102,14 +106,19 @@ exports.handler = async (event) => {
                     doc.fontSize(8);
                     doc.text(`Name : ${school === null || school === void 0 ? void 0 : school.name}`);
                     doc.text(`Address : ${school === null || school === void 0 ? void 0 : school.address}`);
-                    doc.text(`Level of Education : ${educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.educationLevel)}`);
-                    doc.text(`Primary Language Instruction : ${languages_1.getLanguageLabel(school === null || school === void 0 ? void 0 : school.primaryLanguageInstruction)}`);
-                    doc.text(`Degree Awarded : ${educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.degreeAwarded)}`);
-                    doc.text(`Degree Awarded On : ${date_1.date({ value: school === null || school === void 0 ? void 0 : school.degreeAwardedOn })}`);
+                    doc.text(`Level of Education : ${capitalize_1.default(educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.educationLevel))}`);
+                    doc.text(`Primary Language Instruction : ${capitalize_1.default(languages_1.getLanguageLabel(school === null || school === void 0 ? void 0 : school.primaryLanguageInstruction))}`);
+                    doc.text(`Degree Awarded : ${capitalize_1.default(educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.degreeAwarded))}`);
+                    doc.text(`Degree Awarded On : ${date_1.date({
+                        scheme: 'd MMMM y',
+                        value: school === null || school === void 0 ? void 0 : school.degreeAwardedOn
+                    })}`);
                     doc.text(`Attended Institution From : ${date_1.date({
+                        scheme: 'd MMMM y',
                         value: school === null || school === void 0 ? void 0 : school.attendedInstitutionFrom
                     })}`);
                     doc.text(`Attended Institution To : ${date_1.date({
+                        scheme: 'd MMMM y',
                         value: school === null || school === void 0 ? void 0 : school.attendedInstitutionTo
                     })}`);
                     doc.moveDown();
@@ -123,51 +132,62 @@ exports.handler = async (event) => {
             doc.moveDown();
             doc.fontSize(8);
             doc.text(`TOEFL (310 - 667) : ${application.student.testToefl || 'N/A'}`);
-            doc.text(`TOEFL Exam Date : ${date_1.date({ value: application.student.testToeflDate }) || 'N/A'}`);
+            doc.text(`TOEFL Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testToeflDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`IELTS (0 - 9) : ${application.student.testIelts || 'N/A'}`);
-            doc.text(`IELTS Exam Date : ${date_1.date({ value: application.student.testIeltsDate }) || 'N/A'}`);
+            doc.text(`IELTS Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testIeltsDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`TOEIC (0 - 990) : ${application.student.testToeic || 'N/A'}`);
-            doc.text(`TOEIC Exam Date : ${date_1.date({ value: application.student.tesToeicDate }) || 'N/A'}`);
+            doc.text(`TOEIC Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.tesToeicDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`FCE (A - E) : ${cambridgeFirstResults_1.getCambridgeFirstLabel(application.student.testCambridgeFirst) || 'N/A'}`);
-            doc.text(`FCE Exam Date : ${date_1.date({ value: application.student.testCambridgeFirstDate }) || 'N/A'}`);
+            doc.text(`FCE Exam Date : ${date_1.date({
+                scheme: 'd MMMM y',
+                value: application.student.testCambridgeFirstDate
+            }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`CAE (A - C) : ${cambridgeAdvancedResults_1.getCambridgeAdvancedLabel(application.student.testCambridgeAdvanced) || 'N/A'}`);
-            doc.text(`CAE Exam Date : ${date_1.date({ value: application.student.testCambridgeAdvancedDate }) || 'N/A'}`);
+            doc.text(`CAE Exam Date : ${date_1.date({
+                scheme: 'd MMMM y',
+                value: application.student.testCambridgeAdvancedDate
+            }) || 'N/A'}`);
             doc.moveDown();
             doc.fontSize(12);
             doc.text(`b) Other languages tests`);
             doc.moveDown();
             doc.fontSize(8);
             doc.text(`TCF / TEF (C2 - A1) : ${languagesLevels_1.getLanguageLevelLabel(application.student.testTcftef) || 'N/A'}`);
-            doc.text(`TCF / TEF Exam Date : ${date_1.date({ value: application.student.testTcftefDate }) || 'N/A'}`);
+            doc.text(`TCF / TEF Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testTcftefDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`DELF / DALF (C2 - A1) : ${languagesLevels_1.getLanguageLevelLabel(application.student.testDelfdalf) || 'N/A'}`);
-            doc.text(`DELF / DALF Exam Date : ${date_1.date({ value: application.student.testDalfdelfDate }) || 'N/A'}`);
+            doc.text(`DELF / DALF Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testDalfdelfDate }) ||
+                'N/A'}`);
             doc.moveDown();
             doc.text(`Goethe (C2 - A1) : ${languagesLevels_1.getLanguageLevelLabel(application.student.testGoethe) || 'N/A'}`);
-            doc.text(`Goethe Exam Date : ${date_1.date({ value: application.student.testGoetheDate }) || 'N/A'}`);
+            doc.text(`Goethe Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testGoetheDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`DELE (C2 - A1) : ${languagesLevels_1.getLanguageLevelLabel(application.student.testDele) || 'N/A'}`);
-            doc.text(`DELE Exam Date : ${date_1.date({ value: application.student.testDeleDate }) || 'N/A'}`);
+            doc.text(`DELE Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testDeleDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`CELI / CILS / IT / PLIDA (C2 - A1) : ${languagesLevels_1.getLanguageLevelLabel(application.student.testCeliCilsItPlida) || 'N/A'}`);
-            doc.text(`CELI / CILS / IT / PLIDA Exam Date : ${date_1.date({ value: application.student.testCeliCilsItPlidaDate }) || 'N/A'}`);
+            doc.text(`CELI / CILS / IT / PLIDA Exam Date : ${date_1.date({
+                scheme: 'd MMMM y',
+                value: application.student.testCeliCilsItPlidaDate
+            }) || 'N/A'}`);
             doc.moveDown();
             doc.fontSize(12);
             doc.text(`c) Logic and Reasoning tests`);
             doc.moveDown();
             doc.fontSize(8);
             doc.text(`GRE (260 - 344) : ${application.student.testGre || 'N/A'}`);
-            doc.text(`GRE Exam Date : ${date_1.date({ value: application.student.testGreDate }) || 'N/A'}`);
+            doc.text(`GRE Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testGreDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`GMAT (200 - 800) : ${application.student.testGmat || 'N/A'}`);
-            doc.text(`GMAT Exam Date : ${date_1.date({ value: application.student.testGmatDate }) || 'N/A'}`);
+            doc.text(`GMAT Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testGmatDate }) || 'N/A'}`);
             doc.moveDown();
             doc.text(`TAGE MAGE (0 - 600) : ${application.student.testTagemage || 'N/A'}`);
-            doc.text(`TAGE MAGE Exam Date : ${date_1.date({ value: application.student.testTagemageDate }) || 'N/A'}`);
+            doc.text(`TAGE MAGE Exam Date : ${date_1.date({ scheme: 'd MMMM y', value: application.student.testTagemageDate }) ||
+                'N/A'}`);
             doc.moveDown();
             doc.moveDown();
             doc.fontSize(14);
@@ -192,18 +212,24 @@ exports.handler = async (event) => {
                     doc.text(`Job title : ${workExperience === null || workExperience === void 0 ? void 0 : workExperience.title}`);
                     doc.text(`Compagny Name : ${workExperience === null || workExperience === void 0 ? void 0 : workExperience.compagnyName}`);
                     doc.text(`Address : ${workExperience === null || workExperience === void 0 ? void 0 : workExperience.address}`);
-                    doc.text(`Worked From : ${date_1.date({ value: workExperience === null || workExperience === void 0 ? void 0 : workExperience.workedFrom })}`);
-                    doc.text(`Worked To : ${date_1.date({ value: workExperience === null || workExperience === void 0 ? void 0 : workExperience.workedTo })}`);
+                    doc.text(`Worked From : ${date_1.date({
+                        scheme: 'd MMMM y',
+                        value: workExperience === null || workExperience === void 0 ? void 0 : workExperience.workedFrom
+                    })}`);
+                    doc.text(`Worked To : ${date_1.date({
+                        scheme: 'd MMMM y',
+                        value: workExperience === null || workExperience === void 0 ? void 0 : workExperience.workedTo
+                    })}`);
                     doc.moveDown();
                 })
                 : doc.text(`No work experience has been provided for this application`);
             doc.moveDown();
             doc.fontSize(8);
-            doc.text(`Date: ${date_1.date({ value: new Date() })}`);
+            doc.text(`Date: ${date_1.date({ scheme: 'd MMMM y', value: new Date() })}`);
             doc.moveDown();
             doc.text(`The Student declares under his word of honour that the information provided above is true and complete and the Student is aware that any incorrect statement may invalidate my application at any point in the selection process.`);
             doc.moveDown();
-            doc.text(` The Student agree that, if in declarations is proved something false, the Student accept the consequences provided by the law in force.`);
+            doc.text(`The Student agree that, if in declarations is proved something false, the Student accept the consequences provided by the law in force.`);
             doc.end();
             const buffers = [];
             doc.on('data', buffers.push.bind(buffers));

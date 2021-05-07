@@ -4,14 +4,18 @@ import { getStepsLabels, useQuery, withPrivateAccess } from '@applyfuture/utils'
 import ReviewDocuments from '@components/applications/review-documents/ReviewDocuments';
 import Summary from '@components/applications/summary/Summary';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import { API } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 const ReviewDocumentsPage: FC = () => {
     const { t } = useTranslation();
     const router = useRouter();
+    const [applicationDocumentUrl, setApplicationDocumentUrl] = useState<string>('');
+    const [isLoadingApplicationDocumentUrl, setIsLoadingApplicationDocumentUrl] = useState<boolean>(
+        true
+    );
 
     const {
         data: applicationData,
@@ -21,14 +25,23 @@ const ReviewDocumentsPage: FC = () => {
     });
 
     useEffect(() => {
-        if (applicationData?.getApplication?.id) {
-            API.post('rest', '/application-document', {
+        const fetchApplicationDocument = async () => {
+            const { storageKey } = await API.post('rest', '/application-document', {
                 body: { application: applicationData.getApplication }
             });
+            const url = await Storage.get(storageKey, {
+                level: 'public'
+            });
+            console.log(url);
+            setApplicationDocumentUrl(url.toString());
+            setIsLoadingApplicationDocumentUrl(false);
+        };
+        if (applicationData?.getApplication?.id) {
+            fetchApplicationDocument();
         }
     }, [applicationData]);
 
-    const isLoading = applicationIsLoading;
+    const isLoading = applicationIsLoading || isLoadingApplicationDocumentUrl;
     const steps = getStepsLabels(applicationData.getApplication);
 
     return (
@@ -39,7 +52,11 @@ const ReviewDocumentsPage: FC = () => {
                 </div>
                 <div className="flex items-start space-x-0 md:space-x-2">
                     <Summary applicationData={applicationData} isLoading={isLoading} />
-                    <ReviewDocuments applicationData={applicationData} isLoading={isLoading} />
+                    <ReviewDocuments
+                        applicationData={applicationData}
+                        applicationDocumentUrl={applicationDocumentUrl}
+                        isLoading={isLoading}
+                    />
                 </div>
             </DashboardLayout>
         </>

@@ -5,16 +5,17 @@ import React, { FC } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
+    applicationDocumentUrl: string;
     isLoading: boolean;
 };
 
-const UploadDocuments: FC<Props> = (props) => {
-    const { applicationData, isLoading } = props;
+const ReviewDocuments: FC<Props> = (props) => {
+    const { applicationData, applicationDocumentUrl, isLoading } = props;
 
     const { t } = useTranslation();
 
     return (
-        <div className="inside w-full bg-white rounded-lg shadow overflow-hidden md:w-2/3">
+        <div className="w-full bg-white rounded-lg shadow overflow-hidden md:w-2/3">
             <div className="hidden px-4 py-5 border-b border-gray-200 sm:px-6 md:block">
                 <h3 className="text-gray-900 text-lg font-medium leading-6">
                     {t('application:documents-confirmation')}
@@ -24,13 +25,17 @@ const UploadDocuments: FC<Props> = (props) => {
                 </p>
             </div>
 
-            <div className="inside-scroll px-4 py-5 overflow-y-scroll sm:p-0">
+            <div className="px-4 py-5 sm:p-0">
                 <dl>
-                    <ReviewDocumentsForm applicationData={applicationData} isLoading={isLoading} />
+                    <ReviewDocumentsForm
+                        applicationData={applicationData}
+                        applicationDocumentUrl={applicationDocumentUrl}
+                        isLoading={isLoading}
+                    />
                 </dl>
             </div>
         </div>
     );
 };
 
-export default UploadDocuments;
+export default ReviewDocuments;
