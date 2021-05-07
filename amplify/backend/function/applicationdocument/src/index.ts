@@ -34,7 +34,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             const doc = new PDFDocument();
 
             doc.image('./logo.jpg', {
-                fit: [160, 32]
+                fit: [128, 28]
             });
             doc.moveDown();
             doc.moveDown();
@@ -368,8 +368,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
         await s3
             .putObject({
-                Body: pdfBuffer as Body | undefined,
-                Bucket: 'students26f486968b06451e8ce6eb060f37114a14722-dev',
+                Body: pdfBuffer as Body,
+                Bucket: 'applyfuture-students-content162403-dev',
                 ContentType: 'application/pdf',
                 Key: `public/${storageKey}`,
                 Metadata: {}
