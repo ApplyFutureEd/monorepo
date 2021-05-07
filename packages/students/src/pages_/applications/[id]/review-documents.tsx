@@ -23,7 +23,7 @@ const ReviewDocumentsPage: FC = () => {
     useEffect(() => {
         if (applicationData?.getApplication?.id) {
             API.post('rest', '/application-document', {
-                body: { application: applicationData }
+                body: { application: applicationData.getApplication }
             });
         }
     }, [applicationData]);

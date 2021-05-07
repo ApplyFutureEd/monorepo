@@ -29,7 +29,7 @@
         },
         "applicationdocument": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationdocument-496d472f6b7a5271396d-build.zip"
+          "s3Key": "amplify-builds/applicationdocument-2b6d2b4a6a4863683647-build.zip"
         },
         "contactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",

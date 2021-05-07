@@ -385,6 +385,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             statusCode: 200
         };
     } catch (error) {
+        console.log(error);
         return {
             body: JSON.stringify(event.body),
             headers: {

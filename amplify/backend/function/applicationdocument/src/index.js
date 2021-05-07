@@ -7,14 +7,14 @@ exports.handler = void 0;
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const kebabCase_1 = __importDefault(require("lodash/kebabCase"));
 const pdfkit_1 = __importDefault(require("pdfkit"));
-const cambridgeAdvancedResults_1 = require("./../../../../../packages/utils/src/constants/cambridgeAdvancedResults");
-const cambridgeFirstResults_1 = require("./../../../../../packages/utils/src/constants/cambridgeFirstResults");
-const countries_1 = require("./../../../../../packages/utils/src/constants/countries");
-const educationLevels_1 = require("./../../../../../packages/utils/src/constants/educationLevels");
-const languages_1 = require("./../../../../../packages/utils/src/constants/languages");
-const languagesLevels_1 = require("./../../../../../packages/utils/src/constants/languagesLevels");
-const date_1 = require("./../../../../../packages/utils/src/helpers/date");
-const id_1 = require("./../../../../../packages/utils/src/helpers/id");
+const cambridgeAdvancedResults_1 = require("./packages/utils/src/constants/cambridgeAdvancedResults");
+const cambridgeFirstResults_1 = require("./packages/utils/src/constants/cambridgeFirstResults");
+const countries_1 = require("./packages/utils/src/constants/countries");
+const educationLevels_1 = require("./packages/utils/src/constants/educationLevels");
+const languages_1 = require("./packages/utils/src/constants/languages");
+const languagesLevels_1 = require("./packages/utils/src/constants/languagesLevels");
+const date_1 = require("./packages/utils/src/helpers/date");
+const id_1 = require("./packages/utils/src/helpers/id");
 const s3 = new aws_sdk_1.default.S3();
 exports.handler = async (event) => {
     try {
@@ -236,6 +236,7 @@ exports.handler = async (event) => {
         };
     }
     catch (error) {
+        console.log(error);
         return {
             body: JSON.stringify(event.body),
             headers: {
