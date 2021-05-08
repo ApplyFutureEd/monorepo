@@ -1,11 +1,11 @@
 import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
-import { Button, Checkbox } from '@applyfuture/ui';
+import { Button, Checkbox, Modal } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faArrowLeft, faArrowRight, faFilePdf, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { boolean, object } from 'yup';
 
@@ -19,8 +19,8 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
     const { applicationData, applicationDocumentUrl, isLoading } = props;
     const application = applicationData.getApplication;
-
     const { t } = useTranslation();
+    const [isModalOpen, setModalOpen] = useState(false);
 
     type FormValues = {
         declaration: boolean;
@@ -83,75 +83,103 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
         }
     };
 
-    return (
-        <Formik
-            enableReinitialize
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
-            {(props) => {
-                const { isSubmitting, values } = props;
+    const handleOpen = () => {
+        setModalOpen(true);
+    };
 
-                return (
-                    <Form>
-                        {isLoading ? (
-                            <Skeleton height="40vh" width="100%" />
-                        ) : (
-                            <iframe
-                                className="w-full"
-                                id="application-document-frame"
-                                src={applicationDocumentUrl}
-                                style={{ height: '40vh' }}
-                                title="Application Document"
-                            />
-                        )}
-                        <div className="justify-between pt-4 px-4 space-y-2 sm:px-6">
-                            <Field id="declaration" name="declaration">
-                                {(fieldProps: FieldProps) => (
-                                    <Checkbox
-                                        label={t('application:label-declaration')}
-                                        {...fieldProps}
+    const onModalClose = () => {
+        setModalOpen(false);
+    };
+
+    return (
+        <>
+            <Modal open={isModalOpen} onClose={onModalClose}>
+                <iframe
+                    className="h-screen-90 w-full"
+                    id="application-document-frame"
+                    src={applicationDocumentUrl}
+                    title={t('application:documents-confirmation')}
+                />
+            </Modal>
+            <Formik
+                enableReinitialize
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
+                {(props) => {
+                    const { isSubmitting, values } = props;
+
+                    return (
+                        <Form>
+                            {isLoading ? (
+                                <Skeleton height="40vh" width="100%" />
+                            ) : (
+                                <>
+                                    <iframe
+                                        className="h-screen-40 hidden w-full sm:block"
+                                        id="application-document-frame"
+                                        src={applicationDocumentUrl}
+                                        title={t('application:documents-confirmation')}
                                     />
-                                )}
-                            </Field>
-                        </div>
-                        <div className="flex justify-between px-4 py-5 sm:px-6">
-                            <div className="hidden md:block">
-                                <Button
-                                    isLoading={isLoading}
-                                    isSubmitting={isSubmitting}
-                                    startIcon={faTrash}
-                                    type="button"
-                                    variant="secondary"
-                                    onClick={handleCancelApplication}>
-                                    {t('application:cancel-my-application')}
-                                </Button>
+                                    <div className="block px-4 py-5 sm:hidden sm:px-6">
+                                        <Button
+                                            isLoading={isLoading}
+                                            startIcon={faFilePdf}
+                                            variant="primary"
+                                            onClick={handleOpen}>
+                                            {t('application:documents-confirmation')}
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                            <div className="justify-between pt-4 px-4 space-y-2 sm:px-6">
+                                <Field id="declaration" name="declaration">
+                                    {(fieldProps: FieldProps) => (
+                                        <Checkbox
+                                            label={t('application:label-declaration')}
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
                             </div>
-                            <div className="flex flex-grow justify-between space-x-4 md:flex-grow-0 md:justify-start">
-                                <Button
-                                    isLoading={isLoading}
-                                    isSubmitting={isSubmitting}
-                                    startIcon={faArrowLeft}
-                                    type="button"
-                                    variant="secondary"
-                                    onClick={handlePreviousStep}>
-                                    {t('application:previous-step')}
-                                </Button>
-                                <Button
-                                    disabled={!values.declaration}
-                                    endIcon={faArrowRight}
-                                    isLoading={isLoading}
-                                    isSubmitting={isSubmitting}
-                                    type="submit"
-                                    variant="primary">
-                                    {t('application:next-step')}
-                                </Button>
+                            <div className="flex justify-between px-4 py-5 sm:px-6">
+                                <div className="hidden md:block">
+                                    <Button
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        startIcon={faTrash}
+                                        type="button"
+                                        variant="secondary"
+                                        onClick={handleCancelApplication}>
+                                        {t('application:cancel-my-application')}
+                                    </Button>
+                                </div>
+                                <div className="flex flex-grow justify-between space-x-4 md:flex-grow-0 md:justify-start">
+                                    <Button
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        startIcon={faArrowLeft}
+                                        type="button"
+                                        variant="secondary"
+                                        onClick={handlePreviousStep}>
+                                        {t('application:previous-step')}
+                                    </Button>
+                                    <Button
+                                        disabled={!values.declaration}
+                                        endIcon={faArrowRight}
+                                        isLoading={isLoading}
+                                        isSubmitting={isSubmitting}
+                                        type="submit"
+                                        variant="primary">
+                                        {t('application:next-step')}
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
-                    </Form>
-                );
-            }}
-        </Formik>
+                        </Form>
+                    );
+                }}
+            </Formik>
+        </>
     );
 };
 
