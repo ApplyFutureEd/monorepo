@@ -13,11 +13,11 @@ import { hasBypass } from './eligibility';
 export const getStepsLabels = (application: GetApplicationQuery['getApplication']): string[] => {
     const steps = [...applicationSteps.map((step) => step.label)];
 
-    if (application?.program?.applicationFee === -1) {
+    if (application?.program?.applicationFee && application?.program?.applicationFee > 0) {
+        steps.length = 4;
+    } else {
         steps.splice(2, 1);
         steps.length = 3;
-    } else {
-        steps.length = 4;
     }
 
     return steps;

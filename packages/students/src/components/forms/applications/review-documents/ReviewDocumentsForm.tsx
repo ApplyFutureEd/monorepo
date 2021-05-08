@@ -34,9 +34,35 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
         declaration: boolean().oneOf([true], t('required'))
     });
 
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+    const onSubmit = async (_values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            console.log(values);
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+            const hasApplicationFees =
+                application?.program?.applicationFee && application?.program?.applicationFee > 0;
+
+            if (hasApplicationFees) {
+                updatedSteps[1].status = 'DONE';
+                updatedSteps[2].status = 'PROGRESS';
+                updatedSteps[2].date = new Date().toString();
+            } else {
+                updatedSteps[1].status = 'DONE';
+                updatedSteps[2].status = 'DONE';
+                updatedSteps[2].date = new Date().toString();
+                updatedSteps[3].status = 'DONE';
+                updatedSteps[3].date = new Date().toString();
+                updatedSteps[4].status = 'PROGRESS';
+                updatedSteps[4].date = new Date().toString();
+            }
+
+            await graphql(updateApplication, {
+                input: { id: application?.id, steps: updatedSteps, todo: 'Review document' }
+            });
+
+            if (hasApplicationFees) {
+                router.push(`/applications/${application?.id}/payment`);
+            } else {
+                router.push(`/applications/${application?.id}/submission`);
+            }
         } catch (error) {
             toast({
                 description: `${error.message}`,
