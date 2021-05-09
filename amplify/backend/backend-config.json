@@ -79,6 +79,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "feespayment",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -103,6 +111,11 @@
       "dependsOn": []
     },
     "applicationdocument": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "feespayment": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

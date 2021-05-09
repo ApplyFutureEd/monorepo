@@ -1,73 +1,93 @@
 {
-  "paths": [
-    {
-      "name": "/recruiters-contact-form",
-      "lambdaFunction": "recruiterscontactform",
-      "privacy": {
-        "open": true
-      },
-      "policyResourceName": "/recruiters-contact-form"
+    "paths": [
+        {
+            "name": "/recruiters-contact-form",
+            "lambdaFunction": "recruiterscontactform",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/recruiters-contact-form"
+        },
+        {
+            "name": "/contact-form",
+            "lambdaFunction": "contactform",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/contact-form"
+        },
+        {
+            "name": "/application-document",
+            "lambdaFunction": "applicationdocument",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/application-document"
+        },
+        {
+            "name": "/fees-payment",
+            "lambdaFunction": "feespayment",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/fees-payment"
+        }
+    ],
+    "resourceName": "rest",
+    "apiName": "rest",
+    "functionArns": [
+        {
+            "lambdaFunction": "recruiterscontactform"
+        },
+        {
+            "lambdaFunction": "contactform"
+        },
+        {
+            "lambdaFunction": "applicationdocument"
+        },
+        {
+            "lambdaFunction": "feespayment"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-students-dev-162403-authRole",
+        "unAuthRoleName": "amplify-students-dev-162403-unauthRole"
     },
-    {
-      "name": "/contact-form",
-      "lambdaFunction": "contactform",
-      "privacy": {
-        "open": true
-      },
-      "policyResourceName": "/contact-form"
-    },
-    {
-      "name": "/application-document",
-      "lambdaFunction": "applicationdocument",
-      "privacy": {
-        "open": true
-      },
-      "policyResourceName": "/application-document"
-    }
-  ],
-  "resourceName": "rest",
-  "apiName": "rest",
-  "functionArns": [
-    {
-      "lambdaFunction": "recruiterscontactform"
-    },
-    {
-      "lambdaFunction": "contactform"
-    },
-    {
-      "lambdaFunction": "applicationdocument"
-    }
-  ],
-  "privacy": {
-    "auth": 0,
-    "unauth": 0,
-    "authRoleName": "amplify-students-dev-162403-authRole",
-    "unAuthRoleName": "amplify-students-dev-162403-unauthRole"
-  },
-  "dependsOn": [
-    {
-      "category": "function",
-      "resourceName": "recruiterscontactform",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    },
-    {
-      "category": "function",
-      "resourceName": "contactform",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    },
-    {
-      "category": "function",
-      "resourceName": "applicationdocument",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    }
-  ]
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "recruiterscontactform",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "contactform",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "applicationdocument",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "feespayment",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "55846f8a"
 }

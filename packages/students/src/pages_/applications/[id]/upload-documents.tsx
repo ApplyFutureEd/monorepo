@@ -48,22 +48,20 @@ const UploadDocumentsPage: FC = () => {
     const steps = getStepsLabels(applicationData.getApplication);
 
     return (
-        <>
-            <DashboardLayout title={t('application:page-title')}>
-                <div className="mb-4">
-                    <Stepper currentStep={0} isLoading={isLoading} steps={steps} />
-                </div>
-                <div className="flex items-start space-x-0 md:space-x-2">
-                    <Summary applicationData={applicationData} isLoading={isLoading} />
-                    <UploadDocuments
-                        applicationData={applicationData}
-                        documentsData={documentsData}
-                        isLoading={isLoading}
-                        studentData={studentData}
-                    />
-                </div>
-            </DashboardLayout>
-        </>
+        <DashboardLayout title={t('application:page-title')}>
+            <div className="mb-4">
+                <Stepper currentStep={0} isLoading={isLoading} steps={steps} />
+            </div>
+            <div className="flex items-start space-x-0 md:space-x-2">
+                <Summary applicationData={applicationData} isLoading={isLoading} />
+                <UploadDocuments
+                    applicationData={applicationData}
+                    documentsData={documentsData}
+                    isLoading={isLoading}
+                    studentData={studentData}
+                />
+            </div>
+        </DashboardLayout>
     );
 };
 

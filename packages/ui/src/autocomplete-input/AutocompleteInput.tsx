@@ -39,7 +39,7 @@ type Props = {
     optional?: boolean;
 };
 
-const AutocompleteInput: FC<Props> = (props) => {
+export const AutocompleteInput: FC<Props> = (props) => {
     const { field, form, isLoading, label, meta, optional, ...rest } = props;
 
     const { t } = useTranslation();
@@ -167,5 +167,3 @@ const AutocompleteInput: FC<Props> = (props) => {
         </div>
     );
 };
-
-export default AutocompleteInput;

@@ -31,7 +31,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
     };
 
     const validationSchema = object().shape({
-        declaration: boolean().oneOf([true], t('required'))
+        declaration: boolean().oneOf([true], t('common:error-field-required'))
     });
 
     const onSubmit = async (_values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -59,7 +59,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
             });
 
             if (hasApplicationFees) {
-                router.push(`/applications/${application?.id}/payment`);
+                router.push(`/applications/${application?.id}/fees-payment`);
             } else {
                 router.push(`/applications/${application?.id}/submission`);
             }
