@@ -104,23 +104,23 @@ exports.handler = async (event) => {
             application.student.schoolsAttended.length > 0 &&
                 application.student.schoolsAttended.forEach((school) => {
                     doc.fontSize(8);
-                    doc.text(`Name : ${school === null || school === void 0 ? void 0 : school.name}`);
-                    doc.text(`Address : ${school === null || school === void 0 ? void 0 : school.address}`);
+                    doc.text(`Name : ${(school === null || school === void 0 ? void 0 : school.name) || 'N/A'}`);
+                    doc.text(`Address : ${(school === null || school === void 0 ? void 0 : school.address) || 'N/A'}`);
                     doc.text(`Level of Education : ${capitalize_1.default(educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.educationLevel))}`);
                     doc.text(`Primary Language Instruction : ${capitalize_1.default(languages_1.getLanguageLabel(school === null || school === void 0 ? void 0 : school.primaryLanguageInstruction))}`);
                     doc.text(`Degree Awarded : ${capitalize_1.default(educationLevels_1.getEducationLevelLabel(school === null || school === void 0 ? void 0 : school.degreeAwarded))}`);
                     doc.text(`Degree Awarded On : ${date_1.date({
                         scheme: 'd MMMM y',
                         value: school === null || school === void 0 ? void 0 : school.degreeAwardedOn
-                    })}`);
+                    }) || 'N/A'}`);
                     doc.text(`Attended Institution From : ${date_1.date({
                         scheme: 'd MMMM y',
                         value: school === null || school === void 0 ? void 0 : school.attendedInstitutionFrom
-                    })}`);
+                    }) || 'N/A'}`);
                     doc.text(`Attended Institution To : ${date_1.date({
                         scheme: 'd MMMM y',
                         value: school === null || school === void 0 ? void 0 : school.attendedInstitutionTo
-                    })}`);
+                    }) || 'N/A'}`);
                     doc.moveDown();
                 });
             doc.moveDown();

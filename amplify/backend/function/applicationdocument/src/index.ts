@@ -144,8 +144,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                 application.student.schoolsAttended.forEach(
                     (school: NonNullable<Student['schoolsAttended']>[0]) => {
                         doc.fontSize(8);
-                        doc.text(`Name : ${school?.name}`);
-                        doc.text(`Address : ${school?.address}`);
+                        doc.text(`Name : ${school?.name || 'N/A'}`);
+                        doc.text(`Address : ${school?.address || 'N/A'}`);
                         doc.text(
                             `Level of Education : ${capitalize(
                                 getEducationLevelLabel(school?.educationLevel)
@@ -162,22 +162,28 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                             )}`
                         );
                         doc.text(
-                            `Degree Awarded On : ${date({
-                                scheme: 'd MMMM y',
-                                value: school?.degreeAwardedOn
-                            })}`
+                            `Degree Awarded On : ${
+                                date({
+                                    scheme: 'd MMMM y',
+                                    value: school?.degreeAwardedOn
+                                }) || 'N/A'
+                            }`
                         );
                         doc.text(
-                            `Attended Institution From : ${date({
-                                scheme: 'd MMMM y',
-                                value: school?.attendedInstitutionFrom
-                            })}`
+                            `Attended Institution From : ${
+                                date({
+                                    scheme: 'd MMMM y',
+                                    value: school?.attendedInstitutionFrom
+                                }) || 'N/A'
+                            }`
                         );
                         doc.text(
-                            `Attended Institution To : ${date({
-                                scheme: 'd MMMM y',
-                                value: school?.attendedInstitutionTo
-                            })}`
+                            `Attended Institution To : ${
+                                date({
+                                    scheme: 'd MMMM y',
+                                    value: school?.attendedInstitutionTo
+                                }) || 'N/A'
+                            }`
                         );
                         doc.moveDown();
                     }
