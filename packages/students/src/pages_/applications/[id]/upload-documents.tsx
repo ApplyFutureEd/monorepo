@@ -15,13 +15,15 @@ import {
     useQuery,
     withPrivateAccess
 } from '@applyfuture/utils';
-import Documents from '@components/applications/documents/Documents';
 import Summary from '@components/applications/summary/Summary';
+import UploadDocuments from '@components/applications/upload-documents/UploadDocuments';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 const UploadDocumentsPage: FC = () => {
+    const { t } = useTranslation();
     const router = useRouter();
     const { user } = useAuthenticatedUser();
 
@@ -47,13 +49,13 @@ const UploadDocumentsPage: FC = () => {
 
     return (
         <>
-            <DashboardLayout title="Application Documents">
+            <DashboardLayout title={t('application:page-title')}>
                 <div className="mb-4">
                     <Stepper currentStep={0} isLoading={isLoading} steps={steps} />
                 </div>
                 <div className="flex items-start space-x-0 md:space-x-2">
                     <Summary applicationData={applicationData} isLoading={isLoading} />
-                    <Documents
+                    <UploadDocuments
                         applicationData={applicationData}
                         documentsData={documentsData}
                         isLoading={isLoading}

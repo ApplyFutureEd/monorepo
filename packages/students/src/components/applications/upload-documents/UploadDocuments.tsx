@@ -14,13 +14,13 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const Documents: FC<Props> = (props) => {
+const UploadDocuments: FC<Props> = (props) => {
     const { applicationData, documentsData, isLoading, studentData } = props;
 
     const { t } = useTranslation();
 
     return (
-        <div className="inside w-full bg-white rounded-lg shadow overflow-hidden md:w-2/3">
+        <div className="w-full bg-white rounded-lg shadow overflow-hidden md:w-2/3">
             <div className="hidden px-4 py-5 border-b border-gray-200 sm:px-6 md:block">
                 <h3 className="text-gray-900 text-lg font-medium leading-6">
                     {t('application:documents-requested')}
@@ -30,7 +30,7 @@ const Documents: FC<Props> = (props) => {
                 </p>
             </div>
 
-            <div className="inside-scroll px-4 py-5 overflow-y-scroll sm:p-0">
+            <div className="px-4 py-5 sm:p-0">
                 <dl>
                     <UploadDocumentsForm
                         applicationData={applicationData}
@@ -44,4 +44,4 @@ const Documents: FC<Props> = (props) => {
     );
 };
 
-export default Documents;
+export default UploadDocuments;

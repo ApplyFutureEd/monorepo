@@ -22,7 +22,7 @@ import {
     getCambridgeAdvancedLabel,
     getCambridgeFirstLabel,
     getCountryLabel,
-    getEducationLabel,
+    getEducationLevelLabel,
     getLanguageLevelLabel,
     graphql,
     markdown,
@@ -245,7 +245,7 @@ const ProgramPage: FC<Props> = (props) => {
                                     icon={faBook}
                                     label={t('programs:minimum-level-of-education-required')}>
                                     {t(
-                                        `programs:${getEducationLabel(
+                                        `programs:${getEducationLevelLabel(
                                             program?.highestEducationLevel
                                         )}`
                                     )}

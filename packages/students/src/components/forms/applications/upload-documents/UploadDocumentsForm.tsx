@@ -7,6 +7,7 @@ import {
     GetDocumentByStorageKeyQueryVariables,
     GetDocumentByStudentQuery,
     GetStudentByEmailQuery,
+    updateApplication,
     updateDocument
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
@@ -115,14 +116,14 @@ const UploadDocumentsForm: FC<Props> = (props) => {
 
     useEffect(() => {
         if (student && documents) {
-            const initialValues = Object.assign(
+            const newValues = Object.assign(
                 {},
                 ...requestedDocumentsIds.map((key) => ({
                     [key]: findDocument(documents, key) || ''
                 }))
             );
 
-            setInitialValues(initialValues);
+            setInitialValues(newValues);
         }
     }, [student, documents]);
 
@@ -174,6 +175,17 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 title: t('profile:toast-information-updated'),
                 variant: 'success'
             });
+
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+            updatedSteps[0].status = 'DONE';
+            updatedSteps[1].status = 'PROGRESS';
+            updatedSteps[1].date = new Date().toString();
+
+            await graphql(updateApplication, {
+                input: { id: application?.id, steps: updatedSteps }
+            });
+
+            router.push(`/applications/${application?.id}/review-documents`);
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -250,7 +262,6 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                             <div className="flex flex-grow justify-between space-x-4 md:flex-grow-0 md:justify-start">
                                 <Link href="/applications">
                                     <Button
-                                        disabled={false}
                                         isLoading={isLoading}
                                         isSubmitting={isSubmitting}
                                         startIcon={faArrowLeft}
@@ -260,7 +271,6 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                                     </Button>
                                 </Link>
                                 <Button
-                                    disabled={false}
                                     endIcon={faArrowRight}
                                     isLoading={isLoading}
                                     isSubmitting={isSubmitting}
