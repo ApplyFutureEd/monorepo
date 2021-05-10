@@ -6,7 +6,7 @@ type Props = {
     index: number;
 };
 
-const SkeletonRow: FC<Props> = (props) => {
+const SkeletonDocumentRow: FC<Props> = (props) => {
     const { index } = props;
 
     const baseClasses =
@@ -36,4 +36,4 @@ const SkeletonRow: FC<Props> = (props) => {
     );
 };
 
-export default SkeletonRow;
+export default SkeletonDocumentRow;

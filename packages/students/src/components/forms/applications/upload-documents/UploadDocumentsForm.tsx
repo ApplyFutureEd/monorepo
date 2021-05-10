@@ -20,8 +20,8 @@ import {
     scrollToErrors,
     toast
 } from '@applyfuture/utils';
-import Row from '@components/applications/row/Row';
-import SkeletonRow from '@components/applications/row/SkeletonRow';
+import DocumentRow from '@components/applications/document-row/DocumentRow';
+import SkeletonDocumentRow from '@components/applications/document-row/SkeletonDocumentRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
@@ -217,7 +217,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
         return (
             <>
                 {skeletons.map((_document: any, index: number) => (
-                    <SkeletonRow key={index} index={index} />
+                    <SkeletonDocumentRow key={index} index={index} />
                 ))}
             </>
         );
@@ -238,7 +238,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                             ?.filter((document) => conditionFilter(document, student))
                             .filter((document) => languagesBypassFilter(document, student))
                             .map((document: any, index: number) => (
-                                <Row
+                                <DocumentRow
                                     key={document.name}
                                     application={application}
                                     document={document}
