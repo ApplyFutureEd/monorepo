@@ -6837,6 +6837,12 @@ export type GetApplicationByStudentQuery = {
         otherRequirements?: string | null,
         published: boolean,
         schedule: string,
+        school : {
+            __typename: "School",
+            logo:string,
+            name: string,
+            slug:string
+        }
         schoolId: string,
         schoolName: string,
         slug: string,

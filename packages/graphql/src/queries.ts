@@ -1,3 +1,4 @@
+import { Logo } from './../../ui/src/logo/Logo';
 /* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
@@ -1779,6 +1780,11 @@ export const getApplicationByStudent = /* GraphQL */ `
           otherRequirements
           published
           schedule
+          school {
+            logo
+            name
+            slug
+          }
           schoolId
           schoolName
           slug
