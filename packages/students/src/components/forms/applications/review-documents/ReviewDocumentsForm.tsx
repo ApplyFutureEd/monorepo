@@ -153,7 +153,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                                             startIcon={faFilePdf}
                                             variant="primary"
                                             onClick={handleOpen}>
-                                            {t('application:documents-confirmation')}
+                                            {t('application:preview')}
                                         </Button>
                                     </div>
                                 </>
