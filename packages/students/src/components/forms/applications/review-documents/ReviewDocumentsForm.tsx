@@ -31,7 +31,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
     };
 
     const validationSchema = object().shape({
-        declaration: boolean().oneOf([true], t('required'))
+        declaration: boolean().oneOf([true], t('common:error-field-required'))
     });
 
     const onSubmit = async (_values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -59,7 +59,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
             });
 
             if (hasApplicationFees) {
-                router.push(`/applications/${application?.id}/payment`);
+                router.push(`/applications/${application?.id}/fees-payment`);
             } else {
                 router.push(`/applications/${application?.id}/submission`);
             }
@@ -124,7 +124,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                     className="h-screen-90 w-full"
                     id="application-document-frame"
                     src={applicationDocumentUrl}
-                    title={t('application:documents-confirmation')}
+                    title={t('application:preview')}
                 />
             </Modal>
             <Formik
@@ -153,7 +153,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                                             startIcon={faFilePdf}
                                             variant="primary"
                                             onClick={handleOpen}>
-                                            {t('application:documents-confirmation')}
+                                            {t('application:preview')}
                                         </Button>
                                     </div>
                                 </>

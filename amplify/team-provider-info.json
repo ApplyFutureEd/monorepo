@@ -29,7 +29,7 @@
         },
         "applicationdocument": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationdocument-5578306a302f69706b6a-build.zip"
+          "s3Key": "amplify-builds/applicationdocument-525631524c553672656f-build.zip"
         },
         "contactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
@@ -38,6 +38,10 @@
         "recruiterscontactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
           "s3Key": "amplify-builds/recruiterscontactform-6a666345644941486f79-build.zip"
+        },
+        "feespayment": {
+          "deploymentBucketName": "amplify-students-dev-162403-deployment",
+          "s3Key": "amplify-builds/feespayment-562b73776a51454f444f-build.zip"
         }
       }
     }

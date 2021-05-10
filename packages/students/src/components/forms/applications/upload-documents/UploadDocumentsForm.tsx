@@ -65,7 +65,7 @@ const UploadDocumentsForm: FC<Props> = (props) => {
                 return;
             }
             if (!values[e]) {
-                errors[e] = t('required');
+                errors[e] = t('common:error-field-required');
             }
         });
 

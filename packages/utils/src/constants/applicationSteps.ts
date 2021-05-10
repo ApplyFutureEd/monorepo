@@ -15,7 +15,7 @@ export const applicationSteps = [
     },
     {
         date: '',
-        id: 'payment',
+        id: 'fees-payment',
         isMandatory: true,
         label: 'application:step-payment',
         status: 'idle'

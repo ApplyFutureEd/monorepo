@@ -45,21 +45,19 @@ const ReviewDocumentsPage: FC = () => {
     const steps = getStepsLabels(applicationData.getApplication);
 
     return (
-        <>
-            <DashboardLayout title={t('application:page-title')}>
-                <div className="mb-4">
-                    <Stepper currentStep={1} isLoading={isLoading} steps={steps} />
-                </div>
-                <div className="flex items-start space-x-0 md:space-x-2">
-                    <Summary applicationData={applicationData} isLoading={isLoading} />
-                    <ReviewDocuments
-                        applicationData={applicationData}
-                        applicationDocumentUrl={applicationDocumentUrl}
-                        isLoading={isLoading}
-                    />
-                </div>
-            </DashboardLayout>
-        </>
+        <DashboardLayout title={t('application:page-title')}>
+            <div className="mb-4">
+                <Stepper currentStep={1} isLoading={isLoading} steps={steps} />
+            </div>
+            <div className="flex items-start space-x-0 md:space-x-2">
+                <Summary applicationData={applicationData} isLoading={isLoading} />
+                <ReviewDocuments
+                    applicationData={applicationData}
+                    applicationDocumentUrl={applicationDocumentUrl}
+                    isLoading={isLoading}
+                />
+            </div>
+        </DashboardLayout>
     );
 };
 
