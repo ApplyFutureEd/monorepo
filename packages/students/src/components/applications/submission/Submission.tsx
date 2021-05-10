@@ -8,7 +8,7 @@ type Props = {
     applicationData: GetApplicationQuery;
 };
 
-const FeesPayment: FC<Props> = (props) => {
+const Submission: FC<Props> = (props) => {
     const { applicationData } = props;
     const application = applicationData.getApplication;
 
@@ -62,4 +62,4 @@ const FeesPayment: FC<Props> = (props) => {
     );
 };
 
-export default FeesPayment;
+export default Submission;
