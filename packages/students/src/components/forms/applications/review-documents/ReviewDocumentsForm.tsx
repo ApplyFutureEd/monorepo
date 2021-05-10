@@ -124,7 +124,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                     className="h-screen-90 w-full"
                     id="application-document-frame"
                     src={applicationDocumentUrl}
-                    title={t('application:documents-confirmation')}
+                    title={t('application:preview')}
                 />
             </Modal>
             <Formik
