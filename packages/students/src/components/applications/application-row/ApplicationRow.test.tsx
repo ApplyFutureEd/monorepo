@@ -1,33 +1,15 @@
 /* eslint-disable sort-keys */
-import { GetApplicationQuery, GetStudentByEmailQuery } from '@applyfuture/graphql';
-import { toast } from '@applyfuture/utils';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
+import { render, screen } from '@testing-library/react';
 import { Storage } from 'aws-amplify';
 import React from 'react';
 
-import DocumentRow from './DocumentRow';
-
-jest.mock('next/router', () => ({
-    useRouter() {
-        return {
-            locale: 'en'
-        };
-    }
-}));
-
-jest.mock('formik', () => ({
-    Field: jest.fn().mockImplementation(() => <div />)
-}));
-
-jest.mock('@applyfuture/utils', () => ({
-    ...(jest.requireActual('@applyfuture/utils') as Record<string, any>),
-    toast: jest.fn()
-}));
+import ApplicationRow from './ApplicationRow';
 
 Storage.get = jest.fn();
 window.open = jest.fn();
 
-describe('DocumentRow', () => {
+describe('ApplicationRow', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -40,7 +22,25 @@ describe('DocumentRow', () => {
         modalApplicationCompletedViewed: false,
         notifications: null,
         owner: '6e79f0ea-f81b-4791-bc96-e052ce147d7b',
-        program: { applicationFee: 1, feeCurrency: 'EUR' },
+        program: {
+            city: 'Murcia',
+            country: 'ES',
+            duration: 31540000,
+            durationUnit: 'YEAR',
+            fee: 9000,
+            feeCurrency: 'EUR',
+            feeUnit: 'TOTAL',
+            intakes: '2021-11-09T00:00:00.000Z',
+            name: 'Master’s Degree in Business Administration - MBA',
+            schedule: 'FULL_TIME',
+            school: {
+                logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
+                name: 'UCAM Universidad Católica San Antonio de Murcia'
+            },
+            slug:
+                'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia',
+            applicationFee: 1
+        },
         programId: 'ff8987cd-bcd7-4ca7-812a-3d46d7d9234d',
         steps: [
             {
@@ -380,341 +380,17 @@ describe('DocumentRow', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown) as GetApplicationQuery['getApplication'];
-
-    const document = ({
-        name: 'ielts',
-        isMandatory: true,
-        storageKey: null,
-        description: null,
-        condition: null,
-        isSpecific: null
     } as unknown) as NonNullable<
-        NonNullable<GetApplicationQuery['getApplication']>['program']
-    >['requestedDocuments'][0];
-
-    const student = ({
-        id: 'a5319bc4-e609-403b-a2af-35ff3f886b31',
-        address: '33 Rue du Général Leclerc, Issy-les-Moulineaux, France',
-        applications: {
-            nextToken: null
-        },
-        birthday: '2021-03-22T23:00:00.000Z',
-        city: '',
-        country: '',
-        degrees: null,
-        disciplines: null,
-        documents: {
-            nextToken: null
-        },
-        educationCountry: 'FR',
-        email: 'pcailly@pm.me',
-        fatherFirstName: 'Philippe',
-        fatherLastName: 'CAILLY',
-        firstLanguage: 'FR',
-        firstName: 'Paul',
-        favoritePrograms: null,
-        favoriteSchools: null,
-        gender: 'MALE',
-        gradePointAverage: 4,
-        guardianFirstName: '',
-        guardianLastName: '',
-        hasMandatoryDocuments: null,
-        highestEducationLevel: 5,
-        lastName: 'CAILLY',
-        lastUpdate: 1617502027097,
-        locale: null,
-        maritalStatus: 'SINGLE',
-        middleName: '',
-        modalProfileCompletedViewed: true,
-        phoneNumber: '+33621122955',
-        motherFirstName: 'Juliette',
-        motherMaidenName: 'LANG',
-        nationality: 'FR',
-        notifications: null,
-        parentsAddress: '5 Chemin du Moulin, Fontaine-Simon, France',
-        parentsCity: '',
-        parentsCountry: '',
-        parentsEmail: 'philippe@cailly.eu',
-        parentsPhoneNumber: '+33621122955',
-        passportNumber: 'N1234567',
-        refusedVisa: false,
-        refusedVisaReason: '',
-        schoolsAttended: [
-            {
-                address: 'ESCE, Rue Sextius Michel, Paris, France',
-                attendedInstitutionFrom: '2021-03-16T23:00:00.000Z',
-                attendedInstitutionTo: '2021-03-19T23:00:00.000Z',
-                city: '',
-                country: '',
-                degreeAwarded: 1,
-                degreeAwardedOn: '2021-03-17T23:00:00.000Z',
-                educationLevel: 1,
-                name: 'ESCE',
-                primaryLanguageInstruction: 'FR'
-            }
-        ],
-        testCambridgeAdvanced: null,
-        testCambridgeAdvancedDate: null,
-        testCambridgeFirst: null,
-        testCambridgeFirstDate: null,
-        testCeliCilsItPlida: null,
-        testCeliCilsItPlidaDate: null,
-        testDele: null,
-        testDeleDate: null,
-        testDelfdalf: null,
-        testDelfdalfDate: null,
-        testEnglishPending: false,
-        testGmat: null,
-        testGmatDate: null,
-        testGoethe: null,
-        testGoetheDate: null,
-        testGre: null,
-        testGreDate: null,
-        testIelts: null,
-        testIeltsDate: null,
-        testLogicAndReasoningPending: true,
-        testOtherLanguagesPending: true,
-        testTagemage: null,
-        testTagemageDate: null,
-        testTcftef: null,
-        testTcftefDate: null,
-        testToefl: 660,
-        testToeflDate: null,
-        testToeic: null,
-        testToeicDate: null,
-        validVisa: true,
-        workExperiences: [
-            {
-                address: '',
-                compagnyName: '',
-                title: '',
-                workedFrom: null,
-                workedTo: null
-            }
-        ],
-        createdAt: '2021-03-23T18:49:25.156Z',
-        updatedAt: '2021-04-04T02:07:08.005Z',
-        owner: '6e79f0ea-f81b-4791-bc96-e052ce147d7b'
-    } as unknown) as NonNullable<
-        NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']
+        NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
     >[0];
 
+    const onClick = jest.fn();
+
     it('can render without crashing', () => {
-        render(
-            <DocumentRow
-                application={application}
-                document={document}
-                index={0}
-                student={student}
-            />
-        );
+        render(<ApplicationRow application={application} open={false} onClick={onClick} />);
 
-        const documentName = screen.getByText('profile:ielts');
+        const programName = screen.getByText('Master’s Degree in Business Administration - MBA');
 
-        expect(documentName).toBeInTheDocument();
-    });
-
-    it('can display optional chip if the document is not mandatory', () => {
-        const optionalDocument = ({
-            name: 'ielts',
-            isMandatory: false,
-            storageKey: null,
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const optionalChip = screen.getByText('application:optional');
-
-        expect(optionalChip).toBeInTheDocument();
-    });
-
-    it('can display english document details', () => {
-        const optionalDocument = ({
-            name: 'ielts',
-            isMandatory: false,
-            storageKey: null,
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const englishDocumentDetails = screen.getByText('application:english-test-proof-details');
-
-        expect(englishDocumentDetails).toBeInTheDocument();
-    });
-
-    it('can display french document details', () => {
-        const optionalDocument = ({
-            name: 'tef-tcf',
-            isMandatory: true,
-            storageKey: null,
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const frenchDocumentDetails = screen.getByText('application:french-test-proof-details');
-
-        expect(frenchDocumentDetails).toBeInTheDocument();
-    });
-
-    it('can display logic and reasoning document details', () => {
-        const optionalDocument = ({
-            name: 'gmat',
-            isMandatory: true,
-            storageKey: null,
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const logicAndReasoningDocumentDetails = screen.getByText(
-            'application:logic-and-reasoning-test-proof-details'
-        );
-
-        expect(logicAndReasoningDocumentDetails).toBeInTheDocument();
-    });
-
-    it('can display download template button if the document has a storageKey', () => {
-        const optionalDocument = ({
-            name: 'health-statement',
-            isMandatory: true,
-            storageKey: 'health-statement-template-29390102',
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const downloadTemplateButton = screen.getByText('application:download-template');
-
-        expect(downloadTemplateButton).toBeInTheDocument();
-    });
-
-    it('can call Storage.get and window.open when the download template button is clicked', async () => {
-        const optionalDocument = ({
-            name: 'health-statement',
-            isMandatory: true,
-            storageKey: 'health-statement-template-29390102',
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const downloadTemplateButton = screen.getByText('application:download-template');
-
-        await waitFor(() => {
-            fireEvent.click(downloadTemplateButton);
-        });
-
-        await waitFor(() => {
-            expect(Storage.get).toHaveBeenCalledWith('health-statement-template-29390102', {
-                level: 'public'
-            });
-            expect(window.open).toHaveBeenCalled();
-        });
-    });
-
-    it('can call display a toast when the download template button is clicked and an error is thrown', async () => {
-        Storage.get = jest.fn().mockImplementation(() => {
-            throw new Error();
-        });
-
-        const optionalDocument = ({
-            name: 'health-statement',
-            isMandatory: true,
-            storageKey: 'health-statement-template-29390102',
-            description: null,
-            condition: null,
-            isSpecific: null
-        } as unknown) as NonNullable<
-            NonNullable<GetApplicationQuery['getApplication']>['program']
-        >['requestedDocuments'][0];
-
-        render(
-            <DocumentRow
-                application={application}
-                document={optionalDocument}
-                index={0}
-                student={student}
-            />
-        );
-
-        const downloadTemplateButton = screen.getByText('application:download-template');
-
-        await waitFor(() => {
-            fireEvent.click(downloadTemplateButton);
-        });
-
-        await waitFor(() => {
-            expect(toast).toHaveBeenCalled();
-        });
+        expect(programName).toBeInTheDocument();
     });
 });

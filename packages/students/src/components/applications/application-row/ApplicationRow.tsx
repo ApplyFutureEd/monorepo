@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
+import { FC } from 'react';
 
 type Props = {
     application: NonNullable<
@@ -19,7 +20,7 @@ type Props = {
     open: boolean;
 };
 
-const ApplicationRow = (props: Props) => {
+const ApplicationRow: FC<Props> = (props) => {
     const { application, onClick, open } = props;
     const { t } = useTranslation();
 
@@ -37,14 +38,14 @@ const ApplicationRow = (props: Props) => {
                                 src={`${process.env.ASSETS_CDN_URL}/${application?.program?.school?.logo}`}
                             />
                         </div>
-                        <div className="flex-1 px-4 min-w-0 md:grid md:gap-4 md:grid-cols-2">
-                            <div className="text-gray-900 hover:text-indigo-500 text-sm leading-5">
-                                <span className="text-bold">
+                        <div className="flex-1 px-4 min-w-0 md:grid md:gap-16 md:grid-cols-2">
+                            <div>
+                                <div className="text-left text-gray-900 hover:text-indigo-500 text-sm font-bold leading-5">
                                     <Link href={`/programs/${application?.program?.slug}`}>
                                         {application?.program?.name}
                                     </Link>
-                                </span>
-                                <div className="flex items-center mt-2 text-gray-500 text-sm leading-5">
+                                </div>
+                                <div className="flex items-center mt-2 text-left text-gray-500 text-sm leading-5">
                                     <Link href={`/schools/${application?.program?.school?.slug}`}>
                                         <div className="flex flex-col hover:text-indigo-500 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
                                             <div className="flex items-baseline space-x-1">
@@ -63,15 +64,13 @@ const ApplicationRow = (props: Props) => {
                                 </div>
                             </div>
                             <div className="hidden md:block">
-                                <div>
-                                    <div className="text-gray-900 text-sm leading-5">
-                                        {t('application:id')}:{' '}
-                                        <b>{application && toShortId(application?.id)}</b>
-                                    </div>
-                                    <div className="mt-2 text-gray-900 text-sm leading-5">
-                                        {t('application:intake')}:{' '}
-                                        <b>{date({ value: application?.intake })}</b>
-                                    </div>
+                                <div className="text-left text-gray-900 text-sm leading-5">
+                                    {t('application:id')}:{' '}
+                                    <b>{application && toShortId(application?.id)}</b>
+                                </div>
+                                <div className="mt-2 text-left text-gray-900 text-sm leading-5">
+                                    {t('application:intake')}:{' '}
+                                    <b>{date({ value: application?.intake })}</b>
                                 </div>
                             </div>
                         </div>
