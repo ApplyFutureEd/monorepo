@@ -145,7 +145,7 @@ const RecruitersForm: FC<Props> = (props) => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            API.post('REST', '/ses/recruiters-contact-form', {
+            API.post('rest', '/recruiters-contact-form', {
                 body: values
             });
             actions.setSubmitting(false);

@@ -218,7 +218,7 @@ export const FileUploader: FC<Props> = (props) => {
                 <div className="align-items flex justify-center">
                     {previewImageLoadError ? (
                         <iframe
-                            className="h-preview w-full md:h-40"
+                            className="h-screen-90 sm:h-screen-40 w-full"
                             id="frame"
                             src={previewUrl}
                             title="frame"
