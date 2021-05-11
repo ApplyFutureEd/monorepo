@@ -142,11 +142,6 @@ const FeesPaymentForm: FC<Props> = (props) => {
         }
     };
 
-    const countriesOptions = countries.map((country) => ({
-        label: t(`common:${country.label}`),
-        value: country.value
-    }));
-
     return (
         <Formik
             enableReinitialize
