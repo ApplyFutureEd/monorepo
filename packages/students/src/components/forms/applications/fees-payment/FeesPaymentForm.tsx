@@ -1,6 +1,6 @@
 import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
 import { Button, CardCvcInput, CardExpireDateInput, CardNumberInput, Input } from '@applyfuture/ui';
-import { countries, graphql, toast, toShortId } from '@applyfuture/utils';
+import { graphql, toast, toShortId } from '@applyfuture/utils';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { StripeError } from '@stripe/stripe-js';
