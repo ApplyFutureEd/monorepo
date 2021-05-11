@@ -9,8 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React from 'react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 type Props = {
     application: NonNullable<
