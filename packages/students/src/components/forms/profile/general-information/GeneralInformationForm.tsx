@@ -5,21 +5,12 @@ import {
     UpdateStudentMutation,
     UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
-import {
-    AutocompleteInput,
-    Button,
-    DateInput,
-    Input,
-    PhoneInput,
-    Section,
-    Select
-} from '@applyfuture/ui';
+import { Button, DateInput, Input, PhoneInput, Section, Select } from '@applyfuture/ui';
 import {
     checkCompletion,
     countries,
     genders,
     graphql,
-    isChina,
     languages,
     maritalStatus,
     scrollToErrors,
@@ -32,7 +23,6 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { toUpper } from 'lodash';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import ReactGoogleMapLoader from 'react-google-maps-loader';
 import { object, string } from 'yup';
 
 type Props = {
@@ -340,66 +330,17 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                         </Field>
                                     </div>
                                 </div>
-                                {isChina() ? (
-                                    <div className="flex flex-col sm:flex-row sm:space-x-4">
-                                        <div className="w-full sm:w-6/12">
-                                            <Field id="address" name="address">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Input
-                                                        isLoading={isLoading}
-                                                        label={t('profile:address')}
-                                                        type="text"
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                        <div className="w-full sm:w-3/12">
-                                            <Field id="city" name="city">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Input
-                                                        isLoading={isLoading}
-                                                        label={t('profile:city')}
-                                                        type="text"
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                        <div className="w-full sm:w-3/12">
-                                            <Field id="country" name="country">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Select
-                                                        isLoading={isLoading}
-                                                        label={t('profile:country')}
-                                                        options={countriesOptions}
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <ReactGoogleMapLoader
-                                        params={{
-                                            key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY,
-                                            libraries: 'places'
-                                        }}
-                                        render={(googleMaps: any) =>
-                                            googleMaps && (
-                                                <Field id="address" name="address">
-                                                    {(fieldProps: FieldProps) => (
-                                                        <AutocompleteInput
-                                                            isLoading={isLoading}
-                                                            label={t('profile:address')}
-                                                            {...fieldProps}
-                                                        />
-                                                    )}
-                                                </Field>
-                                            )
-                                        }
-                                    />
-                                )}
+
+                                <Field id="address" name="address">
+                                    {(fieldProps: FieldProps) => (
+                                        <Input
+                                            isLoading={isLoading}
+                                            label={t('profile:address')}
+                                            type="text"
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
 
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/3">
@@ -606,66 +547,18 @@ const GeneralInformationForm: FC<Props> = (props) => {
                                         </Field>
                                     </div>
                                 </div>
-                                {isChina() ? (
-                                    <div className="flex w-full space-x-4">
-                                        <div className="w-6/12">
-                                            <Field id="parentsAddress" name="parentsAddress">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Input
-                                                        isLoading={isLoading}
-                                                        label={t('profile:address')}
-                                                        type="text"
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                        <div className="w-3/12">
-                                            <Field id="parentsCity" name="parentsCity">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Input
-                                                        isLoading={isLoading}
-                                                        label={t('profile:city')}
-                                                        type="text"
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                        <div className="w-3/12">
-                                            <Field id="parentsCountry" name="parentsCountry">
-                                                {(fieldProps: FieldProps) => (
-                                                    <Select
-                                                        isLoading={isLoading}
-                                                        label={t('profile:country')}
-                                                        options={countriesOptions}
-                                                        {...fieldProps}
-                                                    />
-                                                )}
-                                            </Field>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <ReactGoogleMapLoader
-                                        params={{
-                                            key: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY,
-                                            libraries: 'places'
-                                        }}
-                                        render={(googleMaps: any) =>
-                                            googleMaps && (
-                                                <Field id="parentsAddress" name="parentsAddress">
-                                                    {(fieldProps: FieldProps) => (
-                                                        <AutocompleteInput
-                                                            isLoading={isLoading}
-                                                            label={t('profile:address')}
-                                                            {...fieldProps}
-                                                        />
-                                                    )}
-                                                </Field>
-                                            )
-                                        }
-                                    />
-                                )}
+
+                                <Field id="parentsAddress" name="parentsAddress">
+                                    {(fieldProps: FieldProps) => (
+                                        <Input
+                                            isLoading={isLoading}
+                                            label={t('profile:address')}
+                                            type="text"
+                                            {...fieldProps}
+                                        />
+                                    )}
+                                </Field>
+
                                 <div className="flex flex-col w-full sm:flex-row sm:space-x-4">
                                     <div className="w-full sm:w-1/2">
                                         <Field id="parentsPhoneNumber" name="parentsPhoneNumber">
