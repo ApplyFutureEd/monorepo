@@ -1,6 +1,7 @@
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal as BaseModal } from '@material-ui/core';
+import cx from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, ReactNode } from 'react';
 
@@ -17,11 +18,24 @@ type Props = {
      * If `true`, the modal is open.
      */
     open: boolean;
+    /**
+     * Changes width between default, small
+     */
+    size?: 'default' | 'small';
 };
 
 export const Modal: FC<Props> = (props) => {
-    const { open, onClose, children } = props;
+    const { children, onClose, open, size = 'default' } = props;
     const { t } = useTranslation();
+
+    const baseClasses =
+        'inline-block align-bottom w-screen h-screen text-left bg-white shadow-xl overflow-hidden transform transition-all sm:align-middle sm:my-8 sm:p-6 sm:pb-4 sm:pt-5 sm:px-4 sm:rounded-lg md:w-full md:h-full';
+
+    const classes = cx({
+        [`${baseClasses}`]: true,
+        ['sm:max-w-3xl']: size === 'default',
+        ['sm:max-w-lg']: size === 'small'
+    });
 
     return (
         <BaseModal hideBackdrop open={open} onClose={onClose}>
@@ -40,7 +54,7 @@ export const Modal: FC<Props> = (props) => {
                     <div
                         aria-labelledby="modal-headline"
                         aria-modal="true"
-                        className="inline-block align-bottom w-screen h-screen text-left bg-white shadow-xl overflow-hidden transform transition-all sm:align-middle sm:my-8 sm:p-6 sm:pb-4 sm:pt-5 sm:px-4 sm:max-w-3xl sm:rounded-lg md:w-full md:h-full"
+                        className={classes}
                         role="dialog">
                         <div className="absolute right-0 top-0 mb-4 pr-4 pt-4">
                             <button
