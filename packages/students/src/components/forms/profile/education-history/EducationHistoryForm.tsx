@@ -5,8 +5,7 @@ import {
     UpdateStudentMutation,
     UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
-import { Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
-import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
+import { AutocompleteInput, Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
 import {
     checkCompletion,
     countries,

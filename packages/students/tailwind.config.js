@@ -18,6 +18,10 @@ module.exports = {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
             },
+            height: {
+                'screen-40': '40vh',
+                'screen-90': '90vh'
+            },
             maxHeight: {
                 chip: '20px'
             },

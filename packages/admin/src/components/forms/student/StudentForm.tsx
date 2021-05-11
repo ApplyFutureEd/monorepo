@@ -1,5 +1,6 @@
 import { GetDocumentByStudentQuery, GetStudentQuery } from '@applyfuture/graphql';
 import {
+    AutocompleteInput,
     Button,
     Checkbox,
     DateInput,
@@ -10,7 +11,6 @@ import {
     Select,
     Tooltip
 } from '@applyfuture/ui';
-import AutocompleteInput from '@applyfuture/ui/src/autocomplete-input/AutocompleteInput';
 import {
     cambridgeAdvancedResults,
     cambridgeFirstResults,

@@ -36,7 +36,7 @@ const ContactForm: FC = () => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            await API.post('REST', '/ses/contact-form', {
+            await API.post('rest', '/contact-form', {
                 body: values
             });
             actions.setSubmitting(false);
