@@ -8,11 +8,10 @@ import {
     configure,
     eggs,
     initSentry,
-    initWhyDidYouRender,
-    setCountryCode
+    initWhyDidYouRender
 } from '@applyfuture/utils';
 import type { AppProps } from 'next/app';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 configure();
@@ -21,10 +20,6 @@ initWhyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     eggs[0].useEgg();
-
-    useEffect(() => {
-        setCountryCode();
-    }, []);
 
     return (
         <>

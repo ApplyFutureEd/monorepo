@@ -5,13 +5,12 @@ import {
     UpdateStudentMutation,
     UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
-import { AutocompleteInput, Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
+import { Button, DateInput, Input, Section, Select } from '@applyfuture/ui';
 import {
     checkCompletion,
     countries,
     educationLevels,
     graphql,
-    isChina,
     languages,
     scrollToErrors,
     toast
@@ -29,7 +28,6 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import ReactGoogleMapLoader from 'react-google-maps-loader';
 import { array, mixed, number, object, string } from 'yup';
 
 type Props = {
@@ -291,106 +289,28 @@ const EducationHistoryForm: FC<Props> = (props) => {
                                                                         )}
                                                                     </Field>
                                                                 </div>
-                                                                {isChina() ? (
-                                                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <Field
-                                                                            name={`schoolsAttended.${index}.address`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <Input
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:address'
-                                                                                    )}
-                                                                                    type="text"
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <ReactGoogleMapLoader
-                                                                            params={{
-                                                                                key:
-                                                                                    process.env
-                                                                                        .NEXT_PUBLIC_GOOGLE_MAP_KEY,
-                                                                                libraries: 'places'
-                                                                            }}
-                                                                            render={(
-                                                                                googleMaps: any
-                                                                            ) =>
-                                                                                googleMaps && (
-                                                                                    <Field
-                                                                                        name={`schoolsAttended.${index}.address`}>
-                                                                                        {(
-                                                                                            fieldProps: FieldProps
-                                                                                        ) => (
-                                                                                            <AutocompleteInput
-                                                                                                isLoading={
-                                                                                                    isLoading
-                                                                                                }
-                                                                                                label={t(
-                                                                                                    'profile:address'
-                                                                                                )}
-                                                                                                {...fieldProps}
-                                                                                            />
-                                                                                        )}
-                                                                                    </Field>
-                                                                                )
-                                                                            }
-                                                                        />
-                                                                    </div>
-                                                                )}
+
+                                                                <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
+                                                                    <Field
+                                                                        name={`schoolsAttended.${index}.address`}>
+                                                                        {(
+                                                                            fieldProps: FieldProps
+                                                                        ) => (
+                                                                            <Input
+                                                                                isLoading={
+                                                                                    isLoading
+                                                                                }
+                                                                                label={t(
+                                                                                    'profile:address'
+                                                                                )}
+                                                                                type="text"
+                                                                                {...fieldProps}
+                                                                            />
+                                                                        )}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
 
-                                                            {isChina() && (
-                                                                <div className="flex flex-col items-center w-full sm:flex-row sm:space-x-4">
-                                                                    <div className="w-full sm:w-1/2">
-                                                                        <Field
-                                                                            name={`schoolsAttended.${index}.city`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <Input
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:city'
-                                                                                    )}
-                                                                                    type="text"
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
-                                                                    </div>
-                                                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <Field
-                                                                            name={`schoolsAttended.${index}.country`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <Select
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:country'
-                                                                                    )}
-                                                                                    options={
-                                                                                        countriesOptions
-                                                                                    }
-                                                                                    {...fieldProps}
-                                                                                />
-                                                                            )}
-                                                                        </Field>
-                                                                    </div>
-                                                                </div>
-                                                            )}
                                                             <div className="flex flex-col items-center w-full sm:flex-row sm:space-x-4">
                                                                 <div className="w-full sm:w-1/2">
                                                                     <Field

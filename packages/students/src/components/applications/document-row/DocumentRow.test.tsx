@@ -3,9 +3,9 @@ import { GetApplicationQuery, GetStudentByEmailQuery } from '@applyfuture/graphq
 import { toast } from '@applyfuture/utils';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Storage } from 'aws-amplify';
-import React, { FC } from 'react';
+import React from 'react';
 
-import Row from './Row';
+import DocumentRow from './DocumentRow';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -27,7 +27,7 @@ jest.mock('@applyfuture/utils', () => ({
 Storage.get = jest.fn();
 window.open = jest.fn();
 
-describe('Row', () => {
+describe('DocumentRow', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -501,7 +501,14 @@ describe('Row', () => {
     >[0];
 
     it('can render without crashing', () => {
-        render(<Row application={application} document={document} index={0} student={student} />);
+        render(
+            <DocumentRow
+                application={application}
+                document={document}
+                index={0}
+                student={student}
+            />
+        );
 
         const documentName = screen.getByText('profile:ielts');
 
@@ -521,7 +528,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -547,7 +554,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -573,7 +580,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -599,7 +606,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -627,7 +634,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -653,7 +660,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}
@@ -692,7 +699,7 @@ describe('Row', () => {
         >['requestedDocuments'][0];
 
         render(
-            <Row
+            <DocumentRow
                 application={application}
                 document={optionalDocument}
                 index={0}

@@ -49,5 +49,4 @@ export * from './hooks/useWindowSize';
 
 export * from './services/amplify';
 export * from './services/AmplifyError';
-export * from './services/ip';
 export * from './services/sentry';

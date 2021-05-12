@@ -5,8 +5,8 @@ import {
     UpdateStudentMutation,
     UpdateStudentMutationVariables
 } from '@applyfuture/graphql';
-import { AutocompleteInput, Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
-import { checkCompletion, graphql, isChina, scrollToErrors, toast } from '@applyfuture/utils';
+import { Button, DateInput, Input, Section, Tooltip } from '@applyfuture/ui';
+import { checkCompletion, graphql, scrollToErrors, toast } from '@applyfuture/utils';
 import Navigation from '@components/profile/navigation/Navigation';
 import { faPlusCircle, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import {
@@ -20,7 +20,6 @@ import {
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import ReactGoogleMapLoader from 'react-google-maps-loader';
 import Skeleton from 'react-loading-skeleton';
 import { array, mixed, object, string } from 'yup';
 
@@ -276,60 +275,20 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                         )}
                                                                     </Field>
                                                                 </div>
-                                                                {isChina() ? (
-                                                                    <div className="w-full sm:w-1/2">
-                                                                        <Field
-                                                                            name={`workExperiences.${index}.address`}>
-                                                                            {(
-                                                                                fieldProps: FieldProps
-                                                                            ) => (
-                                                                                <Input
-                                                                                    isLoading={
-                                                                                        isLoading
-                                                                                    }
-                                                                                    label={t(
-                                                                                        'profile:address'
-                                                                                    )}
-                                                                                    type="text"
-                                                                                    {...fieldProps}
-                                                                                />
+
+                                                                <Field
+                                                                    name={`workExperiences.${index}.address`}>
+                                                                    {(fieldProps: FieldProps) => (
+                                                                        <Input
+                                                                            isLoading={isLoading}
+                                                                            label={t(
+                                                                                'profile:address'
                                                                             )}
-                                                                        </Field>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div className="mt-4 w-full sm:mt-0 sm:w-1/2">
-                                                                        <ReactGoogleMapLoader
-                                                                            params={{
-                                                                                key:
-                                                                                    process.env
-                                                                                        .NEXT_PUBLIC_GOOGLE_MAP_KEY,
-                                                                                libraries: 'places'
-                                                                            }}
-                                                                            render={(
-                                                                                googleMaps: any
-                                                                            ) =>
-                                                                                googleMaps && (
-                                                                                    <Field
-                                                                                        name={`workExperiences.${index}.address`}>
-                                                                                        {(
-                                                                                            fieldProps: FieldProps
-                                                                                        ) => (
-                                                                                            <AutocompleteInput
-                                                                                                isLoading={
-                                                                                                    isLoading
-                                                                                                }
-                                                                                                label={t(
-                                                                                                    'profile:address'
-                                                                                                )}
-                                                                                                {...fieldProps}
-                                                                                            />
-                                                                                        )}
-                                                                                    </Field>
-                                                                                )
-                                                                            }
+                                                                            type="text"
+                                                                            {...fieldProps}
                                                                         />
-                                                                    </div>
-                                                                )}
+                                                                    )}
+                                                                </Field>
                                                             </div>
                                                             <div className="flex flex-col items-center w-full sm:flex-row sm:space-x-4">
                                                                 <div className="w-full sm:w-1/2">
