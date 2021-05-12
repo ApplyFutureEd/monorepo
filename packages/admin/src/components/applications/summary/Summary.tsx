@@ -20,8 +20,8 @@ const Summary: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const currentStep =
-        application?.steps.find((step: any) => step?.status === 'PROGRESS') ||
-        application?.steps.find((step: any) => step?.status === 'ERROR');
+        application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
+        application?.steps?.find((step: any) => step?.status === 'ERROR');
 
     return (
         <div className="inside hidden w-1/3 bg-white rounded-lg shadow overflow-hidden md:block">
