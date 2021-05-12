@@ -1,14 +1,17 @@
 import {
-    SearchableSearchAlertFilterInput,
-    SearchableSearchAlertSortableFields,
-    SearchableSearchAlertSortInput,
+    SearchableApplicationFilterInput,
+    SearchableApplicationSortableFields,
+    SearchableApplicationSortInput,
     SearchableSortDirection,
-    SearchSearchAlertsQuery,
-    SearchSearchAlertsQueryVariables
+    SearchApplicationsQuery,
+    SearchApplicationsQueryVariables
 } from '@applyfuture/graphql';
-import { SearchAlert } from '@applyfuture/models';
+import { Application } from '@applyfuture/models';
+import { toShortId } from '@applyfuture/utils';
 import DateFormatter from '@components/common/date-formatter/DateFormatter';
+import NotificationsFormatter from '@components/common/notifications-formatter/NotificationsFormatter';
 import ResizingPanel from '@components/common/resizing-panel/ResizingPanel';
+import StepFormatter from '@components/common/step-formatter/StepFormatter';
 import TableRow from '@components/common/table-row/TableRow';
 import {
     DataTypeProvider,
@@ -32,40 +35,59 @@ import React, { FC, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {
-    data: SearchSearchAlertsQuery;
-    handleContextMenu: (event: React.MouseEvent, row: SearchAlert) => void;
-    setVariables: React.Dispatch<React.SetStateAction<SearchSearchAlertsQueryVariables>>;
+    data: SearchApplicationsQuery;
+    handleContextMenu: (event: React.MouseEvent, row: Application) => void;
+    setVariables: React.Dispatch<React.SetStateAction<SearchApplicationsQueryVariables>>;
 };
 
 const Table: FC<Props> = (props) => {
     const { data, handleContextMenu, setVariables } = props;
     const [columns] = useState([
         { name: 'updatedAt', title: 'Last update' },
-        { name: 'query', title: 'Query' },
-        { name: 'type', title: 'Type' },
         {
-            getCellValue: (row: SearchAlert) => row.student?.firstName,
-            name: 'firstName',
+            getCellValue: (row: Application) => row.student?.firstName,
+            name: 'studentFirstName',
             title: 'First Name'
         },
         {
-            getCellValue: (row: SearchAlert) => row.student?.lastName,
-            name: 'lastName',
+            getCellValue: (row: Application) => row.student?.lastName,
+            name: 'studentLastName',
             title: 'Last Name'
         },
         {
-            getCellValue: (row: SearchAlert) => row.student?.email,
-            name: 'email',
-            title: 'Email'
+            getCellValue: (row: Application) => row.student?.passportNumber,
+            name: 'passportNumber',
+            title: 'Passport Number'
+        },
+        {
+            getCellValue: (row: Application) => toShortId(row.id),
+            name: 'applicationId',
+            title: 'Application ID'
+        },
+        {
+            getCellValue: (row: Application) => row.steps,
+            name: 'step',
+            title: 'Step'
+        },
+        {
+            name: 'todo',
+            title: 'Todo'
+        },
+        {
+            getCellValue: (row: Application) => row.notifications,
+            name: 'notifications',
+            title: 'Notifications'
         }
     ]);
     const [defaultColumnWidths] = useState([
         { columnName: 'updatedAt', width: 140 },
-        { columnName: 'query', width: 360 },
-        { columnName: 'type', width: 80 },
-        { columnName: 'firstName', width: 160 },
-        { columnName: 'lastName', width: 160 },
-        { columnName: 'email', width: 300 }
+        { columnName: 'studentFirstName', width: 100 },
+        { columnName: 'studentLastName', width: 100 },
+        { columnName: 'passportNumber', width: 100 },
+        { columnName: 'applicationId', width: 90 },
+        { columnName: 'step', width: 300 },
+        { columnName: 'todo', width: 200 },
+        { columnName: 'notifications', width: 140 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');
@@ -85,7 +107,12 @@ const Table: FC<Props> = (props) => {
         }
         setVariables({
             filter: {
-                or: [{ query: { matchPhrasePrefix: gridSearchValue } }]
+                or: [
+                    {
+                        id: { matchPhrasePrefix: gridSearchValue },
+                        todo: { matchPhrasePrefix: gridSearchValue }
+                    }
+                ]
             },
             limit: 20
         });
@@ -99,7 +126,7 @@ const Table: FC<Props> = (props) => {
         debouncedSearch.callback(gridSearchValue);
 
     const handleFilters = (gridFilters: Filter[]) => {
-        const filter: SearchableSearchAlertFilterInput = {
+        const filter: SearchableApplicationFilterInput = {
             and: gridFilters.map((gridFilter) => {
                 if (gridFilter.columnName === 'updatedAt') {
                     gridFilter.columnName = 'lastUpdate';
@@ -112,7 +139,7 @@ const Table: FC<Props> = (props) => {
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         if (typeof filter?.and !== 'undefined' && filter?.and!.length > 0) {
-            setVariables((prev: SearchSearchAlertsQueryVariables) => ({
+            setVariables((prev: SearchApplicationsQueryVariables) => ({
                 ...prev,
                 filter
             }));
@@ -130,26 +157,34 @@ const Table: FC<Props> = (props) => {
     const handleDebouncedFilter = (gridFilters: Filter[]) => debouncedFilter.callback(gridFilters);
 
     const handleSort = (gridSorts: Sorting[]) => {
-        const sort: SearchableSearchAlertSortInput = {
+        const sort: SearchableApplicationSortInput = {
             direction: gridSorts[0].direction as SearchableSortDirection,
-            field: gridSorts[0].columnName as SearchableSearchAlertSortableFields
+            field: gridSorts[0].columnName as SearchableApplicationSortableFields
         };
 
-        if (sort.field === ('updatedAt' as SearchableSearchAlertSortableFields)) {
-            sort.field = 'lastUpdate' as SearchableSearchAlertSortableFields;
+        if (sort.field === ('updatedAt' as SearchableApplicationSortableFields)) {
+            sort.field = 'lastUpdate' as SearchableApplicationSortableFields;
         }
 
-        setVariables((prev: SearchSearchAlertsQueryVariables) => ({
+        setVariables((prev: SearchApplicationsQueryVariables) => ({
             ...prev,
             sort
         }));
     };
 
     return (
-        <Grid columns={columns} rows={data?.searchSearchAlerts?.items || []}>
+        <Grid columns={columns} rows={data?.searchApplications?.items || []}>
             <DataTypeProvider
                 for={['updatedAt']}
                 formatterComponent={(props) => <DateFormatter {...props} scheme="dd/MM/yy HH:MM" />}
+            />
+            <DataTypeProvider
+                for={['step']}
+                formatterComponent={(props) => <StepFormatter {...props} />}
+            />
+            <DataTypeProvider
+                for={['notifications']}
+                formatterComponent={(props) => <NotificationsFormatter {...props} />}
             />
             <SearchState onValueChange={handleDebouncedSearch} />
             <FilteringState onFiltersChange={handleDebouncedFilter} />
