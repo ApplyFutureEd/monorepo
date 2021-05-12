@@ -1,4 +1,5 @@
 import { GetProgramBySlugQuery, GetProgramQuery } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { IconPanel, Tooltip } from '@applyfuture/ui';
 import {
     convertSecondsToUnit,
@@ -19,7 +20,6 @@ import {
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
-import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
     program:

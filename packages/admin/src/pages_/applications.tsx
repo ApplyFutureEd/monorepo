@@ -10,7 +10,7 @@ import {
 import { Application } from '@applyfuture/models';
 import { Container, Loader } from '@applyfuture/ui';
 import { graphql, toast, toShortId, useQuery, withPrivateAccess } from '@applyfuture/utils';
-import Table from '@components/applications/Table';
+import Table from '@components/applications/table/Table';
 import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { faEye, faTrash } from '@fortawesome/pro-light-svg-icons';

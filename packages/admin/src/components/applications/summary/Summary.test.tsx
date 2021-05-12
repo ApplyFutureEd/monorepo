@@ -1,10 +1,9 @@
 /* eslint-disable sort-keys */
-import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
+import { GetApplicationQuery } from '@applyfuture/graphql';
 import { render, screen } from '@testing-library/react';
-import { Storage } from 'aws-amplify';
 import React from 'react';
 
-import ApplicationRow from './ApplicationRow';
+import Summary from './Summary';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -14,11 +13,8 @@ jest.mock('next/router', () => ({
     }
 }));
 
-Storage.get = jest.fn();
-window.open = jest.fn();
-
-describe('ApplicationRow', () => {
-    const application = ({
+describe('Summary', () => {
+    const applicationData = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -30,25 +26,7 @@ describe('ApplicationRow', () => {
         modalApplicationCompletedViewed: false,
         notifications: null,
         owner: '6e79f0ea-f81b-4791-bc96-e052ce147d7b',
-        program: {
-            city: 'Murcia',
-            country: 'ES',
-            duration: 31540000,
-            durationUnit: 'YEAR',
-            fee: 9000,
-            feeCurrency: 'EUR',
-            feeUnit: 'TOTAL',
-            intakes: '2021-11-09T00:00:00.000Z',
-            name: 'Master’s Degree in Business Administration - MBA',
-            schedule: 'FULL_TIME',
-            school: {
-                logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
-                name: 'UCAM Universidad Católica San Antonio de Murcia'
-            },
-            slug:
-                'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia',
-            applicationFee: 1
-        },
+        program: { applicationFee: 1, feeCurrency: 'EUR' },
         programId: 'ff8987cd-bcd7-4ca7-812a-3d46d7d9234d',
         steps: [
             {
@@ -388,17 +366,38 @@ describe('ApplicationRow', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown) as NonNullable<
-        NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
-    >[0];
-
-    const onClick = jest.fn();
+    } as unknown) as GetApplicationQuery;
 
     it('can render without crashing', () => {
-        render(<ApplicationRow application={application} open={false} onClick={onClick} />);
+        render(<Summary applicationData={applicationData} isLoading={false} />);
 
-        const programName = screen.getByText('Master’s Degree in Business Administration - MBA');
+        const title = screen.getByText('application:application-information');
 
-        expect(programName).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
+    });
+
+    it('can render skeletons when loading', () => {
+        const { container } = render(
+            <Summary applicationData={applicationData} isLoading={true} />
+        );
+
+        const skeleton = container.querySelector('.react-loading-skeleton');
+
+        expect(skeleton).toBeInTheDocument();
+    });
+
+    it('can render free label if the program does not have application fees', () => {
+        const newApplicationData = ({
+            getApplication: {
+                ...applicationData.getApplication,
+                program: { applicationFee: -1, feeCurrency: 'EUR' }
+            }
+        } as unknown) as GetApplicationQuery;
+
+        render(<Summary applicationData={newApplicationData} isLoading={false} />);
+
+        const freeLabel = screen.getByText('application:application-information');
+
+        expect(freeLabel).toBeInTheDocument();
     });
 });
