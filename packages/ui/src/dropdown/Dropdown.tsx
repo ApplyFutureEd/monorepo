@@ -51,7 +51,7 @@ export const Dropdown: FC<Props> = (props) => {
                         leaveTo="transform opacity-0 scale-95"
                         show={open}>
                         <div className="absolute z-40 right-0 mt-2 truncate rounded-md shadow-lg origin-top-right">
-                            <div className="py-1 bg-white rounded-md shadow-xs">
+                            <div className="ring-1 ring-black ring-opacity-5 py-1 bg-white rounded-md">
                                 {items.map((item, index) => {
                                     const { label, onClick, startIcon } = item;
 

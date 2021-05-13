@@ -62,7 +62,8 @@ export const DateInput: FC<Props> = (props) => {
     };
     const onError = Boolean(meta.touched && meta.error);
 
-    const baseClasses = 'form-input block w-full sm:text-sm sm:leading-5 min-h-input';
+    const baseClasses =
+        'border-gray-300 rounded-md focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 block w-full sm:text-sm sm:leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const withLabelClasses = 'mt-1';
 

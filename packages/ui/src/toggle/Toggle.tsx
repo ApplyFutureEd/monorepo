@@ -23,7 +23,7 @@ export const Toggle: FC<Props> = (props) => {
     const { field, form, label } = props;
 
     const backgroundBaseClasses =
-        'w-11 relative inline-flex flex-shrink-0 h-6 border-2 border-transparent rounded-full focus:outline-none focus:shadow-outline cursor-pointer transition-colors duration-200 ease-in-out';
+        'w-11 relative inline-flex flex-shrink-0 h-6 border-2 border-transparent rounded-full focus:outline-none focus:ring cursor-pointer transition-colors duration-200 ease-in-out';
     const backgroundClasses = cx({
         [`${backgroundBaseClasses}`]: true,
         ['bg-gray-200']: !field.value,

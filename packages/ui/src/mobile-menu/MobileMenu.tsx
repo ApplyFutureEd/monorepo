@@ -29,7 +29,7 @@ export const MobileMenu: FC<Props> = (props) => {
     return (
         <div className="absolute z-10 z-30 inset-x-0 top-0 p-2 transform origin-top-right transition lg:hidden">
             <div className="rounded-lg shadow-lg">
-                <div className="divide-gray-50 bg-white rounded-lg shadow-xs divide-y-2">
+                <div className="divide-gray-50 ring-1 ring-black ring-opacity-5 bg-white rounded-lg divide-y-2">
                     <div className="pb-6 pt-5 px-5 space-y-6">
                         <div className="flex items-center justify-between">
                             <Link href="/">

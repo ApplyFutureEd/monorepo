@@ -51,7 +51,7 @@ const AboutPage: FC = () => {
                             </svg>
                             <div className="max-w-prose relative mx-auto text-base lg:mt-32 lg:max-w-none">
                                 <figure>
-                                    <div className="pb-7/12 relative lg:pb-0">
+                                    <div className="aspect-h-7 aspect-w-12 relative lg:pb-0">
                                         <img
                                             alt=""
                                             className="absolute inset-0 w-full h-full object-cover object-center lg:static lg:h-auto"
@@ -65,7 +65,7 @@ const AboutPage: FC = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="prose max-w-prose mx-auto text-justify text-base lg:max-w-none">
+                            <div className="prose prose-indigo max-w-prose mx-auto text-justify text-base lg:max-w-none">
                                 <p className="mb-5 text-gray-500 text-lg leading-7">
                                     {t('landing:about')}
                                 </p>

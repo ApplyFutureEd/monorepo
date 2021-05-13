@@ -28,7 +28,7 @@ export const Toast: FC<Props> = (props) => {
 
     return (
         <div className="w-full max-w-sm bg-white rounded-lg shadow-lg pointer-events-auto">
-            <div className="rounded-lg shadow-xs overflow-hidden">
+            <div className="ring-1 ring-black ring-opacity-5 rounded-lg overflow-hidden">
                 <div className="p-4">
                     <div className="flex items-start">
                         {icons[variant]}

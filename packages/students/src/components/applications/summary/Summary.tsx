@@ -20,7 +20,7 @@ const Summary: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     return (
-        <div className="inside hidden w-1/3 bg-white rounded-lg shadow overflow-hidden md:block">
+        <div className="hidden w-1/3 bg-white rounded-lg shadow overflow-hidden md:block">
             <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
                 <h3 className="text-gray-900 text-lg font-medium leading-6">
                     {t('application:application-information')}

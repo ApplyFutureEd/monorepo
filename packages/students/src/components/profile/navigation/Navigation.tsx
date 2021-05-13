@@ -17,7 +17,7 @@ const Navigation: FC<Props> = (props) => {
             <div
                 className="pt-2 px-4 bg-white border-b border-gray-200 sm:px-6"
                 id="profile-nav-container">
-                <div className="flex flex-wrap items-center justify-between -ml-4 -mt-2 sm:flex-no-wrap">
+                <div className="sm:flex-nowrap flex flex-wrap items-center justify-between -ml-4 -mt-2">
                     <div className="ml-4 mt-2">
                         <div className="border-b border-gray-200">
                             {isLoading ? <TabsSkeleton /> : <Tabs completion={completion} />}

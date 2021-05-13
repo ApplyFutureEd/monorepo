@@ -50,7 +50,7 @@ export const Header: FC<Props> = (props) => {
 
                         <Nav routes={routes} />
 
-                        <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
+                        <div className="whitespace-nowrap hidden items-center justify-end ml-4 space-x-8 lg:flex lg:flex-1 lg:w-0">
                             {components}
                         </div>
                     </div>
