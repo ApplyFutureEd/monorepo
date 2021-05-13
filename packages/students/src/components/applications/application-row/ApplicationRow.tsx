@@ -1,4 +1,5 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { date, toShortId } from '@applyfuture/utils';
 import {
     faChevronDown,
@@ -8,6 +9,7 @@ import {
 } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -21,6 +23,8 @@ type Props = {
 
 const ApplicationRow: FC<Props> = (props) => {
     const { application, onClick, open } = props;
+    const router = useRouter();
+    const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
 
     return (
@@ -69,7 +73,7 @@ const ApplicationRow: FC<Props> = (props) => {
                                 </div>
                                 <div className="mt-2 text-left text-gray-900 text-sm leading-5">
                                     {t('application:intake')}:{' '}
-                                    <b>{date({ value: application?.intake })}</b>
+                                    <b>{date({ locale: locale, value: application?.intake })}</b>
                                 </div>
                             </div>
                         </div>

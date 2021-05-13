@@ -6,9 +6,12 @@ module.exports = {
     localesPath: 'locales',
     pages: {
         '*': ['common'],
+        '/applications': ['application'],
+        '/applications/update': ['application'],
         '/programs': [],
         '/programs/create': ['profile', 'programs', 'application'],
         '/programs/update': ['profile', 'programs', 'application'],
+        '/search-alerts': [],
         '/students': [],
         '/students/update': ['profile', 'programs', 'application']
     }

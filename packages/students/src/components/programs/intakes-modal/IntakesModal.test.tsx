@@ -4,6 +4,14 @@ import IntakesModal from '@components/programs/intakes-modal/IntakesModal';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { uniqueId } from 'lodash';
 
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
+
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     graphql: jest.fn()

@@ -4,76 +4,79 @@ export const applicationSteps = [
         id: 'upload-documents',
         isMandatory: true,
         label: 'application:step-upload-documents',
-        status: 'idle'
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'review-documents',
         isMandatory: true,
         label: 'application:step-review-documents',
-        status: 'idle'
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'fees-payment',
         isMandatory: true,
         label: 'application:step-payment',
-        status: 'idle'
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'submission',
         isMandatory: true,
         label: 'application:step-submission',
-        status: 'idle'
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'application-internal-review',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-internal-review-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'school-review',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-internal-review-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'school-interview',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-school-interview-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'school-result',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-school-result-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'school-tuitions-fee-payment',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-tuitions-fee-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'decision-letter',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-decision-letter-label',
+        status: 'IDLE'
     },
     {
         date: '',
         id: 'visa',
         isMandatory: true,
-        label: 'TBD',
-        status: 'idle'
+        label: 'application:timeline-step-visa-label',
+        status: 'IDLE'
     }
 ];
+
+export const getApplicationStepLabel = (id: string | undefined): string =>
+    applicationSteps.find((step) => step.id === id)?.label || '';
