@@ -4,7 +4,7 @@ import { FC } from 'react';
 const Onboarding: FC = () => {
     return (
         <LandingLayout title='onboarding'>
-            
+            test
         </LandingLayout>
     );
 };
