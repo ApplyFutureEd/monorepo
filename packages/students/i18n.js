@@ -15,6 +15,7 @@ module.exports = {
         '/applications/[id]/upload-documents': ['application', 'profile', 'programs'],
         '/careers': ['landing'],
         '/help': ['help'],
+        '/onboarding' : ['landing'],
         '/privacy-policy': ['landing'],
         '/profile/background-information': ['profile'],
         '/profile/education-history': ['profile', 'programs'],
