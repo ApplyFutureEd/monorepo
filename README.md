@@ -8,9 +8,9 @@
 
 ## 🤖 Scripts
 
-### `yarn start`
+### `yarn start:students`
 
-Runs the app in development mode.<br>
+Runs the `students` app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will automatically refresh if you make changes to the code.<br>
