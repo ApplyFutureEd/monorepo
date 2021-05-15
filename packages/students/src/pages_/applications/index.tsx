@@ -82,6 +82,7 @@ const ApplicationsPage: FC = () => {
                         return (
                             application && (
                                 <ApplicationRow
+                                    key={application.id}
                                     application={application}
                                     open={index === open}
                                     onClick={handleClick}

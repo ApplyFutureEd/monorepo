@@ -1,6 +1,7 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { date, toShortId } from '@applyfuture/utils';
+import { config } from '@components/applications/timeline/config';
 import Timeline from '@components/applications/timeline/Timeline';
 import {
     faChevronDown,
@@ -90,7 +91,7 @@ const ApplicationRow: FC<Props> = (props) => {
             </button>
             {open && (
                 <div className="px-4 py-4 sm:px-6">
-                    <Timeline application={application} />
+                    <Timeline application={application} config={config} />
                 </div>
             )}
         </div>

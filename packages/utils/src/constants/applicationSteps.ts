@@ -5,9 +5,9 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:step-upload-documents',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-opened-label',
+        timelineDescription: '',
         timelineDescriptionOptions: '',
-        timelineLabel: ''
+        timelineLabel: 'application:timeline-step-opened-label'
     },
     {
         date: '',
@@ -55,9 +55,9 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-internal-review-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-school-interview-description',
+        timelineDescription: 'application:timeline-step-school-review-description',
         timelineDescriptionOptions: '',
-        timelineLabel: 'application:timeline-step-school-interview-label'
+        timelineLabel: 'application:timeline-step-school-review-label'
     },
     {
         date: '',
