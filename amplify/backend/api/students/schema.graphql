@@ -256,11 +256,14 @@ type Application
 }
 
 type ApplicationStep {
-    id: String!
     date: String!
+    id: String!
     isMandatory: Boolean!
     label: String!
     status: String!
+    timelineDescription: String!
+    timelineDescriptionOptions: String!
+    timelineLabel: String!
 }
 
 type Notification {

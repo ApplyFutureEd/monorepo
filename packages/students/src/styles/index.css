@@ -7,7 +7,9 @@
 @import './reset.css';
 @import './scrollbar.css';
 @import './stripe.css';
+@import './timeline.css';
 @import './toast.css';
+
 
 /* Start purging... */
 @tailwind components;

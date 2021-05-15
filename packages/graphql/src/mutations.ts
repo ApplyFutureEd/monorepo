@@ -1347,11 +1347,14 @@ export const createApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -1577,11 +1580,14 @@ export const updateApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -1807,11 +1813,14 @@ export const deleteApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -2289,11 +2298,14 @@ export const createFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {
@@ -2463,11 +2475,14 @@ export const updateFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {
@@ -2637,11 +2652,14 @@ export const deleteFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {
