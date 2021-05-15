@@ -1,8 +1,8 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
+import { Timeline } from '@applyfuture/ui';
 import { date, toShortId } from '@applyfuture/utils';
 import { config } from '@components/applications/timeline/config';
-import Timeline from '@components/applications/timeline/Timeline';
 import {
     faChevronDown,
     faChevronUp,

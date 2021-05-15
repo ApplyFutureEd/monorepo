@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable sort-keys */
 import { deleteApplication } from '@applyfuture/graphql';
-import { Button } from '@applyfuture/ui';
+import { Button, TimelineConfig } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-
-import { TimelineConfig } from './Timeline';
 
 export const config: TimelineConfig = {
     'upload-documents': {

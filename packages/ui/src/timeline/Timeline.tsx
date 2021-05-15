@@ -1,11 +1,12 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { ApplicationStep } from '@applyfuture/models';
+import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 import { date } from '@applyfuture/utils';
-import StatusIcon from '@components/applications/timeline/status-icon/StatusIcon';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
-import { SupportedLocale } from 'src/types/SupportedLocale';
+
+import StatusIcon from './status-icon/StatusIcon';
 
 type Application = NonNullable<
     NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
@@ -22,7 +23,7 @@ type Props = {
     config: TimelineConfig;
 };
 
-const Timeline: FC<Props> = (props) => {
+export const Timeline: FC<Props> = (props) => {
     const { application, config } = props;
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
@@ -84,5 +85,3 @@ const Timeline: FC<Props> = (props) => {
         </div>
     );
 };
-
-export default Timeline;
