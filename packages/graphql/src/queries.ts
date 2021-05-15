@@ -489,11 +489,14 @@ export const getApplication = /* GraphQL */ `
             }
             programId
             steps {
-                id
                 date
+                id
                 isMandatory
                 label
                 status
+                timelineDescription
+                timelineDescriptionOptions
+                timelineLabel
             }
             studentId
             student {
@@ -717,11 +720,14 @@ export const listApplications = /* GraphQL */ `
                 }
                 programId
                 steps {
-                    id
                     date
+                    id
                     isMandatory
                     label
                     status
+                    timelineDescription
+                    timelineDescriptionOptions
+                    timelineLabel
                 }
                 studentId
                 student {
@@ -1096,11 +1102,14 @@ export const getFeedback = /* GraphQL */ `
                 }
                 programId
                 steps {
-                    id
                     date
+                    id
                     isMandatory
                     label
                     status
+                    timelineDescription
+                    timelineDescriptionOptions
+                    timelineLabel
                 }
                 studentId
                 student {
@@ -1643,11 +1652,14 @@ export const getApplicationByStudent = /* GraphQL */ `
                 }
                 programId
                 steps {
-                    id
                     date
+                    id
                     isMandatory
                     label
                     status
+                    timelineDescription
+                    timelineDescriptionOptions
+                    timelineLabel
                 }
                 studentId
                 student {
@@ -1953,11 +1965,14 @@ export const searchApplications = /* GraphQL */ `
                 }
                 programId
                 steps {
-                    id
                     date
+                    id
                     isMandatory
                     label
                     status
+                    timelineDescription
+                    timelineDescriptionOptions
+                    timelineLabel
                 }
                 studentId
                 student {
