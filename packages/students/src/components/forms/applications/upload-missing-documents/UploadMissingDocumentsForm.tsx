@@ -36,7 +36,7 @@ type Props = {
     studentData: GetStudentByEmailQuery;
 };
 
-const UploadDocumentsForm: FC<Props> = (props) => {
+const UploadMissingDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
     const { applicationData, documentsData, isLoading, studentData } = props;
     const application = applicationData.getApplication;
@@ -285,4 +285,4 @@ const UploadDocumentsForm: FC<Props> = (props) => {
     );
 };
 
-export default UploadDocumentsForm;
+export default UploadMissingDocumentsForm;

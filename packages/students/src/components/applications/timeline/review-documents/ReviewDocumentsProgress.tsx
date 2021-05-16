@@ -18,7 +18,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const UploadDocumentsProgress: FC<Props> = (props) => {
+const ReviewDocumentsProgress: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -59,4 +59,4 @@ const UploadDocumentsProgress: FC<Props> = (props) => {
     );
 };
 
-export default UploadDocumentsProgress;
+export default ReviewDocumentsProgress;
