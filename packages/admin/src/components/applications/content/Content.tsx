@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Content: FC<Props> = (props) => {
-    const { applicationData, isLoading } = props;
+    const { applicationData } = props;
     const application = applicationData?.getApplication;
     const [currentTab, setCurrentTab] = useState(0);
 
