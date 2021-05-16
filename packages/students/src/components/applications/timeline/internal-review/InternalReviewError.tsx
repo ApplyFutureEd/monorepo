@@ -12,7 +12,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const ApplicationInternalReviewError: FC<Props> = (props) => {
+const InternalReviewError: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
@@ -25,4 +25,4 @@ const ApplicationInternalReviewError: FC<Props> = (props) => {
     );
 };
 
-export default ApplicationInternalReviewError;
+export default InternalReviewError;

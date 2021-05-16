@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable sort-keys */
 import { TimelineConfig } from '@applyfuture/ui';
-import ApplicationInternalReviewError from '@components/applications/timeline/application-internal-review/ApplicationInternalReviewError';
-import ApplicationInternalReviewProgress from '@components/applications/timeline/application-internal-review/ApplicationInternalReviewProgress';
 import DecisionLetterProgress from '@components/applications/timeline/decision-letter/DecisionLetterProgress';
 import FeesPaymentProgress from '@components/applications/timeline/fees-payment/FeesPaymentProgress';
+import InternalReviewError from '@components/applications/timeline/internal-review/InternalReviewError';
+import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
 import ReviewDocumentsProgress from '@components/applications/timeline/review-documents/ReviewDocumentsProgress';
 import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
 import SchoolReviewProgress from '@components/applications/timeline/school-review/SchoolReviewProgress';
@@ -37,10 +37,10 @@ export const config: TimelineConfig = {
         ERROR: () => null,
         DONE: () => null
     },
-    'application-internal-review': {
+    'internal-review': {
         IDLE: () => null,
-        PROGRESS: () => <ApplicationInternalReviewProgress />,
-        ERROR: (application) => <ApplicationInternalReviewError application={application} />,
+        PROGRESS: () => <InternalReviewProgress />,
+        ERROR: (application) => <InternalReviewError application={application} />,
         DONE: () => null
     },
     'school-review': {

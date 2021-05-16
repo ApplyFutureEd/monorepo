@@ -55,7 +55,7 @@ describe('UploadDocuments', () => {
                 },
                 {
                     date: '',
-                    id: 'application-internal-review',
+                    id: 'internal-review',
                     isMandatory: true,
                     label: 'TBD',
                     status: 'idle'
@@ -578,7 +578,7 @@ describe('UploadDocuments', () => {
             />
         );
 
-        const title = screen.getByText('application:documents-requested');
+        const title = screen.getByText('application:reupload-documents-title');
 
         expect(title).toBeInTheDocument();
     });

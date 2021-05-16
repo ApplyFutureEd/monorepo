@@ -3,7 +3,7 @@ import {
     GetDocumentByStudentQuery,
     GetStudentByEmailQuery
 } from '@applyfuture/graphql';
-import UploadDocumentsForm from '@components/forms/applications/upload-documents/UploadDocumentsForm';
+import UploadMissingDocumentsForm from '@components/forms/applications/upload-missing-documents/UploadMissingDocumentsForm';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -32,7 +32,7 @@ const UploadMissingDocuments: FC<Props> = (props) => {
 
             <div className="px-4 py-5 sm:p-0">
                 <dl>
-                    <UploadDocumentsForm
+                    <UploadMissingDocumentsForm
                         applicationData={applicationData}
                         documentsData={documentsData}
                         isLoading={isLoading}

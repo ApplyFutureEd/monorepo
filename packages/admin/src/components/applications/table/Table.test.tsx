@@ -49,7 +49,7 @@ const mockedData = ({
                         status: 'DONE'
                     },
                     {
-                        id: 'application-internal-review',
+                        id: 'internal-review',
                         date: 'Mon May 10 2021 16:05:57 GMT+0200 (heure d’été d’Europe centrale)',
                         isMandatory: true,
                         label: 'TBD',

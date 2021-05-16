@@ -33,7 +33,7 @@ export const applicationSteps = [
     },
     {
         date: '',
-        id: 'application-internal-review',
+        id: 'internal-review',
         isMandatory: true,
         label: 'application:timeline-step-internal-review-label',
         status: 'IDLE',

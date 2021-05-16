@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable sort-keys */
 import { TimelineConfig } from '@applyfuture/ui';
-import ApplicationInternalReviewProgress from '@components/applications/timeline/application-internal-review/ApplicationInternalReviewProgress';
+import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
 import React from 'react';
 
 export const config: TimelineConfig = {
@@ -29,9 +29,9 @@ export const config: TimelineConfig = {
         ERROR: () => null,
         DONE: () => null
     },
-    'application-internal-review': {
+    'internal-review': {
         IDLE: () => null,
-        PROGRESS: (application) => <ApplicationInternalReviewProgress application={application} />,
+        PROGRESS: (application) => <InternalReviewProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },

@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
-const ApplicationInternalReviewProgress: FC = () => {
+const InternalReviewProgress: FC = () => {
     const { t } = useTranslation();
 
     return (
@@ -11,4 +11,4 @@ const ApplicationInternalReviewProgress: FC = () => {
     );
 };
 
-export default ApplicationInternalReviewProgress;
+export default InternalReviewProgress;

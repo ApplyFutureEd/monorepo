@@ -17,7 +17,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const ApplicationInternalReviewProgress: FC<Props> = (props) => {
+const InternalReviewProgress: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -80,4 +80,4 @@ const ApplicationInternalReviewProgress: FC<Props> = (props) => {
     );
 };
 
-export default ApplicationInternalReviewProgress;
+export default InternalReviewProgress;
