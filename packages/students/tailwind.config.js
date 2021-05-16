@@ -39,8 +39,8 @@ module.exports = {
         },
         inset: {
             ...defaultTheme.inset,
-            '1/2': '50%',
             1: '1rem',
+            '1/2': '50%',
             2: '2rem',
             4: '4rem',
             8: '8rem'

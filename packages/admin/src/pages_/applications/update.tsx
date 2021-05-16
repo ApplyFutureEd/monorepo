@@ -1,5 +1,6 @@
 import { getApplication, GetApplicationQuery } from '@applyfuture/graphql';
 import { useQuery, withPrivateAccess } from '@applyfuture/utils';
+import Content from '@components/applications/content/Content';
 import Summary from '@components/applications/summary/Summary';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import { useRouter } from 'next/router';
@@ -16,7 +17,7 @@ const UpdateApplicationPage: FC = () => {
         <DashboardLayout title="Application">
             <div className="flex items-start space-x-0 md:space-x-2">
                 <Summary applicationData={applicationData} isLoading={applicationIsLoading} />
-                <div>timeline</div>
+                <Content applicationData={applicationData} isLoading={applicationIsLoading} />
             </div>
         </DashboardLayout>
     );

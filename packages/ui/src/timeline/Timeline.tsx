@@ -1,4 +1,4 @@
-import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
+import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
 import { ApplicationStep } from '@applyfuture/models';
 import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 import { date } from '@applyfuture/utils';
@@ -8,9 +8,9 @@ import React, { FC } from 'react';
 
 import StatusIcon from './status-icon/StatusIcon';
 
-type Application = NonNullable<
-    NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
->[0];
+type Application =
+    | NonNullable<NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']>[0]
+    | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
 export type TimelineConfig = {
     [stepId: string]: {
@@ -19,7 +19,7 @@ export type TimelineConfig = {
 };
 
 type Props = {
-    application: Application;
+    application: Application | null | undefined;
     config: TimelineConfig;
 };
 
@@ -60,7 +60,7 @@ export const Timeline: FC<Props> = (props) => {
                                             <StatusIcon status={step.status} />
                                         </div>
                                         <div className="pt-1.5 flex flex-1 justify-between min-w-0 space-x-4">
-                                            <div className="max-w-2xl">
+                                            <div className="max-w-xl">
                                                 <p className="text-gray-900 text-sm font-medium">
                                                     {t(step.timelineLabel)}
                                                 </p>
