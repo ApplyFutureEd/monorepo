@@ -494,8 +494,6 @@ export const getApplication = /* GraphQL */ `
                 isMandatory
                 label
                 status
-                timelineDescription
-                timelineDescriptionOptions
                 timelineLabel
             }
             studentId
@@ -725,8 +723,6 @@ export const listApplications = /* GraphQL */ `
                     isMandatory
                     label
                     status
-                    timelineDescription
-                    timelineDescriptionOptions
                     timelineLabel
                 }
                 studentId
@@ -1107,8 +1103,6 @@ export const getFeedback = /* GraphQL */ `
                     isMandatory
                     label
                     status
-                    timelineDescription
-                    timelineDescriptionOptions
                     timelineLabel
                 }
                 studentId
@@ -1657,8 +1651,6 @@ export const getApplicationByStudent = /* GraphQL */ `
                     isMandatory
                     label
                     status
-                    timelineDescription
-                    timelineDescriptionOptions
                     timelineLabel
                 }
                 studentId
@@ -1970,8 +1962,6 @@ export const searchApplications = /* GraphQL */ `
                     isMandatory
                     label
                     status
-                    timelineDescription
-                    timelineDescriptionOptions
                     timelineLabel
                 }
                 studentId

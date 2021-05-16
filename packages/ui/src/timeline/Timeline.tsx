@@ -8,18 +8,27 @@ import React, { FC } from 'react';
 
 import StatusIcon from './status-icon/StatusIcon';
 
-type Application =
-    | NonNullable<NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']>[0]
-    | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
-
 export type TimelineConfig = {
     [stepId: string]: {
-        [STATUS: string]: (application: Application, step: ApplicationStep) => JSX.Element | null;
+        [STATUS: string]: (
+            application:
+                | NonNullable<
+                      NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
+                  >[0]
+                | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>,
+            step: ApplicationStep
+        ) => JSX.Element | null;
     };
 };
 
 type Props = {
-    application: Application | null | undefined;
+    application:
+        | NonNullable<
+              NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
+          >[0]
+        | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>
+        | null
+        | undefined;
     config: TimelineConfig;
 };
 

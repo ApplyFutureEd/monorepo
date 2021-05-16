@@ -809,8 +809,6 @@ export const onCreateApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -1039,8 +1037,6 @@ export const onUpdateApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -1269,8 +1265,6 @@ export const onDeleteApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -1867,8 +1861,6 @@ export const onCreateFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId
@@ -2041,8 +2033,6 @@ export const onUpdateFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId
@@ -2215,8 +2205,6 @@ export const onDeleteFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId

@@ -261,8 +261,6 @@ type ApplicationStep {
     isMandatory: Boolean!
     label: String!
     status: String!
-    timelineDescription: String!
-    timelineDescriptionOptions: String!
     timelineLabel: String!
 }
 

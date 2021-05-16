@@ -29,8 +29,6 @@ export declare class ApplicationStep {
   readonly isMandatory: boolean;
   readonly label: string;
   readonly status: string;
-  readonly timelineDescription: string;
-  readonly timelineDescriptionOptions: string;
   readonly timelineLabel: string;
   constructor(init: ModelInit<ApplicationStep>);
 }
