@@ -1783,7 +1783,7 @@ export const getApplicationByStudent = /* GraphQL */ `
           otherRequirements
           published
           schedule
-          school  {
+          school: {
             logo
             name
             slug

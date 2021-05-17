@@ -29,6 +29,8 @@ type School
     slug: String!
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type Program
@@ -91,6 +93,8 @@ type Program
     testTcftef: Float!
     testToefl: Float!
     testToeic: Float!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type RequestedDocument {
@@ -186,6 +190,8 @@ type Student
     testToeicDate: String
     validVisa: Boolean
     workExperiences: [WorkExperience]
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type SchoolAttended {
@@ -224,6 +230,8 @@ type Document
     student: Student @connection(fields: ["studentId"])
     name: String!
     storageKey: String
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type Application
@@ -292,6 +300,8 @@ type SearchAlert
     studentId: ID
     type: String!
     query: String!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type Feedback
@@ -308,6 +318,8 @@ type Feedback
     applicationId: ID!
     lastUpdate: Float!
     rating: Float!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type Post
@@ -328,4 +340,6 @@ type Post
     published: Boolean!
     slug: String!
     title: String!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
