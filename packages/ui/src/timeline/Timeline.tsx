@@ -38,6 +38,7 @@ type Props = {
 
 export const Timeline: FC<Props> = (props) => {
     const { application, config } = props;
+    console.log({ initialApplication: application });
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
@@ -52,6 +53,10 @@ export const Timeline: FC<Props> = (props) => {
             }
         }
     });
+
+    console.log({ currentSteps: steps });
+
+    console.log({ nextApplication: item });
 
     useEffect(() => {
         if (item?.steps) {
