@@ -245,7 +245,7 @@ type Application
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
     )
-    @model
+    @model(subscriptions: { level: public })
     @searchable
     @key(name: "byStudent", fields: ["studentId"], queryField: "getApplicationByStudent") {
     id: ID!

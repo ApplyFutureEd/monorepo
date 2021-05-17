@@ -1789,9 +1789,9 @@ export const getApplicationByStudent = /* GraphQL */ `
           published
           schedule
           school {
+            logo
             name
             slug
-            logo
           }
           schoolId
           schoolName

@@ -9168,10 +9168,6 @@ export type OnDeleteDocumentSubscription = {
   } | null,
 };
 
-export type OnCreateApplicationSubscriptionVariables = {
-  owner?: string | null,
-};
-
 export type OnCreateApplicationSubscription = {
   onCreateApplication?:  {
     __typename: "Application",
@@ -9413,10 +9409,6 @@ export type OnCreateApplicationSubscription = {
   } | null,
 };
 
-export type OnUpdateApplicationSubscriptionVariables = {
-  owner?: string | null,
-};
-
 export type OnUpdateApplicationSubscription = {
   onUpdateApplication?:  {
     __typename: "Application",
@@ -9656,10 +9648,6 @@ export type OnUpdateApplicationSubscription = {
       } | null,
     } | null,
   } | null,
-};
-
-export type OnDeleteApplicationSubscriptionVariables = {
-  owner?: string | null,
 };
 
 export type OnDeleteApplicationSubscription = {
