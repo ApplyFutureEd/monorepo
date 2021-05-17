@@ -79,6 +79,7 @@ export declare class School {
   readonly programs?: (Program | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<School>);
   static copyOf(source: School, mutator: (draft: MutableModel<School>) => MutableModel<School> | void): School;
 }
@@ -133,6 +134,7 @@ export declare class Program {
   readonly testToeic: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Program>);
   static copyOf(source: Program, mutator: (draft: MutableModel<Program>) => MutableModel<Program> | void): Program;
 }
@@ -214,6 +216,7 @@ export declare class Student {
   readonly workExperiences?: (WorkExperience | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Student>);
   static copyOf(source: Student, mutator: (draft: MutableModel<Student>) => MutableModel<Student> | void): Student;
 }
@@ -237,6 +240,7 @@ export declare class Application {
   readonly visaDate?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Application>);
   static copyOf(source: Application, mutator: (draft: MutableModel<Application>) => MutableModel<Application> | void): Application;
 }
@@ -248,6 +252,7 @@ export declare class Document {
   readonly storageKey?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Document>);
   static copyOf(source: Document, mutator: (draft: MutableModel<Document>) => MutableModel<Document> | void): Document;
 }
@@ -260,6 +265,7 @@ export declare class SearchAlert {
   readonly query: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<SearchAlert>);
   static copyOf(source: SearchAlert, mutator: (draft: MutableModel<SearchAlert>) => MutableModel<SearchAlert> | void): SearchAlert;
 }
@@ -272,6 +278,7 @@ export declare class Feedback {
   readonly rating: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Feedback>);
   static copyOf(source: Feedback, mutator: (draft: MutableModel<Feedback>) => MutableModel<Feedback> | void): Feedback;
 }
@@ -286,6 +293,7 @@ export declare class Post {
   readonly title: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Post>);
   static copyOf(source: Post, mutator: (draft: MutableModel<Post>) => MutableModel<Post> | void): Post;
 }

@@ -29,6 +29,7 @@ export const createSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -79,6 +80,7 @@ export const createSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -112,6 +114,7 @@ export const updateSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -162,6 +165,7 @@ export const updateSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -195,6 +199,7 @@ export const deleteSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -245,6 +250,7 @@ export const deleteSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -313,6 +319,7 @@ export const createProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -335,6 +342,7 @@ export const createProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -404,6 +412,7 @@ export const updateProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -426,6 +435,7 @@ export const updateProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -495,6 +505,7 @@ export const deleteProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -517,6 +528,7 @@ export const deleteProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -1468,6 +1480,7 @@ export const createApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1525,6 +1538,7 @@ export const createApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1547,9 +1561,9 @@ export const createApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -1699,6 +1713,7 @@ export const updateApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1756,6 +1771,7 @@ export const updateApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1778,9 +1794,9 @@ export const updateApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -1930,6 +1946,7 @@ export const deleteApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1987,6 +2004,7 @@ export const deleteApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -2009,9 +2027,9 @@ export const deleteApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -2379,6 +2397,7 @@ export const createFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2428,8 +2447,8 @@ export const createFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2554,6 +2573,7 @@ export const updateFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2603,8 +2623,8 @@ export const updateFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2729,6 +2749,7 @@ export const deleteFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2778,8 +2799,8 @@ export const deleteFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2805,6 +2826,7 @@ export const createPost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2823,6 +2845,7 @@ export const updatePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2841,6 +2864,7 @@ export const deletePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;

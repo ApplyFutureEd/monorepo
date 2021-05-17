@@ -24,6 +24,7 @@ export type CreateSchoolInput = {
   published: boolean,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelSchoolConditionInput = {
@@ -47,6 +48,7 @@ export type ModelSchoolConditionInput = {
   published?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelSchoolConditionInput | null > | null,
   or?: Array< ModelSchoolConditionInput | null > | null,
   not?: ModelSchoolConditionInput | null,
@@ -134,6 +136,7 @@ export type School = {
   published?: boolean,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
   programs?: ModelProgramConnection,
 };
 
@@ -194,6 +197,7 @@ export type Program = {
   testToeic?: number,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
   school?: School,
 };
 
@@ -229,6 +233,7 @@ export type UpdateSchoolInput = {
   published?: boolean | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteSchoolInput = {
@@ -285,6 +290,7 @@ export type CreateProgramInput = {
   testToeic: number,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type RequestedDocumentInput = {
@@ -344,6 +350,7 @@ export type ModelProgramConditionInput = {
   testToeic?: ModelFloatInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelProgramConditionInput | null > | null,
   or?: Array< ModelProgramConditionInput | null > | null,
   not?: ModelProgramConditionInput | null,
@@ -415,6 +422,7 @@ export type UpdateProgramInput = {
   testToeic?: number | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteProgramInput = {
@@ -496,6 +504,7 @@ export type CreateStudentInput = {
   workExperiences?: Array< WorkExperienceInput | null > | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type NotificationInput = {
@@ -712,8 +721,8 @@ export type Application = {
   visaDate?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  program?: Program,
   owner?: string | null,
+  program?: Program,
 };
 
 export type Notification = {
@@ -853,6 +862,7 @@ export type UpdateStudentInput = {
   workExperiences?: Array< WorkExperienceInput | null > | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteStudentInput = {
@@ -866,6 +876,7 @@ export type CreateDocumentInput = {
   storageKey?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelDocumentConditionInput = {
@@ -886,6 +897,7 @@ export type UpdateDocumentInput = {
   storageKey?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteDocumentInput = {
@@ -910,6 +922,7 @@ export type CreateApplicationInput = {
   visaDate?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ApplicationStepInput = {
@@ -959,6 +972,7 @@ export type UpdateApplicationInput = {
   visaDate?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteApplicationInput = {
@@ -973,6 +987,7 @@ export type UpdateSearchAlertInput = {
   query?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelSearchAlertConditionInput = {
@@ -1011,6 +1026,7 @@ export type CreateFeedbackInput = {
   rating: number,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelFeedbackConditionInput = {
@@ -1043,6 +1059,7 @@ export type UpdateFeedbackInput = {
   rating?: number | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeleteFeedbackInput = {
@@ -1059,6 +1076,7 @@ export type CreatePostInput = {
   title: string,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelPostConditionInput = {
@@ -1070,6 +1088,7 @@ export type ModelPostConditionInput = {
   title?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelPostConditionInput | null > | null,
   or?: Array< ModelPostConditionInput | null > | null,
   not?: ModelPostConditionInput | null,
@@ -1086,6 +1105,7 @@ export type Post = {
   title?: string,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type UpdatePostInput = {
@@ -1098,6 +1118,7 @@ export type UpdatePostInput = {
   title?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type DeletePostInput = {
@@ -1112,6 +1133,7 @@ export type CreateSearchAlertInput = {
   query: string,
   createdAt?: string | null,
   updatedAt?: string | null,
+  owner?: string | null,
 };
 
 export type ModelStudentFilterInput = {
@@ -1186,6 +1208,7 @@ export type ModelStudentFilterInput = {
   validVisa?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelStudentFilterInput | null > | null,
   or?: Array< ModelStudentFilterInput | null > | null,
   not?: ModelStudentFilterInput | null,
@@ -1204,6 +1227,7 @@ export type ModelDocumentFilterInput = {
   storageKey?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelDocumentFilterInput | null > | null,
   or?: Array< ModelDocumentFilterInput | null > | null,
   not?: ModelDocumentFilterInput | null,
@@ -1225,6 +1249,7 @@ export type ModelApplicationFilterInput = {
   visaDate?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelApplicationFilterInput | null > | null,
   or?: Array< ModelApplicationFilterInput | null > | null,
   not?: ModelApplicationFilterInput | null,
@@ -1238,6 +1263,7 @@ export type ModelSearchAlertFilterInput = {
   query?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelSearchAlertFilterInput | null > | null,
   or?: Array< ModelSearchAlertFilterInput | null > | null,
   not?: ModelSearchAlertFilterInput | null,
@@ -1256,6 +1282,7 @@ export type ModelFeedbackFilterInput = {
   rating?: ModelFloatInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelFeedbackFilterInput | null > | null,
   or?: Array< ModelFeedbackFilterInput | null > | null,
   not?: ModelFeedbackFilterInput | null,
@@ -1345,6 +1372,7 @@ export type SearchableStudentFilterInput = {
   validVisa?: SearchableBooleanFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableStudentFilterInput | null > | null,
   or?: Array< SearchableStudentFilterInput | null > | null,
   not?: SearchableStudentFilterInput | null,
@@ -1476,6 +1504,7 @@ export enum SearchableStudentSortableFields {
   validVisa = "validVisa",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1508,6 +1537,7 @@ export type SearchableApplicationFilterInput = {
   visaDate?: SearchableStringFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableApplicationFilterInput | null > | null,
   or?: Array< SearchableApplicationFilterInput | null > | null,
   not?: SearchableApplicationFilterInput | null,
@@ -1534,6 +1564,7 @@ export enum SearchableApplicationSortableFields {
   visaDate = "visaDate",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1552,6 +1583,7 @@ export type SearchableSearchAlertFilterInput = {
   query?: SearchableStringFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableSearchAlertFilterInput | null > | null,
   or?: Array< SearchableSearchAlertFilterInput | null > | null,
   not?: SearchableSearchAlertFilterInput | null,
@@ -1570,6 +1602,7 @@ export enum SearchableSearchAlertSortableFields {
   query = "query",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1587,6 +1620,7 @@ export type SearchableFeedbackFilterInput = {
   rating?: SearchableFloatFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableFeedbackFilterInput | null > | null,
   or?: Array< SearchableFeedbackFilterInput | null > | null,
   not?: SearchableFeedbackFilterInput | null,
@@ -1604,6 +1638,7 @@ export enum SearchableFeedbackSortableFields {
   rating = "rating",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1636,6 +1671,7 @@ export type ModelSchoolFilterInput = {
   published?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelSchoolFilterInput | null > | null,
   or?: Array< ModelSchoolFilterInput | null > | null,
   not?: ModelSchoolFilterInput | null,
@@ -1669,6 +1705,7 @@ export type SearchableSchoolFilterInput = {
   published?: SearchableBooleanFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableSchoolFilterInput | null > | null,
   or?: Array< SearchableSchoolFilterInput | null > | null,
   not?: SearchableSchoolFilterInput | null,
@@ -1701,6 +1738,7 @@ export enum SearchableSchoolSortableFields {
   published = "published",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1760,6 +1798,7 @@ export type ModelProgramFilterInput = {
   testToeic?: ModelFloatInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelProgramFilterInput | null > | null,
   or?: Array< ModelProgramFilterInput | null > | null,
   not?: ModelProgramFilterInput | null,
@@ -1814,6 +1853,7 @@ export type SearchableProgramFilterInput = {
   testToeic?: SearchableFloatFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchableProgramFilterInput | null > | null,
   or?: Array< SearchableProgramFilterInput | null > | null,
   not?: SearchableProgramFilterInput | null,
@@ -1873,6 +1913,7 @@ export enum SearchableProgramSortableFields {
   testToeic = "testToeic",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1893,6 +1934,7 @@ export type ModelPostFilterInput = {
   title?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelPostFilterInput | null > | null,
   or?: Array< ModelPostFilterInput | null > | null,
   not?: ModelPostFilterInput | null,
@@ -1914,6 +1956,7 @@ export type SearchablePostFilterInput = {
   title?: SearchableStringFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  owner?: SearchableStringFilterInput | null,
   and?: Array< SearchablePostFilterInput | null > | null,
   or?: Array< SearchablePostFilterInput | null > | null,
   not?: SearchablePostFilterInput | null,
@@ -1934,6 +1977,7 @@ export enum SearchablePostSortableFields {
   title = "title",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  owner = "owner",
 }
 
 
@@ -1973,6 +2017,7 @@ export type CreateSchoolMutation = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -2025,6 +2070,7 @@ export type CreateSchoolMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -2060,6 +2106,7 @@ export type UpdateSchoolMutation = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -2112,6 +2159,7 @@ export type UpdateSchoolMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -2147,6 +2195,7 @@ export type DeleteSchoolMutation = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -2199,6 +2248,7 @@ export type DeleteSchoolMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -2270,6 +2320,7 @@ export type CreateProgramMutation = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -2293,6 +2344,7 @@ export type CreateProgramMutation = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -2366,6 +2418,7 @@ export type UpdateProgramMutation = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -2389,6 +2442,7 @@ export type UpdateProgramMutation = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -2462,6 +2516,7 @@ export type DeleteProgramMutation = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -2485,6 +2540,7 @@ export type DeleteProgramMutation = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -3498,6 +3554,7 @@ export type CreateApplicationMutation = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -3557,6 +3614,7 @@ export type CreateApplicationMutation = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -3580,9 +3638,9 @@ export type CreateApplicationMutation = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -3742,6 +3800,7 @@ export type UpdateApplicationMutation = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -3801,6 +3860,7 @@ export type UpdateApplicationMutation = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -3824,9 +3884,9 @@ export type UpdateApplicationMutation = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -3986,6 +4046,7 @@ export type DeleteApplicationMutation = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -4045,6 +4106,7 @@ export type DeleteApplicationMutation = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -4068,9 +4130,9 @@ export type DeleteApplicationMutation = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -4460,6 +4522,7 @@ export type CreateFeedbackMutation = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -4510,8 +4573,8 @@ export type CreateFeedbackMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -4642,6 +4705,7 @@ export type UpdateFeedbackMutation = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -4692,8 +4756,8 @@ export type UpdateFeedbackMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -4824,6 +4888,7 @@ export type DeleteFeedbackMutation = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -4874,8 +4939,8 @@ export type DeleteFeedbackMutation = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -4903,6 +4968,7 @@ export type CreatePostMutation = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -4923,6 +4989,7 @@ export type UpdatePostMutation = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -4943,6 +5010,7 @@ export type DeletePostMutation = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -5740,6 +5808,7 @@ export type GetApplicationQuery = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -5799,6 +5868,7 @@ export type GetApplicationQuery = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -5822,9 +5892,9 @@ export type GetApplicationQuery = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -5948,6 +6018,7 @@ export type ListApplicationsQuery = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -5998,8 +6069,8 @@ export type ListApplicationsQuery = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -6355,6 +6426,7 @@ export type GetFeedbackQuery = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -6405,8 +6477,8 @@ export type GetFeedbackQuery = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -6910,6 +6982,7 @@ export type GetApplicationByStudentQuery = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -6965,8 +7038,8 @@ export type GetApplicationByStudentQuery = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -7224,6 +7297,7 @@ export type SearchApplicationsQuery = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -7274,8 +7348,8 @@ export type SearchApplicationsQuery = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     total?: number | null,
@@ -7461,6 +7535,7 @@ export type ListSchoolsQuery = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -7498,6 +7573,7 @@ export type GetSchoolQuery = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -7550,6 +7626,7 @@ export type GetSchoolQuery = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -7590,6 +7667,7 @@ export type GetSchoolBySlugQuery = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -7633,6 +7711,7 @@ export type SearchSchoolsQuery = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -7711,6 +7790,7 @@ export type ListProgramsQuery = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -7734,6 +7814,7 @@ export type ListProgramsQuery = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -7804,6 +7885,7 @@ export type GetProgramQuery = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -7827,6 +7909,7 @@ export type GetProgramQuery = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -7905,6 +7988,7 @@ export type GetProgramBySlugQuery = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -7928,6 +8012,7 @@ export type GetProgramBySlugQuery = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -8004,6 +8089,7 @@ export type GetProgramBySchoolQuery = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -8027,6 +8113,7 @@ export type GetProgramBySchoolQuery = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -8103,6 +8190,7 @@ export type SearchProgramsQuery = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -8126,6 +8214,7 @@ export type SearchProgramsQuery = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -8149,6 +8238,7 @@ export type GetPostQuery = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -8172,6 +8262,7 @@ export type ListPostsQuery = {
       title: string,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -8199,6 +8290,7 @@ export type GetPostBySlugQuery = {
       title: string,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -8226,6 +8318,7 @@ export type SearchPostsQuery = {
       title: string,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     total?: number | null,
@@ -9230,6 +9323,7 @@ export type OnCreateApplicationSubscription = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -9289,6 +9383,7 @@ export type OnCreateApplicationSubscription = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -9312,9 +9407,9 @@ export type OnCreateApplicationSubscription = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -9473,6 +9568,7 @@ export type OnUpdateApplicationSubscription = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -9532,6 +9628,7 @@ export type OnUpdateApplicationSubscription = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -9555,9 +9652,9 @@ export type OnUpdateApplicationSubscription = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -9716,6 +9813,7 @@ export type OnDeleteApplicationSubscription = {
     visaDate?: string | null,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     program?:  {
       __typename: "Program",
       id: string,
@@ -9775,6 +9873,7 @@ export type OnDeleteApplicationSubscription = {
       testToeic: number,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       school?:  {
         __typename: "School",
         id: string,
@@ -9798,9 +9897,9 @@ export type OnDeleteApplicationSubscription = {
         published: boolean,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
     } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -10319,6 +10418,7 @@ export type OnCreateFeedbackSubscription = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -10369,8 +10469,8 @@ export type OnCreateFeedbackSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -10500,6 +10600,7 @@ export type OnUpdateFeedbackSubscription = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -10550,8 +10651,8 @@ export type OnUpdateFeedbackSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -10681,6 +10782,7 @@ export type OnDeleteFeedbackSubscription = {
       visaDate?: string | null,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       program?:  {
         __typename: "Program",
         id: string,
@@ -10731,8 +10833,8 @@ export type OnDeleteFeedbackSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null,
-      owner?: string | null,
     } | null,
     applicationId: string,
     lastUpdate: number,
@@ -10767,6 +10869,7 @@ export type OnCreateSchoolSubscription = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -10819,6 +10922,7 @@ export type OnCreateSchoolSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -10849,6 +10953,7 @@ export type OnUpdateSchoolSubscription = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -10901,6 +11006,7 @@ export type OnUpdateSchoolSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -10931,6 +11037,7 @@ export type OnDeleteSchoolSubscription = {
     published: boolean,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     programs?:  {
       __typename: "ModelProgramConnection",
       items?:  Array< {
@@ -10983,6 +11090,7 @@ export type OnDeleteSchoolSubscription = {
         testToeic: number,
         createdAt?: string | null,
         updatedAt?: string | null,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
@@ -11049,6 +11157,7 @@ export type OnCreateProgramSubscription = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -11072,6 +11181,7 @@ export type OnCreateProgramSubscription = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -11140,6 +11250,7 @@ export type OnUpdateProgramSubscription = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -11163,6 +11274,7 @@ export type OnUpdateProgramSubscription = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -11231,6 +11343,7 @@ export type OnDeleteProgramSubscription = {
     testToeic: number,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
     school?:  {
       __typename: "School",
       id: string,
@@ -11254,6 +11367,7 @@ export type OnDeleteProgramSubscription = {
       published: boolean,
       createdAt?: string | null,
       updatedAt?: string | null,
+      owner?: string | null,
       programs?:  {
         __typename: "ModelProgramConnection",
         nextToken?: string | null,
@@ -11274,6 +11388,7 @@ export type OnCreatePostSubscription = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -11289,6 +11404,7 @@ export type OnUpdatePostSubscription = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -11304,5 +11420,6 @@ export type OnDeletePostSubscription = {
     title: string,
     createdAt?: string | null,
     updatedAt?: string | null,
+    owner?: string | null,
   } | null,
 };

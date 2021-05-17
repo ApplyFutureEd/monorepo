@@ -31,6 +31,7 @@ type School
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type Program
@@ -95,6 +96,7 @@ type Program
     testToeic: Float!
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type RequestedDocument {
@@ -192,6 +194,7 @@ type Student
     workExperiences: [WorkExperience]
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type SchoolAttended {
@@ -232,6 +235,7 @@ type Document
     storageKey: String
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type Application
@@ -263,6 +267,7 @@ type Application
     visaDate: String
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type ApplicationStep {
@@ -302,6 +307,7 @@ type SearchAlert
     query: String!
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type Feedback
@@ -320,6 +326,7 @@ type Feedback
     rating: Float!
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
 
 type Post
@@ -342,4 +349,5 @@ type Post
     title: String!
     createdAt: AWSDateTime
     updatedAt: AWSDateTime
+    owner: String
 }
