@@ -229,6 +229,8 @@ export declare class Application {
   readonly todo?: string;
   readonly tuitionsFeePaymentDate?: string;
   readonly visaDate?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   constructor(init: ModelInit<Application>);
   static copyOf(source: Application, mutator: (draft: MutableModel<Application>) => MutableModel<Application> | void): Application;
 }

@@ -4,7 +4,7 @@ export const applicationSteps = [
         id: 'upload-documents',
         isMandatory: true,
         label: 'application:step-upload-documents',
-        status: 'IDLE',
+        status: 'PROGRESS',
         timelineLabel: 'application:timeline-step-opened-label'
     },
     {

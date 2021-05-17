@@ -7,7 +7,7 @@ import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-translate';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 
 type Props = {

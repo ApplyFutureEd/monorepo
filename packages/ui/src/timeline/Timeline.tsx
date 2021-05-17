@@ -1,7 +1,11 @@
-import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
+import {
+    GetApplicationByStudentQuery,
+    GetApplicationQuery,
+    onUpdateApplication
+} from '@applyfuture/graphql';
 import { ApplicationStep } from '@applyfuture/models';
 import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
-import { date } from '@applyfuture/utils';
+import { date, useSubscription } from '@applyfuture/utils';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
@@ -37,6 +41,17 @@ export const Timeline: FC<Props> = (props) => {
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
+    const [item] = useSubscription<any>({
+        config: {
+            key: 'onUpdateApplication',
+            query: onUpdateApplication,
+            variables: {
+                id: application?.id
+            }
+        }
+    });
+
+    console.log(item);
 
     return (
         <div className="clearfix">

@@ -11,5 +11,8 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "zen-observable-ts": "^1.0.0"
+    }
 }

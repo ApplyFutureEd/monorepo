@@ -253,6 +253,8 @@ type Application
     todo: String
     tuitionsFeePaymentDate: String
     visaDate: String
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
 
 type ApplicationStep {
