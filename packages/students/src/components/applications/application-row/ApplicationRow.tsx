@@ -89,7 +89,7 @@ const ApplicationRow: FC<Props> = (props) => {
                     </div>
                 </div>
             </button>
-            {open && (
+            {open && application?.steps && (
                 <div className="px-4 py-4 sm:px-6">
                     <Timeline application={application} config={config} />
                 </div>

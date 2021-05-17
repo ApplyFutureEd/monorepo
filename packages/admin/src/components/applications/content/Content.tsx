@@ -30,8 +30,8 @@ const Content: FC<Props> = (props) => {
                     [`${baseClasses}`]: currentTab !== 0,
                     [`${activeClasses}`]: currentTab === 0
                 })}>
-                {isLoading ? (
-                    <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
+                {isLoading && application?.steps ? (
+                    <div className="inset-1/2 w-full h-64">
                         <Loader />
                     </div>
                 ) : (
@@ -44,7 +44,7 @@ const Content: FC<Props> = (props) => {
                     [`${activeClasses}`]: currentTab === 1
                 })}>
                 {isLoading ? (
-                    <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
+                    <div className="inset-1/2 w-full h-64">
                         <Loader />
                     </div>
                 ) : (
