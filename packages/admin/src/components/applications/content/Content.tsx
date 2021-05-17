@@ -1,5 +1,5 @@
 import { GetApplicationQuery } from '@applyfuture/graphql';
-import { Timeline } from '@applyfuture/ui';
+import { Loader, Timeline } from '@applyfuture/ui';
 import Tabs from '@components/applications/content/tabs/Tabs';
 import { config } from '@components/applications/timeline/config';
 import cx from 'classnames';
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Content: FC<Props> = (props) => {
-    const { applicationData } = props;
+    const { applicationData, isLoading } = props;
     const application = applicationData?.getApplication;
     const [currentTab, setCurrentTab] = useState(0);
 
@@ -30,14 +30,26 @@ const Content: FC<Props> = (props) => {
                     [`${baseClasses}`]: currentTab !== 0,
                     [`${activeClasses}`]: currentTab === 0
                 })}>
-                <Timeline application={application} config={config} />
+                {isLoading ? (
+                    <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
+                        <Loader />
+                    </div>
+                ) : (
+                    <Timeline application={application} config={config} />
+                )}
             </div>
             <div
                 className={cx({
                     [`${baseClasses}`]: currentTab !== 1,
                     [`${activeClasses}`]: currentTab === 1
                 })}>
-                documents
+                {isLoading ? (
+                    <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
+                        <Loader />
+                    </div>
+                ) : (
+                    <div>documents</div>
+                )}
             </div>
         </div>
     );
