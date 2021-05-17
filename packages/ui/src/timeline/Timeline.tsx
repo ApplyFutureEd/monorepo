@@ -38,10 +38,11 @@ type Props = {
 
 export const Timeline: FC<Props> = (props) => {
     const { application, config } = props;
-    const [steps, setSteps] = useState(application?.steps);
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
+
+    const [steps, setSteps] = useState(application?.steps);
     const [item] = useSubscription<any>({
         config: {
             key: 'onUpdateApplication',
@@ -53,7 +54,9 @@ export const Timeline: FC<Props> = (props) => {
     });
 
     useEffect(() => {
-        setSteps(item?.steps);
+        if (item?.steps) {
+            setSteps(item.steps);
+        }
     }, [item]);
 
     return (
