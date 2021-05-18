@@ -4,7 +4,6 @@ import {
     GetDocumentByStudentQuery
 } from '@applyfuture/graphql';
 import { Document } from '@applyfuture/models';
-import { Modal } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
 import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
 import DateFormatter from '@components/common/date-formatter/DateFormatter';

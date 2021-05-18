@@ -21,16 +21,13 @@ const Content: FC<Props> = (props) => {
         setCurrentTab(index);
     };
 
-    const baseClasses = 'px-4 py-4 sm:px-6 hidden';
-    const activeClasses = 'px-4 py-4 sm:px-6 block';
-
     return (
         <div className="w-full bg-white shadow overflow-hidden sm:rounded-lg md:w-2/3">
             <Tabs currentTab={currentTab} handleCurrentTab={handleCurrentTab} />
             <div
                 className={cx({
-                    [`${baseClasses}`]: currentTab !== 0,
-                    [`${activeClasses}`]: currentTab === 0
+                    ['px-4 py-4 sm:px-6 block']: currentTab === 0,
+                    ['px-4 py-4 sm:px-6 hidden']: currentTab !== 0
                 })}>
                 {isLoading && !application?.steps ? (
                     <div className="inset-1/2 w-full h-64">
@@ -42,8 +39,8 @@ const Content: FC<Props> = (props) => {
             </div>
             <div
                 className={cx({
-                    [`${baseClasses}`]: currentTab !== 1,
-                    [`${activeClasses}`]: currentTab === 1
+                    ['py-4 block']: currentTab === 1,
+                    ['py-4 hidden']: currentTab !== 1
                 })}>
                 {isLoading ? (
                     <div className="inset-1/2 w-full h-64">
