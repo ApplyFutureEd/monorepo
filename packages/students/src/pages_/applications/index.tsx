@@ -71,7 +71,7 @@ const ApplicationsPage: FC = () => {
     const total = applications?.length ? `(${applications?.length})` : '';
 
     useEffect(() => {
-        if ((!isLoading && router.query.id, router.query.step)) {
+        if (!isLoading && router.query.id && router.query.step) {
             document.getElementById(`${router.query.id}-${router.query.step}`)?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
