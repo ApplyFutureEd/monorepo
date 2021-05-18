@@ -33,7 +33,7 @@ const LeadModalForm: FC<Props> = (props) => {
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
-            await API.post('rest', '/landing-contact-form', {
+            await API.post('rest', '/contact-form', {
                 body: {
                     ...values,
                     lastName: '',
