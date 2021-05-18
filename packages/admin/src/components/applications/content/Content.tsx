@@ -1,17 +1,19 @@
-import { GetApplicationQuery } from '@applyfuture/graphql';
+import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/graphql';
 import { Loader, Timeline } from '@applyfuture/ui';
 import Tabs from '@components/applications/content/tabs/Tabs';
+import Documents from '@components/applications/documents/Documents';
 import { config } from '@components/applications/timeline/config';
 import cx from 'classnames';
 import React, { FC, useState } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
 };
 
 const Content: FC<Props> = (props) => {
-    const { applicationData, isLoading } = props;
+    const { applicationData, documentsData, isLoading } = props;
     const application = applicationData?.getApplication;
     const [currentTab, setCurrentTab] = useState(0);
 
@@ -48,7 +50,7 @@ const Content: FC<Props> = (props) => {
                         <Loader />
                     </div>
                 ) : (
-                    <div>documents</div>
+                    <Documents data={documentsData} />
                 )}
             </div>
         </div>

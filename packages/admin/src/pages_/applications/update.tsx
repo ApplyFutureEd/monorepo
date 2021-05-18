@@ -1,4 +1,10 @@
-import { getApplication, GetApplicationQuery } from '@applyfuture/graphql';
+import {
+    getApplication,
+    GetApplicationQuery,
+    getDocumentByStudent,
+    GetDocumentByStudentQuery,
+    GetDocumentByStudentQueryVariables
+} from '@applyfuture/graphql';
 import { useQuery, withPrivateAccess } from '@applyfuture/utils';
 import Content from '@components/applications/content/Content';
 import Summary from '@components/applications/summary/Summary';
@@ -12,12 +18,22 @@ const UpdateApplicationPage: FC = () => {
         data: applicationData,
         isLoading: applicationIsLoading
     } = useQuery<GetApplicationQuery>(getApplication, { id: router.query.id as string });
+    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
+        GetDocumentByStudentQuery,
+        GetDocumentByStudentQueryVariables
+    >(getDocumentByStudent, { studentId: applicationData.getApplication?.student?.id });
+
+    const isLoading = applicationIsLoading || documentsIsLoading;
 
     return (
         <DashboardLayout title="Application">
             <div className="flex items-start space-x-0 md:space-x-2">
-                <Summary applicationData={applicationData} isLoading={applicationIsLoading} />
-                <Content applicationData={applicationData} isLoading={applicationIsLoading} />
+                <Summary applicationData={applicationData} isLoading={isLoading} />
+                <Content
+                    applicationData={applicationData}
+                    documentsData={documentsData}
+                    isLoading={isLoading}
+                />
             </div>
         </DashboardLayout>
     );
