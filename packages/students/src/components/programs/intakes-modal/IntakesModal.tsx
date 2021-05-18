@@ -9,7 +9,13 @@ import {
 } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Button, Modal } from '@applyfuture/ui';
-import { applicationSteps, date, graphql, toast } from '@applyfuture/utils';
+import {
+    applicationSteps,
+    checkApplicationExistance,
+    date,
+    graphql,
+    toast
+} from '@applyfuture/utils';
 import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
@@ -40,51 +46,21 @@ const IntakesModal: FC<Props> = (props) => {
         intake: ''
     };
 
-    const checkApplicationExistance = async (studentId?: string, programId?: string) => {
-        if (!studentId || !programId) {
-            return toast({
-                title: t('common:toast-error-generic-message'),
-                variant: 'error'
-            });
-        }
-
-        const studentApplications = await graphql<GetApplicationByStudentQuery>(
-            getApplicationByStudent,
-            { studentId: studentId }
-        );
-
-        studentApplications.getApplicationByStudent?.items?.forEach((application) => {
-            if (application?.program?.id === programId) {
-                const stepsIds = [...applicationSteps.map((step) => step.id)];
-                stepsIds.length = 4;
-
-                const currentStep =
-                    application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
-                    application?.steps?.find((step: any) => step?.status === 'ERROR');
-
-                if (!currentStep?.id) {
-                    return toast({
-                        title: t('common:toast-error-generic-message'),
-                        variant: 'error'
-                    });
-                }
-
-                if (stepsIds.includes(currentStep?.id)) {
-                    return router.push(`/applications/${application?.id}/${currentStep?.id}`);
-                } else {
-                    return router.push(
-                        `/applications?id=${application?.id}&step=${currentStep.id}`
-                    );
-                }
-            }
-        });
-    };
-
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { intake } = values;
         try {
-            await checkApplicationExistance(student?.id, program?.id);
+            const { applicationId, stepId } = await checkApplicationExistance(
+                student?.id,
+                program?.id
+            );
 
+            if (applicationId && stepId) {
+                if (['upload-documents', 'review-documents', 'fees-payment'].includes(stepId)) {
+                    return router.push(`/applications/${applicationId}/${stepId}`);
+                } else {
+                    return router.push(`/applications?id=${applicationId}&step=${stepId}`);
+                }
+            }
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: intake,

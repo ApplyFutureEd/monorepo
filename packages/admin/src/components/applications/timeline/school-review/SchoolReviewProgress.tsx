@@ -93,28 +93,24 @@ const SchoolReviewProgress: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex justify-between mt-4">
-            <div className="flex space-x-2">
-                <Button
-                    isSubmitting={isSubmitting}
-                    startIcon={faTimes}
-                    variant="secondary"
-                    onClick={handleReject}>
-                    Reject
-                </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
-                    Approve
-                </Button>
-            </div>
-            <div>
-                <Button
-                    isSubmitting={isSubmitting}
-                    startIcon={faUndo}
-                    variant="secondary"
-                    onClick={handleUndo}>
-                    Undo
-                </Button>
-            </div>
+        <div className="flex mt-4 space-x-2">
+            <Button
+                isSubmitting={isSubmitting}
+                startIcon={faUndo}
+                variant="secondary"
+                onClick={handleUndo}>
+                Undo
+            </Button>
+            <Button
+                isSubmitting={isSubmitting}
+                startIcon={faTimes}
+                variant="secondary"
+                onClick={handleReject}>
+                Reject
+            </Button>
+            <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                Approve
+            </Button>
         </div>
     );
 };

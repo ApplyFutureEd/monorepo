@@ -1,4 +1,8 @@
-import { GetApplicationQuery } from '@applyfuture/graphql';
+import {
+    getApplicationByStudent,
+    GetApplicationByStudentQuery,
+    GetApplicationQuery
+} from '@applyfuture/graphql';
 
 import { applicationSteps } from '../constants/applicationSteps';
 import {
@@ -9,6 +13,42 @@ import {
     spanishTestDocumentsIds
 } from './../constants/documents';
 import { hasBypass } from './eligibility';
+import { graphql } from './graphql';
+
+export const checkApplicationExistance = async (
+    studentId?: string,
+    programId?: string
+): Promise<{ applicationId: string | null; stepId: string | null }> => {
+    if (!studentId) {
+        throw Error('Missing studentId');
+    }
+    if (!programId) {
+        throw Error('Missing programId');
+    }
+
+    const result = await graphql<GetApplicationByStudentQuery>(getApplicationByStudent, {
+        studentId: studentId
+    });
+
+    const currentApplications = result.getApplicationByStudent?.items || [];
+
+    for (let index = 0; index < currentApplications.length; index++) {
+        const application = currentApplications[index];
+        if (application?.program?.id === programId) {
+            const currentStep =
+                application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
+                application?.steps?.find((step: any) => step?.status === 'ERROR');
+
+            if (!currentStep) {
+                throw Error('Missing currentStep');
+            }
+
+            return { applicationId: application?.id, stepId: currentStep?.id };
+        }
+    }
+
+    return { applicationId: null, stepId: null };
+};
 
 export const getStepsLabels = (application: GetApplicationQuery['getApplication']): string[] => {
     const steps = [...applicationSteps.map((step) => step.label)];

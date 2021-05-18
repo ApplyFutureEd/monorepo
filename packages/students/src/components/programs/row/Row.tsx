@@ -11,6 +11,7 @@ import {
 import { Button } from '@applyfuture/ui';
 import {
     applicationSteps,
+    checkApplicationExistance,
     checkCompletion,
     checkEligibility,
     convertSecondsToUnit,
@@ -73,50 +74,6 @@ const Row: FC<Props> = (props) => {
         setOpenEligibilityWarningModal(false);
     };
 
-    const checkApplicationExistance = async (studentId?: string, programId?: string) => {
-        if (!studentId) {
-            throw Error('Missing studentId');
-        }
-        if (!programId) {
-            throw Error('Missing programId');
-        }
-
-        console.log({ studentId });
-        console.log({ programId });
-
-        const studentApplications = await graphql<GetApplicationByStudentQuery>(
-            getApplicationByStudent,
-            { studentId: studentId }
-        );
-
-        studentApplications.getApplicationByStudent?.items?.forEach((application) => {
-            console.log({ InLoopProgramId: application?.program?.id });
-
-            if (application?.program?.id === programId) {
-                const stepsIds = [...applicationSteps.map((step) => step.id)];
-                stepsIds.length = 4;
-
-                const currentStep =
-                    application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
-                    application?.steps?.find((step: any) => step?.status === 'ERROR');
-
-                console.log({ currentStep });
-
-                if (!currentStep?.id) {
-                    throw Error('No current step');
-                }
-
-                if (stepsIds.includes(currentStep?.id)) {
-                    return router.push(`/applications/${application?.id}/${currentStep?.id}`);
-                } else {
-                    return router.push(
-                        `/applications?id=${application?.id}&step=${currentStep.id}`
-                    );
-                }
-            }
-        });
-    };
-
     const handleClick = async () => {
         if (!isCompleted || !isEligible || reasons.length > 0) {
             return handleOpenEligibilityWarningModal();
@@ -126,7 +83,18 @@ const Row: FC<Props> = (props) => {
         }
 
         try {
-            await checkApplicationExistance(student?.id, program?.id);
+            const { applicationId, stepId } = await checkApplicationExistance(
+                student?.id,
+                program?.id
+            );
+
+            if (applicationId && stepId) {
+                if (['upload-documents', 'review-documents', 'fees-payment'].includes(stepId)) {
+                    return router.push(`/applications/${applicationId}/${stepId}`);
+                } else {
+                    return router.push(`/applications?id=${applicationId}&step=${stepId}`);
+                }
+            }
 
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
