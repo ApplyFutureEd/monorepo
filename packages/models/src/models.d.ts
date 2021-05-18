@@ -2,16 +2,6 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class RequestedDocument {
-  readonly name: string;
-  readonly isMandatory?: boolean;
-  readonly storageKey?: string;
-  readonly description?: string;
-  readonly condition?: string;
-  readonly isSpecific?: boolean;
-  constructor(init: ModelInit<RequestedDocument>);
-}
-
 export declare class Notification {
   readonly date: string;
   readonly description: string;
@@ -21,6 +11,16 @@ export declare class Notification {
   readonly title: string;
   readonly titleOptions: string;
   constructor(init: ModelInit<Notification>);
+}
+
+export declare class RequestedDocument {
+  readonly name: string;
+  readonly isMandatory?: boolean;
+  readonly storageKey?: string;
+  readonly description?: string;
+  readonly condition?: string;
+  readonly isSpecific?: boolean;
+  constructor(init: ModelInit<RequestedDocument>);
 }
 
 export declare class ApplicationStep {
@@ -56,32 +56,28 @@ export declare class WorkExperience {
   constructor(init: ModelInit<WorkExperience>);
 }
 
-export declare class School {
+export declare class Application {
   readonly id: string;
-  readonly city: string;
-  readonly country: string;
-  readonly coverPhoto: string;
-  readonly contactEmail?: string;
-  readonly contactJobTitle?: string;
-  readonly contactName?: string;
-  readonly contactPhone?: string;
-  readonly contractStatus: string;
-  readonly creationYear: number;
-  readonly description?: string;
-  readonly institutionType: string;
-  readonly internationalStudents: number;
+  readonly admissionResult?: string;
+  readonly document?: string;
+  readonly decisionLetterDate?: string;
+  readonly intake: string;
+  readonly interviewDate?: string;
   readonly lastUpdate: number;
-  readonly logo: string;
-  readonly name: string;
-  readonly totalStudents: number;
-  readonly slug: string;
-  readonly published: boolean;
-  readonly programs?: (Program | null)[];
+  readonly modalApplicationCompletedViewed: boolean;
+  readonly notifications?: (Notification | null)[];
+  readonly program?: Program;
+  readonly programId: string;
+  readonly steps: ApplicationStep[];
+  readonly student?: Student;
+  readonly todo?: string;
+  readonly tuitionsFeePaymentDate?: string;
+  readonly visaDate?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly owner?: string;
-  constructor(init: ModelInit<School>);
-  static copyOf(source: School, mutator: (draft: MutableModel<School>) => MutableModel<School> | void): School;
+  constructor(init: ModelInit<Application>);
+  static copyOf(source: Application, mutator: (draft: MutableModel<Application>) => MutableModel<Application> | void): Application;
 }
 
 export declare class Program {
@@ -137,6 +133,34 @@ export declare class Program {
   readonly owner?: string;
   constructor(init: ModelInit<Program>);
   static copyOf(source: Program, mutator: (draft: MutableModel<Program>) => MutableModel<Program> | void): Program;
+}
+
+export declare class School {
+  readonly id: string;
+  readonly city: string;
+  readonly country: string;
+  readonly coverPhoto: string;
+  readonly contactEmail?: string;
+  readonly contactJobTitle?: string;
+  readonly contactName?: string;
+  readonly contactPhone?: string;
+  readonly contractStatus: string;
+  readonly creationYear: number;
+  readonly description?: string;
+  readonly institutionType: string;
+  readonly internationalStudents: number;
+  readonly lastUpdate: number;
+  readonly logo: string;
+  readonly name: string;
+  readonly totalStudents: number;
+  readonly slug: string;
+  readonly published: boolean;
+  readonly programs?: (Program | null)[];
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  readonly owner?: string;
+  constructor(init: ModelInit<School>);
+  static copyOf(source: School, mutator: (draft: MutableModel<School>) => MutableModel<School> | void): School;
 }
 
 export declare class Student {
@@ -219,30 +243,6 @@ export declare class Student {
   readonly owner?: string;
   constructor(init: ModelInit<Student>);
   static copyOf(source: Student, mutator: (draft: MutableModel<Student>) => MutableModel<Student> | void): Student;
-}
-
-export declare class Application {
-  readonly id: string;
-  readonly admissionResult?: string;
-  readonly document?: string;
-  readonly decisionLetterDate?: string;
-  readonly intake: string;
-  readonly interviewDate?: string;
-  readonly lastUpdate: number;
-  readonly modalApplicationCompletedViewed: boolean;
-  readonly notifications?: (Notification | null)[];
-  readonly program?: Program;
-  readonly programId: string;
-  readonly steps: ApplicationStep[];
-  readonly student?: Student;
-  readonly todo?: string;
-  readonly tuitionsFeePaymentDate?: string;
-  readonly visaDate?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  readonly owner?: string;
-  constructor(init: ModelInit<Application>);
-  static copyOf(source: Application, mutator: (draft: MutableModel<Application>) => MutableModel<Application> | void): Application;
 }
 
 export declare class Document {

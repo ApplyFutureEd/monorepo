@@ -23,14 +23,14 @@ const Content: FC<Props> = (props) => {
     const activeClasses = 'px-4 py-4 sm:px-6 block';
 
     return (
-        <div className="w-2/3 bg-white shadow overflow-hidden sm:rounded-lg">
+        <div className="w-full bg-white shadow overflow-hidden sm:rounded-lg md:w-2/3">
             <Tabs currentTab={currentTab} handleCurrentTab={handleCurrentTab} />
             <div
                 className={cx({
                     [`${baseClasses}`]: currentTab !== 0,
                     [`${activeClasses}`]: currentTab === 0
                 })}>
-                {isLoading && application?.steps ? (
+                {isLoading && !application?.steps ? (
                     <div className="inset-1/2 w-full h-64">
                         <Loader />
                     </div>

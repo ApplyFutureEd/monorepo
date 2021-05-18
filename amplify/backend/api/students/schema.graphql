@@ -351,3 +351,7 @@ type Post
     updatedAt: AWSDateTime
     owner: String
 }
+
+type Subscription {
+    onUpdateApplicationById(id: ID!): Application @aws_subscribe(mutations: ["updateApplication"])
+}

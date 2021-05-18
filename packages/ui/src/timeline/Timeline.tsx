@@ -1,7 +1,7 @@
 import {
     GetApplicationByStudentQuery,
     GetApplicationQuery,
-    onUpdateApplication
+    onUpdateApplicationById
 } from '@applyfuture/graphql';
 import { ApplicationStep } from '@applyfuture/models';
 import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
@@ -45,8 +45,8 @@ export const Timeline: FC<Props> = (props) => {
     const [steps, setSteps] = useState(application?.steps);
     const [item] = useSubscription<any>({
         config: {
-            key: 'onUpdateApplication',
-            query: onUpdateApplication,
+            key: 'onUpdateApplicationById',
+            query: onUpdateApplicationById,
             variables: {
                 id: application?.id
             }
