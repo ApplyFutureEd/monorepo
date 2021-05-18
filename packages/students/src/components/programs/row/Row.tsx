@@ -1,8 +1,6 @@
 import {
     createApplication,
     CreateApplicationMutation,
-    getApplicationByStudent,
-    GetApplicationByStudentQuery,
     GetDocumentByStudentQuery,
     GetProgramBySchoolQuery,
     GetStudentByEmailQuery,
