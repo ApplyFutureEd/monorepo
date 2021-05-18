@@ -1,6 +1,8 @@
 import {
     createApplication,
     CreateApplicationMutation,
+    getApplicationByStudent,
+    GetApplicationByStudentQuery,
     GetProgramBySlugQuery,
     GetProgramQuery,
     GetStudentByEmailQuery
@@ -38,9 +40,51 @@ const IntakesModal: FC<Props> = (props) => {
         intake: ''
     };
 
+    const checkApplicationExistance = async (studentId?: string, programId?: string) => {
+        if (!studentId || !programId) {
+            return toast({
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+
+        const studentApplications = await graphql<GetApplicationByStudentQuery>(
+            getApplicationByStudent,
+            { studentId: studentId }
+        );
+
+        studentApplications.getApplicationByStudent?.items?.forEach((application) => {
+            if (application?.program?.id === programId) {
+                const stepsIds = [...applicationSteps.map((step) => step.id)];
+                stepsIds.length = 4;
+
+                const currentStep =
+                    application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
+                    application?.steps?.find((step: any) => step?.status === 'ERROR');
+
+                if (!currentStep?.id) {
+                    return toast({
+                        title: t('common:toast-error-generic-message'),
+                        variant: 'error'
+                    });
+                }
+
+                if (stepsIds.includes(currentStep?.id)) {
+                    return router.push(`/applications/${application?.id}/${currentStep?.id}`);
+                } else {
+                    return router.push(
+                        `/applications?id=${application?.id}&step=${currentStep.id}`
+                    );
+                }
+            }
+        });
+    };
+
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { intake } = values;
         try {
+            checkApplicationExistance(student?.id, program?.id);
+
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: intake,
@@ -84,7 +128,7 @@ const IntakesModal: FC<Props> = (props) => {
                                     </p>
                                     <Field key="intake" id="intake" name="intake">
                                         {() => (
-                                            <div className="flex mt-4 space-x-4">
+                                            <div className="flex flex-col mt-4 space-y-4">
                                                 {program?.intakes.split(',').map((intake: any) => (
                                                     <Button
                                                         key={intake}

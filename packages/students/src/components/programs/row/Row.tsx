@@ -1,6 +1,8 @@
 import {
     createApplication,
     CreateApplicationMutation,
+    getApplicationByStudent,
+    GetApplicationByStudentQuery,
     GetDocumentByStudentQuery,
     GetProgramBySchoolQuery,
     GetStudentByEmailQuery,
@@ -71,6 +73,46 @@ const Row: FC<Props> = (props) => {
         setOpenEligibilityWarningModal(false);
     };
 
+    const checkApplicationExistance = async (studentId?: string, programId?: string) => {
+        if (!studentId || !programId) {
+            return toast({
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        }
+
+        const studentApplications = await graphql<GetApplicationByStudentQuery>(
+            getApplicationByStudent,
+            { studentId: studentId }
+        );
+
+        studentApplications.getApplicationByStudent?.items?.forEach((application) => {
+            if (application?.program?.id === programId) {
+                const stepsIds = [...applicationSteps.map((step) => step.id)];
+                stepsIds.length = 4;
+
+                const currentStep =
+                    application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
+                    application?.steps?.find((step: any) => step?.status === 'ERROR');
+
+                if (!currentStep?.id) {
+                    return toast({
+                        title: t('common:toast-error-generic-message'),
+                        variant: 'error'
+                    });
+                }
+
+                if (stepsIds.includes(currentStep?.id)) {
+                    return router.push(`/applications/${application?.id}/${currentStep?.id}`);
+                } else {
+                    return router.push(
+                        `/applications?id=${application?.id}&step=${currentStep.id}`
+                    );
+                }
+            }
+        });
+    };
+
     const handleClick = async () => {
         if (!isCompleted || !isEligible || reasons.length > 0) {
             return handleOpenEligibilityWarningModal();
@@ -80,6 +122,8 @@ const Row: FC<Props> = (props) => {
         }
 
         try {
+            checkApplicationExistance(student?.id, program?.id);
+
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: program?.intakes && program?.intakes?.split(',')[0],
