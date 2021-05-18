@@ -122,7 +122,7 @@ const Row: FC<Props> = (props) => {
         }
 
         try {
-            checkApplicationExistance(student?.id, program?.id);
+            await checkApplicationExistance(student?.id, program?.id);
 
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {

@@ -83,7 +83,7 @@ const IntakesModal: FC<Props> = (props) => {
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { intake } = values;
         try {
-            checkApplicationExistance(student?.id, program?.id);
+            await checkApplicationExistance(student?.id, program?.id);
 
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
@@ -130,26 +130,27 @@ const IntakesModal: FC<Props> = (props) => {
                                         {() => (
                                             <div className="flex flex-col mt-4 space-y-4">
                                                 {program?.intakes.split(',').map((intake: any) => (
-                                                    <Button
-                                                        key={intake}
-                                                        disabled={!student}
-                                                        isSubmitting={isSubmitting}
-                                                        type="button"
-                                                        variant={
-                                                            values.intake === intake
-                                                                ? 'primary'
-                                                                : 'secondary'
-                                                        }
-                                                        onClick={() => {
-                                                            setFieldValue('intake', intake);
-                                                            submitForm();
-                                                        }}>
-                                                        {date({
-                                                            locale: locale,
-                                                            scheme: 'LLLL y',
-                                                            value: intake
-                                                        })}
-                                                    </Button>
+                                                    <div key={intake}>
+                                                        <Button
+                                                            disabled={!student}
+                                                            isSubmitting={isSubmitting}
+                                                            type="button"
+                                                            variant={
+                                                                values.intake === intake
+                                                                    ? 'primary'
+                                                                    : 'secondary'
+                                                            }
+                                                            onClick={() => {
+                                                                setFieldValue('intake', intake);
+                                                                submitForm();
+                                                            }}>
+                                                            {date({
+                                                                locale: locale,
+                                                                scheme: 'LLLL y',
+                                                                value: intake
+                                                            })}
+                                                        </Button>
+                                                    </div>
                                                 ))}
                                             </div>
                                         )}
