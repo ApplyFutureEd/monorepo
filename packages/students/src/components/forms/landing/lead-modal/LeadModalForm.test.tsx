@@ -55,8 +55,7 @@ describe('LeadModalForm', () => {
                     email: fakeUser.email,
                     firstName: fakeUser.firstName,
                     lastName: '',
-                    message: 'New lead from modal',
-                    title: 'New lead from modal'
+                    message: 'New lead from modal'
                 }
             });
         });
