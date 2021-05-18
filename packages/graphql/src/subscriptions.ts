@@ -804,11 +804,14 @@ export const onCreateApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -1031,11 +1034,14 @@ export const onUpdateApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -1258,11 +1264,14 @@ export const onDeleteApplication = /* GraphQL */ `
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineDescription
+        timelineDescriptionOptions
+        timelineLabel
       }
       studentId
       student {
@@ -1853,11 +1862,14 @@ export const onCreateFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {
@@ -2024,11 +2036,14 @@ export const onUpdateFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {
@@ -2195,11 +2210,14 @@ export const onDeleteFeedback = /* GraphQL */ `
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineDescription
+          timelineDescriptionOptions
+          timelineLabel
         }
         studentId
         student {

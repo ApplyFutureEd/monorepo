@@ -32,7 +32,6 @@ const ReviewDocumentsPage: FC = () => {
             const url = await Storage.get(storageKey, {
                 level: 'public'
             });
-            console.log(url);
             setApplicationDocumentUrl(url.toString());
             setIsLoadingApplicationDocumentUrl(false);
         };

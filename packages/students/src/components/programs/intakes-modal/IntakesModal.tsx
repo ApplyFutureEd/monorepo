@@ -5,6 +5,7 @@ import {
     GetProgramQuery,
     GetStudentByEmailQuery
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button, Modal } from '@applyfuture/ui';
 import { applicationSteps, date, graphql, toast } from '@applyfuture/utils';
 import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
@@ -26,6 +27,7 @@ type Props = {
 const IntakesModal: FC<Props> = (props) => {
     const { handleClose, open, program, student } = props;
     const router = useRouter();
+    const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
 
     type FormValues = {
@@ -98,7 +100,11 @@ const IntakesModal: FC<Props> = (props) => {
                                                             setFieldValue('intake', intake);
                                                             submitForm();
                                                         }}>
-                                                        {date({ scheme: 'LLLL y', value: intake })}
+                                                        {date({
+                                                            locale: locale,
+                                                            scheme: 'LLLL y',
+                                                            value: intake
+                                                        })}
                                                     </Button>
                                                 ))}
                                             </div>

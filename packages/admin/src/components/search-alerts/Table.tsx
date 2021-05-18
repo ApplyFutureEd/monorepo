@@ -65,7 +65,7 @@ const Table: FC<Props> = (props) => {
         { columnName: 'type', width: 80 },
         { columnName: 'firstName', width: 160 },
         { columnName: 'lastName', width: 160 },
-        { columnName: 'email', width: 310 }
+        { columnName: 'email', width: 300 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');

@@ -24,7 +24,7 @@ type Props = {
         | null;
 };
 
-const Row: FC<Props> = (props) => {
+const DocumentRow: FC<Props> = (props) => {
     const { application, document, index, student } = props;
     const { t } = useTranslation();
 
@@ -104,4 +104,4 @@ const Row: FC<Props> = (props) => {
     );
 };
 
-export default Row;
+export default DocumentRow;

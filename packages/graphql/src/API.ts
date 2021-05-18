@@ -713,11 +713,14 @@ export type Notification = {
 
 export type ApplicationStep = {
   __typename: "ApplicationStep",
-  id?: string,
   date?: string,
+  id?: string,
   isMandatory?: boolean,
   label?: string,
   status?: string,
+  timelineDescription?: string,
+  timelineDescriptionOptions?: string,
+  timelineLabel?: string,
 };
 
 export type ModelDocumentConnection = {
@@ -886,11 +889,14 @@ export type CreateApplicationInput = {
 };
 
 export type ApplicationStepInput = {
-  id: string,
   date: string,
+  id: string,
   isMandatory: boolean,
   label: string,
   status: string,
+  timelineDescription: string,
+  timelineDescriptionOptions: string,
+  timelineLabel: string,
 };
 
 export type ModelApplicationConditionInput = {
@@ -3277,11 +3283,14 @@ export type CreateApplicationMutation = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -3520,11 +3529,14 @@ export type UpdateApplicationMutation = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -3763,11 +3775,14 @@ export type DeleteApplicationMutation = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -4275,11 +4290,14 @@ export type CreateFeedbackMutation = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -4456,11 +4474,14 @@ export type UpdateFeedbackMutation = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -4637,11 +4658,14 @@ export type DeleteFeedbackMutation = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -5513,11 +5537,14 @@ export type GetApplicationQuery = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -5759,11 +5786,14 @@ export type ListApplicationsQuery = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -6165,11 +6195,14 @@ export type GetFeedbackQuery = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -6719,11 +6752,14 @@ export type GetApplicationByStudentQuery = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -6837,6 +6873,11 @@ export type GetApplicationByStudentQuery = {
         otherRequirements?: string | null,
         published: boolean,
         schedule: string,
+        school: {
+          logo: string,
+          name: string,
+          slug: string
+        }
         schoolId: string,
         schoolName: string,
         slug: string,
@@ -7027,11 +7068,14 @@ export type SearchApplicationsQuery = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -8993,11 +9037,14 @@ export type OnCreateApplicationSubscription = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -9235,11 +9282,14 @@ export type OnUpdateApplicationSubscription = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -9477,11 +9527,14 @@ export type OnDeleteApplicationSubscription = {
     programId: string,
     steps:  Array< {
       __typename: "ApplicationStep",
-      id: string,
       date: string,
+      id: string,
       isMandatory: boolean,
       label: string,
       status: string,
+      timelineDescription: string,
+      timelineDescriptionOptions: string,
+      timelineLabel: string,
     } >,
     studentId: string,
     student?:  {
@@ -10118,11 +10171,14 @@ export type OnCreateFeedbackSubscription = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -10298,11 +10354,14 @@ export type OnUpdateFeedbackSubscription = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {
@@ -10478,11 +10537,14 @@ export type OnDeleteFeedbackSubscription = {
       programId: string,
       steps:  Array< {
         __typename: "ApplicationStep",
-        id: string,
         date: string,
+        id: string,
         isMandatory: boolean,
         label: string,
         status: string,
+        timelineDescription: string,
+        timelineDescriptionOptions: string,
+        timelineLabel: string,
       } >,
       studentId: string,
       student?:  {

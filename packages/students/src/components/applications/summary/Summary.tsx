@@ -77,6 +77,7 @@ const Summary: FC<Props> = (props) => {
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
                                     date({
+                                        locale: locale,
                                         scheme: 'LLLL y',
                                         value: application?.intake
                                     })
