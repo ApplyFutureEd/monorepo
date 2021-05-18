@@ -37,8 +37,7 @@ const LeadModalForm: FC<Props> = (props) => {
                 body: {
                     ...values,
                     lastName: '',
-                    message: 'New lead from modal',
-                    title: 'New lead from modal'
+                    message: 'New lead from modal'
                 }
             });
             actions.setSubmitting(false);
