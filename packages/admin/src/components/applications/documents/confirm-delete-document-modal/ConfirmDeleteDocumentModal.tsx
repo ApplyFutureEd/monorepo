@@ -1,6 +1,5 @@
 import { Button, Modal } from '@applyfuture/ui';
-import { faExclamationCircle, faExclamationTriangle } from '@fortawesome/pro-light-svg-icons';
-import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 
