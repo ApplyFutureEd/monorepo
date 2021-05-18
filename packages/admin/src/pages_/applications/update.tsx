@@ -18,12 +18,20 @@ const UpdateApplicationPage: FC = () => {
         data: applicationData,
         isLoading: applicationIsLoading
     } = useQuery<GetApplicationQuery>(getApplication, { id: router.query.id as string });
-    const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
-        GetDocumentByStudentQuery,
-        GetDocumentByStudentQueryVariables
-    >(getDocumentByStudent, { studentId: applicationData.getApplication?.student?.id });
+    const {
+        data: documentsData,
+        isLoading: documentsIsLoading,
+        refetch: documentsRefetch
+    } = useQuery<GetDocumentByStudentQuery, GetDocumentByStudentQueryVariables>(
+        getDocumentByStudent,
+        { studentId: applicationData.getApplication?.student?.id }
+    );
 
     const isLoading = applicationIsLoading || documentsIsLoading;
+
+    const handleRefetch = () => {
+        documentsRefetch();
+    };
 
     return (
         <DashboardLayout title="Application">
@@ -33,6 +41,7 @@ const UpdateApplicationPage: FC = () => {
                     applicationData={applicationData}
                     documentsData={documentsData}
                     isLoading={isLoading}
+                    refetch={handleRefetch}
                 />
             </div>
         </DashboardLayout>

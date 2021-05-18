@@ -10,11 +10,14 @@ type Props = {
     applicationData: GetApplicationQuery;
     documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
+    refetch: () => void;
 };
 
 const Content: FC<Props> = (props) => {
-    const { applicationData, documentsData, isLoading } = props;
+    const { applicationData, documentsData, isLoading, refetch } = props;
     const application = applicationData?.getApplication;
+    const documents = documentsData?.getDocumentByStudent;
+
     const [currentTab, setCurrentTab] = useState(0);
 
     const handleCurrentTab = (index: number) => {
@@ -42,12 +45,12 @@ const Content: FC<Props> = (props) => {
                     ['py-4 block']: currentTab === 1,
                     ['py-4 hidden']: currentTab !== 1
                 })}>
-                {isLoading ? (
+                {isLoading && !documents ? (
                     <div className="inset-1/2 w-full h-64">
                         <Loader />
                     </div>
                 ) : (
-                    <Documents data={documentsData} />
+                    <Documents data={documentsData} refetch={refetch} />
                 )}
             </div>
         </div>

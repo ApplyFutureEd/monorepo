@@ -35,11 +35,12 @@ import PreviewDocumentModal from './preview-document-modal/PreviewDocumentModal'
 
 type Props = {
     data: GetDocumentByStudentQuery;
+    refetch: () => void;
 };
 
-const Table: FC<Props> = (props) => {
+const Documents: FC<Props> = (props) => {
     const { t } = useTranslation();
-    const { data } = props;
+    const { data, refetch } = props;
     const [columns] = useState([
         { name: 'updatedAt', title: 'Last update' },
         {
@@ -52,7 +53,7 @@ const Table: FC<Props> = (props) => {
     const [defaultColumnWidths] = useState([
         { columnName: 'updatedAt', width: 140 },
         { columnName: 'name', width: 300 },
-        { columnName: 'storageKey', width: 180 }
+        { columnName: 'storageKey', width: 300 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
     const [resizingMode, setResizingMode] = useState('widget');
@@ -134,6 +135,7 @@ const Table: FC<Props> = (props) => {
                     title: 'Document deleted',
                     variant: 'success'
                 });
+                refetch();
             } catch (error) {
                 toast({
                     description: `${error.message}`,
@@ -207,4 +209,4 @@ const Table: FC<Props> = (props) => {
     );
 };
 
-export default Table;
+export default Documents;

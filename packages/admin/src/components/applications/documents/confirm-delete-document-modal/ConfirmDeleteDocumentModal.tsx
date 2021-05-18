@@ -29,8 +29,10 @@ const ConfirmDeleteDocumentModal: FC<Props> = (props) => {
                     </h3>
                     <div className="mt-2">
                         <p className="text-gray-500 text-sm leading-5">
-                            Are you sure you want to delete this document? It will be permanently
-                            removed from our servers forever. This action cannot be undone.
+                            Are you sure you want to delete this document?
+                            <br />
+                            It will be permanently removed from our servers. This action cannot be
+                            undone.
                         </p>
                         <div className="mt-4 sm:flex sm:flex-row-reverse">
                             <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
