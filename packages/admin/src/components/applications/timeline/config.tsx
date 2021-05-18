@@ -2,6 +2,7 @@
 /* eslint-disable sort-keys */
 import { TimelineConfig } from '@applyfuture/ui';
 import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
+import SchoolReviewProgress from '@components/applications/timeline/school-review/SchoolReviewProgress';
 import React from 'react';
 
 export const config: TimelineConfig = {
@@ -37,7 +38,7 @@ export const config: TimelineConfig = {
     },
     'school-review': {
         IDLE: () => null,
-        PROGRESS: () => null,
+        PROGRESS: (application) => <SchoolReviewProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },

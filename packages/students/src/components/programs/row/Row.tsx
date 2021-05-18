@@ -74,12 +74,15 @@ const Row: FC<Props> = (props) => {
     };
 
     const checkApplicationExistance = async (studentId?: string, programId?: string) => {
-        if (!studentId || !programId) {
-            return toast({
-                title: t('common:toast-error-generic-message'),
-                variant: 'error'
-            });
+        if (!studentId) {
+            throw Error('Missing studentId');
         }
+        if (!programId) {
+            throw Error('Missing programId');
+        }
+
+        console.log({ studentId });
+        console.log({ programId });
 
         const studentApplications = await graphql<GetApplicationByStudentQuery>(
             getApplicationByStudent,
@@ -87,6 +90,8 @@ const Row: FC<Props> = (props) => {
         );
 
         studentApplications.getApplicationByStudent?.items?.forEach((application) => {
+            console.log({ InLoopProgramId: application?.program?.id });
+
             if (application?.program?.id === programId) {
                 const stepsIds = [...applicationSteps.map((step) => step.id)];
                 stepsIds.length = 4;
@@ -95,11 +100,10 @@ const Row: FC<Props> = (props) => {
                     application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
                     application?.steps?.find((step: any) => step?.status === 'ERROR');
 
+                console.log({ currentStep });
+
                 if (!currentStep?.id) {
-                    return toast({
-                        title: t('common:toast-error-generic-message'),
-                        variant: 'error'
-                    });
+                    throw Error('No current step');
                 }
 
                 if (stepsIds.includes(currentStep?.id)) {
