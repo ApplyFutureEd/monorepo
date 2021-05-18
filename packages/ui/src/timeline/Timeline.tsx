@@ -78,7 +78,10 @@ export const Timeline: FC<Props> = (props) => {
                             const isLastStep = step.id === 'visa';
 
                             return (
-                                <div key={step.id} className="relative pb-8">
+                                <div
+                                    key={step.id}
+                                    className="relative pb-8"
+                                    id={`${application.id}-${step.id}`}>
                                     {!isLastStep && (
                                         <span
                                             aria-hidden="true"
