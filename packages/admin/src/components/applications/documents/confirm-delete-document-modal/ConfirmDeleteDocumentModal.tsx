@@ -1,4 +1,5 @@
 import { Button, Modal } from '@applyfuture/ui';
+import { faExclamationCircle, faExclamationTriangle } from '@fortawesome/pro-light-svg-icons';
 import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
@@ -20,8 +21,8 @@ const ConfirmDeleteDocumentModal: FC<Props> = (props) => {
     return (
         <Modal open={open} onClose={handleClose}>
             <div className="sm:flex sm:items-start">
-                <div className="flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 text-indigo-600 bg-indigo-100 rounded-full sm:mx-0 sm:w-10 sm:h-10">
-                    <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+                <div className="flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 text-red-500 bg-red-100 rounded-full sm:mx-0 sm:w-10 sm:h-10">
+                    <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <h3 className="text-gray-900 text-lg font-medium leading-6" id="modal-headline">

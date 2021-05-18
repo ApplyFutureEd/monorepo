@@ -141,6 +141,7 @@ const Table: FC<Props> = (props) => {
                     variant: 'error'
                 });
             } finally {
+                setIsConfirmDeleteDocumentModalOpen(false);
                 setDocumentToDelete({ id: '', storageKey: '' });
             }
         }
