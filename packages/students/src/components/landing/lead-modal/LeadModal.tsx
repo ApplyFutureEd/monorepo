@@ -25,12 +25,14 @@ const LeadModal: FC = () => {
 
     return (
         <Modal open={isOpen} size="small" onClose={handleClose}>
-            <h2 className="mt-1 text-gray-900 text-xl font-extrabold tracking-tight leading-9 sm:text-xl sm:leading-10">
-                {t('landing:lead-modal-title')}
-            </h2>
-            <p className="mt-1">{t('landing:lead-modal-description')}</p>
-            <div className="flex justify-center mt-4">
-                <LeadModalForm setOpen={setOpen} />
+            <div className="px-4 sm:px-0">
+                <h2 className="mt-1 text-gray-900 text-xl font-extrabold tracking-tight leading-9 sm:text-xl sm:leading-10">
+                    {t('landing:lead-modal-title')}
+                </h2>
+                <p className="mt-1">{t('landing:lead-modal-description')}</p>
+                <div className="flex justify-center mt-4">
+                    <LeadModalForm setOpen={setOpen} />
+                </div>
             </div>
         </Modal>
     );
