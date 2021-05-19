@@ -50,7 +50,7 @@ describe('LeadModalForm', () => {
         });
 
         await waitFor(() => {
-            expect(API.post).toHaveBeenCalledWith('rest', '/landing-contact-form', {
+            expect(API.post).toHaveBeenCalledWith('rest', '/contact-form', {
                 body: {
                     email: fakeUser.email,
                     firstName: fakeUser.firstName,
