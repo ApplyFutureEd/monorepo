@@ -3,6 +3,7 @@ import {
     GetApplicationByStudentQuery,
     GetApplicationQuery
 } from '@applyfuture/graphql';
+import intersection from 'lodash/intersection';
 
 import { applicationSteps } from '../constants/applicationSteps';
 import {
@@ -10,6 +11,7 @@ import {
     frenchTestDocumentsIds,
     germanTestDocumentsIds,
     italianTestDocumentsIds,
+    logicAndReasoningTestDocumentsIds,
     spanishTestDocumentsIds
 } from './../constants/documents';
 import { hasBypass } from './eligibility';
@@ -90,6 +92,28 @@ export const languagesBypassFilter = (document: any, student: any): boolean => {
         if (spanishTestDocumentsIds.includes(document.name) && bypasses.spanish) {
             return false;
         }
+    }
+    return true;
+};
+
+export const oneOfDocumentKindFilter = (document: any, documentsIds: (string | undefined)[]) => {
+    if (
+        englishTestDocumentsIds.includes(document.name) &&
+        intersection(documentsIds, englishTestDocumentsIds).length > 0
+    ) {
+        return false;
+    }
+    if (
+        frenchTestDocumentsIds.includes(document.name) &&
+        intersection(documentsIds, frenchTestDocumentsIds).length > 0
+    ) {
+        return false;
+    }
+    if (
+        logicAndReasoningTestDocumentsIds.includes(document.name) &&
+        intersection(documentsIds, logicAndReasoningTestDocumentsIds).length > 0
+    ) {
+        return false;
     }
     return true;
 };

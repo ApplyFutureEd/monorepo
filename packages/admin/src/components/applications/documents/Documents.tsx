@@ -19,14 +19,14 @@ import {
 import {
     Grid,
     SearchPanel,
+    Table,
     TableColumnResizing,
     TableHeaderRow,
-    Toolbar,
-    VirtualTable
+    Toolbar
 } from '@devexpress/dx-react-grid-material-ui';
 import { faEye, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Storage } from 'aws-amplify';
-import { useTranslation } from 'next-translate';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 import { ItemParams, useContextMenu } from 'react-contexify';
 
@@ -186,7 +186,7 @@ const Documents: FC<Props> = (props) => {
                 <SearchState />
                 <SortingState defaultSorting={[{ columnName: 'updatedAt', direction: 'desc' }]} />
                 <IntegratedSorting />
-                <VirtualTable
+                <Table
                     rowComponent={(props) => (
                         <TableRow {...props} handleContextMenu={handleContextMenu} />
                     )}

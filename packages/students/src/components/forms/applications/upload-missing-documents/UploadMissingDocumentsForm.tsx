@@ -13,10 +13,10 @@ import {
 import { Button } from '@applyfuture/ui';
 import {
     conditionFilter,
-    findDocument,
     graphql,
     hasBypass,
     languagesBypassFilter,
+    oneOfDocumentKindFilter,
     scrollToErrors,
     toast
 } from '@applyfuture/utils';
@@ -24,10 +24,11 @@ import DocumentRow from '@components/applications/document-row/DocumentRow';
 import SkeletonDocumentRow from '@components/applications/document-row/SkeletonDocumentRow';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Form, Formik, FormikHelpers } from 'formik';
+import differenceBy from 'lodash/differenceBy';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
@@ -40,10 +41,12 @@ const UploadMissingDocumentsForm: FC<Props> = (props) => {
     const router = useRouter();
     const { applicationData, documentsData, isLoading, studentData } = props;
     const application = applicationData.getApplication;
-    const requestedDocumentsIds =
-        application?.program?.requestedDocuments.map((document) => document.name) || [];
+    const requestedDocuments = application?.program?.requestedDocuments;
+    const requestedDocumentsIds = requestedDocuments?.map((document) => document.name) || [];
     const documents = documentsData?.getDocumentByStudent?.items;
+    const documentsIds = documents?.map((document) => document?.name) || [];
     const student = studentData?.getStudentByEmail?.items?.[0];
+    const missingDocuments = differenceBy(requestedDocuments, documents as any, 'name');
 
     const { t } = useTranslation();
 
@@ -51,7 +54,7 @@ const UploadMissingDocumentsForm: FC<Props> = (props) => {
         [documentId: string]: string;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({});
+    const [initialValues] = useState<FormValues>({});
 
     const validate = (values: any) => {
         const errors: any = {};
@@ -113,19 +116,6 @@ const UploadMissingDocumentsForm: FC<Props> = (props) => {
 
         return errors;
     };
-
-    useEffect(() => {
-        if (student && documents) {
-            const newValues = Object.assign(
-                {},
-                ...requestedDocumentsIds.map((key) => ({
-                    [key]: findDocument(documents, key) || ''
-                }))
-            );
-
-            setInitialValues(newValues);
-        }
-    }, [student, documents]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
@@ -232,9 +222,10 @@ const UploadMissingDocumentsForm: FC<Props> = (props) => {
 
                 return (
                     <Form>
-                        {application?.program?.requestedDocuments
+                        {missingDocuments
                             ?.filter((document) => conditionFilter(document, student))
                             .filter((document) => languagesBypassFilter(document, student))
+                            .filter((document) => oneOfDocumentKindFilter(document, documentsIds))
                             .map((document: any, index: number) => (
                                 <DocumentRow
                                     key={document.name}

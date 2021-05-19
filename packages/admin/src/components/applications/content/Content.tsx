@@ -44,8 +44,7 @@ const Content: FC<Props> = (props) => {
                 className={cx({
                     ['py-4 block']: currentTab === 1,
                     ['py-4 hidden']: currentTab !== 1
-                })}
-                style={{ maxWidth: '806px' }}>
+                })}>
                 {isLoading && !documents ? (
                     <div className="inset-1/2 w-full h-64">
                         <Loader />
