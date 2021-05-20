@@ -18,9 +18,9 @@ const PreviewDocumentModal: FC<Props> = (props) => {
                 {previewImageLoadError ? (
                     <iframe
                         className="h-screen-90 sm:h-screen-40 w-full"
-                        id="frame"
+                        id="preview"
                         src={previewUrl}
-                        title="frame"
+                        title="preview"
                     />
                 ) : (
                     <img alt="" src={previewUrl} onError={handlePreviewError} />
