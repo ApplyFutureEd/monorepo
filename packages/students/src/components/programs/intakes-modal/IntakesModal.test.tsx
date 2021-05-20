@@ -14,6 +14,7 @@ jest.mock('next/router', () => ({
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    checkApplicationExistance: jest.fn().mockReturnValue({ applicationId: null, stepId: null }),
     graphql: jest.fn()
 }));
 
