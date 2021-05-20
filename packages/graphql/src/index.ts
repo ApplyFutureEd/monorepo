@@ -333,3 +333,16 @@ export type {
     OnUpdatePostSubscription,
     OnDeletePostSubscription
 } from './API';
+
+export {
+    ModelAttributeTypes,
+    ModelSortDirection,
+    SearchableStudentSortableFields,
+    SearchableSortDirection,
+    SearchableApplicationSortableFields,
+    SearchableSearchAlertSortableFields,
+    SearchableFeedbackSortableFields,
+    SearchableSchoolSortableFields,
+    SearchableProgramSortableFields,
+    SearchablePostSortableFields
+} from './API';

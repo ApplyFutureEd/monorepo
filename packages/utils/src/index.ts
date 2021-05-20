@@ -40,7 +40,8 @@ export {
     frenchLanguages,
     spanishLanguages,
     germanLanguages,
-    italianLanguages
+    italianLanguages,
+    getLanguageLabel
 } from './constants/languages';
 export { languageLevels, getLanguageLevelLabel } from './constants/languagesLevels';
 export { maritalStatus } from './constants/maritalStatus';
@@ -56,6 +57,7 @@ export {
 } from './helpers/application';
 export { currency } from './helpers/currency';
 export { date } from './helpers/date';
+export type { DateOptions } from './helpers/date';
 export { delay } from './helpers/delay';
 export { findDocument } from './helpers/documents';
 export { convertUnitToSeconds, convertSecondsToUnit } from './helpers/duration';
