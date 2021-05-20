@@ -1,6 +1,7 @@
 import Arguments from '@components/landing/arguments/Arguments';
 import Contact from '@components/landing/contact/Contact';
 import Hero from '@components/landing/hero/Hero';
+import LeadModal from '@components/landing/lead-modal/LeadModal';
 import Partners from '@components/landing/partners/Partners';
 import Process from '@components/landing/process/Process';
 import Recruiters from '@components/landing/recruiters/Recruiters';
@@ -15,6 +16,7 @@ const LandingPage: FC = () => {
 
     return (
         <LandingLayout description={t('landing:meta-description')} title={t('landing:page-title')}>
+            <LeadModal />
             <Hero />
             <Students />
             <Arguments />
