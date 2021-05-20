@@ -7,7 +7,13 @@ import {
 } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Button, Modal } from '@applyfuture/ui';
-import { applicationSteps, date, graphql, toast } from '@applyfuture/utils';
+import {
+    applicationSteps,
+    checkApplicationExistance,
+    date,
+    graphql,
+    toast
+} from '@applyfuture/utils';
 import { faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
@@ -41,6 +47,18 @@ const IntakesModal: FC<Props> = (props) => {
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { intake } = values;
         try {
+            const { applicationId, stepId } = await checkApplicationExistance(
+                student?.id,
+                program?.id
+            );
+
+            if (applicationId && stepId) {
+                if (['upload-documents', 'review-documents', 'fees-payment'].includes(stepId)) {
+                    return router.push(`/applications/${applicationId}/${stepId}`);
+                } else {
+                    return router.push(`/applications?id=${applicationId}&step=${stepId}`);
+                }
+            }
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: intake,
@@ -84,28 +102,29 @@ const IntakesModal: FC<Props> = (props) => {
                                     </p>
                                     <Field key="intake" id="intake" name="intake">
                                         {() => (
-                                            <div className="flex mt-4 space-x-4">
+                                            <div className="flex flex-col mt-4 space-y-4">
                                                 {program?.intakes.split(',').map((intake: any) => (
-                                                    <Button
-                                                        key={intake}
-                                                        disabled={!student}
-                                                        isSubmitting={isSubmitting}
-                                                        type="button"
-                                                        variant={
-                                                            values.intake === intake
-                                                                ? 'primary'
-                                                                : 'secondary'
-                                                        }
-                                                        onClick={() => {
-                                                            setFieldValue('intake', intake);
-                                                            submitForm();
-                                                        }}>
-                                                        {date({
-                                                            locale: locale,
-                                                            scheme: 'LLLL y',
-                                                            value: intake
-                                                        })}
-                                                    </Button>
+                                                    <div key={intake}>
+                                                        <Button
+                                                            disabled={!student}
+                                                            isSubmitting={isSubmitting}
+                                                            type="button"
+                                                            variant={
+                                                                values.intake === intake
+                                                                    ? 'primary'
+                                                                    : 'secondary'
+                                                            }
+                                                            onClick={() => {
+                                                                setFieldValue('intake', intake);
+                                                                submitForm();
+                                                            }}>
+                                                            {date({
+                                                                locale: locale,
+                                                                scheme: 'LLLL y',
+                                                                value: intake
+                                                            })}
+                                                        </Button>
+                                                    </div>
                                                 ))}
                                             </div>
                                         )}

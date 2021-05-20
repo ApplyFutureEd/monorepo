@@ -55,7 +55,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
             }
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: 'Review document' }
+                input: { id: application?.id, steps: updatedSteps, todo: 'Review documents' }
             });
 
             if (hasApplicationFees) {

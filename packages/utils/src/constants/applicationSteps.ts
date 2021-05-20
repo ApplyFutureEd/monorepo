@@ -4,10 +4,8 @@ export const applicationSteps = [
         id: 'upload-documents',
         isMandatory: true,
         label: 'application:step-upload-documents',
-        status: 'IDLE',
-        timelineDescription: 'application:timeline-step-opened-label',
-        timelineDescriptionOptions: '',
-        timelineLabel: ''
+        status: 'PROGRESS',
+        timelineLabel: 'application:timeline-step-opened-label'
     },
     {
         date: '',
@@ -15,8 +13,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:step-review-documents',
         status: 'IDLE',
-        timelineDescription: '',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-signed-label'
     },
     {
@@ -25,8 +21,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:step-payment',
         status: 'IDLE',
-        timelineDescription: '',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-fees-paid-label'
     },
     {
@@ -35,18 +29,14 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:step-submission',
         status: 'IDLE',
-        timelineDescription: '',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-submitted-label'
     },
     {
         date: '',
-        id: 'application-internal-review',
+        id: 'internal-review',
         isMandatory: true,
         label: 'application:timeline-step-internal-review-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-internal-review-description',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-internal-review-label'
     },
     {
@@ -55,9 +45,7 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-internal-review-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-school-interview-description',
-        timelineDescriptionOptions: '',
-        timelineLabel: 'application:timeline-step-school-interview-label'
+        timelineLabel: 'application:timeline-step-school-review-label'
     },
     {
         date: '',
@@ -65,8 +53,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-school-interview-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-school-interview-description',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-school-interview-label'
     },
     {
@@ -75,8 +61,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-school-result-label',
         status: 'IDLE',
-        timelineDescription: '',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-school-result-label'
     },
     {
@@ -85,8 +69,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-tuitions-fee-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-tuitions-fee-description',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-tuitions-fee-label'
     },
     {
@@ -95,8 +77,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-decision-letter-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-decision-letter-description',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-decision-letter-label'
     },
     {
@@ -105,8 +85,6 @@ export const applicationSteps = [
         isMandatory: true,
         label: 'application:timeline-step-visa-label',
         status: 'IDLE',
-        timelineDescription: 'application:timeline-step-visa-description',
-        timelineDescriptionOptions: '',
         timelineLabel: 'application:timeline-step-visa-label'
     }
 ];

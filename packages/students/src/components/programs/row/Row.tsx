@@ -9,6 +9,7 @@ import {
 import { Button } from '@applyfuture/ui';
 import {
     applicationSteps,
+    checkApplicationExistance,
     checkCompletion,
     checkEligibility,
     convertSecondsToUnit,
@@ -80,6 +81,19 @@ const Row: FC<Props> = (props) => {
         }
 
         try {
+            const { applicationId, stepId } = await checkApplicationExistance(
+                student?.id,
+                program?.id
+            );
+
+            if (applicationId && stepId) {
+                if (['upload-documents', 'review-documents', 'fees-payment'].includes(stepId)) {
+                    return router.push(`/applications/${applicationId}/${stepId}`);
+                } else {
+                    return router.push(`/applications?id=${applicationId}&step=${stepId}`);
+                }
+            }
+
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: program?.intakes && program?.intakes?.split(',')[0],
