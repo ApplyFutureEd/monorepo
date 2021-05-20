@@ -116,6 +116,7 @@ const Documents: FC<Props> = (props) => {
         }
     };
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [documentToDelete, setDocumentToDelete] = useState({ id: '', storageKey: '' });
     const [isConfirmDeleteDocumentModalOpen, setIsConfirmDeleteDocumentModalOpen] = useState(false);
 
@@ -124,28 +125,28 @@ const Documents: FC<Props> = (props) => {
     };
 
     const handleDelete = async (id: string, storageKey: string) => {
-        {
-            try {
-                await graphql<DeleteDocumentMutation>(deleteDocument, {
-                    input: { id }
-                });
-                await Storage.remove(storageKey, { level: 'public' });
-                toast({
-                    description: `${storageKey} successfully deleted`,
-                    title: 'Document deleted',
-                    variant: 'success'
-                });
-                refetch();
-            } catch (error) {
-                toast({
-                    description: `${error.message}`,
-                    title: 'An error occured',
-                    variant: 'error'
-                });
-            } finally {
-                setIsConfirmDeleteDocumentModalOpen(false);
-                setDocumentToDelete({ id: '', storageKey: '' });
-            }
+        try {
+            setIsSubmitting(true);
+            await graphql<DeleteDocumentMutation>(deleteDocument, {
+                input: { id }
+            });
+            await Storage.remove(storageKey, { level: 'public' });
+            toast({
+                description: `${storageKey} successfully deleted`,
+                title: 'Document deleted',
+                variant: 'success'
+            });
+            refetch();
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
+            });
+        } finally {
+            setIsConfirmDeleteDocumentModalOpen(false);
+            setDocumentToDelete({ id: '', storageKey: '' });
+            setIsSubmitting(false);
         }
     };
 
@@ -174,6 +175,7 @@ const Documents: FC<Props> = (props) => {
                 handleCancel={handleCancel}
                 handleClose={handleConfirmDeleteDocumentModalClose}
                 handleDelete={handleDelete}
+                isSubmitting={isSubmitting}
                 open={isConfirmDeleteDocumentModalOpen}
             />
             <Grid columns={columns} rows={data?.getDocumentByStudent?.items || []}>

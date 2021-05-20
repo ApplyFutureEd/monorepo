@@ -13,6 +13,7 @@ describe('ConfirmDeleteDocumentModal', () => {
                 handleCancel={handleCancel}
                 handleClose={handleClose}
                 handleDelete={handleDelete}
+                isSubmitting={false}
                 open={true}
             />
         );
@@ -29,6 +30,7 @@ describe('ConfirmDeleteDocumentModal', () => {
                 handleCancel={handleCancel}
                 handleClose={handleClose}
                 handleDelete={handleDelete}
+                isSubmitting={false}
                 open={true}
             />
         );
