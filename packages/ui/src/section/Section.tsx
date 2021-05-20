@@ -51,5 +51,3 @@ export const Section: FC<Props> = (props) => {
         </div>
     );
 };
-
-export default Section;
