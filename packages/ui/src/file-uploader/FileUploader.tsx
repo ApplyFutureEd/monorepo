@@ -5,7 +5,7 @@ import {
     GetProgramQuery,
     GetStudentByEmailQuery
 } from '@applyfuture/graphql';
-import { graphql, toShortId } from '@applyfuture/utils';
+import { graphql, toast, toShortId } from '@applyfuture/utils';
 import { faDownload, faEye, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
@@ -14,7 +14,6 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Skeleton from 'react-loading-skeleton';
-import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '../button/Button';
@@ -111,8 +110,10 @@ export const FileUploader: FC<Props> = (props) => {
             const result: any = await Storage.get(storageKey, { level: level });
             window.open(result);
         } catch (error) {
-            toast.error(error.message, {
-                position: 'top-right'
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
             });
         }
     };
@@ -125,8 +126,10 @@ export const FileUploader: FC<Props> = (props) => {
             setPreviewUrl(result);
             setModalOpen(true);
         } catch (error) {
-            toast.error(error.message, {
-                position: 'top-right'
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
             });
         }
     };
@@ -135,8 +138,10 @@ export const FileUploader: FC<Props> = (props) => {
         try {
             await Storage.remove(storageKey, { level: level });
         } catch (error) {
-            toast.error(error.message, {
-                position: 'top-right'
+            toast({
+                description: `${error.message}`,
+                title: 'An error occured',
+                variant: 'error'
             });
         }
     };
@@ -149,13 +154,20 @@ export const FileUploader: FC<Props> = (props) => {
         const maxSize = 10_000_000; // 10 Mo
         if (!acceptedFileFormatRegex.test(acceptedFiles[0].name)) {
             if (!bypassAcceptedFileFormat) {
-                toast.error(t('common:upload-file-input-error-file-wrong-format'));
-
+                toast({
+                    description: t('common:upload-file-input-error-file-wrong-format'),
+                    title: 'An error occured',
+                    variant: 'error'
+                });
                 return;
             }
         }
         if (acceptedFiles[0].size > maxSize) {
-            toast.error(t('common:upload-file-input-error-file-too-big'));
+            toast({
+                description: t('common:upload-file-input-error-file-too-big'),
+                title: 'An error occured',
+                variant: 'error'
+            });
             return;
         }
 

@@ -73,7 +73,7 @@ describe('DocumentRow', () => {
             },
             {
                 date: '',
-                id: 'application-internal-review',
+                id: 'internal-review',
                 isMandatory: true,
                 label: 'TBD',
                 status: 'idle'

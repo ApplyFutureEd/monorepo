@@ -7,7 +7,7 @@ module.exports = {
     pages: {
         '*': ['common'],
         '/applications': ['application'],
-        '/applications/update': ['application', 'programs'],
+        '/applications/update': ['application', 'programs', 'profile'],
         '/programs': [],
         '/programs/create': ['profile', 'programs', 'application'],
         '/programs/update': ['profile', 'programs', 'application'],

@@ -90,7 +90,11 @@ const FeesPaymentForm: FC<Props> = (props) => {
                     updatedSteps[4].date = new Date().toString();
 
                     await graphql(updateApplication, {
-                        input: { id: application?.id, steps: updatedSteps, todo: 'Review document' }
+                        input: {
+                            id: application?.id,
+                            steps: updatedSteps,
+                            todo: 'Review documents'
+                        }
                     });
 
                     router.push(`/applications/${application?.id}/submission`);

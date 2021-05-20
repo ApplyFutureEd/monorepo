@@ -45,6 +45,7 @@ export * from './hooks/useAuthenticatedUser';
 export * from './hooks/useOutsideAlerter';
 export * from './hooks/usePageBottom';
 export * from './hooks/useQuery';
+export * from './hooks/useSubscription';
 export * from './hooks/useWindowSize';
 
 export * from './services/amplify';

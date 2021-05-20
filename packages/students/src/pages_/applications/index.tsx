@@ -20,13 +20,17 @@ import ApplicationRow from '@components/applications/application-row/Application
 import SkeletonApplicationRow from '@components/applications/application-row/SkeletonApplicationRow';
 import NoApplicationPanel from '@components/applications/no-application-panel/NoApplicationPanel';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 const ApplicationsPage: FC = () => {
+    const router = useRouter();
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
-    const [open, setOpen] = useState(-1);
+    const [openedApplicationId, setOpenedApplicationId] = useState(
+        (router.query.id as string) || ''
+    );
 
     const { data: studentData, isLoading: studentIsLoading } = useQuery<
         GetStudentByEmailQuery,
@@ -66,24 +70,36 @@ const ApplicationsPage: FC = () => {
     const applications = applicationsData.getApplicationByStudent?.items;
     const total = applications?.length ? `(${applications?.length})` : '';
 
+    useEffect(() => {
+        if (!isLoading && router.query.id && router.query.step) {
+            document.getElementById(`${router.query.id}-${router.query.step}`)?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }, [isLoading]);
+
     const renderApplications = () => {
         return (
             <>
                 {applications && applications?.length > 0 ? (
-                    applications?.map((application, index) => {
+                    applications?.map((application) => {
                         if (!application) {
                             return;
                         }
 
                         const handleClick = () => {
-                            setOpen((prevIndex: number) => (index === prevIndex ? -1 : index));
+                            setOpenedApplicationId((prevId: string) =>
+                                application?.id === prevId ? '' : application?.id
+                            );
                         };
 
                         return (
                             application && (
                                 <ApplicationRow
+                                    key={application.id}
                                     application={application}
-                                    open={index === open}
+                                    open={application?.id === openedApplicationId}
                                     onClick={handleClick}
                                 />
                             )

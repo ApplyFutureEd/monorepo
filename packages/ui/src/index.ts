@@ -30,6 +30,7 @@ export * from './section/Section';
 export * from './select/Select';
 export * from './stepper/Stepper';
 export * from './sub-header/SubHeader';
+export * from './timeline/Timeline';
 export * from './toast/Toast';
 export * from './toggle/Toggle';
 export * from './tooltip/Tooltip';

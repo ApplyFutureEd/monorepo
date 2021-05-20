@@ -13,6 +13,7 @@ module.exports = {
         '/applications/[id]/review-documents': ['application', 'profile', 'programs'],
         '/applications/[id]/submission': ['application', 'profile', 'programs'],
         '/applications/[id]/upload-documents': ['application', 'profile', 'programs'],
+        '/applications/[id]/upload-missing-documents': ['application', 'profile', 'programs'],
         '/careers': ['landing'],
         '/help': ['help'],
         '/privacy-policy': ['landing'],

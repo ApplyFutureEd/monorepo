@@ -2,6 +2,236 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onUpdateApplicationById = /* GraphQL */ `
+  subscription OnUpdateApplicationById($id: ID!) {
+    onUpdateApplicationById(id: $id) {
+      id
+      admissionResult
+      document
+      decisionLetterDate
+      intake
+      interviewDate
+      lastUpdate
+      modalApplicationCompletedViewed
+      notifications {
+        date
+        description
+        descriptionOptions
+        link
+        seen
+        title
+        titleOptions
+      }
+      programId
+      steps {
+        date
+        id
+        isMandatory
+        label
+        status
+        timelineLabel
+      }
+      studentId
+      student {
+        id
+        address
+        applications {
+          nextToken
+        }
+        birthday
+        city
+        country
+        degrees
+        disciplines
+        documents {
+          nextToken
+        }
+        educationCountry
+        email
+        fatherFirstName
+        fatherLastName
+        firstLanguage
+        firstName
+        favoritePrograms
+        favoriteSchools
+        gender
+        gradePointAverage
+        guardianFirstName
+        guardianLastName
+        hasMandatoryDocuments
+        highestEducationLevel
+        lastName
+        lastUpdate
+        locale
+        maritalStatus
+        middleName
+        modalProfileCompletedViewed
+        phoneNumber
+        motherFirstName
+        motherMaidenName
+        nationality
+        notifications {
+          date
+          description
+          descriptionOptions
+          link
+          seen
+          title
+          titleOptions
+        }
+        parentsAddress
+        parentsCity
+        parentsCountry
+        parentsEmail
+        parentsPhoneNumber
+        passportNumber
+        refusedVisa
+        refusedVisaReason
+        schoolsAttended {
+          address
+          attendedInstitutionFrom
+          attendedInstitutionTo
+          city
+          country
+          degreeAwarded
+          degreeAwardedOn
+          educationLevel
+          name
+          primaryLanguageInstruction
+        }
+        testCambridgeAdvanced
+        testCambridgeAdvancedDate
+        testCambridgeFirst
+        testCambridgeFirstDate
+        testCeliCilsItPlida
+        testCeliCilsItPlidaDate
+        testDele
+        testDeleDate
+        testDelfdalf
+        testDelfdalfDate
+        testEnglishPending
+        testGmat
+        testGmatDate
+        testGoethe
+        testGoetheDate
+        testGre
+        testGreDate
+        testIelts
+        testIeltsDate
+        testLogicAndReasoningPending
+        testOtherLanguagesPending
+        testTagemage
+        testTagemageDate
+        testTcftef
+        testTcftefDate
+        testToefl
+        testToeflDate
+        testToeic
+        testToeicDate
+        validVisa
+        workExperiences {
+          address
+          compagnyName
+          title
+          workedFrom
+          workedTo
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      todo
+      tuitionsFeePaymentDate
+      visaDate
+      createdAt
+      updatedAt
+      owner
+      program {
+        id
+        applicationFee
+        applicationFeeCurrency
+        city
+        costOfLiving
+        costOfLivingCurrency
+        country
+        degree
+        description
+        discipline
+        duration
+        durationUnit
+        fee
+        feeCurrency
+        feeUnit
+        feesAndFinancing
+        gradePointAverage
+        highestEducationLevel
+        intakeInformation
+        intakes
+        languages
+        lastUpdate
+        minimumAge
+        minimumWorkExperience
+        minimumWorkExperienceUnit
+        name
+        otherRequirements
+        published
+        requestedDocuments {
+          name
+          isMandatory
+          storageKey
+          description
+          condition
+          isSpecific
+        }
+        schedule
+        schoolId
+        schoolName
+        slug
+        submissionDeadline
+        testCambridgeAdvanced
+        testCambridgeFirst
+        testCeliCilsItPlida
+        testDele
+        testDelfdalf
+        testGmat
+        testGoethe
+        testGre
+        testIelts
+        testTagemage
+        testTcftef
+        testToefl
+        testToeic
+        createdAt
+        updatedAt
+        owner
+        school {
+          id
+          city
+          country
+          coverPhoto
+          contactEmail
+          contactJobTitle
+          contactName
+          contactPhone
+          contractStatus
+          creationYear
+          description
+          institutionType
+          internationalStudents
+          lastUpdate
+          logo
+          name
+          totalStudents
+          slug
+          published
+          createdAt
+          updatedAt
+          owner
+        }
+      }
+    }
+  }
+`;
 export const onCreateStudent = /* GraphQL */ `
   subscription OnCreateStudent($owner: String) {
     onCreateStudent(owner: $owner) {
@@ -783,8 +1013,8 @@ export const onDeleteDocument = /* GraphQL */ `
   }
 `;
 export const onCreateApplication = /* GraphQL */ `
-  subscription OnCreateApplication($owner: String) {
-    onCreateApplication(owner: $owner) {
+  subscription OnCreateApplication {
+    onCreateApplication {
       id
       admissionResult
       document
@@ -809,8 +1039,6 @@ export const onCreateApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -927,6 +1155,7 @@ export const onCreateApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -984,6 +1213,7 @@ export const onCreateApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1006,15 +1236,15 @@ export const onCreateApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
 export const onUpdateApplication = /* GraphQL */ `
-  subscription OnUpdateApplication($owner: String) {
-    onUpdateApplication(owner: $owner) {
+  subscription OnUpdateApplication {
+    onUpdateApplication {
       id
       admissionResult
       document
@@ -1039,8 +1269,6 @@ export const onUpdateApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -1157,6 +1385,7 @@ export const onUpdateApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1214,6 +1443,7 @@ export const onUpdateApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1236,15 +1466,15 @@ export const onUpdateApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
 export const onDeleteApplication = /* GraphQL */ `
-  subscription OnDeleteApplication($owner: String) {
-    onDeleteApplication(owner: $owner) {
+  subscription OnDeleteApplication {
+    onDeleteApplication {
       id
       admissionResult
       document
@@ -1269,8 +1499,6 @@ export const onDeleteApplication = /* GraphQL */ `
         isMandatory
         label
         status
-        timelineDescription
-        timelineDescriptionOptions
         timelineLabel
       }
       studentId
@@ -1387,6 +1615,7 @@ export const onDeleteApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1444,6 +1673,7 @@ export const onDeleteApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1466,9 +1696,9 @@ export const onDeleteApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -1867,8 +2097,6 @@ export const onCreateFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId
@@ -1951,6 +2179,7 @@ export const onCreateFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2000,8 +2229,8 @@ export const onCreateFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2041,8 +2270,6 @@ export const onUpdateFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId
@@ -2125,6 +2352,7 @@ export const onUpdateFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2174,8 +2402,8 @@ export const onUpdateFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2215,8 +2443,6 @@ export const onDeleteFeedback = /* GraphQL */ `
           isMandatory
           label
           status
-          timelineDescription
-          timelineDescriptionOptions
           timelineLabel
         }
         studentId
@@ -2299,6 +2525,7 @@ export const onDeleteFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2348,8 +2575,8 @@ export const onDeleteFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2384,6 +2611,7 @@ export const onCreateSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -2434,6 +2662,7 @@ export const onCreateSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -2464,6 +2693,7 @@ export const onUpdateSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -2514,6 +2744,7 @@ export const onUpdateSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -2544,6 +2775,7 @@ export const onDeleteSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -2594,6 +2826,7 @@ export const onDeleteSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -2659,6 +2892,7 @@ export const onCreateProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -2681,6 +2915,7 @@ export const onCreateProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -2747,6 +2982,7 @@ export const onUpdateProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -2769,6 +3005,7 @@ export const onUpdateProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -2835,6 +3072,7 @@ export const onDeleteProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -2857,6 +3095,7 @@ export const onDeleteProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -2876,6 +3115,7 @@ export const onCreatePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2891,6 +3131,7 @@ export const onUpdatePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2906,6 +3147,7 @@ export const onDeletePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
