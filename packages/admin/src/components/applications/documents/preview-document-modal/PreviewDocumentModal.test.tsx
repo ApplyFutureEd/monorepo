@@ -10,7 +10,6 @@ describe('PreviewDocumentModal', () => {
             <PreviewDocumentModal
                 handleClose={handleClose}
                 handlePreviewError={handlePreviewError}
-                isSubmitting={false}
                 open={true}
                 previewImageLoadError={false}
                 previewUrl=""
