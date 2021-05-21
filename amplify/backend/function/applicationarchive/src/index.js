@@ -36,13 +36,13 @@ exports.handler = async (event) => {
         });
         const streamPassThrough = new stream_1.Stream.PassThrough();
         const studentName = kebabCase_1.default(`${student.firstName}-${student.lastName}`);
+        const storageKey = `${studentName}-${id_1.toShortId(id)}.zip`;
         const params = {
-            ACL: 'private',
             Body: streamPassThrough,
             Bucket: 'applyfuture-students-content162403-dev',
             ContentType: 'application/zip',
-            Key: `${studentName}-${id_1.toShortId(id)}`,
-            StorageClass: 'STANDARD_IA'
+            Key: `public/${storageKey}`,
+            Metadata: {}
         };
         const s3Upload = s3.upload(params, (error) => {
             if (error) {
@@ -75,7 +75,7 @@ exports.handler = async (event) => {
             body: JSON.stringify({ archive }),
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'content-type': 'application/pdf'
+                'content-type': 'application/json'
             },
             statusCode: 200
         };

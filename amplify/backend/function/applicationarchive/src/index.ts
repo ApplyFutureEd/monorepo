@@ -36,13 +36,14 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         });
         const streamPassThrough = new Stream.PassThrough();
         const studentName = kebabCase(`${student.firstName}-${student.lastName}`);
+        const storageKey = `${studentName}-${toShortId(id)}.zip`;
+
         const params = {
-            ACL: 'private',
             Body: streamPassThrough,
             Bucket: 'applyfuture-students-content162403-dev',
             ContentType: 'application/zip',
-            Key: `${studentName}-${toShortId(id)}`,
-            StorageClass: 'STANDARD_IA'
+            Key: `public/${storageKey}`,
+            Metadata: {}
         };
 
         const s3Upload = s3.upload(params, (error: Error) => {
@@ -94,7 +95,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             body: JSON.stringify({ archive }),
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'content-type': 'application/pdf'
+                'content-type': 'application/json'
             },
             statusCode: 200
         };

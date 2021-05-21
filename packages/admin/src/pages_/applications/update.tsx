@@ -36,7 +36,11 @@ const UpdateApplicationPage: FC = () => {
     return (
         <DashboardLayout title="Application">
             <div className="flex items-start space-x-0 md:space-x-2">
-                <Summary applicationData={applicationData} isLoading={isLoading} />
+                <Summary
+                    applicationData={applicationData}
+                    documentsData={documentsData}
+                    isLoading={isLoading}
+                />
                 <Content
                     applicationData={applicationData}
                     documentsData={documentsData}

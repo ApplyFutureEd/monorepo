@@ -1,20 +1,27 @@
-import { GetApplicationQuery } from '@applyfuture/graphql';
+import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Tooltip } from '@applyfuture/ui';
-import { currency, date, toShortId } from '@applyfuture/utils';
+import { currency, date, toast, toShortId } from '@applyfuture/utils';
+import { API } from 'aws-amplify';
+import { Storage } from 'aws-amplify';
+import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
     applicationData: GetApplicationQuery;
+    documentsData: GetDocumentByStudentQuery;
     isLoading: boolean;
 };
 
 const Summary: FC<Props> = (props) => {
-    const { applicationData, isLoading } = props;
+    const { applicationData, documentsData, isLoading } = props;
     const application = applicationData.getApplication;
+    const documents = documentsData.getDocumentByStudent?.items?.map(
+        (document) => document?.storageKey
+    );
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
@@ -22,6 +29,37 @@ const Summary: FC<Props> = (props) => {
     const currentStep =
         application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
         application?.steps?.find((step: any) => step?.status === 'ERROR');
+    const studentName = kebabCase(
+        `${application?.student?.firstName}-${application?.student?.lastName}`
+    );
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const generateDocumentsArchive = async () => {
+        if (isSubmitting) {
+            return;
+        }
+
+        try {
+            setIsSubmitting(true);
+            const { archive } = await API.post('rest', '/application-archive', {
+                body: { application, documents }
+            });
+            const storageKey = archive.key.split('/')[1];
+            const file = await Storage.get(storageKey, {
+                level: 'public'
+            });
+            window.open(file as string);
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="hidden w-1/3 bg-white rounded-lg shadow overflow-hidden md:block">
@@ -150,6 +188,26 @@ const Summary: FC<Props> = (props) => {
                                     })
                                 ) : (
                                     t('programs:free-of-charge')
+                                )}
+                            </dd>
+                        </div>
+                        <div className="bg-gray-50 mt-8 sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                            <dt className="text-gray-500 text-sm font-medium leading-5">
+                                Documents
+                            </dt>
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                                {isLoading ? (
+                                    <Skeleton height="20px" width="160px" />
+                                ) : isSubmitting ? (
+                                    <div>Loading ...</div>
+                                ) : (
+                                    <button
+                                        className="hover:text-indigo-500 text-indigo-600 truncate font-medium cursor-pointer"
+                                        disabled={isSubmitting}
+                                        onClick={generateDocumentsArchive}>
+                                        {application?.id &&
+                                            `${studentName}-${toShortId(application?.id)}.zip`}
+                                    </button>
                                 )}
                             </dd>
                         </div>

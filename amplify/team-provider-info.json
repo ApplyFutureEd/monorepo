@@ -45,7 +45,7 @@
         },
         "applicationarchive": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationarchive-372b31456c59715a3947-build.zip"
+          "s3Key": "amplify-builds/applicationarchive-2f644c73504930793844-build.zip"
         }
       }
     }
