@@ -24,11 +24,14 @@ export declare class Notification {
 }
 
 export declare class ApplicationStep {
-  readonly id: string;
   readonly date: string;
+  readonly id: string;
   readonly isMandatory: boolean;
   readonly label: string;
   readonly status: string;
+  readonly timelineDescription: string;
+  readonly timelineDescriptionOptions: string;
+  readonly timelineLabel: string;
   constructor(init: ModelInit<ApplicationStep>);
 }
 

@@ -1,7 +1,7 @@
 import { GetApplicationQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Tooltip } from '@applyfuture/ui';
-import { currency, date, getApplicationStepLabel, toShortId } from '@applyfuture/utils';
+import { currency, date, toShortId } from '@applyfuture/utils';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
@@ -54,7 +54,7 @@ const Summary: FC<Props> = (props) => {
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
-                                    <>{t(getApplicationStepLabel(currentStep?.id)) || 'Closed'}</>
+                                    <>{(currentStep?.label && t(currentStep?.label)) || 'Closed'}</>
                                 )}
                             </dd>
                         </div>
