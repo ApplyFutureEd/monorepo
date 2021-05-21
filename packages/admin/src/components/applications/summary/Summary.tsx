@@ -19,9 +19,8 @@ type Props = {
 const Summary: FC<Props> = (props) => {
     const { applicationData, documentsData, isLoading } = props;
     const application = applicationData.getApplication;
-    const documents = documentsData.getDocumentByStudent?.items?.map(
-        (document) => document?.storageKey
-    );
+    const documentsStorageKeys =
+        documentsData.getDocumentByStudent?.items?.map((document) => document?.storageKey) || [];
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { t } = useTranslation();
@@ -29,9 +28,12 @@ const Summary: FC<Props> = (props) => {
     const currentStep =
         application?.steps?.find((step: any) => step?.status === 'PROGRESS') ||
         application?.steps?.find((step: any) => step?.status === 'ERROR');
+    const programId = toShortId(application?.program?.id);
+    const studentId = toShortId(application?.student?.id);
     const studentName = kebabCase(
         `${application?.student?.firstName}-${application?.student?.lastName}`
     );
+    const applicationDocumentStorageKey = `${studentName}-${programId}-${studentId}-application-document.pdf`;
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -43,7 +45,10 @@ const Summary: FC<Props> = (props) => {
         try {
             setIsSubmitting(true);
             const { archive } = await API.post('rest', '/application-archive', {
-                body: { application, documents }
+                body: {
+                    application,
+                    documents: [...documentsStorageKeys, applicationDocumentStorageKey]
+                }
             });
             const storageKey = archive.key.split('/')[1];
             const file = await Storage.get(storageKey, {
@@ -82,7 +87,7 @@ const Summary: FC<Props> = (props) => {
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
-                                    application?.id && toShortId(application?.id)
+                                    toShortId(application?.id)
                                 )}
                             </dd>
                         </div>
