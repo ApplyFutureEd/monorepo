@@ -50,7 +50,7 @@ const Summary: FC<Props> = (props) => {
                     documents: [...documentsStorageKeys, applicationDocumentStorageKey]
                 }
             });
-            const storageKey = archive.key.split('/')[1];
+            const storageKey = archive.Key.split('/')[1];
             const file = await Storage.get(storageKey, {
                 level: 'public'
             });
