@@ -3,6 +3,8 @@
 import { TimelineConfig } from '@applyfuture/ui';
 import InternalReviewError from '@components/applications/timeline/internal-review/InternalReviewError';
 import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
+import SchoolInterviewError from '@components/applications/timeline/school-interview/SchoolInterviewError';
+import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
 import SchoolReviewError from '@components/applications/timeline/school-review/SchoolReviewError';
 import SchoolReviewProgress from '@components/applications/timeline/school-review/SchoolReviewProgress';
 import React from 'react';
@@ -46,8 +48,8 @@ export const config: TimelineConfig = {
     },
     'school-interview': {
         IDLE: () => null,
-        PROGRESS: () => null,
-        ERROR: () => null,
+        PROGRESS: (application) => <SchoolInterviewProgress application={application} />,
+        ERROR: (application) => <SchoolInterviewError application={application} />,
         DONE: () => null
     },
     'school-result': {
