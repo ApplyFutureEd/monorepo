@@ -31,7 +31,11 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             updatedSteps[5].date = new Date().toString();
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: '' }
+                input: {
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Forward school response to student'
+                }
             });
         } catch (error) {
             toast({
