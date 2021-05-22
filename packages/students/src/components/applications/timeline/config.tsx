@@ -51,7 +51,7 @@ export const config: TimelineConfig = {
     },
     'school-interview': {
         IDLE: () => null,
-        PROGRESS: () => <SchoolInterviewProgress />,
+        PROGRESS: (application) => <SchoolInterviewProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },

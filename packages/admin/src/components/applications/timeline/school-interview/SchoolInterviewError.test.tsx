@@ -1,17 +1,17 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
-import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
-import { render, screen } from '@testing-library/react';
+import { graphql, toast } from '@applyfuture/utils';
+import SchoolInterviewError from '@components/applications/timeline/school-interview/SchoolInterviewError';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
 
-jest.mock('next/router', () => ({
-    useRouter() {
-        return {
-            locale: 'en'
-        };
-    }
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
+    graphql: jest.fn(),
+    toast: jest.fn()
 }));
 
-describe('SchoolInterviewProgress', () => {
+describe('SchoolInterviewError', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -19,7 +19,7 @@ describe('SchoolInterviewProgress', () => {
         document: null,
         id: '2b627cf1-7dfa-41dd-b2a4-acf73bdf0fb6',
         intake: '2022-01-31T23:00:00.000Z',
-        interviewDate: '2021-05-01T14:14:09.014Z',
+        interviewDate: null,
         lastUpdate: 1619878451124,
         modalApplicationCompletedViewed: false,
         notifications: null,
@@ -366,13 +366,43 @@ describe('SchoolInterviewProgress', () => {
         visaDate: null
     } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
-    it('can render without crashing', () => {
-        render(<SchoolInterviewProgress application={application} />);
+    const corruptedApplication = ({} as unknown) as NonNullable<
+        NonNullable<GetApplicationQuery['getApplication']>
+    >;
 
-        const description = screen.getByText(
-            'application:timeline-step-school-interview-description'
-        );
+    it('can render without crashing', () => {
+        render(<SchoolInterviewError application={application} />);
+
+        const description = screen.getByText('Forward school response to student');
 
         expect(description).toBeInTheDocument;
+    });
+
+    it('can handle undo workflow', async () => {
+        render(<SchoolInterviewError application={application} />);
+
+        const undoButton = screen.getByText('Undo');
+
+        await waitFor(() => {
+            fireEvent.click(undoButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the undo workflow', async () => {
+        render(<SchoolInterviewError application={corruptedApplication} />);
+
+        const undoButton = screen.getByText('Undo');
+
+        await waitFor(() => {
+            fireEvent.click(undoButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
+        });
     });
 });
