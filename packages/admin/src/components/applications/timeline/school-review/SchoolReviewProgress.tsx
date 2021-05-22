@@ -23,35 +23,11 @@ const SchoolReviewProgress: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const handleReject = async () => {
-        /* try {
+        try {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[4].status = 'ERROR';
-            updatedSteps[4].date = new Date().toString();
-
-            await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: '' }
-            });
-        } catch (error) {
-            toast({
-                description: `${error.message}`,
-                title: t('common:toast-error-generic-message'),
-                variant: 'error'
-            });
-        } finally {
-            setIsSubmitting(false);
-        } */
-    };
-
-    const handleApprove = async () => {
-        /*  try {
-            setIsSubmitting(true);
-            const updatedSteps = (application?.steps && [...application?.steps]) || [];
-
-            updatedSteps[4].status = 'DONE';
-            updatedSteps[4].date = new Date().toString();
-            updatedSteps[5].status = 'PROGRESS';
+            updatedSteps[5].status = 'ERROR';
             updatedSteps[5].date = new Date().toString();
 
             await graphql(updateApplication, {
@@ -65,7 +41,31 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             });
         } finally {
             setIsSubmitting(false);
-        } */
+        }
+    };
+
+    const handleApprove = async () => {
+        try {
+            setIsSubmitting(true);
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+
+            updatedSteps[5].status = 'DONE';
+            updatedSteps[5].date = new Date().toString();
+            updatedSteps[6].status = 'PROGRESS';
+            updatedSteps[6].date = new Date().toString();
+
+            await graphql(updateApplication, {
+                input: { id: application?.id, steps: updatedSteps, todo: '' }
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleUndo = async () => {

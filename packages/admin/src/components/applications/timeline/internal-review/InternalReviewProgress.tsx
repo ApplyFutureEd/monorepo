@@ -62,7 +62,7 @@ const InternalReviewProgress: FC<Props> = (props) => {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Send application to school'
+                    todo: 'Check reply from school'
                 }
             });
         } catch (error) {
