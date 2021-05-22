@@ -1,5 +1,6 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/graphql';
+import { toast } from '@applyfuture/utils';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API, Storage } from 'aws-amplify';
 import React from 'react';
