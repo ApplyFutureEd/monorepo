@@ -275,20 +275,25 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                         )}
                                                                     </Field>
                                                                 </div>
-
-                                                                <Field
-                                                                    name={`workExperiences.${index}.address`}>
-                                                                    {(fieldProps: FieldProps) => (
-                                                                        <Input
-                                                                            isLoading={isLoading}
-                                                                            label={t(
-                                                                                'profile:address'
-                                                                            )}
-                                                                            type="text"
-                                                                            {...fieldProps}
-                                                                        />
-                                                                    )}
-                                                                </Field>
+                                                                <div className="w-full sm:w-1/2">
+                                                                    <Field
+                                                                        name={`workExperiences.${index}.address`}>
+                                                                        {(
+                                                                            fieldProps: FieldProps
+                                                                        ) => (
+                                                                            <Input
+                                                                                isLoading={
+                                                                                    isLoading
+                                                                                }
+                                                                                label={t(
+                                                                                    'profile:address'
+                                                                                )}
+                                                                                type="text"
+                                                                                {...fieldProps}
+                                                                            />
+                                                                        )}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
                                                             <div className="flex flex-col items-center w-full sm:flex-row sm:space-x-4">
                                                                 <div className="w-full sm:w-1/2">
