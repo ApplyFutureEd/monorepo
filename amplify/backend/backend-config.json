@@ -87,6 +87,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "applicationarchive",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -116,6 +124,11 @@
       "service": "Lambda"
     },
     "feespayment": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "applicationarchive": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
