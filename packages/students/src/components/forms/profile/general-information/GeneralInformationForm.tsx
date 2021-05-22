@@ -23,7 +23,7 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { toUpper } from 'lodash';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
-import { object, string } from 'yup';
+import { mixed, object, string } from 'yup';
 
 type Props = {
     documentsData: GetDocumentByStudentQuery;
@@ -70,7 +70,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                 test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
-        firstLanguage: string().required(t('common:error-field-required')),
+        firstLanguage: mixed().required(t('common:error-field-required')),
         firstName: string()
             .test({
                 message: t('common:error-latin-characters'),
@@ -78,7 +78,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                 test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
-        gender: string().required(t('common:error-field-required')),
+        gender: mixed().required(t('common:error-field-required')),
         lastName: string()
             .test({
                 message: t('common:error-latin-characters'),
@@ -86,7 +86,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                 test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
-        maritalStatus: string().required(t('common:error-field-required')),
+        maritalStatus: mixed().required(t('common:error-field-required')),
         motherFirstName: string()
             .test({
                 message: t('common:error-latin-characters'),
@@ -101,7 +101,7 @@ const GeneralInformationForm: FC<Props> = (props) => {
                 test: (value) => !/^[\u4E00-\u9FA5]+$/.test(value)
             })
             .required(t('common:error-field-required')),
-        nationality: string().required(t('common:error-field-required')),
+        nationality: mixed().required(t('common:error-field-required')),
         parentsAddress: string()
             .test({
                 message: t('common:error-latin-characters'),
