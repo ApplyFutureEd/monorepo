@@ -2,8 +2,7 @@ import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/gra
 import { SupportedLocale } from '@applyfuture/models';
 import { Tooltip } from '@applyfuture/ui';
 import { currency, date, toast, toShortId } from '@applyfuture/utils';
-import { API } from 'aws-amplify';
-import { Storage } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
