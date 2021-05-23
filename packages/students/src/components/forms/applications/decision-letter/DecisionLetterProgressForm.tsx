@@ -18,37 +18,46 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewProgressForm: FC<Props> = (props) => {
+const DecisionLetterProgressForm: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        visaDate: string().nullable()
+        decisionLetterDate: string().nullable()
     });
 
     type FormValues = {
-        visaDate: string | null | undefined;
+        decisionLetterDate: string | null | undefined;
     };
 
     const [initialValues, setInitialValues] = useState<FormValues>({
-        visaDate: null
+        decisionLetterDate: null
     });
 
     useEffect(() => {
         if (application) {
             setInitialValues({
-                visaDate: application.visaDate
+                decisionLetterDate: application.decisionLetterDate
             });
         }
     }, [application]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { visaDate } = values;
+        const { decisionLetterDate } = values;
         try {
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+
+            updatedSteps[9].status = 'DONE';
+            updatedSteps[9].date = new Date().toString();
+            updatedSteps[10].status = 'PROGRESS';
+            updatedSteps[10].date = new Date().toString();
+
             await graphql(updateApplication, {
                 input: {
+                    decisionLetterDate: decisionLetterDate,
                     id: application?.id,
-                    visaDate: visaDate
+                    steps: updatedSteps,
+                    todo: "Select visa's date of receipt"
                 }
             });
         } catch (error) {
@@ -72,12 +81,12 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
 
                 return (
                     <Form className="flex space-x-2">
-                        <Field id="visaDate" name="visaDate">
+                        <Field id="decisionLetterDate" name="decisionLetterDate">
                             {(fieldProps: FieldProps) => <DateInput {...fieldProps} />}
                         </Field>
 
                         <Button
-                            disabled={isSubmitting || !values.visaDate}
+                            disabled={isSubmitting || !values.decisionLetterDate}
                             isSubmitting={isSubmitting}
                             type="submit"
                             variant="primary">
@@ -90,4 +99,4 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewProgressForm;
+export default DecisionLetterProgressForm;

@@ -388,7 +388,7 @@ describe('VisaProgress', () => {
         expect(approveButton).toBeInTheDocument;
     });
 
-    it('can submit an interview date', async () => {
+    it("can submit a visa's date of receipt", async () => {
         render(<VisaProgress application={application} />);
 
         const dateInput = screen.getByRole('textbox');

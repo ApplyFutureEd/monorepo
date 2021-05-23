@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import DecisionLetterForm from '@components/forms/application/decision-letter/DecisionLetterForm';
+import DecisionLetterProgressForm from '@components/forms/application/decision-letter/DecisionLetterProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -110,7 +110,7 @@ const DecisionLetterProgress: FC<Props> = (props) => {
         <div>
             <p className="text-gray-500 text-sm">Select decision letter&apos;s date of receipt</p>
             <div className="mt-4">
-                <DecisionLetterForm application={application} />
+                <DecisionLetterProgressForm application={application} />
             </div>
             <div className="flex mt-4 space-x-2">
                 <Button

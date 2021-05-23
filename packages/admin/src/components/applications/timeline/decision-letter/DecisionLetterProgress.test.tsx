@@ -388,7 +388,7 @@ describe('DecisionLetterProgress', () => {
         expect(approveButton).toBeInTheDocument;
     });
 
-    it('can submit an interview date', async () => {
+    it(`can submit a decision letter's date of receipt`, async () => {
         render(<DecisionLetterProgress application={application} />);
 
         const dateInput = screen.getByRole('textbox');

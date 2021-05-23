@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import SchoolTuitionsFeePaymentForm from '@components/forms/application/school-tuitions-fee-payment/SchoolTuitionsFeePaymentForm';
+import SchoolTuitionsFeePaymentProgressForm from '@components/forms/application/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -90,9 +90,9 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
-                    interviewDate: '',
                     steps: updatedSteps,
-                    todo: 'Check reply from school'
+                    todo: 'Check reply from school',
+                    tuitionsFeePaymentDate: ''
                 }
             });
         } catch (error) {
@@ -110,7 +110,7 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
         <div>
             <p className="text-gray-500 text-sm">Select tuitions fees date of payment</p>
             <div className="mt-4">
-                <SchoolTuitionsFeePaymentForm application={application} />
+                <SchoolTuitionsFeePaymentProgressForm application={application} />
             </div>
             <div className="flex mt-4 space-x-2">
                 <Button

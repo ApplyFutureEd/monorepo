@@ -18,7 +18,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewProgressForm: FC<Props> = (props) => {
+const DecisionLetterProgressForm: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
@@ -90,4 +90,4 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewProgressForm;
+export default DecisionLetterProgressForm;

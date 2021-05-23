@@ -388,7 +388,7 @@ describe('SchoolTuitionsFeePaymentProgress', () => {
         expect(approveButton).toBeInTheDocument;
     });
 
-    it('can submit an interview date', async () => {
+    it("can submit a tuitions fee's date of payment", async () => {
         render(<SchoolTuitionsFeePaymentProgress application={application} />);
 
         const dateInput = screen.getByRole('textbox');

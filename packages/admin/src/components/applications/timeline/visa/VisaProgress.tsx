@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import VisaForm from '@components/forms/application/visa/VisaForm';
+import VisaProgressForm from '@components/forms/application/visa/VisaProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -108,7 +108,7 @@ const VisaProgress: FC<Props> = (props) => {
         <div>
             <p className="text-gray-500 text-sm">Select visa&apos;s date of receipt</p>
             <div className="mt-4">
-                <VisaForm application={application} />
+                <VisaProgressForm application={application} />
             </div>
             <div className="flex mt-4 space-x-2">
                 <Button

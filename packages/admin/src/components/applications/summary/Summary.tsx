@@ -82,7 +82,7 @@ const Summary: FC<Props> = (props) => {
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 Application ID
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -90,9 +90,9 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="bg-gray-50 mt-8 sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-gray-50 sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">Step</dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -101,9 +101,9 @@ const Summary: FC<Props> = (props) => {
                             </dd>
                         </div>
 
-                        <div className="mt-8 bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">Student</dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -111,11 +111,11 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="bg-gray-50 mt-8 sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5">
+                        <div className="bg-gray-50 sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5">
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 {t('application:school')}
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -123,11 +123,11 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="mt-8 bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 {t('application:program')}
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -135,11 +135,11 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="bg-gray-50 mt-8 sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-gray-50 sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 {t('application:campus')}
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="120px" />
                                 ) : (
@@ -147,11 +147,11 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="mt-8 bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 {t('application:intake')}
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : (
@@ -162,7 +162,7 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="bg-gray-50 mt-8 sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-gray-50 sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <Tooltip
                                 content={`${t('application:requested-by', {
                                     school: application?.program?.school?.name as string
@@ -171,7 +171,7 @@ const Summary: FC<Props> = (props) => {
                                     {t('application:fee')}
                                 </dt>
                             </Tooltip>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="40px" />
                                 ) : application?.program?.applicationFee &&
@@ -186,11 +186,11 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-                        <div className="mt-8 bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:mt-0 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
+                        <div className="bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">
                                 Documents
                             </dt>
-                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2 sm:mt-0">
+                            <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">
                                 {isLoading ? (
                                     <Skeleton height="20px" width="160px" />
                                 ) : isSubmitting ? (

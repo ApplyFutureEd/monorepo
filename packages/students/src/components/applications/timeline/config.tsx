@@ -65,19 +65,19 @@ export const config: TimelineConfig = {
     },
     'school-tuitions-fee-payment': {
         IDLE: () => null,
-        PROGRESS: () => <SchoolTuitionsFeePaymentProgress />,
+        PROGRESS: (application) => <SchoolTuitionsFeePaymentProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },
     'decision-letter': {
         IDLE: () => null,
-        PROGRESS: () => <DecisionLetterProgress />,
+        PROGRESS: (application) => <DecisionLetterProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },
     visa: {
         IDLE: () => null,
-        PROGRESS: () => <VisaProgress />,
+        PROGRESS: (application) => <VisaProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     }
