@@ -14,11 +14,11 @@ const SchoolResultDone: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
-    if (application?.admissionResult !== 'ACCEPTED') {
+    if (application?.admissionResult !== 'REJECTED') {
         return null;
     }
 
-    return <p className="text-gray-500 text-sm">{t('application:admission-result-accepted')}</p>;
+    return <p className="text-gray-500 text-sm">{t('application:admission-result-rejected')}</p>;
 };
 
 export default SchoolResultDone;

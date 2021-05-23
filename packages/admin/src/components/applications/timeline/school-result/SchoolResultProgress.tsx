@@ -159,7 +159,7 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
     if (application?.admissionResult === 'WAITING_LIST') {
         return (
             <div>
-                <p className="text-gray-500 text-sm">On waiting list</p>
+                <p className="text-gray-500 text-sm">Application on waiting list</p>
                 <div className="mt-4">
                     <Button
                         isSubmitting={isSubmitting}
