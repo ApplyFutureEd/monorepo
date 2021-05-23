@@ -129,6 +129,33 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
         }
     };
 
+    const handleUndoWaitingList = async () => {
+        try {
+            setIsSubmitting(true);
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+
+            updatedSteps[7].status = 'PROGRESS';
+            updatedSteps[7].date = new Date().toString();
+
+            await graphql(updateApplication, {
+                input: {
+                    admissionResult: '',
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Check reply from school'
+                }
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     if (application?.admissionResult === 'WAITING_LIST') {
         return (
             <div>
@@ -138,7 +165,7 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
                         isSubmitting={isSubmitting}
                         startIcon={faUndo}
                         variant="secondary"
-                        onClick={handleUndo}>
+                        onClick={handleUndoWaitingList}>
                         Undo
                     </Button>
                 </div>
