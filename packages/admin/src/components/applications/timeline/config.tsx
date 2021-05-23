@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable sort-keys */
 import { TimelineConfig } from '@applyfuture/ui';
+import SchoolResultError from '@components/applications/timeline//school-result/SchoolResultError';
+import SchoolResultProgress from '@components/applications/timeline//school-result/SchoolResultProgress';
 import InternalReviewError from '@components/applications/timeline/internal-review/InternalReviewError';
 import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
 import SchoolInterviewError from '@components/applications/timeline/school-interview/SchoolInterviewError';
@@ -54,8 +56,8 @@ export const config: TimelineConfig = {
     },
     'school-result': {
         IDLE: () => null,
-        PROGRESS: () => null,
-        ERROR: () => null,
+        PROGRESS: (application) => <SchoolResultProgress application={application} />,
+        ERROR: (application) => <SchoolResultError application={application} />,
         DONE: () => null
     },
     'school-tuitions-fee-payment': {
