@@ -1,9 +1,9 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
 import { graphql, toast } from '@applyfuture/utils';
-import SchoolResultError from '@components/applications/timeline/school-result/SchoolResultError';
+import SchoolTuitionsFeePaymentProgress from '@components/applications/timeline/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgress';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import React from 'react';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
@@ -11,7 +11,15 @@ jest.mock('@applyfuture/utils', () => ({
     toast: jest.fn()
 }));
 
-describe('SchoolResultError', () => {
+jest.mock('next/router', () => ({
+    useRouter() {
+        return {
+            locale: 'en'
+        };
+    }
+}));
+
+describe('SchoolTuitionsFeePaymentProgress', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -371,15 +379,92 @@ describe('SchoolResultError', () => {
     >;
 
     it('can render without crashing', () => {
-        render(<SchoolResultError application={application} />);
+        render(<SchoolTuitionsFeePaymentProgress application={application} />);
 
-        const description = screen.getByText('Application rejected');
+        const rejectButton = screen.getByText('Reject');
+        const approveButton = screen.getByText('Approve');
 
-        expect(description).toBeInTheDocument;
+        expect(rejectButton).toBeInTheDocument;
+        expect(approveButton).toBeInTheDocument;
+    });
+
+    it('can submit an interview date', async () => {
+        render(<SchoolTuitionsFeePaymentProgress application={application} />);
+
+        const dateInput = screen.getByRole('textbox');
+        const submitButton = screen.getByText('Submit');
+
+        await waitFor(() => {
+            userEvent.type(dateInput, '01/11/2021');
+        });
+
+        await waitFor(() => {
+            fireEvent.click(submitButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can handle the reject workflow', async () => {
+        render(<SchoolTuitionsFeePaymentProgress application={application} />);
+
+        const rejectButton = screen.getByText('Reject');
+
+        await waitFor(() => {
+            fireEvent.click(rejectButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the reject workflow', async () => {
+        render(<SchoolTuitionsFeePaymentProgress application={corruptedApplication} />);
+
+        const rejectButton = screen.getByText('Reject');
+
+        await waitFor(() => {
+            fireEvent.click(rejectButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
+        });
+    });
+
+    it('can handle approve workflow', async () => {
+        render(<SchoolTuitionsFeePaymentProgress application={application} />);
+
+        const approveButton = screen.getByText('Approve');
+
+        await waitFor(() => {
+            fireEvent.click(approveButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the approve workflow', async () => {
+        render(<SchoolTuitionsFeePaymentProgress application={corruptedApplication} />);
+
+        const approveButton = screen.getByText('Approve');
+
+        await waitFor(() => {
+            fireEvent.click(approveButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
+        });
     });
 
     it('can handle undo workflow', async () => {
-        render(<SchoolResultError application={application} />);
+        render(<SchoolTuitionsFeePaymentProgress application={application} />);
 
         const undoButton = screen.getByText('Undo');
 
@@ -393,7 +478,7 @@ describe('SchoolResultError', () => {
     });
 
     it('can display a toast if an error is catch in the undo workflow', async () => {
-        render(<SchoolResultError application={corruptedApplication} />);
+        render(<SchoolTuitionsFeePaymentProgress application={corruptedApplication} />);
 
         const undoButton = screen.getByText('Undo');
 

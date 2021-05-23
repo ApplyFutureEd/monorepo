@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import { faUndo } from '@fortawesome/pro-light-svg-icons';
+import { faEnvelope, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 
@@ -17,7 +17,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewError: FC<Props> = (props) => {
+const SchoolTuitionsFeePaymentError: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -27,14 +27,14 @@ const SchoolInterviewError: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[7].status = 'PROGRESS';
-            updatedSteps[7].date = new Date().toString();
+            updatedSteps[8].status = 'PROGRESS';
+            updatedSteps[8].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Check reply from school'
+                    todo: 'Select tuitions fees date of payment'
                 }
             });
         } catch (error) {
@@ -48,10 +48,25 @@ const SchoolInterviewError: FC<Props> = (props) => {
         }
     };
 
+    const handleEmail = async () => {
+        try {
+            const email = application?.student?.email;
+            window.location.href = `mailto:${email}?subject=Hello there&body=`;
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div>
-            <p className="text-gray-500 text-sm">Application rejected</p>
-            <div className="mt-4">
+            <p className="text-gray-500 text-sm">Contact student by email</p>
+            <div className="flex mt-4 space-x-2">
                 <Button
                     isSubmitting={isSubmitting}
                     startIcon={faUndo}
@@ -59,9 +74,16 @@ const SchoolInterviewError: FC<Props> = (props) => {
                     onClick={handleUndo}>
                     Undo
                 </Button>
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faEnvelope}
+                    variant="secondary"
+                    onClick={handleEmail}>
+                    Email
+                </Button>
             </div>
         </div>
     );
 };
 
-export default SchoolInterviewError;
+export default SchoolTuitionsFeePaymentError;

@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import SchoolInterviewProgressForm from '@components/forms/application/school-interview/SchoolInterviewProgressForm';
+import VisaForm from '@components/forms/application/visa/VisaForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -18,7 +18,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewProgress: FC<Props> = (props) => {
+const VisaProgress: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -28,14 +28,14 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[6].status = 'ERROR';
-            updatedSteps[6].date = new Date().toString();
+            updatedSteps[10].status = 'ERROR';
+            updatedSteps[10].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Forward school response to student'
+                    todo: 'Contact student by email'
                 }
             });
         } catch (error) {
@@ -54,13 +54,15 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[6].status = 'DONE';
-            updatedSteps[6].date = new Date().toString();
-            updatedSteps[7].status = 'PROGRESS';
-            updatedSteps[7].date = new Date().toString();
+            updatedSteps[10].status = 'DONE';
+            updatedSteps[10].date = new Date().toString();
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: 'Check reply from school' }
+                input: {
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: ''
+                }
             });
         } catch (error) {
             toast({
@@ -78,17 +80,17 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[5].status = 'PROGRESS';
-            updatedSteps[5].date = new Date().toString();
-            updatedSteps[6].status = 'IDLE';
-            updatedSteps[6].date = '';
+            updatedSteps[9].status = 'PROGRESS';
+            updatedSteps[9].date = new Date().toString();
+            updatedSteps[10].status = 'IDLE';
+            updatedSteps[10].date = '';
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
-                    interviewDate: '',
                     steps: updatedSteps,
-                    todo: 'Check reply from school'
+                    todo: "Select decision letter's date of payment",
+                    visaDate: ''
                 }
             });
         } catch (error) {
@@ -104,9 +106,9 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
 
     return (
         <div>
-            <p className="text-gray-500 text-sm">Select an interview date</p>
+            <p className="text-gray-500 text-sm">Select visa&apos;s date of receipt</p>
             <div className="mt-4">
-                <SchoolInterviewProgressForm application={application} />
+                <VisaForm application={application} />
             </div>
             <div className="flex mt-4 space-x-2">
                 <Button
@@ -131,4 +133,4 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewProgress;
+export default VisaProgress;

@@ -1,9 +1,8 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
 import { graphql, toast } from '@applyfuture/utils';
-import SchoolResultError from '@components/applications/timeline/school-result/SchoolResultError';
+import VisaDone from '@components/applications/timeline/visa/VisaDone';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import React from 'react';
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
@@ -11,7 +10,7 @@ jest.mock('@applyfuture/utils', () => ({
     toast: jest.fn()
 }));
 
-describe('SchoolResultError', () => {
+describe('VisaDone', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -371,15 +370,15 @@ describe('SchoolResultError', () => {
     >;
 
     it('can render without crashing', () => {
-        render(<SchoolResultError application={application} />);
+        render(<VisaDone application={application} />);
 
-        const description = screen.getByText('Application rejected');
+        const undoButton = screen.getByText('Undo');
 
-        expect(description).toBeInTheDocument;
+        expect(undoButton).toBeInTheDocument;
     });
 
     it('can handle undo workflow', async () => {
-        render(<SchoolResultError application={application} />);
+        render(<VisaDone application={application} />);
 
         const undoButton = screen.getByText('Undo');
 
@@ -393,7 +392,7 @@ describe('SchoolResultError', () => {
     });
 
     it('can display a toast if an error is catch in the undo workflow', async () => {
-        render(<SchoolResultError application={corruptedApplication} />);
+        render(<VisaDone application={corruptedApplication} />);
 
         const undoButton = screen.getByText('Undo');
 

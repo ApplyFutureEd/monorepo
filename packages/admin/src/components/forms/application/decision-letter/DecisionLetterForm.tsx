@@ -23,30 +23,32 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        interviewDate: string().nullable()
+        decisionLetterDate: string().nullable()
     });
 
     type FormValues = {
-        interviewDate: string | null | undefined;
+        decisionLetterDate: string | null | undefined;
     };
 
-    const [initialValues, setInitialValues] = useState<FormValues>({ interviewDate: null });
+    const [initialValues, setInitialValues] = useState<FormValues>({
+        decisionLetterDate: null
+    });
 
     useEffect(() => {
         if (application) {
             setInitialValues({
-                interviewDate: application.interviewDate
+                decisionLetterDate: application.decisionLetterDate
             });
         }
     }, [application]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { interviewDate } = values;
+        const { decisionLetterDate } = values;
         try {
             await graphql(updateApplication, {
                 input: {
-                    id: application?.id,
-                    interviewDate: interviewDate
+                    decisionLetterDate: decisionLetterDate,
+                    id: application?.id
                 }
             });
         } catch (error) {
@@ -66,16 +68,16 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting } = props;
+                const { isSubmitting, values } = props;
 
                 return (
                     <Form className="flex space-x-2">
-                        <Field id="interviewDate" name="interviewDate">
+                        <Field id="decisionLetterDate" name="decisionLetterDate">
                             {(fieldProps: FieldProps) => <DateInput {...fieldProps} />}
                         </Field>
 
                         <Button
-                            disabled={isSubmitting}
+                            disabled={isSubmitting || !values.decisionLetterDate}
                             isSubmitting={isSubmitting}
                             type="submit"
                             variant="primary">

@@ -17,7 +17,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewError: FC<Props> = (props) => {
+const VisaDone: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -27,14 +27,14 @@ const SchoolInterviewError: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[7].status = 'PROGRESS';
-            updatedSteps[7].date = new Date().toString();
+            updatedSteps[10].status = 'PROGRESS';
+            updatedSteps[10].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Check reply from school'
+                    todo: "Select visa's date of receipt"
                 }
             });
         } catch (error) {
@@ -50,7 +50,7 @@ const SchoolInterviewError: FC<Props> = (props) => {
 
     return (
         <div>
-            <p className="text-gray-500 text-sm">Application rejected</p>
+            <p className="text-gray-500 text-sm">Application closed</p>
             <div className="mt-4">
                 <Button
                     isSubmitting={isSubmitting}
@@ -64,4 +64,4 @@ const SchoolInterviewError: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewError;
+export default VisaDone;
