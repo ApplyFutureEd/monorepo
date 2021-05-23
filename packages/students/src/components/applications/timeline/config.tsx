@@ -7,6 +7,9 @@ import InternalReviewError from '@components/applications/timeline/internal-revi
 import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
 import ReviewDocumentsProgress from '@components/applications/timeline/review-documents/ReviewDocumentsProgress';
 import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
+import SchoolResultDone from '@components/applications/timeline/school-result/SchoolResultDone';
+import SchoolResultError from '@components/applications/timeline/school-result/SchoolResultError';
+import SchoolResultProgress from '@components/applications/timeline/school-result/SchoolResultProgress';
 import SchoolReviewProgress from '@components/applications/timeline/school-review/SchoolReviewProgress';
 import SchoolTuitionsFeePaymentProgress from '@components/applications/timeline/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgress';
 import UploadDocumentsProgress from '@components/applications/timeline/upload-documents/UploadDocumentsProgress';
@@ -57,9 +60,9 @@ export const config: TimelineConfig = {
     },
     'school-result': {
         IDLE: () => null,
-        PROGRESS: () => null,
-        ERROR: () => null,
-        DONE: () => null
+        PROGRESS: (application) => <SchoolResultProgress application={application} />,
+        ERROR: (application) => <SchoolResultError application={application} />,
+        DONE: (application) => <SchoolResultDone application={application} />
     },
     'school-tuitions-fee-payment': {
         IDLE: () => null,

@@ -5,8 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import SchoolInterviewProgressForm from '@components/forms/application/SchoolInterviewProgressForm';
-import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
+import { faCheck, faSnooze, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 
@@ -28,11 +27,39 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[6].status = 'ERROR';
-            updatedSteps[6].date = new Date().toString();
+            updatedSteps[7].status = 'ERROR';
+            updatedSteps[7].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
+                    admissionResult: 'REJECTED',
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Forward school response to student'
+                }
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleWaitingList = async () => {
+        try {
+            setIsSubmitting(true);
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+
+            updatedSteps[7].status = 'PROGRESS';
+            updatedSteps[7].date = new Date().toString();
+
+            await graphql(updateApplication, {
+                input: {
+                    admissionResult: 'WAITING_LIST',
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Forward school response to student'
@@ -54,13 +81,18 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[6].status = 'DONE';
-            updatedSteps[6].date = new Date().toString();
-            updatedSteps[7].status = 'PROGRESS';
+            updatedSteps[7].status = 'DONE';
             updatedSteps[7].date = new Date().toString();
+            updatedSteps[8].status = 'PROGRESS';
+            updatedSteps[8].date = new Date().toString();
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: 'Check reply from school' }
+                input: {
+                    admissionResult: 'ACCEPTED',
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Select a date'
+                }
             });
         } catch (error) {
             toast({
@@ -78,10 +110,10 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[5].status = 'PROGRESS';
-            updatedSteps[5].date = new Date().toString();
-            updatedSteps[6].status = 'IDLE';
-            updatedSteps[6].date = '';
+            updatedSteps[6].status = 'PROGRESS';
+            updatedSteps[6].date = new Date().toString();
+            updatedSteps[7].status = 'IDLE';
+            updatedSteps[7].date = '';
 
             await graphql(updateApplication, {
                 input: { id: application?.id, steps: updatedSteps, todo: 'Check reply from school' }
@@ -97,12 +129,26 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
         }
     };
 
+    if (application?.admissionResult === 'WAITING_LIST') {
+        return (
+            <div>
+                <p className="text-gray-500 text-sm">On waiting list</p>
+                <div className="mt-4">
+                    <Button
+                        isSubmitting={isSubmitting}
+                        startIcon={faUndo}
+                        variant="secondary"
+                        onClick={handleUndo}>
+                        Undo
+                    </Button>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div>
-            <p className="text-gray-500 text-sm">Select an interview date</p>
-            <div className="mt-4">
-                <SchoolInterviewProgressForm application={application} />
-            </div>
+            <p className="text-gray-500 text-sm">Check reply from school</p>
             <div className="flex mt-4 space-x-2">
                 <Button
                     isSubmitting={isSubmitting}
@@ -118,8 +164,15 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faSnooze}
+                    variant="secondary"
+                    onClick={handleWaitingList}>
+                    Waiting list
+                </Button>
                 <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
-                    Approve
+                    Accept
                 </Button>
             </div>
         </div>

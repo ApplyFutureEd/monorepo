@@ -23,14 +23,7 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const validationSchema = object().shape({
-        interviewDate: string()
-            .nullable()
-            .test({
-                message: t('common:error-field-required'),
-                name: 'nullDate',
-                test: (value) => value
-            })
-            .required(t('common:error-field-required'))
+        interviewDate: string().nullable()
     });
 
     type FormValues = {
