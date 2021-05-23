@@ -10,7 +10,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolResultDone: FC<Props> = (props) => {
+const SchoolResultError: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
@@ -21,4 +21,4 @@ const SchoolResultDone: FC<Props> = (props) => {
     return <p className="text-gray-500 text-sm">{t('application:admission-result-rejected')}</p>;
 };
 
-export default SchoolResultDone;
+export default SchoolResultError;

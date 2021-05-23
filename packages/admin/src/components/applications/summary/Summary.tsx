@@ -100,7 +100,6 @@ const Summary: FC<Props> = (props) => {
                                 )}
                             </dd>
                         </div>
-
                         <div className="bg-white sm:grid sm:gap-4 sm:grid-cols-3 sm:px-6 sm:py-5 sm:border-t sm:border-gray-200">
                             <dt className="text-gray-500 text-sm font-medium leading-5">Student</dt>
                             <dd className="mt-1 text-gray-900 text-sm leading-5 sm:col-span-2">

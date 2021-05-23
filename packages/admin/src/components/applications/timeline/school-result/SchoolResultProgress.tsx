@@ -17,7 +17,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewProgress: FC<Props> = (props) => {
+const SchoolResultProgress: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -206,4 +206,4 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewProgress;
+export default SchoolResultProgress;

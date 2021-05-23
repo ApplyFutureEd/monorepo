@@ -17,7 +17,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolInterviewError: FC<Props> = (props) => {
+const SchoolResultError: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -64,4 +64,4 @@ const SchoolInterviewError: FC<Props> = (props) => {
     );
 };
 
-export default SchoolInterviewError;
+export default SchoolResultError;
