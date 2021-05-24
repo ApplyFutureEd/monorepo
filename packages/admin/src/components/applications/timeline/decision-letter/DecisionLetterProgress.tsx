@@ -5,6 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
+import DecisionLetterProgressForm from '@components/forms/application/decision-letter/DecisionLetterProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -17,7 +18,7 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const SchoolReviewProgress: FC<Props> = (props) => {
+const DecisionLetterProgress: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
@@ -27,14 +28,14 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[5].status = 'ERROR';
-            updatedSteps[5].date = new Date().toString();
+            updatedSteps[9].status = 'ERROR';
+            updatedSteps[9].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Forward school response to student'
+                    todo: 'Contact student by email'
                 }
             });
         } catch (error) {
@@ -53,16 +54,16 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[5].status = 'DONE';
-            updatedSteps[5].date = new Date().toString();
-            updatedSteps[6].status = 'PROGRESS';
-            updatedSteps[6].date = new Date().toString();
+            updatedSteps[9].status = 'DONE';
+            updatedSteps[9].date = new Date().toString();
+            updatedSteps[10].status = 'PROGRESS';
+            updatedSteps[10].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Select an interview date'
+                    todo: "Select visa's date of receipt"
                 }
             });
         } catch (error) {
@@ -81,13 +82,18 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[4].status = 'PROGRESS';
-            updatedSteps[4].date = new Date().toString();
-            updatedSteps[5].status = 'IDLE';
-            updatedSteps[5].date = '';
+            updatedSteps[8].status = 'PROGRESS';
+            updatedSteps[8].date = new Date().toString();
+            updatedSteps[9].status = 'IDLE';
+            updatedSteps[9].date = '';
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: 'Review documents' }
+                input: {
+                    decisionLetterDate: '',
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Select tuitions fees date of payment'
+                }
             });
         } catch (error) {
             toast({
@@ -102,7 +108,10 @@ const SchoolReviewProgress: FC<Props> = (props) => {
 
     return (
         <div>
-            <p className="text-gray-500 text-sm">Check reply from school</p>
+            <p className="text-gray-500 text-sm">Select decision letter&apos;s date of receipt</p>
+            <div className="mt-4">
+                <DecisionLetterProgressForm application={application} />
+            </div>
             <div className="flex mt-4 space-x-2">
                 <Button
                     isSubmitting={isSubmitting}
@@ -126,4 +135,4 @@ const SchoolReviewProgress: FC<Props> = (props) => {
     );
 };
 
-export default SchoolReviewProgress;
+export default DecisionLetterProgress;

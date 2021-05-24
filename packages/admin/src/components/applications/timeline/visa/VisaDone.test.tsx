@@ -1,24 +1,16 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
-import { graphql } from '@applyfuture/utils';
-import VisaProgress from '@components/applications/timeline/visa/VisaProgress';
+import { graphql, toast } from '@applyfuture/utils';
+import VisaDone from '@components/applications/timeline/visa/VisaDone';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
-    graphql: jest.fn()
+    graphql: jest.fn(),
+    toast: jest.fn()
 }));
 
-jest.mock('next/router', () => ({
-    useRouter() {
-        return {
-            locale: 'en'
-        };
-    }
-}));
-
-describe('VisaProgress', () => {
+describe('VisaDone', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -373,30 +365,43 @@ describe('VisaProgress', () => {
         visaDate: null
     } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
+    const corruptedApplication = ({} as unknown) as NonNullable<
+        NonNullable<GetApplicationQuery['getApplication']>
+    >;
+
     it('can render without crashing', () => {
-        render(<VisaProgress application={application} />);
+        render(<VisaDone application={application} />);
 
-        const description = screen.getByText('application:timeline-step-visa-description');
+        const undoButton = screen.getByText('Undo');
 
-        expect(description).toBeInTheDocument;
+        expect(undoButton).toBeInTheDocument;
     });
 
-    it("can submit a visa's date of receipt", async () => {
-        render(<VisaProgress application={application} />);
+    it('can handle undo workflow', async () => {
+        render(<VisaDone application={application} />);
 
-        const dateInput = screen.getByRole('textbox');
-        const submitButton = screen.getByText('Submit');
-
-        await waitFor(() => {
-            userEvent.type(dateInput, '01/11/2021');
-        });
+        const undoButton = screen.getByText('Undo');
 
         await waitFor(() => {
-            fireEvent.click(submitButton);
+            fireEvent.click(undoButton);
         });
 
         await waitFor(() => {
             expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the undo workflow', async () => {
+        render(<VisaDone application={corruptedApplication} />);
+
+        const undoButton = screen.getByText('Undo');
+
+        await waitFor(() => {
+            fireEvent.click(undoButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
         });
     });
 });

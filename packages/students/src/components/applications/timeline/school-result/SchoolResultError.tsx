@@ -1,5 +1,4 @@
 import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
-import VisaProgressForm from '@components/forms/applications/visa/VisaProgressForm';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
@@ -11,20 +10,15 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const VisaProgress: FC<Props> = (props) => {
+const SchoolResultError: FC<Props> = (props) => {
     const { application } = props;
     const { t } = useTranslation();
 
-    return (
-        <div>
-            <p className="text-gray-500 text-sm">
-                {t('application:timeline-step-visa-description')}
-            </p>
-            <div className="mt-4">
-                <VisaProgressForm application={application} />
-            </div>
-        </div>
-    );
+    if (application?.admissionResult !== 'REJECTED') {
+        return null;
+    }
+
+    return <p className="text-gray-500 text-sm">{t('application:admission-result-rejected')}</p>;
 };
 
-export default VisaProgress;
+export default SchoolResultError;

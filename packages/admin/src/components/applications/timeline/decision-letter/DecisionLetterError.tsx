@@ -5,7 +5,7 @@ import {
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
-import { faCheck, faTimes } from '@fortawesome/pro-light-svg-icons';
+import { faEnvelope, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 
@@ -17,24 +17,24 @@ type Props = {
         | NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 };
 
-const InternalReviewProgress: FC<Props> = (props) => {
+const DecisionLetterError: FC<Props> = (props) => {
     const { application } = props;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { t } = useTranslation();
 
-    const handleReject = async () => {
+    const handleUndo = async () => {
         try {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[4].status = 'ERROR';
-            updatedSteps[4].date = new Date().toString();
+            updatedSteps[9].status = 'PROGRESS';
+            updatedSteps[9].date = new Date().toString();
 
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Wait for student to upload missing documents'
+                    todo: 'Select decision letter date of receipt'
                 }
             });
         } catch (error) {
@@ -48,23 +48,10 @@ const InternalReviewProgress: FC<Props> = (props) => {
         }
     };
 
-    const handleApprove = async () => {
+    const handleEmail = async () => {
         try {
-            setIsSubmitting(true);
-            const updatedSteps = (application?.steps && [...application?.steps]) || [];
-
-            updatedSteps[4].status = 'DONE';
-            updatedSteps[4].date = new Date().toString();
-            updatedSteps[5].status = 'PROGRESS';
-            updatedSteps[5].date = new Date().toString();
-
-            await graphql(updateApplication, {
-                input: {
-                    id: application?.id,
-                    steps: updatedSteps,
-                    todo: 'Check reply from school'
-                }
-            });
+            const email = application?.student?.email;
+            window.location.href = `mailto:${email}?subject=Hello there&body=`;
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -78,21 +65,25 @@ const InternalReviewProgress: FC<Props> = (props) => {
 
     return (
         <div>
-            <p className="text-gray-500 text-sm">Review documents</p>
+            <p className="text-gray-500 text-sm">Contact student by email</p>
             <div className="flex mt-4 space-x-2">
                 <Button
                     isSubmitting={isSubmitting}
-                    startIcon={faTimes}
+                    startIcon={faUndo}
                     variant="secondary"
-                    onClick={handleReject}>
-                    Reject
+                    onClick={handleUndo}>
+                    Undo
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
-                    Approve
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faEnvelope}
+                    variant="secondary"
+                    onClick={handleEmail}>
+                    Email
                 </Button>
             </div>
         </div>
     );
 };
 
-export default InternalReviewProgress;
+export default DecisionLetterError;

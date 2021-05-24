@@ -1,13 +1,14 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
-import { graphql } from '@applyfuture/utils';
-import VisaProgress from '@components/applications/timeline/visa/VisaProgress';
+import { graphql, toast } from '@applyfuture/utils';
+import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
-    graphql: jest.fn()
+    graphql: jest.fn(),
+    toast: jest.fn()
 }));
 
 jest.mock('next/router', () => ({
@@ -18,7 +19,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe('VisaProgress', () => {
+describe('SchoolInterviewProgress', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -373,16 +374,22 @@ describe('VisaProgress', () => {
         visaDate: null
     } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
+    const corruptedApplication = ({} as unknown) as NonNullable<
+        NonNullable<GetApplicationQuery['getApplication']>
+    >;
+
     it('can render without crashing', () => {
-        render(<VisaProgress application={application} />);
+        render(<SchoolInterviewProgress application={application} />);
 
-        const description = screen.getByText('application:timeline-step-visa-description');
+        const rejectButton = screen.getByText('Reject');
+        const approveButton = screen.getByText('Approve');
 
-        expect(description).toBeInTheDocument;
+        expect(rejectButton).toBeInTheDocument;
+        expect(approveButton).toBeInTheDocument;
     });
 
-    it("can submit a visa's date of receipt", async () => {
-        render(<VisaProgress application={application} />);
+    it('can submit an interview date', async () => {
+        render(<SchoolInterviewProgress application={application} />);
 
         const dateInput = screen.getByRole('textbox');
         const submitButton = screen.getByText('Submit');
@@ -397,6 +404,90 @@ describe('VisaProgress', () => {
 
         await waitFor(() => {
             expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can handle the reject workflow', async () => {
+        render(<SchoolInterviewProgress application={application} />);
+
+        const rejectButton = screen.getByText('Reject');
+
+        await waitFor(() => {
+            fireEvent.click(rejectButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the reject workflow', async () => {
+        render(<SchoolInterviewProgress application={corruptedApplication} />);
+
+        const rejectButton = screen.getByText('Reject');
+
+        await waitFor(() => {
+            fireEvent.click(rejectButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
+        });
+    });
+
+    it('can handle approve workflow', async () => {
+        render(<SchoolInterviewProgress application={application} />);
+
+        const approveButton = screen.getByText('Approve');
+
+        await waitFor(() => {
+            fireEvent.click(approveButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the approve workflow', async () => {
+        render(<SchoolInterviewProgress application={corruptedApplication} />);
+
+        const approveButton = screen.getByText('Approve');
+
+        await waitFor(() => {
+            fireEvent.click(approveButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
+        });
+    });
+
+    it('can handle undo workflow', async () => {
+        render(<SchoolInterviewProgress application={application} />);
+
+        const undoButton = screen.getByText('Undo');
+
+        await waitFor(() => {
+            fireEvent.click(undoButton);
+        });
+
+        await waitFor(() => {
+            expect(graphql).toHaveBeenCalled();
+        });
+    });
+
+    it('can display a toast if an error is catch in the undo workflow', async () => {
+        render(<SchoolInterviewProgress application={corruptedApplication} />);
+
+        const undoButton = screen.getByText('Undo');
+
+        await waitFor(() => {
+            fireEvent.click(undoButton);
+        });
+
+        await waitFor(() => {
+            expect(toast).toHaveBeenCalled();
         });
     });
 });

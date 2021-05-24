@@ -1,14 +1,7 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
-import { graphql } from '@applyfuture/utils';
-import VisaProgress from '@components/applications/timeline/visa/VisaProgress';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
-jest.mock('@applyfuture/utils', () => ({
-    ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
-    graphql: jest.fn()
-}));
+import SchoolResultError from '@components/applications/timeline/school-result/SchoolResultError';
+import { render, screen } from '@testing-library/react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -18,15 +11,15 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe('VisaProgress', () => {
+describe('SchoolResultError', () => {
     const application = ({
-        admissionResult: null,
+        admissionResult: 'REJECTED',
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
         document: null,
         id: '2b627cf1-7dfa-41dd-b2a4-acf73bdf0fb6',
         intake: '2022-01-31T23:00:00.000Z',
-        interviewDate: null,
+        interviewDate: '2021-05-01T14:14:09.014Z',
         lastUpdate: 1619878451124,
         modalApplicationCompletedViewed: false,
         notifications: null,
@@ -374,29 +367,18 @@ describe('VisaProgress', () => {
     } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
     it('can render without crashing', () => {
-        render(<VisaProgress application={application} />);
+        render(<SchoolResultError application={application} />);
 
-        const description = screen.getByText('application:timeline-step-visa-description');
+        const description = screen.getByText('application:admission-result-rejected');
 
         expect(description).toBeInTheDocument;
     });
 
-    it("can submit a visa's date of receipt", async () => {
-        render(<VisaProgress application={application} />);
+    it('can render nothing if admission result is not set', () => {
+        const pendingApplication = { ...application, admissionResult: '' };
 
-        const dateInput = screen.getByRole('textbox');
-        const submitButton = screen.getByText('Submit');
+        const { container } = render(<SchoolResultError application={pendingApplication} />);
 
-        await waitFor(() => {
-            userEvent.type(dateInput, '01/11/2021');
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
-
-        await waitFor(() => {
-            expect(graphql).toHaveBeenCalled();
-        });
+        expect(container.firstChild).toBeNull();
     });
 });

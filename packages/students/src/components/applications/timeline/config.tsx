@@ -7,6 +7,8 @@ import InternalReviewError from '@components/applications/timeline/internal-revi
 import InternalReviewProgress from '@components/applications/timeline/internal-review/InternalReviewProgress';
 import ReviewDocumentsProgress from '@components/applications/timeline/review-documents/ReviewDocumentsProgress';
 import SchoolInterviewProgress from '@components/applications/timeline/school-interview/SchoolInterviewProgress';
+import SchoolResultError from '@components/applications/timeline/school-result/SchoolResultError';
+import SchoolResultProgress from '@components/applications/timeline/school-result/SchoolResultProgress';
 import SchoolReviewProgress from '@components/applications/timeline/school-review/SchoolReviewProgress';
 import SchoolTuitionsFeePaymentProgress from '@components/applications/timeline/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgress';
 import UploadDocumentsProgress from '@components/applications/timeline/upload-documents/UploadDocumentsProgress';
@@ -51,31 +53,31 @@ export const config: TimelineConfig = {
     },
     'school-interview': {
         IDLE: () => null,
-        PROGRESS: () => <SchoolInterviewProgress />,
+        PROGRESS: (application) => <SchoolInterviewProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },
     'school-result': {
         IDLE: () => null,
-        PROGRESS: () => null,
-        ERROR: () => null,
+        PROGRESS: (application) => <SchoolResultProgress application={application} />,
+        ERROR: (application) => <SchoolResultError application={application} />,
         DONE: () => null
     },
     'school-tuitions-fee-payment': {
         IDLE: () => null,
-        PROGRESS: () => <SchoolTuitionsFeePaymentProgress />,
+        PROGRESS: (application) => <SchoolTuitionsFeePaymentProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },
     'decision-letter': {
         IDLE: () => null,
-        PROGRESS: () => <DecisionLetterProgress />,
+        PROGRESS: (application) => <DecisionLetterProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     },
     visa: {
         IDLE: () => null,
-        PROGRESS: () => <VisaProgress />,
+        PROGRESS: (application) => <VisaProgress application={application} />,
         ERROR: () => null,
         DONE: () => null
     }
