@@ -31,6 +31,14 @@
                 "open": true
             },
             "policyResourceName": "/fees-payment"
+        },
+        {
+            "name": "/application-archive",
+            "lambdaFunction": "applicationarchive",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/application-archive"
         }
     ],
     "resourceName": "rest",
@@ -47,6 +55,9 @@
         },
         {
             "lambdaFunction": "feespayment"
+        },
+        {
+            "lambdaFunction": "applicationarchive"
         }
     ],
     "privacy": {
@@ -87,7 +98,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "applicationarchive",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "55846f8a"
+    "uuid": "a00cc225"
 }

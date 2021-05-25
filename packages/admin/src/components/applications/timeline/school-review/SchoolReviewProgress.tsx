@@ -23,39 +23,19 @@ const SchoolReviewProgress: FC<Props> = (props) => {
     const { t } = useTranslation();
 
     const handleReject = async () => {
-        /* try {
+        try {
             setIsSubmitting(true);
             const updatedSteps = (application?.steps && [...application?.steps]) || [];
 
-            updatedSteps[4].status = 'ERROR';
-            updatedSteps[4].date = new Date().toString();
-
-            await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: '' }
-            });
-        } catch (error) {
-            toast({
-                description: `${error.message}`,
-                title: t('common:toast-error-generic-message'),
-                variant: 'error'
-            });
-        } finally {
-            setIsSubmitting(false);
-        } */
-    };
-
-    const handleApprove = async () => {
-        /*  try {
-            setIsSubmitting(true);
-            const updatedSteps = (application?.steps && [...application?.steps]) || [];
-
-            updatedSteps[4].status = 'DONE';
-            updatedSteps[4].date = new Date().toString();
-            updatedSteps[5].status = 'PROGRESS';
+            updatedSteps[5].status = 'ERROR';
             updatedSteps[5].date = new Date().toString();
 
             await graphql(updateApplication, {
-                input: { id: application?.id, steps: updatedSteps, todo: '' }
+                input: {
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Forward school response to student'
+                }
             });
         } catch (error) {
             toast({
@@ -65,7 +45,35 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             });
         } finally {
             setIsSubmitting(false);
-        } */
+        }
+    };
+
+    const handleApprove = async () => {
+        try {
+            setIsSubmitting(true);
+            const updatedSteps = (application?.steps && [...application?.steps]) || [];
+
+            updatedSteps[5].status = 'DONE';
+            updatedSteps[5].date = new Date().toString();
+            updatedSteps[6].status = 'PROGRESS';
+            updatedSteps[6].date = new Date().toString();
+
+            await graphql(updateApplication, {
+                input: {
+                    id: application?.id,
+                    steps: updatedSteps,
+                    todo: 'Select an interview date'
+                }
+            });
+        } catch (error) {
+            toast({
+                description: `${error.message}`,
+                title: t('common:toast-error-generic-message'),
+                variant: 'error'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleUndo = async () => {
@@ -93,24 +101,27 @@ const SchoolReviewProgress: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex mt-4 space-x-2">
-            <Button
-                isSubmitting={isSubmitting}
-                startIcon={faUndo}
-                variant="secondary"
-                onClick={handleUndo}>
-                Undo
-            </Button>
-            <Button
-                isSubmitting={isSubmitting}
-                startIcon={faTimes}
-                variant="secondary"
-                onClick={handleReject}>
-                Reject
-            </Button>
-            <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
-                Approve
-            </Button>
+        <div>
+            <p className="text-gray-500 text-sm">Check reply from school</p>
+            <div className="flex mt-4 space-x-2">
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faUndo}
+                    variant="secondary"
+                    onClick={handleUndo}>
+                    Undo
+                </Button>
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faTimes}
+                    variant="secondary"
+                    onClick={handleReject}>
+                    Reject
+                </Button>
+                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                    Approve
+                </Button>
+            </div>
         </div>
     );
 };

@@ -69,10 +69,10 @@ const FeesPaymentForm: FC<Props> = (props) => {
                         application?.program?.applicationFee &&
                         application?.program?.applicationFee * 100,
                     currency: application?.program?.applicationFeeCurrency,
-                    description: `${application && toShortId(application?.id)} ${
+                    description: `${toShortId(application?.id)} ${
                         application?.program?.school?.name
                     } application fees`,
-                    metadata: { applicationId: application && toShortId(application?.id) },
+                    metadata: { applicationId: toShortId(application?.id) },
                     stripeToken: stripeToken
                 };
 

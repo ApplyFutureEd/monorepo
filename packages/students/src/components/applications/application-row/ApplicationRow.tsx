@@ -70,8 +70,7 @@ const ApplicationRow: FC<Props> = (props) => {
                             </div>
                             <div className="hidden md:block">
                                 <div className="text-left text-gray-900 text-sm leading-5">
-                                    {t('application:id')}:{' '}
-                                    <b>{application && toShortId(application?.id)}</b>
+                                    {t('application:id')}: <b>{toShortId(application?.id)}</b>
                                 </div>
                                 <div className="mt-2 text-left text-gray-900 text-sm leading-5">
                                     {t('application:intake')}:{' '}

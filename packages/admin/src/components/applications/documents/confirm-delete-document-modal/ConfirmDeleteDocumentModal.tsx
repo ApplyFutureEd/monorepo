@@ -11,11 +11,12 @@ type Props = {
     handleCancel: () => void;
     handleClose: () => void;
     handleDelete: (id: string, storageKey: string) => void;
+    isSubmitting: boolean;
     open: boolean;
 };
 
 const ConfirmDeleteDocumentModal: FC<Props> = (props) => {
-    const { documentToDelete, handleCancel, handleClose, handleDelete, open } = props;
+    const { documentToDelete, handleCancel, handleClose, handleDelete, isSubmitting, open } = props;
 
     return (
         <Modal open={open} onClose={handleClose}>
@@ -37,6 +38,7 @@ const ConfirmDeleteDocumentModal: FC<Props> = (props) => {
                         <div className="mt-4 sm:flex sm:flex-row-reverse">
                             <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                 <Button
+                                    isSubmitting={isSubmitting}
                                     type="button"
                                     variant="danger"
                                     onClick={() =>
@@ -49,7 +51,11 @@ const ConfirmDeleteDocumentModal: FC<Props> = (props) => {
                                 </Button>
                             </span>
                             <span className="flex mt-3 w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                                <Button type="button" variant="secondary" onClick={handleCancel}>
+                                <Button
+                                    isSubmitting={isSubmitting}
+                                    type="button"
+                                    variant="secondary"
+                                    onClick={handleCancel}>
                                     Cancel
                                 </Button>
                             </span>

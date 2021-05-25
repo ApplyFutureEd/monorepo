@@ -62,7 +62,7 @@ const InternalReviewProgress: FC<Props> = (props) => {
                 input: {
                     id: application?.id,
                     steps: updatedSteps,
-                    todo: 'Send application to school'
+                    todo: 'Check reply from school'
                 }
             });
         } catch (error) {
@@ -77,17 +77,20 @@ const InternalReviewProgress: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex mt-4 space-x-2">
-            <Button
-                isSubmitting={isSubmitting}
-                startIcon={faTimes}
-                variant="secondary"
-                onClick={handleReject}>
-                Reject
-            </Button>
-            <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
-                Approve
-            </Button>
+        <div>
+            <p className="text-gray-500 text-sm">Review documents</p>
+            <div className="flex mt-4 space-x-2">
+                <Button
+                    isSubmitting={isSubmitting}
+                    startIcon={faTimes}
+                    variant="secondary"
+                    onClick={handleReject}>
+                    Reject
+                </Button>
+                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                    Approve
+                </Button>
+            </div>
         </div>
     );
 };
