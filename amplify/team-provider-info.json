@@ -37,15 +37,19 @@
         },
         "recruiterscontactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/recruiterscontactform-6a666345644941486f79-build.zip"
+          "s3Key": "amplify-builds/recruiterscontactform-65314969686d422b7845-build.zip"
         },
         "feespayment": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/feespayment-562b73776a51454f444f-build.zip"
+          "s3Key": "amplify-builds/feespayment-62796a62586176753062-build.zip"
         },
         "applicationarchive": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
           "s3Key": "amplify-builds/applicationarchive-6a7a5a6966487a454e56-build.zip"
+        },
+        "emailnotification": {
+          "deploymentBucketName": "amplify-students-dev-162403-deployment",
+          "s3Key": "amplify-builds/emailnotification-6445676935416e5a7065-build.zip"
         }
       }
     }

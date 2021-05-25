@@ -1,5 +1,5 @@
 {
-  "address": "Adresse",
+  "address": "Adresse (Numéro et nom de la rue, ville, pays)",
   "admission-result-accepted": "Félicitations, vous avez réussi ! Vous avez été admis au programme sélectionné.",
   "admission-result-rejected": "Malheureusement, vous n'avez pas été admis au programme sélectionné.",
   "admission-result-rejected-cta": "Poser la candidature pour un autre programme\n\n",

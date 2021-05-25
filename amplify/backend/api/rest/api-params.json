@@ -39,6 +39,14 @@
                 "open": true
             },
             "policyResourceName": "/application-archive"
+        },
+        {
+            "name": "/email-notification",
+            "lambdaFunction": "emailnotification",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/email-notification"
         }
     ],
     "resourceName": "rest",
@@ -58,6 +66,9 @@
         },
         {
             "lambdaFunction": "applicationarchive"
+        },
+        {
+            "lambdaFunction": "emailnotification"
         }
     ],
     "privacy": {
@@ -106,7 +117,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "emailnotification",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "a00cc225"
+    "uuid": "d8120359"
 }

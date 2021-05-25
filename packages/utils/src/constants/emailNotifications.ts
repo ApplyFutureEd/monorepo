@@ -13,5 +13,5 @@ export const emails: Email[] = [
     }
 ];
 
-export const getEmailById = (id: string): Email | undefined =>
+export const getEmailNotificationById = (id: string): Email | undefined =>
     emails.find((email) => email.id === id);

@@ -22,7 +22,6 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             belongTo,
             city,
             compagnyName,
-            confirmation,
             country,
             email,
             estimatedStudents,
