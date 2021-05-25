@@ -50,7 +50,7 @@ const Stepper: FC<Props> = (props) => {
     const { steps } = props;
     return (
         <nav aria-label="Progress" className="flex items-center justify-center">
-            <ol className="flex items-center ml-8 space-x-5">
+            <ol className="flex items-center space-x-5">
                 {steps.map((step) => renderBullet(step))}
             </ol>
         </nav>
