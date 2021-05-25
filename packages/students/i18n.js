@@ -16,7 +16,7 @@ module.exports = {
                 '/applications/[id]/upload-missing-documents': ['application', 'profile', 'programs'],
                 '/careers': ['landing'],
                 '/help': ['help'],
-                '/onboarding/step-1': [''],
+                '/onboarding/step-1': [],
                 '/onboarding/step-2': ['programs'],
                 '/privacy-policy': ['landing'],
                 '/profile/background-information': ['profile'],
