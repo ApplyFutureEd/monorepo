@@ -3,21 +3,26 @@ import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import bodyParser from 'body-parser';
 import express from 'express';
 import i18next from 'i18next';
+import HttpBackend from 'i18next-http-backend';
 import i18nMiddleware from 'i18next-http-middleware';
 
 AWS.config.update({ region: 'eu-west-1' });
-i18next.use(i18nMiddleware.LanguageDetector).init({
-    backend: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json'
-    },
-    defaultNS: 'application',
-    fallbackLng: 'en',
-    lng: 'en',
-    ns: ['application'],
-    preload: ['en', 'fr', 'zh']
-});
+
 const app = express();
 app.use('/locales', express.static('locales'));
+i18next
+    .use(i18nMiddleware.LanguageDetector)
+    .use(HttpBackend)
+    .init({
+        backend: {
+            loadPath: '/locales/{{lng}}/{{ns}}.json'
+        },
+        defaultNS: 'application',
+        fallbackLng: 'en',
+        lng: 'en',
+        ns: ['application'],
+        preload: ['en', 'fr', 'zh']
+    });
 app.use(i18nMiddleware.handle(i18next));
 
 app.use(bodyParser.json());
@@ -34,7 +39,7 @@ app.post('/email-notification', async (req, res, next) => {
         const { email, program, student, school, language } = req.body;
         req.i18n.changeLanguage(language);
 
-        const html = '<p>test</p>';
+        const html = `<p>${req.i18n.t('application:application-information')}</p>`;
         const text = req.i18n.t('application:application-information');
         const subject = 'test';
 
