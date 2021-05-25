@@ -9,7 +9,7 @@ const renderBullet = (step: Step) => {
     if (step.status === 'complete') {
         return (
             <li key={step.name}>
-                <a className="w-2.5 h-2.5 block bg-indigo-600 hover:bg-indigo-900 rounded-full">
+                <a className="block w-5 h-5 bg-indigo-600 rounded-full">
                     <span className="sr-only">{step.name}</span>
                 </a>
             </li>
@@ -25,7 +25,7 @@ const renderBullet = (step: Step) => {
                     </span>
                     <span
                         aria-hidden="true"
-                        className="w-2.5 h-2.5 relative block bg-indigo-600 rounded-full"
+                        className="relative block w-5 h-5 bg-indigo-600 rounded-full"
                     />
                     <span className="sr-only">{step.name}</span>
                 </a>
@@ -35,7 +35,7 @@ const renderBullet = (step: Step) => {
 
     return (
         <li key={step.name}>
-            <a className="w-2.5 h-2.5 block bg-gray-200 hover:bg-gray-400 rounded-full">
+            <a className="block w-5 h-5 bg-gray-200 rounded-full">
                 <span className="sr-only">{step.name}</span>
             </a>
         </li>

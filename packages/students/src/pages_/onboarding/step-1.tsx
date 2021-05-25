@@ -1,7 +1,7 @@
 import { Button, Select } from '@applyfuture/ui';
 import { countries } from '@applyfuture/utils';
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
+import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Image from 'next/image';
@@ -45,7 +45,7 @@ const Onboarding: FC = () => {
     ];
 
     return (
-        <LandingLayout title="Onboarding">
+        <OnboardingLayout title="Onboarding">
             <div className="lg:mt-15 flex flex-row lg:justify-center">
                 <div>
                     <Chatbot
@@ -100,10 +100,10 @@ const Onboarding: FC = () => {
                     />
                 </div>
             </div>
-            <div className="mt-12">
+            <div className="mt-16 md:mt-24">
                 <Stepper steps={steps} />
             </div>
-        </LandingLayout>
+        </OnboardingLayout>
     );
 };
 
