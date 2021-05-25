@@ -100,7 +100,7 @@ const Onboarding: FC = () => {
                     />
                 </div>
             </div>
-            <div className="mt-12">
+            <div className="my-12">
                 <Stepper steps={steps} />
             </div>
         </LandingLayout>
