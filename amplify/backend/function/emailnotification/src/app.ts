@@ -22,6 +22,7 @@ i18next.use(Backend).init({
     fallbackLng: 'en',
     lng: 'en',
     ns: ['application'],
+    supportedLngs: ['en', 'fr', 'zh'],
     preload: ['en', 'fr', 'zh']
 });
 app.use(i18nMiddleware.handle(i18next));
@@ -49,7 +50,7 @@ app.post('/email-notification', async (req, res, next) => {
         const { changeLanguage, t } = req.i18n;
 
         if (language) {
-            changeLanguage(language);
+            await changeLanguage(language);
         }
 
         const email = getEmailNotificationById(id);

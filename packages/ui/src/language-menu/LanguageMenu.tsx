@@ -34,7 +34,7 @@ export const LanguageMenu: FC = () => {
             await graphql(updateStudent, {
                 input: {
                     id: student?.id,
-                    locale: router.locale
+                    locale: locale
                 }
             });
         }

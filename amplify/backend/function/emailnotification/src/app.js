@@ -24,6 +24,7 @@ i18next_1.default.use(i18next_fs_backend_1.default).init({
     fallbackLng: 'en',
     lng: 'en',
     ns: ['application'],
+    supportedLngs: ['en', 'fr', 'zh'],
     preload: ['en', 'fr', 'zh']
 });
 app.use(i18next_http_middleware_1.default.handle(i18next_1.default));
@@ -39,7 +40,7 @@ app.post('/email-notification', async (req, res, next) => {
         const { ctaLink, id, recipients, variables, language } = req.body;
         const { changeLanguage, t } = req.i18n;
         if (language) {
-            changeLanguage(language);
+            await changeLanguage(language);
         }
         const email = emails_1.getEmailNotificationById(id);
         const html = template_1.generateHtml({
