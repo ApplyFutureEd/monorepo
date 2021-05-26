@@ -1,6 +1,6 @@
-import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import EducationLevelsButtons from '@components/onboarding/educationLevel/EducationLevelsButtons';
+import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
 import Image from 'next/image';
 import React, { FC } from 'react';
@@ -8,13 +8,13 @@ import React, { FC } from 'react';
 const Onboarding: FC = () => {
     const steps = [
         { name: 'Step 1', status: 'current' },
-        { name: 'Step 2', status: 'upcoming' },
+        { name: 'Step 2', status: 'current' },
         { name: 'Step 3', status: 'upcoming' },
         { name: 'Step 4', status: 'upcoming' }
     ];
 
     return (
-        <LandingLayout title="Onboarding">
+        <OnboardingLayout title="Onboarding">
             <div className="lg:mt-15 flex flex-row lg:justify-center">
                 <div>
                     <Chatbot
@@ -37,10 +37,10 @@ const Onboarding: FC = () => {
                     />
                 </div>
             </div>
-            <div className="my-12 w-full">
+            <div className="mt-16 md:mt-24">
                 <Stepper steps={steps} />
             </div>
-        </LandingLayout>
+        </OnboardingLayout>
     );
 };
 
