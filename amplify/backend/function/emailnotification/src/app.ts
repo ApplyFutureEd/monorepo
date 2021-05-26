@@ -48,7 +48,7 @@ type Body = {
 
 app.post('/email-notification', async (req, res, next) => {
     try {
-        const { id, recipients, program, student, school, language } = req.body as Body;
+        const { id, recipients, variables, language } = req.body as Body;
         const { changeLanguage, t } = req.i18n;
 
         if (language) {
