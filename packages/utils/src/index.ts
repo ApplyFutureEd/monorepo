@@ -10,7 +10,6 @@ export * from './constants/disciplines';
 export * from './constants/documents';
 export * from './constants/durationUnits';
 export * from './constants/educationLevels';
-export * from './constants/emailNotifications';
 export * from './constants/feeUnits';
 export * from './constants/genders';
 export * from './constants/institutionTypes';
