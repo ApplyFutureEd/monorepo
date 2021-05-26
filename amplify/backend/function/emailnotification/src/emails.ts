@@ -4,7 +4,6 @@ type Email = {
     subject: string;
     title: string;
     body: string;
-    ctaLink: string;
     ctaText: string;
     footer: string;
 };
@@ -12,12 +11,11 @@ type Email = {
 export const emails: Email[] = [
     {
         id: 'post-submission',
-        subject: '',
-        title: '',
-        body: '',
-        ctaLink: '',
-        ctaText: '',
-        footer: ''
+        subject: 'email-post-submission-subject',
+        title: 'email-post-submission-title',
+        body: 'email-post-submission-body',
+        ctaText: 'email-post-submission-cta-text',
+        footer: 'email-generic-footer'
     }
 ];
 

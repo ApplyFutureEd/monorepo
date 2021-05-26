@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable sort-keys */
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const middleware_1 = __importDefault(require("aws-serverless-express/middleware"));
 const body_parser_1 = __importDefault(require("body-parser"));
@@ -10,6 +11,8 @@ const express_1 = __importDefault(require("express"));
 const i18next_1 = __importDefault(require("i18next"));
 const i18next_fs_backend_1 = __importDefault(require("i18next-fs-backend"));
 const i18next_http_middleware_1 = __importDefault(require("i18next-http-middleware"));
+const emails_1 = require("./emails");
+const template_1 = require("./template");
 aws_sdk_1.default.config.update({ region: 'eu-west-1' });
 const app = express_1.default();
 app.use('/locales', express_1.default.static('locales'));
@@ -33,16 +36,30 @@ app.use((req, res, next) => {
 });
 app.post('/email-notification', async (req, res, next) => {
     try {
-        const { email, program, student, school, language } = req.body;
+        const { ctaLink, id, recipients, variables, language } = req.body;
+        const { changeLanguage, t } = req.i18n;
         if (language) {
-            req.i18n.changeLanguage(language);
+            changeLanguage(language);
         }
-        const html = `<p>${req.i18n.t('application:application-information')}</p>`;
-        const text = req.i18n.t('application:application-information');
-        const subject = 'test';
+        const email = emails_1.getEmailNotificationById(id);
+        const html = template_1.generateHtml({
+            title: t(email.title, Object.assign({}, variables)),
+            body: t(email.body, Object.assign({}, variables)),
+            ctaLink: ctaLink,
+            ctaText: t(email.ctaText, Object.assign({}, variables)),
+            footer: t(email.footer, Object.assign({}, variables))
+        });
+        const text = template_1.generateText({
+            title: t(email.title, Object.assign({}, variables)),
+            body: t(email.body, Object.assign({}, variables)),
+            ctaLink: ctaLink,
+            ctaText: t(email.ctaText, Object.assign({}, variables)),
+            footer: t(email.footer, Object.assign({}, variables))
+        });
+        const subject = t(email.subject);
         const params = {
             Destination: {
-                ToAddresses: [email]
+                ToAddresses: recipients
             },
             Message: {
                 Body: {

@@ -36,19 +36,16 @@ app.use((req, res, next) => {
 });
 
 type Body = {
+    ctaLink?: string;
     id: string;
     language: string;
     recipients: string[];
-    variables: {
-        program: any;
-        student: any;
-        school: any;
-    };
+    variables: any;
 };
 
 app.post('/email-notification', async (req, res, next) => {
     try {
-        const { id, recipients, variables, language } = req.body as Body;
+        const { ctaLink, id, recipients, variables, language } = req.body as Body;
         const { changeLanguage, t } = req.i18n;
 
         if (language) {
@@ -56,19 +53,20 @@ app.post('/email-notification', async (req, res, next) => {
         }
 
         const email = getEmailNotificationById(id);
+
         const html = generateHtml({
-            title: t(email.title),
-            body: t(email.body),
-            ctaLink: t(email.ctaLink),
-            ctaText: t(email.ctaText),
-            footer: t(email.footer)
+            title: t(email.title, { ...variables }),
+            body: t(email.body, { ...variables }),
+            ctaLink: ctaLink,
+            ctaText: t(email.ctaText, { ...variables }),
+            footer: t(email.footer, { ...variables })
         });
         const text = generateText({
-            title: t(email.title),
-            body: t(email.body),
-            ctaLink: t(email.ctaLink),
-            ctaText: t(email.ctaText),
-            footer: t(email.footer)
+            title: t(email.title, { ...variables }),
+            body: t(email.body, { ...variables }),
+            ctaLink: ctaLink,
+            ctaText: t(email.ctaText, { ...variables }),
+            footer: t(email.footer, { ...variables })
         });
 
         const subject = t(email.subject);

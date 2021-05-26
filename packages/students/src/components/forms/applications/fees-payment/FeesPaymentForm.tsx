@@ -1,6 +1,6 @@
 import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
 import { Button, CardCvcInput, CardExpireDateInput, CardNumberInput, Input } from '@applyfuture/ui';
-import { graphql, toast, toShortId } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { faArrowLeft, faArrowRight, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { StripeError } from '@stripe/stripe-js';
@@ -9,6 +9,7 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
+import { SupportedLocale } from 'src/types/SupportedLocale';
 import { object, string } from 'yup';
 
 type Props = {
@@ -94,6 +95,18 @@ const FeesPaymentForm: FC<Props> = (props) => {
                             id: application?.id,
                             steps: updatedSteps,
                             todo: 'Review documents'
+                        }
+                    });
+
+                    await sendEmailNotification({
+                        ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=internal-review`,
+                        id: 'post-submission',
+                        language: application?.student?.locale as SupportedLocale,
+                        recipients: [application?.student?.email],
+                        variables: {
+                            applicationId: application?.id,
+                            programName: application?.program?.name,
+                            schoolName: application?.program?.school?.name
                         }
                     });
 
