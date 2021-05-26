@@ -12,7 +12,7 @@ type Body = {
 export const sendEmailNotification = async (body: Body): Promise<void> => {
     try {
         await API.post('rest', '/email-notification', {
-            body
+            body: { ...body }
         });
     } catch (error) {
         console.log(error);
