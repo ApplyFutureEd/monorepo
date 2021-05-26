@@ -8,17 +8,14 @@ const middleware_1 = __importDefault(require("aws-serverless-express/middleware"
 const body_parser_1 = __importDefault(require("body-parser"));
 const express_1 = __importDefault(require("express"));
 const i18next_1 = __importDefault(require("i18next"));
-const i18next_http_backend_1 = __importDefault(require("i18next-http-backend"));
+const i18next_fs_backend_1 = __importDefault(require("i18next-fs-backend"));
 const i18next_http_middleware_1 = __importDefault(require("i18next-http-middleware"));
 aws_sdk_1.default.config.update({ region: 'eu-west-1' });
 const app = express_1.default();
 app.use('/locales', express_1.default.static('locales'));
-i18next_1.default
-    .use(i18next_http_middleware_1.default.LanguageDetector)
-    .use(i18next_http_backend_1.default)
-    .init({
+i18next_1.default.use(i18next_fs_backend_1.default).init({
     backend: {
-        loadPath: '/locales/{{lng}}/{{ns}}.json'
+        loadPath: __dirname + '/locales/{{lng}}/{{ns}}.json'
     },
     defaultNS: 'application',
     fallbackLng: 'en',
@@ -37,7 +34,9 @@ app.use((req, res, next) => {
 app.post('/email-notification', async (req, res, next) => {
     try {
         const { email, program, student, school, language } = req.body;
-        req.i18n.changeLanguage(language);
+        if (language) {
+            req.i18n.changeLanguage(language);
+        }
         const html = `<p>${req.i18n.t('application:application-information')}</p>`;
         const text = req.i18n.t('application:application-information');
         const subject = 'test';

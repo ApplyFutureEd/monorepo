@@ -4,7 +4,22 @@ import React, { FC } from 'react';
 
 const TestPage: FC = () => {
     const handleOnClick = async () => {
-        await sendEmailNotification('post-submission', 'pcailly@pm.me');
+        await sendEmailNotification({
+            id: 'post-submission',
+            language: 'fr',
+            recipients: ['pcailly@pm.me'],
+            variables: {
+                program: {
+                    name: 'Amazing Master in Awesomeness'
+                },
+                school: {
+                    name: 'Awesome school'
+                },
+                student: {
+                    firstName: 'Paul'
+                }
+            }
+        });
     };
 
     return (

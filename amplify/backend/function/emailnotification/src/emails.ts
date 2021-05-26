@@ -1,15 +1,23 @@
 /* eslint-disable sort-keys */
 type Email = {
     id: string;
-    content: string;
-    cta: string;
+    subject: string;
+    title: string;
+    body: string;
+    ctaLink: string;
+    ctaText: string;
+    footer: string;
 };
 
 export const emails: Email[] = [
     {
         id: 'post-submission',
-        content: 'application:email-post-submission-content',
-        cta: 'application:email-post-submission-cta'
+        subject: '',
+        title: '',
+        body: '',
+        ctaLink: '',
+        ctaText: '',
+        footer: ''
     }
 ];
 

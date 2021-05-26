@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.10.1":
+"@babel/runtime@^7.12.0":
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
   integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
@@ -61,6 +61,13 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/i18next-fs-backend@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/i18next-fs-backend/-/i18next-fs-backend-1.0.0.tgz#3fb0374f4d376375b7cc1d3729bca663d104fa64"
+  integrity sha512-PotQ0NE17NavxXCsdyq9qIKZQOB7+A5O/2nDdvfbfm6/IgvvC1YUO6hxK3nIHASu+QGjO1QV5J8PJw4OL12LMQ==
+  dependencies:
+    i18next "^19.7.0"
 
 "@types/mime@^1":
   version "1.3.2"
@@ -193,13 +200,6 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
   integrity sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
-
-cross-fetch@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
-  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
-  dependencies:
-    node-fetch "2.6.1"
 
 debug@2.6.1:
   version "2.6.1"
@@ -343,24 +343,29 @@ http-errors@~1.6.1:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-i18next-http-backend@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-1.2.6.tgz#80b12e8b207814aebb3b8a74c4487dd156973bee"
-  integrity sha512-NeNNRofj+rR6Cw+/Elf8bCVaCiqWg2Y6F+CrmDvHiPzAW2Dtxxlk8O0na2et/rr1n3ST6rJr4nMXH/QOFuhaeA==
-  dependencies:
-    cross-fetch "3.1.4"
+i18next-fs-backend@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/i18next-fs-backend/-/i18next-fs-backend-1.1.1.tgz#1d8028926803f63784ffa0f2b1478fb369f92735"
+  integrity sha512-RFkfy10hNxJqc7MVAp5iAZq0Tum6msBCNebEe3OelOBvrROvzHUPaR8Qe10RQrOGokTm0W4vJGEJzruFkEt+hQ==
 
-i18next-http-middleware@^3.1.3:
+i18next-http-middleware@3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/i18next-http-middleware/-/i18next-http-middleware-3.1.3.tgz#7477ef3352bcc58ab8b77a6612cdc181e3e33254"
   integrity sha512-IVj5w2tJcnSZ3ZG8L/ylFdy/VD1tiyCG798Lw3mFI7hVxMOa0t1eTSzbk48ruS+EqDePQRc/18nzgg+Jbekdmw==
 
-i18next@19.6.3:
-  version "19.6.3"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.6.3.tgz#ce2346161b35c4c5ab691b0674119c7b349c0817"
-  integrity sha512-eYr98kw/C5z6kY21ti745p4IvbOJwY8F2T9tf/Lvy5lFnYRqE45+bppSgMPmcZZqYNT+xO0N0x6rexVR2wtZZQ==
+i18next@20.3.0:
+  version "20.3.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-20.3.0.tgz#9558b431241fb1dbbd445174391ede65d0a68ed9"
+  integrity sha512-eFv4aQvaGykp48mI4JEaCcoD/j4zoYjFnDYhChe3ukwvbHx3q4mKZlB8YnmhYrHQR5FopLlCrzcSuY0ZWfiakA==
   dependencies:
-    "@babel/runtime" "^7.10.1"
+    "@babel/runtime" "^7.12.0"
+
+i18next@^19.7.0:
+  version "19.9.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.9.2.tgz#ea5a124416e3c5ab85fddca2c8e3c3669a8da397"
+  integrity sha512-0i6cuo6ER6usEOtKajUUDj92zlG+KArFia0857xxiEHAQcUwh/RtOQocui1LPJwunSYT574Pk64aNva1kwtxZg==
+  dependencies:
+    "@babel/runtime" "^7.12.0"
 
 iconv-lite@0.4.15:
   version "0.4.15"
@@ -443,11 +448,6 @@ negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
-
-node-fetch@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 object-inspect@^1.9.0:
   version "1.10.3"

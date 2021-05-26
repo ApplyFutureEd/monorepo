@@ -1,28 +1,29 @@
+/* eslint-disable sort-keys */
 import AWS from 'aws-sdk';
 import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import bodyParser from 'body-parser';
 import express from 'express';
 import i18next from 'i18next';
-import HttpBackend from 'i18next-http-backend';
+import Backend from 'i18next-fs-backend';
 import i18nMiddleware from 'i18next-http-middleware';
+
+import { getEmailNotificationById } from './emails';
+import { generateHtml, generateText } from './template';
 
 AWS.config.update({ region: 'eu-west-1' });
 
 const app = express();
 app.use('/locales', express.static('locales'));
-i18next
-    .use(i18nMiddleware.LanguageDetector)
-    .use(HttpBackend)
-    .init({
-        backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json'
-        },
-        defaultNS: 'application',
-        fallbackLng: 'en',
-        lng: 'en',
-        ns: ['application'],
-        preload: ['en', 'fr', 'zh']
-    });
+i18next.use(Backend).init({
+    backend: {
+        loadPath: __dirname + '/locales/{{lng}}/{{ns}}.json'
+    },
+    defaultNS: 'application',
+    fallbackLng: 'en',
+    lng: 'en',
+    ns: ['application'],
+    preload: ['en', 'fr', 'zh']
+});
 app.use(i18nMiddleware.handle(i18next));
 
 app.use(bodyParser.json());
@@ -34,18 +35,47 @@ app.use((req, res, next) => {
     next();
 });
 
+type Body = {
+    id: string;
+    language: string;
+    recipients: string[];
+    variables: {
+        program: any;
+        student: any;
+        school: any;
+    };
+};
+
 app.post('/email-notification', async (req, res, next) => {
     try {
-        const { email, program, student, school, language } = req.body;
-        req.i18n.changeLanguage(language);
+        const { id, recipients, program, student, school, language } = req.body as Body;
+        const { changeLanguage, t } = req.i18n;
 
-        const html = `<p>${req.i18n.t('application:application-information')}</p>`;
-        const text = req.i18n.t('application:application-information');
-        const subject = 'test';
+        if (language) {
+            changeLanguage(language);
+        }
+
+        const email = getEmailNotificationById(id);
+        const html = generateHtml({
+            title: t(email.title),
+            body: t(email.body),
+            ctaLink: t(email.ctaLink),
+            ctaText: t(email.ctaText),
+            footer: t(email.footer)
+        });
+        const text = generateText({
+            title: t(email.title),
+            body: t(email.body),
+            ctaLink: t(email.ctaLink),
+            ctaText: t(email.ctaText),
+            footer: t(email.footer)
+        });
+
+        const subject = t(email.subject);
 
         const params = {
             Destination: {
-                ToAddresses: [email]
+                ToAddresses: recipients
             },
             Message: {
                 Body: {
