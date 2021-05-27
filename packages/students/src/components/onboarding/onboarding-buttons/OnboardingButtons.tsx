@@ -1,6 +1,6 @@
 import { disciplines } from '@applyfuture/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useTranslation from 'next-translate/useTranslation';
+import { useTranslation } from 'next-translate';
 import React, { FC } from 'react';
 
 export const onboardingButtons: FC = () => {
@@ -13,13 +13,15 @@ export const onboardingButtons: FC = () => {
     }));
 
     return (
-        <div className="grid gap-8 grid-cols-2">
+        <div className="grid gap-8 grid-cols-2 md:grid-cols-3">
             {onboardingButtons.map((discipline) => (
-                <div key={discipline.value}>
-                    <div>
-                        <FontAwesomeIcon icon={discipline.icon} />
+                <div
+                    key={discipline.value}
+                    className="flex flex-col p-4 bg-white border-2 border-indigo-300 rounded-xl">
+                    <div className="mx-auto">
+                        <FontAwesomeIcon icon={discipline.icon} className="fa-3x text-indigo-600" />
                     </div>
-                    <div>{discipline.label}</div>
+                    <div className="text-base font-semibold leading-6">{discipline.label}</div>
                 </div>
             ))}
         </div>
