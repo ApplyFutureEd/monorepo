@@ -1,6 +1,6 @@
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React, { useState as useStateMock } from 'react';
+import React, { FC, useState as useStateMock } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -13,6 +13,11 @@ jest.mock('next/router', () => ({
 jest.mock('react', () => ({
     ...(jest.requireActual('react') as Record<string, unknown>),
     useState: jest.fn()
+}));
+
+jest.mock('@applyfuture/ui', () => ({
+    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
+    LanguageMenu: jest.fn().mockImplementation(() => <div />)
 }));
 
 describe('LandingLayout', () => {
