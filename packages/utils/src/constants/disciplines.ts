@@ -1,44 +1,51 @@
 import { faAnalytics } from '@fortawesome/pro-light-svg-icons';
+import { faMedkit } from '@fortawesome/pro-light-svg-icons';
+import { faCog } from '@fortawesome/pro-light-svg-icons';
+import { faAtom } from '@fortawesome/pro-light-svg-icons';
+import { faBalanceScale } from '@fortawesome/pro-light-svg-icons';
+import { faPallet } from '@fortawesome/pro-light-svg-icons';
+import { faSoup } from '@fortawesome/pro-light-svg-icons';
+import { faAtlas } from '@fortawesome/pro-light-svg-icons';
 
 export const disciplines = [
     {
+        icon: faAnalytics,
         label: 'business-management-and-economics',
-        icon: faAnalytics,
         value: 'BUSINESS_MANAGEMENT_AND_ECONOMICS'
-    }
+    },
     {
+        icon: faCog,
         label: 'engineering-and-technology',
-        icon: faAnalytics,
         value: 'ENGINEERING_AND_TECHNOLOGY'
-    }
+    },
     {
+        icon: faAtom,
         label: 'sciences',
-        icon: faAnalytics,
         value: 'SCIENCES'
-    }
+    },
     {
+        icon: faSoup,
         label: 'culinary-arts',
-        icon: faAnalytics,
         value: 'CULINARY_ARTS'
-    }
+    },
     {
+        icon: faBalanceScale,
         label: 'law-politics-social-community-service-and-teaching',
-        icon: faAnalytics,
         value: 'LAW_POLITICS_SOCIAL_COMMUNITY_SERVICE_AND_TEACHING'
-    }
+    },
     {
+        icon: faPallet,
         label: 'arts',
-        icon: faAnalytics,
         value: 'ARTS'
-    }
+    },
     {
+        icon: faMedkit,
         label: 'health-sciences-medicine-nursing-paramedic-and-kinesiology',
-        icon: faAnalytics,
         value: 'HEALTH_SCIENCES_MEDICINE_NURSING_PARAMEDIC_AND_KINESIOLOGY'
-    }
+    },
     {
+        icon: faAtlas,
         label: 'english-for-academic-studies',
-        icon: faAnalytics,
         value: 'ENGLISH_FOR_ACADEMIC_STUDIES'
     }
 ];
