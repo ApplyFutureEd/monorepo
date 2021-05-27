@@ -70,7 +70,7 @@ app.post('/email-notification', async (req, res, next) => {
             footer: t(email.footer, { ...variables })
         });
 
-        const subject = t(email.subject);
+        const subject = t(email.subject, { ...variables });
 
         const params = {
             Destination: {

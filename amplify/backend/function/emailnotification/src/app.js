@@ -57,7 +57,7 @@ app.post('/email-notification', async (req, res, next) => {
             ctaText: t(email.ctaText, Object.assign({}, variables)),
             footer: t(email.footer, Object.assign({}, variables))
         });
-        const subject = t(email.subject);
+        const subject = t(email.subject, Object.assign({}, variables));
         const params = {
             Destination: {
                 ToAddresses: recipients

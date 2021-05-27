@@ -176,7 +176,6 @@ export const generateHtml = (options: Options): string => {
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
       background-color: white;
-      white-space: pre-line;
     ">
         <!-- preview-text -->
         <table
