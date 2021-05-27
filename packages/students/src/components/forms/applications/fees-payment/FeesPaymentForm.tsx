@@ -99,7 +99,7 @@ const FeesPaymentForm: FC<Props> = (props) => {
                     });
 
                     await sendEmailNotification({
-                        ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=internal-review`,
+                        ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=internal-review`,
                         id: 'post-submission',
                         language: application?.student?.locale as SupportedLocale,
                         recipients: [application?.student?.email],

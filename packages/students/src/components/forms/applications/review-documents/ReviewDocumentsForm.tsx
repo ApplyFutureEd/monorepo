@@ -63,7 +63,7 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                 router.push(`/applications/${application?.id}/fees-payment`);
             } else {
                 await sendEmailNotification({
-                    ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=internal-review`,
+                    ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=internal-review`,
                     id: 'post-submission',
                     language: application?.student?.locale as SupportedLocale,
                     recipients: [application?.student?.email],

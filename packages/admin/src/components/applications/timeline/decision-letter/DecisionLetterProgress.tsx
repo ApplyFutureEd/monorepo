@@ -69,7 +69,7 @@ const DecisionLetterProgress: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=decision-letter`,
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=decision-letter`,
                 id: 'post-decision-letter-approval',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],

@@ -40,7 +40,7 @@ const InternalReviewProgress: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications/${application?.id}/upload-missing-documents`,
+                ctaLink: `https://applyfuture.com/applications/${application?.id}/upload-missing-documents`,
                 id: 'post-internal-review-rejection',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],
@@ -81,7 +81,7 @@ const InternalReviewProgress: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=internal-review`,
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=internal-review`,
                 id: 'post-internal-review-approval',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],

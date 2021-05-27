@@ -68,7 +68,7 @@ const SchoolReviewProgress: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=school-review`,
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-review`,
                 id: 'post-school-review-approval',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],

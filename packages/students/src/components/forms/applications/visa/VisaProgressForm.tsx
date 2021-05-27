@@ -61,7 +61,7 @@ const VisaProgressForm: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=visa`,
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=visa`,
                 id: 'post-visa-approval',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],

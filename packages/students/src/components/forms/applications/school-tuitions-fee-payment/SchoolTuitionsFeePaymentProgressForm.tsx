@@ -63,7 +63,7 @@ const SchoolTuitionsFeePaymentProgressForm: FC<Props> = (props) => {
             });
 
             await sendEmailNotification({
-                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=school-tuitions-fee-payment`,
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-tuitions-fee-payment`,
                 id: 'post-school-tuitions-fee-payment-approval',
                 language: application?.student?.locale as SupportedLocale,
                 recipients: [application?.student?.email],
