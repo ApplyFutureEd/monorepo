@@ -38,9 +38,9 @@ app.use((req, res, next) => {
 app.post('/email-notification', async (req, res, next) => {
     try {
         const { ctaLink, id, recipients, variables, language } = req.body;
-        const { changeLanguage, t } = req.i18n;
+        const { i18n, t } = req;
         if (language) {
-            await changeLanguage(language);
+            await i18n.changeLanguage(language);
         }
         const email = emails_1.getEmailNotificationById(id);
         const html = template_1.generateHtml({
