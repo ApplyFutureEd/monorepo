@@ -3,8 +3,9 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -63,6 +64,19 @@ const SchoolReviewProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Select an interview date'
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=school-review`,
+                id: 'post-school-review-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {

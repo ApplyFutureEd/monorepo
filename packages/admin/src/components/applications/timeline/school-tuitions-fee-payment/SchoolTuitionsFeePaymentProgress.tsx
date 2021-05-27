@@ -3,8 +3,9 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import SchoolTuitionsFeePaymentProgressForm from '@components/forms/application/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -64,6 +65,19 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: "Select decision letter's date of receipt"
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=school-tuitions-fee-payment`,
+                id: 'post-school-tuitions-fee-payment-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {

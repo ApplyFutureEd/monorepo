@@ -3,8 +3,9 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button, DateInput } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -56,6 +57,19 @@ const VisaProgressForm: FC<Props> = (props) => {
                     steps: updatedSteps,
                     todo: '',
                     visaDate: visaDate
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://${window.location.host}/applications?id=${application?.id}&step=visa`,
+                id: 'post-visa-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
