@@ -49,7 +49,7 @@
         },
         "emailnotification": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/emailnotification-52684b7741364f697776-build.zip"
+          "s3Key": "amplify-builds/emailnotification-69434a6c66794b4b5a67-build.zip"
         }
       }
     }

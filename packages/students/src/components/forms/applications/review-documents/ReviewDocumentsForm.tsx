@@ -1,6 +1,6 @@
 import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
 import { Button, Checkbox, Modal } from '@applyfuture/ui';
-import { graphql, sendEmailNotification, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { faArrowLeft, faArrowRight, faFilePdf, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
@@ -68,7 +68,8 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
                     language: application?.student?.locale as SupportedLocale,
                     recipients: [application?.student?.email],
                     variables: {
-                        applicationId: application?.id,
+                        applicationId: toShortId(application?.id),
+                        firstName: application?.student?.firstName,
                         programName: application?.program?.name,
                         schoolName: application?.program?.school?.name
                     }
