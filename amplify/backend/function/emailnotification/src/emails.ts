@@ -50,6 +50,22 @@ export const emails: Email[] = [
         footer: 'email-generic-footer'
     },
     {
+        id: 'post-school-result-waiting-list',
+        subject: 'email-post-school-result-waiting-list-subject',
+        title: 'email-post-school-result-waiting-list-title',
+        body: 'email-post-school-result-waiting-list-body',
+        ctaText: 'email-follow-application-cta-text',
+        footer: 'email-generic-footer'
+    },
+    {
+        id: 'post-school-result-rejected',
+        subject: 'email-post-school-result-rejected-subject',
+        title: 'email-post-school-result-rejected-title',
+        body: 'email-post-school-result-rejected-body',
+        ctaText: 'email-post-school-result-rejected-cta-text',
+        footer: 'email-generic-footer'
+    },
+    {
         id: 'post-school-tuitions-fee-payment-approval',
         subject: 'email-post-school-tuitions-fee-payment-approval-subject',
         title: 'email-post-school-tuitions-fee-payment-approval-title',

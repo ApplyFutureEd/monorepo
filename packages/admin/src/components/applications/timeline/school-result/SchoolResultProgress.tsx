@@ -39,6 +39,19 @@ const SchoolResultProgress: FC<Props> = (props) => {
                     todo: 'Forward school response to student'
                 }
             });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/programs`,
+                id: 'post-school-result-rejected',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
+                }
+            });
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -64,6 +77,19 @@ const SchoolResultProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Forward school response to student'
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-result`,
+                id: 'post-school-result-waiting-list',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
