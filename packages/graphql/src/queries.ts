@@ -1771,7 +1771,7 @@ export const getApplicationByStudent = /* GraphQL */ `
           school {
             logo
             name
-            school
+            slug
           }
           schoolId
           schoolName
