@@ -27,6 +27,7 @@ export * from './helpers/documents';
 export * from './helpers/duration';
 export * from './helpers/eastereggs';
 export * from './helpers/eligibility';
+export * from './helpers/emailNotifications';
 export * from './helpers/filters';
 export * from './helpers/graphql';
 export * from './helpers/isBrowser';

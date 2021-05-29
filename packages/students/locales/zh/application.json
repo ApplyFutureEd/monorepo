@@ -1,5 +1,5 @@
 {
-  "address": "地址",
+  "address": "地址 (路号及名称，城市，国家)",
   "admission-result-accepted": "恭喜，你被录取了！你已获取了录取资格。",
   "admission-result-rejected": "很遗憾，你的申请被拒绝。",
   "admission-result-rejected-cta": "申请另一个专业",

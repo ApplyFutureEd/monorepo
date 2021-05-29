@@ -1,12 +1,13 @@
 import { deleteApplication, GetApplicationQuery, updateApplication } from '@applyfuture/graphql';
 import { Button, Checkbox, Modal } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { faArrowLeft, faArrowRight, faFilePdf, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { SupportedLocale } from 'src/types/SupportedLocale';
 import { boolean, object } from 'yup';
 
 type Props = {
@@ -61,6 +62,19 @@ const ReviewDocumentsForm: FC<Props> = (props) => {
             if (hasApplicationFees) {
                 router.push(`/applications/${application?.id}/fees-payment`);
             } else {
+                await sendEmailNotification({
+                    ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=internal-review`,
+                    id: 'post-submission',
+                    language: application?.student?.locale as SupportedLocale,
+                    recipients: [application?.student?.email],
+                    variables: {
+                        applicationId: toShortId(application?.id),
+                        firstName: application?.student?.firstName,
+                        programName: application?.program?.name,
+                        schoolName: application?.program?.school?.name
+                    }
+                });
+
                 router.push(`/applications/${application?.id}/submission`);
             }
         } catch (error) {

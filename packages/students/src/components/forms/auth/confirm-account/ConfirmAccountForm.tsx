@@ -59,6 +59,7 @@ const ConfirmAccountForm: FC = () => {
                     highestEducationLevel: -1,
                     lastName: '',
                     lastUpdate: new Date().valueOf(),
+                    locale: router.locale,
                     maritalStatus: '',
                     middleName: '',
                     motherFirstName: '',
