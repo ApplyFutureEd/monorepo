@@ -13,7 +13,7 @@ type Props = {
     /**
      * Notifications
      */
-    notifications: Array<Notification>;
+    notifications: Notification[];
 };
 
 export const Notifications: FC<Props> = (props) => {

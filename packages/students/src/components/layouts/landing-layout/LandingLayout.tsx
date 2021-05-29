@@ -1,4 +1,11 @@
 import {
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables,
+    onUpdateStudentById
+} from '@applyfuture/graphql';
+import { Notification } from '@applyfuture/models';
+import {
     Button,
     DropdownItem,
     Footer,
@@ -10,7 +17,7 @@ import {
     Transition,
     UserMenu
 } from '@applyfuture/ui';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { useAuthenticatedUser, useQuery, useSubscription } from '@applyfuture/utils';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
 import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +25,7 @@ import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 
 type Props = {
     children: ReactNode;
@@ -31,6 +38,29 @@ const LandingLayout: FC<Props> = (props) => {
     const { user } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
+
+    const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+        getStudentByEmail,
+        { email: user?.attributes.email }
+    );
+    const [notifications, setNotifications] = useState<Notification[]>([]);
+
+    const [item] = useSubscription<any>({
+        config: {
+            key: 'onUpdateStudentById',
+            query: onUpdateStudentById,
+            variables: {
+                id: studentData?.getStudentByEmail?.items?.[0]?.id
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (item?.id) {
+            setNotifications(item.notifications);
+        }
+    }, [item]);
+
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -68,7 +98,7 @@ const LandingLayout: FC<Props> = (props) => {
         <div key={1}>
             {user ? (
                 <div className="flex space-x-4">
-                    <Notifications notifications={[]} />
+                    <Notifications notifications={notifications} />
                     <UserMenu items={userMenuItems} />
                 </div>
             ) : (
@@ -100,7 +130,7 @@ const LandingLayout: FC<Props> = (props) => {
         <div key={0}>
             {user ? (
                 <div className="flex space-x-4">
-                    <Notifications notifications={[]} />
+                    <Notifications notifications={notifications} />
                     <UserMenu items={userMenuItems} />
                 </div>
             ) : (
