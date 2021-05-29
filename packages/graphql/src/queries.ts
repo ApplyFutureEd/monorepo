@@ -71,12 +71,10 @@ export const getStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -188,12 +186,10 @@ export const listStudents = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -305,12 +301,10 @@ export const getDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -488,12 +482,10 @@ export const getApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -545,12 +537,10 @@ export const getApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -723,12 +713,10 @@ export const listApplications = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -921,12 +909,10 @@ export const getSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1108,12 +1094,10 @@ export const getFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -1359,12 +1343,10 @@ export const getStudentByEmail = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1661,12 +1643,10 @@ export const getApplicationByStudent = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -1791,7 +1771,7 @@ export const getApplicationByStudent = /* GraphQL */ `
           school {
             logo
             name
-            slug
+            school
           }
           schoolId
           schoolName
@@ -1874,12 +1854,10 @@ export const searchStudents = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1973,12 +1951,10 @@ export const searchApplications = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
