@@ -6,6 +6,7 @@ import {
     Header,
     LanguageMenu,
     MobileMenu,
+    Notifications,
     Transition,
     UserMenu
 } from '@applyfuture/ui';
@@ -66,7 +67,10 @@ const LandingLayout: FC<Props> = (props) => {
         <LanguageMenu key={0} />,
         <div key={1}>
             {user ? (
-                <UserMenu items={userMenuItems} />
+                <div className="flex space-x-4">
+                    <Notifications notifications={[]} />
+                    <UserMenu items={userMenuItems} />
+                </div>
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">
@@ -95,7 +99,10 @@ const LandingLayout: FC<Props> = (props) => {
     const mobileMenuComponents = [
         <div key={0}>
             {user ? (
-                <UserMenu items={userMenuItems} />
+                <div className="flex space-x-4">
+                    <Notifications notifications={[]} />
+                    <UserMenu items={userMenuItems} />
+                </div>
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">

@@ -4,12 +4,10 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 export declare class Notification {
   readonly date: string;
-  readonly description: string;
-  readonly descriptionOptions: string;
+  readonly id: string;
   readonly link: string;
   readonly seen: boolean;
-  readonly title: string;
-  readonly titleOptions: string;
+  readonly variables: string;
   constructor(init: ModelInit<Notification>);
 }
 

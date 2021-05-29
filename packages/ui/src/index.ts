@@ -24,6 +24,7 @@ export * from './logo/Logo';
 export * from './mobile-menu/MobileMenu';
 export * from './modal/Modal';
 export * from './nav/Nav';
+export * from './notifications/Notifications';
 export * from './outside-alerter/OutsideAlerter';
 export * from './phone-input/PhoneInput';
 export * from './section/Section';
