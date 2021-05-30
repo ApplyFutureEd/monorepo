@@ -91,11 +91,11 @@ export const Notifications: FC<Props> = (props) => {
                 className="relative flex items-center justify-center w-10 h-10 text-gray-500 hover:bg-gray-100 bg-white rounded-full cursor-pointer"
                 id="notifications">
                 <FontAwesomeIcon icon={faBell} size="lg" />
-                {unseenNotifications.length > 0 && (
+                {unseenNotifications?.length > 0 && (
                     <div
                         className="absolute z-10 flex items-center justify-center w-6 h-6 text-white text-xs bg-red-500 border-2 border-white rounded-full"
                         style={{ right: '-4px', top: '-4px' }}>
-                        {unseenNotifications.length}
+                        {unseenNotifications?.length}
                     </div>
                 )}
             </div>
@@ -119,7 +119,7 @@ export const Notifications: FC<Props> = (props) => {
                             className="absolute z-40 right-0 mt-2 truncate rounded-md shadow-lg overflow-y-scroll origin-top-right"
                             style={{ maxHeight: '500px', width: '300px' }}>
                             <div className="py-1 bg-white rounded-md shadow-xs">
-                                {unseenNotifications.length === 0 && !showOldNotifications && (
+                                {unseenNotifications?.length === 0 && !showOldNotifications && (
                                     <div className="px-6 py-5 bg-white">
                                         <img
                                             alt={t('application:no-new-notifications-illustration')}
@@ -128,7 +128,7 @@ export const Notifications: FC<Props> = (props) => {
                                         <div className="mt-4 text-center text-gray-800 text-sm font-medium">
                                             {t('application:no-new-notifications')}
                                         </div>
-                                        {notifications.length > 0 && (
+                                        {notifications?.length > 0 && (
                                             <button
                                                 className="mt-2 w-full text-center text-gray-600 hover:text-indigo-500 underline text-sm font-normal"
                                                 onClick={handleShowOldNotifications}>
@@ -137,7 +137,7 @@ export const Notifications: FC<Props> = (props) => {
                                         )}
                                     </div>
                                 )}
-                                {(unseenNotifications.length > 0 || showOldNotifications) &&
+                                {(unseenNotifications?.length > 0 || showOldNotifications) &&
                                     notifications.sort(sortByDate).map((notification, index) => {
                                         const appNotification = getAppNotificationById(
                                             notification.id
