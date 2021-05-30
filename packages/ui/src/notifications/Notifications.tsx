@@ -1,4 +1,4 @@
-import { onUpdateStudentById } from '@applyfuture/graphql';
+import { onUpdateStudentById, updateStudent } from '@applyfuture/graphql';
 import { Notification, SupportedLocale } from '@applyfuture/models';
 import { date, getAppNotificationById, useSubscription } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
+import { graphql } from '../../../utils/src/helpers/graphql';
 import { OutsideAlerter } from './../outside-alerter/OutsideAlerter';
 import { Transition } from './../transition/Transition';
 
@@ -48,6 +49,24 @@ export const Notifications: FC<Props> = (props) => {
 
     const [open, setOpen] = useState(false);
     const [showOldNotifications, setShowOldNotifications] = useState(false);
+
+    useEffect(() => {
+        const updateNotificationsStatus = async () => {
+            if (!notifications.find((notification) => !notification.seen)) {
+                return;
+            }
+            const newNotifications = notifications.map((notification) => ({
+                ...notification,
+                seen: true
+            }));
+            await graphql(updateStudent, {
+                input: { id: studentId, notifcations: newNotifications }
+            });
+        };
+        if (open) {
+            updateNotificationsStatus();
+        }
+    }, [open]);
 
     const handleToggle = () => setOpen((prev) => !prev);
 
@@ -133,7 +152,7 @@ export const Notifications: FC<Props> = (props) => {
                                         return (
                                             <div key={index} className="cursor-pointer">
                                                 <button
-                                                    className="relative z-50 px-6 py-5 whitespace-normal hover:bg-gray-100 bg-white"
+                                                    className="relative z-50 px-6 py-5 text-left whitespace-normal hover:bg-gray-100 bg-white"
                                                     onClick={() => {
                                                         handleClick(notification.link);
                                                     }}>
