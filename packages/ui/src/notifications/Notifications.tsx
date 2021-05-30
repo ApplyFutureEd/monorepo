@@ -1,6 +1,6 @@
 import { onUpdateStudentById, updateStudent } from '@applyfuture/graphql';
 import { Notification, SupportedLocale } from '@applyfuture/models';
-import { date, delay, getAppNotificationById, useSubscription } from '@applyfuture/utils';
+import { date, getAppNotificationById, useSubscription } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
