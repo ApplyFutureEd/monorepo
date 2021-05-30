@@ -1,10 +1,11 @@
+import { onUpdateStudentById } from '@applyfuture/graphql';
 import { Notification, SupportedLocale } from '@applyfuture/models';
-import { date, getAppNotificationById } from '@applyfuture/utils';
+import { date, getAppNotificationById, useSubscription } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { OutsideAlerter } from './../outside-alerter/OutsideAlerter';
 import { Transition } from './../transition/Transition';
@@ -14,10 +15,32 @@ type Props = {
      * Notifications
      */
     notifications: Notification[];
+    /**
+     * Student ID required to initiate the subscription
+     */
+    studentId: string;
 };
 
 export const Notifications: FC<Props> = (props) => {
-    const { notifications } = props;
+    const { notifications: initialNotifications, studentId } = props;
+
+    const [notifications, setNotifications] = useState<Notification[]>(initialNotifications);
+    const [item] = useSubscription<any>({
+        config: {
+            key: 'onUpdateStudentById',
+            query: onUpdateStudentById,
+            variables: {
+                id: studentId
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (item?.id) {
+            setNotifications(item.notifications);
+        }
+    }, [item]);
+
     const unseenNotifications = notifications?.filter((notification) => !notification.seen);
     const { t } = useTranslation();
     const router = useRouter();

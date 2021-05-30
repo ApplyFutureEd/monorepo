@@ -1,8 +1,7 @@
 import {
     getStudentByEmail,
     GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables,
-    onUpdateStudentById
+    GetStudentByEmailQueryVariables
 } from '@applyfuture/graphql';
 import { Notification } from '@applyfuture/models';
 import {
@@ -16,7 +15,7 @@ import {
     Transition,
     UserMenu
 } from '@applyfuture/ui';
-import { useAuthenticatedUser, useQuery, useSubscription } from '@applyfuture/utils';
+import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
 import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +23,7 @@ import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 
 type Props = {
     children: ReactNode;
@@ -42,23 +41,9 @@ const DashboardLayout: FC<Props> = (props) => {
         getStudentByEmail,
         { email: user?.attributes.email }
     );
-    const [notifications, setNotifications] = useState<Notification[]>([]);
-
-    const [item] = useSubscription<any>({
-        config: {
-            key: 'onUpdateStudentById',
-            query: onUpdateStudentById,
-            variables: {
-                id: studentData?.getStudentByEmail?.items?.[0]?.id
-            }
-        }
-    });
-
-    useEffect(() => {
-        if (item?.id) {
-            setNotifications(item.notifications);
-        }
-    }, [item]);
+    const notifications = studentData?.getStudentByEmail?.items?.[0]
+        ?.notifications as Notification[];
+    const studentId = studentData?.getStudentByEmail?.items?.[0]?.id;
 
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
@@ -95,9 +80,9 @@ const DashboardLayout: FC<Props> = (props) => {
     const headerComponents = [
         <LanguageMenu key={0} />,
         <div key={1}>
-            {user ? (
+            {studentId ? (
                 <div className="flex space-x-4">
-                    <Notifications notifications={notifications} />
+                    <Notifications notifications={notifications} studentId={studentId} />
                     <UserMenu items={userMenuItems} />
                 </div>
             ) : (
@@ -127,9 +112,9 @@ const DashboardLayout: FC<Props> = (props) => {
 
     const mobileMenuComponents = [
         <div key={0}>
-            {user ? (
+            {studentId ? (
                 <div className="flex space-x-4">
-                    <Notifications notifications={notifications} />
+                    <Notifications notifications={notifications} studentId={studentId} />
                     <UserMenu items={userMenuItems} />
                 </div>
             ) : (
