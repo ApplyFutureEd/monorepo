@@ -50,29 +50,25 @@ export const Notifications: FC<Props> = (props) => {
     const [open, setOpen] = useState(false);
     const [showOldNotifications, setShowOldNotifications] = useState(false);
 
-    useEffect(() => {
-        const updateNotificationsStatus = async () => {
-            if (!notifications.find((notification) => !notification.seen)) {
-                return;
-            }
-            const newNotifications = notifications.map((notification) => ({
-                ...notification,
-                seen: true
-            }));
-            await graphql(updateStudent, {
-                input: { id: studentId, notifcations: newNotifications }
-            });
-        };
-        if (open) {
-            updateNotificationsStatus();
-        }
-    }, [open]);
-
     const handleToggle = () => setOpen((prev) => !prev);
+
+    const updateNotificationsStatus = async () => {
+        if (!notifications.find((notification) => !notification.seen)) {
+            return;
+        }
+        const newNotifications = notifications.map((notification) => ({
+            ...notification,
+            seen: true
+        }));
+        await graphql(updateStudent, {
+            input: { id: studentId, notifications: newNotifications }
+        });
+    };
 
     const handleClose = () => {
         setOpen(false);
         setShowOldNotifications(false);
+        updateNotificationsStatus();
     };
 
     const handleShowOldNotifications = () => setShowOldNotifications(true);
