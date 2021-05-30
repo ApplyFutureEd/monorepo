@@ -1,8 +1,9 @@
 import { onUpdateStudentById, updateStudent } from '@applyfuture/graphql';
 import { Notification, SupportedLocale } from '@applyfuture/models';
-import { date, getAppNotificationById, useSubscription } from '@applyfuture/utils';
+import { date, delay, getAppNotificationById, useSubscription } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { wait } from '@testing-library/react';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -63,12 +64,13 @@ export const Notifications: FC<Props> = (props) => {
         await graphql(updateStudent, {
             input: { id: studentId, notifications: newNotifications }
         });
-        setShowOldNotifications(false);
     };
 
     const handleClose = () => {
         setOpen(false);
         updateNotificationsStatus();
+        delay(2000);
+        setShowOldNotifications(false);
     };
 
     const handleShowOldNotifications = () => setShowOldNotifications(true);
