@@ -17,7 +17,8 @@ jest.mock('react', () => ({
 
 jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
-    LanguageMenu: jest.fn().mockImplementation(() => <div />)
+    LanguageMenu: jest.fn().mockImplementation(() => <div />),
+    Notifications: jest.fn().mockImplementation(() => <div />)
 }));
 
 describe('LandingLayout', () => {
