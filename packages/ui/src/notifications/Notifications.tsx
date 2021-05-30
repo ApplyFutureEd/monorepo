@@ -70,8 +70,7 @@ export const Notifications: FC<Props> = (props) => {
     const handleClose = () => {
         setOpen(false);
         updateNotificationsStatus();
-        delay(2000);
-        setShowOldNotifications(false);
+        setTimeout(() => setShowOldNotifications(false), 1000);
     };
 
     const handleShowOldNotifications = () => setShowOldNotifications(true);
