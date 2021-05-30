@@ -19,7 +19,7 @@ type Props = {
     /**
      * Student ID required to initiate the subscription
      */
-    studentId: string;
+    studentId?: string;
 };
 
 export const Notifications: FC<Props> = (props) => {
@@ -116,7 +116,7 @@ export const Notifications: FC<Props> = (props) => {
                         leaveTo="transform opacity-0 scale-95"
                         show={open}>
                         <div
-                            className="absolute z-40 right-0 mt-2 truncate rounded-md shadow-lg origin-top-right"
+                            className="absolute z-40 right-0 mt-2 truncate rounded-md shadow-lg overflow-y-scroll origin-top-right"
                             style={{ maxHeight: '500px', width: '300px' }}>
                             <div className="py-1 bg-white rounded-md shadow-xs">
                                 {unseenNotifications.length === 0 && !showOldNotifications && (

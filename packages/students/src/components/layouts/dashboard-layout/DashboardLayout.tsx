@@ -80,7 +80,7 @@ const DashboardLayout: FC<Props> = (props) => {
     const headerComponents = [
         <LanguageMenu key={0} />,
         <div key={1}>
-            {studentId ? (
+            {user ? (
                 <div className="flex space-x-8">
                     <Notifications notifications={notifications} studentId={studentId} />
                     <UserMenu items={userMenuItems} />
@@ -112,7 +112,7 @@ const DashboardLayout: FC<Props> = (props) => {
 
     const mobileMenuComponents = [
         <div key={0}>
-            {studentId ? (
+            {user ? (
                 <div className="flex space-x-8">
                     <Notifications notifications={notifications} studentId={studentId} />
                     <UserMenu items={userMenuItems} />
