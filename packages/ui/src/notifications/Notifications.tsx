@@ -126,7 +126,7 @@ export const Notifications: FC<Props> = (props) => {
                                         <div className="mt-4 text-center text-gray-800 text-sm font-medium">
                                             {t('application:no-new-notifications')}
                                         </div>
-                                        {unseenNotifications.length > 0 && (
+                                        {notifications.length > 0 && (
                                             <button
                                                 className="mt-2 text-center text-gray-600 hover:text-indigo-500 underline text-sm font-normal"
                                                 onClick={handleShowOldNotifications}>
