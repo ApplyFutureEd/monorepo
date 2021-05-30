@@ -45,6 +45,15 @@ const InternalReviewProgress: FC<Props> = (props) => {
                 }
             });
 
+            await sendAppNotification({
+                id: 'post-internal-review-rejection',
+                link: `/applications/${application?.id}/upload-missing-documents`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id)
+                }
+            });
+
             await sendEmailNotification({
                 ctaLink: `https://applyfuture.com/applications/${application?.id}/upload-missing-documents`,
                 id: 'post-internal-review-rejection',

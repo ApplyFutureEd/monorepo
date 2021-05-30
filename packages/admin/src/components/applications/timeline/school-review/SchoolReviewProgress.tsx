@@ -5,7 +5,13 @@ import {
 } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -38,6 +44,16 @@ const SchoolReviewProgress: FC<Props> = (props) => {
                     todo: 'Forward school response to student'
                 }
             });
+
+            await sendAppNotification({
+                id: 'post-school-review-rejection',
+                link: `/applications?id=${application?.id}&step=school-review`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    schoolName: application?.program?.school?.name
+                }
+            });
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -64,6 +80,17 @@ const SchoolReviewProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Select an interview date'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-review-approval',
+                link: `/applications?id=${application?.id}&step=school-review`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
 
