@@ -63,11 +63,11 @@ export const Notifications: FC<Props> = (props) => {
         await graphql(updateStudent, {
             input: { id: studentId, notifications: newNotifications }
         });
+        setShowOldNotifications(false);
     };
 
     const handleClose = () => {
         setOpen(false);
-        setShowOldNotifications(false);
         updateNotificationsStatus();
     };
 
@@ -128,7 +128,7 @@ export const Notifications: FC<Props> = (props) => {
                                         </div>
                                         {notifications.length > 0 && (
                                             <button
-                                                className="mt-2 text-center text-gray-600 hover:text-indigo-500 underline text-sm font-normal"
+                                                className="mt-2 w-full text-center text-gray-600 hover:text-indigo-500 underline text-sm font-normal"
                                                 onClick={handleShowOldNotifications}>
                                                 {t('application:show-old-notifications')}
                                             </button>
