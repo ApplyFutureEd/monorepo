@@ -3,7 +3,6 @@ import { Notification, SupportedLocale } from '@applyfuture/models';
 import { date, delay, getAppNotificationById, useSubscription } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { wait } from '@testing-library/react';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -51,7 +50,9 @@ export const Notifications: FC<Props> = (props) => {
     const [open, setOpen] = useState(false);
     const [showOldNotifications, setShowOldNotifications] = useState(false);
 
-    const handleToggle = () => setOpen((prev) => !prev);
+    const handleToggle = () => {
+        open ? handleClose() : setOpen(true);
+    };
 
     const updateNotificationsStatus = async () => {
         if (!notifications.find((notification) => !notification.seen)) {
