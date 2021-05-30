@@ -28,6 +28,11 @@ const appNotifications: AppNotification[] = [
         description: 'application:notification-school-review-refused-description'
     },
     {
+        id: 'post-school-interview-approval',
+        title: 'application:notification-school-interview-title',
+        description: 'application:notification-school-interview-description'
+    },
+    {
         id: 'post-school-result-accepted',
         title: 'application:notification-school-result-accepted-title',
         description: 'application:notification-school-result-accepted-description'
@@ -41,6 +46,16 @@ const appNotifications: AppNotification[] = [
         id: 'post-school-result-rejected',
         title: 'application:notification-school-result-rejected-title',
         description: 'application:notification-school-result-rejected-description'
+    },
+    {
+        id: 'post-school-tuitions-fee-payment-approval',
+        title: 'application:notification-school-tuitions-fee-payment-title',
+        description: 'application:notification-school-tuitions-fee-payment-description'
+    },
+    {
+        id: 'post-decision-letter-approval',
+        title: 'application:notification-decision-letter-title',
+        description: 'application:notification-decision-letter-description'
     }
 ];
 

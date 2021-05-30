@@ -4,7 +4,13 @@ import {
     updateApplication
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
-import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import DecisionLetterProgressForm from '@components/forms/application/decision-letter/DecisionLetterProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -65,6 +71,17 @@ const DecisionLetterProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: "Select visa's date of receipt"
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-decision-letter-approval',
+                link: `/applications?id=${application?.id}&step=decision-letter`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
 

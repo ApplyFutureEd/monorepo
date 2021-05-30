@@ -147,6 +147,16 @@ export const Notifications: FC<Props> = (props) => {
                                             return null;
                                         }
 
+                                        const variables = JSON.parse(notification.variables);
+
+                                        if (variables.date) {
+                                            variables.date = date({
+                                                locale: locale,
+                                                scheme: 'd LLLL y',
+                                                value: variables.date
+                                            });
+                                        }
+
                                         return (
                                             <div key={index} className="cursor-pointer">
                                                 <button
@@ -155,16 +165,10 @@ export const Notifications: FC<Props> = (props) => {
                                                         handleClick(notification.link);
                                                     }}>
                                                     <div className="text-gray-800 text-sm font-medium">
-                                                        {t(
-                                                            appNotification.title,
-                                                            JSON.parse(notification.variables)
-                                                        )}
+                                                        {t(appNotification.title, variables)}
                                                     </div>
                                                     <div className="mt-2 text-gray-600 text-sm font-normal">
-                                                        {t(
-                                                            appNotification.description,
-                                                            JSON.parse(notification.variables)
-                                                        )}
+                                                        {t(appNotification.description, variables)}
                                                     </div>
                                                     <div className="mt-2 text-gray-700 text-xs">
                                                         {t('common:elapsed-time-ago', {
