@@ -25,7 +25,7 @@ type Props = {
 export const Notifications: FC<Props> = (props) => {
     const { notifications: initialNotifications, studentId } = props;
 
-    const [notifications, setNotifications] = useState<Notification[]>(initialNotifications);
+    const [notifications, setNotifications] = useState<Notification[]>();
     const [item] = useSubscription<any>({
         config: {
             key: 'onUpdateStudentById',
@@ -35,6 +35,12 @@ export const Notifications: FC<Props> = (props) => {
             }
         }
     });
+
+    useEffect(() => {
+        if (initialNotifications?.length) {
+            setNotifications(initialNotifications);
+        }
+    }, [initialNotifications]);
 
     useEffect(() => {
         if (item?.id) {
@@ -55,7 +61,7 @@ export const Notifications: FC<Props> = (props) => {
     };
 
     const updateNotificationsStatus = async () => {
-        if (!notifications.find((notification) => !notification.seen)) {
+        if (!notifications?.find((notification) => !notification.seen)) {
             return;
         }
         const newNotifications = notifications.map((notification) => ({
@@ -91,7 +97,7 @@ export const Notifications: FC<Props> = (props) => {
                 className="relative flex items-center justify-center w-10 h-10 text-gray-500 hover:bg-gray-100 bg-white rounded-full cursor-pointer"
                 id="notifications">
                 <FontAwesomeIcon icon={faBell} size="lg" />
-                {unseenNotifications?.length > 0 && (
+                {unseenNotifications && unseenNotifications?.length > 0 && (
                     <div
                         className="absolute z-10 flex items-center justify-center w-6 h-6 text-white text-xs bg-red-500 border-2 border-white rounded-full"
                         style={{ right: '-4px', top: '-4px' }}>
@@ -128,7 +134,7 @@ export const Notifications: FC<Props> = (props) => {
                                         <div className="mt-4 text-center text-gray-800 text-sm font-medium">
                                             {t('application:no-new-notifications')}
                                         </div>
-                                        {notifications?.length > 0 && (
+                                        {notifications && notifications?.length > 0 && (
                                             <button
                                                 className="mt-2 w-full text-center text-gray-600 hover:text-indigo-500 underline text-sm font-normal"
                                                 onClick={handleShowOldNotifications}>
@@ -137,8 +143,9 @@ export const Notifications: FC<Props> = (props) => {
                                         )}
                                     </div>
                                 )}
-                                {(unseenNotifications?.length > 0 || showOldNotifications) &&
-                                    notifications.sort(sortByDate).map((notification, index) => {
+                                {((unseenNotifications && unseenNotifications?.length > 0) ||
+                                    showOldNotifications) &&
+                                    notifications?.sort(sortByDate).map((notification, index) => {
                                         const appNotification = getAppNotificationById(
                                             notification.id
                                         );
