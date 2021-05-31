@@ -1,3 +1,4 @@
+import CookieBanner from '@components/common/cookies-banner/CookiesBanner';
 import Arguments from '@components/landing/arguments/Arguments';
 import Contact from '@components/landing/contact/Contact';
 import Hero from '@components/landing/hero/Hero';
@@ -25,6 +26,7 @@ const LandingPage: FC = () => {
             <Partners />
             <Recruiters />
             <Contact />
+            <CookieBanner />
         </LandingLayout>
     );
 };

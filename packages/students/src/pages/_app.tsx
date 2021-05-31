@@ -10,7 +10,6 @@ import {
     initSentry,
     initWhyDidYouRender
 } from '@applyfuture/utils';
-import CookieBanner from '@components/common/cookies-banner/CookiesBanner';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -26,7 +25,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <>
             <AuthenticatedUserProvider>
                 <ToastContainer />
-                <CookieBanner />
                 <Component {...pageProps} />
             </AuthenticatedUserProvider>
         </>
