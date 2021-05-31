@@ -4,7 +4,7 @@ import {
     updateApplication
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendAppNotification, toast, toShortId } from '@applyfuture/utils';
 import SchoolInterviewProgressForm from '@components/forms/application/school-interview/SchoolInterviewProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -61,6 +61,16 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
 
             await graphql(updateApplication, {
                 input: { id: application?.id, steps: updatedSteps, todo: 'Check reply from school' }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-interview-approval',
+                link: `/applications?id=${application?.id}&step=school-interview`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    date: application?.interviewDate
+                }
             });
         } catch (error) {
             toast({
@@ -123,7 +133,11 @@ const SchoolInterviewProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                <Button
+                    disabled={!application?.interviewDate}
+                    isSubmitting={isSubmitting}
+                    startIcon={faCheck}
+                    onClick={handleApprove}>
                     Approve
                 </Button>
             </div>

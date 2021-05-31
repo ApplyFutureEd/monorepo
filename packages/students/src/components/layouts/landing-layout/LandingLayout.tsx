@@ -1,4 +1,10 @@
 import {
+    getStudentByEmail,
+    GetStudentByEmailQuery,
+    GetStudentByEmailQueryVariables
+} from '@applyfuture/graphql';
+import { Notification } from '@applyfuture/models';
+import {
     Button,
     DropdownItem,
     Footer,
@@ -6,10 +12,11 @@ import {
     Header,
     LanguageMenu,
     MobileMenu,
+    Notifications,
     Transition,
     UserMenu
 } from '@applyfuture/ui';
-import { useAuthenticatedUser } from '@applyfuture/utils';
+import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
 import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,6 +37,15 @@ const LandingLayout: FC<Props> = (props) => {
     const { user } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
+
+    const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
+        getStudentByEmail,
+        { email: user?.attributes.email }
+    );
+    const notifications = studentData?.getStudentByEmail?.items?.[0]
+        ?.notifications as Notification[];
+    const studentId = studentData?.getStudentByEmail?.items?.[0]?.id;
+
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -66,7 +82,10 @@ const LandingLayout: FC<Props> = (props) => {
         <LanguageMenu key={0} />,
         <div key={1}>
             {user ? (
-                <UserMenu items={userMenuItems} />
+                <div className="flex space-x-8">
+                    <Notifications notifications={notifications} studentId={studentId} />
+                    <UserMenu items={userMenuItems} />
+                </div>
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">
@@ -95,7 +114,10 @@ const LandingLayout: FC<Props> = (props) => {
     const mobileMenuComponents = [
         <div key={0}>
             {user ? (
-                <UserMenu items={userMenuItems} />
+                <div className="flex space-x-8">
+                    <Notifications notifications={notifications} studentId={studentId} />
+                    <UserMenu items={userMenuItems} />
+                </div>
             ) : (
                 <div className="flex space-x-4">
                     <Link href="/sign-in">

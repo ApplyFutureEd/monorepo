@@ -281,12 +281,10 @@ type ApplicationStep {
 
 type Notification {
     date: String!
-    description: String!
-    descriptionOptions: String!
+    id: String!
     link: String!
     seen: Boolean!
-    title: String!
-    titleOptions: String!
+    variables: String!
 }
 
 type SearchAlert
@@ -354,4 +352,5 @@ type Post
 
 type Subscription {
     onUpdateApplicationById(id: ID!): Application @aws_subscribe(mutations: ["updateApplication"])
+    onUpdateStudentById(id: ID!): Student @aws_subscribe(mutations: ["updateStudent"])
 }

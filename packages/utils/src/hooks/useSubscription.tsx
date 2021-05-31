@@ -9,7 +9,10 @@ type ConfigType<VariableType extends {}> = {
     variables?: VariableType;
 };
 
-export const useSubscription = <ItemType extends { id: string }, VariablesType extends {} = {}>({
+export const useSubscription = <
+    ItemType extends { id: string },
+    VariablesType extends { [key: string]: string } = {}
+>({
     config,
     itemData
 }: {
@@ -20,7 +23,7 @@ export const useSubscription = <ItemType extends { id: string }, VariablesType e
 
     useEffect(() => {
         let unsubscribe;
-        if (config) {
+        if (config && config?.variables?.['id']) {
             const { query, key, variables } = config;
             const subscription = API.graphql(graphqlOperation(query, variables)) as any;
             const sub = subscription.subscribe({

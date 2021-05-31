@@ -15,12 +15,10 @@ export const onUpdateApplicationById = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -72,12 +70,10 @@ export const onUpdateApplicationById = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -232,6 +228,143 @@ export const onUpdateApplicationById = /* GraphQL */ `
     }
   }
 `;
+export const onUpdateStudentById = /* GraphQL */ `
+  subscription OnUpdateStudentById($id: ID!) {
+    onUpdateStudentById(id: $id) {
+      id
+      address
+      applications {
+        items {
+          id
+          admissionResult
+          document
+          decisionLetterDate
+          intake
+          interviewDate
+          lastUpdate
+          modalApplicationCompletedViewed
+          programId
+          studentId
+          todo
+          tuitionsFeePaymentDate
+          visaDate
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      birthday
+      city
+      country
+      degrees
+      disciplines
+      documents {
+        items {
+          id
+          studentId
+          name
+          storageKey
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      educationCountry
+      email
+      fatherFirstName
+      fatherLastName
+      firstLanguage
+      firstName
+      favoritePrograms
+      favoriteSchools
+      gender
+      gradePointAverage
+      guardianFirstName
+      guardianLastName
+      hasMandatoryDocuments
+      highestEducationLevel
+      lastName
+      lastUpdate
+      locale
+      maritalStatus
+      middleName
+      modalProfileCompletedViewed
+      phoneNumber
+      motherFirstName
+      motherMaidenName
+      nationality
+      notifications {
+        date
+        id
+        link
+        seen
+        variables
+      }
+      parentsAddress
+      parentsCity
+      parentsCountry
+      parentsEmail
+      parentsPhoneNumber
+      passportNumber
+      refusedVisa
+      refusedVisaReason
+      schoolsAttended {
+        address
+        attendedInstitutionFrom
+        attendedInstitutionTo
+        city
+        country
+        degreeAwarded
+        degreeAwardedOn
+        educationLevel
+        name
+        primaryLanguageInstruction
+      }
+      testCambridgeAdvanced
+      testCambridgeAdvancedDate
+      testCambridgeFirst
+      testCambridgeFirstDate
+      testCeliCilsItPlida
+      testCeliCilsItPlidaDate
+      testDele
+      testDeleDate
+      testDelfdalf
+      testDelfdalfDate
+      testEnglishPending
+      testGmat
+      testGmatDate
+      testGoethe
+      testGoetheDate
+      testGre
+      testGreDate
+      testIelts
+      testIeltsDate
+      testLogicAndReasoningPending
+      testOtherLanguagesPending
+      testTagemage
+      testTagemageDate
+      testTcftef
+      testTcftefDate
+      testToefl
+      testToeflDate
+      testToeic
+      testToeicDate
+      validVisa
+      workExperiences {
+        address
+        compagnyName
+        title
+        workedFrom
+        workedTo
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreateStudent = /* GraphQL */ `
   subscription OnCreateStudent($owner: String) {
     onCreateStudent(owner: $owner) {
@@ -301,12 +434,10 @@ export const onCreateStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -440,12 +571,10 @@ export const onUpdateStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -579,12 +708,10 @@ export const onDeleteStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -694,12 +821,10 @@ export const onCreateDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -815,12 +940,10 @@ export const onUpdateDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -936,12 +1059,10 @@ export const onDeleteDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1025,12 +1146,10 @@ export const onCreateApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1082,12 +1201,10 @@ export const onCreateApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1255,12 +1372,10 @@ export const onUpdateApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1312,12 +1427,10 @@ export const onUpdateApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1485,12 +1598,10 @@ export const onDeleteApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1542,12 +1653,10 @@ export const onDeleteApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1747,12 +1856,10 @@ export const onCreateSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1869,12 +1976,10 @@ export const onUpdateSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1991,12 +2096,10 @@ export const onDeleteSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2083,12 +2186,10 @@ export const onCreateFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -2256,12 +2357,10 @@ export const onUpdateFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -2429,12 +2528,10 @@ export const onDeleteFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {

@@ -139,7 +139,11 @@ const VisaProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                <Button
+                    disabled={!application?.visaDate}
+                    isSubmitting={isSubmitting}
+                    startIcon={faCheck}
+                    onClick={handleApprove}>
                     Approve
                 </Button>
             </div>

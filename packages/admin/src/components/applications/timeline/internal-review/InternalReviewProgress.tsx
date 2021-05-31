@@ -5,7 +5,13 @@ import {
 } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import { faCheck, faTimes } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -36,6 +42,15 @@ const InternalReviewProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Wait for student to upload missing documents'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-internal-review-rejection',
+                link: `/applications/${application?.id}/upload-missing-documents`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id)
                 }
             });
 
@@ -77,6 +92,17 @@ const InternalReviewProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Check reply from school'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-internal-review-approval',
+                link: `/applications?id=${application?.id}&step=internal-review`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
 
