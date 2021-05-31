@@ -63,7 +63,7 @@ exports.emails = [
         subject: 'email-post-school-tuitions-fee-payment-approval-subject',
         title: 'email-post-school-tuitions-fee-payment-approval-title',
         body: 'email-post-school-tuitions-fee-payment-approval-body',
-        ctaText: 'email-follow-application-cta-text',
+        ctaText: 'email-post-school-tuitions-fee-payment-approval-cta-text',
         footer: 'email-generic-footer'
     },
     {
