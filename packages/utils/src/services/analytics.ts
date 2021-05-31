@@ -16,7 +16,7 @@ export const initAnalytics = (): void => {
                 if (!window) {
                     return 'SSR';
                 }
-                return window.location.origin + window.location.pathname;
+                return window.location.pathname;
             },
             provider: 'AWSPinpoint',
             type: 'SPA'
