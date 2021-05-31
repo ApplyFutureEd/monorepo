@@ -32,8 +32,9 @@ export * from './helpers/eligibility';
 export * from './helpers/emailNotifications';
 export * from './helpers/filters';
 export * from './helpers/graphql';
-export * from './helpers/isBrowser';
 export * from './helpers/id';
+export * from './helpers/isBrowser';
+export * from './helpers/locales';
 export * from './helpers/markdown';
 export * from './helpers/scrollToErrors';
 export * from './helpers/profile';
@@ -52,5 +53,5 @@ export * from './hooks/useSubscription';
 export * from './hooks/useWindowSize';
 
 export * from './services/amplify';
-export * from './services/AmplifyError';
+export * from './services/analytics';
 export * from './services/sentry';
