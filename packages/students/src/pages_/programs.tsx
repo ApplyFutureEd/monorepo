@@ -162,29 +162,30 @@ const ProgramsPage: FC = () => {
     const programs = programsData.searchPrograms?.items;
 
     const renderPrograms = () => {
-        return (
-            <>
-                {programs && programs?.length > 0 ? (
-                    programs?.map((program) => {
-                        if (!program || !program.school) {
-                            return;
-                        }
-                        return (
-                            program && (
-                                <Row
-                                    key={program.id}
-                                    documents={documents}
-                                    program={program}
-                                    student={student}
-                                />
-                            )
-                        );
-                    })
-                ) : (
-                    <NoResult variables={variables} />
-                )}
-            </>
-        );
+        if (programsIsLoading && !programs) {
+            return skeletons.map((_skeleton, index) => <SkeletonRow key={index} />);
+        }
+
+        if (!programsIsLoading && programs && programs?.length === 0) {
+            return <NoResult variables={variables} />;
+        }
+
+        if (programs && programs?.length > 0) {
+            return (
+                <>
+                    {programs?.map((program) => (
+                        <Row
+                            key={program?.id}
+                            documents={documents}
+                            program={program}
+                            student={student}
+                        />
+                    ))}
+                    {programsIsLoading &&
+                        skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)}
+                </>
+            );
+        }
     };
 
     return (
@@ -198,9 +199,7 @@ const ProgramsPage: FC = () => {
                 headerComponents={headerComponents}
                 innerPadding={false}
                 title={`${t('programs:programs')} ${total}`}>
-                {programsIsLoading
-                    ? skeletons.map((_skeleton, index) => <SkeletonRow key={index} />)
-                    : renderPrograms()}
+                {renderPrograms()}
             </Container>
         </DashboardLayout>
     );

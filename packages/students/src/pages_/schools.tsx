@@ -68,34 +68,29 @@ const SchoolsPage: FC = () => {
     const schools = data.searchSchools?.items;
 
     const renderSchools = () => {
-        return (
-            <>
-                {schools && schools?.length > 0 ? (
-                    <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
-                        {schools?.map((school) => {
-                            if (!school) {
-                                return;
-                            }
+        if (isLoading && !schools) {
+            return (
+                <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
+                    {skeletons.map((_skeleton, index) => (
+                        <SkeletonCard key={index} />
+                    ))}
+                </div>
+            );
+        }
 
-                            const { city, country, id, logo, name, slug } = school;
+        if (!isLoading && schools && schools?.length === 0) {
+            return <NoResult variables={variables} />;
+        }
 
-                            return (
-                                <Card
-                                    key={id}
-                                    city={city}
-                                    country={country}
-                                    logo={logo}
-                                    name={name}
-                                    slug={slug}
-                                />
-                            );
-                        })}
-                    </div>
-                ) : (
-                    <NoResult variables={variables} />
-                )}
-            </>
-        );
+        if (schools && schools?.length > 0) {
+            return (
+                <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
+                    {schools?.map((school) => (
+                        <Card key={school?.id} school={school} />
+                    ))}
+                </div>
+            );
+        }
     };
 
     return (
@@ -108,16 +103,7 @@ const SchoolsPage: FC = () => {
                 innerPadding={false}
                 title={`${t('schools:schools')} ${total}`}
             />
-
-            {isLoading ? (
-                <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
-                    {skeletons.map((_skeleton, index) => (
-                        <SkeletonCard key={index} />
-                    ))}
-                </div>
-            ) : (
-                renderSchools()
-            )}
+            {renderSchools()}
         </DashboardLayout>
     );
 };
