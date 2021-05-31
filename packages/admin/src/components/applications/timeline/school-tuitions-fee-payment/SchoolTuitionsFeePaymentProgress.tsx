@@ -157,7 +157,11 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                <Button
+                    disabled={!application?.tuitionsFeePaymentDate}
+                    isSubmitting={isSubmitting}
+                    startIcon={faCheck}
+                    onClick={handleApprove}>
                     Approve
                 </Button>
             </div>

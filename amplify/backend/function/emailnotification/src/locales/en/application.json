@@ -59,6 +59,7 @@
   "email-post-school-review-approval-subject": "Application {{applicationId}} - Application documents validated by {{schoolName}}",
   "email-post-school-review-approval-title": "Application documents validated",
   "email-post-school-tuitions-fee-payment-approval-body": "Dear {{firstName}},\n\nThanks for your confirmation of the deposit payment for {{programName}}. You will soon receive a decision letter.",
+  "email-post-school-tuitions-fee-payment-approval-cta-text": "Confirm decision letter reception date",
   "email-post-school-tuitions-fee-payment-approval-subject": "Application {{applicationId}} - Your deposit payment has been confirmed",
   "email-post-school-tuitions-fee-payment-approval-title": "Your deposit payment has been confirmed for {{programName}}",
   "email-post-submission-body": "Dear {{firstName}},<br/><br/>\n\nWe are glad to receive your application for {{programName}}, we are reviewing your application documents.<br/><br/>\n\nIf your documents are qualified, we will transfer them to {{schoolName}}.<br/><br/>\n\nOtherwise, we will contact you by email to request relevant information.",
