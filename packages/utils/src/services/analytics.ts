@@ -11,6 +11,9 @@ export const initAnalytics = (): void => {
         enable: true,
         eventName: 'pageView',
         getUrl: () => {
+            if (!window) {
+                return 'SSR';
+            }
             return window.location.origin + window.location.pathname;
         },
         provider: 'AWSPinpoint',
