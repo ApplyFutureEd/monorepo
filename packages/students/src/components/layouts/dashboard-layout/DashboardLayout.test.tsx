@@ -21,6 +21,21 @@ jest.mock('@applyfuture/ui', () => ({
     Notifications: jest.fn().mockImplementation(() => <div />)
 }));
 
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    graphql: jest.fn(),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useQuery: () => ({
+        data: {}
+    })
+}));
+
 describe('DashboardLayout', () => {
     const setOpenMobileMenu = jest.fn();
 
