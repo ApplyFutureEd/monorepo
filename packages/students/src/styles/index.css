@@ -1,5 +1,8 @@
 @tailwind base;
 
+@import 'react-datepicker/dist/react-datepicker.css';
+@import 'react-phone-number-input/style.css';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 @import './date-input.css';
 @import './loader.css';
 @import './markdown.css';
@@ -9,7 +12,6 @@
 @import './stripe.css';
 @import './timeline.css';
 @import './toast.css';
-
 
 /* Start purging... */
 @tailwind components;
