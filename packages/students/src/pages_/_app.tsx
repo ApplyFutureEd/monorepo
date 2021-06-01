@@ -22,6 +22,12 @@ initAnalytics();
 initCrisp();
 initWhyDidYouRender();
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';
+
+fontawesomeConfig.autoAddCss = false;
+
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     eggs[0].useEgg();
 
