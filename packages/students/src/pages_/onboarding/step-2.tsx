@@ -58,7 +58,6 @@ const Onboarding: FC = () => {
                 <div className="place-item-center hidden md:grid md:-ml-32">
                     <Image
                         alt="world"
-                        className=""
                         height="320"
                         src="/assets/images/onboarding/world.svg"
                         width="320"
