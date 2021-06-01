@@ -38,7 +38,7 @@ const Onboarding: FC = () => {
                     </div>
                     <div className="pb-8 pt-6 px-6">
                         <h3 className="text-gray-900 text-xs font-medium tracking-wide uppercase">
-                            What's included
+                            Whats included
                         </h3>
                         <ul className="mt-6 space-y-4">
                             <li className="flex space-x-3">
@@ -62,7 +62,6 @@ const Onboarding: FC = () => {
                             <li className="flex space-x-3">
                                 <svg
                                     aria-hidden="true"
-                                    className="flex-shrink-0 w-5 h-5 text-green-500"
                                     fill="currentColor"
                                     viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">

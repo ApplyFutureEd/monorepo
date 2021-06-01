@@ -49,10 +49,8 @@ type Props = {
 const Stepper: FC<Props> = (props) => {
     const { steps } = props;
     return (
-        <nav aria-label="Progress" className="flex items-center justify-center">
-            <ol className="flex items-center space-x-5">
-                {steps.map((step) => renderBullet(step))}
-            </ol>
+        <nav aria-label="Progress" className="flex justify-center mb-8">
+            <ol className="flex space-x-5">{steps.map((step) => renderBullet(step))}</ol>
         </nav>
     );
 };

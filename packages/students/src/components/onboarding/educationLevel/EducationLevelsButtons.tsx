@@ -3,7 +3,7 @@ import { educationLevels } from '@applyfuture/utils';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
-export const EducationLevelsButtons: FC = () => {
+const EducationLevelsButtons: FC = () => {
     const { t } = useTranslation();
 
     const educationLevelsButtons = educationLevels.map((educationLevel) => ({
