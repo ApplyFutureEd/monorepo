@@ -12,6 +12,7 @@ import {
     initSentry,
     initWhyDidYouRender
 } from '@applyfuture/utils';
+import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -21,11 +22,6 @@ initSentry();
 initAnalytics();
 initCrisp();
 initWhyDidYouRender();
-
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
-import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';
-
 fontawesomeConfig.autoAddCss = false;
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
