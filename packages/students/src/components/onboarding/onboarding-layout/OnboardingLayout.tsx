@@ -15,7 +15,7 @@ export const OnboardingLayout: FC<Props> = (props) => {
         <>
             <Head description={description} title={title} />
             <OnboardingHeader />
-            <main className="pt-header">{children}</main>
+            <main className="pt-header flex flex-col h-screen">{children}</main>
         </>
     );
 };

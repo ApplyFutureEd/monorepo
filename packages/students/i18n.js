@@ -18,7 +18,7 @@ module.exports = {
         '/help': ['help'],
         '/onboarding/step-1': [],
         '/onboarding/step-2': ['programs'],
-        '/onboarding/step-3': ['programs'],
+        '/onboarding/step-3': ['profile'],
         '/onboarding/step-4': ['programs'],
         '/onboarding/step-5': ['programs'],
         '/privacy-policy': ['landing'],

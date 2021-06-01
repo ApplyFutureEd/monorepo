@@ -3,7 +3,7 @@ import { faMedkit } from '@fortawesome/pro-light-svg-icons';
 import { faCog } from '@fortawesome/pro-light-svg-icons';
 import { faAtom } from '@fortawesome/pro-light-svg-icons';
 import { faBalanceScale } from '@fortawesome/pro-light-svg-icons';
-import { faPallet } from '@fortawesome/pro-light-svg-icons';
+import { faPalette } from '@fortawesome/pro-light-svg-icons';
 import { faSoup } from '@fortawesome/pro-light-svg-icons';
 import { faAtlas } from '@fortawesome/pro-light-svg-icons';
 
@@ -34,7 +34,7 @@ export const disciplines = [
         value: 'LAW_POLITICS_SOCIAL_COMMUNITY_SERVICE_AND_TEACHING'
     },
     {
-        icon: faPallet,
+        icon: faPalette,
         label: 'arts',
         value: 'ARTS'
     },
