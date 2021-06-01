@@ -89,7 +89,6 @@ const Onboarding: FC = () => {
                 <div className="hidden md:block">
                     <Image
                         alt="world"
-                        className="float-left"
                         height="320"
                         src="/assets/images/onboarding/world.svg"
                         width="320"
