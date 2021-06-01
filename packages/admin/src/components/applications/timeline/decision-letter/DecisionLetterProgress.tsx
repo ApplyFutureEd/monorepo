@@ -4,11 +4,18 @@ import {
     updateApplication
 } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import DecisionLetterProgressForm from '@components/forms/application/decision-letter/DecisionLetterProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
+import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {
     application:
@@ -64,6 +71,30 @@ const DecisionLetterProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: "Select visa's date of receipt"
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-decision-letter-approval',
+                link: `/applications?id=${application?.id}&step=decision-letter`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=decision-letter`,
+                id: 'post-decision-letter-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
@@ -127,7 +158,11 @@ const DecisionLetterProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                <Button
+                    disabled={!application?.decisionLetterDate}
+                    isSubmitting={isSubmitting}
+                    startIcon={faCheck}
+                    onClick={handleApprove}>
                     Approve
                 </Button>
             </div>

@@ -26,7 +26,8 @@ export const getStaticProps = async ctx => {
   const ns0 = await import(`../../locales/${_lang}/auth`).then(m => m.default)
 const ns1 = await import(`../../locales/${_lang}/common`).then(m => m.default)
 const ns2 = await import(`../../locales/${_lang}/navigation`).then(m => m.default)
-  const _ns = { 'auth': ns0, 'common': ns1, 'navigation': ns2 }
+const ns3 = await import(`../../locales/${_lang}/application`).then(m => m.default)
+  const _ns = { 'auth': ns0, 'common': ns1, 'navigation': ns2, 'application': ns3 }
   
     let res = {}
     if(typeof res.then === 'function') res = await res

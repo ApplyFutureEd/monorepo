@@ -3,8 +3,9 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button, DateInput } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/utils';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
@@ -58,6 +59,19 @@ const DecisionLetterProgressForm: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: "Select visa's date of receipt"
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=decision-letter`,
+                id: 'post-decision-letter-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {

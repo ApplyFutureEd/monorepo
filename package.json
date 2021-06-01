@@ -14,10 +14,9 @@
         "test:watch": "jest --watch",
         "commit": "git add . && cz",
         "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
-        "i18n:pull": "rm -rf locales && rm -rf ./packages/students/locales && rm -rf ./packages/admin/locales && mkdir locales && cd locales && locize download --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
-        "i18n:deploy": "cp -r ./locales ./packages/students && mv ./locales ./packages/admin",
-        "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src",
-        "circular": "madge --circular packages --extensions ts,tsx"
+        "i18n:pull": "rm -rf locales && rm -rf ./packages/students/locales && rm -rf ./packages/admin/locales && rm -rf ./amplify/backend/function/emailnotification/src/locales && mkdir locales && cd locales && locize download --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
+        "i18n:deploy": "cp -r ./locales ./packages/students && cp -r ./locales ./packages/admin && cp -r ./locales ./amplify/backend/function/emailnotification/src/locales",
+        "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src"
     },
     "workspaces": [
         "packages/*"

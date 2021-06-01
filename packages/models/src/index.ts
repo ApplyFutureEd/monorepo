@@ -1,2 +1,3 @@
-export * from './models';
-export * from './SupportedLocale';
+export * from './AmplifyError';
+export * from './models.d';
+export * from './SupportedLocale.d';

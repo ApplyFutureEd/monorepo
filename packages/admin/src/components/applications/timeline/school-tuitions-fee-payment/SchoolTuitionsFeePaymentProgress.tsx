@@ -3,8 +3,15 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import SchoolTuitionsFeePaymentProgressForm from '@components/forms/application/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
@@ -64,6 +71,29 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: "Select decision letter's date of receipt"
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-tuitions-fee-payment-approval',
+                link: `/applications?id=${application?.id}&step=school-tuitions-fee-payment`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-tuitions-fee-payment`,
+                id: 'post-school-tuitions-fee-payment-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
@@ -127,7 +157,11 @@ const SchoolTuitionsFeePaymentProgress: FC<Props> = (props) => {
                     onClick={handleReject}>
                     Reject
                 </Button>
-                <Button isSubmitting={isSubmitting} startIcon={faCheck} onClick={handleApprove}>
+                <Button
+                    disabled={!application?.tuitionsFeePaymentDate}
+                    isSubmitting={isSubmitting}
+                    startIcon={faCheck}
+                    onClick={handleApprove}>
                     Approve
                 </Button>
             </div>

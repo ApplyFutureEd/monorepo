@@ -608,12 +608,10 @@ export const createStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -750,12 +748,10 @@ export const updateStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -892,12 +888,10 @@ export const deleteStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -1010,12 +1004,10 @@ export const createDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1134,12 +1126,10 @@ export const updateDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1258,12 +1248,10 @@ export const deleteDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1350,12 +1338,10 @@ export const createApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1407,12 +1393,10 @@ export const createApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1583,12 +1567,10 @@ export const updateApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1640,12 +1622,10 @@ export const updateApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1816,12 +1796,10 @@ export const deleteApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
@@ -1873,12 +1851,10 @@ export const deleteApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2081,12 +2057,10 @@ export const updateSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2206,12 +2180,10 @@ export const deleteSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2301,12 +2273,10 @@ export const createFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -2477,12 +2447,10 @@ export const updateFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -2653,12 +2621,10 @@ export const deleteFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
@@ -2916,12 +2882,10 @@ export const createSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity

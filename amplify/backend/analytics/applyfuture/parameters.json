@@ -1,0 +1,21 @@
+{
+    "appName": "applyfuture",
+    "roleName": "pinpointLambdaRole6bcba93e",
+    "cloudformationPolicyName": "cloudformationPolicy6bcba93e",
+    "cloudWatchPolicyName": "cloudWatchPolicy6bcba93e",
+    "pinpointPolicyName": "pinpointPolicy6bcba93e",
+    "authPolicyName": "pinpoint_amplify_6bcba93e",
+    "unauthPolicyName": "pinpoint_amplify_6bcba93e",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

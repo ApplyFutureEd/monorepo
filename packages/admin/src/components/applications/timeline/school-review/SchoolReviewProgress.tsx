@@ -3,8 +3,15 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -37,6 +44,16 @@ const SchoolReviewProgress: FC<Props> = (props) => {
                     todo: 'Forward school response to student'
                 }
             });
+
+            await sendAppNotification({
+                id: 'post-school-review-rejection',
+                link: `/applications?id=${application?.id}&step=school-review`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    schoolName: application?.program?.school?.name
+                }
+            });
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -63,6 +80,30 @@ const SchoolReviewProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Select an interview date'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-review-approval',
+                link: `/applications?id=${application?.id}&step=school-review`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-review`,
+                id: 'post-school-review-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {

@@ -43,7 +43,7 @@ export const withPrivateAccess = (
                     ).length > 0;
 
                 if (!isAllowed) {
-                    router.push(options.redirection + `?from=${router.pathname}`);
+                    router.push(options.redirection + `?from=${router.asPath}`);
                 } else {
                     setAllowedState(true);
                 }

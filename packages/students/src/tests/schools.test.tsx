@@ -46,7 +46,7 @@ let mockedData = {
         ],
         nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5'
     }
-};
+} as any;
 let mockedIsLoading = jest.fn().mockReturnValue(false);
 
 jest.mock('@applyfuture/utils', () => ({
@@ -69,6 +69,7 @@ describe('Schools', () => {
     });
 
     it('can display skeletons when isLoading is true', async () => {
+        mockedData = { searchSchools: {} };
         mockedIsLoading = jest.fn().mockReturnValue(true);
 
         const { container } = render(<Schools />);

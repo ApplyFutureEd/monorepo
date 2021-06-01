@@ -7,6 +7,7 @@ import {
     AuthenticatedUserProvider,
     configure,
     eggs,
+    initAnalytics,
     initSentry,
     initWhyDidYouRender
 } from '@applyfuture/utils';
@@ -15,6 +16,7 @@ import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 configure();
+initAnalytics();
 initSentry();
 initWhyDidYouRender();
 

@@ -3,8 +3,15 @@ import {
     GetApplicationQuery,
     updateApplication
 } from '@applyfuture/graphql';
+import { SupportedLocale } from '@applyfuture/models';
 import { Button } from '@applyfuture/ui';
-import { graphql, toast } from '@applyfuture/utils';
+import {
+    graphql,
+    sendAppNotification,
+    sendEmailNotification,
+    toast,
+    toShortId
+} from '@applyfuture/utils';
 import { faCheck, faSnooze, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useState } from 'react';
@@ -38,6 +45,29 @@ const SchoolResultProgress: FC<Props> = (props) => {
                     todo: 'Forward school response to student'
                 }
             });
+
+            await sendAppNotification({
+                id: 'post-school-result-rejected',
+                link: '/programs',
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    programName: application?.program?.name
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/programs`,
+                id: 'post-school-result-rejected',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
+                }
+            });
         } catch (error) {
             toast({
                 description: `${error.message}`,
@@ -63,6 +93,29 @@ const SchoolResultProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Forward school response to student'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-result-waiting-list',
+                link: `/applications?id=${application?.id}&step=school-result`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    schoolName: application?.program?.school?.name
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-result`,
+                id: 'post-school-result-waiting-list',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
@@ -92,6 +145,28 @@ const SchoolResultProgress: FC<Props> = (props) => {
                     id: application?.id,
                     steps: updatedSteps,
                     todo: 'Select tuitions fees date of payment'
+                }
+            });
+
+            await sendAppNotification({
+                id: 'post-school-result-accepted',
+                link: `/applications?id=${application?.id}&step=school-result`,
+                studentId: application?.student?.id,
+                variables: {
+                    applicationId: toShortId(application?.id)
+                }
+            });
+
+            await sendEmailNotification({
+                ctaLink: `https://applyfuture.com/applications?id=${application?.id}&step=school-result`,
+                id: 'post-school-result-approval',
+                language: application?.student?.locale as SupportedLocale,
+                recipients: [application?.student?.email],
+                variables: {
+                    applicationId: toShortId(application?.id),
+                    firstName: application?.student?.firstName,
+                    programName: application?.program?.name,
+                    schoolName: application?.program?.school?.name
                 }
             });
         } catch (error) {
