@@ -1,7 +1,4 @@
 import '@styles/index.css';
-import 'yup-phone';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-phone-number-input/style.css';
 
 import {
     AuthenticatedUserProvider,

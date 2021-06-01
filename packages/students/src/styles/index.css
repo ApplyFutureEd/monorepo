@@ -1,5 +1,7 @@
 @tailwind base;
 
+@import 'react-datepicker/dist/react-datepicker.css';
+@import 'react-phone-number-input/style.css';
 @import '@fortawesome/fontawesome-svg-core/styles.css';
 @import './date-input.css';
 @import './loader.css';
