@@ -10,7 +10,7 @@ const Chatbot: FC<Props> = (props) => {
     const { avatarUrl, children, name } = props;
 
     return (
-        <div className="relative flex py-5 space-x-6">
+        <div className="relative flex space-x-6">
             <div>
                 <span className="relative inline-block">
                     <img alt="" className="w-16 h-16 rounded-full" src={avatarUrl} />
@@ -19,7 +19,7 @@ const Chatbot: FC<Props> = (props) => {
             </div>
             <div className="flex-1 min-w-0">
                 <p className="text-gray-900 text-lg font-bold">{name}</p>
-                <div className="mt-2">{children}</div>
+                <div className="mt-3 space-y-1">{children}</div>
             </div>
         </div>
     );
