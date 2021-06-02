@@ -85,7 +85,7 @@ const Onboarding: FC = () => {
                     </p>
                 </Chatbot>
             </div>
-            <div className="flex flex-no-wrap mx-2 py-8 overflow-hidden overflow-x-scroll md:px-16">
+            <div className="flex flex-no-wrap py-8 overflow-hidden overflow-x-scroll md:px-20">
                 {programs.map((program) => (
                     <CardCarousel
                         key={program.id}

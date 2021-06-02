@@ -33,14 +33,16 @@ const Onboarding: FC = () => {
                     </Chatbot>
                 </div>
             </div>
-            <div className="grid gap-1 grid-cols-1 justify-items-center mb-auto md:gap-4 md:grid-cols-2 lg:container">
-                {disciplinesButtons.map((discipline) => (
-                    <DisciplineButton
-                        key={discipline.value}
-                        icon={discipline.icon}
-                        label={discipline.label}
-                    />
-                ))}
+            <div className="md:mx-12 md:px-3">
+                <div className="grid gap-1 grid-cols-1 justify-items-center md:gap-4 md:grid-cols-2 lg:container">
+                    {disciplinesButtons.map((discipline) => (
+                        <DisciplineButton
+                            key={discipline.value}
+                            icon={discipline.icon}
+                            label={discipline.label}
+                        />
+                    ))}
+                </div>
             </div>
             <Stepper steps={steps} />
         </OnboardingLayout>
