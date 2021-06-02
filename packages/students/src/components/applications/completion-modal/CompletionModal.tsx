@@ -60,7 +60,7 @@ const CompletionModal: FC<Props> = (props) => {
         }
 
         const visaStep = application.steps.find((step) => step.id === 'visa');
-        if (visaStep?.status === 'done' && !application.modalApplicationCompletedViewed) {
+        if (visaStep?.status === 'DONE' && !application.modalApplicationCompletedViewed) {
             handleOpen();
         }
     }, [application]);

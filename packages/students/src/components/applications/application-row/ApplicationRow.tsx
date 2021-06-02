@@ -2,6 +2,7 @@ import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Timeline } from '@applyfuture/ui';
 import { date, toShortId } from '@applyfuture/utils';
+import CompletionModal from '@components/applications/completion-modal/CompletionModal';
 import { config } from '@components/applications/timeline/config';
 import {
     faChevronDown,
@@ -14,8 +15,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
-
-import CompletionModal from '../completion-modal/CompletionModal';
 
 type Props = {
     application: NonNullable<
