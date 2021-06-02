@@ -40,6 +40,7 @@ const CompletionModal: FC<Props> = (props) => {
         await graphql(createFeedback, {
             input: {
                 applicationId: application?.id,
+                lastUpdate: new Date().valueOf(),
                 rating: rating
             }
         });
@@ -68,8 +69,8 @@ const CompletionModal: FC<Props> = (props) => {
     const handleRate = async (event: any) => {
         const { rating } = event;
         try {
-            handleClose();
-            handleCreateFeedback(rating);
+            await handleClose();
+            await handleCreateFeedback(rating);
         } catch (error) {
             toast({
                 description: `${error.message}`,
