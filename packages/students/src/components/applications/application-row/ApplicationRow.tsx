@@ -15,6 +15,8 @@ import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
+import CompletionModal from '../completion-modal/CompletionModal';
+
 type Props = {
     application: NonNullable<
         NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
@@ -90,7 +92,11 @@ const ApplicationRow: FC<Props> = (props) => {
             </button>
             {open && application?.steps && (
                 <div className="px-4 py-4 sm:px-6">
-                    <Timeline application={application} config={config} />
+                    <Timeline
+                        ModalComponent={CompletionModal}
+                        application={application}
+                        config={config}
+                    />
                 </div>
             )}
         </div>
