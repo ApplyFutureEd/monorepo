@@ -1,16 +1,14 @@
 import '@styles/index.css';
-import 'react-contexify/dist/ReactContexify.css';
-import 'react-mde/lib/styles/css/react-mde-all.css';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-phone-number-input/style.css';
 
 import { AuthenticatedUserProvider, configure, initSentry } from '@applyfuture/utils';
+import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 configure();
 initSentry();
+fontawesomeConfig.autoAddCss = false;
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (

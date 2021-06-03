@@ -7,6 +7,8 @@ import {
     AuthenticatedUserProvider,
     configure,
     eggs,
+    initAnalytics,
+    initCrisp,
     initSentry,
     initWhyDidYouRender
 } from '@applyfuture/utils';
@@ -16,6 +18,8 @@ import { ToastContainer } from 'react-toastify';
 
 configure();
 initSentry();
+initAnalytics();
+initCrisp();
 initWhyDidYouRender();
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
