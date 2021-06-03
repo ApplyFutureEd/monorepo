@@ -16,7 +16,7 @@ import {
     UserMenu
 } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
-import CookieBanner from '@components/common/cookies-banner/CookiesBanner';
+import CookiesBanner from '@components/common/cookies-banner/CookiesBanner';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
 import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -155,7 +155,7 @@ const DashboardLayout: FC<Props> = (props) => {
                     <div className="px-4 sm:px-0">{children}</div>
                 </div>
             </main>
-            <CookieBanner />
+            <CookiesBanner />
         </>
     );
 };

@@ -3,12 +3,12 @@ import Cookies from 'js-cookie';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
-const CookieBanner: FC = () => {
+const CookiesBanner: FC = () => {
     const { t } = useTranslation();
-    const [hasConsented, setHasConsented] = useState(Cookies.get('cookie-consent'));
+    const [hasConsented, setHasConsented] = useState(Cookies.get('cookies-consent'));
 
     useEffect(() => {
-        if (Cookies.get('cookie-consent')) {
+        if (Cookies.get('cookies-consent')) {
             return;
         }
     }, []);
@@ -19,7 +19,7 @@ const CookieBanner: FC = () => {
 
     const handleAccept = () => {
         setHasConsented('true');
-        Cookies.set('cookie-consent', 'true', {
+        Cookies.set('cookies-consent', 'true', {
             date: new Date().toISOString(),
             sameSite: 'strict'
         });
@@ -27,7 +27,7 @@ const CookieBanner: FC = () => {
 
     const handleRefuse = () => {
         setHasConsented('true');
-        Cookies.set('cookie-consent', 'false', {
+        Cookies.set('cookies-consent', 'false', {
             date: new Date().toISOString(),
             sameSite: 'strict'
         });
@@ -62,4 +62,4 @@ const CookieBanner: FC = () => {
     );
 };
 
-export default CookieBanner;
+export default CookiesBanner;

@@ -17,7 +17,7 @@ import {
     UserMenu
 } from '@applyfuture/ui';
 import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
-import CookieBanner from '@components/common/cookies-banner/CookiesBanner';
+import CookiesBanner from '@components/common/cookies-banner/CookiesBanner';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
 import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -152,7 +152,7 @@ const LandingLayout: FC<Props> = (props) => {
                 routes={user ? loggedRoutes : unloggedRoutes}
             />
             <main className="pt-header">{children}</main>
-            <CookieBanner />
+            <CookiesBanner />
             <Footer />
         </>
     );
