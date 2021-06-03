@@ -5,7 +5,7 @@ module.exports = {
     locales: ['en', 'fr', 'zh'],
     localesPath: 'locales',
     pages: {
-        '*': ['auth', 'common', 'navigation', 'application'],
+        '*': ['auth', 'common', 'navigation', 'application', 'landing'],
         '/': ['landing'],
         '/about': ['landing'],
         '/applications': ['application', 'profile', 'programs'],

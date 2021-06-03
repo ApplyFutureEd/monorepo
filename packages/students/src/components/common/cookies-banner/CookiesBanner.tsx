@@ -41,20 +41,18 @@ const CookieBanner: FC = () => {
                         <div className="text-center text-white font-medium sm:text-left">
                             {t('landing:cookie-banner')}
                         </div>
-                        <div className="mt-4 sm:mt-0">
-                            <Button
-                                type="button"
-                                variant="secondary"
-                                onClick={() => handleAccept()}>
-                                {t('landing:cookie-banner-agreement')}
-                            </Button>
-                        </div>
-                        <div className="mt-4 sm:mt-0">
+                        <div className="flex mt-4 space-x-2 sm:mt-0">
                             <Button
                                 type="button"
                                 variant="secondary"
                                 onClick={() => handleRefuse()}>
-                                NO
+                                {t('landing:cookie-banner-refusal')}
+                            </Button>
+                            <Button
+                                cookie-banner-refusaltype="button"
+                                variant="secondary"
+                                onClick={() => handleAccept()}>
+                                {t('landing:cookie-banner-agreement')}
                             </Button>
                         </div>
                     </div>
