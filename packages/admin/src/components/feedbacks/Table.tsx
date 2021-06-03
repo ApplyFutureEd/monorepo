@@ -50,7 +50,7 @@ const Table: FC<Props> = (props) => {
         {
             getCellValue: (row: Feedback) => row.application?.student?.firstName,
             name: 'studentFirstName',
-            title: 'Fisrt Name'
+            title: 'First Name'
         },
         {
             getCellValue: (row: Feedback) => row.application?.student?.lastName,
@@ -62,8 +62,8 @@ const Table: FC<Props> = (props) => {
     const [defaultColumnWidths] = useState([
         { columnName: 'updatedAt', width: 140 },
         { columnName: 'applicationId', width: 90 },
-        { columnName: 'studentFirstName', width: 100 },
-        { columnName: 'studentLastName', width: 100 },
+        { columnName: 'studentFirstName', width: 200 },
+        { columnName: 'studentLastName', width: 200 },
         { columnName: 'rating', width: 150 }
     ]);
     const [columnWidths, setColumnWidths] = useState<TableColumnWidthInfo[]>(defaultColumnWidths);
@@ -150,6 +150,8 @@ const Table: FC<Props> = (props) => {
             sort
         }));
     };
+
+    console.log(data?.searchFeedbacks?.items);
 
     return (
         <Grid columns={columns} rows={data?.searchFeedbacks?.items || []}>

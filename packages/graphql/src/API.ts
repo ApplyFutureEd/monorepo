@@ -7419,6 +7419,10 @@ export type SearchFeedbacksQuery = {
         lastUpdate: number,
         modalApplicationCompletedViewed: boolean,
         programId: string,
+        student: {
+          firstName: string,
+          lastName: string
+        }
         studentId: string,
         todo?: string | null,
         tuitionsFeePaymentDate?: string | null,

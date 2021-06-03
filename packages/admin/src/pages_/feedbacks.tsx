@@ -31,7 +31,7 @@ const FeedbacksPage: FC = () => {
     >(searchFeedbacks, variables);
 
     const { show } = useContextMenu({
-        id: 'feedback'
+        id: 'feedbacks'
     });
     const handleContextMenu = (e: React.MouseEvent, row: Feedback) => {
         show(e, { props: { row } });
