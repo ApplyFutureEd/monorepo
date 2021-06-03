@@ -151,8 +151,6 @@ const Table: FC<Props> = (props) => {
         }));
     };
 
-    console.log(data?.searchFeedbacks?.items);
-
     return (
         <Grid columns={columns} rows={data?.searchFeedbacks?.items || []}>
             <DataTypeProvider
