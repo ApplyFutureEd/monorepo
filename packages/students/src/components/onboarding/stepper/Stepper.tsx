@@ -6,7 +6,7 @@ type Step = {
 };
 
 const renderBullet = (step: Step) => {
-    if (step.status === 'complete') {
+    if (step.status === 'DONE') {
         return (
             <li key={step.name}>
                 <a className="block w-5 h-5 bg-indigo-600 rounded-full">
@@ -16,7 +16,7 @@ const renderBullet = (step: Step) => {
         );
     }
 
-    if (step.status === 'current') {
+    if (step.status === 'CURRENT') {
         return (
             <li key={step.name}>
                 <a aria-current="step" className="relative flex items-center justify-center">

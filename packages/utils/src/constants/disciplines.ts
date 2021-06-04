@@ -49,3 +49,6 @@ export const disciplines = [
         value: 'ENGLISH_FOR_ACADEMIC_STUDIES'
     }
 ];
+
+export const getDisciplineLabel = (value: string | undefined): string =>
+    disciplines.find((discipline) => discipline.value === value)?.label || '';

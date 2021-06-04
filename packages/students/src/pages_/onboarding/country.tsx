@@ -1,16 +1,24 @@
 import { Button, Select } from '@applyfuture/ui';
-import { countries } from '@applyfuture/utils';
+import { supportedCountries, useLocalStorage } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { object, string } from 'yup';
 
-const Onboarding: FC = () => {
+const OnboardingCountryPage: FC = () => {
     const { t } = useTranslation();
+    const router = useRouter();
+    const [onboarding, setOnboarding] = useLocalStorage('onboarding', {
+        country: '',
+        degree: '',
+        discipline: '',
+        highestEducationLevel: ''
+    });
 
     const validationSchema = object().shape({
         country: string().required(t('common:error-field-required')).nullable()
@@ -20,43 +28,55 @@ const Onboarding: FC = () => {
         country: string;
     };
 
-    const initialValues: FormValues = { country: '' };
+    const [initialValues, setInitialValues] = useState<FormValues>({ country: '' });
+
+    useEffect(() => {
+        if (onboarding) {
+            setInitialValues({
+                country: onboarding.country
+            });
+        }
+    }, [onboarding]);
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         const { country } = values;
         try {
-            console.log(country);
+            setOnboarding({
+                ...onboarding,
+                country: country
+            });
+            router.push('/onboarding/highest-education-level');
         } catch (error) {
             console.log(error);
         }
         actions.setSubmitting(false);
     };
 
-    const countriesOptions = countries.map((country) => ({
+    const countriesOptions = supportedCountries.map((country) => ({
         label: t(`common:${country.label}`),
         value: country.value
     }));
 
     const steps = [
-        { name: 'Step 1', status: 'current' },
-        { name: 'Step 2', status: 'upcoming' },
-        { name: 'Step 3', status: 'upcoming' },
-        { name: 'Step 4', status: 'upcoming' }
+        { name: 'country', status: 'CURRENT' },
+        { name: 'highest-education-level', status: 'UPCOMING' },
+        { name: 'discipline', status: 'UPCOMING' },
+        { name: 'degree', status: 'UPCOMING' }
     ];
 
     return (
-        <OnboardingLayout title="Onboarding">
+        <OnboardingLayout title={t('profile:onboarding-page-title')}>
             <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
                 <div className="flex-col space-y-8 md:w-1/2">
-                    <Chatbot name="Charly">
-                        <p>Bonjour ! Je suis Charly.</p>
-                        <p>
-                            Apparemment vous souhaitez étudier dans une école en Europe, faisons un
-                            tour de votre projet ensemble.
+                    <Chatbot name={t('profile:onboarding-chatbot-name')}>
+                        <p>{t('profile:onboarding-step-country-chatbot-text-1')}</p>
+                        <p>{t('profile:onboarding-step-country-chatbot-text-2')}</p>
+                        <p className="mt-2">
+                            {t('profile:onboarding-step-country-chatbot-text-3')}
                         </p>
-                        <p className="mt-2">Où avez-vous fait vos études ?</p>
                     </Chatbot>
                     <Formik
+                        enableReinitialize
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={onSubmit}>
@@ -68,7 +88,9 @@ const Onboarding: FC = () => {
                                         {(fieldProps: FieldProps) => (
                                             <Select
                                                 options={countriesOptions}
-                                                placeholder="Selectionner un pays"
+                                                placeholder={t(
+                                                    'profile:onboarding-step-country-select-placeholder'
+                                                )}
                                                 {...fieldProps}
                                             />
                                         )}
@@ -78,7 +100,7 @@ const Onboarding: FC = () => {
                                             disabled={!values.country}
                                             isSubmitting={isSubmitting}
                                             type="submit">
-                                            Etape suivante
+                                            {t('profile:onboarding-next-step')}
                                         </Button>
                                     </div>
                                 </Form>
@@ -100,4 +122,4 @@ const Onboarding: FC = () => {
     );
 };
 
-export default Onboarding;
+export default OnboardingCountryPage;

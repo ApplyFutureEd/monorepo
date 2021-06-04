@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "NODE_OPTIONS=--max_old_space_size=8192 next-translate && next dev",
+        "start": "NODE_OPTIONS=--max_old_space_size=12000 next-translate && next dev",
         "build": "next-translate && next build",
         "unused": "next-unused",
         "lint": "eslint --fix .",
