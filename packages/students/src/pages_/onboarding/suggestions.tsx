@@ -7,13 +7,11 @@ import { createFilter, useLocalStorage, useQuery } from '@applyfuture/utils';
 import CardCarousel from '@components/onboarding/card-carousel/CardCarousel';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
-import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 
 const Onboarding: FC = () => {
     const { t } = useTranslation();
-    const router = useRouter();
     const [onboarding] = useLocalStorage('onboarding', {
         country: '',
         degree: '',
