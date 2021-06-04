@@ -8,6 +8,7 @@ module.exports = {
         '*': ['common'],
         '/applications': ['application'],
         '/applications/update': ['application', 'programs', 'profile'],
+        '/feedbacks': [],
         '/programs': [],
         '/programs/create': ['profile', 'programs', 'application'],
         '/programs/update': ['profile', 'programs', 'application'],
