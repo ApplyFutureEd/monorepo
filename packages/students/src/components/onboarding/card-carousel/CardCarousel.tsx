@@ -15,9 +15,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 type Props = {
-    program: NonNullable<
-        NonNullable<NonNullable<SearchProgramsQuery['searchPrograms']>['items']>[0]
-    >;
+    program: NonNullable<NonNullable<SearchProgramsQuery['searchPrograms']>['items']>[0];
 };
 
 export const CardCarousel: FC<Props> = (props) => {
