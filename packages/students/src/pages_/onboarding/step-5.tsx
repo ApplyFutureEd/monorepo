@@ -74,19 +74,20 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="flex-col mt-4 md:mt-8 md:space-y-6">
-                <div className="flex justify-center md:pl-32 md:w-1/2">
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
-                        <p className="mt-1">
-                            Et voilà un échantillon de programmes qui pourrait vous intéressez, bien
-                            entendu il y a plus de filtres si vous disponible si vous possédez un
-                            compte.
-                        </p>
-                    </Chatbot>
+            <div className="flex-col mt-4 space-y-4 md:mt-8 md:space-y-6">
+                <div className="container flex-col">
+                    <div className="flex justify-center md:ml-32 md:w-1/2">
+                        <Chatbot name="Charly">
+                            <p className="mt-1">
+                                Et voilà un échantillon de programmes qui pourrait vous intéressez,
+                                bien entendu il y a plus de filtres disponible si vous possédez un
+                                compte.
+                            </p>
+                        </Chatbot>
+                    </div>
                 </div>
-                <div className="min-w-screen flex flex-no-wrap -mx-8 overflow-hidden overflow-x-scroll">
+
+                <div className="flex flex-no-wrap p-3 overflow-hidden overflow-x-scroll">
                     {programs.map((program) => (
                         <CardCarousel
                             key={program.id}

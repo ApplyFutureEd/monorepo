@@ -46,11 +46,9 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="flex justify-center mt-4 space-x-12 md:mt-8">
+            <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
                 <div className="flex-col space-y-8 md:w-1/2">
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
+                    <Chatbot name="Charly">
                         <p>Bonjour ! Je suis Charly.</p>
                         <p>
                             Apparemment vous souhaitez étudier dans une école en Europe, faisons un

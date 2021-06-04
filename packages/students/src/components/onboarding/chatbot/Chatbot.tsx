@@ -1,19 +1,22 @@
 import React, { FC, ReactNode } from 'react';
 
 type Props = {
-    avatarUrl: string;
     children: ReactNode;
     name: string;
 };
 
 const Chatbot: FC<Props> = (props) => {
-    const { avatarUrl, children, name } = props;
+    const { children, name } = props;
 
     return (
         <div className="relative flex space-x-6">
             <div>
                 <span className="relative inline-block">
-                    <img alt="" className="w-16 h-16 rounded-full" src={avatarUrl} />
+                    <img
+                        alt=""
+                        className="w-16 h-16 rounded-full"
+                        src="/assets/images/onboarding/Ying.jpg"
+                    />
                     <span className="absolute bottom-0 right-0 block w-4 h-4 bg-green-400 border-2 border-white rounded-full"></span>
                 </span>
             </div>

@@ -19,9 +19,9 @@ export const CardCarousel: FC<Props> = (props) => {
     const { title, name, country, time, start, date, year, price, logo } = props;
 
     return (
-        <div className="flex flex-none p-8 max-w-sm">
+        <div className="flex flex-none p-8 pb-16 max-w-sm">
             <div className="flex flex-col bg-white rounded-2xl hover:shadow-2xl shadow-xl cursor-pointer">
-                <div className="relative flex-1 pb-2 pt-10 px-6 space-y-3 md:px-8">
+                <div className="relative flex-1 pb-2 pt-12 px-6 space-y-3 md:px-8">
                     <div className="absolute top-0 inline-block p-3 rounded-xl shadow-lg transform -translate-y-1/2">
                         <img alt="school" height="50" src={logo} width="50" />
                     </div>
