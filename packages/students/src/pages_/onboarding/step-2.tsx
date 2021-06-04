@@ -5,7 +5,7 @@ import OnboardingLayout from '@components/onboarding/onboarding-layout/Onboardin
 import Stepper from '@components/onboarding/stepper/Stepper';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Image from 'next/image';
-import { useTranslation } from 'next-translate';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 import { object, string } from 'yup';
 
@@ -17,24 +17,24 @@ const Onboarding: FC = () => {
     });
 
     type FormValues = {
-        educationLevels: string;
+        educationLevel: string;
     };
 
-    const initialValues: FormValues = { educationLevels: '' };
+    const initialValues: FormValues = { educationLevel: '' };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { educationLevels } = values;
+        const { educationLevel } = values;
         try {
-            console.log(educationLevels);
+            console.log(educationLevel);
         } catch (error) {
             console.log(error);
         }
         actions.setSubmitting(false);
     };
 
-    const educationLevelOptions = educationLevels.map((educationLevels) => ({
-        label: t(`programs:${educationLevels.label}`),
-        value: educationLevels.value
+    const educationLevelOptions = educationLevels.map((educationLevel) => ({
+        label: t(`programs:${educationLevel.label}`),
+        value: educationLevel.value
     }));
 
     const steps = [
@@ -46,58 +46,53 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="lg:mt-15 flex flex-row lg:justify-center">
-                <div>
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
-                        <p className="mt-1">Génial!</p>
-                        <p className="mt-1">À quel niveau d'études êtes vous?</p>
+            <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
+                <div className="flex-col space-y-8 md:w-1/2">
+                    <Chatbot name="Charly">
+                        <p>Génial!</p>
+                        <p className="mt-2">À quel niveau d études êtes vous ?</p>
                     </Chatbot>
-                    <div className="px-6 sm:ml-16 sm:pl-12 md:w-3/4">
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            onSubmit={onSubmit}>
-                            {(props) => {
-                                const { isSubmitting, values } = props;
-                                return (
-                                    <Form className="space-y-6">
-                                        <Field id="educationLevels" name="educationLevels">
-                                            {(fieldProps: FieldProps) => (
-                                                <Select
-                                                    options={educationLevelOptions}
-                                                    placeholder="Sélectionner vos études"
-                                                    {...fieldProps}
-                                                />
-                                            )}
-                                        </Field>
-                                        <div>
-                                            <Button
-                                                disabled={!values.educationLevels}
-                                                isSubmitting={isSubmitting}
-                                                type="submit">
-                                                Etape suivante
-                                            </Button>
-                                        </div>
-                                    </Form>
-                                );
-                            }}
-                        </Formik>
-                    </div>
+
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={onSubmit}>
+                        {(props) => {
+                            const { isSubmitting, values } = props;
+                            return (
+                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
+                                    <Field id="educationLevel" name="educationLevel">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                options={educationLevelOptions}
+                                                placeholder="Selectionner un niveau d'étude"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                    <div>
+                                        <Button
+                                            disabled={!values.educationLevel}
+                                            isSubmitting={isSubmitting}
+                                            type="submit">
+                                            Etape suivante
+                                        </Button>
+                                    </div>
+                                </Form>
+                            );
+                        }}
+                    </Formik>
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden md:grid md:place-items-center">
                     <Image
                         alt="world"
-                        height="320"
+                        height="300"
                         src="/assets/images/onboarding/world.svg"
-                        width="320"
+                        width="300"
                     />
                 </div>
             </div>
-            <div className="mt-16 md:mt-24">
-                <Stepper steps={steps} />
-            </div>
+            <Stepper steps={steps} />
         </OnboardingLayout>
     );
 };

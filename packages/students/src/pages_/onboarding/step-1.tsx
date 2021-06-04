@@ -46,63 +46,56 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="lg:mt-15 flex flex-row lg:justify-center">
-                <div>
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
-                        <p className="mt-1">Bonjour ! Je suis Charly.</p>
-                        <p className="mt-1">
-                            Apparemment vous souhaitez étudier dans une école en Europe,
-                            <br /> faisons un tour de votre projet ensemble.
+            <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
+                <div className="flex-col space-y-8 md:w-1/2">
+                    <Chatbot name="Charly">
+                        <p>Bonjour ! Je suis Charly.</p>
+                        <p>
+                            Apparemment vous souhaitez étudier dans une école en Europe, faisons un
+                            tour de votre projet ensemble.
                         </p>
-                        <p className="mt-6">Où avez-vous fait vos études ?</p>
+                        <p className="mt-2">Où avez-vous fait vos études ?</p>
                     </Chatbot>
-                    <div className="px-6 sm:ml-16 sm:pl-12 md:w-1/2">
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            onSubmit={onSubmit}>
-                            {(props) => {
-                                const { isSubmitting, values } = props;
-                                return (
-                                    <Form className="space-y-6">
-                                        <Field id="country" name="country">
-                                            {(fieldProps: FieldProps) => (
-                                                <Select
-                                                    options={countriesOptions}
-                                                    placeholder="Selectionner un pays"
-                                                    {...fieldProps}
-                                                />
-                                            )}
-                                        </Field>
-                                        <div>
-                                            <Button
-                                                disabled={!values.country}
-                                                isSubmitting={isSubmitting}
-                                                type="submit">
-                                                Etape suivante
-                                            </Button>
-                                        </div>
-                                    </Form>
-                                );
-                            }}
-                        </Formik>
-                    </div>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={onSubmit}>
+                        {(props) => {
+                            const { isSubmitting, values } = props;
+                            return (
+                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
+                                    <Field id="country" name="country">
+                                        {(fieldProps: FieldProps) => (
+                                            <Select
+                                                options={countriesOptions}
+                                                placeholder="Selectionner un pays"
+                                                {...fieldProps}
+                                            />
+                                        )}
+                                    </Field>
+                                    <div>
+                                        <Button
+                                            disabled={!values.country}
+                                            isSubmitting={isSubmitting}
+                                            type="submit">
+                                            Etape suivante
+                                        </Button>
+                                    </div>
+                                </Form>
+                            );
+                        }}
+                    </Formik>
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden md:grid md:place-items-center">
                     <Image
                         alt="world"
-                        className="float-left"
-                        height="320"
+                        height="300"
                         src="/assets/images/onboarding/world.svg"
-                        width="320"
+                        width="300"
                     />
                 </div>
             </div>
-            <div className="mt-16 md:mt-24">
-                <Stepper steps={steps} />
-            </div>
+            <Stepper steps={steps} />
         </OnboardingLayout>
     );
 };
