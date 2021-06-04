@@ -61,7 +61,7 @@ const Onboarding: FC = () => {
                         {(props) => {
                             const { isSubmitting, values } = props;
                             return (
-                                <Form className="space-y-4 md:ml-2 md:pl-20 md:space-y-6 lg:space-y-8">
+                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
                                     <Field id="educationLevels" name="educationLevels">
                                         {(fieldProps: FieldProps) => (
                                             <Select

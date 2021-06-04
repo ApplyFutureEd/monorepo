@@ -74,33 +74,35 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="flex flex-row md:ml-20 md:w-1/2 lg:justify-center lg:mt-12">
-                <Chatbot
-                    avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                    name="Charly">
-                    <p className="mt-1">
-                        Et voilà un échantillon de programmes qui pourrait vous intéressez, bien
-                        entendu il y a plus de filtres si vous disponible si vous possédez un
-                        compte.
-                    </p>
-                </Chatbot>
-            </div>
-            <div className="flex flex-no-wrap mx-2 py-8 overflow-hidden overflow-x-scroll md:px-16">
-                {programs.map((program) => (
-                    <CardCarousel
-                        key={program.id}
-                        country={program.country}
-                        date={program.date}
-                        id={program.id}
-                        logo={program.logo}
-                        name={program.name}
-                        price={program.price}
-                        start={program.start}
-                        time={program.time}
-                        title={program.title}
-                        year={program.year}
-                    />
-                ))}
+            <div className="flex-col mt-4 md:mt-8 md:space-y-6">
+                <div className="flex justify-center md:pl-32 md:w-1/2">
+                    <Chatbot
+                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
+                        name="Charly">
+                        <p className="mt-1">
+                            Et voilà un échantillon de programmes qui pourrait vous intéressez, bien
+                            entendu il y a plus de filtres si vous disponible si vous possédez un
+                            compte.
+                        </p>
+                    </Chatbot>
+                </div>
+                <div className="min-w-screen flex flex-no-wrap -mx-8 overflow-hidden overflow-x-scroll">
+                    {programs.map((program) => (
+                        <CardCarousel
+                            key={program.id}
+                            country={program.country}
+                            date={program.date}
+                            id={program.id}
+                            logo={program.logo}
+                            name={program.name}
+                            price={program.price}
+                            start={program.start}
+                            time={program.time}
+                            title={program.title}
+                            year={program.year}
+                        />
+                    ))}
+                </div>
             </div>
         </OnboardingLayout>
     );
