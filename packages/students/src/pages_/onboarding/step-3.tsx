@@ -23,17 +23,15 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="flex-col mt-4 space-x-3 md:mt-12 md:mx-auto">
-                <div className="inline-flex max-w-lg space-y-8">
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
+            <div className="container flex-col mt-4 md:mt-8 md:space-y-6">
+                <div className="flex justify-center md:ml-6 md:w-1/2">
+                    <Chatbot name="Charly">
                         <p className="mt-1">D’accord.</p>
                         <p className="mt-1">Quelle discipline souhaitez vous étudier ?</p>
                     </Chatbot>
                     <div />
                 </div>
-                <div className="grid gap-1 grid-cols-1 justify-items-center md:gap-4 md:grid-cols-2 lg:container">
+                <div className="grid gap-1 grid-cols-1 justify-items-center py-8 md:gap-4 md:grid-cols-2 lg:container">
                     {disciplinesButtons.map((discipline) => (
                         <DisciplineButton
                             key={discipline.value}

@@ -46,11 +46,9 @@ const Onboarding: FC = () => {
 
     return (
         <OnboardingLayout title="Onboarding">
-            <div className="flex mt-4 space-x-3 md:mt-6 md:mx-auto">
-                <div className="flex-col max-w-lg space-y-8">
-                    <Chatbot
-                        avatarUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5Z8V7HDhG6&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=8"
-                        name="Charly">
+            <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
+                <div className="flex-col space-y-8 md:w-1/2">
+                    <Chatbot name="Charly">
                         <p className="mt-1">Intéressant, c’est noté !</p>
                         <p className="mt-1">Savez-vous quel niveau de diplôme vous visez ?</p>
                     </Chatbot>
@@ -61,7 +59,7 @@ const Onboarding: FC = () => {
                         {(props) => {
                             const { isSubmitting, values } = props;
                             return (
-                                <Form className="space-y-4 md:ml-2 md:pl-20 md:space-y-6 lg:space-y-8">
+                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
                                     <Field id="educationLevels" name="educationLevels">
                                         {(fieldProps: FieldProps) => (
                                             <Select
@@ -84,7 +82,7 @@ const Onboarding: FC = () => {
                         }}
                     </Formik>
                 </div>
-                <div className="hidden md:flex md:mx-auto">
+                <div className="hidden md:grid md:place-items-center">
                     <Image
                         alt="world"
                         height="300"

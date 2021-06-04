@@ -15,9 +15,7 @@ export const OnboardingLayout: FC<Props> = (props) => {
         <>
             <Head description={description} title={title} />
             <OnboardingHeader />
-            <main className="pt-header container flex flex-col justify-between min-h-screen">
-                {children}
-            </main>
+            <main className="pt-header flex flex-col justify-between min-h-screen">{children}</main>
         </>
     );
 };
