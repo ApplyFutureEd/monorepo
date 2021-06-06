@@ -9,6 +9,11 @@
 @import './scrollbar.css';
 @import './timeline.css';
 @import './toast.css';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+@import 'react-contexify/dist/ReactContexify.css';
+@import 'react-datepicker/dist/react-datepicker.css';
+@import 'react-mde/lib/styles/css/react-mde-all.css';
+@import 'react-phone-number-input/style.css';
 
 /* Start purging... */
 @tailwind components;

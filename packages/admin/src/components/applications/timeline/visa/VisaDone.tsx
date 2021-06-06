@@ -33,8 +33,10 @@ const VisaDone: FC<Props> = (props) => {
             await graphql(updateApplication, {
                 input: {
                     id: application?.id,
+                    modalApplicationCompletedViewed: false,
                     steps: updatedSteps,
-                    todo: "Select visa's date of receipt"
+                    todo: "Select visa's date of receipt",
+                    visaDate: ''
                 }
             });
         } catch (error) {

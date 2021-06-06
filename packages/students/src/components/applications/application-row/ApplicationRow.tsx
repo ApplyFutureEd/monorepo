@@ -2,6 +2,7 @@ import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
 import { Timeline } from '@applyfuture/ui';
 import { date, toShortId } from '@applyfuture/utils';
+import CompletionModal from '@components/applications/completion-modal/CompletionModal';
 import { config } from '@components/applications/timeline/config';
 import {
     faChevronDown,
@@ -90,7 +91,11 @@ const ApplicationRow: FC<Props> = (props) => {
             </button>
             {open && application?.steps && (
                 <div className="px-4 py-4 sm:px-6">
-                    <Timeline application={application} config={config} />
+                    <Timeline
+                        ModalComponent={CompletionModal}
+                        application={application}
+                        config={config}
+                    />
                 </div>
             )}
         </div>
