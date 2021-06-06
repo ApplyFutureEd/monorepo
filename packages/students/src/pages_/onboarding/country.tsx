@@ -1,5 +1,5 @@
 import { Button, Select } from '@applyfuture/ui';
-import { supportedCountries, useLocalStorage } from '@applyfuture/utils';
+import { supportedCountries, useLocalStorage, withPrivateAccess } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
@@ -122,4 +122,7 @@ const OnboardingCountryPage: FC = () => {
     );
 };
 
-export default OnboardingCountryPage;
+export default withPrivateAccess(OnboardingCountryPage, {
+    groups: ['student'],
+    redirection: '/sign-in'
+});

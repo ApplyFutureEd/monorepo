@@ -100,7 +100,7 @@ const ConfirmAccountForm: FC = () => {
                     ]
                 }
             });
-            return router.push('/programs');
+            return router.push('/onboarding/country');
         } catch (error) {
             let message = t('auth:error-generic-exception');
             if (error.code === 'ExpiredCodeException') {

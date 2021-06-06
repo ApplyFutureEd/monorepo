@@ -126,7 +126,7 @@
   "onboarding-step-degree-select-placeholder": "Select a degree",
   "onboarding-step-discipline-chatbot-text-1": "Alright!",
   "onboarding-step-discipline-chatbot-text-2": "Which discipline do you want to study?",
-  "onboarding-step-highest-education-level-chatbot-text-1": "Awesome!",
+  "onboarding-step-highest-education-level-chatbot-text-1": "{{country}}? Awesome!",
   "onboarding-step-highest-education-level-chatbot-text-2": "What is your highest education level?",
   "onboarding-step-highest-education-level-select-placeholder": "Select an education level",
   "onboarding-step-suggestions-chatbot-text-1": "Below some programs that might be interresting for you",

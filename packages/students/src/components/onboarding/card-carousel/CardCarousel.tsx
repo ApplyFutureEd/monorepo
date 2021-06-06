@@ -8,7 +8,7 @@ import {
     getDurationUnitLabel,
     getFeeUnitLabel
 } from '@applyfuture/utils';
-import { faClock, faDiploma, faEuroSign, faGlobe } from '@fortawesome/pro-solid-svg-icons';
+import { faClock, faEuroSign, faGlobe, faUniversity } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -24,9 +24,22 @@ export const CardCarousel: FC<Props> = (props) => {
     const locale = router.locale as SupportedLocale;
     const { program } = props;
 
+    const handleClick = () => {
+        router.push(`/programs/${program?.slug}`);
+    };
+
+    const truncate = (string: string | undefined, words: number) => {
+        if (!string) {
+            return;
+        }
+        return string.split(' - ')[0];
+    };
+
     return (
-        <div className="flex flex-none p-8 pb-16 max-w-sm">
-            <div className="flex flex-col bg-white rounded-2xl hover:shadow-2xl shadow-xl cursor-pointer">
+        <div className="flex flex-none p-8 pb-16 max-w-sm" style={{ minHeight: '500px' }}>
+            <button
+                className="flex flex-col text-left bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl"
+                onClick={handleClick}>
                 <div className="relative flex-1 pb-2 pt-12 px-6 space-y-3 md:px-8">
                     <div className="absolute top-0 inline-block p-3 rounded-xl shadow-lg transform -translate-y-1/2">
                         <img
@@ -37,13 +50,13 @@ export const CardCarousel: FC<Props> = (props) => {
                         />
                     </div>
                     <h3 className="mb-1 text-gray-900 text-xl font-bold">
-                        {program?.school?.name}
+                        {truncate(program?.name, 8)}
                     </h3>
                     <div className="flex flex-row items-center space-x-2">
                         <div className="text-indigo-600 text-2xl">
-                            <FontAwesomeIcon fixedWidth icon={faDiploma} />
+                            <FontAwesomeIcon fixedWidth icon={faUniversity} />
                         </div>
-                        <p className="text-gray-500 text-base">{program?.name}</p>
+                        <p className="text-gray-500 text-base">{program?.school?.name}</p>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                         <div className="text-indigo-600 text-2xl">
@@ -77,12 +90,14 @@ export const CardCarousel: FC<Props> = (props) => {
                                         value: program?.duration
                                     })
                                 })}
+                                .
                             </span>
                             <span>
+                                {' '}
                                 {t('programs:next-intake', {
                                     count: router.locale === 'zh' ? 0 : 1
                                 })}
-                            </span>
+                            </span>{' '}
                             <span className="text-gray-600 text-base font-bold">
                                 {date({
                                     locale: locale,
@@ -96,7 +111,7 @@ export const CardCarousel: FC<Props> = (props) => {
                             <FontAwesomeIcon fixedWidth icon={faEuroSign} />
                         </div>
                         <p className="text-gray-500 text-base">
-                            <span>{t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}</span>
+                            <span>{t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}</span>{' '}
                             <span className="text-gray-600 text-base font-bold">
                                 {currency({
                                     currency: program?.feeCurrency,
@@ -115,7 +130,7 @@ export const CardCarousel: FC<Props> = (props) => {
                         <span aria-hidden="true"> &rarr;</span>
                     </a>
                 </div>
-            </div>
+            </button>
         </div>
     );
 };

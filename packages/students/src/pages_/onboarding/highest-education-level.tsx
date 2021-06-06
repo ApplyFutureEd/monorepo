@@ -1,5 +1,5 @@
 import { Button, Select } from '@applyfuture/ui';
-import { educationLevels, useLocalStorage } from '@applyfuture/utils';
+import { educationLevels, useLocalStorage, withPrivateAccess } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
@@ -71,7 +71,11 @@ const OnboardingHighestEducationLevelPage: FC = () => {
             <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
                 <div className="flex-col space-y-8 md:w-1/2">
                     <Chatbot name={t('profile:onboarding-chatbot-name')}>
-                        <p>{t('profile:onboarding-step-highest-education-level-chatbot-text-1')}</p>
+                        <p>
+                            {t('profile:onboarding-step-highest-education-level-chatbot-text-1', {
+                                country: onboarding.country
+                            })}
+                        </p>
                         <p className="mt-2">
                             {t('profile:onboarding-step-highest-education-level-chatbot-text-2')}
                         </p>
@@ -132,4 +136,7 @@ const OnboardingHighestEducationLevelPage: FC = () => {
     );
 };
 
-export default OnboardingHighestEducationLevelPage;
+export default withPrivateAccess(OnboardingHighestEducationLevelPage, {
+    groups: ['student'],
+    redirection: '/sign-in'
+});
