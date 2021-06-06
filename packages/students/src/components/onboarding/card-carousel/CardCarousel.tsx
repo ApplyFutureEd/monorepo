@@ -28,7 +28,7 @@ export const CardCarousel: FC<Props> = (props) => {
         router.push(`/programs/${program?.slug}`);
     };
 
-    const truncate = (string: string | undefined, words: number) => {
+    const truncate = (string: string | undefined) => {
         if (!string) {
             return;
         }
@@ -50,7 +50,7 @@ export const CardCarousel: FC<Props> = (props) => {
                         />
                     </div>
                     <h3 className="mb-1 text-gray-900 text-xl font-bold">
-                        {truncate(program?.name, 8)}
+                        {truncate(program?.name)}
                     </h3>
                     <div className="flex flex-row items-center space-x-2">
                         <div className="text-indigo-600 text-2xl">
