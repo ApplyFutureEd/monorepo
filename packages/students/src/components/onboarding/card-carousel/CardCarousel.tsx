@@ -6,7 +6,8 @@ import {
     date,
     getCountryLabel,
     getDurationUnitLabel,
-    getFeeUnitLabel
+    getFeeUnitLabel,
+    useAuthenticatedUser
 } from '@applyfuture/utils';
 import { faClock, faEuroSign, faGlobe, faUniversity } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,13 +20,16 @@ type Props = {
 };
 
 export const CardCarousel: FC<Props> = (props) => {
+    const { user } = useAuthenticatedUser();
     const { t } = useTranslation();
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
     const { program } = props;
 
     const handleClick = () => {
-        router.push(`/programs/${program?.slug}`);
+        user
+            ? router.push(`/programs/${program?.slug}`)
+            : router.push(`/sign-up?from=/programs/${program?.slug}`);
     };
 
     const truncate = (string: string | undefined) => {
@@ -36,10 +40,11 @@ export const CardCarousel: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex flex-none p-8 pb-16 max-w-sm" style={{ minHeight: '500px' }}>
-            <button
-                className="flex flex-col text-left bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl"
-                onClick={handleClick}>
+        <button
+            className="flex flex-none p-8 pb-16 max-w-sm text-left"
+            style={{ minHeight: '500px' }}
+            onClick={handleClick}>
+            <div className="flex flex-col bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl">
                 <div className="relative flex-1 pb-2 pt-12 px-6 space-y-3 md:px-8">
                     <div className="absolute top-0 inline-block p-3 rounded-xl shadow-lg transform -translate-y-1/2">
                         <img
@@ -130,8 +135,8 @@ export const CardCarousel: FC<Props> = (props) => {
                         <span aria-hidden="true"> &rarr;</span>
                     </a>
                 </div>
-            </button>
-        </div>
+            </div>
+        </button>
     );
 };
 

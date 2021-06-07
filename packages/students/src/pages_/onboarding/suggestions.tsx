@@ -4,7 +4,7 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
-import { createFilter, useLocalStorage, useQuery, withPrivateAccess } from '@applyfuture/utils';
+import { createFilter, useLocalStorage, useQuery } from '@applyfuture/utils';
 import CardCarousel from '@components/onboarding/card-carousel/CardCarousel';
 import SkeletonCardCarousel from '@components/onboarding/card-carousel/SkeletonCardCarousel';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
@@ -134,7 +134,4 @@ const OnboardingSuggestionsPage: FC = () => {
     );
 };
 
-export default withPrivateAccess(OnboardingSuggestionsPage, {
-    groups: ['student'],
-    redirection: '/sign-in'
-});
+export default OnboardingSuggestionsPage;

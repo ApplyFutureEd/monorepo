@@ -1,20 +1,5 @@
-import {
-    getStudentByEmail,
-    GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables,
-    updateStudent,
-    UpdateStudentMutation
-} from '@applyfuture/graphql';
 import { Button, Select } from '@applyfuture/ui';
-import {
-    degrees,
-    getDisciplineLabel,
-    graphql,
-    useAuthenticatedUser,
-    useLocalStorage,
-    useQuery,
-    withPrivateAccess
-} from '@applyfuture/utils';
+import { degrees, getDisciplineLabel, useLocalStorage } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
@@ -28,14 +13,6 @@ import React, { FC, useEffect, useState } from 'react';
 import { object, string } from 'yup';
 
 const OnboardingDegreePage: FC = () => {
-    const { user } = useAuthenticatedUser();
-
-    const { data: studentData, isLoading: studentIsLoading } = useQuery<
-        GetStudentByEmailQuery,
-        GetStudentByEmailQueryVariables
-    >(getStudentByEmail, { email: user?.attributes.email });
-    const student = studentData?.getStudentByEmail?.items?.[0];
-
     const { t } = useTranslation();
     const router = useRouter();
     const [onboarding, setOnboarding] = useLocalStorage('onboarding', {
@@ -70,14 +47,7 @@ const OnboardingDegreePage: FC = () => {
                 ...onboarding,
                 degree: degree
             });
-            await graphql<UpdateStudentMutation>(updateStudent, {
-                input: {
-                    degrees: [degree],
-                    disciplines: [onboarding.discipline],
-                    highestEducationLevel: onboarding.highestEducationLevel,
-                    id: student?.id
-                }
-            });
+
             router.push('/onboarding/suggestions');
         } catch (error) {
             console.log(error);
@@ -140,7 +110,7 @@ const OnboardingDegreePage: FC = () => {
                                             </Button>
                                         </Link>
                                         <Button
-                                            disabled={!values.degree || studentIsLoading}
+                                            disabled={!values.degree}
                                             isSubmitting={isSubmitting}
                                             type="submit">
                                             {t('profile:onboarding-next-step')}
@@ -165,7 +135,4 @@ const OnboardingDegreePage: FC = () => {
     );
 };
 
-export default withPrivateAccess(OnboardingDegreePage, {
-    groups: ['student'],
-    redirection: '/sign-in'
-});
+export default OnboardingDegreePage;

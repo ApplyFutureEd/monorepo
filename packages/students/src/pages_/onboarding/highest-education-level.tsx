@@ -1,5 +1,5 @@
 import { Button, Select } from '@applyfuture/ui';
-import { educationLevels, useLocalStorage, withPrivateAccess } from '@applyfuture/utils';
+import { educationLevels, useLocalStorage } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
@@ -136,7 +136,4 @@ const OnboardingHighestEducationLevelPage: FC = () => {
     );
 };
 
-export default withPrivateAccess(OnboardingHighestEducationLevelPage, {
-    groups: ['student'],
-    redirection: '/sign-in'
-});
+export default OnboardingHighestEducationLevelPage;

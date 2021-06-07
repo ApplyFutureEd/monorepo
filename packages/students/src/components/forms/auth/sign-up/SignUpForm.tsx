@@ -33,6 +33,9 @@ const SignUpForm: FC = () => {
                 password,
                 username: email.toLowerCase()
             });
+            if (router.query.from) {
+                return router.push(`/confirm-account?email=${email}&from=${router.query.from}`);
+            }
             return router.push(`/confirm-account?email=${email}`);
         } catch (error) {
             let message = t('auth:error-generic-exception');

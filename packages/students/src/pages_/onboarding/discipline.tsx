@@ -1,5 +1,5 @@
 import { Button } from '@applyfuture/ui';
-import { disciplines, useLocalStorage, withPrivateAccess } from '@applyfuture/utils';
+import { disciplines, useLocalStorage } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import DisciplineButton from '@components/onboarding/discipline-button/DisciplineButton';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
@@ -123,7 +123,4 @@ const OnboardingDisciplinePage: FC = () => {
     );
 };
 
-export default withPrivateAccess(OnboardingDisciplinePage, {
-    groups: ['student'],
-    redirection: '/sign-in'
-});
+export default OnboardingDisciplinePage;
