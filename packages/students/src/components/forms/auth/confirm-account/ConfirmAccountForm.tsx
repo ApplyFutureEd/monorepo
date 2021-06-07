@@ -19,11 +19,12 @@ const ConfirmAccountForm: FC = () => {
         discipline: '',
         highestEducationLevel: ''
     });
-    const onboardingCompleted =
+    const onboardingCompleted = Boolean(
         onboarding.country &&
-        onboarding.degree &&
-        onboarding.displine &&
-        onboarding.highestEducationLevel;
+            onboarding.degree &&
+            onboarding.displine &&
+            onboarding.highestEducationLevel
+    );
 
     const [errorMessage, setErrorMessage] = useState('');
 
