@@ -42,7 +42,7 @@ export const checkApplicationExistance = async (
                 application?.steps?.find((step: any) => step?.status === 'ERROR');
 
             if (!currentStep) {
-                throw Error('Missing currentStep');
+                return { applicationId: application?.id, stepId: 'visa' };
             }
 
             return { applicationId: application?.id, stepId: currentStep?.id };

@@ -2234,6 +2234,10 @@ export const searchFeedbacks = /* GraphQL */ `
           lastUpdate
           modalApplicationCompletedViewed
           programId
+          student {
+            firstName
+            lastName
+          }
           studentId
           todo
           tuitionsFeePaymentDate
