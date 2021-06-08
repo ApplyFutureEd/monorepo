@@ -112,7 +112,7 @@ const OnboardingCountryPage: FC = () => {
                     <Image
                         alt="world"
                         height="300"
-                        src="/assets/images/onboarding/world.svg"
+                        src="/assets/images/onboarding/country.svg"
                         width="300"
                     />
                 </div>

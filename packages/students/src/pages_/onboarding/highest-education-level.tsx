@@ -1,5 +1,5 @@
 import { Button, Select } from '@applyfuture/ui';
-import { educationLevels, useLocalStorage } from '@applyfuture/utils';
+import { educationLevels, getCountryLabel, useLocalStorage } from '@applyfuture/utils';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
@@ -73,7 +73,7 @@ const OnboardingHighestEducationLevelPage: FC = () => {
                     <Chatbot name={t('profile:onboarding-chatbot-name')}>
                         <p>
                             {t('profile:onboarding-step-highest-education-level-chatbot-text-1', {
-                                country: onboarding.country
+                                country: t(`common:${getCountryLabel(onboarding.country)}`)
                             })}
                         </p>
                         <p className="mt-2">
@@ -124,9 +124,9 @@ const OnboardingHighestEducationLevelPage: FC = () => {
                 </div>
                 <div className="hidden md:grid md:place-items-center">
                     <Image
-                        alt="world"
+                        alt="education-level"
                         height="300"
-                        src="/assets/images/onboarding/world.svg"
+                        src="/assets/images/onboarding/education-level.svg"
                         width="300"
                     />
                 </div>

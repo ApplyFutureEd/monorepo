@@ -15,7 +15,7 @@ const Chatbot: FC<Props> = (props) => {
                     <img
                         alt=""
                         className="w-16 h-16 rounded-full"
-                        src="/assets/images/onboarding/Ying.jpg"
+                        src="/assets/images/onboarding/profile-picture.jpg"
                     />
                     <span className="absolute bottom-0 right-0 block w-4 h-4 bg-green-400 border-2 border-white rounded-full"></span>
                 </span>

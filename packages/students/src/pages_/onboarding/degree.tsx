@@ -67,8 +67,6 @@ const OnboardingDegreePage: FC = () => {
         { name: 'degree', status: 'CURRENT' }
     ];
 
-    const disciplineLabel = getDisciplineLabel(onboarding.discipline);
-
     return (
         <OnboardingLayout title={t('profile:onboarding-page-title')}>
             <div className="container flex justify-center mt-4 space-x-12 md:mt-8">
@@ -76,7 +74,9 @@ const OnboardingDegreePage: FC = () => {
                     <Chatbot name={t('profile:onboarding-chatbot-name')}>
                         <p className="mt-1">
                             {t('profile:onboarding-step-degree-chatbot-text-1', {
-                                discipline: t(`profile:${disciplineLabel}`)
+                                discipline: t(
+                                    `profile:${getDisciplineLabel(onboarding.discipline)}`
+                                )
                             })}
                         </p>
                         <p className="mt-1">{t('profile:onboarding-step-degree-chatbot-text-2')}</p>
@@ -123,9 +123,9 @@ const OnboardingDegreePage: FC = () => {
                 </div>
                 <div className="hidden md:grid md:place-items-center">
                     <Image
-                        alt="world"
+                        alt="degree"
                         height="300"
-                        src="/assets/images/onboarding/world.svg"
+                        src="/assets/images/onboarding/degree.svg"
                         width="300"
                     />
                 </div>

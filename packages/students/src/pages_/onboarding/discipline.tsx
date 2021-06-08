@@ -97,7 +97,7 @@ const OnboardingDisciplinePage: FC = () => {
                                         />
                                     ))}
                                 </div>
-                                <div className="flex px-8 space-x-2">
+                                <div className="flex space-x-2 md:px-8">
                                     <Link href="/onboarding/highest-education-level">
                                         <Button
                                             isSubmitting={isSubmitting}

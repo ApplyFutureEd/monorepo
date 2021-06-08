@@ -3,8 +3,10 @@ import Skeleton from 'react-loading-skeleton';
 
 export const SkeletonCardCarousel: FC = () => {
     return (
-        <div className="flex flex-none p-8 pb-16 max-w-sm" style={{ minHeight: '500px' }}>
-            <button className="flex flex-col text-left bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl">
+        <div className="flex flex-none p-8 pb-16 max-w-sm">
+            <button
+                className="flex flex-col text-left bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl"
+                style={{ minHeight: '500px' }}>
                 <div className="relative flex-1 pb-2 pt-12 px-6 space-y-3 md:px-8">
                     <div className="absolute top-0 inline-block rounded-xl shadow-lg transform -translate-y-1/2">
                         <Skeleton height="74px" width="74px" />

@@ -1,6 +1,6 @@
 import { createStudent, CreateStudentMutation } from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { graphql, useAuthenticatedUser } from '@applyfuture/utils';
+import { graphql, useAuthenticatedUser, useLocalStorage } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
@@ -12,6 +12,12 @@ const ConfirmAccountForm: FC = () => {
     const { handleAuth } = useAuthenticatedUser();
     const router = useRouter();
     const { t } = useTranslation();
+    const [onboarding] = useLocalStorage('onboarding', {
+        country: '',
+        degree: '',
+        discipline: '',
+        highestEducationLevel: ''
+    });
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -47,6 +53,8 @@ const ConfirmAccountForm: FC = () => {
                     birthday: null,
                     city: '',
                     country: '',
+                    degrees: onboarding.degree ? [onboarding.degree] : null,
+                    disciplines: onboarding.disciplines ? [onboarding.discipline] : null,
                     educationCountry: '',
                     email: email,
                     fatherFirstName: '',
@@ -57,7 +65,9 @@ const ConfirmAccountForm: FC = () => {
                     gradePointAverage: 0,
                     guardianFirstName: '',
                     guardianLastName: '',
-                    highestEducationLevel: -1,
+                    highestEducationLevel: onboarding.highestEducationLevel
+                        ? onboarding.highestEducationLevel
+                        : -1,
                     lastName: '',
                     lastUpdate: new Date().valueOf(),
                     locale: router.locale,

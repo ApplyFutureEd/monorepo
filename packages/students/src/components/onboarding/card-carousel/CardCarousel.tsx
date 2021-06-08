@@ -40,11 +40,11 @@ export const CardCarousel: FC<Props> = (props) => {
     };
 
     return (
-        <button
-            className="flex flex-none p-8 pb-16 max-w-sm text-left"
-            style={{ minHeight: '500px' }}
-            onClick={handleClick}>
-            <div className="flex flex-col bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl">
+        <div className="flex flex-none p-8 pb-16 max-w-sm">
+            <button
+                className="flex flex-col text-left bg-white rounded-2xl outline-none focus:outline-none hover:shadow-2xl shadow-xl"
+                style={{ minHeight: '500px' }}
+                onClick={handleClick}>
                 <div className="relative flex-1 pb-2 pt-12 px-6 space-y-3 md:px-8">
                     <div className="absolute top-0 inline-block p-3 rounded-xl shadow-lg transform -translate-y-1/2">
                         <img
@@ -135,8 +135,8 @@ export const CardCarousel: FC<Props> = (props) => {
                         <span aria-hidden="true"> &rarr;</span>
                     </a>
                 </div>
-            </div>
-        </button>
+            </button>
+        </div>
     );
 };
 
