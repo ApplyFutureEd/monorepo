@@ -5,29 +5,17 @@ module.exports = {
     locales: ['en', 'fr', 'zh'],
     localesPath: 'locales',
     pages: {
-        '*': ['auth', 'common', 'navigation', 'application', 'landing'],
-        '/': ['landing'],
-        '/about': ['landing'],
-        '/applications': ['application', 'profile', 'programs'],
-        '/applications/[id]/fees-payment': ['application', 'profile', 'programs'],
-        '/applications/[id]/review-documents': ['application', 'profile', 'programs'],
-        '/applications/[id]/submission': ['application', 'profile', 'programs'],
-        '/applications/[id]/upload-documents': ['application', 'profile', 'programs'],
-        '/applications/[id]/upload-missing-documents': ['application', 'profile', 'programs'],
-        '/careers': ['landing'],
-        '/help': ['help'],
-        '/privacy-policy': ['landing'],
-        '/profile/background-information': ['profile'],
-        '/profile/education-history': ['profile', 'programs'],
-        '/profile/general-information': ['profile'],
-        '/profile/test-scores': ['profile'],
-        '/profile/upload-documents': ['profile'],
-        '/programs': ['profile', 'programs'],
-        '/programs/[slug]': ['profile', 'programs'],
-        '/recruiters': ['landing', 'recruiter-form'],
-        '/schools': ['programs', 'schools'],
-        '/schools/[slug]': ['profile', 'programs', 'schools'],
-        '/terms-and-conditions': ['landing'],
-        '/terms-of-use': ['landing']
+        '*': [
+            'auth',
+            'application',
+            'common',
+            'help',
+            'landing',
+            'profile',
+            'programs',
+            'navigation',
+            'schools',
+            'recruiter-form'
+        ]
     }
 };
