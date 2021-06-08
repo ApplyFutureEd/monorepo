@@ -1,5 +1,6 @@
 import { SearchProgramsQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
+import { Tooltip } from '@applyfuture/ui';
 import {
     convertSecondsToUnit,
     currency,
@@ -32,13 +33,6 @@ export const CardCarousel: FC<Props> = (props) => {
             : router.push(`/sign-up?from=/programs/${program?.slug}`);
     };
 
-    const truncate = (string: string | undefined) => {
-        if (!string) {
-            return;
-        }
-        return string.split(' - ')[0];
-    };
-
     return (
         <div className="flex flex-none p-8 pb-16 max-w-sm">
             <button
@@ -54,9 +48,11 @@ export const CardCarousel: FC<Props> = (props) => {
                             width="50"
                         />
                     </div>
-                    <h3 className="mb-1 text-gray-900 text-xl font-bold">
-                        {truncate(program?.name)}
-                    </h3>
+                    <Tooltip content={program?.name} icon={false}>
+                        <h3 className="clamp-2 mb-1 text-gray-900 text-xl font-bold">
+                            {program?.name}
+                        </h3>
+                    </Tooltip>
                     <div className="flex flex-row items-center space-x-2">
                         <div className="text-indigo-600 text-2xl">
                             <FontAwesomeIcon fixedWidth icon={faUniversity} />
