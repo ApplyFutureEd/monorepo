@@ -1,64 +1,20 @@
-import { Button, Select } from '@applyfuture/ui';
-import { degrees, getDisciplineLabel, useLocalStorage } from '@applyfuture/utils';
+import { getDisciplineLabel, useLocalStorage } from '@applyfuture/utils';
+import DegreeForm from '@components/forms/onboarding/degree/DegreeForm';
+import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
-import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
-import { faArrowLeft } from '@fortawesome/pro-light-svg-icons';
-import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
-import { object, string } from 'yup';
+import React, { FC } from 'react';
 
 const OnboardingDegreePage: FC = () => {
     const { t } = useTranslation();
-    const router = useRouter();
-    const [onboarding, setOnboarding] = useLocalStorage('onboarding', {
+    const [onboarding] = useLocalStorage('onboarding', {
         country: '',
         degree: '',
         discipline: '',
         highestEducationLevel: ''
     });
-
-    const validationSchema = object().shape({
-        degree: string().required(t('common:error-field-required')).nullable()
-    });
-
-    type FormValues = {
-        degree: string;
-    };
-
-    const [initialValues, setInitialValues] = useState<FormValues>({ degree: '' });
-
-    useEffect(() => {
-        if (onboarding) {
-            setInitialValues({
-                degree: onboarding.degree
-            });
-        }
-    }, [onboarding]);
-
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { degree } = values;
-        try {
-            setOnboarding({
-                ...onboarding,
-                degree: degree
-            });
-
-            router.push('/onboarding/suggestions');
-        } catch (error) {
-            console.log(error);
-        }
-        actions.setSubmitting(false);
-    };
-
-    const degreesOptions = degrees.map((degree) => ({
-        label: t(`profile:${degree.label}`),
-        value: degree.value
-    }));
 
     const steps = [
         { name: 'country', status: 'DONE' },
@@ -81,45 +37,7 @@ const OnboardingDegreePage: FC = () => {
                         </p>
                         <p className="mt-1">{t('profile:onboarding-step-degree-chatbot-text-2')}</p>
                     </Chatbot>
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={onSubmit}>
-                        {(props) => {
-                            const { isSubmitting, values } = props;
-                            return (
-                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
-                                    <Field id="degree" name="degree">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                options={degreesOptions}
-                                                placeholder={t(
-                                                    'profile:onboarding-step-degree-select-placeholder'
-                                                )}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                    <div className="flex space-x-2">
-                                        <Link href="/onboarding/discipline">
-                                            <Button
-                                                isSubmitting={isSubmitting}
-                                                startIcon={faArrowLeft}
-                                                variant="secondary">
-                                                {t('profile:onboarding-previous-step')}
-                                            </Button>
-                                        </Link>
-                                        <Button
-                                            disabled={!values.degree}
-                                            isSubmitting={isSubmitting}
-                                            type="submit">
-                                            {t('profile:onboarding-next-step')}
-                                        </Button>
-                                    </div>
-                                </Form>
-                            );
-                        }}
-                    </Formik>
+                    <DegreeForm />
                 </div>
                 <div className="hidden md:grid md:place-items-center">
                     <Image

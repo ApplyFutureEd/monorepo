@@ -1,63 +1,20 @@
-import { Button, Select } from '@applyfuture/ui';
-import { educationLevels, getCountryLabel, useLocalStorage } from '@applyfuture/utils';
+import { getCountryLabel, useLocalStorage } from '@applyfuture/utils';
+import HighestEducationLevelForm from '@components/forms/onboarding/highest-education-level/HighestEducationLevelForm';
+import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
-import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import Stepper from '@components/onboarding/stepper/Stepper';
-import { faArrowLeft } from '@fortawesome/pro-light-svg-icons';
-import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
-import { object, string } from 'yup';
+import React, { FC } from 'react';
 
 const OnboardingHighestEducationLevelPage: FC = () => {
     const { t } = useTranslation();
-    const router = useRouter();
-    const [onboarding, setOnboarding] = useLocalStorage('onboarding', {
+    const [onboarding] = useLocalStorage('onboarding', {
         country: '',
         degree: '',
         discipline: '',
         highestEducationLevel: ''
     });
-
-    const validationSchema = object().shape({
-        highestEducationLevel: string().required(t('common:error-field-required')).nullable()
-    });
-
-    type FormValues = {
-        highestEducationLevel: string;
-    };
-
-    const [initialValues, setInitialValues] = useState<FormValues>({ highestEducationLevel: '' });
-
-    useEffect(() => {
-        if (onboarding) {
-            setInitialValues({
-                highestEducationLevel: onboarding.highestEducationLevel
-            });
-        }
-    }, [onboarding]);
-
-    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { highestEducationLevel } = values;
-        try {
-            setOnboarding({
-                ...onboarding,
-                highestEducationLevel: highestEducationLevel
-            });
-            router.push('/onboarding/discipline');
-        } catch (error) {
-            console.log(error);
-        }
-        actions.setSubmitting(false);
-    };
-
-    const educationLevelOptions = educationLevels.map((educationLevel) => ({
-        label: t(`programs:${educationLevel.label}`),
-        value: educationLevel.value
-    }));
 
     const steps = [
         { name: 'country', status: 'DONE' },
@@ -80,47 +37,7 @@ const OnboardingHighestEducationLevelPage: FC = () => {
                             {t('profile:onboarding-step-highest-education-level-chatbot-text-2')}
                         </p>
                     </Chatbot>
-
-                    <Formik
-                        enableReinitialize
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={onSubmit}>
-                        {(props) => {
-                            const { isSubmitting, values } = props;
-                            return (
-                                <Form className="space-y-4 md:ml-2 md:mr-6 md:pl-20 md:space-y-6 lg:space-y-8">
-                                    <Field id="highestEducationLevel" name="highestEducationLevel">
-                                        {(fieldProps: FieldProps) => (
-                                            <Select
-                                                options={educationLevelOptions}
-                                                placeholder={t(
-                                                    'profile:onboarding-step-highest-education-level-select-placeholder'
-                                                )}
-                                                {...fieldProps}
-                                            />
-                                        )}
-                                    </Field>
-                                    <div className="flex space-x-2">
-                                        <Link href="/onboarding/country">
-                                            <Button
-                                                isSubmitting={isSubmitting}
-                                                startIcon={faArrowLeft}
-                                                variant="secondary">
-                                                {t('profile:onboarding-previous-step')}
-                                            </Button>
-                                        </Link>
-                                        <Button
-                                            disabled={!values.highestEducationLevel}
-                                            isSubmitting={isSubmitting}
-                                            type="submit">
-                                            {t('profile:onboarding-next-step')}
-                                        </Button>
-                                    </div>
-                                </Form>
-                            );
-                        }}
-                    </Formik>
+                    <HighestEducationLevelForm />
                 </div>
                 <div className="hidden md:grid md:place-items-center">
                     <Image

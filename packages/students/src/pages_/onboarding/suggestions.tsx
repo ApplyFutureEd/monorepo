@@ -5,10 +5,10 @@ import {
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
 import { createFilter, useLocalStorage, useQuery } from '@applyfuture/utils';
+import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import CardCarousel from '@components/onboarding/card-carousel/CardCarousel';
 import SkeletonCardCarousel from '@components/onboarding/card-carousel/SkeletonCardCarousel';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
-import OnboardingLayout from '@components/onboarding/onboarding-layout/OnboardingLayout';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 import SwiperCore, { Mousewheel, Pagination } from 'swiper/core';
@@ -52,7 +52,7 @@ const OnboardingSuggestionsPage: FC = () => {
         }
 
         if (!programsIsLoading && programs && programs.length === 0) {
-            return <div>no result</div>;
+            return <div />;
         }
 
         if (programs && programs.length > 0) {
