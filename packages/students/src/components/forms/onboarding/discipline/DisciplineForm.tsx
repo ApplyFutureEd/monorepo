@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
-const OnboardingDisciplinePage: FC = () => {
+const DisciplineForm: FC = () => {
     const { t } = useTranslation();
     const router = useRouter();
     const [onboarding, setOnboarding] = useLocalStorage('onboarding', {
@@ -97,4 +97,4 @@ const OnboardingDisciplinePage: FC = () => {
     );
 };
 
-export default OnboardingDisciplinePage;
+export default DisciplineForm;
