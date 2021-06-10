@@ -27,10 +27,11 @@ export const getStaticProps = async ctx => {
 const ns1 = await import(`../../../locales/${_lang}/common`).then(m => m.default)
 const ns2 = await import(`../../../locales/${_lang}/navigation`).then(m => m.default)
 const ns3 = await import(`../../../locales/${_lang}/application`).then(m => m.default)
-const ns4 = await import(`../../../locales/${_lang}/profile`).then(m => m.default)
-const ns5 = await import(`../../../locales/${_lang}/programs`).then(m => m.default)
-const ns6 = await import(`../../../locales/${_lang}/schools`).then(m => m.default)
-  const _ns = { 'auth': ns0, 'common': ns1, 'navigation': ns2, 'application': ns3, 'profile': ns4, 'programs': ns5, 'schools': ns6 }
+const ns4 = await import(`../../../locales/${_lang}/landing`).then(m => m.default)
+const ns5 = await import(`../../../locales/${_lang}/profile`).then(m => m.default)
+const ns6 = await import(`../../../locales/${_lang}/programs`).then(m => m.default)
+const ns7 = await import(`../../../locales/${_lang}/schools`).then(m => m.default)
+  const _ns = { 'auth': ns0, 'common': ns1, 'navigation': ns2, 'application': ns3, 'landing': ns4, 'profile': ns5, 'programs': ns6, 'schools': ns7 }
   
     let res = _rest.getStaticProps(ctx)
     if(typeof res.then === 'function') res = await res

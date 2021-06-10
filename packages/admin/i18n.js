@@ -5,15 +5,6 @@ module.exports = {
     locales: ['en'],
     localesPath: 'locales',
     pages: {
-        '*': ['common'],
-        '/applications': ['application'],
-        '/applications/update': ['application', 'programs', 'profile'],
-        '/feedbacks': [],
-        '/programs': [],
-        '/programs/create': ['profile', 'programs', 'application'],
-        '/programs/update': ['profile', 'programs', 'application'],
-        '/search-alerts': [],
-        '/students': [],
-        '/students/update': ['profile', 'programs', 'application']
+        '*': ['application', 'common', 'programs', 'profile']
     }
 };
