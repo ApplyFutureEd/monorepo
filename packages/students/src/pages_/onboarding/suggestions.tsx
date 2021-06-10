@@ -4,11 +4,13 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
+import { Button } from '@applyfuture/ui';
 import { useLocalStorage, useQuery } from '@applyfuture/utils';
 import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import CardCarousel from '@components/onboarding/card-carousel/CardCarousel';
 import SkeletonCardCarousel from '@components/onboarding/card-carousel/SkeletonCardCarousel';
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC } from 'react';
 import SwiperCore, { Mousewheel, Pagination } from 'swiper/core';
@@ -53,7 +55,23 @@ const OnboardingSuggestionsPage: FC = () => {
         }
 
         if (!programsIsLoading && programs && programs.length === 0) {
-            return <div />;
+            return (
+                <div className="sm:px-6 sm:py-5">
+                    <div className="mx-auto px-4 py-12 max-w-screen-xl text-center sm:px-6 lg:px-32 lg:py-16">
+                        <h2 className="text-gray-900 text-3xl font-extrabold tracking-tight leading-9 sm:text-4xl sm:leading-10">
+                            {t('programs:no-results-heading')}
+                        </h2>
+                        <p className="mt-8">{t('programs:no-results-paragraph-1')}</p>
+                        <div className="flex justify-center mt-8">
+                            <Link href="/programs">
+                                <Button type="button" variant="primary">
+                                    {t('profile:browse-all-programs')}
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            );
         }
 
         if (programs && programs.length > 0) {
