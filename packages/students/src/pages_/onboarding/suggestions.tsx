@@ -4,7 +4,7 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
-import { createFilter, useLocalStorage, useQuery } from '@applyfuture/utils';
+import { useLocalStorage, useQuery } from '@applyfuture/utils';
 import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import CardCarousel from '@components/onboarding/card-carousel/CardCarousel';
 import SkeletonCardCarousel from '@components/onboarding/card-carousel/SkeletonCardCarousel';
@@ -29,12 +29,13 @@ const OnboardingSuggestionsPage: FC = () => {
         SearchProgramsQuery,
         SearchProgramsQueryVariables
     >(searchPrograms, {
-        ...createFilter({
-            countries: [onboarding.country],
-            degrees: [onboarding.degree],
-            displines: [onboarding.discipline],
-            highestEducationLevel: onboarding.highestEducationLevel
-        }),
+        filter: {
+            highestEducationLevel: { lte: onboarding.highestEducationLevel },
+            country: { eq: onboarding.country },
+            degree: { eq: onboarding.degree },
+            discipline: { eq: onboarding.discipline },
+            published: { eq: true }
+        },
         limit: 5
     });
 
