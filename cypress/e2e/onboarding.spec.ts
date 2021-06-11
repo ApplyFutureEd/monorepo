@@ -1,9 +1,9 @@
 describe('Onboarding tests', () => {
     it('Sign up', () => {
         cy.visit('http://localhost:3000/sign-up');
-        cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
-        cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
-        cy.findByText(/Sign Up/).click();
+        cy.findByLabelText(/email/i).type(`${Cypress.env('uuid')}@mailsac.com`);
+        cy.findByLabelText(/password/i).type(Cypress.env('uuid'));
+        cy.findByText(/sign up/i).click();
         cy.wait(5000);
     });
 
@@ -11,54 +11,57 @@ describe('Onboarding tests', () => {
         cy.visit('https://mailsac.com/');
         cy.get('.myinbox').type(Cypress.env('uuid'));
         cy.wait(5000);
-        cy.findByText(/Check the mail!/).click();
+        cy.findByText(/check the mail!/i).click();
         cy.get('tbody > tr').eq(1).click();
-        cy.findByText(/Your verification code is (.*)/).then((value) => {
+        cy.findByText(/your verification code is (.*)/i).then((value) => {
             cy.writeFile(
-                'verificationCode.txt',
-                value[0].textContent?.match(/[0-9]/gi)?.join('') || ''
+                'cypress/fixtures/verification-code.txt',
+                (value[0].textContent &&
+                    value[0].textContent.match(/[0-9]/gi) &&
+                    value[0].textContent.match(/[0-9]/gi).join('')) ||
+                    ''
             );
         });
     });
 
     it('Verify account and complete onboarding', () => {
         let verificationCode = '';
-        cy.readFile('verificationCode.txt')
+        cy.readFile('cypress/fixtures/verification-code.txt')
             .then((value) => {
                 verificationCode = value;
             })
             .then(() => {
                 cy.visit('http://localhost:3000/confirm-account');
-                cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
-                cy.findByLabelText(/Verification Code/).type(verificationCode);
-                cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
-                cy.findAllByText(/Confirm/)
-                    .eq(1)
-                    .click();
+                cy.findByLabelText(/email/i).type(`${Cypress.env('uuid')}@mailsac.com`);
+                cy.findByLabelText(/verification code/i).type(verificationCode);
+                cy.findByLabelText(/password/i).type(Cypress.env('uuid'));
+                cy.findAllByRole('button').eq(0).click();
                 cy.wait(5000);
 
-                cy.findByText(/Bachelor's Degree/).click();
-                cy.findByText(/Master's Degree/).click();
-                cy.findByText(/Business Management and Economics/).click();
-                cy.findByText(/Engineering and Technology/).click();
-                cy.findByText(/Culinary Arts/).click();
-                cy.findAllByText(/Next step/)
-                    .eq(0)
-                    .click();
-                cy.findByLabelText(/What is your nationality/).select('FR');
-                cy.findByLabelText(/Where did you study/).select('FR');
-                cy.findByLabelText(/What is your highest education level/).select('1');
-                cy.findByLabelText(/What is your current GPA/)
-                    .clear()
-                    .type('4');
-                cy.findAllByText(/Next step/)
-                    .eq(1)
-                    .click();
-                cy.findAllByText(/Yes/).eq(0).click();
-                cy.findByLabelText(/TOEFL/).type('667');
-                cy.findAllByText(/Yes/).eq(1).click();
-                cy.findByLabelText(/TCF \/ TEF/).select('2');
-                cy.get('button[type=submit]').eq(0).click();
+                cy.findByRole('textbox')
+                    .type('Fra', { force: true })
+                    .type('{enter}', { force: true });
+                cy.findByText(/next/i).click();
+                cy.wait(3000);
+
+                cy.findByRole('textbox')
+                    .type('Doc', { force: true })
+                    .type('{enter}', { force: true });
+                cy.findByText(/next/i).click();
+                cy.wait(3000);
+
+                cy.findByText(/business/i).click();
+                cy.findByText(/next/i).click();
+                cy.wait(3000);
+
+                cy.findByRole('textbox')
+                    .type('Mas', { force: true })
+                    .type('{enter}', { force: true });
+                cy.findByText(/next/i).click();
+                cy.wait(3000);
+
+                cy.findByText(/master/i).click();
+
                 cy.wait(3000);
             });
     });

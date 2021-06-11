@@ -4,5 +4,6 @@
         "noEmit": false,
         "isolatedModules": false
     },
-    "include": ["./*/*.ts"]
+    "include": ["./*/*.ts"],
+    "exclude": ["coverage", "node_modules"]
 }

@@ -11,57 +11,71 @@ describe('Profile tests', () => {
         cy.findByText(/Profile/).click();
         cy.wait(3000);
 
-        cy.get('input[name=phoneNumber]').clear().type('+33621122955');
+        cy.get('input[name=phoneNumber]')
+            .clear({ force: true })
+            .type('+33621122955', { force: true });
         cy.findAllByLabelText(/Address/)
             .eq(0)
-            .clear()
-            .type('33 rue du General Leclerc');
+            .clear({ force: true })
+            .type('33 rue du General Leclerc', { force: true });
         cy.wait(2000);
         cy.findAllByLabelText(/First Name/)
             .eq(0)
-            .clear()
-            .type('Paul');
+            .clear({ force: true })
+            .type('Paul', { force: true });
         cy.findAllByLabelText(/Last Name/)
             .eq(0)
-            .clear()
-            .type('Cailly');
-        cy.get('.react-datepicker__input-container > input').clear().type('11/01/1995');
-        cy.findByLabelText(/First Language/).select('FR');
-        cy.findByLabelText(/Nationality/).select('FR');
+            .clear({ force: true })
+            .type('Cailly', { force: true });
+        cy.get('.react-datepicker__input-container > input')
+            .clear({ force: true })
+            .type('11/01/1995', { force: true });
+        cy.findByLabelText(/First Language/)
+            .type('Fra', { force: true })
+            .type('{enter}', { force: true });
+        cy.findByLabelText(/Nationality/)
+            .type('Fra', { force: true })
+            .type('{enter}', { force: true });
         cy.findByLabelText(/Passport Number/)
-            .clear()
-            .type('N123456789');
-        cy.findByLabelText(/Gender/).select('male');
-        cy.findByLabelText(/Marital Status/).select('married');
+            .clear({ force: true })
+            .type('N123456789', { force: true });
+        cy.findByLabelText(/Gender/)
+            .type('Mal', { force: true })
+            .type('{enter}', { force: true });
+        cy.findByLabelText(/Marital Status/)
+            .type('Mar', { force: true })
+            .type('{enter}', { force: true });
         cy.findByLabelText(/Father's First Name/)
-            .clear()
-            .type('Philippe');
+            .clear({ force: true })
+            .type('Philippe', { force: true });
         cy.findByLabelText(/Father's Last Name/)
-            .clear()
-            .type('Cailly');
+            .clear({ force: true })
+            .type('Cailly', { force: true });
         cy.findByLabelText(/Mother's First Name/)
-            .clear()
-            .type('Juliette');
+            .clear({ force: true })
+            .type('Juliette', { force: true });
         cy.findByLabelText(/Mother's Maiden Name/)
-            .clear()
-            .type('Lang');
+            .clear({ force: true })
+            .type('Lang', { force: true });
         cy.findByLabelText(/Guardian\/Sponsor's First Name/)
-            .clear()
+            .clear({ force: true })
             .type('Ying');
         cy.findByLabelText(/Guardian\/Sponsor's Last Name/)
-            .clear()
-            .type('Zhang');
+            .clear({ force: true })
+            .type('Zhang', { force: true });
         cy.findAllByLabelText(/Address/)
             .eq(1)
-            .clear()
-            .type('5 chemin du Moulin');
+            .clear({ force: true })
+            .type('5 chemin du Moulin', { force: true });
         cy.wait(2000);
-        cy.get('input[name=parentsPhoneNumber]').clear().type('+33616768383');
+        cy.get('input[name=parentsPhoneNumber]')
+            .clear({ force: true })
+            .type('+33616768383', { force: true });
         cy.findByLabelText(/Parents Email/)
-            .clear()
-            .type('philippe@cailly.eu');
+            .clear({ force: true })
+            .type('philippe@cailly.eu', { force: true });
 
-        cy.findByText(/Save/).click();
+        cy.findByText(/Save/).click({ force: true });
         cy.wait(2000);
 
         cy.findByText(/Information updated/).should('exist');
@@ -75,18 +89,27 @@ describe('Profile tests', () => {
 
         cy.findByLabelText(/Education Country/).select('FR');
         cy.findByLabelText(/Highest Education Level/).select('1');
-        cy.findByLabelText(/GPA/).clear().type('4');
-        cy.findByLabelText(/Name/).clear().type('Wild Code School');
+        cy.findByLabelText(/GPA/).clear({ force: true }).type('4');
+        cy.findByLabelText(/Name/).clear({ force: true }).type('Wild Code School');
         cy.findByLabelText(/Address/)
-            .clear()
+            .clear({ force: true })
             .type('44 Rue Alphonse Penaud');
         cy.wait(2000);
         cy.findByLabelText(/Level of Education/).select('3');
         cy.findByLabelText(/Primary Language Instruction/).select('FR');
         cy.findByLabelText(/Degree Awarded/).select('3');
-        cy.get('.react-datepicker__input-container > input').eq(0).clear().type('06/01/2020');
-        cy.get('.react-datepicker__input-container > input').eq(1).clear().type('01/01/2020');
-        cy.get('.react-datepicker__input-container > input').eq(2).clear().type('05/01/2020');
+        cy.get('.react-datepicker__input-container > input')
+            .eq(0)
+            .clear({ force: true })
+            .type('06/01/2020');
+        cy.get('.react-datepicker__input-container > input')
+            .eq(1)
+            .clear({ force: true })
+            .type('01/01/2020');
+        cy.get('.react-datepicker__input-container > input')
+            .eq(2)
+            .clear({ force: true })
+            .type('05/01/2020');
 
         cy.findByText(/Save/).click();
         cy.wait(2000);
@@ -105,20 +128,26 @@ describe('Profile tests', () => {
         cy.findAllByText(/No/).eq(1).click();
         cy.findAllByText(/Yes/).eq(1).click();
         cy.findByLabelText(/If you answered/)
-            .clear()
+            .clear({ force: true })
             .type('I have been refused a visa because...');
         cy.findByLabelText(/Job Title/)
-            .clear()
+            .clear({ force: true })
             .type('Web Developer');
         cy.findByLabelText(/Company Name/)
-            .clear()
+            .clear({ force: true })
             .type('Deezer');
         cy.findByLabelText(/Address/)
-            .clear()
+            .clear({ force: true })
             .type('24 rue de Calais');
         cy.wait(2000);
-        cy.get('.react-datepicker__input-container > input').eq(0).clear().type('01/01/2020');
-        cy.get('.react-datepicker__input-container > input').eq(1).clear().type('06/01/2020');
+        cy.get('.react-datepicker__input-container > input')
+            .eq(0)
+            .clear({ force: true })
+            .type('01/01/2020');
+        cy.get('.react-datepicker__input-container > input')
+            .eq(1)
+            .clear({ force: true })
+            .type('06/01/2020');
 
         cy.findByText(/Save/).click();
         cy.wait(2000);
