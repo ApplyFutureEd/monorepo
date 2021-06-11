@@ -1,6 +1,6 @@
 describe('Application tests', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/sign-in');
+        cy.visit('https://students-applyfuture.vercel.app/sign-in');
         cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
         cy.findByText(/Sign In/).click();
@@ -8,25 +8,25 @@ describe('Application tests', () => {
     });
 
     it('Fill an application', () => {
-        cy.findAllByText(/bachelor in/i)
-            .eq(0)
-            .click();
+        cy.visit(
+            'https://students-applyfuture.vercel.app/programs/masters-degree-programme-in-tourism-management-major-of-the-master-in-fashion-luxury-tourism-management-luiss-business-school-roma'
+        );
         cy.wait(3000);
 
-        cy.findByRole('button', { name: /apply/i }).click();
-        cy.findAllByRole('button', { name: /202/i }).eq(0).click();
+        cy.findByRole('button', { name: /apply/i }).click({ force: true });
+        cy.findAllByRole('button', { name: /202/i }).eq(0).click({ force: true });
+        cy.wait(5000);
+
         cy.get('[type="file"]').eq(0).attachFile('sample.jpg');
         cy.wait(5000);
 
-        cy.findByText(/next step/i).click();
+        cy.findByText(/next step/i).click({ force: true });
         cy.wait(15000);
 
-        cy.get('input[type=checkbox]').eq(0).check();
-        cy.findByLabelText(/close/i).click();
-        cy.get('input[type=checkbox]').eq(1).check();
+        cy.get('input[type=checkbox]').eq(0).check({ force: true });
 
-        cy.findByText(/next step/i).click();
+        cy.findByText(/next step/i).click({ force: true });
         cy.wait(3000);
-        cy.findByText(/follow my application/i).click();
+        cy.findByText(/follow my application/i).click({ force: true });
     });
 });

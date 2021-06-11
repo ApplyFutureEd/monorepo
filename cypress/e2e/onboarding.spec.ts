@@ -1,6 +1,6 @@
 describe('Onboarding tests', () => {
     it('Sign up', () => {
-        cy.visit('http://localhost:3000/sign-up');
+        cy.visit('https://students-applyfuture.vercel.app/sign-up');
         cy.findByLabelText(/email/i).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/password/i).type(Cypress.env('uuid'));
         cy.findByText(/sign up/i).click();
@@ -31,7 +31,7 @@ describe('Onboarding tests', () => {
                 verificationCode = value;
             })
             .then(() => {
-                cy.visit('http://localhost:3000/confirm-account');
+                cy.visit('https://students-applyfuture.vercel.app/confirm-account');
                 cy.findByLabelText(/email/i).type(`${Cypress.env('uuid')}@mailsac.com`);
                 cy.findByLabelText(/verification code/i).type(verificationCode);
                 cy.findByLabelText(/password/i).type(Cypress.env('uuid'));
@@ -60,7 +60,9 @@ describe('Onboarding tests', () => {
                 cy.findByText(/next/i).click();
                 cy.wait(3000);
 
-                cy.findByText(/master/i).click();
+                cy.findAllByText(/master/i)
+                    .eq(0)
+                    .click();
 
                 cy.wait(3000);
             });
