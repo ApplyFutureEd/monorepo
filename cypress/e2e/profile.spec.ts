@@ -1,6 +1,6 @@
 describe('Profile tests', () => {
     beforeEach(() => {
-        cy.visit('https://students-applyfuture.vercel.app/sign-in');
+        cy.visit('/sign-in');
         cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
         cy.findByText(/Sign In/).click();

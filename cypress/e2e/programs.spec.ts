@@ -1,6 +1,6 @@
 describe('Programs tests', () => {
     beforeEach(() => {
-        cy.visit('https://students-applyfuture.vercel.app/programs');
+        cy.visit('/programs');
         cy.wait(3000);
     });
 

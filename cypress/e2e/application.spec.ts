@@ -1,6 +1,6 @@
 describe('Application tests', () => {
     beforeEach(() => {
-        cy.visit('https://students-applyfuture.vercel.app/sign-in');
+        cy.visit('/sign-in');
         cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
         cy.findByText(/Sign In/).click();
@@ -9,7 +9,7 @@ describe('Application tests', () => {
 
     it('Fill an application', () => {
         cy.visit(
-            'https://students-applyfuture.vercel.app/programs/masters-degree-programme-in-tourism-management-major-of-the-master-in-fashion-luxury-tourism-management-luiss-business-school-roma'
+            '/programs/masters-degree-programme-in-tourism-management-major-of-the-master-in-fashion-luxury-tourism-management-luiss-business-school-roma'
         );
         cy.wait(3000);
 

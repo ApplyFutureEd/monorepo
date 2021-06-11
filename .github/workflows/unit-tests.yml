@@ -1,12 +1,12 @@
+name: unit-tests
 on:
     push:
         branches:
             - master
     pull_request:
         types: [opened, synchronize, reopened]
-name: Main
 jobs:
-    code-quality:
+    unit-tests:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -25,3 +25,14 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      e2e-tests:
+        if: github.event.deployment_status.state == 'success'
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout 🛎
+            uses: actions/checkout@v1
+          - name: Run Cypress 🌲
+            uses: cypress-io/github-action@v2
+            env:
+              CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
+
