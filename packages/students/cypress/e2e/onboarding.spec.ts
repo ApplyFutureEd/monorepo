@@ -15,7 +15,7 @@ describe('Onboarding tests', () => {
         cy.get('tbody > tr').eq(1).click();
         cy.findByText(/your verification code is (.*)/i).then((value) => {
             cy.writeFile(
-                'cypress/fixtures/verification-code.txt',
+                'packages/students/cypress/fixtures/verification-code.txt',
                 (value[0].textContent &&
                     value[0].textContent.match(/[0-9]/gi) &&
                     value[0].textContent.match(/[0-9]/gi).join('')) ||
@@ -26,7 +26,7 @@ describe('Onboarding tests', () => {
 
     it('Verify account and complete onboarding', () => {
         let verificationCode = '';
-        cy.readFile('cypress/fixtures/verification-code.txt')
+        cy.readFile('packages/students/cypress/fixtures/verification-code.txt')
             .then((value) => {
                 verificationCode = value;
             })

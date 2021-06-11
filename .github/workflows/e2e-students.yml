@@ -1,0 +1,19 @@
+name: e2e-students
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+on:
+    push:
+        # only run this workflow when something in the app-a changes
+        # or in this workflow file
+        paths:
+            - 'packages/students/**'
+            - .github/workflows/e2e-students.yml
+jobs:
+    test:
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Cypress tests 🧪
+              uses: cypress-io/github-action@v2
+              with:
+                  project: packages/students
