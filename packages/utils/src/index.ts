@@ -46,6 +46,8 @@ export * from './helpers/whyDidYouRender';
 export * from './hocs/withPrivateAccess';
 
 export * from './hooks/useAuthenticatedUser';
+export * from './hooks/useHotKey';
+export * from './hooks/useLocaleStorage';
 export * from './hooks/useOutsideAlerter';
 export * from './hooks/usePageBottom';
 export * from './hooks/useQuery';

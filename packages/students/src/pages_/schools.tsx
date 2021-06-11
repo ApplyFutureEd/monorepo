@@ -78,14 +78,14 @@ const SchoolsPage: FC = () => {
             );
         }
 
-        if (!isLoading && schools && schools?.length === 0) {
+        if (!isLoading && schools && schools.length === 0) {
             return <NoResult variables={variables} />;
         }
 
-        if (schools && schools?.length > 0) {
+        if (schools && schools.length > 0) {
             return (
                 <div className="grid gap-5 grid-cols-1 mt-5 sm:grid-cols-3">
-                    {schools?.map((school) => (
+                    {schools.map((school) => (
                         <Card key={school?.id} school={school} />
                     ))}
                 </div>
