@@ -166,14 +166,14 @@ const ProgramsPage: FC = () => {
             return skeletons.map((_skeleton, index) => <SkeletonRow key={index} />);
         }
 
-        if (!programsIsLoading && programs && programs?.length === 0) {
+        if (!programsIsLoading && programs && programs.length === 0) {
             return <NoResult variables={variables} />;
         }
 
-        if (programs && programs?.length > 0) {
+        if (programs && programs.length > 0) {
             return (
                 <>
-                    {programs?.map((program) => (
+                    {programs.map((program) => (
                         <Row
                             key={program?.id}
                             documents={documents}

@@ -5,8 +5,8 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start:students": "cd packages/students && yarn start",
-        "build:students": "cd packages/students && yarn build",
+        "start:students": "NODE_OPTIONS=--max_old_space_size=8192 cd packages/students && yarn start",
+        "build:students": "NODE_OPTIONS=--max_old_space_size=8192 cd packages/students && yarn build",
         "start:admin": "cd packages/admin && yarn start",
         "build:admin": "cd packages/admin && yarn build",
         "lint": "eslint --fix .",

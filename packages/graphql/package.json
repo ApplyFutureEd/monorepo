@@ -4,5 +4,12 @@
     "main": "src/index.ts",
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "scripts": {
+        "generate-exports": "ts-node ./src/generateExports.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^15.3.1",
+        "ts-node": "^9.1.1"
+    }
 }

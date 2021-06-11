@@ -57,7 +57,7 @@ const Students: FC = () => {
                                     {t('landing:students-explanations')}
                                 </p>
                                 <div className="flex justify-center mt-6">
-                                    <Link href={user ? '/programs' : '/sign-up'}>
+                                    <Link href={user ? '/programs' : '/onboarding/country'}>
                                         <Button variant="primary">
                                             {t('landing:students-cta')}
                                         </Button>
