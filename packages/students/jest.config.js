@@ -14,5 +14,6 @@ module.exports = {
     modulePaths: [`<rootDir>/packages/${packageName}/src/`],
     name: packageName,
     rootDir: '../..',
-    roots: [`<rootDir>/packages/${packageName}`]
+    roots: [`<rootDir>/packages/${packageName}`],
+    testPathIgnorePatterns: [`<rootDir>/packages/${packageName}/cypress/`]
 };

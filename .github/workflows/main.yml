@@ -35,4 +35,4 @@ jobs:
               uses: cypress-io/github-action@v1
               with:
                   start: yarn start:students
-                  command: yarn cy:run:students
+                  command: node packages/students/cypress-run
