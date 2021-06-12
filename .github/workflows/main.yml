@@ -42,4 +42,4 @@ jobs:
               with:
                   install-command: yarn
                   start: yarn start:students
-                  command: node packages/students/cypress-run
+                  command: cd packages/students && node cypress-run
