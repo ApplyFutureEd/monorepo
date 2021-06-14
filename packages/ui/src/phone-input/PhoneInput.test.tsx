@@ -70,9 +70,7 @@ describe('PhoneInput', () => {
 
         const input = screen.getByRole('textbox').closest('div');
 
-        expect(input).toHaveClass(baseClasses);
         expect(input).toHaveClass(`${baseClasses} PhoneInput`);
-
         expect(input).not.toHaveClass(disabledClasses);
         expect(input).not.toHaveClass(onErrorClasses);
     });
