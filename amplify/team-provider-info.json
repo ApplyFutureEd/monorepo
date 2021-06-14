@@ -41,7 +41,7 @@
         },
         "feespayment": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/feespayment-62796a62586176753062-build.zip"
+          "s3Key": "amplify-builds/feespayment-7252514f384765355a6a-build.zip"
         },
         "applicationarchive": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
@@ -49,7 +49,7 @@
         },
         "emailnotification": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/emailnotification-4f4a3951312f4335475a-build.zip"
+          "s3Key": "amplify-builds/emailnotification-476470614b5a49776b47-build.zip"
         }
       }
     }

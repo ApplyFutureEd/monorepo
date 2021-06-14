@@ -43,6 +43,9 @@ const SignInForm: FC = () => {
                 password,
                 username: email.toLowerCase()
             });
+            if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+                return router.push(`/new-password?email=${email}&old-password=${password}`);
+            }
             handleAuth(user);
             const data = await graphql<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
                 getStudentByEmail,
@@ -114,6 +117,7 @@ const SignInForm: FC = () => {
             }
             return router.push((router.query.from as string) || '/programs');
         } catch (error) {
+            console.log(error);
             let message = t('auth:error-generic-exception');
             if (error.code === 'NotAuthorizedException') {
                 message = t('auth:error-not-authorized-exception');

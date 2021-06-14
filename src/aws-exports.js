@@ -14,13 +14,15 @@ const awsmobile = {
     "aws_appsync_apiKey": "da2-mgsxxjw53jfyzjhhactyn3fomi",
     "aws_cloud_logic_custom": [
         {
-            "name": "REST",
-            "endpoint": "https://2cg2y5lqq9.execute-api.ap-southeast-1.amazonaws.com/dev",
+            "name": "rest",
+            "endpoint": "https://dxf5rgz8x3.execute-api.ap-southeast-1.amazonaws.com/dev",
             "region": "ap-southeast-1"
         }
     ],
     "aws_user_files_s3_bucket": "applyfuture-students-content162403-dev",
-    "aws_user_files_s3_bucket_region": "ap-southeast-1"
+    "aws_user_files_s3_bucket_region": "ap-southeast-1",
+    "aws_mobile_analytics_app_id": "1b1231e1f78d402cbc2c5b7de6fc577c",
+    "aws_mobile_analytics_app_region": "us-west-2"
 };
 
 

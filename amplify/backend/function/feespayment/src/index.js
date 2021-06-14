@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
-const stripe = require('stripe')('sk_test_51GtwStKTwG5G2eRQ2zeFPemYK2bAHNt9YFt9qr8X8045ZukVrmpHPJNhgw5W2SF9WkwWxUMlyfhJZyLWb1WCbSIB00NcEehv19');
+const stripe = require('stripe')('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');
 exports.handler = async (event) => {
     try {
         if (!event.body) {

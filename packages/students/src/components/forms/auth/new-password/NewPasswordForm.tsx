@@ -2,55 +2,50 @@ import { Button, Input } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 import { object, string } from 'yup';
 
-const ConfirmForgotPasswordForm: FC = () => {
+const NewPasswordForm: FC = () => {
     const router = useRouter();
     const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
 
     const validationSchema = object().shape({
-        email: string()
-            .required(t('common:error-email-required'))
-            .email(t('common:error-email-format')),
+        email: string().required(t('auth:error-email-required')),
         newPassword: string().required(t('auth:error-password-required')),
-        verificationCode: string().required(t('common:error-required'))
+        oldPassword: string().required(t('auth:error-password-required'))
     });
 
     type FormValues = {
         email: string;
+        oldPassword: string;
         newPassword: string;
-        verificationCode: string;
     };
 
     const initialValues: FormValues = {
         email: (router.query.email as string) || '',
         newPassword: '',
-        verificationCode: (router.query.code as string) || ''
+        oldPassword: (router.query['old-password'] as string) || ''
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        const { email, newPassword, verificationCode } = values;
+        const { email, oldPassword, newPassword } = values;
         try {
-            await Auth.forgotPasswordSubmit(email.toLowerCase(), verificationCode, newPassword);
+            const user = await Auth.signIn({
+                password: oldPassword,
+                username: email.toLowerCase()
+            });
+            await Auth.completeNewPassword(user, newPassword);
             toast({
                 description: t('auth:new-password-description-toast'),
                 title: t('auth:new-password-title-toast'),
                 variant: 'success'
             });
-            return router.push(`/sign-in?email=${email}`);
+            return router.push('/programs');
         } catch (error) {
-            let message = t('auth:error-generic-exception');
-            if (error.code === 'ExpiredCodeException') {
-                message = t('auth:error-expired-code-exception');
-            }
-            if (error.code === 'CodeMismatchException') {
-                message = t('auth:error-code-mismatch-exception');
-            }
+            const message = t('auth:error-generic-exception');
             setErrorMessage(message);
         }
         actions.setSubmitting(false);
@@ -71,16 +66,16 @@ const ConfirmForgotPasswordForm: FC = () => {
                                 <Input
                                     autoCapitalize="none"
                                     label={t('auth:email')}
-                                    type="text"
                                     {...fieldProps}
                                 />
                             )}
                         </Field>
-                        <Field id="verificationCode" name="verificationCode">
+                        <Field id="oldPassword" name="oldPassword">
                             {(fieldProps: FieldProps) => (
                                 <Input
-                                    label={t('auth:verification-code')}
-                                    type="text"
+                                    autoCapitalize="none"
+                                    label={t('auth:old-password')}
+                                    type="password"
                                     {...fieldProps}
                                 />
                             )}
@@ -95,14 +90,7 @@ const ConfirmForgotPasswordForm: FC = () => {
                                 />
                             )}
                         </Field>
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm leading-5">
-                                <Link href="/sign-in">
-                                    <div className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer transition duration-150 ease-in-out">
-                                        {t('auth:cancel')}
-                                    </div>
-                                </Link>
-                            </div>
+                        <div className="flex justify-end">
                             <Button
                                 disabled={isSubmitting}
                                 isSubmitting={isSubmitting}
@@ -121,4 +109,4 @@ const ConfirmForgotPasswordForm: FC = () => {
     );
 };
 
-export default ConfirmForgotPasswordForm;
+export default NewPasswordForm;
