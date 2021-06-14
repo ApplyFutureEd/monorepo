@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { PhoneInput } from './PhoneInput';
 
 describe('PhoneInput', () => {
-    const baseClasses = 'form-input block w-full text-sm leading-5 min-h-input';
+    const baseClasses = 'form-input flex w-full text-sm leading-5 min-h-input';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
@@ -70,7 +70,7 @@ describe('PhoneInput', () => {
 
         const input = screen.getByRole('textbox').closest('div');
 
-        expect(input).toHaveClass(baseClasses);
+        expect(input).toHaveClass(`${baseClasses} PhoneInput`);
         expect(input).not.toHaveClass(disabledClasses);
         expect(input).not.toHaveClass(onErrorClasses);
     });
@@ -103,8 +103,7 @@ describe('PhoneInput', () => {
         const input = screen.getByRole('textbox').closest('div');
 
         expect(input).toBeInTheDocument();
-        expect(input).toHaveClass(baseClasses);
-        expect(input).toHaveClass(disabledClasses);
+        expect(input).toHaveClass(`${baseClasses} ${disabledClasses} PhoneInput`);
         expect(input).not.toHaveClass(onErrorClasses);
     });
 
@@ -125,8 +124,7 @@ describe('PhoneInput', () => {
         const input = screen.getByRole('textbox').closest('div');
 
         expect(input).toBeInTheDocument();
-        expect(input).toHaveClass(baseClasses);
-        expect(input).toHaveClass(onErrorClasses);
+        expect(input).toHaveClass(`${baseClasses} ${onErrorClasses} PhoneInput`);
         expect(input).not.toHaveClass(disabledClasses);
     });
 

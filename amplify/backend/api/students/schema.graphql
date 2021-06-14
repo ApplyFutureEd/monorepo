@@ -140,7 +140,6 @@ type Student
     guardianFirstName: String
     guardianLastName: String
     hasMandatoryDocuments: Boolean
-    onboardingCompleted: Boolean
     highestEducationLevel: Float
     lastName: String
     lastUpdate: Float!

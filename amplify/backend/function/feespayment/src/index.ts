@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 const stripe = require('stripe')(
-    'sk_test_51GtwStKTwG5G2eRQ2zeFPemYK2bAHNt9YFt9qr8X8045ZukVrmpHPJNhgw5W2SF9WkwWxUMlyfhJZyLWb1WCbSIB00NcEehv19'
+    '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'
 );
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
