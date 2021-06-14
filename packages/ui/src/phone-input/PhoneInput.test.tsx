@@ -71,6 +71,8 @@ describe('PhoneInput', () => {
         const input = screen.getByRole('textbox').closest('div');
 
         expect(input).toHaveClass(baseClasses);
+        expect(input).toHaveClass(`${baseClasses} PhoneInput`);
+
         expect(input).not.toHaveClass(disabledClasses);
         expect(input).not.toHaveClass(onErrorClasses);
     });
@@ -103,8 +105,7 @@ describe('PhoneInput', () => {
         const input = screen.getByRole('textbox').closest('div');
 
         expect(input).toBeInTheDocument();
-        expect(input).toHaveClass(baseClasses);
-        expect(input).toHaveClass(disabledClasses);
+        expect(input).toHaveClass(`${baseClasses} ${disabledClasses} PhoneInput`);
         expect(input).not.toHaveClass(onErrorClasses);
     });
 
@@ -125,8 +126,7 @@ describe('PhoneInput', () => {
         const input = screen.getByRole('textbox').closest('div');
 
         expect(input).toBeInTheDocument();
-        expect(input).toHaveClass(baseClasses);
-        expect(input).toHaveClass(onErrorClasses);
+        expect(input).toHaveClass(`${baseClasses} ${onErrorClasses} PhoneInput`);
         expect(input).not.toHaveClass(disabledClasses);
     });
 
