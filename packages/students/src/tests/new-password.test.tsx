@@ -80,7 +80,7 @@ describe('NewPassword', () => {
                 password: fakeUser.oldPassword,
                 username: fakeUser.email
             });
-            expect(Auth.completeNewPassword).toHaveBeenCalledWith(undefined, fakeUser.newPassword);
+            expect(Auth.completeNewPassword).toHaveBeenCalledWith(true, fakeUser.newPassword);
         });
     });
 
