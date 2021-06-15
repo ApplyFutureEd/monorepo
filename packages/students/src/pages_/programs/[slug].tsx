@@ -163,12 +163,7 @@ const ProgramPage: FC<Props> = (props) => {
         );
     };
 
-    const actionComponents = [
-        <Button key={0} startIcon={faHeart} type="button" variant="secondary">
-            {t('programs:favorite')}
-        </Button>,
-        <Fragment key={1}>{renderMainActionButton()}</Fragment>
-    ];
+    const actionComponents = [<Fragment key={0}>{renderMainActionButton()}</Fragment>];
 
     const subtitleComponents = [
         <Link key={0} href={`/schools/${program?.school?.slug}`}>

@@ -56,12 +56,6 @@ const SchoolPage: FC<Props> = (props) => {
         return <div>Loading...</div>;
     }
 
-    const actionComponents = [
-        <Button key={0} startIcon={faHeart} type="button" variant="secondary">
-            {t('schools:favorite')}
-        </Button>
-    ];
-
     const subtitleComponents = [
         <div key={0} className="flex items-baseline space-x-1">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -103,7 +97,6 @@ const SchoolPage: FC<Props> = (props) => {
                             src={`${process.env.ASSETS_CDN_URL}/${school?.coverPhoto}` || ''}
                         />
                         <SubHeader
-                            actionComponents={actionComponents}
                             src={`${process.env.ASSETS_CDN_URL}/${school?.logo}` || ''}
                             subtitleComponents={subtitleComponents}
                             title={school.name}
