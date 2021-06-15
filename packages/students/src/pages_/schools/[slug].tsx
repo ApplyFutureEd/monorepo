@@ -12,13 +12,12 @@ import {
     listSchools,
     ListSchoolsQuery
 } from '@applyfuture/graphql';
-import { Button, Container, Cover, SubHeader } from '@applyfuture/ui';
+import { Container, Cover, SubHeader } from '@applyfuture/ui';
 import { getCountryLabel, markdown, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Row from '@components/programs/row/Row';
 import Indicators from '@components/schools/indicators/Indicators';
-import { faHeart } from '@fortawesome/pro-light-svg-icons';
 import { faMapMarkerAlt, faPortrait } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { API } from 'aws-amplify';

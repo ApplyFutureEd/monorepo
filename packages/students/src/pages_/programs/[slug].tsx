@@ -35,7 +35,7 @@ import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayou
 import EligibilityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
 import Indicators from '@components/programs/indicators/Indicators';
 import IntakesModal from '@components/programs/intakes-modal/IntakesModal';
-import { faBook, faCalendar, faHeart, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
+import { faBook, faCalendar, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
