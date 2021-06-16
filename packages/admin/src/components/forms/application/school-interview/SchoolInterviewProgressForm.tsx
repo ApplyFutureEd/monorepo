@@ -71,7 +71,9 @@ const SchoolInterviewProgressForm: FC<Props> = (props) => {
                 return (
                     <Form className="flex space-x-2">
                         <Field id="interviewDate" name="interviewDate">
-                            {(fieldProps: FieldProps) => <DateInput {...fieldProps} />}
+                            {(fieldProps: FieldProps) => (
+                                <DateInput minDate={new Date()} {...fieldProps} />
+                            )}
                         </Field>
 
                         <Button

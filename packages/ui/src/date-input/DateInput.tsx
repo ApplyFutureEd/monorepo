@@ -41,6 +41,10 @@ type Props = {
      */
     maxDate?: Date | null;
     /**
+     * The minimum date accepted.
+     */
+    minDate?: Date | null;
+    /**
      * An object that contains relevant computed metadata.
      *
      * https://formik.org/docs/api/useField#fieldmetapropsvalue
