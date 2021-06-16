@@ -94,7 +94,9 @@ const VisaProgressForm: FC<Props> = (props) => {
                 return (
                     <Form className="flex space-x-2">
                         <Field id="visaDate" name="visaDate">
-                            {(fieldProps: FieldProps) => <DateInput {...fieldProps} />}
+                            {(fieldProps: FieldProps) => (
+                                <DateInput maxDate={new Date()} {...fieldProps} />
+                            )}
                         </Field>
 
                         <Button
