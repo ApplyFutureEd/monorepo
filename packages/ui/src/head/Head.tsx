@@ -25,7 +25,6 @@ export const Head: FC<Props> = (props) => {
             <title>{title} - ApplyFuture</title>
             <meta content={description} name="description" />
             <meta content="width=device-width, initial-scale=1" name="viewport" />
-            <meta key="robots" content="noindex,nofollow" name="robots" />
             <link href="https://fonts.gstatic.com" rel="preconnect" />
             <link
                 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap"
