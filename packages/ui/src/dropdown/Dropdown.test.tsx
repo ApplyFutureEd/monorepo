@@ -1,4 +1,4 @@
-import { faHeart, faSignOut, faUser } from '@fortawesome/pro-light-svg-icons';
+import { faSignOut, faUser } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
@@ -27,11 +27,6 @@ describe('UserMenu', () => {
     );
 
     const items: Array<DropdownItem> = [
-        {
-            label: 'Favorites',
-            onClick: handleFavorites,
-            startIcon: faHeart
-        },
         {
             label: 'Sign out',
             onClick: handleSignOut,

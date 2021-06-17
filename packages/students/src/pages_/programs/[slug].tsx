@@ -35,7 +35,7 @@ import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayou
 import EligibilityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
 import Indicators from '@components/programs/indicators/Indicators';
 import IntakesModal from '@components/programs/intakes-modal/IntakesModal';
-import { faBook, faCalendar, faHeart, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
+import { faBook, faCalendar, faLock, faMoneyBill } from '@fortawesome/pro-light-svg-icons';
 import {
     faMapMarkerAlt,
     faPortrait,
@@ -163,12 +163,7 @@ const ProgramPage: FC<Props> = (props) => {
         );
     };
 
-    const actionComponents = [
-        <Button key={0} startIcon={faHeart} type="button" variant="secondary">
-            {t('programs:favorite')}
-        </Button>,
-        <Fragment key={1}>{renderMainActionButton()}</Fragment>
-    ];
+    const actionComponents = [<Fragment key={0}>{renderMainActionButton()}</Fragment>];
 
     const subtitleComponents = [
         <Link key={0} href={`/schools/${program?.school?.slug}`}>

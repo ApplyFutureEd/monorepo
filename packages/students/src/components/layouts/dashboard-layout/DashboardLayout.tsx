@@ -18,11 +18,10 @@ import {
 import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import CookiesBanner from '@components/common/cookies-banner/CookiesBanner';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
-import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, ReactNode, useState } from 'react';
 
@@ -35,7 +34,6 @@ type Props = {
 const DashboardLayout: FC<Props> = (props) => {
     const { children, description, title } = props;
     const { user } = useAuthenticatedUser();
-    const router = useRouter();
     const { t } = useTranslation();
 
     const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
@@ -56,21 +54,12 @@ const DashboardLayout: FC<Props> = (props) => {
         setOpenMobileMenu(true);
     };
 
-    const handleFavorites = () => {
-        router.push('/favorites');
-    };
-
     const handleSignOut = () => {
         Auth.signOut();
         window.location.reload();
     };
 
     const userMenuItems: Array<DropdownItem> = [
-        {
-            label: t('navigation:favorites'),
-            onClick: handleFavorites,
-            startIcon: faHeart
-        },
         {
             label: t('navigation:sign-out'),
             onClick: handleSignOut,

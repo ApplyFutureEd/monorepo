@@ -1,4 +1,4 @@
-import { faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
 
@@ -25,11 +25,6 @@ window.location = ({ reload: jest.fn() } as unknown) as Location;
 
 describe('UserMenu', () => {
     const items: Array<DropdownItem> = [
-        {
-            label: 'navigation:favorites',
-            onClick: jest.fn(),
-            startIcon: faHeart
-        },
         {
             label: 'navigation:sign-out',
             onClick: jest.fn().mockImplementation(() => {

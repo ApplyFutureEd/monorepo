@@ -19,7 +19,7 @@ import {
 import { useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import CookiesBanner from '@components/common/cookies-banner/CookiesBanner';
 import { loggedRoutes, unloggedRoutes } from '@components/layouts/routes';
-import { faBars, faHeart, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
@@ -67,11 +67,6 @@ const LandingLayout: FC<Props> = (props) => {
     };
 
     const userMenuItems: Array<DropdownItem> = [
-        {
-            label: t('navigation:favorites'),
-            onClick: handleFavorites,
-            startIcon: faHeart
-        },
         {
             label: t('navigation:sign-out'),
             onClick: handleSignOut,
