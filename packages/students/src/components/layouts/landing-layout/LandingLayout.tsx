@@ -57,10 +57,6 @@ const LandingLayout: FC<Props> = (props) => {
         setOpenMobileMenu(true);
     };
 
-    const handleFavorites = () => {
-        router.push('/favorites');
-    };
-
     const handleSignOut = () => {
         Auth.signOut();
         window.location.reload();

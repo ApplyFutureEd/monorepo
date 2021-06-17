@@ -50,23 +50,9 @@ describe('UserMenu', () => {
 
         fireEvent.click(button);
 
-        const favorites = screen.getByText(/favorites/);
         const signOut = screen.getByText(/sign-out/);
 
-        expect(favorites).toBeVisible();
         expect(signOut).toBeVisible();
-    });
-
-    it('can close the menu and navigate to /favorites', () => {
-        render(<UserMenu items={items} />);
-
-        const button = screen.getByRole('button');
-
-        fireEvent.click(button);
-
-        const signOut = screen.getByText(/favorites/);
-
-        fireEvent.click(signOut);
     });
 
     it('can sign out and reload the page', () => {

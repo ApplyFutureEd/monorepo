@@ -8,7 +8,6 @@ import { Dropdown, DropdownItem } from './Dropdown';
 describe('UserMenu', () => {
     const handleToggle = jest.fn();
     const handleClose = jest.fn();
-    const handleFavorites = jest.fn();
     const handleSignOut = jest.fn();
 
     const trigger = (
@@ -61,10 +60,8 @@ describe('UserMenu', () => {
             />
         );
 
-        const favorites = screen.getByText(/favorites/i);
         const signOut = screen.getByText(/sign out/i);
 
-        expect(favorites).toBeVisible();
         expect(signOut).toBeVisible();
     });
 
@@ -97,13 +94,10 @@ describe('UserMenu', () => {
             />
         );
 
-        const favorites = screen.getByText(/favorites/i);
         const signOut = screen.getByText(/sign out/i);
 
-        fireEvent.click(favorites);
         fireEvent.click(signOut);
 
-        expect(handleFavorites).toHaveBeenCalled();
         expect(handleSignOut).toHaveBeenCalled();
     });
 });
