@@ -23,7 +23,6 @@ import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, ReactNode, useState } from 'react';
 
@@ -36,7 +35,6 @@ type Props = {
 const LandingLayout: FC<Props> = (props) => {
     const { children, description, title } = props;
     const { user } = useAuthenticatedUser();
-    const router = useRouter();
     const { t } = useTranslation();
 
     const { data: studentData } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(
