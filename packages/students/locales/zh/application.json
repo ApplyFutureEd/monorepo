@@ -89,6 +89,7 @@
   "no-application": "您目前没有任何申请",
   "no-new-notifications": "没有新通知",
   "no-new-notifications-illustration": "没有新通知图画",
+  "not-available": "无资料",
   "nothing-to-do": "等着吧，等着吧",
   "notification-decision-letter-description": "我们很高兴你已经收到了{{programName}}的决定书，现在是开始办理签证的时候了，请点击确认您的签证收到日期。我们会通知{{schoolName}}，让他们开始为你的到来做准备。",
   "notification-decision-letter-title": "申请 {{applicationId}} - 录取通知",
