@@ -16,6 +16,7 @@ import {
     currency,
     date,
     getCountryLabel,
+    getFeeUnitLabel,
     graphql,
     toast,
     useAuthenticatedUser
@@ -227,7 +228,7 @@ const Row: FC<Props> = (props) => {
                                     <div className="flex items-center justify-between">
                                         <div className="truncate text-sm leading-5">
                                             <div>
-                                                {t(`programs:${program?.feeUnit.toLowerCase()}`)}{' '}
+                                                {t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}{' '}
                                                 <b>
                                                     {currency({
                                                         currency: program?.feeCurrency,
