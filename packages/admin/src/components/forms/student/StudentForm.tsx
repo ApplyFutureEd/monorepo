@@ -217,10 +217,8 @@ const StudentForm: FC<Props> = (props) => {
         }),
         parentsEmail: string().email(t('common:error-email-format')),
         parentsPhoneNumber: string(),
-        /* .phone(undefined, false, t('common:error-phone-format')) */
         passportNumber: string(),
         phoneNumber: string(),
-        /*  .phone(undefined, false, t('common:error-phone-format')) */
         refusedVisa: mixed(),
         refusedVisaReason: string(),
         schoolsAttended: array().of(

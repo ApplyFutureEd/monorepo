@@ -112,13 +112,9 @@ const GeneralInformationForm: FC<Props> = (props) => {
         parentsEmail: string()
             .email(t('common:error-email-format'))
             .required(t('common:error-field-required')),
-        parentsPhoneNumber: string()
-            /* .phone(undefined, false, t('common:error-phone-format')) */
-            .required(t('common:error-field-required')),
+        parentsPhoneNumber: string().required(t('common:error-field-required')),
         passportNumber: string().required(t('common:error-field-required')),
-        phoneNumber: string()
-            /*  .phone(undefined, false, t('common:error-phone-format')) */
-            .required(t('common:error-field-required'))
+        phoneNumber: string().required(t('common:error-field-required'))
     });
 
     type FormValues = {
