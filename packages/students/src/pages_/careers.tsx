@@ -12,7 +12,7 @@ const CareersPage: FC = () => {
     const to = `hello+careers+${egg}@applyfuture.com`;
     const subject = 'Spontaneous application';
     const body =
-        'Introduce yourself and explain in why you want to join us. Also please attach your resume.';
+        'Introduce yourself and explain why you want to join us. Also please attach your resume.';
 
     return (
         <LandingLayout description="Apply for your greatest career" title="Careers">
