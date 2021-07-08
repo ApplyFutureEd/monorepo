@@ -1,1 +1,0 @@
-Resolves Quest #[quest id]
