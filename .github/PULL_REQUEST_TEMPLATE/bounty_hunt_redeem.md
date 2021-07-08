@@ -4,7 +4,7 @@ about: Submit your Completion proposal for a Bounty Hunt
 title: '[project] - [bounty hunt id] - '
 ---
 
-Completion proposal for Bounty Hunt #[bounty hunt id]
+Resolves #[bounty hunt id]
 
 ### Technical insights for the Code Review
 

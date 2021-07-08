@@ -45,6 +45,6 @@ module.exports = {
     // limit subject length
     subjectLimit: 100,
     // breaklineChar: '|', // It is supported for fields body and footer.
-    footerPrefix: 'Resolves Quest'
+    footerPrefix: 'Resolves'
     // askForBreakingChangeFirst : true, // default is false
 };
