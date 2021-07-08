@@ -29,19 +29,19 @@ module.exports = {
     */
     // override the messages, defaults are as follows
     messages: {
-        type: "Select the type of change that you're committing:",
+        type: "Select the type of change:",
         scope: "\nSelect the scope of this change:",
         // used if allowCustomScopes is true
         customScope: '\nSelect the scope of this change:',
         subject: 'Write a short, imperative tense description of the change:\n',
         footer: 'Quest resolved by this change (e.g.: #42):\n',
-        confirmCommit: 'Are you sure you want to proceed with the commit above?'
+        confirmCommit: 'Are you sure you want to commit?'
     },
 
     allowCustomScopes: true,
     allowBreakingChanges: ['quest', 'bounty-hunt'],
     // skip any questions you want
-    skipQuestions: ['body', "breaking"],
+    skipQuestions: ['body', "breaking", 'footer'],
 
     // limit subject length
     subjectLimit: 100,
