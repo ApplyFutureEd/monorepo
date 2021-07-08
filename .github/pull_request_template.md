@@ -1,5 +1,5 @@
 ---
-title: '[project] - [quest id] - '
+name: '[project] - [quest id] - '
 ---
 
 Resolves #[quest id]
