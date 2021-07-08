@@ -6,8 +6,8 @@
 
 > “The only way to go fast, is to go well.” ― Robert C. Martin, Clean Architecture
 
-### [Wiki](https://github.com/ApplyFutureEd/monorepo/wiki)
+### [📚 Wiki](https://github.com/ApplyFutureEd/monorepo/wiki)
 
-### [⚔️ New Quest](https://github.com/octo-org/octo-repo/issues/new?template=new_quest.md)
+### [⚔️ New Quest](https://github.com/ApplyFutureEd/monorepo/issues/new?template=new_quest.md)
 
-### [💥 New Bounty Hunt](https://github.com/octo-org/octo-repo/issues/new?template=new_bounty_hunt.md)
+### [💥 New Bounty Hunt](https://github.com/ApplyFutureEd/monorepo/issues/new?template=new_bounty_hunt.md)
