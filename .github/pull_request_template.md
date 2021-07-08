@@ -1,4 +1,4 @@
-Resolves #[QUEST ID]
+Resolves #[ QUEST ID ]
 
 ### Technical insights for the Code Review
 
