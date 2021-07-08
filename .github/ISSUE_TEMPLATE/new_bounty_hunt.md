@@ -32,7 +32,7 @@ If applicable, add screenshots to help explain your problem.
 #### Desktop (If applicable):
 
 -   OS: (MacOS | Windows | Linux)
--   Browser (Chrome | Safari | Edge)
+-   Browser: (Chrome | Safari | Edge)
 
 #### Smartphone (If applicable):
 
