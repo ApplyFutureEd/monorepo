@@ -30,10 +30,11 @@ module.exports = {
     // override the messages, defaults are as follows
     messages: {
         type: "Select the type of change that you're committing:",
+        scope: "\nSelect the scope of this change:",
         // used if allowCustomScopes is true
-        customScope: '\nSelect the scope of this change (optional)',
+        customScope: '\nSelect the scope of this change:',
         subject: 'Write a short, imperative tense description of the change:\n',
-        footer: 'Quest resolved by this change (optional). E.g.: #31, #34:\n',
+        footer: 'Quest resolved by this change (e.g.: #42):\n',
         confirmCommit: 'Are you sure you want to proceed with the commit above?'
     },
 
@@ -45,6 +46,6 @@ module.exports = {
     // limit subject length
     subjectLimit: 100,
     // breaklineChar: '|', // It is supported for fields body and footer.
-    footerPrefix: 'Resolves Quest'
+    footerPrefix: 'Resolves'
     // askForBreakingChangeFirst : true, // default is false
 };

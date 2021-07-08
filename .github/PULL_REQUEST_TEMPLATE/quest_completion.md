@@ -4,7 +4,7 @@ about: Submit your Completion proposal for a Quest
 title: '[project] - [quest id] - '
 ---
 
-Completion proposal for Quest #[quest id]
+Resolves #[quest id]
 
 ### Technical insights for the Code Review
 
