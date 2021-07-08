@@ -17,5 +17,5 @@ A clear and concise explanation of your solution written from the perspective of
 
 *Example : “As a [ persona ], I [ want to ], [ so that ]”*
 
-### Additional context**
+### Additional context
 Add any other context or screenshots about the quest here.
