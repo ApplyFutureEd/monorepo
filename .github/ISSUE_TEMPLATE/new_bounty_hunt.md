@@ -1,7 +1,7 @@
 ---
 name: 💥 New Bounty Hunt
 about: Create a Bounty Hunt to chase a bug
-title: '[ PROJECT ] - [SHORT DESCRIPTION ]'
+title: '[ PROJECT ] - [ SHORT DESCRIPTION ]'
 labels: 💥 Bounty Hunt, ☕️ Common
 assignees: ''
 ---
