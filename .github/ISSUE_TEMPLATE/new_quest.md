@@ -1,8 +1,8 @@
 ---
 name: New quest
 about: Create a new quest
-title: ''
-labels: 'common'
+title: '[project] - '
+labels: 'Common'
 assignees: ''
 
 ---
