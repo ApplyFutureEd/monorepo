@@ -8,12 +8,7 @@ module.exports = {
         { name: 'students' },
         { name: 'admin' },
         { name: 'i18n' },
-        { name: 'ui' },
-        { name: 'utils' },
         { name: 'monorepo' },
-        { name: 'graphql' },
-        { name: 'models' },
-
     ],
 
     allowTicketNumber: false,
@@ -35,10 +30,10 @@ module.exports = {
     // override the messages, defaults are as follows
     messages: {
         type: "Select the type of change that you're committing:",
-        scope: '\nDenote the SCOPE of this change (optional):',
+        scope: '\nChoose the scope of this change (optional):',
         // used if allowCustomScopes is true
-        customScope: 'Denote the SCOPE of this change:',
-        subject: 'Write a SHORT, IMPERATIVE tense description of the change:\n',
+        customScope: '\nChoose the scope of this change (optional)',
+        subject: 'Write a short, imperative tense description of the change:\n',
         body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
         breaking: 'List any BREAKING CHANGES (optional):\n',
         footer: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n',
@@ -48,11 +43,11 @@ module.exports = {
     allowCustomScopes: true,
     allowBreakingChanges: ['quest', 'bounty-hunt'],
     // skip any questions you want
-    skipQuestions: ['body'],
+    skipQuestions: ['body', "breaking"],
 
     // limit subject length
-    subjectLimit: 100
+    subjectLimit: 100,
     // breaklineChar: '|', // It is supported for fields body and footer.
-    // footerPrefix : 'ISSUES CLOSED:'
+    footerPrefix: 'Resolves Quest'
     // askForBreakingChangeFirst : true, // default is false
 };
