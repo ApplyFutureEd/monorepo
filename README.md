@@ -9,3 +9,11 @@
 #### [⚔️ New Quest](https://github.com/ApplyFutureEd/monorepo/issues/new?template=new_quest.md)
 
 #### [💥 New Bounty Hunt](https://github.com/ApplyFutureEd/monorepo/issues/new?template=new_bounty_hunt.md)
+
+#### [🚀 Vercel](https://vercel.com/applyfuture)
+
+#### [⚡ Amplify](https://ap-southeast-1.console.aws.amazon.com/amplify/home?region=ap-southeast-1#/d1myhy97cpodfp)
+
+#### [☁️ SonarCloud](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
+
+
