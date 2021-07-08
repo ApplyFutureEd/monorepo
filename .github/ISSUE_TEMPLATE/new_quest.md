@@ -2,7 +2,7 @@
 name: ⚔ New Quest
 about: Create a new Quest
 title: '[project] - '
-labels: ⚔ Quest, ☕️ Common
+labels: ⚔️ Quest, ☕️ Common
 assignees: ''
 ---
 
