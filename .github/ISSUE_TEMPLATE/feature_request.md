@@ -1,20 +1,21 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: New quest
+about: Create a new quest
 title: ''
-labels: ''
+labels: 'common'
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**The problem**
+A clear and concise description of what the problem is.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+*Example : “I'm always frustrated when [problem]*”
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**The solution**
+A clear and concise explanation of your solution written from the perspective of the end user
+
+*Example : “As a [persona], I [want to], [so that].”
 
 **Additional context**
-Add any other context or screenshots about the feature request here.
+Add any other context or screenshots about the quest here.
