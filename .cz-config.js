@@ -1,7 +1,7 @@
 module.exports = {
     types: [
-        { value: 'quest', name: '⚔️  Quest            Quest to add a new feature that answer a problem' },
-        { value: 'bounty-hunt', name: '💥 Bounty Hunt      Bounty Hunt to chase a bug' },
+        { value: '⚔️ quest', name: '⚔️  Quest            Quest to add a new feature that answer a problem' },
+        { value: '💥 bounty-hunt', name: '💥 Bounty Hunt      Bounty Hunt to chase a bug' },
     ],
 
     scopes: [
