@@ -1,10 +1,8 @@
 ---
-name: 💥 Bounty Hunt Completion,
-about: Submit your Completion proposal for a Bounty Hunt
-title: '[project] - [bounty hunt id] - '
+title: '[project] - [quest id] - '
 ---
 
-Resolves #[bounty hunt id]
+Resolves #[quest id]
 
 ### Technical insights for the Code Review
 
