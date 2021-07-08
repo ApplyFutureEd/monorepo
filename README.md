@@ -16,4 +16,10 @@
 
 #### [☁️ SonarCloud](https://sonarcloud.io/dashboard?id=applyfuture%2Fmonorepo)
 
+#### [🔮 Sentry](https://sentry.io/organizations/applyfuture/issues/?project=5517348)
+
+#### [📈 Pinpoint](https://us-west-2.console.aws.amazon.com/pinpoint/home?region=us-west-2#/apps/1b1231e1f78d402cbc2c5b7de6fc577c)
+
+
+
 
