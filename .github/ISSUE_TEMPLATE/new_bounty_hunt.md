@@ -14,10 +14,10 @@ A clear and concise description of what the bug is.
 
 Steps to reproduce the behavior:
 
-1. Go to [ page ]
-2. Click on [ element ]
-3. Scroll down to [ element ]
-4. See [ error ]
+1. Go to [ PAGE ]
+2. Click on [ ELEMENT ]
+3. Scroll down to [ ELEMENT ]
+4. See [ ERROR ]
 
 ### Expected behavior
 
@@ -31,16 +31,14 @@ If applicable, add screenshots to help explain your problem.
 
 #### Desktop (If applicable):
 
--   OS: [ e.g. iOS ]
--   Browser [ e.g. Chrome, Safari ]
--   Version [ e.g. 22 ]
+-   OS: (MacOS | Windows | Linux)
+-   Browser (Chrome | Safari | Edge)
 
 #### Smartphone (If applicable):
 
--   Device: [ e.g. iPhone6 ]
--   OS: [ e.g. iOS8.1 ]
--   Browser [ e.g. stock browser, safari ]
--   Version [ e.g. 22 ]
+-   Device: (iPhone 12 | Samsung S21 | ...)
+-   OS: (iOS | Android)
+-   Browser (Chrome | Safari | Edge)
 
 ### Additional context
 

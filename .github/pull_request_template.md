@@ -1,8 +1,4 @@
----
-name: '[project] - [quest id] - '
----
-
-Resolves #[quest id]
+Resolves #[QUEST ID]
 
 ### Technical insights for the Code Review
 
