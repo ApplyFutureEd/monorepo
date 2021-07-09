@@ -6,11 +6,11 @@ labels: 💥 Bounty Hunt, ☕️ Common
 assignees: ''
 ---
 
-### Bug description
+### ⁉️ Bug description
 
 A clear and concise description of what the bug is.
 
-### Reproduction steps
+### ↩️ Reproduction steps
 
 Steps to reproduce the behavior:
 
@@ -19,27 +19,10 @@ Steps to reproduce the behavior:
 3. Scroll down to ELEMENT
 4. See ERROR
 
-### Expected behavior
+### ✔️ Expected behavior
 
 A clear and concise description of what you expected to happen.
 
-### Screenshots
+### 📸 Screenshots
 
 If applicable, add screenshots to help explain your problem.
-
-### Hardware info
-
-#### Desktop (If applicable):
-
--   OS: MacOS | Windows | Linux
--   Browser: Chrome | Safari | Edge
-
-#### Smartphone (If applicable):
-
--   Device: iPhone 12 | Samsung S21 | ...
--   OS: (iOS | Android)
--   Browser Chrome | Safari | Edge
-
-### Additional context
-
-Add any other context about the problem here.
