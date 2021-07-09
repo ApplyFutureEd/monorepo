@@ -1,7 +1,7 @@
 ---
 name: 💥 New Bounty Hunt
 about: Create a Bounty Hunt to chase a bug
-title: '[ 🎓 students | 🔒 admin | 🌎 i18n ] - [ SHORT DESCRIPTION ]'
+title: '🎓 students | 🔒 admin | 🌎 i18n - SHORT DESCRIPTION'
 labels: 💥 Bounty Hunt, ☕️ Common
 assignees: ''
 ---
@@ -14,10 +14,10 @@ A clear and concise description of what the bug is.
 
 Steps to reproduce the behavior:
 
-1. Go to [ PAGE ]
-2. Click on [ ELEMENT ]
-3. Scroll down to [ ELEMENT ]
-4. See [ ERROR ]
+1. Go to PAGE
+2. Click on ELEMENT
+3. Scroll down to ELEMENT
+4. See ERROR
 
 ### Expected behavior
 
@@ -31,14 +31,14 @@ If applicable, add screenshots to help explain your problem.
 
 #### Desktop (If applicable):
 
--   OS: (MacOS | Windows | Linux)
--   Browser: (Chrome | Safari | Edge)
+-   OS: MacOS | Windows | Linux
+-   Browser: Chrome | Safari | Edge
 
 #### Smartphone (If applicable):
 
--   Device: (iPhone 12 | Samsung S21 | ...)
+-   Device: iPhone 12 | Samsung S21 | ...
 -   OS: (iOS | Android)
--   Browser (Chrome | Safari | Edge)
+-   Browser Chrome | Safari | Edge
 
 ### Additional context
 
