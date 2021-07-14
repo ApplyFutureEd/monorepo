@@ -34,17 +34,7 @@ module.exports = withTM(
             dest: 'public',
             disable: process.env.NODE_ENV === 'development'
         },
-        webpack: (config, options) => {
-            config.node = {
-                fs: 'empty'
-            };
-
-            config.plugins.push(
-                new options.webpack.DefinePlugin({
-                    'process.env.NEXT_IS_SERVER': JSON.stringify(options.isServer.toString())
-                })
-            );
-
+        webpack: (config) => {
             config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
             config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages_');
             config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
