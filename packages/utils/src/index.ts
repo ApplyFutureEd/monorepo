@@ -41,7 +41,6 @@ export * from './helpers/profile';
 export * from './helpers/ssr';
 export * from './helpers/tests';
 export * from './helpers/toast';
-export * from './helpers/whyDidYouRender';
 
 export * from './hocs/withPrivateAccess';
 

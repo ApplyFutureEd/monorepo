@@ -5,8 +5,7 @@ import {
     configure,
     eggs,
     initAnalytics,
-    initCrisp,
-    initWhyDidYouRender
+    initCrisp
 } from '@applyfuture/utils';
 import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import type { AppProps } from 'next/app';
@@ -16,7 +15,6 @@ import { ToastContainer } from 'react-toastify';
 configure();
 initAnalytics();
 initCrisp();
-initWhyDidYouRender();
 fontawesomeConfig.autoAddCss = false;
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
