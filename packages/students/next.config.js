@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const bundleAnalyzer = require('@next/bundle-analyzer');
 const withPWA = require('next-pwa');
-const nextSourceMaps = require('@zeit/next-source-maps');
-
-const withSourceMaps = nextSourceMaps();
-const withBundleAnalyzer = bundleAnalyzer({
-    enabled: process.env.ANALYZE_BUNDLE === 'true'
-});
 const { locales, defaultLocale } = require('./i18n');
 
 const COMMIT_SHA = process.env.VERCEL_GITHUB_COMMIT_SHA;
@@ -21,47 +14,41 @@ const withTM = require('next-transpile-modules')([
 ]);
 
 module.exports = withTM(
-    withBundleAnalyzer(
-        withSourceMaps(
-            withPWA({
-                basePath,
-                env: {
-                    ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
-                    NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
-                },
-                i18n: { defaultLocale, localeDetection: true, locales },
-                images: {
-                    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-                    domains: ['ik.imagekit.io'],
-                    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-                    loader: 'default',
-                    path: '/_next/image'
-                },
-                poweredByHeader: false,
-                pwa: {
-                    dest: 'public',
-                    disable: process.env.NODE_ENV === 'development'
-                },
-                webpack: (config, options) => {
-                    config.node = {
-                        fs: 'empty'
-                    };
+    withPWA({
+        basePath,
+        env: {
+            ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',
+            NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA
+        },
+        i18n: { defaultLocale, localeDetection: true, locales },
+        images: {
+            deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+            domains: ['ik.imagekit.io'],
+            imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+            loader: 'default',
+            path: '/_next/image'
+        },
+        poweredByHeader: false,
+        pwa: {
+            dest: 'public',
+            disable: process.env.NODE_ENV === 'development'
+        },
+        webpack: (config, options) => {
+            config.node = {
+                fs: 'empty'
+            };
 
-                    config.plugins.push(
-                        new options.webpack.DefinePlugin({
-                            'process.env.NEXT_IS_SERVER': JSON.stringify(
-                                options.isServer.toString()
-                            )
-                        })
-                    );
+            config.plugins.push(
+                new options.webpack.DefinePlugin({
+                    'process.env.NEXT_IS_SERVER': JSON.stringify(options.isServer.toString())
+                })
+            );
 
-                    config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-                    config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages_');
-                    config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
+            config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
+            config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages_');
+            config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
 
-                    return config;
-                }
-            })
-        )
-    )
+            return config;
+        }
+    })
 );
