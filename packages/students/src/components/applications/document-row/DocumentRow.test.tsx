@@ -3,7 +3,6 @@ import { GetApplicationQuery, GetStudentByEmailQuery } from '@applyfuture/graphq
 import { toast } from '@applyfuture/utils';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Storage } from 'aws-amplify';
-import React from 'react';
 
 import DocumentRow from './DocumentRow';
 

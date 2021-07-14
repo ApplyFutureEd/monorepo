@@ -5,7 +5,7 @@ import { faArrowLeft, faArrowRight, faFilePdf, faTrash } from '@fortawesome/pro-
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 import { boolean, object } from 'yup';

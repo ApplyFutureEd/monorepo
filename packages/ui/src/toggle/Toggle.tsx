@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { FieldInputProps, FormikProps } from 'formik';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     /**

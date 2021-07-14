@@ -2,7 +2,6 @@ import { AmplifyError } from '@applyfuture/models';
 import SignInPage from '@pages/sign-in';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
-import React from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {

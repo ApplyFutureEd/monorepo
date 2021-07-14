@@ -1,7 +1,7 @@
 import { Button } from '@applyfuture/ui';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     isCompleted: boolean;

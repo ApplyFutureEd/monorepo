@@ -4,7 +4,7 @@ import ProgramsFilterForm from '@components/forms/programs/filters/FiltersForm';
 import Tabs from '@components/programs/filters/tabs/Tabs';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 type Props = {
     handleFilter: (filter: SearchableProgramFilterInput) => void;

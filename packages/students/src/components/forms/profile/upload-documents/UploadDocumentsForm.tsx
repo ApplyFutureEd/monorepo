@@ -19,7 +19,7 @@ import Navigation from '@components/profile/navigation/Navigation';
 import { faSave } from '@fortawesome/pro-light-svg-icons';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 type Props = {
     documentsData: GetDocumentByStudentQuery;

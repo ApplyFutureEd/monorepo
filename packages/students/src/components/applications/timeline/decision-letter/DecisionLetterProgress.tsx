@@ -1,7 +1,7 @@
 import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
 import DecisionLetterProgressForm from '@components/forms/applications/decision-letter/DecisionLetterProgressForm';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     application:

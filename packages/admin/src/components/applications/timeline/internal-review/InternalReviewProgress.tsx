@@ -14,7 +14,7 @@ import {
 } from '@applyfuture/utils';
 import { faCheck, faTimes } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 type Props = {
     application:

@@ -19,7 +19,7 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { array, mixed, object, string } from 'yup';
 

@@ -6,7 +6,7 @@ import { API, Storage } from 'aws-amplify';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {

@@ -1,5 +1,5 @@
 import { Modal } from '@applyfuture/ui';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     handleClose: () => void;

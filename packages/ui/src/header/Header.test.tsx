@@ -1,7 +1,6 @@
 import { faBars } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
 import { Header } from './Header';
 

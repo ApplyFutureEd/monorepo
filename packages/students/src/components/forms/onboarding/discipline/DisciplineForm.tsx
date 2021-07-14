@@ -6,7 +6,7 @@ import { Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 const DisciplineForm: FC = () => {
     const { t } = useTranslation();

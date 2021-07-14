@@ -1,7 +1,7 @@
 import { Button } from '@applyfuture/ui';
 import Cookies from 'js-cookie';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 const CookiesBanner: FC = () => {
     const { t } = useTranslation();

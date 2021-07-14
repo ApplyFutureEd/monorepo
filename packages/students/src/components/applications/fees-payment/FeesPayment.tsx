@@ -3,7 +3,7 @@ import FeesPaymentForm from '@components/forms/applications/fees-payment/FeesPay
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;

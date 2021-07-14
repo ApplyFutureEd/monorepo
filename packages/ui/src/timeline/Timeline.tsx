@@ -8,7 +8,7 @@ import { SupportedLocale } from '@applyfuture/models/src/SupportedLocale';
 import { date, useSubscription } from '@applyfuture/utils';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import StatusIcon from './status-icon/StatusIcon';
 

@@ -1,7 +1,7 @@
 import Schools from '@pages/schools';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {

@@ -1,7 +1,7 @@
 import { Button, Modal } from '@applyfuture/ui';
 import { faExclamationTriangle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     documentToDelete: {

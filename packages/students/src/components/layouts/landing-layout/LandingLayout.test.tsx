@@ -1,6 +1,6 @@
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React, { FC, useState as useStateMock } from 'react';
+import { FC, useState as useStateMock } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {

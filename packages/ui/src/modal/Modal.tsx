@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal as BaseModal } from '@material-ui/core';
 import cx from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 type Props = {
     /**

@@ -3,7 +3,6 @@ import { SearchApplicationsQuery } from '@applyfuture/graphql';
 import Table from '@components/applications/table/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 const mockedData = ({
     searchApplications: {

@@ -8,7 +8,7 @@ import { API } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 import { object, string } from 'yup';
 

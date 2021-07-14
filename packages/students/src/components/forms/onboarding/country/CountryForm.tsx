@@ -3,7 +3,7 @@ import { supportedCountries, useLocalStorage } from '@applyfuture/utils';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { object, string } from 'yup';
 
 const CountryForm: FC = () => {

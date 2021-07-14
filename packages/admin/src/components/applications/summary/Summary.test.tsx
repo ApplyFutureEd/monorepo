@@ -3,7 +3,6 @@ import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/gra
 import { toast } from '@applyfuture/utils';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API, Storage } from 'aws-amplify';
-import React from 'react';
 
 import Summary from './Summary';
 

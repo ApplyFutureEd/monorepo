@@ -3,7 +3,6 @@ import { GetApplicationQuery } from '@applyfuture/graphql';
 import { graphql, toast } from '@applyfuture/utils';
 import VisaError from '@components/applications/timeline/visa/VisaError';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import React from 'react';
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),

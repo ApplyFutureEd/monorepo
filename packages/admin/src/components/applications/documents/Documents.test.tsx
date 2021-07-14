@@ -3,7 +3,6 @@ import { GetDocumentByStudentQuery } from '@applyfuture/graphql';
 import Documents from '@components/applications/documents/Documents';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 describe('Table', () => {
     const refetch = jest.fn();

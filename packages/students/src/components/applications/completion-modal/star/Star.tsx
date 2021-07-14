@@ -1,7 +1,7 @@
 import { faStar } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     willBeActive?: boolean;

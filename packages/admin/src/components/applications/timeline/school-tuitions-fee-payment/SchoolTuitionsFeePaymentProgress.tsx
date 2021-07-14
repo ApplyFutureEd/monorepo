@@ -15,7 +15,7 @@ import {
 import SchoolTuitionsFeePaymentProgressForm from '@components/forms/application/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 type Props = {
     application:

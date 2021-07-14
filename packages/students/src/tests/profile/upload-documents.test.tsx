@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { uniqueId } from 'lodash';
 
-import UploadDocumentsPage from '../../pages_/profile/upload-documents';
+import UploadDocumentsPage from '../../pages/profile/upload-documents';
 
 jest.mock('next/router', () => ({
     useRouter() {

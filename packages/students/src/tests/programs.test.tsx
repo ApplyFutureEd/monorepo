@@ -1,7 +1,7 @@
 import Programs from '@pages/programs';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import selectEvent from 'react-select-event';
 
 jest.mock('next/router', () => ({

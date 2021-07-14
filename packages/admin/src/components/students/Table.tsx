@@ -29,7 +29,7 @@ import {
     Toolbar,
     VirtualTable
 } from '@devexpress/dx-react-grid-material-ui';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {

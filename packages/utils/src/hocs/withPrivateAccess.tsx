@@ -1,7 +1,7 @@
 import intersection from 'lodash/intersection';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { isClientRender } from '../helpers/ssr';
 import { useAuthenticatedUser } from '../hooks/useAuthenticatedUser';

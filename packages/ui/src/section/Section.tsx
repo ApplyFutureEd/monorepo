@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {

@@ -9,7 +9,7 @@ import { graphql, sendEmailNotification, toast, toShortId } from '@applyfuture/u
 import VisaProgressForm from '@components/forms/application/visa/VisaProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 type Props = {
     application:

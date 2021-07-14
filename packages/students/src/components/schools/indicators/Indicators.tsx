@@ -3,7 +3,7 @@ import { IconPanel } from '@applyfuture/ui';
 import { getInstitutionType } from '@applyfuture/utils';
 import { faBooks, faGlobe, faGraduationCap, faUniversity } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     school: NonNullable<NonNullable<GetSchoolBySlugQuery['getSchoolBySlug']>['items']>[0];

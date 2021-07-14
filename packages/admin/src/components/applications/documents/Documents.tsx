@@ -27,7 +27,7 @@ import {
 import { faEye, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { Storage } from 'aws-amplify';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { ItemParams, useContextMenu } from 'react-contexify';
 
 import ConfirmDeleteDocumentModal from './confirm-delete-document-modal/ConfirmDeleteDocumentModal';

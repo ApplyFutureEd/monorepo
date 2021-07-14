@@ -27,7 +27,7 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { array, mixed, number, object, string } from 'yup';
 
 type Props = {

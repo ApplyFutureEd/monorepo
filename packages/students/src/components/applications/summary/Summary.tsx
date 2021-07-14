@@ -4,7 +4,7 @@ import { Tooltip } from '@applyfuture/ui';
 import { currency, date } from '@applyfuture/utils';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {

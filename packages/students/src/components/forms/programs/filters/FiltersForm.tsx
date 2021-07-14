@@ -19,7 +19,7 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEmpty } from 'lodash';
 import sortBy from 'lodash/sortBy';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { number, object } from 'yup';
 
 type Props = {

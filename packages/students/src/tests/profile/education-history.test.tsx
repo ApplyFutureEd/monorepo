@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { uniqueId } from 'lodash';
 
-import EducationHistoryPage from '../../pages_/profile/education-history';
+import EducationHistoryPage from '../../pages/profile/education-history';
 
 jest.mock('next/router', () => ({
     useRouter() {

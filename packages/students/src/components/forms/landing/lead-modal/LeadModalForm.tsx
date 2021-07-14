@@ -3,7 +3,7 @@ import { faCheck } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { object, string } from 'yup';
 
 type Props = {

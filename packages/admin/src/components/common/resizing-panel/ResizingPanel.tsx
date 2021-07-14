@@ -2,7 +2,7 @@ import { Button } from '@applyfuture/ui';
 import { Plugin, Template, TemplatePlaceholder } from '@devexpress/dx-react-core';
 import { faUndo } from '@fortawesome/pro-light-svg-icons';
 import { withStyles } from '@material-ui/core';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 
 type ResizingPanelProps = {
     changeMode: Dispatch<SetStateAction<string>>;

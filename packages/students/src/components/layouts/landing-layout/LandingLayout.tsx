@@ -24,7 +24,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 type Props = {
     children: ReactNode;

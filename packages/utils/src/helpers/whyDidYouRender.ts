@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Helps locate unnecessary re-renders and fix them.
  *

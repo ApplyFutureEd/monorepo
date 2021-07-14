@@ -11,7 +11,7 @@ import { API, graphqlOperation, Storage } from 'aws-amplify';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import kebabCase from 'lodash/kebabCase';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Skeleton from 'react-loading-skeleton';
 import { v4 as uuidv4 } from 'uuid';

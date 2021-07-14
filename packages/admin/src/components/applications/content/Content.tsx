@@ -4,7 +4,7 @@ import Tabs from '@components/applications/content/tabs/Tabs';
 import Documents from '@components/applications/documents/Documents';
 import { config } from '@components/applications/timeline/config';
 import cx from 'classnames';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;

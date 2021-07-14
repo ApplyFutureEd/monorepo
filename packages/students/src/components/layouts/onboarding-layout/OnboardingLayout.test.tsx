@@ -1,6 +1,5 @@
 import OnboardingLayout from '@components/layouts/onboarding-layout/OnboardingLayout';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {

@@ -1,7 +1,7 @@
 import { ActionPanel, Button } from '@applyfuture/ui';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const SignUpActionPanel: FC = () => {
     const { t } = useTranslation();

@@ -4,7 +4,7 @@ import { faMapMarkerAlt } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     school: NonNullable<NonNullable<SearchSchoolsQuery['searchSchools']>['items']>[0];

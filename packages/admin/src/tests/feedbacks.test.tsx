@@ -1,7 +1,6 @@
 import { SearchFeedbacksQuery } from '@applyfuture/graphql';
 import FeedbacksPage from '@pages/feedbacks';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
 const mockedPush = jest.fn();
 

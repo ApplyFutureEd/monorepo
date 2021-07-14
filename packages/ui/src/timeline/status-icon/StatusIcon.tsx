@@ -5,7 +5,7 @@ import {
     faExclamationTriangle
 } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     status: string;

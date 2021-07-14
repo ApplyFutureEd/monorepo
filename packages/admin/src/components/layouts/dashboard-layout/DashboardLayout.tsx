@@ -3,7 +3,7 @@ import { routes } from '@components/layouts/routes';
 import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
-import React, { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 type Props = {
     children: ReactNode;

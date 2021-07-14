@@ -1,9 +1,7 @@
 module.exports = {
-    currentPagesDir: 'src/pages_',
     defaultLocale: 'en',
-    finalPagesDir: 'src/pages',
+    loadLocaleFrom: 'locales',
     locales: ['en'],
-    localesPath: 'locales',
     pages: {
         '*': ['application', 'common', 'programs', 'profile']
     }

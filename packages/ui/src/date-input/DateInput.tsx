@@ -5,7 +5,7 @@ import { enGB, fr, zhCN } from 'date-fns/locale';
 import { FieldInputProps, FieldMetaProps, FormikProps } from 'formik';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import Skeleton from 'react-loading-skeleton';
 

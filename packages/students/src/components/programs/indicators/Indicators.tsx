@@ -19,7 +19,7 @@ import {
 } from '@fortawesome/pro-light-svg-icons';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     program:

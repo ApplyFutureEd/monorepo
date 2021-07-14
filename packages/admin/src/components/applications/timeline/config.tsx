@@ -16,7 +16,6 @@ import SchoolTuitionsFeePaymentProgress from '@components/applications/timeline/
 import VisaDone from '@components/applications/timeline/visa/VisaDone';
 import VisaError from '@components/applications/timeline/visa/VisaError';
 import VisaProgress from '@components/applications/timeline/visa/VisaProgress';
-import React from 'react';
 
 export const config: TimelineConfig = {
     'upload-documents': {

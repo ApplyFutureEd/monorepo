@@ -1,7 +1,7 @@
 import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
 import SchoolTuitionsFeePaymentProgressForm from '@components/forms/applications/school-tuitions-fee-payment/SchoolTuitionsFeePaymentProgressForm';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     application:

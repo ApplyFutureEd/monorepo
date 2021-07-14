@@ -1,7 +1,7 @@
 import { GetApplicationByStudentQuery, GetApplicationQuery } from '@applyfuture/graphql';
 import VisaProgressForm from '@components/forms/applications/visa/VisaProgressForm';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     application:

@@ -2,7 +2,6 @@ import { SearchSearchAlertsQuery } from '@applyfuture/graphql';
 import Table from '@components/search-alerts/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 const mockedData = ({
     searchSearchAlerts: {

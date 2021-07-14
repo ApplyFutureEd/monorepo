@@ -34,7 +34,7 @@ import {
 } from 'formik';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { array, mixed, number, object, string } from 'yup';
 

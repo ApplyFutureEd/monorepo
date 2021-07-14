@@ -14,7 +14,7 @@ import {
 import DecisionLetterProgressForm from '@components/forms/application/decision-letter/DecisionLetterProgressForm';
 import { faCheck, faTimes, faUndo } from '@fortawesome/pro-light-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 type Props = {

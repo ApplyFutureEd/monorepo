@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const InternalReviewProgress: FC = () => {
     const { t } = useTranslation();

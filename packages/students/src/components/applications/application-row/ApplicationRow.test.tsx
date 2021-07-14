@@ -2,7 +2,6 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { render, screen } from '@testing-library/react';
 import { Storage } from 'aws-amplify';
-import React from 'react';
 
 import ApplicationRow from './ApplicationRow';
 

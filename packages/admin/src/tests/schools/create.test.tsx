@@ -1,7 +1,7 @@
 import { toast } from '@applyfuture/utils';
 import CreateSchoolPage from '@pages/schools/create';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import React from 'react';
+
 import { FC } from 'react';
 
 jest.mock('next/router', () => ({

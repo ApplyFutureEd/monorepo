@@ -2,7 +2,7 @@
 import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/graphql';
 import Content from '@components/applications/content/Content';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React, { useState as useStateMock } from 'react';
+import { useState as useStateMock } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {

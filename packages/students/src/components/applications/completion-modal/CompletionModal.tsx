@@ -8,7 +8,7 @@ import { Modal } from '@applyfuture/ui';
 import { graphql, toast } from '@applyfuture/utils';
 import Star from '@components/applications/completion-modal/star/Star';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Rater from 'react-rater';
 
 type Props = {

@@ -2,7 +2,7 @@ import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { Route } from '../header/Header';
 import { OutsideAlerter } from '../outside-alerter/OutsideAlerter';
