@@ -6,7 +6,7 @@ const basePlugins = {
 
 const productionPlugins = {
     '@fullhuman/postcss-purgecss': {
-        content: ['./src/pages_/**/*.{js,jsx,ts,tsx}', './src/components/**/*.{js,jsx,ts,tsx}'],
+        content: ['./src/pages/**/*.{js,jsx,ts,tsx}', './src/components/**/*.{js,jsx,ts,tsx}'],
         defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || []
     },
     ...basePlugins

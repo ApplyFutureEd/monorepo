@@ -73,12 +73,10 @@
         "swiper": "6.7.0",
         "use-debounce": "5.1.0",
         "use-deep-compare-effect": "1.5.0",
-        "webfontloader": "1.6.28",
         "yup": "0.29.1"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
-        "@next/bundle-analyzer": "10.0.2",
         "@tailwindcss/ui": "0.7.2",
         "@testing-library/dom": "7.28.1",
         "@testing-library/jest-dom": "5.11.6",
