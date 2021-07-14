@@ -3,13 +3,14 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "next-translate && next dev",
         "build": "next-translate && next build",
-        "unused": "next-unused",
-        "lint": "eslint --fix .",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "i18n:pull": "rm -rf locales && mkdir locales && cd locales && locize download --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
-        "i18n:push": "cd locales && locize sync --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a"
+        "i18n:push": "cd locales && locize sync --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
+        "lint": "eslint --fix .",
+        "postbuild": "next-sitemap",
+        "start": "next-translate && next dev",
+        "unused": "next-unused"
     },
     "next-unused": {
         "alias": {},
@@ -115,6 +116,7 @@
         "jest": "26.6.3",
         "jest-sonar-reporter": "2.0.0",
         "lint-staged": "10.5.1",
+        "next-sitemap": "^1.6.140",
         "next-unused": "0.0.3",
         "path": "0.12.7",
         "postcss-custom-properties": "10.0.0",
