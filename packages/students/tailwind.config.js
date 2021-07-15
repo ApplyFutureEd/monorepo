@@ -8,7 +8,7 @@ module.exports = {
     },
     plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
     purge: {
-        content: ['./src/**/*.tsx']
+        content: ['./../**/*.tsx']
     },
     theme: {
         container: {
