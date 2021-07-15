@@ -2,17 +2,13 @@ import { Button } from '@applyfuture/ui';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { faRocketLaunch } from '@fortawesome/pro-solid-svg-icons';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 const CareersPage: FC = () => {
-    const router = useRouter();
-
-    const egg = router.query.egg || '';
-    const to = `hello+careers+${egg}@applyfuture.com`;
+    const to = `hello+careers@applyfuture.com`;
     const subject = 'Spontaneous application';
     const body =
-        'Introduce yourself and explain why you want to join us. Also please attach your resume.';
+        'Introduce yourself and explain why you want to join us. Also please attach your resume or share LinkedIn profile.';
 
     return (
         <LandingLayout description="Apply for your greatest career" title="Careers">
