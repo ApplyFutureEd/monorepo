@@ -1,5 +1,6 @@
 import { Button } from '@applyfuture/ui';
 import { useAuthenticatedUser } from '@applyfuture/utils';
+import image from '@assets/images/landing/landing-students.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
@@ -100,7 +101,8 @@ const Students: FC = () => {
                                     alt={t('landing:students-illustration-alt')}
                                     className="relative mx-auto"
                                     height="242"
-                                    src="/assets/images/landing/landing-students.svg"
+                                    placeholder="blur"
+                                    src={image}
                                     width="590"
                                 />
                             </div>

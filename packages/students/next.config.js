@@ -35,6 +35,7 @@ module.exports = withTM(
                 disable: process.env.NODE_ENV === 'development'
             },
             webpack: (config) => {
+                config.resolve.alias['@assets'] = path.join(__dirname, 'src/assets');
                 config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
                 config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
                 config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');

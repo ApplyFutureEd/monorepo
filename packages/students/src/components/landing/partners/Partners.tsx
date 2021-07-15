@@ -1,4 +1,10 @@
 import { Button } from '@applyfuture/ui';
+import ducasse from '@assets/images/landing/partners-logo-ducasse.png';
+import glion from '@assets/images/landing/partners-logo-glion.png';
+import larochelle from '@assets/images/landing/partners-logo-larochelle.png';
+import lesroches from '@assets/images/landing/partners-logo-lesroches.png';
+import scbs from '@assets/images/landing/partners-logo-scbs.png';
+import supdeluxe from '@assets/images/landing/partners-logo-supdeluxe.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
@@ -18,7 +24,8 @@ const Partners: FC = () => {
                         <Image
                             alt="Alain Ducasse Cooking School logo"
                             height="48"
-                            src="/assets/images/landing/partners-logo-ducasse.svg"
+                            placeholder="blur"
+                            src={ducasse}
                             width="191"
                         />
                     </div>
@@ -26,7 +33,8 @@ const Partners: FC = () => {
                         <Image
                             alt="La Rochelle Business School logo"
                             height="48"
-                            src="/assets/images/landing/partners-logo-larochelle.png"
+                            placeholder="blur"
+                            src={larochelle}
                             width="190"
                         />
                     </div>
@@ -34,7 +42,8 @@ const Partners: FC = () => {
                         <Image
                             alt="Glion Institute of Higher Education logo"
                             height="48"
-                            src="/assets/images/landing/partners-logo-glion.svg"
+                            placeholder="blur"
+                            src={glion}
                             width="146"
                         />
                     </div>
@@ -42,7 +51,8 @@ const Partners: FC = () => {
                         <Image
                             alt="Les Roches International School of Hotel Management logo"
                             height="24"
-                            src="/assets/images/landing/partners-logo-lesroches.svg"
+                            placeholder="blur"
+                            src={lesroches}
                             width="146"
                         />
                     </div>
@@ -50,7 +60,8 @@ const Partners: FC = () => {
                         <Image
                             alt="South Champagne Business School logo"
                             height="48"
-                            src="/assets/images/landing/partners-logo-scbs.png"
+                            placeholder="blur"
+                            src={scbs}
                             width="146"
                         />
                     </div>
@@ -58,7 +69,8 @@ const Partners: FC = () => {
                         <Image
                             alt="Sup de Luxe logo"
                             height="64"
-                            src="/assets/images/landing/partners-logo-supdeluxe.png"
+                            placeholder="blur"
+                            src={supdeluxe}
                             width="64"
                         />
                     </div>
