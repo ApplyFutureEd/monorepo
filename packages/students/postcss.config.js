@@ -6,7 +6,7 @@ const basePlugins = {
 
 const productionPlugins = {
     '@fullhuman/postcss-purgecss': {
-        content: ['./src/pages/**/*.tsx}', './src/components/**/*.tsx'],
+        content: ['./../**/*.tsx'],
         defaultExtractor: (content) => {
             // Capture as liberally as possible, including things like `h-(screen-1.5)`
             const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
