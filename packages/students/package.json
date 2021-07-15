@@ -76,7 +76,7 @@
         "yup": "0.29.1"
     },
     "devDependencies": {
-        "@fullhuman/postcss-purgecss": "3.0.0",
+        "@fullhuman/postcss-purgecss": "4.0.3",
         "@tailwindcss/ui": "0.7.2",
         "@testing-library/dom": "7.28.1",
         "@testing-library/jest-dom": "5.11.6",

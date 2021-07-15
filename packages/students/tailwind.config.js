@@ -7,7 +7,9 @@ module.exports = {
         removeDeprecatedGapUtilities: true
     },
     plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
-    purge: false,
+    purge: {
+        content: ['./src/**/*.tsx']
+    },
     theme: {
         container: {
             center: true,
