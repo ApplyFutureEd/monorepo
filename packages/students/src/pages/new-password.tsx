@@ -1,4 +1,5 @@
 import { Logo } from '@applyfuture/ui';
+import logo from '@assets/images/logo.png';
 import NewPasswordForm from '@components/forms/auth/new-password/NewPasswordForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import Link from 'next/link';
@@ -13,7 +14,7 @@ const NewPasswordPage: FC = () => {
             <div>
                 <Link href="/">
                     <div className="inline-flex cursor-pointer">
-                        <Logo />
+                        <Logo src={logo} />
                     </div>
                 </Link>
                 <h1 className="mt-6 text-gray-900 text-3xl font-extrabold leading-9">

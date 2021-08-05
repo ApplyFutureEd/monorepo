@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 import '@testing-library/jest-dom/extend-expect';
 
+console.warn = jest.fn();
+console.log = jest.fn();
+
 jest.mock('next/image', () => {
     return {
         __esModule: true,

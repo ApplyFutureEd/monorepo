@@ -1,3 +1,4 @@
+import logo from '@assets/images/logo.png';
 import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 
@@ -39,7 +40,7 @@ export const Header: FC<Props> = (props) => {
                         <div className="flex">
                             <Link href="/">
                                 <div className="inline-flex cursor-pointer">
-                                    <Logo />
+                                    <Logo src={logo} />
                                 </div>
                             </Link>
                         </div>

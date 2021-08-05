@@ -10,7 +10,7 @@ module.exports = {
         '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,
         '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages/$1`,
         '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`,
-        '\\.(css|scss)$': 'identity-obj-proxy'
+        '\\.(css|scss|png)$': 'identity-obj-proxy'
     },
     modulePaths: [`<rootDir>/packages/${packageName}/src/`],
     name: packageName,
