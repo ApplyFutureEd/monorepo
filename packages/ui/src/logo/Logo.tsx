@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import { FC } from 'react';
 
-import logo from './logo.png';
+type Props = {
+    /**
+     * The logo source file
+     */
+    src: StaticImageData;
+};
 
-export const Logo: FC = () => {
-    return <Image alt="logo" height="32" src={logo} width="146" />;
+export const Logo: FC<Props> = (props) => {
+    const { src } = props;
+    return <Image alt="logo" height="32" src={src} width="146" />;
 };

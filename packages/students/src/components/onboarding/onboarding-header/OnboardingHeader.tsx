@@ -1,4 +1,5 @@
 import { Logo } from '@applyfuture/ui';
+import logo from '@assets/images/logo.png';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -11,7 +12,7 @@ export const OnboardingHeader: FC = () => {
                         <div className="flex">
                             <Link href="/">
                                 <div className="inline-flex cursor-pointer">
-                                    <Logo />
+                                    <Logo src={logo} />
                                 </div>
                             </Link>
                         </div>

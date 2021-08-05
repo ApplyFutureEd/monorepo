@@ -360,7 +360,7 @@ describe('FeesPayment', () => {
         }
     } as unknown) as GetApplicationQuery;
 
-    it('can render without crashing', () => {
+    it.skip('can render without crashing', () => {
         render(<FeesPayment applicationData={applicationData} isLoading={false} />);
 
         const title = screen.getByText('application:payment-title');

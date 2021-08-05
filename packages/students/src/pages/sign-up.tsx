@@ -1,4 +1,5 @@
 import { Logo } from '@applyfuture/ui';
+import logo from '@assets/images/logo.png';
 import SignUpForm from '@components/forms/auth/sign-up/SignUpForm';
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { capitalize } from 'lodash';
@@ -16,7 +17,7 @@ const SignUpPage: FC = () => {
             <div>
                 <Link href="/">
                     <div className="inline-flex cursor-pointer">
-                        <Logo />
+                        <Logo src={logo} />
                     </div>
                 </Link>
                 <h1 className="mt-6 text-gray-900 text-3xl font-extrabold leading-9">

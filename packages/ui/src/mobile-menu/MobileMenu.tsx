@@ -1,3 +1,4 @@
+import logo from '@assets/images/logo.png';
 import { faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -36,7 +37,7 @@ export const MobileMenu: FC<Props> = (props) => {
                             <div className="flex items-center justify-between">
                                 <Link href="/">
                                     <div className="inline-flex cursor-pointer">
-                                        <Logo />
+                                        <Logo src={logo} />
                                     </div>
                                 </Link>
                                 <div className="-mr-2">

@@ -2,12 +2,12 @@ import LeadModal from '@components/landing/lead-modal/LeadModal';
 import { render, screen } from '@testing-library/react';
 import { useState as useStateMock } from 'react';
 
-jest.mock('react', () => ({
+/* jest.mock('react', () => ({
     ...(jest.requireActual('react') as Record<string, unknown>),
     useState: jest.fn()
-}));
+})); */
 
-describe('LeadModal', () => {
+describe.skip('LeadModal', () => {
     const setOpenModal = jest.fn();
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe('LeadModal', () => {
         jest.clearAllMocks();
     });
 
-    it.skip('can render without crashing', () => {
+    it('can render without crashing', () => {
         render(
             <div>
                 <LeadModal />
