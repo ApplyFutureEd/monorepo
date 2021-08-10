@@ -1,0 +1,18 @@
+@tailwind base;
+
+@import './context-menu.css';
+@import './date-input.css';
+@import './editor.css';
+@import './icons.css';
+@import './loader.css';
+@import './markdown.css';
+@import './phone-input.css';
+@import './reset.css';
+@import './scrollbar.css';
+@import './timeline.css';
+@import './toast.css';
+
+/* Start purging... */
+@tailwind components;
+@tailwind utilities;
+/* Stop purging. */
