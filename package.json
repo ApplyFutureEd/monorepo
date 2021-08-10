@@ -6,14 +6,14 @@
     "license": "MIT",
     "scripts": {
         "build:admin": "cd packages/admin && yarn build",
-        "build:students": "NODE_OPTIONS=--max_old_space_size=8192 cd packages/students && yarn build",
+        "build:i18n": "cd packages/i18n && yarn build",
+        "build:students": "cd packages/students && yarn build",
         "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src",
         "commit": "git add . && cz",
         "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
-        "i18n:pull": "rm -rf locales && rm -rf ./packages/students/locales && rm -rf ./packages/admin/locales && rm -rf ./amplify/backend/function/emailnotification/src/locales && mkdir locales && cd locales && locize download --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
-        "i18n:deploy": "cp -r ./locales ./packages/students && cp -r ./locales ./packages/admin && cp -r ./locales ./amplify/backend/function/emailnotification/src/locales",
         "lint": "eslint --fix .",
         "start:admin": "cd packages/admin && yarn start",
+        "start:i18n": "cd packages/i18n && yarn start",
         "start:students": "cd packages/students && yarn start",
         "test": "jest --coverage --silent",
         "test:watch": "jest --watch"
