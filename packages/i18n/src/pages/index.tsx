@@ -1,11 +1,16 @@
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import { FC } from 'react';
+import Search from '@components/search/search';
+import { FC, useState } from 'react';
 
 const LandingPage: FC = () => {
+    const [search, setSearch] = useState('');
+    const handleChange = (e: any) => {
+        setSearch(e.target.value);
+    };
     return (
         <DashboardLayout title="Dashboard">
-            <h1>Dashboard page</h1>
+            <Search handleChange={handleChange} search={search} />
         </DashboardLayout>
     );
 };
