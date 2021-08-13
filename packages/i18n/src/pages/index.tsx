@@ -11,6 +11,6 @@ const LandingPage: FC = () => {
 };
 
 export default withPrivateAccess(LandingPage, {
-    groups: ['admin'],
+    groups: ['admin', 'i18n'],
     redirection: '/sign-in'
 });
