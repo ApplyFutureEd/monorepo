@@ -1,37 +1,49 @@
-import React, { ReactElement } from 'react';
-
-import data from '../../../locales/en/application.json';
+import { Input } from '@applyfuture/ui';
+import { faSearch } from '@fortawesome/pro-light-svg-icons';
+import { Field, FieldProps, Form, Formik } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
+import React, { FC } from 'react';
 
 type Props = {
-    search: string;
-    handleChange: any;
+    handleSearch: (query: string) => void;
 };
 
-function Search({ search, handleChange }: Props): ReactElement {
+const Search: FC<Props> = (props) => {
+    const { handleSearch } = props;
+    const { t } = useTranslation();
+    type FormValues = {
+        query: string;
+    };
+    const initialValues: FormValues = {
+        query: ''
+    };
+    const onSubmit = (values: FormValues) => {
+        const { query } = values;
+        handleSearch(query);
+        console.log(`recherche demandée: ${query}`);
+    };
     return (
-        <div>
-            <span>Clé :</span>
-            <input type="text" value={search} onChange={handleChange} />
-            <div>
-                <span>Valeur :</span>
-                <div>
-                    {Object.keys(data)
-                        .filter((data) => data === search)
-                        .map((key, i) =>
-                            search ? (
-                                <span key={i}>
-                                    {key} {data[key]}
-                                </span>
-                            ) : (
-                                ' '
-                            )
-                        )}
-                </div>
-            </div>
+        <div style={{ width: '40vw' }}>
+            <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                {() => {
+                    return (
+                        <Form>
+                            <Field id="query" name="query">
+                                {(fieldProps: FieldProps) => (
+                                    <Input
+                                        debounce={500}
+                                        placeholder={t('programs:search-placeholder')}
+                                        startIcon={faSearch}
+                                        {...fieldProps}
+                                    />
+                                )}
+                            </Field>
+                        </Form>
+                    );
+                }}
+            </Formik>
         </div>
     );
-}
-
-// getStaticProps
+};
 
 export default Search;
