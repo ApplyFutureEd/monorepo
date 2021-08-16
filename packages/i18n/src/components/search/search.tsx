@@ -20,10 +20,9 @@ const Search: FC<Props> = (props) => {
     const onSubmit = (values: FormValues) => {
         const { query } = values;
         handleSearch(query);
-        console.log(`recherche demandée: ${query}`);
     };
     return (
-        <div style={{ width: '40vw' }}>
+        <div style={{ width: '250px' }}>
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {() => {
                     return (

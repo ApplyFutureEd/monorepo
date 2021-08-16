@@ -1,0 +1,30 @@
+{
+    "fr-maison": {
+        "en": "house",
+        "es": "casa"
+    },
+    "fr-jardin": {
+        "en": "garden",
+        "es": ""
+    },
+    "fr-cuisine": {
+        "en": "kitchen",
+        "es": ""
+    },
+    "fr-salle de bains": {
+        "en": "bathroom",
+        "es": ""
+    },
+    "fr-chambre": {
+        "en": "bedroom",
+        "es": "habitacion"
+    },
+    "fr-séjour": {
+        "en": "living room",
+        "es": ""
+    },
+    "bienvenue dans ma maison": {
+        "en": "welcome to my house",
+        "es": ""
+    }
+}

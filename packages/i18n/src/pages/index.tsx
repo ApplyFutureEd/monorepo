@@ -1,29 +1,27 @@
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import FilterResults from '@components/search/filterResults';
+import Filters from '@components/search/filters';
 import Search from '@components/search/search';
+import SearchResults from '@components/search/searchResults';
 import { FC, useState } from 'react';
 
 const LandingPage: FC = () => {
-    // we catch the requested key we want to translate
-    const createFilter = (value: string) => {
-        let newFilter = {};
-        if (value) {
-            newFilter = { value };
-        }
-        return newFilter;
-    };
-    // we create a variable to filter
-    const [variable, setVariable] = useState({
-        filter: createFilter('')
-    });
-    // we give value of the requested key to the variable to filter
-    const handleSearch = (filter: any) => {
-        setVariable(filter);
+    const [search, setSearch] = useState('');
+    const [translated, setTranslated] = useState(false);
+    const [untranslated, setUntranslated] = useState(false);
+    const handleSearch = (query: string) => {
+        setSearch(query.toLowerCase());
     };
     const headerComponents = [
         <Search key={0} handleSearch={handleSearch} />,
-        <FilterResults key={1} variable={variable} />
+        <Filters key={1} setTranslated={setTranslated} title="Translated" />,
+        <Filters key={2} setUntranslated={setUntranslated} title="Untranslated" />,
+        <SearchResults
+            key={3}
+            search={search}
+            translated={translated}
+            untranslated={untranslated}
+        />
     ];
     return <DashboardLayout title="Dashboard">{headerComponents}</DashboardLayout>;
 };
