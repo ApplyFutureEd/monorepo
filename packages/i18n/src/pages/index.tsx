@@ -14,16 +14,30 @@ const LandingPage: FC = () => {
     };
     const headerComponents = [
         <Search key={0} handleSearch={handleSearch} />,
-        <Filters key={1} setTranslated={setTranslated} title="Translated" />,
-        <Filters key={2} setUntranslated={setUntranslated} title="Untranslated" />,
-        <SearchResults
-            key={3}
-            search={search}
+        <Filters
+            key={1}
+            setTranslated={setTranslated}
+            title="Translated"
             translated={translated}
+        />,
+        <Filters
+            key={2}
+            setUntranslated={setUntranslated}
+            title="Untranslated"
             untranslated={untranslated}
         />
     ];
-    return <DashboardLayout title="Dashboard">{headerComponents}</DashboardLayout>;
+    return (
+        <DashboardLayout title="Dashboard">
+            <div style={{ display: 'flex' }}>{headerComponents}</div>
+            <SearchResults
+                key={3}
+                search={search}
+                translated={translated}
+                untranslated={untranslated}
+            />
+        </DashboardLayout>
+    );
 };
 
 export default withPrivateAccess(LandingPage, {

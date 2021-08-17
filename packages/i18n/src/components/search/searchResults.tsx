@@ -13,7 +13,6 @@ const SearchResults: FC<Props> = (props) => {
     return (
         <div>
             <span style={{ fontStyle: 'italic' }}>{search ? `Recherche: ${search}` : ''}</span>
-            {/* <div>{JSON.stringify(data)}</div> */}
             {Object.entries(data)
                 .filter(([key]) => !search || key.includes(search))
                 .filter(([key, item]) =>

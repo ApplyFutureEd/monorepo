@@ -6,17 +6,17 @@ type Props = {
     title: string;
     setTranslated: any;
     setUntranslated: any;
+    translated: boolean;
+    untranslated: boolean;
 };
 
 const Filters: FC<Props> = (props) => {
-    const { title, setTranslated, setUntranslated } = props;
+    const { title, setTranslated, setUntranslated, translated, untranslated } = props;
     const handleClick = () => {
         if (title === 'Translated') {
-            setTranslated(true);
-            console.log("I've clicked on translated button");
+            setTranslated(!translated);
         } else if (title === 'Untranslated') {
-            setUntranslated(true);
-            console.log("I've clicked on untranslated button");
+            setUntranslated(!untranslated);
         }
     };
     return (
