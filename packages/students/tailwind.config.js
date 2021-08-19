@@ -3,13 +3,15 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     mode: 'jit',
+    purge: [
+        './src/**/*.tsx',
+    ],
     plugins: [
         require('tailwindcss-filters'),
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio')
     ],
-    purge: false,
     theme: {
         container: {
             center: true,
@@ -35,10 +37,7 @@ module.exports = {
                 header: '90px'
             }
         },
-        filter: {
-            grayscale: 'grayscale(1)',
-            none: 'grayscale(0)'
-        },
+
         inset: {
             ...defaultTheme.inset,
             1: '1rem',
@@ -53,6 +52,6 @@ module.exports = {
             backgroundColor: ['active'],
             textColor: ['active']
         },
-        filter: ['hover']
+
     }
 };
