@@ -1,41 +1,48 @@
+import { Button } from '@applyfuture/ui';
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Filters from '@components/search/filters';
-import Search from '@components/search/search';
-import SearchResults from '@components/search/searchResults';
+import Search from '@components/search/Search';
+import SearchResults from '@components/search/SearchResults';
+import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import { FC, useState } from 'react';
+
+export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
-    const [translated, setTranslated] = useState(false);
-    const [untranslated, setUntranslated] = useState(false);
+    const [filter, setFilter] = useState<Filter>(null);
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
     };
-    const headerComponents = [
-        <Search key={0} handleSearch={handleSearch} />,
-        <Filters
-            key={1}
-            setTranslated={setTranslated}
-            title="Translated"
-            translated={translated}
-        />,
-        <Filters
-            key={2}
-            setUntranslated={setUntranslated}
-            title="Untranslated"
-            untranslated={untranslated}
-        />
-    ];
+    const handleFilter = (filter: Filter) => {
+        setFilter(filter);
+    };
+    const isTranslated = filter === 'TRANSLATED';
+    const isUntranslated = filter === 'UNTRANSLATED';
     return (
         <DashboardLayout title="Dashboard">
-            <div style={{ display: 'flex' }}>{headerComponents}</div>
-            <SearchResults
-                key={3}
-                search={search}
-                translated={translated}
-                untranslated={untranslated}
-            />
+            <div style={{ display: 'flex' }}>
+                <Search key={0} handleSearch={handleSearch} />
+                <Button
+                    key={1}
+                    startIcon={faFilter}
+                    variant={isTranslated ? 'primary' : 'secondary'}
+                    onClick={() => {
+                        isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
+                    }}>
+                    Translated
+                </Button>
+                <Button
+                    key={2}
+                    startIcon={faFilter}
+                    variant={isUntranslated ? 'primary' : 'secondary'}
+                    onClick={() => {
+                        isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
+                    }}>
+                    Untranslated
+                </Button>
+            </div>
+            <SearchResults key={3} filter={filter} search={search} />
         </DashboardLayout>
     );
 };
