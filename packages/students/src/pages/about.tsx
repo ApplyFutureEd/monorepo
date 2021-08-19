@@ -10,9 +10,9 @@ const AboutPage: FC = () => {
             description={t('landing:about-meta-description')}
             title={t('landing:about-page-title')}>
             <div className="bg-white overflow-hidden">
-                <div className="max-w-7xl relative mx-auto px-4 py-16 sm:px-6 lg:px-8">
-                    <div className="left-3/4 absolute bottom-0 top-0 hidden w-screen lg:block"></div>
-                    <div className="max-w-prose relative z-30 mx-auto text-base lg:max-w-none">
+                <div className="relative mx-auto px-4 py-16 max-w-7xl sm:px-6 lg:px-8">
+                    <div className="absolute bottom-0 left-3/4 top-0 hidden w-screen lg:block"></div>
+                    <div className="relative z-30 mx-auto max-w-prose text-base lg:max-w-none">
                         <h1 className="mb-8 mt-2 text-gray-900 text-3xl font-extrabold tracking-tight leading-8 sm:text-4xl sm:leading-10">
                             {t('landing:footer-about-us')}
                         </h1>
@@ -49,7 +49,7 @@ const AboutPage: FC = () => {
                                     width="404"
                                 />
                             </svg>
-                            <div className="max-w-prose relative mx-auto text-base lg:mt-32 lg:max-w-none">
+                            <div className="relative mx-auto max-w-prose text-base lg:mt-32 lg:max-w-none">
                                 <figure>
                                     <div className="aspect-h-7 aspect-w-12 relative lg:pb-0">
                                         <img
@@ -65,7 +65,7 @@ const AboutPage: FC = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="prose prose-indigo max-w-prose mx-auto text-justify text-base lg:max-w-none">
+                            <div className="prose prose-indigo mx-auto max-w-prose text-justify text-base lg:max-w-none">
                                 <p className="mb-5 text-gray-500 text-lg leading-7">
                                     {t('landing:about')}
                                 </p>

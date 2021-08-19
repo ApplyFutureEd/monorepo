@@ -24,10 +24,13 @@ import { FC } from 'react';
 
 const UpdateStudentPage: FC = () => {
     const router = useRouter();
-    const { data: studentData, isLoading: studentIsLoading, refetch: studentRefetch } = useQuery<
-        GetStudentQuery,
-        GetStudentQueryVariables
-    >(getStudent, { id: router.query.id as string });
+    const {
+        data: studentData,
+        isLoading: studentIsLoading,
+        refetch: studentRefetch
+    } = useQuery<GetStudentQuery, GetStudentQueryVariables>(getStudent, {
+        id: router.query.id as string
+    });
     const {
         data: documentsData,
         isLoading: documentsIsLoading,

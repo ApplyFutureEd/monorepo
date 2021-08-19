@@ -14,7 +14,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-const programs = ([
+const programs = [
     {
         applicationFee: 50,
         applicationFeeCurrency: 'EUR',
@@ -175,9 +175,9 @@ const programs = ([
         published: false,
         schedule: 'FULL_TIME'
     }
-] as unknown) as NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>;
+] as unknown as NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>;
 
-const school = ({
+const school = {
     city: 'Paris',
     contactEmail: null,
     contactJobTitle: null,
@@ -200,7 +200,7 @@ const school = ({
     stepsTemplates: [{ targets: ['all'] }],
     totalStudents: 4500,
     updatedAt: '2020-09-23T11:32:28.030Z'
-} as unknown) as NonNullable<NonNullable<GetSchoolBySlugQuery['getSchoolBySlug']>['items']>[0];
+} as unknown as NonNullable<NonNullable<GetSchoolBySlugQuery['getSchoolBySlug']>['items']>[0];
 
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),

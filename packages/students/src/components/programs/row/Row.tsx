@@ -152,7 +152,7 @@ const Row: FC<Props> = (props) => {
                     reasons={reasons}
                 />
             )}
-            <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
+            <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
                 <Link href={`/programs/${program?.slug}`}>
                     <div className="w-11/12 cursor-pointer">
                         <div className="flex items-center w-full">
@@ -180,7 +180,7 @@ const Row: FC<Props> = (props) => {
                             <div className="hidden md:flex md:items-center md:w-1/2 md:space-x-24">
                                 <div className="w-1/2">
                                     <div className="flex items-center justify-between mb-2">
-                                        <div className="truncate text-sm leading-5">
+                                        <div className="text-sm leading-5 truncate">
                                             {convertSecondsToUnit({
                                                 unit: program?.durationUnit as
                                                     | 'DAY'
@@ -203,7 +203,7 @@ const Row: FC<Props> = (props) => {
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <div className="truncate text-sm leading-5">
+                                        <div className="text-sm leading-5 truncate">
                                             {program?.city},{' '}
                                             {t(`common:${getCountryLabel(program?.country)}`)}
                                         </div>
@@ -211,7 +211,7 @@ const Row: FC<Props> = (props) => {
                                 </div>
                                 <div className="w-1/2">
                                     <div className="flex items-center justify-between mb-2">
-                                        <div className="truncate text-sm leading-5">
+                                        <div className="text-sm leading-5 truncate">
                                             <div>
                                                 {t('programs:next-intake', {
                                                     count: router.locale === 'zh' ? 0 : 1
@@ -226,7 +226,7 @@ const Row: FC<Props> = (props) => {
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <div className="truncate text-sm leading-5">
+                                        <div className="text-sm leading-5 truncate">
                                             <div>
                                                 {t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}{' '}
                                                 <b>

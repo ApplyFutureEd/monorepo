@@ -196,7 +196,7 @@ const Summary: FC<Props> = (props) => {
                                     <div>Loading ...</div>
                                 ) : (
                                     <button
-                                        className="hover:text-indigo-500 text-indigo-600 truncate font-medium cursor-pointer"
+                                        className="hover:text-indigo-500 text-indigo-600 font-medium cursor-pointer truncate"
                                         disabled={isSubmitting}
                                         onClick={generateDocumentsArchive}>
                                         {application?.id &&

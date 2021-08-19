@@ -19,8 +19,8 @@ const Partners: FC = () => {
                 <p className="text-center text-gray-600 text-base font-semibold tracking-wider leading-6 uppercase">
                     {t('landing:partners-headline')}
                 </p>
-                <div className="gap-0.5 grid grid-cols-2 mt-6 md:grid-cols-3 lg:mt-8">
-                    <div className="filter-grayscale hover:filter-none bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                <div className="grid gap-0.5 grid-cols-2 mt-6 md:grid-cols-3 lg:mt-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50 hover:filter-none">
                         <Image
                             alt="Alain Ducasse Cooking School logo"
                             height="48"
@@ -29,7 +29,7 @@ const Partners: FC = () => {
                             width="191"
                         />
                     </div>
-                    <div className="filter-grayscale hover:filter-none bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50 hover:filter-none">
                         <Image
                             alt="La Rochelle Business School logo"
                             height="48"
@@ -38,7 +38,7 @@ const Partners: FC = () => {
                             width="190"
                         />
                     </div>
-                    <div className="filter-grayscale hover:filter-none bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50 hover:filter-none">
                         <Image
                             alt="Glion Institute of Higher Education logo"
                             height="48"
@@ -47,7 +47,7 @@ const Partners: FC = () => {
                             width="146"
                         />
                     </div>
-                    <div className="filter-grayscale bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50">
                         <Image
                             alt="Les Roches International School of Hotel Management logo"
                             height="24"
@@ -56,7 +56,7 @@ const Partners: FC = () => {
                             width="146"
                         />
                     </div>
-                    <div className="filter-grayscale hover:filter-none bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50 hover:filter-none">
                         <Image
                             alt="South Champagne Business School logo"
                             height="48"
@@ -65,7 +65,7 @@ const Partners: FC = () => {
                             width="146"
                         />
                     </div>
-                    <div className="filter-grayscale hover:filter-none bg-gray-50 flex col-span-1 items-center justify-center px-8 py-8">
+                    <div className="filter-grayscale flex col-span-1 items-center justify-center px-8 py-8 bg-gray-50 hover:filter-none">
                         <Image
                             alt="Sup de Luxe logo"
                             height="64"

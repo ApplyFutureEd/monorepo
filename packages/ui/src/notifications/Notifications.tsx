@@ -124,7 +124,7 @@ export const Notifications: FC<Props> = (props) => {
                         <div
                             className="absolute z-40 right-0 mt-2 rounded-md shadow-lg overflow-y-scroll origin-top-right"
                             style={{ maxHeight: '500px', width: '300px' }}>
-                            <div className="py-1 bg-white rounded-md shadow-xs">
+                            <div className="shadow-xs py-1 bg-white rounded-md">
                                 {unseenNotifications?.length === 0 && !showOldNotifications && (
                                     <div className="px-6 py-5 bg-white">
                                         <img

@@ -21,7 +21,7 @@ Auth.signOut = jest.fn().mockImplementation(() => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 delete window.location;
-window.location = ({ reload: jest.fn() } as unknown) as Location;
+window.location = { reload: jest.fn() } as unknown as Location;
 
 describe('UserMenu', () => {
     const items: Array<DropdownItem> = [

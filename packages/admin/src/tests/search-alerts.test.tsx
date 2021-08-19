@@ -14,7 +14,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-const mockedData = ({
+const mockedData = {
     searchSearchAlerts: {
         items: [
             {
@@ -23,8 +23,7 @@ const mockedData = ({
                 lastUpdate: 1619643071145,
                 nextToken: '1.61964307E12',
                 owner: '2f54fbbb-7249-47f3-9ceb-385e4364f33b',
-                query:
-                    '{"filter":{"or":[{"name":{"matchPhrasePrefix":"bxl"}},{"city":{"matchPhrasePrefix":"bxl"}},{"country":{"matchPhrasePrefix":"bxl"}},{"schoolName":{"matchPhrasePrefix":"bxl"}}],"published":{"eq":true}},"limit":20}',
+                query: '{"filter":{"or":[{"name":{"matchPhrasePrefix":"bxl"}},{"city":{"matchPhrasePrefix":"bxl"}},{"country":{"matchPhrasePrefix":"bxl"}},{"schoolName":{"matchPhrasePrefix":"bxl"}}],"published":{"eq":true}},"limit":20}',
                 student: {
                     address: '',
                     birthday: null,
@@ -107,7 +106,7 @@ const mockedData = ({
         ],
         nextToken: '1.61964307E12'
     }
-} as unknown) as SearchProgramsQuery;
+} as unknown as SearchProgramsQuery;
 
 const mockedIsLoading = jest.fn().mockReturnValue(false);
 

@@ -12,6 +12,7 @@
         "commit": "git add . && cz",
         "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
         "lint": "eslint --fix .",
+        "format": "prettier --write './**/*.tsx'",
         "start:admin": "cd packages/admin && yarn start",
         "start:i18n": "cd packages/i18n && yarn start",
         "start:students": "cd packages/students && yarn start",

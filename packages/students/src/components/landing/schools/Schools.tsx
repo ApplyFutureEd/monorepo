@@ -33,7 +33,7 @@ const Schools: FC = () => {
 
                         <div className="relative -mx-4 mt-10 lg:mt-0">
                             <svg
-                                className="left-1/2 absolute transform -translate-x-1/2 translate-y-16 lg:hidden"
+                                className="absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden"
                                 fill="none"
                                 height="404"
                                 viewBox="0 0 784 404"

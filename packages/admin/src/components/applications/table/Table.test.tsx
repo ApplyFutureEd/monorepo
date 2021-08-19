@@ -4,7 +4,7 @@ import Table from '@components/applications/table/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const mockedData = ({
+const mockedData = {
     searchApplications: {
         items: [
             {
@@ -211,8 +211,7 @@ const mockedData = ({
                     schedule: 'FULL_TIME',
                     schoolId: '9fbabd87-f987-4106-9d61-9924d3118371',
                     schoolName: 'Glion Institute of Higher Education',
-                    slug:
-                        'master-of-science-in-international-hospitality-business-glion-institute-of-higher-education-london',
+                    slug: 'master-of-science-in-international-hospitality-business-glion-institute-of-higher-education-london',
                     submissionDeadline: '2021-01-14T23:00:00.000Z',
                     testCambridgeAdvanced: 1,
                     testCambridgeFirst: 6,
@@ -236,7 +235,7 @@ const mockedData = ({
         nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5',
         total: 1
     }
-} as unknown) as SearchApplicationsQuery;
+} as unknown as SearchApplicationsQuery;
 
 describe('Table', () => {
     const handleContextMenu = jest.fn();

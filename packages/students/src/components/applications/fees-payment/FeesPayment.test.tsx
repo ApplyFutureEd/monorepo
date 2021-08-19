@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import FeesPayment from './FeesPayment';
 
 describe('FeesPayment', () => {
-    const applicationData = ({
+    const applicationData = {
         getApplication: {
             admissionResult: null,
             createdAt: '2021-05-01T14:14:09.014Z',
@@ -358,7 +358,7 @@ describe('FeesPayment', () => {
             updatedAt: '2021-05-01T14:14:09.014Z',
             visaDate: null
         }
-    } as unknown) as GetApplicationQuery;
+    } as unknown as GetApplicationQuery;
 
     it.skip('can render without crashing', () => {
         render(<FeesPayment applicationData={applicationData} isLoading={false} />);

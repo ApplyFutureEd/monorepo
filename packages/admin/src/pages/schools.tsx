@@ -147,7 +147,7 @@ const SchoolsPage: FC = () => {
                 title={`Schools ${total}`}>
                 <div className="relative">
                     {isLoading && (
-                        <div className="inset-1/2 z-1000 absolute w-full h-full bg-gray-100 opacity-75">
+                        <div className="z-1000 absolute inset-1/2 w-full h-full bg-gray-100 opacity-75">
                             <Loader />
                         </div>
                     )}
