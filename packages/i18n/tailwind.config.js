@@ -2,11 +2,13 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    future: {
-        purgeLayersByDefault: true,
-        removeDeprecatedGapUtilities: true
-    },
-    plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
+    mode: 'jit',
+    plugins: [
+        require('tailwindcss-filters'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio')
+    ],
     purge: false,
     theme: {
         container: {

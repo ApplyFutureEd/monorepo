@@ -2,6 +2,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    mode: 'jit',
     plugins: [
         require('tailwindcss-filters'),
         require('@tailwindcss/forms'),
