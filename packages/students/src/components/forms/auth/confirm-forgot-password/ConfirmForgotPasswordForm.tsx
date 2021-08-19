@@ -17,8 +17,8 @@ const ConfirmForgotPasswordForm: FC = () => {
         email: string()
             .required(t('common:error-email-required'))
             .email(t('common:error-email-format')),
-        newPassword: string().required(t('common:error-email-required')),
-        verificationCode: string().required(t('common:error-email-required'))
+        newPassword: string().required(t('auth:error-password-required')),
+        verificationCode: string().required(t('common:error-required'))
     });
 
     type FormValues = {

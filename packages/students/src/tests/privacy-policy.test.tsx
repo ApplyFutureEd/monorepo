@@ -13,6 +13,7 @@ describe('PrivacyPolicyPage', () => {
         content:
             '# Poena obsessa prima ipse est aurum latoque ## Ait nec iuvenemque sibila proelia Lorem markdownum utiliter pontus fit fratribus; tu [potes](http://www.ossatua.com/meroque.html). Flectit Pelasgi nodosaque lignum isto erat tuarum vocesque in, **modo gerens**.',
         id: '1',
+        lastUpdate: 220121284129,
         published: true,
         slug: 'privacy-policy',
         title: 'Privacy Policy'

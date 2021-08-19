@@ -1,7 +1,6 @@
+import About from '@pages/about';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
-
-import About from '../pages_/about';
 
 jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),

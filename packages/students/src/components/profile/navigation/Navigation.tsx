@@ -1,5 +1,5 @@
 import { Completion } from '@applyfuture/utils';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import Tabs from '../tabs/Tabs';
 import TabsSkeleton from '../tabs/TabsSkeleton';

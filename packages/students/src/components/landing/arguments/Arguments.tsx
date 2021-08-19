@@ -1,3 +1,4 @@
+import image from '@assets/images/landing/landing-arguments.png';
 import { faBuffer } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faHandHoldingUsd } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -111,7 +112,8 @@ const Arguments: FC = () => {
                             alt={t('landing:why-illustration-alt')}
                             className="relative mx-auto"
                             height="373"
-                            src="/assets/images/landing/landing-arguments.svg"
+                            placeholder="blur"
+                            src={image}
                             width="625"
                         />
                     </div>

@@ -1,4 +1,5 @@
 export * from './constants/applicationSteps';
+export * from './constants/appNotifications';
 export * from './constants/cambridgeAdvancedResults';
 export * from './constants/cambridgeFirstResults';
 export * from './constants/cities';
@@ -20,6 +21,7 @@ export * from './constants/requestedDocuments';
 export * from './constants/schedules';
 
 export * from './helpers/application';
+export * from './helpers/appNotifications';
 export * from './helpers/currency';
 export * from './helpers/date';
 export * from './helpers/delay';
@@ -27,26 +29,30 @@ export * from './helpers/documents';
 export * from './helpers/duration';
 export * from './helpers/eastereggs';
 export * from './helpers/eligibility';
+export * from './helpers/emailNotifications';
 export * from './helpers/filters';
 export * from './helpers/graphql';
-export * from './helpers/isBrowser';
 export * from './helpers/id';
+export * from './helpers/isBrowser';
+export * from './helpers/locales';
 export * from './helpers/markdown';
 export * from './helpers/scrollToErrors';
 export * from './helpers/profile';
 export * from './helpers/ssr';
 export * from './helpers/tests';
 export * from './helpers/toast';
-export * from './helpers/whyDidYouRender';
 
 export * from './hocs/withPrivateAccess';
 
 export * from './hooks/useAuthenticatedUser';
+export * from './hooks/useHotKey';
+export * from './hooks/useLocaleStorage';
 export * from './hooks/useOutsideAlerter';
 export * from './hooks/usePageBottom';
 export * from './hooks/useQuery';
+export * from './hooks/useSubscription';
 export * from './hooks/useWindowSize';
 
 export * from './services/amplify';
-export * from './services/AmplifyError';
-export * from './services/sentry';
+export * from './services/analytics';
+export * from './services/crisp';

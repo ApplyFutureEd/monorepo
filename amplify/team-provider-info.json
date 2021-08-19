@@ -29,7 +29,7 @@
         },
         "applicationdocument": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationdocument-525631524c553672656f-build.zip"
+          "s3Key": "amplify-builds/applicationdocument-304d7043455669655434-build.zip"
         },
         "contactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
@@ -37,11 +37,74 @@
         },
         "recruiterscontactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/recruiterscontactform-6a666345644941486f79-build.zip"
+          "s3Key": "amplify-builds/recruiterscontactform-65314969686d422b7845-build.zip"
         },
         "feespayment": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/feespayment-562b73776a51454f444f-build.zip"
+          "s3Key": "amplify-builds/feespayment-7252514f384765355a6a-build.zip"
+        },
+        "applicationarchive": {
+          "deploymentBucketName": "amplify-students-dev-162403-deployment",
+          "s3Key": "amplify-builds/applicationarchive-6a7a5a6966487a454e56-build.zip"
+        },
+        "emailnotification": {
+          "deploymentBucketName": "amplify-students-dev-162403-deployment",
+          "s3Key": "amplify-builds/emailnotification-476470614b5a49776b47-build.zip"
+        }
+      }
+    }
+  },
+  "master": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-students-master-224353-authRole",
+      "UnauthRoleArn": "arn:aws:iam::708772081646:role/amplify-students-master-224353-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::708772081646:role/amplify-students-master-224353-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-students-master-224353-deployment",
+      "UnauthRoleName": "amplify-students-master-224353-unauthRole",
+      "StackName": "amplify-students-master-224353",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:708772081646:stack/amplify-students-master-224353/ba2b41e0-d463-11eb-8903-02c6fad02c82",
+      "AmplifyAppId": "d1myhy97cpodfp"
+    },
+    "categories": {
+      "auth": {
+        "students9e8a43d9": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "contactform": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/contactform-417a38466e344a434c4d-build.zip"
+        },
+        "recruiterscontactform": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/recruiterscontactform-65314969686d422b7845-build.zip"
+        },
+        "postusersignup": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/postusersignup-584941754463476c676d-build.zip"
+        },
+        "applicationdocument": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/applicationdocument-304d7043455669655434-build.zip"
+        },
+        "feespayment": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/feespayment-7252514f384765355a6a-build.zip"
+        },
+        "applicationarchive": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/applicationarchive-77364e584f3031663966-build.zip"
+        },
+        "emailnotification": {
+          "deploymentBucketName": "amplify-students-master-224353-deployment",
+          "s3Key": "amplify-builds/emailnotification-49583863556f4a534e37-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1myhy97cpodfp",
+          "type": "cicd"
         }
       }
     }

@@ -1,4 +1,3 @@
-import { isBrowser } from '@applyfuture/utils';
 import NextHead from 'next/head';
 import { FC } from 'react';
 
@@ -20,78 +19,17 @@ export const Head: FC<Props> = (props) => {
 
     const { description = defaultDescription, title = defaultTitle } = props;
 
-    if (isBrowser()) {
-        const WebFontLoader = require('webfontloader');
-        WebFontLoader.load({
-            custom: {
-                families: ['Inter var'],
-                urls: ['/assets/fonts/inter/font.css']
-            }
-        });
-    }
-
-    const fonts = [
-        {
-            href: '/assets/fonts/inter/Inter-Bold.woff',
-            type: 'font/woff'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-Bold.woff2',
-            type: 'font/woff2'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-ExtraBold.woff',
-            type: 'font/woff'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-ExtraBold.woff2',
-            type: 'font/woff2'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-Medium.woff',
-            type: 'font/woff'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-Medium.woff2',
-            type: 'font/woff2'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-Regular.woff',
-            type: 'font/woff'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-Regular.woff2',
-            type: 'font/woff2'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-SemiBold.woff',
-            type: 'font/woff'
-        },
-        {
-            href: '/assets/fonts/inter/Inter-SemiBold.woff2',
-            type: 'font/woff2'
-        }
-    ];
-
     return (
         <NextHead>
             <meta charSet="UTF-8" />
             <title>{title} - ApplyFuture</title>
             <meta content={description} name="description" />
             <meta content="width=device-width, initial-scale=1" name="viewport" />
-            <meta key="robots" content="noindex,nofollow" name="robots" />
-
-            <link as="style" href="/assets/fonts/inter/font.css" rel="preload" />
-            {fonts.map((font) => (
-                <link
-                    key={font.href}
-                    as="font"
-                    crossOrigin="anonymous"
-                    href={font.href}
-                    rel="preload"
-                    type={font.type}
-                />
-            ))}
+            <link href="https://fonts.gstatic.com" rel="preconnect" />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap"
+                rel="stylesheet"
+            />
 
             <link href="/manifest.json" rel="manifest" />
             <link

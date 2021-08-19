@@ -2,7 +2,7 @@ import { GetApplicationQuery } from '@applyfuture/graphql';
 import { Button } from '@applyfuture/ui';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
@@ -47,7 +47,8 @@ const Submission: FC<Props> = (props) => {
                                 </span>
                                 <span>{t('application:will-receive-an-email')}</span>
                                 <div className="flex justify-center mt-6 md:mt-4">
-                                    <Link href={`/applications#${application?.id}?step=submission`}>
+                                    <Link
+                                        href={`/applications?id=${application?.id}&step=internal-review`}>
                                         <Button variant="primary">
                                             {t('application:follow-my-application')}
                                         </Button>

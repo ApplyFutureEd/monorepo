@@ -95,10 +95,6 @@ const RecruitementDetails: FC<Props> = (props) => {
             value: '1000 - 2500€'
         },
         {
-            label: '1000 - 2500€',
-            value: '1000 - 2500€'
-        },
-        {
             label: `${t('recruiter-form:more-than')} 2500€`,
             value: 'More than 2500€'
         }

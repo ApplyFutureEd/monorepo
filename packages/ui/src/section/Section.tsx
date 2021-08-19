@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
@@ -51,5 +51,3 @@ export const Section: FC<Props> = (props) => {
         </div>
     );
 };
-
-export default Section;

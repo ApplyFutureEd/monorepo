@@ -31,6 +31,22 @@
                 "open": true
             },
             "policyResourceName": "/fees-payment"
+        },
+        {
+            "name": "/application-archive",
+            "lambdaFunction": "applicationarchive",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/application-archive"
+        },
+        {
+            "name": "/email-notification",
+            "lambdaFunction": "emailnotification",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/email-notification"
         }
     ],
     "resourceName": "rest",
@@ -47,6 +63,12 @@
         },
         {
             "lambdaFunction": "feespayment"
+        },
+        {
+            "lambdaFunction": "applicationarchive"
+        },
+        {
+            "lambdaFunction": "emailnotification"
         }
     ],
     "privacy": {
@@ -87,7 +109,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "applicationarchive",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "emailnotification",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "55846f8a"
+    "uuid": "d8120359"
 }

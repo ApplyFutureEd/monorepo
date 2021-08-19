@@ -29,6 +29,9 @@ type School
     slug: String!
     published: Boolean!
     programs: [Program] @connection(keyName: "bySchool", fields: ["id"])
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type Program
@@ -91,6 +94,9 @@ type Program
     testTcftef: Float!
     testToefl: Float!
     testToeic: Float!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type RequestedDocument {
@@ -186,6 +192,9 @@ type Student
     testToeicDate: String
     validVisa: Boolean
     workExperiences: [WorkExperience]
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type SchoolAttended {
@@ -224,6 +233,9 @@ type Document
     student: Student @connection(fields: ["studentId"])
     name: String!
     storageKey: String
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type Application
@@ -233,7 +245,7 @@ type Application
             { allow: groups, groups: ["admin"], operations: [create, update, read, delete] }
         ]
     )
-    @model
+    @model(subscriptions: { level: public })
     @searchable
     @key(name: "byStudent", fields: ["studentId"], queryField: "getApplicationByStudent") {
     id: ID!
@@ -253,24 +265,26 @@ type Application
     todo: String
     tuitionsFeePaymentDate: String
     visaDate: String
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type ApplicationStep {
-    id: String!
     date: String!
+    id: String!
     isMandatory: Boolean!
     label: String!
     status: String!
+    timelineLabel: String!
 }
 
 type Notification {
     date: String!
-    description: String!
-    descriptionOptions: String!
+    id: String!
     link: String!
     seen: Boolean!
-    title: String!
-    titleOptions: String!
+    variables: String!
 }
 
 type SearchAlert
@@ -289,6 +303,9 @@ type SearchAlert
     studentId: ID
     type: String!
     query: String!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type Feedback
@@ -305,6 +322,9 @@ type Feedback
     applicationId: ID!
     lastUpdate: Float!
     rating: Float!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
 }
 
 type Post
@@ -325,4 +345,12 @@ type Post
     published: Boolean!
     slug: String!
     title: String!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
+    owner: String
+}
+
+type Subscription {
+    onUpdateApplicationById(id: ID!): Application @aws_subscribe(mutations: ["updateApplication"])
+    onUpdateStudentById(id: ID!): Student @aws_subscribe(mutations: ["updateStudent"])
 }

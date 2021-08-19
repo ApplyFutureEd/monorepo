@@ -1,12 +1,18 @@
 @tailwind base;
 
+@import './clamp.css';
 @import './date-input.css';
+@import './icons.css';
 @import './loader.css';
 @import './markdown.css';
+@import './phone-input.css';
 @import './profile-action-panel.css';
+@import './rater.css';
 @import './reset.css';
 @import './scrollbar.css';
+@import './slider.css';
 @import './stripe.css';
+@import './timeline.css';
 @import './toast.css';
 
 /* Start purging... */

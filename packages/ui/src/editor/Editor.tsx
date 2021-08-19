@@ -1,6 +1,6 @@
 import { markdown } from '@applyfuture/utils';
 import { FieldInputProps, FormikProps } from 'formik';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import ReactMde from 'react-mde';
 

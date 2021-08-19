@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
 
-import UploadDocuments from '../../pages_/applications/[id]/upload-documents';
+import UploadDocuments from '../../pages/applications/[id]/upload-documents';
 
 jest.mock('next/router', () => ({
     useRouter() {

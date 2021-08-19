@@ -27,7 +27,7 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { array, mixed, number, object, string } from 'yup';
 
 type Props = {
@@ -75,7 +75,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                         test: (value) => value
                     })
                     .required(t('common:error-field-required')),
-                educationLevel: number().moreThan(0, t('common:error-field-required')),
+                educationLevel: mixed().required(t('common:error-field-required')),
                 name: string()
                     .test({
                         message: t('common:error-latin-characters'),
@@ -84,7 +84,7 @@ const EducationHistoryForm: FC<Props> = (props) => {
                     })
                     .required(t('common:error-field-required')),
 
-                primaryLanguageInstruction: string().required(t('common:error-field-required'))
+                primaryLanguageInstruction: mixed().required(t('common:error-field-required'))
             })
         )
     });

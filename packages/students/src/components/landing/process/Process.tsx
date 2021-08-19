@@ -1,3 +1,4 @@
+import image from '@assets/images/landing/landing-process.png';
 import {
     faAddressCard,
     faEnvelopeOpenText,
@@ -198,7 +199,8 @@ const Process: FC = () => {
                                 alt={t('landing:how-illustration-alt')}
                                 className="relative mx-auto"
                                 height="398"
-                                src="/assets/images/landing/landing-process.svg"
+                                placeholder="blur"
+                                src={image}
                                 width="540"
                             />
                         </div>

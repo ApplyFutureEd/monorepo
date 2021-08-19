@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "next-translate && next dev",
-        "build": "next-translate && next build",
+        "start": "next dev",
+        "build": "next build",
         "unused": "next-unused",
         "lint": "eslint --fix .",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
@@ -21,7 +21,7 @@
             ".test."
         ],
         "entrypoints": [
-            "src/pages_"
+            "src/pages"
         ]
     },
     "husky": {
@@ -39,20 +39,16 @@
         "@applyfuture/models": "*",
         "@applyfuture/ui": "*",
         "@applyfuture/utils": "*",
-        "@devexpress/dx-react-core": "^2.7.4",
-        "@devexpress/dx-react-grid": "^2.7.4",
-        "@devexpress/dx-react-grid-material-ui": "^2.7.4",
+        "@devexpress/dx-react-core": "2.7.4",
+        "@devexpress/dx-react-grid": "2.7.4",
+        "@devexpress/dx-react-grid-material-ui": "2.7.4",
         "@fortawesome/fontawesome-svg-core": "1.2.32",
         "@fortawesome/free-brands-svg-icons": "5.15.1",
         "@fortawesome/pro-light-svg-icons": "5.15.1",
         "@fortawesome/pro-solid-svg-icons": "5.15.1",
         "@fortawesome/react-fontawesome": "0.1.12",
-        "@material-ui/core": "^4.11.2",
-        "@material-ui/icons": "^4.11.2",
-        "@sentry/browser": "5.27.4",
-        "@sentry/integrations": "5.27.4",
-        "@sentry/node": "5.27.4",
-        "@sentry/webpack-plugin": "1.13.0",
+        "@material-ui/core": "4.11.2",
+        "@material-ui/icons": "4.11.2",
         "@types/showdown": "1.9.3",
         "aws-amplify": "3.3.12",
         "classnames": "2.2.6",
@@ -61,17 +57,17 @@
         "date-fns": "2.16.1",
         "formik": "2.2.5",
         "js-cookie": "2.2.1",
-        "lodash": "4.17.20",
-        "next": "10.0.1",
-        "next-pwa": "3.1.5",
-        "next-translate": "0.20.2",
-        "next-transpile-modules": "6.0.0",
-        "react": "17.0.1",
-        "react-contexify": "^5.0.0",
-        "react-datepicker": "^3.4.1",
-        "react-dom": "17.0.1",
+        "lodash": "4.17.21",
+        "next": "11.0.1",
+        "next-pwa": "5.2.23",
+        "next-translate": "1.0.7",
+        "next-transpile-modules": "8.0.0",
+        "react": "17.0.2",
+        "react-contexify": "5.0.0",
+        "react-datepicker": "3.4.1",
+        "react-dom": "17.0.2",
         "react-loading-skeleton": "2.1.1",
-        "react-mde": "^11.0.6",
+        "react-mde": "11.0.6",
         "react-phone-number-input": "3.1.6",
         "react-select": "3.1.0",
         "react-toastify": "6.1.0",
@@ -79,9 +75,7 @@
         "showdown": "1.9.1",
         "use-debounce": "5.1.0",
         "use-deep-compare-effect": "1.5.0",
-        "webfontloader": "1.6.28",
-        "yup": "0.29.1",
-        "yup-phone": "1.2.12"
+        "yup": "0.29.1"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "3.0.0",
@@ -133,7 +127,7 @@
         "stylelint-config-recommended": "3.0.0",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat",
         "tailwindcss-filters": "3.0.0",
-        "typescript": "4.0.5"
+        "typescript": "4.3.5"
     },
     "config": {
         "commitizen": {

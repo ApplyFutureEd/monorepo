@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { uniqueId } from 'lodash';
 
-import BackgroundInformationPage from '../../pages_/profile/background-information';
+import BackgroundInformationPage from '../../pages/profile/background-information';
 
 jest.mock('next/router', () => ({
     useRouter() {

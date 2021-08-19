@@ -2,7 +2,7 @@ import { DataTypeProvider } from '@devexpress/dx-react-grid';
 import { faBell as faBellEmpty } from '@fortawesome/pro-light-svg-icons';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 export const NotificationsFormatter: FC<DataTypeProvider.ValueFormatterProps> = (props) => {
     const { value: notifications } = props;

@@ -1,7 +1,6 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery } from '@applyfuture/graphql';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 
 import Summary from './Summary';
 
@@ -59,7 +58,7 @@ describe('Summary', () => {
             },
             {
                 date: '',
-                id: 'application-internal-review',
+                id: 'internal-review',
                 isMandatory: true,
                 label: 'TBD',
                 status: 'idle'

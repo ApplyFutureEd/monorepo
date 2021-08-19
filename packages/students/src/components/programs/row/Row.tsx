@@ -9,12 +9,14 @@ import {
 import { Button } from '@applyfuture/ui';
 import {
     applicationSteps,
+    checkApplicationExistance,
     checkCompletion,
     checkEligibility,
     convertSecondsToUnit,
     currency,
     date,
     getCountryLabel,
+    getFeeUnitLabel,
     graphql,
     toast,
     useAuthenticatedUser
@@ -22,7 +24,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { SupportedLocale } from 'src/types/SupportedLocale';
 
 import EligibilityWarningModal from '../eligibility-warning-modal/EligibilityWarningModal';
@@ -80,6 +82,19 @@ const Row: FC<Props> = (props) => {
         }
 
         try {
+            const { applicationId, stepId } = await checkApplicationExistance(
+                student?.id,
+                program?.id
+            );
+
+            if (applicationId && stepId) {
+                if (['upload-documents', 'review-documents', 'fees-payment'].includes(stepId)) {
+                    return router.push(`/applications/${applicationId}/${stepId}`);
+                } else {
+                    return router.push(`/applications?id=${applicationId}&step=${stepId}`);
+                }
+            }
+
             const result = await graphql<CreateApplicationMutation>(createApplication, {
                 input: {
                     intake: program?.intakes && program?.intakes?.split(',')[0],
@@ -213,7 +228,7 @@ const Row: FC<Props> = (props) => {
                                     <div className="flex items-center justify-between">
                                         <div className="truncate text-sm leading-5">
                                             <div>
-                                                {t(`programs:${program?.feeUnit.toLowerCase()}`)}{' '}
+                                                {t(`programs:${getFeeUnitLabel(program?.feeUnit)}`)}{' '}
                                                 <b>
                                                     {currency({
                                                         currency: program?.feeCurrency,

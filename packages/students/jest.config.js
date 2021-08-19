@@ -6,10 +6,11 @@ module.exports = {
     ...baseConfig,
     displayName: packageName,
     moduleNameMapper: {
+        '@assets/(.*)': `<rootDir>/packages/${packageName}/src/assets/$1`,
         '@components/(.*)': `<rootDir>/packages/${packageName}/src/components/$1`,
-        '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages_/$1`,
+        '@pages/(.*)': `<rootDir>/packages/${packageName}/src/pages/$1`,
         '@styles/(.*)': `<rootDir>/packages/${packageName}/src/styles/$1`,
-        '\\.(css|scss)$': 'identity-obj-proxy'
+        '\\.(css|scss|png)$': 'identity-obj-proxy'
     },
     modulePaths: [`<rootDir>/packages/${packageName}/src/`],
     name: packageName,

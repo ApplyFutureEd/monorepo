@@ -1,4 +1,5 @@
 import { Button } from '@applyfuture/ui';
+import image from '@assets/images/landing/landing-recruiters.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
@@ -95,7 +96,8 @@ const Recruiters: FC = () => {
                                     alt={t('landing:recruiters-illustration-alt')}
                                     className="relative mx-auto"
                                     height="349"
-                                    src="/assets/images/landing/landing-recruiters.svg"
+                                    placeholder="blur"
+                                    src={image}
                                     width="490"
                                 />
                             </div>

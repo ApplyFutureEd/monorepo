@@ -3,7 +3,7 @@ import FeesPaymentForm from '@components/forms/applications/fees-payment/FeesPay
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     applicationData: GetApplicationQuery;
@@ -12,9 +12,7 @@ type Props = {
 
 const FeesPayment: FC<Props> = (props) => {
     const { applicationData, isLoading } = props;
-    const stripePromise = loadStripe(
-        'pk_test_51GtwStKTwG5G2eRQEr3cLcsJdEkuNlWTd73aJSjhvvToHOmlGZhQ9us4K0mqazt3xkm2Rtg2nhkPJUiK3DwdBNm400Z2KRL2T3'
-    );
+    const stripePromise = loadStripe('pk_live_bkLUK46HYGNu8r1VM3rbfWn700Hjz3Xbwg');
     const { t } = useTranslation();
 
     return (

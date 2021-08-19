@@ -1,4 +1,5 @@
 import { Button } from '@applyfuture/ui';
+import image from '@assets/images/landing/landing-hero.png';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
@@ -50,7 +51,8 @@ const Hero: FC = () => {
                             alt={t('landing:hero-illustration-alt')}
                             className="relative mx-auto"
                             height="360"
-                            src="/assets/images/landing/landing-hero.svg"
+                            placeholder="blur"
+                            src={image}
                             width="756"
                         />
                     </div>

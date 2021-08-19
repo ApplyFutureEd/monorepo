@@ -1,6 +1,9 @@
 import { GetApplicationByStudentQuery } from '@applyfuture/graphql';
 import { SupportedLocale } from '@applyfuture/models';
+import { Timeline } from '@applyfuture/ui';
 import { date, toShortId } from '@applyfuture/utils';
+import CompletionModal from '@components/applications/completion-modal/CompletionModal';
+import { config } from '@components/applications/timeline/config';
 import {
     faChevronDown,
     faChevronUp,
@@ -11,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     application: NonNullable<
@@ -68,8 +71,7 @@ const ApplicationRow: FC<Props> = (props) => {
                             </div>
                             <div className="hidden md:block">
                                 <div className="text-left text-gray-900 text-sm leading-5">
-                                    {t('application:id')}:{' '}
-                                    <b>{application && toShortId(application?.id)}</b>
+                                    {t('application:id')}: <b>{toShortId(application?.id)}</b>
                                 </div>
                                 <div className="mt-2 text-left text-gray-900 text-sm leading-5">
                                     {t('application:intake')}:{' '}
@@ -87,7 +89,15 @@ const ApplicationRow: FC<Props> = (props) => {
                     </div>
                 </div>
             </button>
-            {open && <div>timeline</div>}
+            {open && application?.steps && (
+                <div className="px-4 py-4 sm:px-6">
+                    <Timeline
+                        ModalComponent={CompletionModal}
+                        application={application}
+                        config={config}
+                    />
+                </div>
+            )}
         </div>
     );
 };

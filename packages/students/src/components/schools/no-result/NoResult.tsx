@@ -9,7 +9,7 @@ import { Button } from '@applyfuture/ui';
 import { graphql, toast, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { faBell } from '@fortawesome/pro-solid-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     variables: SearchSchoolsQueryVariables;

@@ -11,7 +11,7 @@ import { Storage } from 'aws-amplify';
 import cx from 'classnames';
 import { Field, FieldProps } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type Props = {
     application: GetApplicationQuery['getApplication'];

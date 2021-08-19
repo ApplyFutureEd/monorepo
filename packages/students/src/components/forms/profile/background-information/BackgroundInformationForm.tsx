@@ -19,7 +19,7 @@ import {
     FormikHelpers
 } from 'formik';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { array, mixed, object, string } from 'yup';
 
@@ -275,20 +275,25 @@ const BackgroundInformationForm: FC<Props> = (props) => {
                                                                         )}
                                                                     </Field>
                                                                 </div>
-
-                                                                <Field
-                                                                    name={`workExperiences.${index}.address`}>
-                                                                    {(fieldProps: FieldProps) => (
-                                                                        <Input
-                                                                            isLoading={isLoading}
-                                                                            label={t(
-                                                                                'profile:address'
-                                                                            )}
-                                                                            type="text"
-                                                                            {...fieldProps}
-                                                                        />
-                                                                    )}
-                                                                </Field>
+                                                                <div className="w-full sm:w-1/2">
+                                                                    <Field
+                                                                        name={`workExperiences.${index}.address`}>
+                                                                        {(
+                                                                            fieldProps: FieldProps
+                                                                        ) => (
+                                                                            <Input
+                                                                                isLoading={
+                                                                                    isLoading
+                                                                                }
+                                                                                label={t(
+                                                                                    'profile:address'
+                                                                                )}
+                                                                                type="text"
+                                                                                {...fieldProps}
+                                                                            />
+                                                                        )}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
                                                             <div className="flex flex-col items-center w-full sm:flex-row sm:space-x-4">
                                                                 <div className="w-full sm:w-1/2">

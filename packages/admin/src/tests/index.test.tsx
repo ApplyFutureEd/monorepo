@@ -1,6 +1,6 @@
 import LandingPage from '@pages/index';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+
 import { FC } from 'react';
 
 jest.mock('@applyfuture/ui', () => ({

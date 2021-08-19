@@ -16,7 +16,7 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
             },
             height: {
@@ -40,6 +40,7 @@ module.exports = {
         },
         inset: {
             ...defaultTheme.inset,
+            1: '1rem',
             '1/2': '50%',
             2: '2rem',
             4: '4rem',

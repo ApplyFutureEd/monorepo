@@ -29,6 +29,7 @@ export const createSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -79,6 +80,7 @@ export const createSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -112,6 +114,7 @@ export const updateSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -162,6 +165,7 @@ export const updateSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -195,6 +199,7 @@ export const deleteSchool = /* GraphQL */ `
       published
       createdAt
       updatedAt
+      owner
       programs {
         items {
           id
@@ -245,6 +250,7 @@ export const deleteSchool = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -313,6 +319,7 @@ export const createProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -335,6 +342,7 @@ export const createProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -404,6 +412,7 @@ export const updateProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -426,6 +435,7 @@ export const updateProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -495,6 +505,7 @@ export const deleteProgram = /* GraphQL */ `
       testToeic
       createdAt
       updatedAt
+      owner
       school {
         id
         city
@@ -517,6 +528,7 @@ export const deleteProgram = /* GraphQL */ `
         published
         createdAt
         updatedAt
+        owner
         programs {
           nextToken
         }
@@ -596,12 +608,10 @@ export const createStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -738,12 +748,10 @@ export const updateStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -880,12 +888,10 @@ export const deleteStudent = /* GraphQL */ `
       nationality
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       parentsAddress
       parentsCity
@@ -998,12 +1004,10 @@ export const createDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1122,12 +1126,10 @@ export const updateDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1246,12 +1248,10 @@ export const deleteDocument = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1338,20 +1338,19 @@ export const createApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineLabel
       }
       studentId
       student {
@@ -1394,12 +1393,10 @@ export const createApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1467,6 +1464,7 @@ export const createApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1524,6 +1522,7 @@ export const createApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1546,9 +1545,9 @@ export const createApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -1568,20 +1567,19 @@ export const updateApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineLabel
       }
       studentId
       student {
@@ -1624,12 +1622,10 @@ export const updateApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1697,6 +1693,7 @@ export const updateApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1754,6 +1751,7 @@ export const updateApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -1776,9 +1774,9 @@ export const updateApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -1798,20 +1796,19 @@ export const deleteApplication = /* GraphQL */ `
       modalApplicationCompletedViewed
       notifications {
         date
-        description
-        descriptionOptions
+        id
         link
         seen
-        title
-        titleOptions
+        variables
       }
       programId
       steps {
-        id
         date
+        id
         isMandatory
         label
         status
+        timelineLabel
       }
       studentId
       student {
@@ -1854,12 +1851,10 @@ export const deleteApplication = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -1927,6 +1922,7 @@ export const deleteApplication = /* GraphQL */ `
       visaDate
       createdAt
       updatedAt
+      owner
       program {
         id
         applicationFee
@@ -1984,6 +1980,7 @@ export const deleteApplication = /* GraphQL */ `
         testToeic
         createdAt
         updatedAt
+        owner
         school {
           id
           city
@@ -2006,9 +2003,9 @@ export const deleteApplication = /* GraphQL */ `
           published
           createdAt
           updatedAt
+          owner
         }
       }
-      owner
     }
   }
 `;
@@ -2060,12 +2057,10 @@ export const updateSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2185,12 +2180,10 @@ export const deleteSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity
@@ -2280,20 +2273,19 @@ export const createFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineLabel
         }
         studentId
         student {
@@ -2375,6 +2367,7 @@ export const createFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2424,8 +2417,8 @@ export const createFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2454,20 +2447,19 @@ export const updateFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineLabel
         }
         studentId
         student {
@@ -2549,6 +2541,7 @@ export const updateFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2598,8 +2591,8 @@ export const updateFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2628,20 +2621,19 @@ export const deleteFeedback = /* GraphQL */ `
         modalApplicationCompletedViewed
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         programId
         steps {
-          id
           date
+          id
           isMandatory
           label
           status
+          timelineLabel
         }
         studentId
         student {
@@ -2723,6 +2715,7 @@ export const deleteFeedback = /* GraphQL */ `
         visaDate
         createdAt
         updatedAt
+        owner
         program {
           id
           applicationFee
@@ -2772,8 +2765,8 @@ export const deleteFeedback = /* GraphQL */ `
           testToeic
           createdAt
           updatedAt
+          owner
         }
-        owner
       }
       applicationId
       lastUpdate
@@ -2799,6 +2792,7 @@ export const createPost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2817,6 +2811,7 @@ export const updatePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2835,6 +2830,7 @@ export const deletePost = /* GraphQL */ `
       title
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -2886,12 +2882,10 @@ export const createSearchAlert = /* GraphQL */ `
         nationality
         notifications {
           date
-          description
-          descriptionOptions
+          id
           link
           seen
-          title
-          titleOptions
+          variables
         }
         parentsAddress
         parentsCity

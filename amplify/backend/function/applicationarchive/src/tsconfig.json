@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "esModuleInterop": true,
+        "module": "CommonJS",
+        "noImplicitAny": true,
+        "preserveConstEnums": true,
+        "strictFunctionTypes": false,
+        "sourceMap": true,
+        "target": "ES2017",
+        "types": ["node"]
+    },
+    "exclude": ["node_modules", "**/*.spec.ts"],
+    "include": ["."]
+}

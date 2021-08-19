@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {

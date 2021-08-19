@@ -2,7 +2,6 @@ import { SearchProgramsQuery } from '@applyfuture/graphql';
 import ProgramsPage from '@pages/programs';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 const mockedPush = jest.fn();
 

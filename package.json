@@ -5,36 +5,45 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start:students": "cd packages/students && yarn start",
-        "build:students": "cd packages/students && yarn build",
-        "start:admin": "cd packages/admin && yarn start",
         "build:admin": "cd packages/admin && yarn build",
-        "lint": "eslint --fix .",
-        "test": "jest --coverage",
-        "test:watch": "jest --watch",
+        "build:i18n": "cd packages/i18n && yarn build",
+        "build:students": "cd packages/students && yarn build",
+        "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src",
         "commit": "git add . && cz",
         "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
-        "i18n:pull": "rm -rf locales && rm -rf ./packages/students/locales && rm -rf ./packages/admin/locales && mkdir locales && cd locales && locize download --api-key 812c69aa-db11-41e3-afd9-416e0395f168 --project-id 5ba6d6ad-ccfb-44eb-b3e7-f5231e46272a",
-        "i18n:deploy": "cp -r ./locales ./packages/students && mv ./locales ./packages/admin",
-        "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src"
+        "lint": "eslint --fix .",
+        "start:admin": "cd packages/admin && yarn start",
+        "start:i18n": "cd packages/i18n && yarn start",
+        "start:students": "cd packages/students && yarn start",
+        "test": "jest --coverage --silent",
+        "test:watch": "jest --watch"
     },
     "workspaces": [
         "packages/*"
     ],
     "devDependencies": {
-        "@babel/core": "7.12.10",
-        "@testing-library/dom": "7.28.1",
-        "@testing-library/jest-dom": "5.11.6",
-        "@testing-library/react": "11.2.1",
-        "@testing-library/user-event": "12.3.0",
+        "@babel/core": "7.15.0",
+        "@testing-library/dom": "8.1.0",
+        "@testing-library/jest-dom": "5.14.1",
+        "@testing-library/react": "12.0.0",
+        "@testing-library/user-event": "13.2.1",
         "@types/node": "14.14.20",
         "@types/react": "17.0.0",
-        "babel-jest": "26.6.3",
+        "babel-jest": "27.0.6",
         "babel-loader": "8.2.2",
+        "caniuse-lite": "^1.0.30001249",
         "cz-conventional-changelog": "3.3.0",
-        "jest": "26.6.3",
+        "cz-customizable": "6.3.0",
+        "eslint-config-next": "11.0.1",
+        "eslint-plugin-import": "^2.23.4",
+        "jest": "27.0.6",
         "jest-sonar-reporter": "2.0.0",
-        "typescript": "4.0.5"
+        "jest-transform-stub": "2.0.0",
+        "typescript": "4.3.5"
     },
-    "dependencies": {}
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-customizable"
+        }
+    }
 }

@@ -1,7 +1,7 @@
 import { CardExpiryElement } from '@stripe/react-stripe-js';
 import cx from 'classnames';
 import { FieldInputProps } from 'formik';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import { Tooltip } from '../tooltip/Tooltip';

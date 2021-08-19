@@ -6,7 +6,7 @@ module.exports = {
     ...baseConfig,
     displayName: packageName,
     moduleNameMapper: {
-        '\\.(css|scss)$': 'identity-obj-proxy'
+        '\\.(css|scss|png)$': 'identity-obj-proxy'
     },
     modulePaths: [`<rootDir>/packages/${packageName}/src/`],
     name: packageName,

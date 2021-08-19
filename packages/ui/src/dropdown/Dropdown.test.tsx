@@ -1,14 +1,12 @@
-import { faHeart, faSignOut, faUser } from '@fortawesome/pro-light-svg-icons';
+import { faSignOut, faUser } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
 import { Dropdown, DropdownItem } from './Dropdown';
 
 describe('UserMenu', () => {
     const handleToggle = jest.fn();
     const handleClose = jest.fn();
-    const handleFavorites = jest.fn();
     const handleSignOut = jest.fn();
 
     const trigger = (
@@ -27,11 +25,6 @@ describe('UserMenu', () => {
     );
 
     const items: Array<DropdownItem> = [
-        {
-            label: 'Favorites',
-            onClick: handleFavorites,
-            startIcon: faHeart
-        },
         {
             label: 'Sign out',
             onClick: handleSignOut,
@@ -66,10 +59,8 @@ describe('UserMenu', () => {
             />
         );
 
-        const favorites = screen.getByText(/favorites/i);
         const signOut = screen.getByText(/sign out/i);
 
-        expect(favorites).toBeVisible();
         expect(signOut).toBeVisible();
     });
 
@@ -102,13 +93,10 @@ describe('UserMenu', () => {
             />
         );
 
-        const favorites = screen.getByText(/favorites/i);
         const signOut = screen.getByText(/sign out/i);
 
-        fireEvent.click(favorites);
         fireEvent.click(signOut);
 
-        expect(handleFavorites).toHaveBeenCalled();
         expect(handleSignOut).toHaveBeenCalled();
     });
 });
