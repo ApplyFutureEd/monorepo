@@ -3,16 +3,17 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     mode: 'jit',
-    purge: [
-        './src/**/*.tsx',
-    ],
     plugins: [
         require('tailwindcss-filters'),
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio')
     ],
+    purge: [
+        './src/**/*.tsx',
+    ],
     theme: {
+        ...defaultTheme,
         container: {
             center: true,
             padding: '2rem'
@@ -37,9 +38,9 @@ module.exports = {
                 header: '90px'
             }
         },
-
         inset: {
             ...defaultTheme.inset,
+            0: '0',
             1: '1rem',
             '1/2': '50%',
             2: '2rem',

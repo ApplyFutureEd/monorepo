@@ -123,7 +123,7 @@ export const CardCarousel: FC<Props> = (props) => {
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-row items-center px-6 py-3 bg-gray-50 rounded-bl-2xl rounded-br-2xl">
+                <div className="flex flex-row items-center px-6 py-3 w-full bg-gray-50 rounded-bl-2xl rounded-br-2xl">
                     <div className="ml-2.5 hover:text-indigo-600 text-indigo-700 text-base font-medium">
                         {t('profile:onboarding-step-suggestions-learn-more')}
                         <span aria-hidden="true"> &rarr;</span>

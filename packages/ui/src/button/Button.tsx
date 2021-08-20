@@ -99,12 +99,9 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
                 type={type}
                 onClick={onClick}>
                 {!isSubmitting && startIcon && (
-                    <FontAwesomeIcon
-                        fixedWidth
-                        className={cx({ 'mr-2': children })}
-                        icon={startIcon}
-                        size="sm"
-                    />
+                    <span className="mr-2">
+                        <FontAwesomeIcon fixedWidth icon={startIcon} size="sm" />
+                    </span>
                 )}
                 {isSubmitting ? (
                     <span className="flex items-center">
