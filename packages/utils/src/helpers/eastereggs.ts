@@ -15,8 +15,7 @@ export const eggs: Array<Egg> = [
             const styles = {
                 content:
                     'color:#6b7280; font-size:1rem; Inter var, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";',
-                title:
-                    'color:#5850ec; font-size: 1.875rem; font-weight: bold; -webkit-text-stroke: 1px black; font-family:Inter var, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";'
+                title: 'color:#5850ec; font-size: 1.875rem; font-weight: bold; -webkit-text-stroke: 1px black; font-family:Inter var, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";'
             };
 
             console.log('%c Congrats 👏', styles.title);

@@ -66,15 +66,15 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
             s3Upload.on(
                 'close' as any,
-                (resolve(null) as unknown) as (progress: AWS.S3.ManagedUpload.Progress) => void
+                resolve(null) as unknown as (progress: AWS.S3.ManagedUpload.Progress) => void
             );
             s3Upload.on(
                 'end' as any,
-                (resolve(null) as unknown) as (progress: AWS.S3.ManagedUpload.Progress) => void
+                resolve(null) as unknown as (progress: AWS.S3.ManagedUpload.Progress) => void
             );
             s3Upload.on(
                 'error' as any,
-                (reject(null) as unknown) as (progress: AWS.S3.ManagedUpload.Progress) => void
+                reject(null) as unknown as (progress: AWS.S3.ManagedUpload.Progress) => void
             );
 
             archive.pipe(streamPassThrough);
