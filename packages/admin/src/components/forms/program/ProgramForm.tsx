@@ -129,7 +129,7 @@ const ProgramForm: FC<Props> = (props) => {
         durationUnit: 'YEAR',
         fee: 0,
         feeCurrency: 'EUR',
-        feeUnit: 'ANNUAL',
+        feeUnit: 'ANNUAL-FEE',
         feesAndFinancing: '',
         gradePointAverage: -1,
         highestEducationLevel: -1,
