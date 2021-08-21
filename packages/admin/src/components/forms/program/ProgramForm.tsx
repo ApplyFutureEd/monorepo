@@ -19,6 +19,7 @@ import {
     disciplines,
     durationUnits,
     educationLevels,
+    feeUnits,
     languageLevels,
     languages,
     requestedDocuments,
@@ -311,6 +312,11 @@ const ProgramForm: FC<Props> = (props) => {
     const currenciesOptions = currencies.map((currency) => ({
         label: currency.label,
         value: currency.value
+    }));
+
+    const feeUnitsOptions = feeUnits.map((feeUnit) => ({
+        label: t(`programs:${feeUnit.label}`),
+        value: feeUnit.value
     }));
 
     const educationLevelsOptions = educationLevels.map((educationLevel) => ({
@@ -631,6 +637,42 @@ const ProgramForm: FC<Props> = (props) => {
                                                     isLoading={isLoading}
                                                     label="Currency"
                                                     options={currenciesOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/4">
+                                        <Field id="fee" name="fee">
+                                            {(fieldProps: FieldProps) => (
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    label="Program fee"
+                                                    type="number"
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/4">
+                                        <Field id="feeCurrency" name="feeCurrency">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label="Program fee currency"
+                                                    options={currenciesOptions}
+                                                    {...fieldProps}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
+                                    <div className="w-full sm:w-1/4">
+                                        <Field id="feeUnit" name="feeUnit">
+                                            {(fieldProps: FieldProps) => (
+                                                <Select
+                                                    isLoading={isLoading}
+                                                    label="Program fee unit"
+                                                    options={feeUnitsOptions}
                                                     {...fieldProps}
                                                 />
                                             )}
