@@ -4,7 +4,7 @@ import { PhoneInput } from './PhoneInput';
 
 describe('PhoneInput', () => {
     const baseClasses =
-        'border-gray-300 rounded-md focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 block w-full text-sm leading-5 min-h-input';
+        'py-2 px-3 min-h-input flex w-full text-sm leading-5 bg-white border border-gray-300 rounded-md appearance-none';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
         'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:ring-red';
