@@ -1,4 +1,5 @@
 import '@styles/index.css';
+import '@styles/shared.css';
 
 import { AuthenticatedUserProvider, configure, initAnalytics, initCrisp } from '@applyfuture/utils';
 import { config as fontawesomeConfig } from '@fortawesome/fontawesome-svg-core';

@@ -25,7 +25,7 @@ const EligibilityWarningModal: FC<Props> = (props) => {
     return (
         <Modal open={open} onClose={handleClose}>
             <div className="sm:flex sm:items-start">
-                <div className="text-orange-600 bg-orange-100 flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 rounded-full sm:mx-0 sm:w-10 sm:h-10">
+                <div className="flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 text-yellow-500 bg-yellow-100 rounded-full sm:mx-0 sm:w-10 sm:h-10">
                     <FontAwesomeIcon icon={faExclamationCircle} size="lg" />
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">

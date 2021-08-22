@@ -26,7 +26,7 @@ export const Checkbox: FC<Props> = (props) => {
             <div className="flex items-center h-5">
                 <input
                     checked={Boolean(field.value)}
-                    className="form-checkbox ease-in-out` w-4 h-4 text-indigo-600 transition duration-150"
+                    className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                     id={field.name}
                     name={field.name}
                     type="checkbox"
