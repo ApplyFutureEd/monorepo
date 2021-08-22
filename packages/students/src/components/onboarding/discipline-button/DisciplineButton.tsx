@@ -15,7 +15,8 @@ const DisciplineButton: FC<Props> = (props) => {
     const { handleClick, icon, label, toggle, value } = props;
 
     const classes = cx({
-        ['bg-gray-50 grid grid-cols-6 grid-rows-1 items-center p-4 w-full hover:bg-white border-2 hover:border-indigo-600 rounded-xl cursor-pointer focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo']: true,
+        ['bg-gray-50 grid grid-cols-6 grid-rows-1 items-center p-4 w-full hover:bg-white border-2 hover:border-indigo-600 rounded-xl cursor-pointer focus:border-indigo-700 border-transparent focus:outline-none focus:shadow-outline-indigo']:
+            true,
         ['border-gray-300']: !toggle,
         ['border-indigo-700 outline-none shadow-outline-indigo']: toggle
     });

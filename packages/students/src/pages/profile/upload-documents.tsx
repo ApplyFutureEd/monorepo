@@ -18,10 +18,13 @@ const UploadDocumentPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
 
-    const { data: studentData, isLoading: studentIsLoading, refetch: studentRefetch } = useQuery<
-        GetStudentByEmailQuery,
-        GetStudentByEmailQueryVariables
-    >(getStudentByEmail, { email: user?.attributes.email });
+    const {
+        data: studentData,
+        isLoading: studentIsLoading,
+        refetch: studentRefetch
+    } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(getStudentByEmail, {
+        email: user?.attributes.email
+    });
 
     const {
         data: documentsData,

@@ -56,10 +56,11 @@ export const PhoneInput: FC<Props> = (props) => {
     const [countryCallingCode, setCountryCallingCode] = useState('33');
     const onError = Boolean(meta?.touched && meta?.error);
 
-    const baseClasses = 'form-input flex w-full text-sm leading-5 min-h-input';
+    const baseClasses =
+        'py-2 px-3 min-h-input flex w-full text-sm leading-5 bg-white border border-gray-300 rounded-md appearance-none';
     const disabledClasses = 'bg-gray-100 cursor-not-allowed';
     const onErrorClasses =
-        'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:shadow-outline-red';
+        'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:ring-red';
 
     const classes = cx({
         [`${baseClasses}`]: true,

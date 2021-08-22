@@ -2,15 +2,19 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    future: {
-        purgeLayersByDefault: true,
-        removeDeprecatedGapUtilities: true
-    },
-    plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
-    purge: {
-        content: ['./../**/*.tsx']
-    },
+    mode: 'jit',
+    plugins: [
+        require('tailwindcss-filters'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio')
+    ],
+    purge: [
+        './src/**/*.tsx',
+        './../ui/src/**/*.tsx'
+    ],
     theme: {
+        ...defaultTheme,
         container: {
             center: true,
             padding: '2rem'
@@ -35,12 +39,9 @@ module.exports = {
                 header: '90px'
             }
         },
-        filter: {
-            grayscale: 'grayscale(1)',
-            none: 'grayscale(0)'
-        },
         inset: {
             ...defaultTheme.inset,
+            0: '0',
             1: '1rem',
             '1/2': '50%',
             2: '2rem',
@@ -49,6 +50,10 @@ module.exports = {
         }
     },
     variants: {
-        filter: ['hover']
+        extend: {
+            backgroundColor: ['active'],
+            textColor: ['active']
+        },
+
     }
 };

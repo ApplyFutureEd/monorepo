@@ -24,9 +24,10 @@ export const useHotKey = (
     hotKeys: Array<string> | ConcatArray<never>,
     onMatch: () => void
 ): void => {
-    const keyCrawler = useMemo(() => createKeyChecker([].concat(hotKeys as ConcatArray<never>)), [
-        hotKeys
-    ]);
+    const keyCrawler = useMemo(
+        () => createKeyChecker([].concat(hotKeys as ConcatArray<never>)),
+        [hotKeys]
+    );
 
     const listen = ({ key }: any) => {
         if (keyCrawler(key)) {

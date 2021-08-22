@@ -88,14 +88,14 @@ export const Timeline: FC<Props> = (props) => {
                                         {!isLastStep && (
                                             <span
                                                 aria-hidden="true"
-                                                className="left-1 top-1 w-0.5 absolute -ml-px h-full bg-gray-200"
+                                                className="absolute left-1 top-1 -ml-px w-0.5 h-full bg-gray-200"
                                             />
                                         )}
                                         <div className="relative flex space-x-3">
                                             <div>
                                                 <StatusIcon status={step.status} />
                                             </div>
-                                            <div className="pt-1.5 flex flex-1 justify-between min-w-0 space-x-4">
+                                            <div className="flex flex-1 justify-between pt-1.5 min-w-0 space-x-4">
                                                 <div className="max-w-xl">
                                                     <p className="text-gray-900 text-sm font-medium">
                                                         {t(step.timelineLabel)}
@@ -105,7 +105,7 @@ export const Timeline: FC<Props> = (props) => {
                                                         step
                                                     )}
                                                 </div>
-                                                <div className="whitespace-nowrap text-right text-gray-500 text-sm">
+                                                <div className="text-right text-gray-500 whitespace-nowrap text-sm">
                                                     <time dateTime={step.date}>
                                                         {date({
                                                             locale: locale,

@@ -33,7 +33,7 @@ const ApplicationRow: FC<Props> = (props) => {
     return (
         <div>
             <button
-                className="hover:bg-gray-50 focus:bg-gray-50 block w-full focus:outline-none cursor-pointer transition duration-150 ease-in-out"
+                className="block w-full hover:bg-gray-50 focus:bg-gray-50 focus:outline-none cursor-pointer transition duration-150 ease-in-out"
                 onClick={onClick}>
                 <div className="flex items-center px-4 py-4 sm:px-6">
                     <div className="flex flex-1 items-center min-w-0">

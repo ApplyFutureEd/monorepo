@@ -23,9 +23,9 @@ const Tabs: FC<Props> = (props) => {
     const [displayedTabIndex, setDisplayedTabIndex] = useState(0);
 
     const baseClasses =
-        'flex items-center px-1 py-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 whitespace-no-wrap text-sm font-medium leading-5 border-b-2 hover:border-gray-300 focus:border-gray-300 border-transparent focus:outline-none cursor-pointer space-x-2';
+        'flex items-center px-1 py-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 whitespace-nowrap text-sm font-medium leading-5 border-b-2 hover:border-gray-300 focus:border-gray-300 border-transparent focus:outline-none cursor-pointer space-x-2';
     const isSelectedClasses =
-        'px-1 py-4 text-indigo-600 focus:text-indigo-800 whitespace-no-wrap text-sm font-medium leading-5 border-b-2 border-indigo-500 focus:border-indigo-700 focus:outline-none';
+        'px-1 py-4 text-indigo-600 focus:text-indigo-800 whitespace-nowrap text-sm font-medium leading-5 border-b-2 border-indigo-500 focus:border-indigo-700 focus:outline-none';
 
     useEffect(() => {
         const currentProfileNavWidth = document

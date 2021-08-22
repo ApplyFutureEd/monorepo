@@ -16,7 +16,7 @@ const Card: FC<Props> = (props) => {
 
     return (
         <Link href={`/schools/${school?.slug}`}>
-            <div className="hover:bg-gray-50 focus:bg-gray-50 h-full bg-white rounded-lg focus:outline-none shadow cursor-pointer overflow-hidden transition duration-150 ease-in-out">
+            <div className="h-full hover:bg-gray-50 focus:bg-gray-50 bg-white rounded-lg focus:outline-none shadow cursor-pointer overflow-hidden transition duration-150 ease-in-out">
                 <div className="flex items-center px-4 py-5 h-full space-x-4 sm:p-6">
                     <img
                         alt={`${school?.name} logo`}
@@ -27,7 +27,7 @@ const Card: FC<Props> = (props) => {
                         <dt className="text-gray-900 text-2xl font-semibold leading-9">
                             {school?.name}
                         </dt>
-                        <dd className="flex items-center mt-1 text-gray-500 truncate text-sm font-medium leading-5 space-x-2">
+                        <dd className="flex items-center mt-1 text-gray-500 text-sm font-medium leading-5 space-x-2 truncate">
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                             <div>
                                 {school?.city}, {t(`common:${getCountryLabel(school?.country)}`)}

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { Logo } from './Logo';
 
-const logoImageData = ('/fake/path' as unknown) as StaticImageData;
+const logoImageData = '/fake/path' as unknown as StaticImageData;
 
 describe('Logo', () => {
     it('can render without crashing', () => {

@@ -19,7 +19,7 @@ jest.mock('next/router', () => ({
 }));
 
 describe('SchoolTuitionsFeePaymentProgress', () => {
-    const application = ({
+    const application = {
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -371,7 +371,7 @@ describe('SchoolTuitionsFeePaymentProgress', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
+    } as unknown as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
     it('can render without crashing', () => {
         render(<SchoolTuitionsFeePaymentProgress application={application} />);

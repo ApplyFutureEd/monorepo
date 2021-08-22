@@ -3,7 +3,7 @@ import Table from '@components/students/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const mockedData = ({
+const mockedData = {
     searchStudents: {
         items: [
             {
@@ -107,7 +107,7 @@ const mockedData = ({
         nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5',
         total: 1
     }
-} as unknown) as SearchStudentsQuery;
+} as unknown as SearchStudentsQuery;
 
 describe('Table', () => {
     const handleContextMenu = jest.fn();

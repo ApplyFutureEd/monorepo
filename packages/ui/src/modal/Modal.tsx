@@ -65,7 +65,7 @@ export const Modal: FC<Props> = (props) => {
                                 <FontAwesomeIcon icon={faTimes} size="lg" />
                             </button>
                         </div>
-                        <div className="pt-14 mx-auto text-center sm:px-6 lg:px-8 lg:py-6">
+                        <div className="mx-auto pt-14 text-center sm:px-6 lg:px-8 lg:py-6">
                             {children}
                         </div>
                     </div>

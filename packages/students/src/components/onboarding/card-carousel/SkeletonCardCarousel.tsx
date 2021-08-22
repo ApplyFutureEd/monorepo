@@ -32,7 +32,7 @@ export const SkeletonCardCarousel: FC = () => {
                         <Skeleton height="20px" width="200px" />
                     </div>
                 </div>
-                <div className="bg-gray-50 flex flex-row items-center px-6 py-3 rounded-bl-2xl rounded-br-2xl">
+                <div className="flex flex-row items-center px-6 py-3 bg-gray-50 rounded-bl-2xl rounded-br-2xl">
                     <Skeleton height="20px" width="140px" />
                 </div>
             </button>

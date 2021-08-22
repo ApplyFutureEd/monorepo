@@ -13,16 +13,13 @@ const ReviewDocumentsPage: FC = () => {
     const { t } = useTranslation();
     const router = useRouter();
     const [applicationDocumentUrl, setApplicationDocumentUrl] = useState<string>('');
-    const [isLoadingApplicationDocumentUrl, setIsLoadingApplicationDocumentUrl] = useState<boolean>(
-        true
-    );
+    const [isLoadingApplicationDocumentUrl, setIsLoadingApplicationDocumentUrl] =
+        useState<boolean>(true);
 
-    const {
-        data: applicationData,
-        isLoading: applicationIsLoading
-    } = useQuery<GetApplicationQuery>(getApplication, {
-        id: router.query.id
-    });
+    const { data: applicationData, isLoading: applicationIsLoading } =
+        useQuery<GetApplicationQuery>(getApplication, {
+            id: router.query.id
+        });
 
     useEffect(() => {
         const fetchApplicationDocument = async () => {

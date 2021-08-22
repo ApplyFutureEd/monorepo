@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import Submission from './Submission';
 
 describe('Submission', () => {
-    const applicationData = ({
+    const applicationData = {
         getApplication: {
             admissionResult: null,
             createdAt: '2021-05-01T14:14:09.014Z',
@@ -358,7 +358,7 @@ describe('Submission', () => {
             updatedAt: '2021-05-01T14:14:09.014Z',
             visaDate: null
         }
-    } as unknown) as GetApplicationQuery;
+    } as unknown as GetApplicationQuery;
 
     it('can render without crashing', () => {
         render(<Submission applicationData={applicationData} />);

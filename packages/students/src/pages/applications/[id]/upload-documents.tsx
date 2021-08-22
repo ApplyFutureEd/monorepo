@@ -37,12 +37,10 @@ const UploadDocumentsPage: FC = () => {
         GetDocumentByStudentQueryVariables
     >(getDocumentByStudent, { studentId: studentData.getStudentByEmail?.items?.[0]?.id });
 
-    const {
-        data: applicationData,
-        isLoading: applicationIsLoading
-    } = useQuery<GetApplicationQuery>(getApplication, {
-        id: router.query.id
-    });
+    const { data: applicationData, isLoading: applicationIsLoading } =
+        useQuery<GetApplicationQuery>(getApplication, {
+            id: router.query.id
+        });
 
     const isLoading = studentIsLoading || documentsIsLoading || applicationIsLoading;
     const steps = getStepsLabels(applicationData.getApplication);

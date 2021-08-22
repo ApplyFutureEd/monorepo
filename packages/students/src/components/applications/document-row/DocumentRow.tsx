@@ -58,7 +58,7 @@ const DocumentRow: FC<Props> = (props) => {
                 <div className="flex space-x-2">
                     <span>{t(`profile:${document?.name}`)}</span>
                     {!document?.isMandatory && (
-                        <span className="py-0.5 max-h-chip inline-block flex-shrink-0 px-2 text-teal-800 text-xs font-medium leading-4 bg-teal-100 rounded-full">
+                        <span className="max-h-chip text-teal-800 bg-teal-100 inline-block flex-shrink-0 px-2 py-0.5 text-xs font-medium leading-4 rounded-full">
                             {t('application:optional')}
                         </span>
                     )}
