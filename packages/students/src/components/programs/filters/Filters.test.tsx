@@ -29,7 +29,7 @@ describe('Search', () => {
 
     it('can open the drawer and switch tabs', () => {
         const activeClasses =
-            'px-1 py-4 text-indigo-600 focus:text-indigo-800 whitespace-no-wrap text-sm font-medium leading-5 border-b-2 border-indigo-500 focus:border-indigo-700 focus:outline-none cursor-pointer';
+            'px-1 py-4 text-indigo-600 focus:text-indigo-800 whitespace-nowrap text-sm font-medium leading-5 border-b-2 border-indigo-500 focus:border-indigo-700 focus:outline-none cursor-pointer';
 
         render(<Filters handleFilter={handleFilter} />);
 

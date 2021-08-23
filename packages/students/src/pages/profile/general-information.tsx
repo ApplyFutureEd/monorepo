@@ -17,10 +17,13 @@ import { FC } from 'react';
 const GeneralInformationPage: FC = () => {
     const { t } = useTranslation();
     const { user } = useAuthenticatedUser();
-    const { data: studentData, isLoading: studentIsLoading, refetch } = useQuery<
-        GetStudentByEmailQuery,
-        GetStudentByEmailQueryVariables
-    >(getStudentByEmail, { email: user?.attributes.email });
+    const {
+        data: studentData,
+        isLoading: studentIsLoading,
+        refetch
+    } = useQuery<GetStudentByEmailQuery, GetStudentByEmailQueryVariables>(getStudentByEmail, {
+        email: user?.attributes.email
+    });
     const { data: documentsData, isLoading: documentsIsLoading } = useQuery<
         GetDocumentByStudentQuery,
         GetDocumentByStudentQueryVariables

@@ -27,7 +27,7 @@ Storage.get = jest.fn();
 window.open = jest.fn();
 
 describe('DocumentRow', () => {
-    const application = ({
+    const application = {
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -379,20 +379,20 @@ describe('DocumentRow', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown) as GetApplicationQuery['getApplication'];
+    } as unknown as GetApplicationQuery['getApplication'];
 
-    const document = ({
+    const document = {
         name: 'ielts',
         isMandatory: true,
         storageKey: null,
         description: null,
         condition: null,
         isSpecific: null
-    } as unknown) as NonNullable<
+    } as unknown as NonNullable<
         NonNullable<GetApplicationQuery['getApplication']>['program']
     >['requestedDocuments'][0];
 
-    const student = ({
+    const student = {
         id: 'a5319bc4-e609-403b-a2af-35ff3f886b31',
         address: '33 Rue du Général Leclerc, Issy-les-Moulineaux, France',
         applications: {
@@ -495,7 +495,7 @@ describe('DocumentRow', () => {
         createdAt: '2021-03-23T18:49:25.156Z',
         updatedAt: '2021-04-04T02:07:08.005Z',
         owner: '6e79f0ea-f81b-4791-bc96-e052ce147d7b'
-    } as unknown) as NonNullable<
+    } as unknown as NonNullable<
         NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']
     >[0];
 
@@ -515,14 +515,14 @@ describe('DocumentRow', () => {
     });
 
     it('can display optional chip if the document is not mandatory', () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'ielts',
             isMandatory: false,
             storageKey: null,
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -541,14 +541,14 @@ describe('DocumentRow', () => {
     });
 
     it('can display english document details', () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'ielts',
             isMandatory: false,
             storageKey: null,
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -567,14 +567,14 @@ describe('DocumentRow', () => {
     });
 
     it('can display french document details', () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'tef-tcf',
             isMandatory: true,
             storageKey: null,
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -593,14 +593,14 @@ describe('DocumentRow', () => {
     });
 
     it('can display logic and reasoning document details', () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'gmat',
             isMandatory: true,
             storageKey: null,
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -621,14 +621,14 @@ describe('DocumentRow', () => {
     });
 
     it('can display download template button if the document has a storageKey', () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'health-statement',
             isMandatory: true,
             storageKey: 'health-statement-template-29390102',
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -647,14 +647,14 @@ describe('DocumentRow', () => {
     });
 
     it('can call Storage.get and window.open when the download template button is clicked', async () => {
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'health-statement',
             isMandatory: true,
             storageKey: 'health-statement-template-29390102',
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 
@@ -686,14 +686,14 @@ describe('DocumentRow', () => {
             throw new Error();
         });
 
-        const optionalDocument = ({
+        const optionalDocument = {
             name: 'health-statement',
             isMandatory: true,
             storageKey: 'health-statement-template-29390102',
             description: null,
             condition: null,
             isSpecific: null
-        } as unknown) as NonNullable<
+        } as unknown as NonNullable<
             NonNullable<GetApplicationQuery['getApplication']>['program']
         >['requestedDocuments'][0];
 

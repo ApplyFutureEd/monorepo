@@ -1134,7 +1134,8 @@ const StudentForm: FC<Props> = (props) => {
                                                         testCambridgeAdvancedDate: null,
                                                         testCambridgeFirst: null,
                                                         testCambridgeFirstDate: null,
-                                                        testEnglishPending: !values.testEnglishPending,
+                                                        testEnglishPending:
+                                                            !values.testEnglishPending,
                                                         testIelts: null,
                                                         testIeltsDate: null,
                                                         testToefl: null,
@@ -1347,7 +1348,8 @@ const StudentForm: FC<Props> = (props) => {
                                                         testDelfdalfDate: null,
                                                         testGoethe: null,
                                                         testGoetheDate: null,
-                                                        testOtherLanguagesPending: !values.testOtherLanguagesPending,
+                                                        testOtherLanguagesPending:
+                                                            !values.testOtherLanguagesPending,
                                                         testTcftef: null,
                                                         testTcftefDate: null
                                                     });
@@ -1557,7 +1559,8 @@ const StudentForm: FC<Props> = (props) => {
                                                         testGmatDate: null,
                                                         testGre: null,
                                                         testGreDate: null,
-                                                        testLogicAndReasoningPending: !values.testLogicAndReasoningPending,
+                                                        testLogicAndReasoningPending:
+                                                            !values.testLogicAndReasoningPending,
                                                         testTagemage: null,
                                                         testTagemageDate: null
                                                     });

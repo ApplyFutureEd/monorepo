@@ -29,7 +29,7 @@ export const Container: FC<Props> = (props) => {
         <div className="bg-white rounded-md shadow">
             {title && (
                 <div className="px-4 py-5 bg-white border-b border-gray-200 rounded-md rounded-t-md sm:px-6">
-                    <div className="flex flex-wrap items-center justify-between -ml-4 -mt-2 sm:flex-no-wrap">
+                    <div className="flex flex-wrap items-center justify-between -ml-4 -mt-2 sm:flex-nowrap">
                         <div className="ml-4 mt-2">
                             <div className="flex items-center space-x-4">
                                 <h3 className="text-gray-900 text-lg font-medium leading-6">

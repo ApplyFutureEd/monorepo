@@ -11,7 +11,7 @@ jest.mock('@applyfuture/utils', () => ({
 }));
 
 describe('CompletionModal', () => {
-    const application = ({
+    const application = {
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -38,8 +38,7 @@ describe('CompletionModal', () => {
                 logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
                 name: 'UCAM Universidad Católica San Antonio de Murcia'
             },
-            slug:
-                'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia',
+            slug: 'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia',
             applicationFee: 1
         },
         programId: 'ff8987cd-bcd7-4ca7-812a-3d46d7d9234d',
@@ -381,7 +380,7 @@ describe('CompletionModal', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: '2021-05-01T14:14:09.014Z'
-    } as unknown) as NonNullable<
+    } as unknown as NonNullable<
         NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
     >[0];
 
@@ -394,7 +393,7 @@ describe('CompletionModal', () => {
     });
 
     it('can prevent opening if application is missing', () => {
-        const missingApplication = (null as unknown) as NonNullable<
+        const missingApplication = null as unknown as NonNullable<
             NonNullable<GetApplicationByStudentQuery['getApplicationByStudent']>['items']
         >[0];
         render(<CompletionModal application={missingApplication} />);

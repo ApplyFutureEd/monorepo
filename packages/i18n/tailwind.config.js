@@ -2,13 +2,19 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    future: {
-        purgeLayersByDefault: true,
-        removeDeprecatedGapUtilities: true
-    },
-    plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
-    purge: false,
+    mode: 'jit',
+    plugins: [
+        require('tailwindcss-filters'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio')
+    ],
+    purge: [
+        './src/**/*.tsx',
+        './../ui/src/**/*.tsx'
+    ],
     theme: {
+        ...defaultTheme,
         container: {
             center: true,
             padding: '2rem'
@@ -18,30 +24,36 @@ module.exports = {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 serif: [...defaultTheme.fontFamily.serif]
             },
+            height: {
+                'screen-40': '40vh',
+                'screen-90': '90vh'
+            },
+            maxHeight: {
+                chip: '20px'
+            },
             minHeight: {
                 button: '47px',
                 input: '47px'
             },
             padding: {
                 header: '90px'
-            },
-            zIndex: {
-                1000: '1000'
             }
-        },
-        filter: {
-            grayscale: 'grayscale(1)',
-            none: 'grayscale(0)'
         },
         inset: {
             ...defaultTheme.inset,
+            0: '0',
             1: '1rem',
+            '1/2': '50%',
             2: '2rem',
             4: '4rem',
             8: '8rem'
         }
     },
     variants: {
-        filter: ['hover']
+        extend: {
+            backgroundColor: ['active'],
+            textColor: ['active']
+        },
+
     }
 };

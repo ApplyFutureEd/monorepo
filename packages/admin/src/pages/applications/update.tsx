@@ -14,10 +14,8 @@ import { FC } from 'react';
 
 const UpdateApplicationPage: FC = () => {
     const router = useRouter();
-    const {
-        data: applicationData,
-        isLoading: applicationIsLoading
-    } = useQuery<GetApplicationQuery>(getApplication, { id: router.query.id as string });
+    const { data: applicationData, isLoading: applicationIsLoading } =
+        useQuery<GetApplicationQuery>(getApplication, { id: router.query.id as string });
     const {
         data: documentsData,
         isLoading: documentsIsLoading,

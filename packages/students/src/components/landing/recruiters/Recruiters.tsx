@@ -13,7 +13,7 @@ const Recruiters: FC = () => {
             <div className="py-8 font-sans bg-white overflow-hidden lg:py-16">
                 <div className="relative mx-auto px-4 max-w-xl sm:px-6 lg:px-8 lg:max-w-screen-xl">
                     <svg
-                        className="right-full absolute hidden transform translate-x-1/2 translate-y-12 lg:block"
+                        className="absolute right-full hidden transform translate-x-1/2 translate-y-12 lg:block"
                         fill="none"
                         height="784"
                         viewBox="0 0 404 784"
@@ -63,7 +63,7 @@ const Recruiters: FC = () => {
 
                             <div className="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
                                 <svg
-                                    className="left-1/2 absolute transform -translate-x-1/2 translate-y-16 lg:hidden"
+                                    className="absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden"
                                     fill="none"
                                     height="404"
                                     viewBox="0 0 784 404"

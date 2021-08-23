@@ -12,12 +12,10 @@ const FeesPaymentPage: FC = () => {
     const { t } = useTranslation();
     const router = useRouter();
 
-    const {
-        data: applicationData,
-        isLoading: applicationIsLoading
-    } = useQuery<GetApplicationQuery>(getApplication, {
-        id: router.query.id
-    });
+    const { data: applicationData, isLoading: applicationIsLoading } =
+        useQuery<GetApplicationQuery>(getApplication, {
+            id: router.query.id
+        });
 
     const isLoading = applicationIsLoading;
     const steps = getStepsLabels(applicationData.getApplication);

@@ -13,7 +13,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-const mockedData = ({
+const mockedData = {
     searchFeedbacks: {
         items: [
             {
@@ -32,7 +32,7 @@ const mockedData = ({
         nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5',
         total: 1
     }
-} as unknown) as SearchFeedbacksQuery;
+} as unknown as SearchFeedbacksQuery;
 
 const mockedIsLoading = jest.fn().mockReturnValue(false);
 

@@ -12,7 +12,7 @@ const SkeletonCard: FC = () => {
                             <Skeleton height="20px" width="240px" />
                             <Skeleton height="20px" width="160px" />
                         </dt>
-                        <dd className="flex items-center mt-1 text-gray-500 truncate text-sm font-medium leading-5 space-x-2">
+                        <dd className="flex items-center mt-1 text-gray-500 text-sm font-medium leading-5 space-x-2 truncate">
                             <Skeleton height="20px" width="120px" />
                         </dd>
                     </dl>

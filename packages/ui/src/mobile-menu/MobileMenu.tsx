@@ -32,7 +32,7 @@ export const MobileMenu: FC<Props> = (props) => {
         <OutsideAlerter callback={handleCloseMobileMenu}>
             <div className="absolute z-10 z-30 inset-x-0 top-0 p-2 transform origin-top-right transition lg:hidden">
                 <div className="rounded-lg shadow-lg">
-                    <div className="divide-gray-50 bg-white rounded-lg shadow-xs divide-y-2">
+                    <div className="shadow-xs bg-white rounded-lg divide-gray-50 divide-y-2">
                         <div className="pb-6 pt-5 px-5 space-y-6">
                             <div className="flex items-center justify-between">
                                 <Link href="/">
@@ -58,7 +58,7 @@ export const MobileMenu: FC<Props> = (props) => {
                                             type="button"
                                             onClick={handleCloseMobileMenu}>
                                             <Link href={route.href}>
-                                                <div className="hover:bg-gray-50 flex -m-3 p-3 transition duration-150 ease-in-out">
+                                                <div className="flex -m-3 p-3 hover:bg-gray-50 transition duration-150 ease-in-out">
                                                     {t(route.label)}
                                                 </div>
                                             </Link>

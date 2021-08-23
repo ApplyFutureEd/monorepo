@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 const SkeletonRow: FC = () => (
-    <li className="hover:bg-gray-50 focus:bg-gray-50 flex items-center px-6 py-4 focus:outline-none transition duration-150 ease-in-out">
+    <li className="flex items-center px-6 py-4 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition duration-150 ease-in-out">
         <div className="w-11/12">
             <div className="flex items-center w-full">
                 <div className="flex items-center w-1/2 space-x-4">
@@ -30,24 +30,24 @@ const SkeletonRow: FC = () => (
                 <div className="hidden items-center w-1/2 space-x-24 md:flex">
                     <div className="w-1/2">
                         <div className="flex items-center justify-between mb-2">
-                            <div className="truncate text-sm leading-5">
+                            <div className="text-sm leading-5 truncate">
                                 <Skeleton height="20px" width="160px" />
                             </div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <div className="truncate text-sm leading-5">
+                            <div className="text-sm leading-5 truncate">
                                 <Skeleton height="20px" width="120px" />
                             </div>
                         </div>
                     </div>
                     <div className="w-1/2">
                         <div className="flex items-center justify-between mb-2">
-                            <div className="truncate text-sm leading-5">
+                            <div className="text-sm leading-5 truncate">
                                 <Skeleton height="20px" width="160px" />
                             </div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <div className="truncate text-sm leading-5">
+                            <div className="text-sm leading-5 truncate">
                                 <Skeleton height="20px" width="120px" />
                             </div>
                         </div>

@@ -27,8 +27,7 @@ describe('Row', () => {
             logo: '8ddb88ed-8510-460b-a51f-860d345cfbea',
             name: ' UCAM Universidad Católica San Antonio de Murcia'
         },
-        slug:
-            'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia'
+        slug: 'masters-degree-in-business-administration-mba-ucam-universidad-catolica-san-antonio-de-murcia-murcia'
     } as NonNullable<NonNullable<GetProgramBySchoolQuery['getProgramBySchool']>['items']>[0];
 
     const student = {

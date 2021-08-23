@@ -56,7 +56,7 @@ export const Tooltip: FC<Props> = (props) => {
                 </span>
             )}
             {active && (
-                <div className="text-md top-4 absolute z-40 p-2 text-white font-sans bg-gray-500 rounded-md shadow-2xl">
+                <div className="text-md absolute z-40 top-4 p-2 text-white font-sans bg-gray-500 rounded-md shadow-2xl">
                     {content}
                 </div>
             )}

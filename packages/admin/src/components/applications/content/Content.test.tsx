@@ -30,7 +30,7 @@ describe.skip('Content', () => {
 
     const refetch = jest.fn();
 
-    const applicationData = ({
+    const applicationData = {
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -382,9 +382,9 @@ describe.skip('Content', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown) as GetApplicationQuery;
+    } as unknown as GetApplicationQuery;
 
-    const documentsData = ({
+    const documentsData = {
         getDocumentByStudent: {
             items: [
                 {
@@ -473,7 +473,7 @@ describe.skip('Content', () => {
             ],
             nextToken: null
         }
-    } as unknown) as GetDocumentByStudentQuery;
+    } as unknown as GetDocumentByStudentQuery;
 
     it('can render without crashing', () => {
         render(

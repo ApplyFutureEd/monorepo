@@ -41,7 +41,7 @@ module.exports = withTM(
                 config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
 
                 return config;
-            }
+            },
         })
     )
 );

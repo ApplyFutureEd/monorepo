@@ -1,7 +1,7 @@
 import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Tabs from '@components/tabs/Tabs';
-import Tabstest from '@components/tabs/tabstest';
+import Tabstest from '@components/tabs/Tabstest';
 import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';

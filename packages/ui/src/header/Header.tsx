@@ -33,9 +33,9 @@ export const Header: FC<Props> = (props) => {
     const { components, mobileComponents, mobileMenu, routes } = props;
 
     return (
-        <div className="bg-gray-50 fixed z-40 w-full border-b border-gray-200">
+        <div className="fixed z-40 w-full bg-gray-50 border-b border-gray-200">
             <div className="relative bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <div className="mx-auto px-4 max-w-7xl sm:px-6">
                     <div className="flex items-center justify-between py-6 lg:justify-start lg:space-x-10">
                         <div className="flex">
                             <Link href="/">
@@ -51,7 +51,7 @@ export const Header: FC<Props> = (props) => {
 
                         <Nav routes={routes} />
 
-                        <div className="hidden items-center justify-end ml-4 whitespace-no-wrap space-x-8 lg:flex lg:flex-1 lg:w-0">
+                        <div className="hidden items-center justify-end ml-4 whitespace-nowrap space-x-8 lg:flex lg:flex-1 lg:w-0">
                             {components}
                         </div>
                     </div>

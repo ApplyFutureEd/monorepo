@@ -3,7 +3,7 @@ import Table from '@components/programs/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const mockedData = ({
+const mockedData = {
     searchPrograms: {
         items: [
             {
@@ -22,14 +22,13 @@ const mockedData = ({
                     logo: '8ddb22ed-8510-460b-a51f-860d345cfbea',
                     name: 'Rennes School of Business'
                 },
-                slug:
-                    'master-of-science-in-creative-project-management-culture-and-design-rennes-school-of-business-rennes'
+                slug: 'master-of-science-in-creative-project-management-culture-and-design-rennes-school-of-business-rennes'
             }
         ],
         nextToken: '674b32b-3e4e-410c-a26c-f7ghe8123c5',
         total: 1
     }
-} as unknown) as SearchProgramsQuery;
+} as unknown as SearchProgramsQuery;
 
 describe('Table', () => {
     const handleContextMenu = jest.fn();

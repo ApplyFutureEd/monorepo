@@ -54,10 +54,11 @@ const ProgramsPage: FC = () => {
         limit: 20
     });
 
-    const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
-        SearchProgramsQuery,
-        SearchProgramsQueryVariables
-    >(searchPrograms, variables);
+    const {
+        data: programsData,
+        fetchMore,
+        isLoading: programsIsLoading
+    } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(searchPrograms, variables);
 
     const isPageBottom = usePageBottom();
 

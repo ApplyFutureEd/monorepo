@@ -13,7 +13,7 @@ const CareersPage: FC = () => {
     return (
         <LandingLayout description="Apply for your greatest career" title="Careers">
             <main className="lg:relative">
-                <div className="max-w-7xl mx-auto py-8 w-full lg:py-24 lg:text-left">
+                <div className="mx-auto py-8 w-full max-w-7xl lg:py-24 lg:text-left">
                     <div className="px-4 space-y-4 sm:px-8">
                         <h1 className="text-indigo-600 text-2xl font-extrabold tracking-tight sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl">
                             An open invitation to open minds

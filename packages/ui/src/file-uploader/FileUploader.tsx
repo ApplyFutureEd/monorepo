@@ -343,9 +343,8 @@ export const FileUploader: FC<Props> = (props) => {
                                 if (existingDocument.data.getDocumentByStorageKey.items[0]) {
                                     graphql(deleteDocument, {
                                         input: {
-                                            id:
-                                                existingDocument.data.getDocumentByStorageKey
-                                                    .items[0].id
+                                            id: existingDocument.data.getDocumentByStorageKey
+                                                .items[0].id
                                         }
                                     });
                                 }
