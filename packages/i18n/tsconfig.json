@@ -22,10 +22,10 @@
         "paths": {
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
-            "@pages/*": ["src/pages/*"],
-            "@styles/*": ["src/styles/*"],
+            "@data/*": ["src/data/*"],
             "@locales/*": ["locales/*"],
-            "@data/*": ["src/data/*"]
+            "@pages/*": ["src/pages/*"],
+            "@styles/*": ["src/styles/*"]
         }
     },
     "exclude": [".next", "node_modules", "public"],

@@ -5,7 +5,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useState } from 'react';
 
-const Tabstest: FC = () => {
+const Tabs: FC = () => {
     const [navWidth, setNavwidth] = useState<number | undefined>(undefined);
     const [navContainerWidth, setNavContainerWidth] = useState<number | undefined>(undefined);
     const { width } = useWindowSize();
@@ -153,4 +153,4 @@ const Tabstest: FC = () => {
     );
 };
 
-export default Tabstest;
+export default Tabs;
