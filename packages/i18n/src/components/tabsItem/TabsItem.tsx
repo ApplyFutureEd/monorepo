@@ -25,15 +25,12 @@ const TabsItem: FC<Props> = ({ file }) => {
                     ? auth
                     : ''
             ).map(([key, value], i) => (
-                <>
-                    <div key={i}>
-                        <p className="mt-3 text-gray-700 text-lg leading-7">Key : {key}</p>
-                        <p className="mt-3 text-gray-700 text-lg leading-7">en: {value.en}</p>
-                        <p className="mt-3 text-gray-700 text-lg leading-7">fr: {value.fr}</p>
-                        <p className="mt-3 text-gray-700 text-lg leading-7">ch: {value.ch}</p>
-                    </div>
-                    <br />
-                </>
+                <div key={i}>
+                    <p className="mt-3 text-gray-700 text-lg leading-7">Key : {key}</p>
+                    <p className="mt-3 text-gray-700 text-lg leading-7">en: {value.en}</p>
+                    <p className="mt-3 text-gray-700 text-lg leading-7">fr: {value.fr}</p>
+                    <p className="mt-3 text-gray-700 text-lg leading-7">ch: {value.ch}</p>
+                </div>
             ))}
         </div>
     );

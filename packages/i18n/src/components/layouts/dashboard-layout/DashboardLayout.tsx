@@ -1,7 +1,6 @@
 import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Tabs from '@components/tabs/Tabs';
-import Tabstest from '@components/tabs/Tabstest';
 import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
@@ -73,8 +72,7 @@ const DashboardLayout: FC<Props> = (props) => {
             />
             <main className="main pt-header min-h-screen bg-gray-100">
                 <div className="max-w-7xl mx-auto py-0 sm:px-6 md:py-6 lg:px-8">
-                    <Tabstest />
-                    {/* <Tabs /> */}
+                    <Tabs />
                     <div className="px-4 sm:px-0">{children}</div>
                 </div>
             </main>
