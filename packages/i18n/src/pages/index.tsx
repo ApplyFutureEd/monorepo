@@ -1,6 +1,6 @@
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Search from '@components/search/search';
+// import Search from '@components/search/search';
 import { FC, useState } from 'react';
 
 const LandingPage: FC = () => {
@@ -10,7 +10,7 @@ const LandingPage: FC = () => {
     };
     return (
         <DashboardLayout title="Dashboard">
-            <Search handleChange={handleChange} search={search} />
+            {/* <Search handleChange={handleChange} search={search} /> */}
         </DashboardLayout>
     );
 };
