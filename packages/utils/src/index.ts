@@ -56,3 +56,4 @@ export * from './hooks/useWindowSize';
 export * from './services/amplify';
 export * from './services/analytics';
 export * from './services/crisp';
+export * from './services/stripe';
