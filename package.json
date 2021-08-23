@@ -15,9 +15,9 @@
         "prettier:base": "prettier --parser typescript --single-quote",
         "prettier:check": "npm run prettier:base -- --list-different \"./**/*.{ts,tsx}\"",
         "prettier:write": "npm run prettier:base -- --write \"./**/*.{ts,tsx}\"",
-        "start:admin": "cd packages/admin && yarn start",
-        "start:i18n": "cd packages/i18n && yarn start",
-        "start:students": "cd packages/students && yarn start",
+        "start:admin": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/admin && yarn start",
+        "start:i18n": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/i18n && yarn start",
+        "start:students": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/students && yarn start",
         "test": "jest --coverage --silent",
         "test:watch": "jest --watch"
     },
