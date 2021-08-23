@@ -2,7 +2,6 @@ import { GetApplicationQuery } from '@applyfuture/graphql';
 import { getStripe } from '@applyfuture/utils';
 import FeesPaymentForm from '@components/forms/applications/fees-payment/FeesPaymentForm';
 import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
