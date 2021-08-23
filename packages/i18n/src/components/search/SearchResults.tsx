@@ -25,7 +25,7 @@ const SearchResults: FC<Props> = (props) => {
                 .filter(([key, item]) => filterUntranslated(key, item))
                 .map(([key, item], i) => (
                     <div key={i}>
-                        <span style={{ fontWeight: 'bold' }}>Clé: {key}</span> <br />
+                        <span style={{ fontWeight: 'bold' }}>Key: {key}</span> <br />
                         <span>EN: {item.en}</span> <br />
                         <span>ES: {item.es}</span>
                     </div>

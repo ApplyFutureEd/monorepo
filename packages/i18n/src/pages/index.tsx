@@ -1,5 +1,6 @@
 import { Button } from '@applyfuture/ui';
 import { withPrivateAccess } from '@applyfuture/utils';
+import AddKeyForm from '@components/forms/add-key/AddKeyForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Search from '@components/search/Search';
 import SearchResults from '@components/search/SearchResults';
@@ -11,11 +12,19 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
+    const [displayForm, setDisplayForm] = useState(true);
+    const [newKey, setNewKey] = useState({});
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
     };
     const handleFilter = (filter: Filter) => {
         setFilter(filter);
+    };
+    const handleDisplayForm = () => {
+        setDisplayForm(!displayForm);
+    };
+    const handleAddKey = (values: any) => {
+        setNewKey(values);
     };
     const isTranslated = filter === 'TRANSLATED';
     const isUntranslated = filter === 'UNTRANSLATED';
@@ -41,7 +50,11 @@ const LandingPage: FC = () => {
                     }}>
                     Untranslated
                 </Button>
+                <Button type="button" variant="primary" onClick={handleDisplayForm}>
+                    New
+                </Button>
             </div>
+            {displayForm || <AddKeyForm handleAddKey={handleAddKey} newKey={newKey} />}
             <SearchResults key={3} filter={filter} search={search} />
         </DashboardLayout>
     );
