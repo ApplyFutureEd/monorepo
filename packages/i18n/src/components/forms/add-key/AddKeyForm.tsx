@@ -1,6 +1,9 @@
-import { Button, Input } from '@applyfuture/ui';
+import { Button, Input, Select } from '@applyfuture/ui';
+import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { FC } from 'react';
+
+import { namespaces } from './namespaces';
 
 interface Props {
     handleAddKey: (values: any) => void;
@@ -10,42 +13,48 @@ interface Props {
 const AddKeyForm: FC<Props> = (props) => {
     const { handleAddKey, newKey } = props;
     type FormValues = {
+        namespace: string;
         key: string;
         enTranslation: string;
         frTranslation: string;
         chTranslation: string;
     };
     const initialValues: FormValues = {
-        chTranslation: '',
+        namespace: '',
+        // eslint-disable-next-line sort-keys
+        key: '',
+        // eslint-disable-next-line sort-keys
         enTranslation: '',
         frTranslation: '',
-        key: ''
+        // eslint-disable-next-line sort-keys
+        chTranslation: ''
     };
     const onSubmit = (values: FormValues) => {
         handleAddKey(values);
     };
+    const chFlag = <Flags.CN className="h-4" title="简体中文" />;
+    const frFlag = <Flags.FR className="h-4" title="Français" />;
+    const enFlag = <Flags.US className="h-4" title="English" />;
+
+    const namespaceOptions = namespaces.map((namespace) => ({
+        label: namespace.label,
+        value: namespace.value
+    }));
+
     return (
-        <div
-            style={{
-                alignItems: 'flex-start',
-                display: 'flex',
-                flexDirection: 'column',
-                height: '350px',
-                justifyContent: 'center'
-            }}>
+        <div style={{ paddingBottom: '30px', paddingTop: '30px' }}>
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {() => {
                     return (
                         <Form>
-                            <div style={{ display: 'flex' }}>
+                            <div>
                                 <Field id="namespace" name="namespace">
                                     {(fieldProps: FieldProps) => (
-                                        <label className="block font-sans" htmlFor={Field.name}>
-                                            <span className="text-gray-700 text-sm font-medium leading-5">
-                                                Namespace
-                                            </span>
-                                            <Input placeholder="Namespace" {...fieldProps} />
-                                        </label>
+                                        <Select
+                                            label="Namespace"
+                                            options={namespaceOptions}
+                                            {...fieldProps}
+                                        />
                                     )}
                                 </Field>
                                 <Field id="key" name="key">
@@ -59,21 +68,30 @@ const AddKeyForm: FC<Props> = (props) => {
                                     )}
                                 </Field>
                             </div>
-                            <Field id="enTranslation" name="enTranslation">
-                                {(fieldProps: FieldProps) => (
-                                    <Input placeholder="enTranslation" {...fieldProps} />
-                                )}
-                            </Field>
-                            <Field id="frTranslation" name="frTranslation">
-                                {(fieldProps: FieldProps) => (
-                                    <Input placeholder="frTranslation" {...fieldProps} />
-                                )}
-                            </Field>
-                            <Field id="chTranslation" name="chTranslation">
-                                {(fieldProps: FieldProps) => (
-                                    <Input placeholder="chTranslation" {...fieldProps} />
-                                )}
-                            </Field>
+                            <div>
+                                {enFlag}
+                                <Field id="enTranslation" name="enTranslation">
+                                    {(fieldProps: FieldProps) => (
+                                        <Input placeholder="Translation" {...fieldProps} />
+                                    )}
+                                </Field>
+                            </div>
+                            <div>
+                                {frFlag}
+                                <Field id="frTranslation" name="frTranslation">
+                                    {(fieldProps: FieldProps) => (
+                                        <Input placeholder="Translation" {...fieldProps} />
+                                    )}
+                                </Field>
+                            </div>
+                            <div>
+                                {chFlag}
+                                <Field id="chTranslation" name="chTranslation">
+                                    {(fieldProps: FieldProps) => (
+                                        <Input placeholder="Translation" {...fieldProps} />
+                                    )}
+                                </Field>
+                            </div>
                             <Button type="submit" variant="primary">
                                 Add
                             </Button>

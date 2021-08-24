@@ -31,9 +31,8 @@ const LandingPage: FC = () => {
     return (
         <DashboardLayout title="Dashboard">
             <div style={{ display: 'flex' }}>
-                <Search key={0} handleSearch={handleSearch} />
+                <Search handleSearch={handleSearch} />
                 <Button
-                    key={1}
                     startIcon={faFilter}
                     variant={isTranslated ? 'primary' : 'secondary'}
                     onClick={() => {
@@ -42,7 +41,6 @@ const LandingPage: FC = () => {
                     Translated
                 </Button>
                 <Button
-                    key={2}
                     startIcon={faFilter}
                     variant={isUntranslated ? 'primary' : 'secondary'}
                     onClick={() => {
@@ -55,7 +53,7 @@ const LandingPage: FC = () => {
                 </Button>
             </div>
             {displayForm || <AddKeyForm handleAddKey={handleAddKey} newKey={newKey} />}
-            <SearchResults key={3} filter={filter} search={search} />
+            <SearchResults filter={filter} search={search} />
         </DashboardLayout>
     );
 };
