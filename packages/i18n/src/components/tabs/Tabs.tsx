@@ -34,9 +34,7 @@ const Tabs: FC = () => {
 
     useEffect(() => {
         const currentNavWidth = document.getElementById('nav')?.getBoundingClientRect().width;
-
         setNavwidth(currentNavWidth);
-        console.log(currentNavWidth);
     }, []);
 
     useEffect(() => {

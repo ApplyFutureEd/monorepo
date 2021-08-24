@@ -12,23 +12,24 @@ type Props = {
 const TabsItem: FC<Props> = (props) => {
     const { file } = props;
 
-    const fileName =
-        file === 'all'
-            ? data
-            : file === 'account'
-            ? account
-            : file === 'application'
-            ? application
-            : file === 'auth'
-            ? auth
-            : '';
+    const fileName = () => {
+        if (file === 'all') {
+            return data;
+        } else if (file === 'account') {
+            return account;
+        } else if (file === 'application') {
+            return application;
+        } else if (file === 'auth') {
+            return auth;
+        }
+    };
 
     return (
         <div>
             <h2 className="text-gray-900 text-2xl font-bold tracking-tight leading-8 sm:text-2xl sm:leading-9">
                 {upperFirst(file)}
             </h2>
-            {Object.entries(fileName).map(([key, value], i) => (
+            {Object.entries(fileName()).map(([key, value], i) => (
                 <div key={i}>
                     <p className="mt-3 text-gray-700 text-lg leading-7">Key : {key}</p>
                     <p className="mt-3 text-gray-700 text-lg leading-7">en: {value.en}</p>
