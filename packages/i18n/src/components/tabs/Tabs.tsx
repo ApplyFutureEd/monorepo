@@ -1,6 +1,4 @@
 import { useWindowSize } from '@applyfuture/utils';
-import TabsItem from '@components/tabsItem/TabsItem';
-import TabsPanel from '@components/tabsPanel/TabsPanel';
 import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useState } from 'react';
@@ -109,7 +107,7 @@ const Tabs: FC = () => {
                                 : 'none'
                     }}>
                     <div className="px-4 py-2 sm:px-6">
-                        <div className="flex flex-wrap items-center justify-between sm:flex-no-wrap">
+                        <div className="sm:flex-no-wrap flex flex-wrap items-center justify-between">
                             <div className="flex -mb-px space-x-4">
                                 {namespaces.map((tab, i) => (
                                     <span key={i} id={`nav-tab-${i}`}>
@@ -132,20 +130,6 @@ const Tabs: FC = () => {
                         <FontAwesomeIcon icon={faChevronRight} onClick={scrollRight} />
                     </div>
                 )}
-            </div>
-            <div>
-                <TabsPanel selected={selected === 'All'}>
-                    <TabsItem file={'all'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Account'}>
-                    <TabsItem file={'account'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Application'}>
-                    <TabsItem file={'application'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Auth'}>
-                    <TabsItem file={'auth'} />
-                </TabsPanel>
             </div>
         </div>
     );
