@@ -2,16 +2,16 @@
     "application": {
         "en": "application",
         "fr": "application",
-        "ch": "地址"
+        "zh": "地址"
     },
     "application-one": {
         "en": "application-one",
         "fr": "application-un",
-        "ch": "地址"
+        "zh": "地址"
     },
     "application-two": {
         "en": "application-two",
         "fr": "application-deux",
-        "ch": "地址"
+        "zh": "地址"
     }
 }

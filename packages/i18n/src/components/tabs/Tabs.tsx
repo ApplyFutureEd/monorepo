@@ -8,7 +8,7 @@ type Props = {
     selected: string;
 };
 
-const namespaces = [
+export const namespaces = [
     'All',
     'Account',
     'Application',
@@ -33,7 +33,7 @@ const Tabs: FC<Props> = (props) => {
     const [displayedTabIndex, setDisplayedTabIndex] = useState(0);
 
     const baseClasses =
-        'flex items-center px-1 py-4 text-gray-500 hover:text-indigo-700 focus:text-indigo-700 whitespace-no-wrap text-base font-medium leading-5 border-b-2 hover:border-indigo-300 focus:border-indigo-300 border-transparent focus:outline-none cursor-pointer space-x-2';
+        'flex items-center px-1 py-4 text-gray-500 hover:text-indigo-700  whitespace-no-wrap text-base font-medium leading-5 border-b-2 hover:border-indigo-300  border-transparent focus:outline-none cursor-pointer space-x-2';
 
     const selectedClasses = 'text-indigo-700 border-indigo-300 outline-none';
 

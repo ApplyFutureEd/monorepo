@@ -1,7 +1,6 @@
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import SearchResults from '@components/search/SearchResults';
-import TabsView from '@components/tabs/TabsView';
+import Translation from '@components/translation/Translation';
 import { FC, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
@@ -21,7 +20,6 @@ const LandingPage: FC = () => {
 
     const handleSelected = (tab: string) => {
         setSelected(tab);
-        console.log(selected);
     };
 
     return (
@@ -32,8 +30,7 @@ const LandingPage: FC = () => {
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
-            <SearchResults filter={filter} search={search} />
-            <TabsView selected={selected} />
+            <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );
 };

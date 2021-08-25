@@ -84,6 +84,27 @@ const DashboardLayout: FC<Props> = (props) => {
     const isTranslated = filter === 'TRANSLATED';
     const isUntranslated = filter === 'UNTRANSLATED';
 
+    const filterBar = [
+        <Button
+            key={1}
+            startIcon={faFilter}
+            variant={isTranslated ? 'primary' : 'secondary'}
+            onClick={() => {
+                isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
+            }}>
+            Translated
+        </Button>,
+        <Button
+            key={2}
+            startIcon={faFilter}
+            variant={isUntranslated ? 'primary' : 'secondary'}
+            onClick={() => {
+                isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
+            }}>
+            Untranslated
+        </Button>
+    ];
+
     return (
         <>
             <Head description={description} title={title} />
@@ -97,25 +118,8 @@ const DashboardLayout: FC<Props> = (props) => {
             <main className="main pt-header min-h-screen bg-gray-100">
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
                     <Tabs handleSelected={handleSelected} selected={selected} />
-                    <div>
-                        <Search handleSearch={handleSearch} />
-                        <Button
-                            startIcon={faFilter}
-                            variant={isTranslated ? 'primary' : 'secondary'}
-                            onClick={() => {
-                                isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
-                            }}>
-                            Translated
-                        </Button>
-                        <Button
-                            startIcon={faFilter}
-                            variant={isUntranslated ? 'primary' : 'secondary'}
-                            onClick={() => {
-                                isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
-                            }}>
-                            Untranslated
-                        </Button>
-                    </div>
+                    <Search handleSearch={handleSearch} />
+                    {filterBar}
                     <div className="px-4 sm:px-0">{children}</div>
                 </div>
             </main>

@@ -2,16 +2,21 @@
     "account": {
         "en": "account",
         "fr": "account",
-        "ch": "收藏"
+        "zh": "收藏"
     },
     "account-test-one": {
         "en": "account-one",
         "fr": "account-un",
-        "ch": "收藏"
+        "zh": "收藏"
     },
     "account-test-two": {
         "en": "account-two",
-        "fr": "account-deux",
-        "ch": "收藏"
+        "fr": "",
+        "zh": ""
+    },
+    "account-test-blabla": {
+        "en": "account-blabla",
+        "fr": "",
+        "zh": ""
     }
 }
