@@ -18,7 +18,7 @@
         "start:admin": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/admin && yarn start",
         "start:i18n": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/i18n && yarn start",
         "start:students": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/students && yarn start",
-        "test": "jest --coverage --detectOpenHandles --runInBand",
+        "test": "jest --coverage --silent --runInBand",
         "test:watch": "jest --watch"
     },
     "workspaces": [
