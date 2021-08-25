@@ -1,7 +1,7 @@
 import { Filter } from '@pages/index';
 import React, { FC } from 'react';
 
-import data from './data.json';
+import data from '../../data/account.json';
 
 interface Props {
     search: string;
@@ -13,9 +13,13 @@ const SearchResults: FC<Props> = (props) => {
     const displaySearch = search ? `Recherche: ${search}` : '';
     const filterSearch = (key: string) => !search || key.includes(search);
     const filterTranslated = (key: string, item: any) =>
-        filter !== 'TRANSLATED' ? key.includes(search) : item.en !== '' && item.es !== '';
+        filter !== 'TRANSLATED'
+            ? key.includes(search)
+            : item.en !== '' && item.fr !== '' && item.ch !== '';
     const filterUntranslated = (key: string, item: any) =>
-        filter !== 'UNTRANSLATED' ? key.includes(search) : item.en === '' || item.es === '';
+        filter !== 'UNTRANSLATED'
+            ? key.includes(search)
+            : item.en === '' || item.fr === '' || item.ch === '';
     return (
         <div>
             <span style={{ fontStyle: 'italic' }}>{displaySearch}</span>
@@ -27,7 +31,8 @@ const SearchResults: FC<Props> = (props) => {
                     <div key={i}>
                         <span style={{ fontWeight: 'bold' }}>Clé: {key}</span> <br />
                         <span>EN: {item.en}</span> <br />
-                        <span>ES: {item.es}</span>
+                        <span>FR: {item.fr}</span>
+                        <span>CH: {item.ch}</span>
                     </div>
                 ))}
         </div>

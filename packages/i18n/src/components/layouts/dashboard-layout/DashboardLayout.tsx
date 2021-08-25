@@ -3,14 +3,13 @@ import { Button } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Search from '@components/search/Search';
 import Tabs from '@components/tabs/Tabs';
-import TabsView from '@components/tabs/TabsView';
 import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import { FC, ReactNode, useState } from 'react';
 
-const Filter = require('../../../pages/index');
+import { Filter } from '../../../pages/index';
 
 type Props = {
     children: ReactNode;
@@ -18,13 +17,22 @@ type Props = {
     title: string;
     handleSearch: any;
     handleFilter: any;
+    handleSelected: any;
+    selected: any;
     filter: Filter;
 };
 
-export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
-
 const DashboardLayout: FC<Props> = (props) => {
-    const { children, description, title, handleSearch, handleFilter, filter } = props;
+    const {
+        children,
+        description,
+        title,
+        handleSearch,
+        handleFilter,
+        handleSelected,
+        selected,
+        filter
+    } = props;
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -88,9 +96,8 @@ const DashboardLayout: FC<Props> = (props) => {
 
             <main className="main pt-header min-h-screen bg-gray-100">
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
-                    <Tabs />
-                    <TabsView />
-                    <div style={{ display: 'flex' }}>
+                    <Tabs handleSelected={handleSelected} selected={selected} />
+                    <div>
                         <Search handleSearch={handleSearch} />
                         <Button
                             startIcon={faFilter}

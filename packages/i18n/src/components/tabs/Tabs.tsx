@@ -3,32 +3,39 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useState } from 'react';
 
-const Tabs: FC = () => {
+type Props = {
+    handleSelected: any;
+    selected: string;
+};
+
+const namespaces = [
+    'All',
+    'Account',
+    'Application',
+    'Auth',
+    'Common',
+    'Help',
+    'Landing',
+    'Navigation',
+    'Profile',
+    'Programs',
+    'Recruiters',
+    'Schools'
+];
+
+const Tabs: FC<Props> = (props) => {
+    const { handleSelected, selected } = props;
+
     const [navWidth, setNavwidth] = useState<number | undefined>(undefined);
     const [navContainerWidth, setNavContainerWidth] = useState<number | undefined>(undefined);
     const { width } = useWindowSize();
     const [displayArrows, setDisplayArrow] = useState(false);
     const [displayedTabIndex, setDisplayedTabIndex] = useState(0);
 
-    const [selected, setSelected] = useState('All');
-
     const baseClasses =
         'flex items-center px-1 py-4 text-gray-500 hover:text-indigo-700 focus:text-indigo-700 whitespace-no-wrap text-base font-medium leading-5 border-b-2 hover:border-indigo-300 focus:border-indigo-300 border-transparent focus:outline-none cursor-pointer space-x-2';
 
-    const namespaces = [
-        'All',
-        'Account',
-        'Application',
-        'Auth',
-        'Common',
-        'Help',
-        'Landing',
-        'Navigation',
-        'Profile',
-        'Programs',
-        'Recruiters',
-        'Schools'
-    ];
+    const selectedClasses = 'text-indigo-700 border-indigo-300 outline-none';
 
     useEffect(() => {
         const currentNavWidth = document.getElementById('nav')?.getBoundingClientRect().width;
@@ -113,8 +120,10 @@ const Tabs: FC = () => {
                                     <span key={i} id={`nav-tab-${i}`}>
                                         <button
                                             key={i}
-                                            className={baseClasses}
-                                            onClick={() => setSelected(tab)}>
+                                            className={`${baseClasses} ${
+                                                selected === tab ? selectedClasses : ''
+                                            }`}
+                                            onClick={() => handleSelected(tab)}>
                                             {tab}
                                         </button>
                                     </span>

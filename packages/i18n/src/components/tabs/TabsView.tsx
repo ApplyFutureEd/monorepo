@@ -4,12 +4,10 @@ import { FC } from 'react';
 
 type Props = {
     selected: string;
-    file: string;
 };
 
 const TabsView: FC<Props> = (props) => {
-    const { selected, file } = props;
-
+    const { selected } = props;
     return (
         <div>
             <TabsPanel selected={selected === 'All'}>
