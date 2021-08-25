@@ -2,7 +2,7 @@
 name: ⚔ New Quest
 about: Create a new Quest
 title: '🎓 students | 🔒 admin | 🌎 i18n - SHORT DESCRIPTION'
-labels: \- ⚔️ Quest, ☕️ Common
+labels: ·⚔️ Quest, ☕️ Common
 assignees: ''
 ---
 
