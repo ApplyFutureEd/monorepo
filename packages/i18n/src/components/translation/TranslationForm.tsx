@@ -33,53 +33,61 @@ const TranslationForm: FC<Props> = (props) => {
     const enFlag = <Flags.US className="h-4" title="English" />;
 
     return (
-        <div>
-            <Formik
-                enableReinitialize
-                initialValues={initialValues}
-                onSubmit={() => {
-                    console.log('Submited');
-                }}>
-                {() => {
-                    return (
-                        <Form>
-                            <div className="flex gap-2 items-center">
-                                <p>NAMESPACE :</p>
+        <Formik
+            enableReinitialize
+            initialValues={initialValues}
+            onSubmit={() => {
+                console.log('Submited');
+            }}>
+            {() => {
+                return (
+                    <Form className="space-y-6">
+                        <div className="flex space-x-6">
+                            <div className="flex flex-col w-full space-y-2">
+                                <p>Namespace :</p>
                                 <Field id="namespace" name="namespace">
                                     {(fieldProps: FieldProps) => (
                                         <Input disabled={true} {...fieldProps} />
                                     )}
                                 </Field>
                             </div>
-                            <div className="flex gap-2 items-center">
-                                <p>KEY :</p>
+                            <div className="flex flex-col w-full space-y-2">
+                                <p>Key :</p>
                                 <Field id="translationKey" name="translationKey">
                                     {(fieldProps: FieldProps) => <Input {...fieldProps} />}
                                 </Field>
                             </div>
-                            <div className="flex gap-2 items-center">
+                        </div>
+                        <div className="flex flex-col space-y-3">
+                            <div className="flex items-center space-x-4">
                                 {enFlag}
-                                <Field id="enTranslation" name="enTranslation">
-                                    {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                </Field>
+                                <div className="w-full">
+                                    <Field id="enTranslation" name="enTranslation">
+                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                    </Field>
+                                </div>
                             </div>
-                            <div className="flex gap-2 items-center">
+                            <div className="flex items-center space-x-4">
                                 {frFlag}
-                                <Field id="frTranslation" name="frTranslation">
-                                    {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                </Field>
+                                <div className="w-full">
+                                    <Field id="frTranslation" name="frTranslation">
+                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                    </Field>
+                                </div>
                             </div>
-                            <div className="flex gap-2 items-center">
+                            <div className="flex items-center space-x-4">
                                 {zhFlag}
-                                <Field id="zhTranslation" name="zhTranslation">
-                                    {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                </Field>
+                                <div className="w-full">
+                                    <Field id="zhTranslation" name="zhTranslation">
+                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                    </Field>
+                                </div>
                             </div>
-                        </Form>
-                    );
-                }}
-            </Formik>
-        </div>
+                        </div>
+                    </Form>
+                );
+            }}
+        </Formik>
     );
 };
 

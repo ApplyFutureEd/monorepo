@@ -30,7 +30,7 @@ const Translation: FC<Props> = (props) => {
         }
     };
 
-    const displaySearch = search ? `Recherche: ${search}` : '';
+    const displaySearch = search ? `Search Results: ${search}` : '';
 
     const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
     const filterTranslated = (translationKey: string, item: any) =>
@@ -42,14 +42,14 @@ const Translation: FC<Props> = (props) => {
             ? translationKey.includes(search)
             : item.en === '' || item.fr === '' || item.zh === '';
     return (
-        <div>
+        <>
             <span style={{ fontStyle: 'italic' }}>{displaySearch}</span>
             {Object.entries(fileName(selected))
                 .filter(([translationKey]) => filterSearch(translationKey))
                 .filter(([translationKey, value]) => filterTranslated(translationKey, value))
                 .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
                 .map(([translationKey, value], i) => (
-                    <div key={i}>
+                    <div key={i} className="mt-8 p-5 border rounded-md">
                         <TranslationForm
                             selected={selected}
                             translationKey={translationKey}
@@ -57,7 +57,7 @@ const Translation: FC<Props> = (props) => {
                         />
                     </div>
                 ))}
-        </div>
+        </>
     );
 };
 
