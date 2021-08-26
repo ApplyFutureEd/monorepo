@@ -3,16 +3,15 @@ import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import React, { FC } from 'react';
 
-import { namespaces } from '../../data/namespaces';
-
 interface Props {
-    translationKey: string;
+    translationKey: any;
     value: any;
-    selected: string;
+    selected: any;
 }
 
 const TranslationForm: FC<Props> = (props) => {
     const { translationKey, value, selected } = props;
+
     type FormValues = {
         namespace: string;
         translationKey: string;
@@ -20,6 +19,7 @@ const TranslationForm: FC<Props> = (props) => {
         frTranslation: string;
         zhTranslation: string;
     };
+
     const initialValues: FormValues = {
         enTranslation: value.en,
         frTranslation: value.fr,
@@ -32,14 +32,10 @@ const TranslationForm: FC<Props> = (props) => {
     const frFlag = <Flags.FR className="h-4" title="Français" />;
     const enFlag = <Flags.US className="h-4" title="English" />;
 
-    const namespaceOptions = namespaces.map((namespace) => ({
-        label: namespace.label,
-        value: namespace.value
-    }));
-
     return (
         <div>
             <Formik
+                enableReinitialize
                 initialValues={initialValues}
                 onSubmit={() => {
                     console.log('Submited');
@@ -47,11 +43,6 @@ const TranslationForm: FC<Props> = (props) => {
                 {() => {
                     return (
                         <Form>
-                            {/* <Field id="namespace" name="namespace">
-                                {(fieldProps: FieldProps) => (
-                                    <Select options={namespaceOptions} {...fieldProps} />
-                                )}
-                            </Field> */}
                             <div className="flex gap-2 items-center">
                                 <p>NAMESPACE :</p>
                                 <Field id="namespace" name="namespace">
