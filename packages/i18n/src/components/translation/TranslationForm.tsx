@@ -44,7 +44,7 @@ const TranslationForm: FC<Props> = (props) => {
                     <Form className="space-y-6">
                         <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                             <div className="flex flex-col w-full space-y-2">
-                                <p>Namespace :</p>
+                                <p className="text-gray-700">Namespace :</p>
                                 <Field id="namespace" name="namespace">
                                     {(fieldProps: FieldProps) => (
                                         <Input disabled={true} {...fieldProps} />
@@ -52,7 +52,7 @@ const TranslationForm: FC<Props> = (props) => {
                                 </Field>
                             </div>
                             <div className="flex flex-col w-full space-y-2">
-                                <p>Key :</p>
+                                <p className="text-gray-700">Key :</p>
                                 <Field id="translationKey" name="translationKey">
                                     {(fieldProps: FieldProps) => <Input {...fieldProps} />}
                                 </Field>
