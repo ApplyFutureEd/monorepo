@@ -42,7 +42,7 @@ const TranslationForm: FC<Props> = (props) => {
             {() => {
                 return (
                     <Form className="space-y-6">
-                        <div className="flex space-x-6">
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                             <div className="flex flex-col w-full space-y-2">
                                 <p>Namespace :</p>
                                 <Field id="namespace" name="namespace">

@@ -84,27 +84,6 @@ const DashboardLayout: FC<Props> = (props) => {
     const isTranslated = filter === 'TRANSLATED';
     const isUntranslated = filter === 'UNTRANSLATED';
 
-    // const filterBar = [
-    //     <Button
-    //         key={1}
-    //         startIcon={faFilter}
-    //         variant={isTranslated ? 'primary' : 'secondary'}
-    //         onClick={() => {
-    //             isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
-    //         }}>
-    //         Translated
-    //     </Button>,
-    //     <Button
-    //         key={2}
-    //         startIcon={faFilter}
-    //         variant={isUntranslated ? 'primary' : 'secondary'}
-    //         onClick={() => {
-    //             isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
-    //         }}>
-    //         Untranslated
-    //     </Button>
-    // ];
-
     return (
         <>
             <Head description={description} title={title} />
@@ -118,10 +97,10 @@ const DashboardLayout: FC<Props> = (props) => {
             <main className="main pt-header min-h-screen bg-gray-100">
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
                     <Tabs handleSelected={handleSelected} selected={selected} />
-                    <div className="flex items-start px-4 bg-white space-x-6">
-                        <div className="flex flex-col items-center mt-8 w-1/3 space-y-4">
+                    <div className="flex flex-col px-0 bg-white sm:px-8">
+                        <div className="flex flex-col items-center justify-center mt-8 px-1 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                             <Search handleSearch={handleSearch} />
-                            <div className="flex justify-evenly w-full">
+                            <div className="flex space-x-2">
                                 <Button
                                     key={1}
                                     startIcon={faFilter}
@@ -146,7 +125,7 @@ const DashboardLayout: FC<Props> = (props) => {
                                 </Button>
                             </div>
                         </div>
-                        <div className="px-2 w-2/3 sm:px-0">{children}</div>
+                        <div className="px-2 sm:px-0">{children}</div>
                     </div>
                 </div>
             </main>
