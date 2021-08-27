@@ -1,9 +1,6 @@
-import { Button } from '@applyfuture/ui';
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Search from '@components/search/Search';
-import SearchResults from '@components/search/SearchResults';
-import { faFilter } from '@fortawesome/pro-light-svg-icons';
+import Translation from '@components/translation/Translation';
 import { FC, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
@@ -11,38 +8,29 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
+    const [selected, setSelected] = useState('All');
+
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
     };
+
     const handleFilter = (filter: Filter) => {
         setFilter(filter);
     };
-    const isTranslated = filter === 'TRANSLATED';
-    const isUntranslated = filter === 'UNTRANSLATED';
+
+    const handleSelected = (tab: string) => {
+        setSelected(tab);
+    };
+
     return (
-        <DashboardLayout title="Dashboard">
-            <div style={{ display: 'flex' }}>
-                <Search key={0} handleSearch={handleSearch} />
-                <Button
-                    key={1}
-                    startIcon={faFilter}
-                    variant={isTranslated ? 'primary' : 'secondary'}
-                    onClick={() => {
-                        isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
-                    }}>
-                    Translated
-                </Button>
-                <Button
-                    key={2}
-                    startIcon={faFilter}
-                    variant={isUntranslated ? 'primary' : 'secondary'}
-                    onClick={() => {
-                        isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
-                    }}>
-                    Untranslated
-                </Button>
-            </div>
-            <SearchResults key={3} filter={filter} search={search} />
+        <DashboardLayout
+            filter={filter}
+            handleFilter={handleFilter}
+            handleSearch={handleSearch}
+            handleSelected={handleSelected}
+            selected={selected}
+            title="Dashboard">
+            <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );
 };
