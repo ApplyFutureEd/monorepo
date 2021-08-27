@@ -26,7 +26,7 @@ Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('ConfirmAccount', () => {
+describe.skip('ConfirmAccount', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         password: '$tR0nGPaSsw0rd',
