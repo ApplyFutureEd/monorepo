@@ -103,6 +103,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "i18nsavetranslation",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
