@@ -6,16 +6,15 @@ import Tabs from '@components/tabs/Tabs';
 import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Filter } from '@pages/index';
 import { Auth } from 'aws-amplify';
 import { FC, ReactNode, useState } from 'react';
-
-import { Filter } from '../../../pages/index';
 
 type Props = {
     children: ReactNode;
     description?: string;
     title: string;
-    handleSearch: any;
+    handleSearch: (query: string) => void;
     handleFilter: any;
     handleSelected: any;
     selected: string;
@@ -98,7 +97,7 @@ const DashboardLayout: FC<Props> = (props) => {
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
                     <Tabs handleSelected={handleSelected} selected={selected} />
                     <div className="flex flex-col px-0 bg-white sm:px-8">
-                        <div className="flex flex-col items-center justify-center mt-8 px-1 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                        <div className="flex flex-col mt-8 px-1 space-y-4 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
                             <Search handleSearch={handleSearch} />
                             <div className="flex space-x-2">
                                 <Button

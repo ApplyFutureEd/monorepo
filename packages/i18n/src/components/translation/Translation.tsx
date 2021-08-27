@@ -8,15 +8,15 @@ import React, { FC } from 'react';
 import TranslationForm from '../translation/TranslationForm';
 
 interface Props {
-    search: string;
     filter: Filter;
+    search: string;
     selected: string;
 }
 
 const Translation: FC<Props> = (props) => {
-    const { search, filter, selected } = props;
+    const { filter, search, selected } = props;
 
-    const fileName = (selected: string) => {
+    const getFileName = (selected: string) => {
         if (selected === 'All') {
             return data;
         } else if (selected === 'Account') {
@@ -30,8 +30,6 @@ const Translation: FC<Props> = (props) => {
         }
     };
 
-    // const displaySearch = search ? `Search Results: ${search}` : '';
-
     const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
     const filterTranslated = (translationKey: string, item: any) =>
         filter !== 'TRANSLATED'
@@ -43,7 +41,7 @@ const Translation: FC<Props> = (props) => {
             : item.en === '' || item.fr === '' || item.zh === '';
     return (
         <>
-            {Object.entries(fileName(selected))
+            {Object.entries(getFileName(selected))
                 .filter(([translationKey]) => filterSearch(translationKey))
                 .filter(([translationKey, value]) => filterTranslated(translationKey, value))
                 .filter(([translationKey, value]) => filterUntranslated(translationKey, value))

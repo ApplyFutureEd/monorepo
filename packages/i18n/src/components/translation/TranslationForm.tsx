@@ -4,19 +4,19 @@ import { Field, FieldProps, Form, Formik } from 'formik';
 import React, { FC } from 'react';
 
 interface Props {
+    selected: any;
     translationKey: any;
     value: any;
-    selected: any;
 }
 
 const TranslationForm: FC<Props> = (props) => {
-    const { translationKey, value, selected } = props;
+    const { selected, translationKey, value } = props;
 
     type FormValues = {
-        namespace: string;
-        translationKey: string;
         enTranslation: string;
         frTranslation: string;
+        namespace: string;
+        translationKey: string;
         zhTranslation: string;
     };
 
