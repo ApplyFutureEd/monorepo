@@ -15,8 +15,8 @@ type Props = {
     description?: string;
     title: string;
     handleSearch: (query: string) => void;
-    handleFilter: any;
-    handleSelected: any;
+    handleFilter: (filter: Filter) => void;
+    handleSelected: (tab: string) => void;
     selected: string;
     filter: Filter;
 };

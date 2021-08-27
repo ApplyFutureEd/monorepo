@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useState } from 'react';
 
 type Props = {
-    handleSelected: any;
+    handleSelected: (tab: string) => void;
     selected: string;
 };
 

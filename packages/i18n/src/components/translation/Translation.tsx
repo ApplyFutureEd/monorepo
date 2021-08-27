@@ -7,11 +7,11 @@ import React, { FC } from 'react';
 
 import TranslationForm from '../translation/TranslationForm';
 
-interface Props {
+type Props = {
     filter: Filter;
     search: string;
     selected: string;
-}
+};
 
 const Translation: FC<Props> = (props) => {
     const { filter, search, selected } = props;

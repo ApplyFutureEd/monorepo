@@ -3,11 +3,11 @@ import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import React, { FC } from 'react';
 
-interface Props {
+type Props = {
     selected: any;
     translationKey: any;
     value: any;
-}
+};
 
 const TranslationForm: FC<Props> = (props) => {
     const { selected, translationKey, value } = props;
