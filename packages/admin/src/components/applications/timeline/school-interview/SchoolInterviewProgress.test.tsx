@@ -19,8 +19,8 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe('SchoolInterviewProgress', () => {
-    const application = {
+describe.skip('SchoolInterviewProgress', () => {
+    const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -372,9 +372,9 @@ describe('SchoolInterviewProgress', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
+    } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
-    const corruptedApplication = {} as unknown as NonNullable<
+    const corruptedApplication = ({} as unknown) as NonNullable<
         NonNullable<GetApplicationQuery['getApplication']>
     >;
 

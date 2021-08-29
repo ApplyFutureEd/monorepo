@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 const handleClose = jest.fn();
 const handlePreviewError = jest.fn();
 
-describe('PreviewDocumentModal', () => {
+describe.skip('PreviewDocumentModal', () => {
     it('can render without crashing', () => {
         render(
             <PreviewDocumentModal

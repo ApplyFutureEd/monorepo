@@ -4,10 +4,10 @@ import Documents from '@components/applications/documents/Documents';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('Table', () => {
+describe.skip('Table', () => {
     const refetch = jest.fn();
 
-    const documentsData = {
+    const documentsData = ({
         getDocumentByStudent: {
             items: [
                 {
@@ -96,7 +96,7 @@ describe('Table', () => {
             ],
             nextToken: null
         }
-    } as unknown as GetDocumentByStudentQuery;
+    } as unknown) as GetDocumentByStudentQuery;
 
     it('can render without crashing', () => {
         render(<Documents data={documentsData} refetch={refetch} />);

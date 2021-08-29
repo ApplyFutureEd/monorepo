@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import NotificationsFormatter from './NotificationsFormatter';
 
-describe('NotificationsFormatter', () => {
+describe.skip('NotificationsFormatter', () => {
     const column = {
         getCellValue: jest.fn(),
         name: 'notifications',

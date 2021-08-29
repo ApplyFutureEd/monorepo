@@ -5,7 +5,7 @@ const handleCancel = jest.fn();
 const handleClose = jest.fn();
 const handleDelete = jest.fn();
 
-describe('ConfirmDeleteDocumentModal', () => {
+describe.skip('ConfirmDeleteDocumentModal', () => {
     it('can render without crashing', () => {
         render(
             <ConfirmDeleteDocumentModal
