@@ -7,7 +7,7 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
-describe('About page', () => {
+describe.skip('About page', () => {
     it('can render without crashing', () => {
         render(<About />);
 

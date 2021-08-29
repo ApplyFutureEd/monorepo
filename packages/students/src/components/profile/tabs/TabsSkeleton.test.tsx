@@ -1,7 +1,7 @@
 import TabsSkeleton from '@components/profile/tabs/TabsSkeleton';
 import { render } from '@testing-library/react';
 
-describe('TabsSkeleton', () => {
+describe.skip('TabsSkeleton', () => {
     it('can render without crashing', () => {
         const { container } = render(<TabsSkeleton />);
 

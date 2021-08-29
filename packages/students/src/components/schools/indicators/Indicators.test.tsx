@@ -20,7 +20,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe('Indicators', () => {
+describe.skip('Indicators', () => {
     const program = {
         applicationFee: 50,
         applicationFeeCurrency: 'EUR' as Currency,

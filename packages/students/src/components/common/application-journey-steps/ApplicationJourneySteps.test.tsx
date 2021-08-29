@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import ApplicationJourneySteps from './ApplicationJourneySteps';
 
-describe('ApplicationJourneySteps', () => {
+describe.skip('ApplicationJourneySteps', () => {
     it('can render step 1 without crashing', () => {
         render(<ApplicationJourneySteps />);
 
