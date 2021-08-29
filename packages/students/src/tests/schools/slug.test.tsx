@@ -1,4 +1,5 @@
 import { GetProgramBySchoolQuery, GetSchoolBySlugQuery } from '@applyfuture/graphql';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import SchoolPage from '@pages/schools/[slug]';
 import { render, screen } from '@testing-library/react';
 import { FC } from 'react';
@@ -14,19 +15,16 @@ jest.mock('next/router', () => ({
     }
 }));
 
-jest.mock('@applyfuture/utils', () => ({
-    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
-    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
-        user: {
-            attributes: {
-                email: 'awesome.student@gmail.com'
-            }
-        }
-    })),
-    useQuery: jest.fn().mockImplementation(() => ({
-        data: {}
-    }))
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
 }));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 const programs = ([
     {
@@ -231,7 +229,7 @@ const mockedData = {
     }
 };
 
-describe.skip('SchoolPage', () => {
+describe('SchoolPage', () => {
     it('can render without crashing', () => {
         render(<SchoolPage programs={programs} school={school} />);
 

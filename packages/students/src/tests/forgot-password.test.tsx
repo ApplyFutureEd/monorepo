@@ -36,7 +36,7 @@ Auth.forgotPassword = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe.skip('ForgotPassword', () => {
+describe('ForgotPassword', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com'
     };

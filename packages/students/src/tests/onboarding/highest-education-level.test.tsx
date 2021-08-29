@@ -1,7 +1,7 @@
 import HighestEducationLevel from '@pages/onboarding/highest-education-level';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Onboarding HighestEducationLevel page', () => {
+describe('Onboarding HighestEducationLevel page', () => {
     it('can render without crashing', () => {
         render(<HighestEducationLevel />);
 

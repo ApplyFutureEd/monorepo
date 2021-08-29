@@ -1,7 +1,7 @@
 import Discipline from '@pages/onboarding/discipline';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Onboarding Discipline page', () => {
+describe('Onboarding Discipline page', () => {
     it('can render without crashing', () => {
         render(<Discipline />);
 

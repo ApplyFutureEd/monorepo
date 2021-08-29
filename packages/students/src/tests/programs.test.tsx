@@ -1,3 +1,4 @@
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Programs from '@pages/programs';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -16,6 +17,17 @@ jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
     Header: jest.fn().mockImplementation(() => <div />)
 }));
+
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 let mockedData = {
     searchPrograms: {
@@ -64,7 +76,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('Programs', () => {
+describe('Programs', () => {
     it('can render without crashing', () => {
         render(<Programs />);
 

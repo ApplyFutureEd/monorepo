@@ -1,7 +1,7 @@
 import Country from '@pages/onboarding/country';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Onboarding Country page', () => {
+describe('Onboarding Country page', () => {
     it('can render without crashing', () => {
         render(<Country />);
 

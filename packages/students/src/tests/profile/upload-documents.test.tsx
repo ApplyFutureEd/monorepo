@@ -1,8 +1,8 @@
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import UploadDocumentsPage from '@pages/profile/upload-documents';
 import { render, screen } from '@testing-library/react';
 import { uniqueId } from 'lodash';
 import { FC } from 'react';
-
-import UploadDocumentsPage from '../../pages/profile/upload-documents';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -12,19 +12,16 @@ jest.mock('next/router', () => ({
     }
 }));
 
-jest.mock('@applyfuture/utils', () => ({
-    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
-    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
-        user: {
-            attributes: {
-                email: 'awesome.student@gmail.com'
-            }
-        }
-    })),
-    useQuery: jest.fn().mockImplementation(() => ({
-        data: {}
-    }))
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
 }));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 const mockedStudent = {
     address: '',
@@ -112,7 +109,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('Upload Documents page', () => {
+describe('Upload Documents page', () => {
     it('can render without crashing', () => {
         render(<UploadDocumentsPage />);
 

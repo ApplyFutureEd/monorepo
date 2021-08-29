@@ -1,3 +1,4 @@
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Schools from '@pages/schools';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -16,19 +17,16 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
-jest.mock('@applyfuture/utils', () => ({
-    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
-    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
-        user: {
-            attributes: {
-                email: 'awesome.student@gmail.com'
-            }
-        }
-    })),
-    useQuery: jest.fn().mockImplementation(() => ({
-        data: {}
-    }))
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
 }));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 let mockedData = {
     searchSchools: {
@@ -73,7 +71,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('Schools', () => {
+describe('Schools', () => {
     it('can render without crashing', () => {
         render(<Schools />);
 

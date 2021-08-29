@@ -49,7 +49,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('Onboarding Suggestions page', () => {
+describe('Onboarding Suggestions page', () => {
     it('can render without crashing', () => {
         render(<Suggestions />);
 
