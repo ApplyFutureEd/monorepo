@@ -1,7 +1,7 @@
 import Chatbot from '@components/onboarding/chatbot/Chatbot';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Chatbot', () => {
+describe('Chatbot', () => {
     it('can render without crashing', () => {
         render(
             <Chatbot name="Charly">

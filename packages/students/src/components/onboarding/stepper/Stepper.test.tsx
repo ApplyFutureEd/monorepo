@@ -8,7 +8,7 @@ const steps = [
     { name: 'degree', status: 'UPCOMING' }
 ];
 
-describe.skip('Stepper', () => {
+describe('Stepper', () => {
     it('can render without crashing', () => {
         render(<Stepper steps={steps} />);
 

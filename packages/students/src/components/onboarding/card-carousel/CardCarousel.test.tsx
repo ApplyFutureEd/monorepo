@@ -23,7 +23,7 @@ jest.mock('@applyfuture/utils', () => ({
     }))
 }));
 
-describe.skip('CardCarousel', () => {
+describe('CardCarousel', () => {
     const program = {
         city: 'Murcia',
         country: 'ES',

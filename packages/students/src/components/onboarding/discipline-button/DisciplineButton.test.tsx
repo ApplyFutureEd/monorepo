@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 const discipline = disciplines[0];
 const handleClick = jest.fn();
 
-describe.skip('DisciplineButton', () => {
+describe('DisciplineButton', () => {
     it('can render without crashing', () => {
         render(
             <DisciplineButton
