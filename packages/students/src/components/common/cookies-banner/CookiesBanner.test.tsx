@@ -6,7 +6,7 @@ Cookies.get = jest.fn().mockImplementation(() => {
     return 'cookies-consent';
 });
 
-describe.skip('Hero', () => {
+describe('Hero', () => {
     it('can render without crashing', () => {
         render(<CookiesBanner />);
 
