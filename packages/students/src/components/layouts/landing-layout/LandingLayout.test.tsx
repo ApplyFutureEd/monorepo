@@ -26,9 +26,9 @@ jest.mock('@applyfuture/utils', () => ({
             }
         }
     })),
-    useQuery: () => ({
+    useQuery: jest.fn().mockImplementation(() => ({
         data: {}
-    })
+    }))
 }));
 
 describe('LandingLayout', () => {

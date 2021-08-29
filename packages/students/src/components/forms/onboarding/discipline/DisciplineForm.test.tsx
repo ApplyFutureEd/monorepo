@@ -14,7 +14,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('DisciplineForm', () => {
+describe('DisciplineForm', () => {
     it('can render without crashing', () => {
         render(<DisciplineForm />);
 

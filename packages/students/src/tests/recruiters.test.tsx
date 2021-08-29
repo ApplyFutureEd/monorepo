@@ -8,6 +8,20 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useQuery: jest.fn().mockImplementation(() => ({
+        data: {}
+    }))
+}));
+
 describe.skip('Recruiters', () => {
     const fakeRecruiter = {
         additionalComments: 'Lorem ipsum',
@@ -47,10 +61,6 @@ describe.skip('Recruiters', () => {
         whatsAppId: 'awesome.recruiter'
     };
 
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
-
     it('can render without crashing', () => {
         render(<Recruiters />);
 
@@ -59,8 +69,8 @@ describe.skip('Recruiters', () => {
         expect(heading).toBeInTheDocument();
     });
 
-    it.skip('can fill the form', async () => {
-        API.post = jest.fn().mockImplementation(() => {
+    it('can fill the form', async () => {
+        API.post = jest.fn().mockResolvedValue(() => {
             return true;
         });
 
@@ -351,7 +361,7 @@ describe.skip('Recruiters', () => {
         });
     });
 
-    it.skip('can display the right error message when an Error is thrown', async () => {
+    it('can display the right error message when an Error is thrown', async () => {
         API.post = jest.fn().mockImplementation(() => {
             throw new Error();
         });

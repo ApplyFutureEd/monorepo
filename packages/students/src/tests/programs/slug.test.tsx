@@ -1,6 +1,7 @@
 import { GetProgramBySlugQuery } from '@applyfuture/graphql';
 import ProgramPage from '@pages/programs/[slug]';
 import { render, screen } from '@testing-library/react';
+import { FC } from 'react';
 let mockIsFallback = false;
 
 jest.mock('next/router', () => ({
@@ -10,6 +11,20 @@ jest.mock('next/router', () => ({
             locale: 'en'
         };
     }
+}));
+
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useQuery: jest.fn().mockImplementation(() => ({
+        data: {}
+    }))
 }));
 
 const program = ({

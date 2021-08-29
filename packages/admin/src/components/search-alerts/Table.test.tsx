@@ -98,7 +98,7 @@ const mockedData = ({
     }
 } as unknown) as SearchSearchAlertsQuery;
 
-describe.skip('Table', () => {
+describe('Table', () => {
     const handleContextMenu = jest.fn();
     const setVariables = jest.fn();
 

@@ -7,6 +7,20 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useQuery: jest.fn().mockImplementation(() => ({
+        data: {}
+    }))
+}));
+
 describe.skip('PrivacyPolicyPage', () => {
     const fakePost = {
         category: 'legal',

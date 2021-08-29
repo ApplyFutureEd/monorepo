@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Cookies from 'js-cookie';
+import { FC } from 'react';
 
 import { LanguageMenu } from './LanguageMenu';
 
@@ -11,6 +12,21 @@ jest.mock('next/router', () => ({
             query: {}
         };
     }
+}));
+
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useOutsideAlerter: jest.fn(),
+    useQuery: jest.fn().mockImplementation(() => ({
+        data: {}
+    }))
 }));
 
 jest.mock('js-cookie');

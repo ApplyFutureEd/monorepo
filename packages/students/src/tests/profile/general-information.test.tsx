@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { uniqueId } from 'lodash';
+import { FC } from 'react';
 
 import GeneralInformationPage from '../../pages/profile/general-information';
 
@@ -9,6 +10,20 @@ jest.mock('next/router', () => ({
             locale: 'en'
         };
     }
+}));
+
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, FC>),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
+    useQuery: jest.fn().mockImplementation(() => ({
+        data: {}
+    }))
 }));
 
 const mockedStudent = {

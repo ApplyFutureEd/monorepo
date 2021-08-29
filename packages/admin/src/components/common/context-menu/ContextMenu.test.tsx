@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import ContextMenu, { ContextMenuItem } from './ContextMenu';
 
-describe.skip('ContextMenu', () => {
+describe('ContextMenu', () => {
     const id = 'programs';
     const items: Array<ContextMenuItem> = [
         {

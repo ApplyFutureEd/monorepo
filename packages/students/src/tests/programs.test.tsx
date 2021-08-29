@@ -49,6 +49,13 @@ let mockedIsLoading = jest.fn().mockReturnValue(false);
 jest.mock('@applyfuture/utils', () => ({
     ...(jest.requireActual('@applyfuture/utils') as Record<string, unknown>),
     isBrowser: jest.fn().mockImplementation(() => true),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        user: {
+            attributes: {
+                email: 'awesome.student@gmail.com'
+            }
+        }
+    })),
     usePageBottom: () => true,
     useQuery: () => ({
         data: mockedData,

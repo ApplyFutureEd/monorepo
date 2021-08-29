@@ -27,7 +27,7 @@ Storage.get = jest.fn().mockImplementation(() => {
 });
 window.open = jest.fn();
 
-describe.skip('Summary', () => {
+describe('Summary', () => {
     const applicationData = ({
         getApplication: {
             admissionResult: null,

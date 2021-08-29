@@ -19,7 +19,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('SchoolInterviewProgress', () => {
+describe('SchoolInterviewProgress', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
@@ -395,7 +395,7 @@ describe.skip('SchoolInterviewProgress', () => {
         const submitButton = screen.getByText('Submit');
 
         await waitFor(() => {
-            userEvent.type(dateInput, '01/11/2021');
+            userEvent.type(dateInput, '01/01/2025');
         });
 
         await waitFor(() => {

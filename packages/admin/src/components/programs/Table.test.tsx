@@ -31,7 +31,7 @@ const mockedData = ({
     }
 } as unknown) as SearchProgramsQuery;
 
-describe.skip('Table', () => {
+describe('Table', () => {
     const handleContextMenu = jest.fn();
     const setVariables = jest.fn();
 

@@ -4,7 +4,7 @@ import Documents from '@components/applications/documents/Documents';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe.skip('Table', () => {
+describe('Table', () => {
     const refetch = jest.fn();
 
     const documentsData = ({

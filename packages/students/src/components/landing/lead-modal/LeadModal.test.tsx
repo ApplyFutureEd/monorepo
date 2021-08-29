@@ -1,5 +1,5 @@
 import LeadModal from '@components/landing/lead-modal/LeadModal';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Cookies from 'js-cookie';
 
 jest.mock('js-cookie');
@@ -14,7 +14,9 @@ describe('LeadModal', () => {
             </div>
         );
 
-        jest.advanceTimersByTime(5000);
+        act(() => {
+            jest.advanceTimersByTime(5000);
+        });
 
         const heading = screen.getByRole('heading');
 
@@ -28,7 +30,9 @@ describe('LeadModal', () => {
             </div>
         );
 
-        jest.advanceTimersByTime(5000);
+        act(() => {
+            jest.advanceTimersByTime(5000);
+        });
 
         const closeIcon = screen.getByRole('img', { hidden: true });
 

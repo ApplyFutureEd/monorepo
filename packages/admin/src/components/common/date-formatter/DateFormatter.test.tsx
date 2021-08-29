@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import DateFormatter from './DateFormatter';
 
-describe.skip('DateFormatter', () => {
+describe('DateFormatter', () => {
     const column = {
         getCellValue: jest.fn(),
         name: 'date',

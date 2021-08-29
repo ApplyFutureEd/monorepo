@@ -1,8 +1,7 @@
 /* eslint-disable sort-keys */
 import { GetApplicationQuery, GetDocumentByStudentQuery } from '@applyfuture/graphql';
 import Content from '@components/applications/content/Content';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { useState as useStateMock } from 'react';
+import { render, screen } from '@testing-library/react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -12,25 +11,10 @@ jest.mock('next/router', () => ({
     }
 }));
 
-/* jest.mock('react', () => ({
-    ...(jest.requireActual('react') as Record<string, unknown>),
-    useState: jest.fn()
-})); */
-
-describe.skip('Content', () => {
-    const setCurrentTab = jest.fn();
-
-    beforeEach(() => {
-        (useStateMock as jest.Mock).mockImplementation((init) => [init, setCurrentTab]);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-
+describe('Content', () => {
     const refetch = jest.fn();
 
-    const applicationData = {
+    const applicationData = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -382,9 +366,9 @@ describe.skip('Content', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown as GetApplicationQuery;
+    } as unknown) as GetApplicationQuery;
 
-    const documentsData = {
+    const documentsData = ({
         getDocumentByStudent: {
             items: [
                 {
@@ -473,7 +457,7 @@ describe.skip('Content', () => {
             ],
             nextToken: null
         }
-    } as unknown as GetDocumentByStudentQuery;
+    } as unknown) as GetDocumentByStudentQuery;
 
     it('can render without crashing', () => {
         render(
@@ -498,22 +482,5 @@ describe.skip('Content', () => {
         const timelineTabLabel = screen.getByText('Timeline');
 
         expect(timelineTabLabel).toBeInTheDocument;
-    });
-
-    it('can handle tab change', () => {
-        render(
-            <Content
-                applicationData={applicationData}
-                documentsData={documentsData}
-                isLoading={false}
-                refetch={refetch}
-            />
-        );
-
-        const timelineTabLabel = screen.getByText('Timeline');
-
-        fireEvent.click(timelineTabLabel);
-
-        expect(setCurrentTab).toHaveBeenCalled();
     });
 });

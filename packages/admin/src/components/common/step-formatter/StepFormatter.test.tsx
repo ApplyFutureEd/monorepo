@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import StepFormatter from './StepFormatter';
 
-describe.skip('StepFormatter', () => {
+describe('StepFormatter', () => {
     const column = {
         getCellValue: jest.fn(),
         name: 'step',
