@@ -1,7 +1,7 @@
 import Arguments from '@components/landing/arguments/Arguments';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Arguments', () => {
+describe('Arguments', () => {
     it('can render without crashing', () => {
         render(<Arguments />);
 

@@ -1,7 +1,7 @@
 import Schools from '@components/landing/schools/Schools';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Schools', () => {
+describe('Schools', () => {
     it('can render without crashing', () => {
         render(<Schools />);
 

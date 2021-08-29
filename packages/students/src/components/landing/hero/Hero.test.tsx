@@ -1,7 +1,7 @@
 import Hero from '@components/landing/hero/Hero';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('Hero', () => {
+describe('Hero', () => {
     it('can render without crashing', () => {
         render(<Hero />);
 

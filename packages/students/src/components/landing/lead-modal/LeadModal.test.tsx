@@ -7,7 +7,7 @@ import { useState as useStateMock } from 'react';
     useState: jest.fn()
 })); */
 
-describe.skip('LeadModal', () => {
+describe('LeadModal', () => {
     const setOpenModal = jest.fn();
 
     beforeEach(() => {
