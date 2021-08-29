@@ -24,7 +24,7 @@ Auth.completeNewPassword = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('NewPassword', () => {
+describe.skip('NewPassword', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         newPassword: '$tR0nGPaSsw0rd',

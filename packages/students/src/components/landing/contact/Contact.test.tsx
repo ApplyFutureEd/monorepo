@@ -6,7 +6,7 @@ API.post = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('Contact', () => {
+describe.skip('Contact', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         firstName: 'John',

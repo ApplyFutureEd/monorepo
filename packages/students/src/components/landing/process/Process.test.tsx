@@ -1,7 +1,7 @@
 import Process from '@components/landing/process/Process';
 import { render, screen } from '@testing-library/react';
 
-describe('Process', () => {
+describe.skip('Process', () => {
     it('can render without crashing', () => {
         render(<Process />);
 

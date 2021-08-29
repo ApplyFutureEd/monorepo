@@ -97,7 +97,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe('General Information page', () => {
+describe.skip('General Information page', () => {
     it('can render without crashing', () => {
         render(<GeneralInformationPage />);
 

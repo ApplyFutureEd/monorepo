@@ -1,7 +1,7 @@
 import OnboardingHeader from '@components/onboarding/onboarding-header/OnboardingHeader';
 import { render, screen } from '@testing-library/react';
 
-describe('OnboardingHeader', () => {
+describe.skip('OnboardingHeader', () => {
     it('can render without crashing', () => {
         render(<OnboardingHeader />);
 

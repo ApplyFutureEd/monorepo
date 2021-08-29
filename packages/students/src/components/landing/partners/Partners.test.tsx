@@ -1,7 +1,7 @@
 import Partners from '@components/landing/partners/Partners';
 import { render, screen } from '@testing-library/react';
 
-describe('Partners', () => {
+describe.skip('Partners', () => {
     it('can render without crashing', () => {
         render(<Partners />);
 

@@ -1,7 +1,7 @@
 import EligibilityWarning from '@components/programs/eligibility-warning/EligibilityWarning';
 import { render, screen } from '@testing-library/react';
 
-describe('EligibilityWarning', () => {
+describe.skip('EligibilityWarning', () => {
     it('can render without crashing', () => {
         render(
             <EligibilityWarning

@@ -7,7 +7,7 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
-describe('TermsOfUsePage', () => {
+describe.skip('TermsOfUsePage', () => {
     const fakePost = {
         category: 'Legal Page',
         content:

@@ -42,7 +42,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe('Review Documents page', () => {
+describe.skip('Review Documents page', () => {
     it('can render without crashing', () => {
         render(<ReviewDocuments />);
 
