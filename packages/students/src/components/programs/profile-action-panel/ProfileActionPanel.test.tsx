@@ -1,7 +1,7 @@
 import ProfileActionPanel from '@components/programs/profile-action-panel/ProfileActionPanel';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('ProfileActionPanel', () => {
+describe('ProfileActionPanel', () => {
     it('can render without crashing', () => {
         render(<ProfileActionPanel />);
 

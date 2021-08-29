@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 const handleClose = jest.fn();
 
-describe.skip('EligibilityWarningModal', () => {
+describe('EligibilityWarningModal', () => {
     it('can render without crashing', () => {
         render(
             <EligibilityWarningModal

@@ -9,7 +9,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('Tabs', () => {
+describe('Tabs', () => {
     it('can render without crashing', () => {
         render(
             <Tabs

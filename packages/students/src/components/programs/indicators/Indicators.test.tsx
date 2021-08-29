@@ -1,3 +1,4 @@
+import { GetProgramQuery } from '@applyfuture/graphql';
 import Indicators from '@components/programs/indicators/Indicators';
 import { render } from '@testing-library/react';
 
@@ -9,8 +10,8 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('Indicators', () => {
-    const program = {
+describe('Indicators', () => {
+    const program = ({
         applicationFee: 50,
         applicationFeeCurrency: 'EUR',
         city: 'Paris',
@@ -56,9 +57,9 @@ describe.skip('Indicators', () => {
         testTcftef: -1,
         testToefl: 557,
         testToeic: 790
-    };
+    } as unknown) as GetProgramQuery['getProgram'];
 
-    const otherProgram = {
+    const otherProgram = ({
         applicationFee: 50,
         applicationFeeCurrency: 'EUR',
         city: 'Paris',
@@ -104,7 +105,7 @@ describe.skip('Indicators', () => {
         testTcftef: -1,
         testToefl: 557,
         testToeic: 790
-    };
+    } as unknown) as GetProgramQuery['getProgram'];
 
     it('can render without crashing', () => {
         render(<Indicators program={program} />);

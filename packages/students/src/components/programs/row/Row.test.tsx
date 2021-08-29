@@ -11,7 +11,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('Row', () => {
+describe('Row', () => {
     const program = {
         city: 'Murcia',
         country: 'ES',

@@ -97,7 +97,7 @@ const student = {
     ]
 } as NonNullable<NonNullable<GetStudentByEmailQuery['getStudentByEmail']>['items']>[0];
 
-describe.skip('IntakesModal', () => {
+describe('IntakesModal', () => {
     it('can render without crashing', () => {
         render(
             <IntakesModal
