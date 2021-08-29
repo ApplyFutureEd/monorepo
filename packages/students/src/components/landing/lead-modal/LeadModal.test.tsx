@@ -41,7 +41,7 @@ describe('LeadModal', () => {
         expect(heading).not.toBeInTheDocument();
     });
 
-    it('does not open modal if cookie exist', () => {
+    it('does not open modal if cookie exists', () => {
         Cookies.get = jest.fn().mockImplementation(() => true);
 
         render(

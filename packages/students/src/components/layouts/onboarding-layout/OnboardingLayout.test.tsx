@@ -9,7 +9,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('OnboardingLayout', () => {
+describe('OnboardingLayout', () => {
     it('can render without crashing', () => {
         render(
             <OnboardingLayout description="Lorem ipsum" title="Hello World">
