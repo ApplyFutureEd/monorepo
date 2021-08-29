@@ -8,7 +8,7 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
-describe('Recruiters', () => {
+describe.skip('Recruiters', () => {
     const fakeRecruiter = {
         additionalComments: 'Lorem ipsum',
         averageServiceFee: '0 - 250€',
