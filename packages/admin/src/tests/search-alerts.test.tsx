@@ -1,7 +1,9 @@
 /* eslint-disable sort-keys */
 import { SearchProgramsQuery } from '@applyfuture/graphql';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import SearchAlerts from '@pages/search-alerts';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { FC } from 'react';
 
 const mockedPush = jest.fn();
 
@@ -135,6 +137,17 @@ jest.mock('react-contexify', () => ({
         show: mockedShow
     })
 }));
+
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 describe.skip('SearchAlerts', () => {
     it('can render without crashing', () => {

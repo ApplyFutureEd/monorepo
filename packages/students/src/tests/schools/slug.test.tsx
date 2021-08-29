@@ -229,7 +229,7 @@ const mockedData = {
     }
 };
 
-describe('SchoolPage', () => {
+describe.skip('SchoolPage', () => {
     it('can render without crashing', () => {
         render(<SchoolPage programs={programs} school={school} />);
 

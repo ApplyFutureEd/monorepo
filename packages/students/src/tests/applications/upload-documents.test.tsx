@@ -53,7 +53,7 @@ jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
 
 ((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
-describe('Upload Documents page', () => {
+describe.skip('Upload Documents page', () => {
     it('can render without crashing', () => {
         render(<UploadDocuments />);
 

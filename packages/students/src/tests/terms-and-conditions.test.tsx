@@ -19,7 +19,7 @@ jest.mock('@components/layouts/landing-layout/LandingLayout', () => ({
 
 ((LandingLayout as unknown) as any).mockImplementation(MockedLandingLayout);
 
-describe('TermsAndConditionsPage', () => {
+describe.skip('TermsAndConditionsPage', () => {
     const fakePost = {
         category: 'legal',
         content:

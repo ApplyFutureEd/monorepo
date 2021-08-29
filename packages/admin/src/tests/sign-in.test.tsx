@@ -1,7 +1,9 @@
 import { AmplifyError } from '@applyfuture/models';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import SignInPage from '@pages/sign-in';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Auth } from 'aws-amplify';
+import { FC } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -15,6 +17,17 @@ jest.mock('next/router', () => ({
 Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
+
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 describe.skip('SignInPage', () => {
     const fakeUser = {

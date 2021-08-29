@@ -19,7 +19,7 @@ jest.mock('@components/layouts/landing-layout/LandingLayout', () => ({
 
 ((LandingLayout as unknown) as any).mockImplementation(MockedLandingLayout);
 
-describe('About page', () => {
+describe.skip('About page', () => {
     it('can render without crashing', () => {
         render(<About />);
 

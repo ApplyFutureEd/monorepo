@@ -71,7 +71,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe('Schools', () => {
+describe.skip('Schools', () => {
     it('can render without crashing', () => {
         render(<Schools />);
 
