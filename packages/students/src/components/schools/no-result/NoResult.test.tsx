@@ -27,7 +27,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('NoResult', () => {
+describe('NoResult', () => {
     const query = {
         filter: {
             or: [

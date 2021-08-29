@@ -10,7 +10,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('Card', () => {
+describe('Card', () => {
     const school = {
         city: 'Roma',
         country: 'IT',
