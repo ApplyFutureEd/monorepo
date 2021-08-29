@@ -26,7 +26,7 @@ jest.mock('@applyfuture/utils', () => ({
 Storage.get = jest.fn();
 window.open = jest.fn();
 
-describe.skip('DocumentRow', () => {
+describe('DocumentRow', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',

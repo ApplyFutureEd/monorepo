@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import Submission from './Submission';
 
-describe.skip('Submission', () => {
+describe('Submission', () => {
     const applicationData = ({
         getApplication: {
             admissionResult: null,

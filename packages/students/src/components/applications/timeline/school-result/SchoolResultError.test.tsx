@@ -11,7 +11,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('SchoolResultError', () => {
+describe('SchoolResultError', () => {
     const application = ({
         admissionResult: 'REJECTED',
         createdAt: '2021-05-01T14:14:09.014Z',

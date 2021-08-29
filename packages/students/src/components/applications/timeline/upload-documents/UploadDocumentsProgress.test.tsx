@@ -10,7 +10,7 @@ jest.mock('@applyfuture/utils', () => ({
     toast: jest.fn()
 }));
 
-describe.skip('UploadDocumentsProgress', () => {
+describe('UploadDocumentsProgress', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',

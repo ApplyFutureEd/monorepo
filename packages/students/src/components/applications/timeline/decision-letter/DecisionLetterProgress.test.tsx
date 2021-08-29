@@ -18,7 +18,7 @@ jest.mock('next/router', () => ({
     }
 }));
 
-describe.skip('DecisionLetterProgress', () => {
+describe('DecisionLetterProgress', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',

@@ -16,7 +16,7 @@ jest.mock('next/router', () => ({
 Storage.get = jest.fn();
 window.open = jest.fn();
 
-describe.skip('ApplicationRow', () => {
+describe('ApplicationRow', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',

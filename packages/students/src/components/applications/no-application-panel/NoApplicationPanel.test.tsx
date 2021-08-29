@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import NoApplicationPanel from './NoApplicationPanel';
 
-describe.skip('NoApplicationPanel', () => {
+describe('NoApplicationPanel', () => {
     it('can render without crashing', () => {
         render(<NoApplicationPanel isCompleted={false} />);
 

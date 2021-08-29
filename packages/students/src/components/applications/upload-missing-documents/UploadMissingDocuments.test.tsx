@@ -8,7 +8,7 @@ import { render, screen } from '@testing-library/react';
 
 import UploadDocuments from './UploadMissingDocuments';
 
-describe.skip('UploadDocuments', () => {
+describe('UploadDocuments', () => {
     const applicationData = ({
         getApplication: {
             admissionResult: null,

@@ -10,7 +10,7 @@ jest.mock('@applyfuture/utils', () => ({
     graphql: jest.fn()
 }));
 
-describe.skip('CompletionModal', () => {
+describe('CompletionModal', () => {
     const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
