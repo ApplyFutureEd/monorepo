@@ -19,7 +19,7 @@ describe('Onboarding tests', () => {
                 'packages/students/cypress/fixtures/verification-code.txt',
                 (value[0].textContent &&
                     value[0].textContent.match(/[0-9]/gi) &&
-                    value[0].textContent.match(/[0-9]/gi)?.join('')) ||
+                    value[0].textContent.match(/[0-9]/gi).join('')) ||
                     ''
             );
         });
