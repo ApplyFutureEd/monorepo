@@ -3,11 +3,12 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "next dev",
         "build": "next build",
-        "unused": "next-unused",
+        "dev": "next dev",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "lint": "eslint --fix .",
-        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+        "start": "next start",
+        "unused": "next-unused"
     },
     "next-unused": {
         "alias": {},

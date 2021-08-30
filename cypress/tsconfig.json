@@ -1,0 +1,10 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "isolatedModules": false,
+        "types": ["cypress", "@testing-library/cypress", "cypress-file-upload"]
+    },
+    "include": ["./*/*.ts"],
+    "exclude": ["coverage", "node_modules"]
+}
