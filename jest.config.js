@@ -17,7 +17,7 @@ module.exports = {
     projects: ['<rootDir>/packages/*/jest.config.js'],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     testEnvironment: 'jsdom',
-    testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+    testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cypress/'],
     testResultsProcessor: 'jest-sonar-reporter',
     transform: {
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -29,5 +29,5 @@ module.exports = {
             }
         ]
     },
-    transformIgnorePatterns: ['/node_modules/']
+    transformIgnorePatterns: ['/node_modules/'],
 };
