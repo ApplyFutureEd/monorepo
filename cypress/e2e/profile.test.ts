@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Profile tests', () => {
     beforeEach(() => {
         cy.visit('/sign-in');

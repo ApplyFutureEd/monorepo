@@ -19,7 +19,7 @@ jobs:
             - name: Build app
               run: yarn build:students
             - name: Run e2e tests
-            - uses: cypress-io/github-action@v2
+              uses: cypress-io/github-action@v2
               with:
                   start: yarn start:students
                   command: node cypress-run
