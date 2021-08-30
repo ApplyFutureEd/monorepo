@@ -16,6 +16,6 @@ jobs:
             - name: Run e2e tests
             - uses: cypress-io/github-action@v2
               with:
-                  install-command: yarn & yarn build:students
+                  install-command: yarn build:students
                   start: yarn start:students
                   command: node cypress-run
