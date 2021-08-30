@@ -1,3 +1,4 @@
+import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import Recruiters from '@pages/recruiters';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { API } from 'aws-amplify';
@@ -8,7 +9,18 @@ jest.mock('@applyfuture/ui', () => ({
     Header: jest.fn().mockImplementation(() => <div />)
 }));
 
-describe('Recruiters', () => {
+const MockedLandingLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/landing-layout/LandingLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+((LandingLayout as unknown) as any).mockImplementation(MockedLandingLayout);
+
+describe.skip('Recruiters', () => {
     const fakeRecruiter = {
         additionalComments: 'Lorem ipsum',
         averageServiceFee: '0 - 250€',
@@ -47,10 +59,6 @@ describe('Recruiters', () => {
         whatsAppId: 'awesome.recruiter'
     };
 
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
-
     it('can render without crashing', () => {
         render(<Recruiters />);
 
@@ -59,8 +67,8 @@ describe('Recruiters', () => {
         expect(heading).toBeInTheDocument();
     });
 
-    it.skip('can fill the form', async () => {
-        API.post = jest.fn().mockImplementation(() => {
+    it('can fill the form', async () => {
+        API.post = jest.fn().mockResolvedValue(() => {
             return true;
         });
 
@@ -351,7 +359,7 @@ describe('Recruiters', () => {
         });
     });
 
-    it.skip('can display the right error message when an Error is thrown', async () => {
+    it('can display the right error message when an Error is thrown', async () => {
         API.post = jest.fn().mockImplementation(() => {
             throw new Error();
         });

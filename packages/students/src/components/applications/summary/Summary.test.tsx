@@ -13,7 +13,7 @@ jest.mock('next/router', () => ({
 }));
 
 describe('Summary', () => {
-    const applicationData = {
+    const applicationData = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -365,7 +365,7 @@ describe('Summary', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown as GetApplicationQuery;
+    } as unknown) as GetApplicationQuery;
 
     it('can render without crashing', () => {
         render(<Summary applicationData={applicationData} isLoading={false} />);
@@ -386,12 +386,12 @@ describe('Summary', () => {
     });
 
     it('can render free label if the program does not have application fees', () => {
-        const newApplicationData = {
+        const newApplicationData = ({
             getApplication: {
                 ...applicationData.getApplication,
                 program: { applicationFee: -1, feeCurrency: 'EUR' }
             }
-        } as unknown as GetApplicationQuery;
+        } as unknown) as GetApplicationQuery;
 
         render(<Summary applicationData={newApplicationData} isLoading={false} />);
 

@@ -1,4 +1,5 @@
 import { graphql, toast } from '@applyfuture/utils';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import UpdateProgramPage from '@pages/programs/update';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { FC } from 'react';
@@ -74,6 +75,17 @@ jest.mock('@applyfuture/utils', () => ({
         return PrivatePage;
     })
 }));
+
+const MockedDashboardLayout: FC = (props) => {
+    return <div>{props.children}</div>;
+};
+
+jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
 
 describe.skip('UpdateProgramPage', () => {
     it('can render without crashing', () => {

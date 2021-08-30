@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import selectEvent from 'react-select-event';
 
-describe('Search', () => {
+describe('Filters', () => {
     const handleFilter = jest.fn();
 
     it('can render without crashing', () => {

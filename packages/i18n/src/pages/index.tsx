@@ -1,10 +1,8 @@
-import { Button } from '@applyfuture/ui';
 import { withPrivateAccess } from '@applyfuture/utils';
+import { Button } from '@applyfuture/ui';
 import AddKeyForm from '@components/forms/add-key/AddKeyForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Search from '@components/search/Search';
-import SearchResults from '@components/search/SearchResults';
-import { faFilter } from '@fortawesome/pro-light-svg-icons';
+import Translation from '@components/translation/Translation';
 import { FC, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
@@ -14,11 +12,16 @@ const LandingPage: FC = () => {
     const [filter, setFilter] = useState<Filter>(null);
     const [displayForm, setDisplayForm] = useState(true);
     const [newKey, setNewKey] = useState({});
+    const [selected, setSelected] = useState('All');
+
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
     };
     const handleFilter = (filter: Filter) => {
         setFilter(filter);
+    };
+    const handleSelected = (tab: string) => {
+        setSelected(tab);
     };
     const handleDisplayForm = () => {
         setDisplayForm(!displayForm);
@@ -26,34 +29,19 @@ const LandingPage: FC = () => {
     const handleAddKey = (values: any) => {
         setNewKey(values);
     };
-    const isTranslated = filter === 'TRANSLATED';
-    const isUntranslated = filter === 'UNTRANSLATED';
     return (
-        <DashboardLayout title="Dashboard">
-            <div style={{ display: 'flex' }}>
-                <Search handleSearch={handleSearch} />
-                <Button
-                    startIcon={faFilter}
-                    variant={isTranslated ? 'primary' : 'secondary'}
-                    onClick={() => {
-                        isTranslated ? handleFilter(null) : handleFilter('TRANSLATED');
-                    }}>
-                    Translated
-                </Button>
-                <Button
-                    startIcon={faFilter}
-                    variant={isUntranslated ? 'primary' : 'secondary'}
-                    onClick={() => {
-                        isUntranslated ? handleFilter(null) : handleFilter('UNTRANSLATED');
-                    }}>
-                    Untranslated
-                </Button>
-                <Button type="button" variant="primary" onClick={handleDisplayForm}>
-                    New
-                </Button>
-            </div>
+        <DashboardLayout
+            filter={filter}
+            handleFilter={handleFilter}
+            handleSearch={handleSearch}
+            handleSelected={handleSelected}
+            selected={selected}
+            title="Dashboard">
+            <Translation filter={filter} search={search} selected={selected} />
+            <Button type="button" variant="primary" onClick={handleDisplayForm}>
+                New
+            </Button>
             {displayForm || <AddKeyForm handleAddKey={handleAddKey} newKey={newKey} />}
-            <SearchResults filter={filter} search={search} />
         </DashboardLayout>
     );
 };

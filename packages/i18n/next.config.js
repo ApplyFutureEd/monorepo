@@ -37,6 +37,8 @@ module.exports = withTM(
             webpack: (config) => {
                 config.resolve.alias['@assets'] = path.join(__dirname, 'src/assets');
                 config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
+                config.resolve.alias['@data'] = path.join(__dirname, 'src/data');
+                config.resolve.alias['@locales'] = path.join(__dirname, 'locales');
                 config.resolve.alias['@pages'] = path.join(__dirname, 'src/pages');
                 config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
 

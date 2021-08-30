@@ -30,10 +30,6 @@ type Props = {
 export const CardNumberInput: FC<Props> = (props) => {
     const { field, isLoading, label, tooltip, ...rest } = props;
 
-    const baseClasses =
-        'border-gray-300 rounded-md focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 block w-full text-sm leading-5 min-h-input';
-    const onErrorClasses =
-        'placeholder-red-300 pr-10 text-red-900 border-red-300 focus:border-red-300 focus:ring-red';
     const withLabelClasses = 'mt-1';
 
     if (isLoading) {
@@ -62,13 +58,11 @@ export const CardNumberInput: FC<Props> = (props) => {
             )}
             <div
                 className={cx({
-                    ['relative rounded-md shadow-sm']: true,
                     [`${withLabelClasses}`]: label
                 })}>
                 <CardNumberElement
                     id={field?.name}
                     options={{
-                        classes: { base: baseClasses, invalid: onErrorClasses },
                         showIcon: true
                     }}
                 />

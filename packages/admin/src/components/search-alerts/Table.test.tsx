@@ -3,7 +3,7 @@ import Table from '@components/search-alerts/Table';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const mockedData = {
+const mockedData = ({
     searchSearchAlerts: {
         items: [
             {
@@ -12,7 +12,8 @@ const mockedData = {
                 lastUpdate: 1619643071145,
                 nextToken: '1.61964307E12',
                 owner: '2f54fbbb-7249-47f3-9ceb-385e4364f33b',
-                query: '{"filter":{"or":[{"name":{"matchPhrasePrefix":"bxl"}},{"city":{"matchPhrasePrefix":"bxl"}},{"country":{"matchPhrasePrefix":"bxl"}},{"schoolName":{"matchPhrasePrefix":"bxl"}}],"published":{"eq":true}},"limit":20}',
+                query:
+                    '{"filter":{"or":[{"name":{"matchPhrasePrefix":"bxl"}},{"city":{"matchPhrasePrefix":"bxl"}},{"country":{"matchPhrasePrefix":"bxl"}},{"schoolName":{"matchPhrasePrefix":"bxl"}}],"published":{"eq":true}},"limit":20}',
                 student: {
                     address: '',
                     birthday: null,
@@ -95,7 +96,7 @@ const mockedData = {
         ],
         nextToken: '1.61964307E12'
     }
-} as unknown as SearchSearchAlertsQuery;
+} as unknown) as SearchSearchAlertsQuery;
 
 describe('Table', () => {
     const handleContextMenu = jest.fn();

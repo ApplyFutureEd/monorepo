@@ -11,7 +11,7 @@ jest.mock('@applyfuture/utils', () => ({
 }));
 
 describe('SchoolTuitionsFeePaymentError', () => {
-    const application = {
+    const application = ({
         admissionResult: null,
         createdAt: '2021-05-01T14:14:09.014Z',
         decisionLetterDate: null,
@@ -363,9 +363,9 @@ describe('SchoolTuitionsFeePaymentError', () => {
         tuitionsFeePaymentDate: null,
         updatedAt: '2021-05-01T14:14:09.014Z',
         visaDate: null
-    } as unknown as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
+    } as unknown) as NonNullable<NonNullable<GetApplicationQuery['getApplication']>>;
 
-    const corruptedApplication = {} as unknown as NonNullable<
+    const corruptedApplication = ({} as unknown) as NonNullable<
         NonNullable<GetApplicationQuery['getApplication']>
     >;
 

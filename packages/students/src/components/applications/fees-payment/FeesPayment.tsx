@@ -1,7 +1,5 @@
 import { GetApplicationQuery } from '@applyfuture/graphql';
 import FeesPaymentForm from '@components/forms/applications/fees-payment/FeesPaymentForm';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
@@ -12,7 +10,6 @@ type Props = {
 
 const FeesPayment: FC<Props> = (props) => {
     const { applicationData, isLoading } = props;
-    const stripePromise = loadStripe('pk_live_bkLUK46HYGNu8r1VM3rbfWn700Hjz3Xbwg');
     const { t } = useTranslation();
 
     return (
@@ -28,9 +25,7 @@ const FeesPayment: FC<Props> = (props) => {
 
             <div className="px-4 py-5 sm:p-0">
                 <dl>
-                    <Elements stripe={stripePromise}>
-                        <FeesPaymentForm applicationData={applicationData} isLoading={isLoading} />
-                    </Elements>
+                    <FeesPaymentForm applicationData={applicationData} isLoading={isLoading} />
                 </dl>
             </div>
         </div>

@@ -1,0 +1,14 @@
+{
+    "projectId": "gb82wz",
+    "baseUrl": "http://localhost:3000",
+    "integrationFolder": "cypress/e2e",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "chromeWebSecurity": false,
+    "testFiles": [
+        "1-programs.spec.ts",
+        "2-onboarding.spec.ts",
+        "3-profile.spec.ts",
+        "4-application.spec.ts"
+    ]
+}

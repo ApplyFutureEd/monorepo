@@ -28,7 +28,7 @@ Storage.get = jest.fn().mockImplementation(() => {
 window.open = jest.fn();
 
 describe('Summary', () => {
-    const applicationData = {
+    const applicationData = ({
         getApplication: {
             admissionResult: null,
             createdAt: '2021-05-01T14:14:09.014Z',
@@ -382,9 +382,9 @@ describe('Summary', () => {
             updatedAt: '2021-05-01T14:14:09.014Z',
             visaDate: null
         }
-    } as unknown as GetApplicationQuery;
+    } as unknown) as GetApplicationQuery;
 
-    const documentsData = {
+    const documentsData = ({
         getDocumentByStudent: {
             items: [
                 {
@@ -473,7 +473,7 @@ describe('Summary', () => {
             ],
             nextToken: null
         }
-    } as unknown as GetDocumentByStudentQuery;
+    } as unknown) as GetDocumentByStudentQuery;
 
     it('can render without crashing', () => {
         render(
@@ -504,12 +504,12 @@ describe('Summary', () => {
     });
 
     it('can render free label if the program does not have application fees', () => {
-        const newApplicationData = {
+        const newApplicationData = ({
             getApplication: {
                 ...applicationData.getApplication,
                 program: { applicationFee: -1, feeCurrency: 'EUR' }
             }
-        } as unknown as GetApplicationQuery;
+        } as unknown) as GetApplicationQuery;
 
         render(
             <Summary

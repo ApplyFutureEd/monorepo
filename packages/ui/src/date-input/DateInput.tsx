@@ -57,7 +57,18 @@ type Props = {
 };
 
 export const DateInput: FC<Props> = (props) => {
-    const { field, meta, form, label, disabled, optional, isLoading, maxDate, ...rest } = props;
+    const {
+        field,
+        meta,
+        form,
+        label,
+        disabled,
+        optional,
+        isLoading,
+        maxDate,
+        minDate,
+        ...rest
+    } = props;
 
     const router = useRouter();
     const { t } = useTranslation();
@@ -120,6 +131,7 @@ export const DateInput: FC<Props> = (props) => {
                     dropdownMode="select"
                     locale={router.locale}
                     maxDate={maxDate}
+                    minDate={minDate}
                     name={field.name}
                     selected={(field.value && new Date(field.value)) || null}
                     onChange={handleChange}
