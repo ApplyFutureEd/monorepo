@@ -1,16 +1,19 @@
-import { Input } from '@applyfuture/ui';
+import { Button, Input, Select } from '@applyfuture/ui';
+import { namespaces } from '@data/namespaces';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import React, { FC } from 'react';
 
 type Props = {
-    selected: any;
-    translationKey: any;
-    value: any;
+    selected?: any;
+    translationKey?: any;
+    value?: any;
+    handleAddKey?: (values: any) => void;
+    newKey?: any;
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { selected, translationKey, value } = props;
+    const { selected, translationKey, value, newKey, handleAddKey } = props;
 
     type FormValues = {
         enTranslation: string;
@@ -21,35 +24,60 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const initialValues: FormValues = {
-        enTranslation: value.en,
-        frTranslation: value.fr,
-        namespace: selected,
-        translationKey: translationKey,
-        zhTranslation: value.zh
+        enTranslation: selected ? value.en : '',
+        frTranslation: selected ? value.fr : '',
+        namespace: selected ? selected : '',
+        translationKey: selected ? translationKey : '',
+        zhTranslation: selected ? value.zh : ''
+    };
+
+    const onSubmit = (values: FormValues) => {
+        handleAddKey(values);
+        console.log(newKey);
     };
 
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
     const frFlag = <Flags.FR className="h-4" title="Français" />;
     const enFlag = <Flags.US className="h-4" title="English" />;
 
+    const namespaceOptions = namespaces.map((namespace) => ({
+        label: namespace.label,
+        value: namespace.value
+    }));
+
+    const namespaceInput = (
+        <Field id="namespace" name="namespace">
+            {(fieldProps: FieldProps) => <Input disabled={true} {...fieldProps} />}
+        </Field>
+    );
+    const namespaceSelect = (
+        <Field id="namespace" name="namespace">
+            {(fieldProps: FieldProps) => <Select options={namespaceOptions} {...fieldProps} />}
+        </Field>
+    );
+    const submitButton = (
+        <Button type="submit" variant="primary">
+            Add
+        </Button>
+    );
     return (
         <Formik
             enableReinitialize
             initialValues={initialValues}
-            onSubmit={() => {
-                console.log('Submited');
-            }}>
+            onSubmit={
+                selected
+                    ? () => {
+                          console.log('Submited');
+                      }
+                    : onSubmit
+            }>
             {() => {
                 return (
                     <Form className="space-y-6">
                         <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                             <div className="flex flex-col w-full space-y-2">
                                 <p className="text-gray-700">Namespace :</p>
-                                <Field id="namespace" name="namespace">
-                                    {(fieldProps: FieldProps) => (
-                                        <Input disabled={true} {...fieldProps} />
-                                    )}
-                                </Field>
+                                {selected ? namespaceInput : namespaceSelect}
                             </div>
                             <div className="flex flex-col w-full space-y-2">
                                 <p className="text-gray-700">Key :</p>
@@ -84,6 +112,7 @@ const TranslationForm: FC<Props> = (props) => {
                                 </div>
                             </div>
                         </div>
+                        {selected ? '' : submitButton}
                     </Form>
                 );
             }}

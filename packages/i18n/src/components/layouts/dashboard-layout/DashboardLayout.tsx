@@ -17,6 +17,7 @@ type Props = {
     handleSearch: (query: string) => void;
     handleFilter: (filter: Filter) => void;
     handleSelected: (tab: string) => void;
+    handleDisplayForm: any;
     selected: string;
     filter: Filter;
 };
@@ -29,6 +30,7 @@ const DashboardLayout: FC<Props> = (props) => {
         handleSearch,
         handleFilter,
         handleSelected,
+        handleDisplayForm,
         selected,
         filter
     } = props;
@@ -121,6 +123,9 @@ const DashboardLayout: FC<Props> = (props) => {
                                             : handleFilter('UNTRANSLATED');
                                     }}>
                                     Untranslated
+                                </Button>
+                                <Button type="button" variant="primary" onClick={handleDisplayForm}>
+                                    New
                                 </Button>
                             </div>
                         </div>

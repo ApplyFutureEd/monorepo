@@ -1,8 +1,7 @@
 import { withPrivateAccess } from '@applyfuture/utils';
-import { Button } from '@applyfuture/ui';
-import AddKeyForm from '@components/forms/add-key/AddKeyForm';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import Translation from '@components/translation/Translation';
+import TranslationForm from '@components/translation/TranslationForm';
 import { FC, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
@@ -32,16 +31,14 @@ const LandingPage: FC = () => {
     return (
         <DashboardLayout
             filter={filter}
+            handleDisplayForm={handleDisplayForm}
             handleFilter={handleFilter}
             handleSearch={handleSearch}
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
+            {displayForm || <TranslationForm handleAddKey={handleAddKey} newKey={newKey} />}
             <Translation filter={filter} search={search} selected={selected} />
-            <Button type="button" variant="primary" onClick={handleDisplayForm}>
-                New
-            </Button>
-            {displayForm || <AddKeyForm handleAddKey={handleAddKey} newKey={newKey} />}
         </DashboardLayout>
     );
 };
