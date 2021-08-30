@@ -6,7 +6,7 @@ on:
         types: [opened, synchronize, reopened]
 name: 'E2E tests'
 jobs:
-    unit-tests:
+    e2e-tests:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
