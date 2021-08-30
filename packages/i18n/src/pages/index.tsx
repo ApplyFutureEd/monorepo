@@ -37,7 +37,8 @@ const LandingPage: FC = () => {
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
-            {displayForm || <TranslationForm handleAddKey={handleAddKey} newKey={newKey} />}
+            {displayForm || <TranslationForm handleAddKey={handleAddKey} />}
+            <span>{JSON.stringify(newKey)}</span>
             <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );

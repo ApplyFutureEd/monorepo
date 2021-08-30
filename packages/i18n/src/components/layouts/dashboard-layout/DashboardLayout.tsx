@@ -125,7 +125,7 @@ const DashboardLayout: FC<Props> = (props) => {
                                     Untranslated
                                 </Button>
                                 <Button type="button" variant="primary" onClick={handleDisplayForm}>
-                                    New
+                                    + New
                                 </Button>
                             </div>
                         </div>

@@ -8,12 +8,11 @@ type Props = {
     selected?: any;
     translationKey?: any;
     value?: any;
-    handleAddKey?: (values: any) => void;
-    newKey?: any;
+    handleAddKey?: (initialValues: any) => void;
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { selected, translationKey, value, newKey, handleAddKey } = props;
+    const { selected, translationKey, value, handleAddKey } = props;
 
     type FormValues = {
         enTranslation: string;
@@ -31,10 +30,7 @@ const TranslationForm: FC<Props> = (props) => {
         zhTranslation: selected ? value.zh : ''
     };
 
-    const onSubmit = (values: FormValues) => {
-        handleAddKey(values);
-        console.log(newKey);
-    };
+    const onSubmit = (values: FormValues) => handleAddKey(values);
 
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
     const frFlag = <Flags.FR className="h-4" title="Français" />;
@@ -73,47 +69,49 @@ const TranslationForm: FC<Props> = (props) => {
             }>
             {() => {
                 return (
-                    <Form className="space-y-6">
-                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-                            <div className="flex flex-col w-full space-y-2">
-                                <p className="text-gray-700">Namespace :</p>
-                                {selected ? namespaceInput : namespaceSelect}
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                                <p className="text-gray-700">Key :</p>
-                                <Field id="translationKey" name="translationKey">
-                                    {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                </Field>
-                            </div>
-                        </div>
-                        <div className="flex flex-col space-y-3">
-                            <div className="flex items-center space-x-4">
-                                {enFlag}
-                                <div className="w-full">
-                                    <Field id="enTranslation" name="enTranslation">
+                    <div className="my-8 px-6 py-4 border rounded-md shadow">
+                        <Form className="space-y-6">
+                            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+                                <div className="flex flex-col w-full space-y-2">
+                                    <p className="text-gray-700">Namespace :</p>
+                                    {selected ? namespaceInput : namespaceSelect}
+                                </div>
+                                <div className="flex flex-col w-full space-y-2">
+                                    <p className="text-gray-700">Key :</p>
+                                    <Field id="translationKey" name="translationKey">
                                         {(fieldProps: FieldProps) => <Input {...fieldProps} />}
                                     </Field>
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-4">
-                                {frFlag}
-                                <div className="w-full">
-                                    <Field id="frTranslation" name="frTranslation">
-                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                    </Field>
+                            <div className="flex flex-col space-y-3">
+                                <div className="flex items-center space-x-4">
+                                    {enFlag}
+                                    <div className="w-full">
+                                        <Field id="enTranslation" name="enTranslation">
+                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex items-center space-x-4">
+                                    {frFlag}
+                                    <div className="w-full">
+                                        <Field id="frTranslation" name="frTranslation">
+                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="flex items-center space-x-4">
+                                    {zhFlag}
+                                    <div className="w-full">
+                                        <Field id="zhTranslation" name="zhTranslation">
+                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                        </Field>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-4">
-                                {zhFlag}
-                                <div className="w-full">
-                                    <Field id="zhTranslation" name="zhTranslation">
-                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
-                                    </Field>
-                                </div>
-                            </div>
-                        </div>
-                        {selected ? '' : submitButton}
-                    </Form>
+                            {selected ? '' : submitButton}
+                        </Form>
+                    </div>
                 );
             }}
         </Formik>
