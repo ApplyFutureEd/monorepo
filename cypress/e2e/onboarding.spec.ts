@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Onboarding tests', () => {
     it('Sign up', () => {
         cy.visit('/sign-up');

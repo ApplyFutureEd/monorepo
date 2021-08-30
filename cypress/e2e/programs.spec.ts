@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Programs tests', () => {
     beforeEach(() => {
         cy.visit('/programs');
