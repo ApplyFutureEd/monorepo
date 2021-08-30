@@ -1,0 +1,21 @@
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        types: [opened, synchronize, reopened]
+name: 'E2E tests'
+jobs:
+    e2e-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+            - name: Run e2e tests
+              uses: cypress-io/github-action@v2
+              with:
+                  install-command: yarn & yarn build:students
+                  start: yarn start:students
+                  command: node cypress-run
