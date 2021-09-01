@@ -38,7 +38,7 @@ const TranslationForm: FC<Props> = (props) => {
         zhTranslation: selected ? value.zh : ''
     };
 
-    const onSubmit = (values: FormValues) => handleAddKey(values);
+    const onSubmit = (values: FormValues) => handleAddKey && handleAddKey(values);
 
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
     const frFlag = <Flags.FR className="h-4" title="Français" />;
