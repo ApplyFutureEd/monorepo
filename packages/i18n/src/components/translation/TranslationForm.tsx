@@ -51,12 +51,16 @@ const TranslationForm: FC<Props> = (props) => {
 
     const namespaceInput = (
         <Field id="namespace" name="namespace">
-            {(fieldProps: FieldProps) => <Input disabled={true} {...fieldProps} />}
+            {(fieldProps: FieldProps) => (
+                <Input disabled={true} label="Namespaces" {...fieldProps} />
+            )}
         </Field>
     );
     const namespaceSelect = (
         <Field id="namespace" name="namespace">
-            {(fieldProps: FieldProps) => <Select options={namespaceOptions} {...fieldProps} />}
+            {(fieldProps: FieldProps) => (
+                <Select label="Namespaces" options={namespaceOptions} {...fieldProps} />
+            )}
         </Field>
     );
     const submitButton = isSubmitted ? (
@@ -88,13 +92,13 @@ const TranslationForm: FC<Props> = (props) => {
                         <Form className="space-y-6">
                             <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                                 <div className="flex flex-col w-full space-y-2">
-                                    <p className="text-gray-700">Namespace :</p>
                                     {newForm ? namespaceSelect : namespaceInput}
                                 </div>
                                 <div className="flex flex-col w-full space-y-2">
-                                    <p className="text-gray-700">Key :</p>
                                     <Field id="translationKey" name="translationKey">
-                                        {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                        {(fieldProps: FieldProps) => (
+                                            <Input label="Key" {...fieldProps} />
+                                        )}
                                     </Field>
                                 </div>
                             </div>
