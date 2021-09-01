@@ -48,6 +48,7 @@ const Translation: FC<Props> = (props) => {
                 .map(([translationKey, value], i) => (
                     <div key={i}>
                         <TranslationForm
+                            newForm={false}
                             selected={selected}
                             translationKey={translationKey}
                             value={value}

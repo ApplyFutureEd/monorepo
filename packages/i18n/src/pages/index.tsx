@@ -28,6 +28,7 @@ const LandingPage: FC = () => {
     const handleAddKey = (values: any) => {
         setNewKey(values);
     };
+
     return (
         <DashboardLayout
             filter={filter}
@@ -37,7 +38,7 @@ const LandingPage: FC = () => {
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
-            {displayForm || <TranslationForm handleAddKey={handleAddKey} />}
+            {displayForm || <TranslationForm handleAddKey={handleAddKey} newForm={true} />}
             <span>{JSON.stringify(newKey)}</span>
             <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>

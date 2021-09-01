@@ -1,18 +1,26 @@
 import { Button, Input, Select } from '@applyfuture/ui';
 import { namespaces } from '@data/namespaces';
+import { faCheck, faPlus } from '@fortawesome/pro-light-svg-icons';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 type Props = {
-    selected?: any;
+    handleAddKey?: (initialValues: any) => void;
+    newForm: boolean;
+    selected?: string;
     translationKey?: any;
     value?: any;
-    handleAddKey?: (initialValues: any) => void;
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { selected, translationKey, value, handleAddKey } = props;
+    const { handleAddKey, newForm, selected, translationKey, value } = props;
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const submitTranslation = () => {
+        setIsSubmitted(true);
+    };
 
     type FormValues = {
         enTranslation: string;
@@ -51,11 +59,18 @@ const TranslationForm: FC<Props> = (props) => {
             {(fieldProps: FieldProps) => <Select options={namespaceOptions} {...fieldProps} />}
         </Field>
     );
-    const submitButton = (
-        <Button type="submit" variant="primary">
-            Add
+    const submitButton = isSubmitted ? (
+        <Button startIcon={faCheck} type="submit" variant="success">
+            Translation Added
+        </Button>
+    ) : (
+        <Button startIcon={faPlus} type="submit" variant="primary" onClick={submitTranslation}>
+            Add Translation
         </Button>
     );
+    const baseClasse = 'my-8 px-6 py-4 border rounded-md shadow';
+    const formClasse = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
+
     return (
         <Formik
             enableReinitialize
@@ -69,12 +84,12 @@ const TranslationForm: FC<Props> = (props) => {
             }>
             {() => {
                 return (
-                    <div className="my-8 px-6 py-4 border rounded-md shadow">
+                    <div className={newForm ? formClasse : baseClasse}>
                         <Form className="space-y-6">
                             <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                                 <div className="flex flex-col w-full space-y-2">
                                     <p className="text-gray-700">Namespace :</p>
-                                    {selected ? namespaceInput : namespaceSelect}
+                                    {newForm ? namespaceSelect : namespaceInput}
                                 </div>
                                 <div className="flex flex-col w-full space-y-2">
                                     <p className="text-gray-700">Key :</p>
@@ -109,7 +124,7 @@ const TranslationForm: FC<Props> = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            {selected ? '' : submitButton}
+                            {newForm ? submitButton : ''}
                         </Form>
                     </div>
                 );

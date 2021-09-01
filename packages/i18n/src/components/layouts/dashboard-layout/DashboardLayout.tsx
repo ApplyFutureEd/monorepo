@@ -3,7 +3,7 @@ import { Button } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Search from '@components/search/Search';
 import Tabs from '@components/tabs/Tabs';
-import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faPlus, faSignOut } from '@fortawesome/pro-light-svg-icons';
 import { faFilter } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Filter } from '@pages/index';
@@ -124,8 +124,12 @@ const DashboardLayout: FC<Props> = (props) => {
                                     }}>
                                     Untranslated
                                 </Button>
-                                <Button type="button" variant="primary" onClick={handleDisplayForm}>
-                                    + New
+                                <Button
+                                    startIcon={faPlus}
+                                    type="button"
+                                    variant="primary"
+                                    onClick={handleDisplayForm}>
+                                    New Translation
                                 </Button>
                             </div>
                         </div>
