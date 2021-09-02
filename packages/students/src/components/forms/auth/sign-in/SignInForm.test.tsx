@@ -1,5 +1,6 @@
 import { AmplifyError } from '@applyfuture/models';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import SignInForm from './SignInForm';
@@ -52,25 +53,9 @@ describe('SignInForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toHaveBeenCalledWith({
@@ -96,25 +81,9 @@ describe('SignInForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toHaveBeenCalledWith({
@@ -138,25 +107,9 @@ describe('SignInForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();
@@ -177,25 +130,9 @@ describe('SignInForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();
@@ -214,25 +151,9 @@ describe('SignInForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();

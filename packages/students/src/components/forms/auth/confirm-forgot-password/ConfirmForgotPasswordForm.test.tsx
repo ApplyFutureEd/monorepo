@@ -1,5 +1,6 @@
 import { AmplifyError } from '@applyfuture/models';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import ConfirmForgotPasswordForm from './ConfirmForgotPasswordForm';
@@ -40,33 +41,10 @@ describe('ConfirmForgotPasswordForm', () => {
         const verificationCode = screen.getByLabelText(/verification-code/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPasswordSubmit).toHaveBeenCalledWith(
@@ -89,33 +67,10 @@ describe('ConfirmForgotPasswordForm', () => {
         const verificationCode = screen.getByLabelText(/verification-code/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPasswordSubmit).toThrow();
@@ -137,33 +92,10 @@ describe('ConfirmForgotPasswordForm', () => {
         const verificationCode = screen.getByLabelText(/verification-code/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPasswordSubmit).toThrow();
@@ -185,33 +117,10 @@ describe('ConfirmForgotPasswordForm', () => {
         const verificationCode = screen.getByLabelText(/verification-code/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPasswordSubmit).toThrow();

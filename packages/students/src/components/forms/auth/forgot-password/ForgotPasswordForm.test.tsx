@@ -1,5 +1,6 @@
 import { AmplifyError } from '@applyfuture/models';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import ForgotPasswordForm from './ForgotPasswordForm';
@@ -36,17 +37,8 @@ describe('ForgotPasswordForm', () => {
         const email = screen.getByLabelText(/email/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPassword).toHaveBeenCalledWith(fakeUser.email);
@@ -63,17 +55,8 @@ describe('ForgotPasswordForm', () => {
         const email = screen.getByLabelText(/email/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPassword).toThrow();
@@ -93,17 +76,8 @@ describe('ForgotPasswordForm', () => {
         const email = screen.getByLabelText(/email/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.forgotPassword).toThrow();

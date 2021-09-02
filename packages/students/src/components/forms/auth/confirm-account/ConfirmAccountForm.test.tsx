@@ -1,5 +1,6 @@
 import { AmplifyError } from '@applyfuture/models';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import ConfirmAccountForm from './ConfirmAccountForm';
@@ -65,33 +66,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.confirmSignUp).toHaveBeenCalledWith(
@@ -118,33 +96,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.confirmSignUp).toHaveBeenCalledWith(
@@ -171,33 +126,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.confirmSignUp).toThrow();
@@ -219,33 +151,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.confirmSignUp).toThrow();
@@ -270,33 +179,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();
@@ -321,33 +207,10 @@ describe('ConfirmAccountForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(verificationCode, {
-                target: {
-                    value: fakeUser.verificationCode
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(verificationCode, fakeUser.verificationCode);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();

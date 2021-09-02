@@ -1,4 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import NewPasswordForm from './NewPasswordForm';
@@ -42,33 +43,10 @@ describe('NewPasswordForm', () => {
         const newPassword = screen.getByLabelText(/new-password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(oldPassword, {
-                target: {
-                    value: fakeUser.oldPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(oldPassword, fakeUser.oldPassword);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toHaveBeenCalledWith({
@@ -91,33 +69,10 @@ describe('NewPasswordForm', () => {
         const newPassword = screen.getByLabelText(/new-password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(oldPassword, {
-                target: {
-                    value: fakeUser.oldPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(oldPassword, fakeUser.oldPassword);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signIn).toThrow();
@@ -139,33 +94,10 @@ describe('NewPasswordForm', () => {
         const newPassword = screen.getByLabelText(/new-password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(oldPassword, {
-                target: {
-                    value: fakeUser.oldPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(newPassword, {
-                target: {
-                    value: fakeUser.newPassword
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(oldPassword, fakeUser.oldPassword);
+        userEvent.type(newPassword, fakeUser.newPassword);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.completeNewPassword).toThrow();
