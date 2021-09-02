@@ -10,7 +10,7 @@ type Props = {
     handleDisplayForm?: () => void;
     newForm: boolean;
     selected?: string;
-    translationKey?: any;
+    translationKey?: string;
     value?: {
         en: string;
         fr: string;
@@ -33,7 +33,7 @@ const TranslationForm: FC<Props> = (props) => {
         enTranslation: selected && value?.en ? value.en : '',
         frTranslation: selected && value?.fr ? value.fr : '',
         namespace: selected ? selected : '',
-        translationKey: selected ? translationKey : '',
+        translationKey: selected && translationKey ? translationKey : '',
         zhTranslation: selected && value?.zh ? value.zh : ''
     };
 
