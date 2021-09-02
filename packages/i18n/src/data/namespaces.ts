@@ -1,50 +1,50 @@
 export const namespaces = [
     {
-        label: 'all',
+        label: 'All',
         value: 'ALL'
     },
     {
-        label: 'account',
+        label: 'Account',
         value: 'ACCOUNT'
     },
     {
-        label: 'application',
+        label: 'Application',
         value: 'APPLICATION'
     },
     {
-        label: 'auth',
+        label: 'Auth',
         value: 'AUTH'
     },
     {
-        label: 'common',
+        label: 'Common',
         value: 'COMMON'
     },
     {
-        label: 'help',
+        label: 'Help',
         value: 'HELP'
     },
     {
-        label: 'landing',
+        label: 'Landing',
         value: 'LANDING'
     },
     {
-        label: 'navigation',
+        label: 'Navigation',
         value: 'NAVIGATION'
     },
     {
-        label: 'profile',
+        label: 'Profile',
         value: 'PROFILE'
     },
     {
-        label: 'programs',
+        label: 'Programs',
         value: 'PROGRAMS'
     },
     {
-        label: 'recruiters',
+        label: 'Recruiters',
         value: 'RECRUITERS'
     },
     {
-        label: 'schools',
+        label: 'Schools',
         value: 'SCHOOLS'
     }
 ];
