@@ -47,7 +47,6 @@ module.exports = {
                 shorthandFirst: true
             }
         ],
-
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
         'simple-import-sort/imports': 'error',

@@ -52,9 +52,7 @@ const TranslationForm: FC<Props> = (props) => {
 
     const namespaceInput = (
         <Field id="namespace" name="namespace">
-            {(fieldProps: FieldProps) => (
-                <Input disabled={true} label="Namespaces" {...fieldProps} />
-            )}
+            {(fieldProps: FieldProps) => <Input disabled label="Namespaces" {...fieldProps} />}
         </Field>
     );
 
@@ -66,23 +64,14 @@ const TranslationForm: FC<Props> = (props) => {
         </Field>
     );
 
-    const baseClasse = 'my-8 px-6 py-4 border rounded-md shadow';
-    const formClasse = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
+    const baseClasses = 'my-8 px-6 py-4 border rounded-md shadow';
+    const formClasses = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
     return (
-        <Formik
-            enableReinitialize
-            initialValues={initialValues}
-            onSubmit={
-                selected
-                    ? () => {
-                          console.log('Submited');
-                      }
-                    : onSubmit
-            }>
+        <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit}>
             {() => {
                 return (
-                    <div className={newForm ? formClasse : baseClasse}>
+                    <div className={newForm ? formClasses : baseClasses}>
                         <Form className="space-y-6">
                             <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                                 <div className="flex flex-col w-full space-y-2">

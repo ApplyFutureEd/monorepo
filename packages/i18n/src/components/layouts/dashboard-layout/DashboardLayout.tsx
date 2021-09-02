@@ -129,7 +129,6 @@ const DashboardLayout: FC<Props> = (props) => {
                                 {displayForm ? (
                                     <Button
                                         startIcon={faPlus}
-                                        type="button"
                                         variant="primary"
                                         onClick={handleDisplayForm}>
                                         New
@@ -137,7 +136,6 @@ const DashboardLayout: FC<Props> = (props) => {
                                 ) : (
                                     <Button
                                         startIcon={faTimes}
-                                        type="button"
                                         variant="danger"
                                         onClick={handleDisplayForm}>
                                         Cancel
