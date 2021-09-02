@@ -126,7 +126,7 @@ const DashboardLayout: FC<Props> = (props) => {
                                     }}>
                                     Untranslated
                                 </Button>
-                                {displayForm ? (
+                                {!displayForm ? (
                                     <Button
                                         startIcon={faPlus}
                                         variant="primary"
