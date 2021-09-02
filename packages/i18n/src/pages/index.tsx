@@ -10,7 +10,7 @@ const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
     const [selected, setSelected] = useState('All');
-    const [displayForm, setDisplayForm] = useState(false);
+    const [displayForm, setDisplayForm] = useState(true);
 
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
