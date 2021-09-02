@@ -38,9 +38,7 @@ const LandingPage: FC = () => {
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
-            {displayForm && (
-                <TranslationForm handleDisplayForm={handleDisplayForm} newForm={true} />
-            )}
+            {displayForm && <TranslationForm newForm handleDisplayForm={handleDisplayForm} />}
             <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );

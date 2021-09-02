@@ -11,7 +11,11 @@ type Props = {
     newForm: boolean;
     selected?: string;
     translationKey?: any;
-    value?: any;
+    value?: {
+        en: string;
+        fr: string;
+        zh: string;
+    };
 };
 
 const TranslationForm: FC<Props> = (props) => {
@@ -26,11 +30,11 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const initialValues: FormValues = {
-        enTranslation: selected ? value.en : '',
-        frTranslation: selected ? value.fr : '',
+        enTranslation: selected && value?.en ? value.en : '',
+        frTranslation: selected && value?.fr ? value.fr : '',
         namespace: selected ? selected : '',
         translationKey: selected ? translationKey : '',
-        zhTranslation: selected ? value.zh : ''
+        zhTranslation: selected && value?.zh ? value.zh : ''
     };
 
     const onSubmit = () => {

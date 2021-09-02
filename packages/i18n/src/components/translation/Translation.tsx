@@ -45,8 +45,8 @@ const Translation: FC<Props> = (props) => {
                 .filter(([translationKey]) => filterSearch(translationKey))
                 .filter(([translationKey, value]) => filterTranslated(translationKey, value))
                 .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
-                .map(([translationKey, value]) => (
-                    <div key={translationKey}>
+                .map(([translationKey, value], i) => (
+                    <div key={i} className="my-8 px-6 py-4 border rounded-md shadow">
                         <TranslationForm
                             newForm={false}
                             selected={selected}
