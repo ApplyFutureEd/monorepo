@@ -1,12 +1,13 @@
 import { Button, Input, Select } from '@applyfuture/ui';
+import { toast } from '@applyfuture/utils';
 import { namespaces } from '@data/namespaces';
-import { faCheck, faPlus } from '@fortawesome/pro-light-svg-icons';
+import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 type Props = {
-    handleAddKey?: (initialValues: any) => void;
+    handleDisplayForm?: () => void;
     newForm: boolean;
     selected?: string;
     translationKey?: any;
@@ -14,13 +15,7 @@ type Props = {
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { handleAddKey, newForm, selected, translationKey, value } = props;
-
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    const submitTranslation = () => {
-        setIsSubmitted(true);
-    };
+    const { handleDisplayForm, newForm, selected, translationKey, value } = props;
 
     type FormValues = {
         enTranslation: string;
@@ -38,11 +33,17 @@ const TranslationForm: FC<Props> = (props) => {
         zhTranslation: selected ? value.zh : ''
     };
 
-    const onSubmit = (values: FormValues) => handleAddKey && handleAddKey(values);
+    const onSubmit = () => {
+        toast({
+            title: 'The translation was successfully added',
+            variant: 'success'
+        });
+        handleDisplayForm && handleDisplayForm();
+    };
 
-    const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
-    const frFlag = <Flags.FR className="h-4" title="Français" />;
     const enFlag = <Flags.US className="h-4" title="English" />;
+    const frFlag = <Flags.FR className="h-4" title="Français" />;
+    const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
 
     const namespaceOptions = namespaces.map((namespace) => ({
         label: namespace.label,
@@ -56,6 +57,7 @@ const TranslationForm: FC<Props> = (props) => {
             )}
         </Field>
     );
+
     const namespaceSelect = (
         <Field id="namespace" name="namespace">
             {(fieldProps: FieldProps) => (
@@ -63,15 +65,7 @@ const TranslationForm: FC<Props> = (props) => {
             )}
         </Field>
     );
-    const submitButton = isSubmitted ? (
-        <Button startIcon={faCheck} type="submit" variant="success">
-            Translation Added
-        </Button>
-    ) : (
-        <Button startIcon={faPlus} type="submit" variant="primary" onClick={submitTranslation}>
-            Add Translation
-        </Button>
-    );
+
     const baseClasse = 'my-8 px-6 py-4 border rounded-md shadow';
     const formClasse = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
@@ -128,7 +122,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            {newForm ? submitButton : ''}
+                            {newForm && (
+                                <Button startIcon={faPlus} type="submit" variant="primary">
+                                    Add Translation
+                                </Button>
+                            )}
                         </Form>
                     </div>
                 );

@@ -12,7 +12,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'prettier/@typescript-eslint',
         'plugin:prettier/recommended',
-        "plugin:cypress/recommended"
+        'plugin:cypress/recommended'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -36,6 +36,7 @@ module.exports = {
                 specialLink: ['hrefLeft', 'hrefRight']
             }
         ],
+        'no-unused-vars': 'error',
         'prettier/prettier': ['off', { endOfLine: 'auto' }, { usePrettierrc: true }],
         'react/display-name': 'off',
         'react/jsx-sort-props': [
@@ -46,6 +47,7 @@ module.exports = {
                 shorthandFirst: true
             }
         ],
+
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
         'simple-import-sort/imports': 'error',

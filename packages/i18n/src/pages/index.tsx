@@ -9,28 +9,28 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
-    const [displayForm, setDisplayForm] = useState(true);
-    const [newKey, setNewKey] = useState({});
     const [selected, setSelected] = useState('All');
+    const [displayForm, setDisplayForm] = useState(false);
 
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase());
     };
+
     const handleFilter = (filter: Filter) => {
         setFilter(filter);
     };
+
     const handleSelected = (tab: string) => {
         setSelected(tab);
     };
+
     const handleDisplayForm = () => {
         setDisplayForm(!displayForm);
-    };
-    const handleAddKey = (values: any) => {
-        setNewKey(values);
     };
 
     return (
         <DashboardLayout
+            displayForm={displayForm}
             filter={filter}
             handleDisplayForm={handleDisplayForm}
             handleFilter={handleFilter}
@@ -38,8 +38,9 @@ const LandingPage: FC = () => {
             handleSelected={handleSelected}
             selected={selected}
             title="Dashboard">
-            {displayForm || <TranslationForm handleAddKey={handleAddKey} newForm={true} />}
-            <span>{JSON.stringify(newKey)}</span>
+            {displayForm || (
+                <TranslationForm handleDisplayForm={handleDisplayForm} newForm={true} />
+            )}
             <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );
