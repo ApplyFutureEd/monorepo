@@ -3,8 +3,7 @@ import { Button } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Search from '@components/search/Search';
 import Tabs from '@components/tabs/Tabs';
-import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
-import { faFilter } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faFilter, faPlus, faSignOut, faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Filter } from '@pages/index';
 import { Auth } from 'aws-amplify';
@@ -13,10 +12,12 @@ import { FC, ReactNode, useState } from 'react';
 type Props = {
     children: ReactNode;
     description?: string;
-    title: string;
+    displayForm: boolean;
     handleSearch: (query: string) => void;
     handleFilter: (filter: Filter) => void;
     handleSelected: (tab: string) => void;
+    handleDisplayForm: () => void;
+    title: string;
     selected: string;
     filter: Filter;
 };
@@ -25,13 +26,16 @@ const DashboardLayout: FC<Props> = (props) => {
     const {
         children,
         description,
-        title,
+        displayForm,
         handleSearch,
         handleFilter,
         handleSelected,
+        handleDisplayForm,
+        title,
         selected,
         filter
     } = props;
+
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -122,6 +126,21 @@ const DashboardLayout: FC<Props> = (props) => {
                                     }}>
                                     Untranslated
                                 </Button>
+                                {!displayForm ? (
+                                    <Button
+                                        startIcon={faPlus}
+                                        variant="primary"
+                                        onClick={handleDisplayForm}>
+                                        New
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        startIcon={faTimes}
+                                        variant="danger"
+                                        onClick={handleDisplayForm}>
+                                        Cancel
+                                    </Button>
+                                )}
                             </div>
                         </div>
                         <div className="px-2 sm:px-0">{children}</div>
