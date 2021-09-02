@@ -36,7 +36,6 @@ module.exports = {
                 specialLink: ['hrefLeft', 'hrefRight']
             }
         ],
-        'no-unused-vars': 'error',
         'prettier/prettier': ['off', { endOfLine: 'auto' }, { usePrettierrc: true }],
         'react/display-name': 'off',
         'react/jsx-sort-props': [
