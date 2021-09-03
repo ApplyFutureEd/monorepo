@@ -65,37 +65,6 @@ describe('SignInForm', () => {
         });
     });
 
-    it('can redirect to new password page if required', async () => {
-        Auth.signIn = jest.fn().mockImplementationOnce(() => {
-            return {
-                attributes: {
-                    email: 'awesome.student@gmail.com'
-                },
-                challengeName: 'NEW_PASSWORD_REQUIRED'
-            };
-        });
-
-        render(<SignInForm />);
-
-        const email = screen.getByLabelText(/email/);
-        const password = screen.getByLabelText(/password/);
-        const submitButton = screen.getByRole(/button/);
-
-        userEvent.type(email, fakeUser.email);
-        userEvent.type(password, fakeUser.password);
-        userEvent.click(submitButton);
-
-        await waitFor(() => {
-            expect(Auth.signIn).toHaveBeenCalledWith({
-                password: fakeUser.password,
-                username: fakeUser.email
-            });
-            expect(mockedPush).toHaveBeenCalledWith(
-                '/new-password?email=awesome.student@gmail.com&old-password=$tR0nGPaSsw0rd'
-            );
-        });
-    });
-
     it('can display the right error message when NotAuthorizedException is thrown', async () => {
         Auth.signIn = jest.fn().mockImplementation(() => {
             throw new AmplifyError('NotAuthorizedException');
@@ -116,27 +85,6 @@ describe('SignInForm', () => {
 
             const errorMessage = screen.getByText(/auth:error-not-authorized-exception/);
             expect(errorMessage).toBeVisible();
-        });
-    });
-
-    it('can display the right error message when UserNotConfirmedException is thrown', async () => {
-        Auth.signIn = jest.fn().mockImplementation(() => {
-            throw new AmplifyError('UserNotConfirmedException');
-        });
-
-        render(<SignInForm />);
-
-        const email = screen.getByLabelText(/email/);
-        const password = screen.getByLabelText(/password/);
-        const submitButton = screen.getByRole(/button/);
-
-        userEvent.type(email, fakeUser.email);
-        userEvent.type(password, fakeUser.password);
-        userEvent.click(submitButton);
-
-        await waitFor(() => {
-            expect(Auth.signIn).toThrow();
-            expect(mockedPush).toBeCalled();
         });
     });
 
