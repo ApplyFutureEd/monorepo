@@ -11,11 +11,7 @@ type Props = {
     newForm: boolean;
     selected?: string;
     translationKey?: string;
-    value?: {
-        en: string;
-        fr: string;
-        zh: string;
-    };
+    value?: any;
 };
 
 const TranslationForm: FC<Props> = (props) => {
