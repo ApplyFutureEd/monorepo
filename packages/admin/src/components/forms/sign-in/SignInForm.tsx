@@ -1,16 +1,7 @@
-import {
-    createStudent,
-    CreateStudentMutation,
-    CreateStudentMutationVariables,
-    getStudentByEmail,
-    GetStudentByEmailQuery,
-    GetStudentByEmailQueryVariables
-} from '@applyfuture/graphql';
 import { Button, Input } from '@applyfuture/ui';
-import { graphql, useAuthenticatedUser } from '@applyfuture/utils';
+import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
@@ -65,7 +56,7 @@ const SignInForm: FC = () => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
             {(props) => {
-                const { isSubmitting, values } = props;
+                const { isSubmitting } = props;
 
                 return (
                     <Form className="space-y-6">

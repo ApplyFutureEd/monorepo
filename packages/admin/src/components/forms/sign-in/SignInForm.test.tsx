@@ -28,6 +28,8 @@ jest.mock('@applyfuture/utils', () => ({
     }))
 }));
 
+jest.mock('aws-amplify');
+
 Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
