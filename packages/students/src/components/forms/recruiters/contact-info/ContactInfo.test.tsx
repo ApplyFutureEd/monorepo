@@ -6,7 +6,7 @@ import { boolean, object, string } from 'yup';
 
 import ContactInfo from './ContactInfo';
 
-describe('ContactInfo', () => {
+describe.skip('ContactInfo', () => {
     const validationSchema = object().shape({
         additionalComments: string(),
         averageServiceFee: string().required('common:error-required'),

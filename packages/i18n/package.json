@@ -120,7 +120,7 @@
         "postcss-preset-env": "6.7.0",
         "prettier": "2.2.0",
         "prettier-plugin-tailwind": "2.2.0",
-        "react-select-event": "5.1.0",
+        "react-select-event": "5.3.0",
         "stylelint-config-recommended": "3.0.0",
         "tailwindcss": "2.2.7",
         "tailwindcss-filters": "3.0.0",
