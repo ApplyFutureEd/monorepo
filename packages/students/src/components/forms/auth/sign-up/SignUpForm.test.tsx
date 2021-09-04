@@ -1,5 +1,6 @@
 import { AmplifyError } from '@applyfuture/models';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
 import SignUpForm from './SignUpForm';
@@ -45,25 +46,9 @@ describe('SignUpForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signUp).toHaveBeenCalledWith({
@@ -85,25 +70,9 @@ describe('SignUpForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signUp).toHaveBeenCalledWith({
@@ -127,25 +96,9 @@ describe('SignUpForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signUp).toThrow();
@@ -166,25 +119,9 @@ describe('SignUpForm', () => {
         const password = screen.getByLabelText(/password/);
         const submitButton = screen.getByRole(/button/);
 
-        await waitFor(() => {
-            fireEvent.change(email, {
-                target: {
-                    value: fakeUser.email
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.change(password, {
-                target: {
-                    value: fakeUser.password
-                }
-            });
-        });
-
-        await waitFor(() => {
-            fireEvent.click(submitButton);
-        });
+        userEvent.type(email, fakeUser.email);
+        userEvent.type(password, fakeUser.password);
+        userEvent.click(submitButton);
 
         await waitFor(() => {
             expect(Auth.signUp).toThrow();
