@@ -1,9 +1,5 @@
 export const namespaces = [
     {
-        label: 'All',
-        value: 'ALL'
-    },
-    {
         label: 'Account',
         value: 'ACCOUNT'
     },
