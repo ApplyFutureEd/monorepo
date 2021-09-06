@@ -12,10 +12,9 @@ type Props = {
 
 const Translation: FC<Props> = (props) => {
     const { filter, search, selected } = props;
-    const [en, setEn] = useState({ '': '' });
-    const [fr, setFr] = useState({ '': '' });
-    const [zh, setZh] = useState({ '': '' });
-    const [file, setFile] = useState({ '': '' });
+    const [en, setEn] = useState({});
+    const [fr, setFr] = useState({});
+    const [zh, setZh] = useState({});
 
     useEffect(() => {
         const fileStorage = async () => {
@@ -156,7 +155,19 @@ const Translation: FC<Props> = (props) => {
             // ===========================
             const getEnFile = (selected: string) => {
                 if (selected === 'All') {
-                    return enAccount;
+                    return {
+                        ...enAccount,
+                        ...enApplication,
+                        ...enAuth,
+                        ...enCommon,
+                        ...enHelp,
+                        ...enLanding,
+                        ...enNavigation,
+                        ...enProfile,
+                        ...enPrograms,
+                        ...enRecruiters,
+                        ...enSchools
+                    };
                 } else if (selected === 'Account') {
                     return enAccount;
                 } else if (selected === 'Application') {
@@ -188,7 +199,19 @@ const Translation: FC<Props> = (props) => {
             // ===========================
             const getFrFile = (selected: string) => {
                 if (selected === 'All') {
-                    return enAccount;
+                    return {
+                        ...frAccount,
+                        ...frApplication,
+                        ...frAuth,
+                        ...frCommon,
+                        ...frHelp,
+                        ...frLanding,
+                        ...frNavigation,
+                        ...frProfile,
+                        ...frPrograms,
+                        ...frRecruiters,
+                        ...frSchools
+                    };
                 } else if (selected === 'Account') {
                     return frAccount;
                 } else if (selected === 'Application') {
@@ -220,7 +243,19 @@ const Translation: FC<Props> = (props) => {
             // ===========================
             const getZhFile = (selected: string) => {
                 if (selected === 'All') {
-                    return enAccount;
+                    return {
+                        ...zhAccount,
+                        ...zhApplication,
+                        ...zhAuth,
+                        ...zhCommon,
+                        ...zhHelp,
+                        ...zhLanding,
+                        ...zhNavigation,
+                        ...zhProfile,
+                        ...zhPrograms,
+                        ...zhRecruiters,
+                        ...zhSchools
+                    };
                 } else if (selected === 'Account') {
                     return zhAccount;
                 } else if (selected === 'Application') {
@@ -247,50 +282,37 @@ const Translation: FC<Props> = (props) => {
                     return selected;
                 }
             };
-            // =====================================
-            // convert above files into usable files
-            // =====================================
-            const getDataContent = (data: any) => {
+
+            const getFileContent = (data: any) => {
                 return data.Body.text();
             };
-            // ==================================
-            // store usable files into a variable
-            // ==================================
-            const enFile = await getDataContent(getEnFile(selected));
-            const frFile = await getDataContent(getFrFile(selected));
-            const zhFile = await getDataContent(getZhFile(selected));
-            // =======================================
-            // then store into the corresponding state
-            // =======================================
+
+            const enFile = await getFileContent(getEnFile(selected));
+            const frFile = await getFileContent(getFrFile(selected));
+            const zhFile = await getFileContent(getZhFile(selected));
+
             setEn(JSON.parse(enFile));
             setFr(JSON.parse(frFile));
             setZh(JSON.parse(zhFile));
-            // ==========
-            // merge file
-            // ==========
-            const mergeFile = (files: any, referenceLocale: string) => {
-                const result = {};
-                const locales = Object.keys(files);
-                const keys = Object.keys(files[referenceLocale]);
-                keys.forEach((key: any) => {
-                    result[key] = {};
-                    locales.forEach((locale: any) => {
-                        result[key][locale] = files[locale][key];
-                    });
-                });
-                return result;
-            };
-            const data = await mergeFile({ en, fr, zh }, 'en');
-            setFile(data);
         };
-
         fileStorage();
     }, [selected]);
-    console.log(en);
 
-    // ================
-    // Filter functions
-    // ================
+    const mergeFile = (files: any, referenceLocale: string) => {
+        const result = {};
+        const locales = Object.keys(files);
+        const keys = Object.keys(files[referenceLocale]);
+        keys.forEach((key: any) => {
+            result[key] = {};
+            locales.forEach((locale: any) => {
+                result[key][locale] = files[locale][key];
+            });
+        });
+        return result;
+    };
+
+    const file = mergeFile({ en, fr, zh }, 'en');
+
     const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
     const filterTranslated = (translationKey: string, item: any) =>
         filter !== 'TRANSLATED'
