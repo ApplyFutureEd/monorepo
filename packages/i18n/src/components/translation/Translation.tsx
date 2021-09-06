@@ -1,6 +1,6 @@
-/* import Storage from '@aws-amplify/storage'; */
+import Storage from '@aws-amplify/storage';
 import { Filter } from '@pages/index';
-import React, { FC /* useEffect, useState */ } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import enAccount from '../../../locales/en/account.json';
 import enAuth from '../../../locales/en/auth.json';
@@ -27,20 +27,84 @@ type Props = {
 
 const Translation: FC<Props> = (props) => {
     const { filter, search, selected } = props;
-    /* const [dataStorage, setDataStorage] = useState(); */
+    const [dataStorage, setDataStorage] = useState();
 
-    /* useEffect(() => {
+    useEffect(() => {
         const fileStorage = async () => {
-            const result = (await Storage.get('i18n/en/application.json', {
+            const enApplication = (await Storage.get('i18n/en/application.json', {
                 download: true
             })) as any;
-            const text = await result.Body.text();
-            const resultData = JSON.parse(text);
-            setDataStorage(resultData);
-        };
+            const frApplication = (await Storage.get('i18n/fr/application.json', {
+                download: true
+            })) as any;
+            const zhApplication = (await Storage.get('i18n/zh/application.json', {
+                download: true
+            })) as any;
+            const enLanding = (await Storage.get('i18n/en/landing.json', {
+                download: true
+            })) as any;
+            const frLanding = (await Storage.get('i18n/fr/landing.json', {
+                download: true
+            })) as any;
+            const zhLanding = (await Storage.get('i18n/zh/landing.json', {
+                download: true
+            })) as any;
 
+            const getEnFile = (selected: string) => {
+                if (selected === 'Application') {
+                    return enApplication;
+                } else if (selected === 'Landing') {
+                    return enLanding;
+                } else {
+                    return selected;
+                }
+            };
+            const getFrFile = (selected: string) => {
+                if (selected === 'Application') {
+                    return frApplication;
+                } else if (selected === 'Landing') {
+                    return frLanding;
+                } else {
+                    return selected;
+                }
+            };
+            const getZhFile = (selected: string) => {
+                if (selected === 'Application') {
+                    return zhApplication;
+                } else if (selected === 'Landing') {
+                    return zhLanding;
+                } else {
+                    return selected;
+                }
+            };
+
+            const getDataContent = (data: any) => {
+                return data.Body.text();
+            };
+            const en = await getDataContent(getEnFile(selected));
+            const fr = await getDataContent(getFrFile(selected));
+            const zh = await getDataContent(getZhFile(selected));
+            const result = JSON.parse(zh);
+            setDataStorage(result);
+
+            const mergeFile = (files: any, referenceLocale: string) => {
+                const result = {};
+                const locales = Object.keys(files);
+                const keys = Object.keys(files[referenceLocale]);
+                keys.forEach((key: any) => {
+                    result[key] = {};
+                    locales.forEach((locale: any) => {
+                        result[key][locale] = files[locale][key];
+                    });
+                });
+                return result;
+            };
+
+            const file = mergeFile({ en, fr, zh }, 'en');
+        };
         fileStorage();
-    }, []); */
+    }, [selected]);
+    console.log(dataStorage);
 
     const getEnFile = (selected: string) => {
         if (selected === 'Account') {
@@ -105,21 +169,6 @@ const Translation: FC<Props> = (props) => {
     };
 
     const file = mergeFile({ en, fr, zh }, 'en');
-
-    /* const getFileName = (selected: string) => {
-        if (selected === 'All') {
-            return data;
-        } else if (selected === 'Account') {
-            return account;
-        } else if (selected === 'Application') {
-            return application;
-        } else if (selected === 'Auth') {
-            return auth;
-        } else {
-            return selected;
-        }
-        }
-    }; */
 
     const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
     const filterTranslated = (translationKey: string, item: any) =>
