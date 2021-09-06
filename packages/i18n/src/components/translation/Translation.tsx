@@ -2,7 +2,7 @@ import Storage from '@aws-amplify/storage';
 import { locales } from '@data/locales';
 import { namespaces } from '@data/namespaces';
 import { Filter } from '@pages/index';
-import { flatMap } from 'lodash';
+import { flatten } from 'lodash';
 import React, { FC, useEffect, useState } from 'react';
 
 import TranslationForm from './TranslationForm';
@@ -73,7 +73,7 @@ const Translation: FC<Props> = (props) => {
             setIsLoading(true);
             if (selected === 'All') {
                 const files = await fetchAllNamespaces();
-                const mergedFiles = flatMap(files, (file) => file);
+                const mergedFiles = flatten(files);
                 setTranslations(mergedFiles);
             } else {
                 const files = await fetchNamespace(selected.toLowerCase());
