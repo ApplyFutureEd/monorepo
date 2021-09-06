@@ -5,13 +5,13 @@ describe('Onboarding tests', () => {
         cy.findByLabelText(/email/i).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/password/i).type(Cypress.env('uuid'));
         cy.findByText(/sign up/i).click();
-        cy.wait(5000);
+        cy.wait(7000);
     });
 
     it('Retreive verification code', () => {
         cy.visit('https://mailsac.com/');
         cy.get('.myinbox').type(Cypress.env('uuid'));
-        cy.wait(5000);
+        cy.wait(7000);
         cy.findByText(/check the mail!/i).click();
         cy.get('tbody > tr').eq(1).click();
         cy.findByText(/your verification code is (.*)/i).then((value) => {

@@ -1,16 +1,22 @@
-/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Profile tests', () => {
     beforeEach(() => {
+        // cy.intercept({
+        //     method: 'POST',
+        //     url: 'https://cognito-idp.ap-southeast-1.amazonaws.com/'
+        // }).as('login');
+
+        cy.viewport(1920, 1080);
         cy.visit('/sign-in');
         cy.findByLabelText(/Email/).type(`${Cypress.env('uuid')}@mailsac.com`);
         cy.findByLabelText(/Password/).type(Cypress.env('uuid'));
         cy.findByText(/Sign In/).click();
-        cy.wait(3000);
+        // cy.wait('@login').then((interception) => {
+        //     expect(interception.response?.statusCode).to.eq(200);
+        // });
     });
 
-    it('Fill general information', () => {
+    it('Can fill in general information', () => {
         cy.findByText(/Profile/).click();
-        cy.wait(3000);
 
         cy.get('input[name=phoneNumber]')
             .clear({ force: true })
@@ -19,7 +25,7 @@ describe('Profile tests', () => {
             .eq(0)
             .clear({ force: true })
             .type('33 rue du General Leclerc', { force: true });
-        cy.wait(2000);
+
         cy.findAllByLabelText(/First Name/)
             .eq(0)
             .clear({ force: true })
@@ -76,16 +82,14 @@ describe('Profile tests', () => {
             .type('philippe@cailly.eu', { force: true });
 
         cy.findByText(/Save/).click({ force: true });
-        cy.wait(2000);
 
         cy.findByText(/Information updated/).should('exist');
     });
 
-    it('Fill education history', () => {
+    it('Can fill in education history', () => {
         cy.findByText(/Profile/).click({ force: true });
-        cy.wait(3000);
+
         cy.findByText(/Education History/).click({ force: true });
-        cy.wait(3000);
 
         cy.findByLabelText(/Education Country/)
             .type('Fra', { force: true })
@@ -125,11 +129,10 @@ describe('Profile tests', () => {
         cy.findByText(/Information updated/).should('exist');
     });
 
-    it('Fill background information', () => {
+    it('Can fill in background information', () => {
         cy.findByText(/Profile/).click({ force: true });
-        cy.wait(3000);
+
         cy.findByText(/Background Information/).click({ force: true });
-        cy.wait(3000);
 
         cy.findAllByText(/No/).eq(0).click({ force: true });
         cy.findAllByText(/Yes/).eq(0).click({ force: true });
@@ -157,25 +160,20 @@ describe('Profile tests', () => {
             .type('06/01/2020', { force: true });
 
         cy.findByText(/Save/).click({ force: true });
-        cy.wait(2000);
 
         cy.findByText(/Information updated/).should('exist');
     });
 
-    it('Fill upload documents', () => {
+    it('Can fill in upload documents', () => {
         cy.findByText(/Profile/).click({ force: true });
-        cy.wait(3000);
+
         cy.findByText(/Upload Documents/).click({ force: true });
-        cy.wait(3000);
 
         for (let index = 0; index < 14; index++) {
-            cy.wait(5000);
             cy.get('[type="file"]').eq(0).attachFile('sample.jpg');
         }
-        cy.wait(5000);
 
         cy.findAllByText(/Save/).eq(0).click({ force: true });
-        cy.wait(2000);
 
         cy.findByText(/Documents saved/).should('exist');
     });

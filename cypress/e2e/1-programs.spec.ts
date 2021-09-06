@@ -1,17 +1,16 @@
-/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Programs tests', () => {
     beforeEach(() => {
         cy.visit('/programs');
-        cy.wait(3000);
+        cy.viewport(1920, 1080);
     });
 
-    it('Find programs', () => {
+    it('Can find programs', () => {
         cy.findAllByText(/master of science in/i)
             .eq(0)
             .should('be.visible');
     });
 
-    it('Open and apply filters', () => {
+    it('Can Open and apply filters', () => {
         cy.findAllByText(/filters/i)
             .eq(0)
             .click({ force: true });
@@ -29,48 +28,46 @@ describe('Programs tests', () => {
             .type('{enter}', { force: true });
 
         cy.findByText(/apply filters/i).click();
-        cy.wait(3000);
 
         cy.findAllByText(/master of science in/i)
             .eq(0)
             .should('be.visible');
     });
 
-    it('Use searchbar', () => {
+    it('Can use the searchbar', () => {
         cy.findByPlaceholderText(/search/i).type('Glion', { force: true });
-        cy.wait(3000);
 
         cy.findAllByText(/Glion Institute of Higher Education/i)
             .eq(0)
             .should('be.visible');
     });
 
-    it('Use sortby', () => {
+    it('Can use sortby', () => {
         cy.findByText(/by school/i).click({ force: true });
 
         cy.findByText(/by country/i).click();
-        cy.wait(3000);
+
         cy.findAllByText(/master of science in/i)
             .eq(0)
             .should('be.visible');
 
         cy.findByText(/by country/i).click({ force: true });
         cy.findByText(/by duration/i).click();
-        cy.wait(3000);
+
         cy.findAllByText(/master of science in/i)
             .eq(0)
             .should('be.visible');
 
         cy.findByText(/by duration/i).click({ force: true });
         cy.findByText(/high to low/i).click();
-        cy.wait(3000);
+
         cy.findAllByText(/master of science in/i)
             .eq(0)
             .should('be.visible');
 
         cy.findByText(/high to low/i).click({ force: true });
         cy.findByText(/fee \(low to high\)/i).click();
-        cy.wait(3000);
+
         cy.findAllByText(/bachelor in/i)
             .eq(0)
             .should('be.visible');
