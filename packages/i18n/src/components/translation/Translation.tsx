@@ -100,6 +100,8 @@ const Translation: FC<Props> = (props) => {
         return result;
     };
 
+    const skeletons = Array.from({ length: 3 }, (_v, k) => k + 1);
+
     const translations = mergeTranslations(
         { en: englishTranslations, fr: frenchTranslations, zh: chineseTranslations },
         'en'
@@ -121,7 +123,7 @@ const Translation: FC<Props> = (props) => {
             .filter(([translationKey, value]) => filterTranslated(translationKey, value))
             .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
             .map(([translationKey, value], i) => (
-                <div key={i} className="my-8 px-6 py-4 border rounded-md shadow">
+                <div key={i}>
                     <TranslationForm
                         newForm={false}
                         selected={selected}
@@ -131,7 +133,14 @@ const Translation: FC<Props> = (props) => {
                 </div>
             ));
 
-    return <>{isLoading ? <div>loading...</div> : renderTranslations()}</>;
+    const renderSkeletons = () =>
+        skeletons.map((v) => (
+            <div key={v}>
+                <TranslationForm isLoading={isLoading} newForm={false} />
+            </div>
+        ));
+
+    return <>{isLoading ? renderSkeletons() : renderTranslations()}</>;
 };
 
 export default Translation;

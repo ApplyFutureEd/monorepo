@@ -5,9 +5,11 @@ import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import React, { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 type Props = {
     handleDisplayForm?: () => void;
+    isLoading?: boolean;
     newForm: boolean;
     selected?: string;
     translationKey?: string;
@@ -15,7 +17,7 @@ type Props = {
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { handleDisplayForm, newForm, selected, translationKey, value } = props;
+    const { handleDisplayForm, isLoading, newForm, selected, translationKey, value } = props;
 
     type FormValues = {
         enTranslation: string;
@@ -41,6 +43,7 @@ const TranslationForm: FC<Props> = (props) => {
         handleDisplayForm && handleDisplayForm();
     };
 
+    const skeletonFlag = <Skeleton height={18} width={22} />;
     const enFlag = <Flags.US className="h-4" title="English" />;
     const frFlag = <Flags.FR className="h-4" title="Français" />;
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
@@ -52,14 +55,21 @@ const TranslationForm: FC<Props> = (props) => {
 
     const namespaceInput = (
         <Field id="namespace" name="namespace">
-            {(fieldProps: FieldProps) => <Input disabled label="Namespaces" {...fieldProps} />}
+            {(fieldProps: FieldProps) => (
+                <Input disabled isLoading={isLoading} label="Namespaces" {...fieldProps} />
+            )}
         </Field>
     );
 
     const namespaceSelect = (
         <Field id="namespace" name="namespace">
             {(fieldProps: FieldProps) => (
-                <Select label="Namespaces" options={namespaceOptions} {...fieldProps} />
+                <Select
+                    isLoading={isLoading}
+                    label="Namespaces"
+                    options={namespaceOptions}
+                    {...fieldProps}
+                />
             )}
         </Field>
     );
@@ -80,33 +90,43 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex flex-col w-full space-y-2">
                                     <Field id="translationKey" name="translationKey">
                                         {(fieldProps: FieldProps) => (
-                                            <Input label="Key" {...fieldProps} />
+                                            <Input
+                                                isLoading={isLoading}
+                                                label="Key"
+                                                {...fieldProps}
+                                            />
                                         )}
                                     </Field>
                                 </div>
                             </div>
                             <div className="flex flex-col space-y-3">
                                 <div className="flex items-center space-x-4">
-                                    {enFlag}
+                                    {isLoading ? skeletonFlag : enFlag}
                                     <div className="w-full">
                                         <Field id="enTranslation" name="enTranslation">
-                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                            {(fieldProps: FieldProps) => (
+                                                <Input isLoading={isLoading} {...fieldProps} />
+                                            )}
                                         </Field>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    {frFlag}
+                                    {isLoading ? skeletonFlag : frFlag}
                                     <div className="w-full">
                                         <Field id="frTranslation" name="frTranslation">
-                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                            {(fieldProps: FieldProps) => (
+                                                <Input isLoading={isLoading} {...fieldProps} />
+                                            )}
                                         </Field>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    {zhFlag}
+                                    {isLoading ? skeletonFlag : zhFlag}
                                     <div className="w-full">
                                         <Field id="zhTranslation" name="zhTranslation">
-                                            {(fieldProps: FieldProps) => <Input {...fieldProps} />}
+                                            {(fieldProps: FieldProps) => (
+                                                <Input isLoading={isLoading} {...fieldProps} />
+                                            )}
                                         </Field>
                                     </div>
                                 </div>
