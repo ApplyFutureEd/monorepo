@@ -4,6 +4,8 @@ import { namespaces } from '@data/namespaces';
 import { Filter } from '@pages/index';
 import { flatten } from 'lodash';
 import React, { FC, useEffect, useState } from 'react';
+import { CSSProperties } from 'react-datepicker/node_modules/@types/react';
+import { FixedSizeList as List } from 'react-window';
 
 import TranslationForm from './TranslationForm';
 
@@ -22,7 +24,7 @@ type Translations = {
 };
 
 const Translation: FC<Props> = (props) => {
-    const { filter, search, selected } = props;
+    const { selected } = props;
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [englishTranslations, setEnglishTranslations] = useState<Translations>({});
     const [frenchTranslations, setFrenchTranslations] = useState<Translations>({});
@@ -105,33 +107,34 @@ const Translation: FC<Props> = (props) => {
         'en'
     );
 
-    const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
-    const filterTranslated = (translationKey: string, item: any) =>
-        filter !== 'TRANSLATED'
-            ? translationKey.includes(search)
-            : item.en !== '' && item.fr !== '' && item.zh !== '';
-    const filterUntranslated = (translationKey: string, item: any) =>
-        filter !== 'UNTRANSLATED'
-            ? translationKey.includes(search)
-            : item.en === '' || item.fr === '' || item.zh === '';
+    const translationsArray = Object.entries(translations); // reduce + filters
 
-    const renderTranslations = () =>
-        Object.entries(translations)
-            .filter(([translationKey]) => filterSearch(translationKey))
-            .filter(([translationKey, value]) => filterTranslated(translationKey, value))
-            .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
-            .map(([translationKey, value], i) => (
-                <div key={i} className="my-8 px-6 py-4 border rounded-md shadow">
-                    <TranslationForm
-                        newForm={false}
-                        selected={selected}
-                        translationKey={translationKey}
-                        value={value}
-                    />
-                </div>
-            ));
+    type RowProps = {
+        index: number;
+        style: CSSProperties;
+    };
 
-    return <>{isLoading ? <div>loading...</div> : renderTranslations()}</>;
+    const Row: FC<RowProps> = (props) => {
+        const { index, style } = props;
+        return (
+            <div style={style}>
+                <TranslationForm
+                    newForm={false}
+                    selected={selected}
+                    translationKey={translationsArray[index][0]}
+                    value={translationsArray[index][1]}
+                />
+            </div>
+        );
+    };
+
+    return (
+        <>
+            <List height={888} itemCount={translationsArray.length} itemSize={296} width={950}>
+                {Row}
+            </List>
+        </>
+    );
 };
 
 export default Translation;
