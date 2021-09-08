@@ -102,6 +102,8 @@ const Translation: FC<Props> = (props) => {
         return result;
     };
 
+    const skeletons = Array.from({ length: 3 }, (_v, k) => k + 1);
+
     const translations = mergeTranslations(
         { en: englishTranslations, fr: frenchTranslations, zh: chineseTranslations },
         'en'
@@ -135,6 +137,40 @@ const Translation: FC<Props> = (props) => {
             </List>
         </>
     );
+    /* const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
+    const filterTranslated = (translationKey: string, item: any) =>
+        filter !== 'TRANSLATED'
+            ? translationKey.includes(search)
+            : item.en !== '' && item.fr !== '' && item.zh !== '';
+    const filterUntranslated = (translationKey: string, item: any) =>
+        filter !== 'UNTRANSLATED'
+            ? translationKey.includes(search)
+            : item.en === '' || item.fr === '' || item.zh === '';
+
+    const renderTranslations = () =>
+        Object.entries(translations)
+            .filter(([translationKey]) => filterSearch(translationKey))
+            .filter(([translationKey, value]) => filterTranslated(translationKey, value))
+            .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
+            .map(([translationKey, value], i) => (
+                <div key={i}>
+                    <TranslationForm
+                        newForm={false}
+                        selected={selected}
+                        translationKey={translationKey}
+                        value={value}
+                    />
+                </div>
+            ));
+
+    const renderSkeletons = () =>
+        skeletons.map((v) => (
+            <div key={v}>
+                <TranslationForm isLoading={isLoading} newForm={false} />
+            </div>
+        ));
+
+    return <>{isLoading ? renderSkeletons() : renderTranslations()}</>; */
 };
 
 export default Translation;
