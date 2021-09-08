@@ -9,7 +9,7 @@ import { render, screen } from '@testing-library/react';
 import UploadDocuments from './UploadDocuments';
 
 describe('UploadDocuments', () => {
-    const applicationData = {
+    const applicationData = ({
         getApplication: {
             admissionResult: null,
             createdAt: '2021-05-01T14:14:09.014Z',
@@ -362,9 +362,9 @@ describe('UploadDocuments', () => {
             updatedAt: '2021-05-01T14:14:09.014Z',
             visaDate: null
         }
-    } as unknown as GetApplicationQuery;
+    } as unknown) as GetApplicationQuery;
 
-    const documentsData = {
+    const documentsData = ({
         getDocumentByStudent: {
             items: [
                 {
@@ -453,9 +453,9 @@ describe('UploadDocuments', () => {
             ],
             nextToken: null
         }
-    } as unknown as GetDocumentByStudentQuery;
+    } as unknown) as GetDocumentByStudentQuery;
 
-    const studentData = {
+    const studentData = ({
         getStudentByEmail: {
             items: [
                 {
@@ -565,7 +565,7 @@ describe('UploadDocuments', () => {
             ],
             nextToken: null
         }
-    } as unknown as GetStudentByEmailQuery;
+    } as unknown) as GetStudentByEmailQuery;
 
     it('can render without crashing', () => {
         render(

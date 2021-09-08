@@ -22,7 +22,7 @@ const Search: FC<Props> = (props) => {
         handleSearch(query);
     };
     return (
-        <div style={{ width: '250px' }}>
+        <div className="w-full sm:w-1/2">
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {() => {
                     return (

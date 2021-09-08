@@ -1,36 +1,41 @@
 import { useWindowSize } from '@applyfuture/utils';
-import TabsItem from '@components/tabsItem/TabsItem';
-import TabsPanel from '@components/tabsPanel/TabsPanel';
 import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useState } from 'react';
 
-const Tabs: FC = () => {
+type Props = {
+    handleSelected: (tab: string) => void;
+    selected: string;
+};
+
+export const namespaces = [
+    'All',
+    'Account',
+    'Application',
+    'Auth',
+    'Common',
+    'Help',
+    'Landing',
+    'Navigation',
+    'Profile',
+    'Programs',
+    'Recruiters',
+    'Schools'
+];
+
+const Tabs: FC<Props> = (props) => {
+    const { handleSelected, selected } = props;
+
     const [navWidth, setNavwidth] = useState<number | undefined>(undefined);
     const [navContainerWidth, setNavContainerWidth] = useState<number | undefined>(undefined);
     const { width } = useWindowSize();
     const [displayArrows, setDisplayArrow] = useState(false);
     const [displayedTabIndex, setDisplayedTabIndex] = useState(0);
 
-    const [selected, setSelected] = useState('All');
-
     const baseClasses =
-        'flex items-center px-1 py-4 text-gray-500 hover:text-indigo-700 focus:text-indigo-700 whitespace-no-wrap text-base font-medium leading-5 border-b-2 hover:border-indigo-300 focus:border-indigo-300 border-transparent focus:outline-none cursor-pointer space-x-2';
+        'flex items-center px-1 py-4 text-gray-500 hover:text-indigo-700  whitespace-no-wrap text-base font-medium leading-5 border-b-2 hover:border-indigo-300  border-transparent focus:outline-none cursor-pointer space-x-2';
 
-    const namespaces = [
-        'All',
-        'Account',
-        'Application',
-        'Auth',
-        'Common',
-        'Help',
-        'Landing',
-        'Navigation',
-        'Profile',
-        'Programs',
-        'Recruiters',
-        'Schools'
-    ];
+    const selectedClasses = 'text-indigo-700 border-indigo-300 outline-none';
 
     useEffect(() => {
         const currentNavWidth = document.getElementById('nav')?.getBoundingClientRect().width;
@@ -109,14 +114,16 @@ const Tabs: FC = () => {
                                 : 'none'
                     }}>
                     <div className="px-4 py-2 sm:px-6">
-                        <div className="flex flex-wrap items-center justify-between sm:flex-no-wrap">
+                        <div className="sm:flex-no-wrap flex flex-wrap items-center justify-between">
                             <div className="flex -mb-px space-x-4">
                                 {namespaces.map((tab, i) => (
                                     <span key={i} id={`nav-tab-${i}`}>
                                         <button
                                             key={i}
-                                            className={baseClasses}
-                                            onClick={() => setSelected(tab)}>
+                                            className={`${baseClasses} ${
+                                                selected === tab ? selectedClasses : ''
+                                            }`}
+                                            onClick={() => handleSelected(tab)}>
                                             {tab}
                                         </button>
                                     </span>
@@ -132,20 +139,6 @@ const Tabs: FC = () => {
                         <FontAwesomeIcon icon={faChevronRight} onClick={scrollRight} />
                     </div>
                 )}
-            </div>
-            <div>
-                <TabsPanel selected={selected === 'All'}>
-                    <TabsItem file={'all'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Account'}>
-                    <TabsItem file={'account'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Application'}>
-                    <TabsItem file={'application'} />
-                </TabsPanel>
-                <TabsPanel selected={selected === 'Auth'}>
-                    <TabsItem file={'auth'} />
-                </TabsPanel>
             </div>
         </div>
     );

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.applyfuture.com
+
+# Sitemaps
+Sitemap: https://www.applyfuture.com/sitemap.xml

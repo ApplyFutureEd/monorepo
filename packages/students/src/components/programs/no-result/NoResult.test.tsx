@@ -28,7 +28,7 @@ jest.mock('@applyfuture/utils', () => ({
 }));
 
 describe('NoResult', () => {
-    const query = {
+    const variables = {
         filter: {
             or: [
                 { name: { matchPhrasePrefix: 'bruxelles' } },
@@ -42,7 +42,7 @@ describe('NoResult', () => {
     };
 
     it('can render without crashing', () => {
-        render(<NoResult query={JSON.stringify(query)} />);
+        render(<NoResult variables={variables} />);
 
         const notification = screen.getByText('programs:no-results-cta');
 
@@ -50,7 +50,7 @@ describe('NoResult', () => {
     });
 
     it('can call onClick callback function when clicking the CTA button', async () => {
-        render(<NoResult query={JSON.stringify(query)} />);
+        render(<NoResult variables={variables} />);
 
         const button = screen.getByRole('button');
 

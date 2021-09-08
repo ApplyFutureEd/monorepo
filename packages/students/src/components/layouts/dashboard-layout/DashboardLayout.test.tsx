@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { FC, useState as useStateMock } from 'react';
+import { render, screen } from '@testing-library/react';
+import { FC } from 'react';
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -9,11 +9,6 @@ jest.mock('next/router', () => ({
         };
     }
 }));
-
-/* jest.mock('react', () => ({
-    ...(jest.requireActual('react') as Record<string, unknown>),
-    useState: jest.fn()
-})); */
 
 jest.mock('@applyfuture/ui', () => ({
     ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
@@ -36,17 +31,7 @@ jest.mock('@applyfuture/utils', () => ({
     })
 }));
 
-describe.skip('DashboardLayout', () => {
-    const setOpenMobileMenu = jest.fn();
-
-    beforeEach(() => {
-        (useStateMock as jest.Mock).mockImplementation((init) => [init, setOpenMobileMenu]);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-
+describe('DashboardLayout', () => {
     it('can render without crashing', () => {
         render(
             <DashboardLayout description="Lorem ipsum" title="Hello World">
@@ -57,18 +42,5 @@ describe.skip('DashboardLayout', () => {
         const children = screen.getByText('Hello World');
 
         expect(children).toBeInTheDocument();
-    });
-
-    it('can call the open mobile menu callback function when clicking on an anchor', () => {
-        render(
-            <DashboardLayout description="Lorem ipsum" title="Hello World">
-                Hello World
-            </DashboardLayout>
-        );
-
-        const openAnchor = screen.getByLabelText(/open/i);
-        fireEvent.click(openAnchor);
-
-        expect(setOpenMobileMenu).toHaveBeenNthCalledWith(1, true);
     });
 });

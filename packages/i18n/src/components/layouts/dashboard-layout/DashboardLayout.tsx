@@ -1,18 +1,41 @@
 import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@applyfuture/ui';
+import { Button } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
+import Search from '@components/search/Search';
 import Tabs from '@components/tabs/Tabs';
-import { faBars, faSignOut } from '@fortawesome/pro-light-svg-icons';
+import { faBars, faFilter, faPlus, faSignOut, faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Filter } from '@pages/index';
 import { Auth } from 'aws-amplify';
 import { FC, ReactNode, useState } from 'react';
 
 type Props = {
     children: ReactNode;
     description?: string;
+    displayForm: boolean;
+    handleSearch: (query: string) => void;
+    handleFilter: (filter: Filter) => void;
+    handleSelected: (tab: string) => void;
+    handleDisplayForm: () => void;
     title: string;
+    selected: string;
+    filter: Filter;
 };
+
 const DashboardLayout: FC<Props> = (props) => {
-    const { children, description, title } = props;
+    const {
+        children,
+        description,
+        displayForm,
+        handleSearch,
+        handleFilter,
+        handleSelected,
+        handleDisplayForm,
+        title,
+        selected,
+        filter
+    } = props;
+
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     const handleCloseMobileMenu = () => {
@@ -61,6 +84,9 @@ const DashboardLayout: FC<Props> = (props) => {
         </Transition>
     );
 
+    const isTranslated = filter === 'TRANSLATED';
+    const isUntranslated = filter === 'UNTRANSLATED';
+
     return (
         <>
             <Head description={description} title={title} />
@@ -70,10 +96,55 @@ const DashboardLayout: FC<Props> = (props) => {
                 mobileMenu={mobileMenu}
                 routes={routes}
             />
+
             <main className="main pt-header min-h-screen bg-gray-100">
-                <div className="max-w-7xl mx-auto py-0 sm:px-6 md:py-6 lg:px-8">
-                    <Tabs />
-                    <div className="px-4 sm:px-0">{children}</div>
+                <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
+                    <Tabs handleSelected={handleSelected} selected={selected} />
+                    <div className="flex flex-col px-0 bg-white sm:px-8">
+                        <div className="flex flex-col mt-8 px-1 space-y-4 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
+                            <Search handleSearch={handleSearch} />
+                            <div className="flex space-x-2">
+                                <Button
+                                    key={1}
+                                    startIcon={faFilter}
+                                    variant={isTranslated ? 'primary' : 'secondary'}
+                                    onClick={() => {
+                                        isTranslated
+                                            ? handleFilter(null)
+                                            : handleFilter('TRANSLATED');
+                                    }}>
+                                    Translated
+                                </Button>
+                                <Button
+                                    key={2}
+                                    startIcon={faFilter}
+                                    variant={isUntranslated ? 'primary' : 'secondary'}
+                                    onClick={() => {
+                                        isUntranslated
+                                            ? handleFilter(null)
+                                            : handleFilter('UNTRANSLATED');
+                                    }}>
+                                    Untranslated
+                                </Button>
+                                {!displayForm ? (
+                                    <Button
+                                        startIcon={faPlus}
+                                        variant="primary"
+                                        onClick={handleDisplayForm}>
+                                        New
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        startIcon={faTimes}
+                                        variant="danger"
+                                        onClick={handleDisplayForm}>
+                                        Cancel
+                                    </Button>
+                                )}
+                            </div>
+                        </div>
+                        <div className="px-2 sm:px-0">{children}</div>
+                    </div>
                 </div>
             </main>
         </>
