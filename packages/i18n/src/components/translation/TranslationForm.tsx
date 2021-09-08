@@ -2,13 +2,14 @@ import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@data/namespaces';
 import { faPlus } from '@fortawesome/pro-light-svg-icons';
+import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
-import { Field, FieldProps, Form, Formik } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import React, { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
-    handleDisplayForm?: () => void;
+    handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
     newForm: boolean;
     selected?: string;
@@ -17,30 +18,41 @@ type Props = {
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { handleDisplayForm, isLoading, newForm, selected, translationKey, value } = props;
+    const { handleToggleDisplayForm, isLoading, newForm, selected, translationKey, value } = props;
 
     type FormValues = {
-        enTranslation: string;
-        frTranslation: string;
+        chineseTranslation: string;
+        englishTranslation: string;
+        frenchTranslation: string;
         namespace: string;
         translationKey: string;
-        zhTranslation: string;
     };
 
     const initialValues: FormValues = {
-        enTranslation: selected && value?.en ? value.en : '',
-        frTranslation: selected && value?.fr ? value.fr : '',
+        chineseTranslation: selected && value?.zh ? value.zh : '',
+        englishTranslation: selected && value?.en ? value.en : '',
+        frenchTranslation: selected && value?.fr ? value.fr : '',
         namespace: selected ? selected : '',
-        translationKey: selected && translationKey ? translationKey : '',
-        zhTranslation: selected && value?.zh ? value.zh : ''
+        translationKey: selected && translationKey ? translationKey : ''
     };
 
-    const onSubmit = () => {
-        toast({
-            title: 'The translation was successfully added',
-            variant: 'success'
-        });
-        handleDisplayForm && handleDisplayForm();
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        try {
+            await API.post('rest', '/i18n/save', {
+                body: { ...values, namespace: values.namespace.toLowerCase() }
+            });
+            toast({
+                title: 'The translation was successfully added',
+                variant: 'success'
+            });
+            handleToggleDisplayForm && handleToggleDisplayForm();
+        } catch (error) {
+            toast({
+                title: 'Something went wrong',
+                variant: 'error'
+            });
+        }
+        actions.setSubmitting(false);
     };
 
     const skeletonFlag = <Skeleton height={18} width={22} />;
@@ -103,7 +115,7 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : enFlag}
                                     <div className="w-full">
-                                        <Field id="enTranslation" name="enTranslation">
+                                        <Field id="englishTranslation" name="englishTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input isLoading={isLoading} {...fieldProps} />
                                             )}
@@ -113,7 +125,7 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : frFlag}
                                     <div className="w-full">
-                                        <Field id="frTranslation" name="frTranslation">
+                                        <Field id="frenchTranslation" name="frenchTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input isLoading={isLoading} {...fieldProps} />
                                             )}
@@ -123,7 +135,7 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : zhFlag}
                                     <div className="w-full">
-                                        <Field id="zhTranslation" name="zhTranslation">
+                                        <Field id="chineseTranslation" name="chineseTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input isLoading={isLoading} {...fieldProps} />
                                             )}

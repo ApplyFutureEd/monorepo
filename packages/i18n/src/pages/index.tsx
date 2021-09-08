@@ -24,7 +24,7 @@ const LandingPage: FC = () => {
         setSelected(tab);
     };
 
-    const handleDisplayForm = () => {
+    const handleToggleDisplayForm = () => {
         setDisplayForm(!displayForm);
     };
 
@@ -32,13 +32,15 @@ const LandingPage: FC = () => {
         <DashboardLayout
             displayForm={displayForm}
             filter={filter}
-            handleDisplayForm={handleDisplayForm}
             handleFilter={handleFilter}
             handleSearch={handleSearch}
             handleSelected={handleSelected}
+            handleToggleDisplayForm={handleToggleDisplayForm}
             selected={selected}
             title="Dashboard">
-            {displayForm && <TranslationForm newForm handleDisplayForm={handleDisplayForm} />}
+            {displayForm && (
+                <TranslationForm newForm handleToggleDisplayForm={handleToggleDisplayForm} />
+            )}
             <Translation filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );
