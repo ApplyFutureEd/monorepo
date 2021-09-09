@@ -16,7 +16,9 @@ export * from './constants/genders';
 export * from './constants/institutionTypes';
 export * from './constants/languages';
 export * from './constants/languagesLevels';
+export * from './constants/locales';
 export * from './constants/maritalStatus';
+export * from './constants/namespaces';
 export * from './constants/requestedDocuments';
 export * from './constants/schedules';
 

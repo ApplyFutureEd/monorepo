@@ -1,5 +1,5 @@
-import { locales } from '@applyfuture/utils/src/constants/locales';
-import { namespaces } from '@applyfuture/utils/src/constants/namespaces';
+import { locales } from '@applyfuture/utils';
+import { namespaces } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
 import { Filter } from '@pages/index';
 import { flatten } from 'lodash';
