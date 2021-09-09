@@ -1,6 +1,6 @@
+import { locales } from '@applyfuture/utils/src/constants/locales';
+import { namespaces } from '@applyfuture/utils/src/constants/namespaces';
 import Storage from '@aws-amplify/storage';
-import { locales } from '@data/locales';
-import { namespaces } from '@data/namespaces';
 import { Filter } from '@pages/index';
 import { flatten } from 'lodash';
 import React, { FC, useEffect, useState } from 'react';
