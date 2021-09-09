@@ -9,11 +9,11 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
-    const [selected, setSelected] = useState('Recruiters');
+    const [selected, setSelected] = useState('All');
     const [displayForm, setDisplayForm] = useState(false);
 
     const handleSearch = (query: string) => {
-        setSearch(query.toLowerCase());
+        setSearch(query.toLowerCase().replace(/ /g, '-'));
     };
 
     const handleFilter = (filter: Filter) => {

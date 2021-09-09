@@ -15,6 +15,12 @@ type Props = {
     selected: string;
 };
 
+type Values = {
+    en: string;
+    fr: string;
+    zh: string;
+};
+
 type TranslationFile = {
     [locale: string]: string;
 };
@@ -24,7 +30,7 @@ type Translations = {
 };
 
 const Translation: FC<Props> = (props) => {
-    const { selected } = props;
+    const { filter, search, selected } = props;
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [englishTranslations, setEnglishTranslations] = useState<Translations>({});
     const [frenchTranslations, setFrenchTranslations] = useState<Translations>({});
@@ -102,14 +108,36 @@ const Translation: FC<Props> = (props) => {
         return result;
     };
 
-    const skeletons = Array.from({ length: 3 }, (_v, k) => k + 1);
-
     const translations = mergeTranslations(
         { en: englishTranslations, fr: frenchTranslations, zh: chineseTranslations },
         'en'
     );
 
-    const translationsArray = Object.entries(translations); // reduce + filters
+    const translationsArray = Object.entries(translations);
+    // [['key', {'value', 'value', 'value'}]]
+    // [{key = 'key', values = {en, fr, zh} }]
+
+    const newTranslationsArray = translationsArray.map((translation) => {
+        return {
+            key: translation[0],
+            values: translation[1]
+        };
+    });
+
+    const emptyObject = (obj: Values) => {
+        return Object.entries(obj).some(([_k, value]) => value === '');
+    };
+
+    const filteredTranslationArray = newTranslationsArray.reduce((previousValue, currentvalue) => {
+        if (filter === 'UNTRANSLATED' && emptyObject(currentvalue.values as Values)) {
+            previousValue.push(currentvalue);
+        } else if (filter === 'TRANSLATED' && !emptyObject(currentvalue.values as Values)) {
+            previousValue.push(currentvalue);
+        } else {
+            currentvalue.key.includes(search) ? previousValue.push(currentvalue) : previousValue;
+        }
+        return previousValue;
+    }, [] as typeof newTranslationsArray);
 
     type RowProps = {
         index: number;
@@ -123,45 +151,22 @@ const Translation: FC<Props> = (props) => {
                 <TranslationForm
                     newForm={false}
                     selected={selected}
-                    translationKey={translationsArray[index][0]}
-                    value={translationsArray[index][1]}
+                    translationKey={
+                        filter || search
+                            ? filteredTranslationArray[index].key
+                            : newTranslationsArray[index].key
+                    }
+                    value={
+                        filter || search
+                            ? filteredTranslationArray[index].values
+                            : newTranslationsArray[index].values
+                    }
                 />
             </div>
         );
     };
 
-    return (
-        <>
-            <List height={888} itemCount={translationsArray.length} itemSize={296} width={950}>
-                {Row}
-            </List>
-        </>
-    );
-    /* const filterSearch = (translationKey: string) => !search || translationKey.includes(search);
-    const filterTranslated = (translationKey: string, item: any) =>
-        filter !== 'TRANSLATED'
-            ? translationKey.includes(search)
-            : item.en !== '' && item.fr !== '' && item.zh !== '';
-    const filterUntranslated = (translationKey: string, item: any) =>
-        filter !== 'UNTRANSLATED'
-            ? translationKey.includes(search)
-            : item.en === '' || item.fr === '' || item.zh === '';
-
-    const renderTranslations = () =>
-        Object.entries(translations)
-            .filter(([translationKey]) => filterSearch(translationKey))
-            .filter(([translationKey, value]) => filterTranslated(translationKey, value))
-            .filter(([translationKey, value]) => filterUntranslated(translationKey, value))
-            .map(([translationKey, value], i) => (
-                <div key={i}>
-                    <TranslationForm
-                        newForm={false}
-                        selected={selected}
-                        translationKey={translationKey}
-                        value={value}
-                    />
-                </div>
-            ));
+    const skeletons = Array.from({ length: 3 }, (_v, k) => k + 1);
 
     const renderSkeletons = () =>
         skeletons.map((v) => (
@@ -170,7 +175,25 @@ const Translation: FC<Props> = (props) => {
             </div>
         ));
 
-    return <>{isLoading ? renderSkeletons() : renderTranslations()}</>; */
+    return (
+        <>
+            {isLoading ? (
+                renderSkeletons()
+            ) : (
+                <List
+                    height={888}
+                    itemCount={
+                        filter || search
+                            ? filteredTranslationArray.length
+                            : newTranslationsArray.length
+                    }
+                    itemSize={296}
+                    width={950}>
+                    {Row}
+                </List>
+            )}
+        </>
+    );
 };
 
 export default Translation;
