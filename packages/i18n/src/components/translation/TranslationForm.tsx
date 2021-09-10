@@ -1,6 +1,6 @@
 import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
-import { namespaces } from '@data/namespaces';
+import { namespaces } from '@applyfuture/utils';
 import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik } from 'formik';

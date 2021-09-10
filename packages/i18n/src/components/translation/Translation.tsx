@@ -1,7 +1,7 @@
 import { useWindowSize } from '@applyfuture/utils';
+import { locales } from '@applyfuture/utils';
+import { namespaces } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
-import { locales } from '@data/locales';
-import { namespaces } from '@data/namespaces';
 import { Filter } from '@pages/index';
 import { flatten } from 'lodash';
 import React, { FC, useEffect, useState } from 'react';

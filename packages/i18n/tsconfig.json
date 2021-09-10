@@ -29,5 +29,5 @@
         }
     },
     "exclude": [".next", "node_modules", "public"],
-    "include": ["**/*.ts", "**/*.tsx"]
+    "include": ["**/*.ts", "**/*.tsx", "../utils/src/constants/namespaces.ts"]
 }
