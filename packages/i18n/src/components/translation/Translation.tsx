@@ -1,11 +1,9 @@
-import { useWindowSize } from '@applyfuture/utils';
-import { locales } from '@applyfuture/utils';
-import { namespaces } from '@applyfuture/utils';
+import { locales, namespaces, useWindowSize } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
 import { Filter } from '@pages/index';
 import { flatten } from 'lodash';
 import React, { FC, useEffect, useState } from 'react';
-import { CSSProperties } from 'react-datepicker/node_modules/@types/react';
+import { CSSProperties } from 'react';
 import { FixedSizeList as List } from 'react-window';
 
 import TranslationForm from './TranslationForm';

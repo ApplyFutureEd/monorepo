@@ -43,7 +43,7 @@
         "@fortawesome/pro-light-svg-icons": "5.15.1",
         "@fortawesome/pro-solid-svg-icons": "5.15.1",
         "@fortawesome/react-fontawesome": "0.1.12",
-        "@types/react-window": "^1.8.5",
+        "@types/react-window": "1.8.5",
         "aws-amplify": "3.3.12",
         "classnames": "2.2.6",
         "core-js": "3.8.1",
@@ -60,7 +60,7 @@
         "react-select": "3.1.0",
         "react-toastify": "6.1.0",
         "react-transition-group": "4.4.1",
-        "react-window": "^1.8.6",
+        "react-window": "1.8.6",
         "use-debounce": "5.1.0",
         "use-deep-compare-effect": "1.5.0",
         "yup": "0.29.1"
