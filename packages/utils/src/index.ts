@@ -16,7 +16,9 @@ export * from './constants/genders';
 export * from './constants/institutionTypes';
 export * from './constants/languages';
 export * from './constants/languagesLevels';
+export * from './constants/locales';
 export * from './constants/maritalStatus';
+export * from './constants/namespaces';
 export * from './constants/requestedDocuments';
 export * from './constants/schedules';
 
@@ -37,6 +39,7 @@ export * from './helpers/isBrowser';
 export * from './helpers/locales';
 export * from './helpers/markdown';
 export * from './helpers/scrollToErrors';
+export * from './helpers/object';
 export * from './helpers/profile';
 export * from './helpers/ssr';
 export * from './helpers/tests';

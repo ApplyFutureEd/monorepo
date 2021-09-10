@@ -101,46 +101,52 @@ const DashboardLayout: FC<Props> = (props) => {
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
                     <Tabs handleSelected={handleSelected} selected={selected} />
                     <div className="flex flex-col px-0 bg-white sm:px-8">
-                        <div className="flex flex-col mt-8 px-1 space-y-4 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
+                        <div className="flex flex-col mt-8 px-2 space-y-4 sm:px-0 sm:space-y-0 md:flex-row md:items-center md:space-x-4">
                             <Search handleSearch={handleSearch} />
-                            <div className="flex space-x-2">
-                                <Button
-                                    key={1}
-                                    startIcon={faFilter}
-                                    variant={isTranslated ? 'primary' : 'secondary'}
-                                    onClick={() => {
-                                        isTranslated
-                                            ? handleFilter(null)
-                                            : handleFilter('TRANSLATED');
-                                    }}>
-                                    Translated
-                                </Button>
-                                <Button
-                                    key={2}
-                                    startIcon={faFilter}
-                                    variant={isUntranslated ? 'primary' : 'secondary'}
-                                    onClick={() => {
-                                        isUntranslated
-                                            ? handleFilter(null)
-                                            : handleFilter('UNTRANSLATED');
-                                    }}>
-                                    Untranslated
-                                </Button>
-                                {!displayForm ? (
+                            <div className="flex flex-wrap sm:flex-nowrap">
+                                <div className="mr-2 mt-2 md:mt-0">
                                     <Button
-                                        startIcon={faPlus}
-                                        variant="primary"
-                                        onClick={handleDisplayForm}>
-                                        New
+                                        key={1}
+                                        startIcon={faFilter}
+                                        variant={isTranslated ? 'primary' : 'secondary'}
+                                        onClick={() => {
+                                            isTranslated
+                                                ? handleFilter(null)
+                                                : handleFilter('TRANSLATED');
+                                        }}>
+                                        Translated
                                     </Button>
-                                ) : (
+                                </div>
+                                <div className="mr-2 mt-2 md:mt-0">
                                     <Button
-                                        startIcon={faTimes}
-                                        variant="danger"
-                                        onClick={handleDisplayForm}>
-                                        Cancel
+                                        key={2}
+                                        startIcon={faFilter}
+                                        variant={isUntranslated ? 'primary' : 'secondary'}
+                                        onClick={() => {
+                                            isUntranslated
+                                                ? handleFilter(null)
+                                                : handleFilter('UNTRANSLATED');
+                                        }}>
+                                        Untranslated
                                     </Button>
-                                )}
+                                </div>
+                                <div className="mt-2 md:mt-0">
+                                    {!displayForm ? (
+                                        <Button
+                                            startIcon={faPlus}
+                                            variant="primary"
+                                            onClick={handleDisplayForm}>
+                                            New
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            startIcon={faTimes}
+                                            variant="danger"
+                                            onClick={handleDisplayForm}>
+                                            Cancel
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                         <div className="px-2 sm:px-0">{children}</div>
