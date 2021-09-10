@@ -1,3 +1,4 @@
+import { useWindowSize } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
 import { locales } from '@data/locales';
 import { namespaces } from '@data/namespaces';
@@ -114,8 +115,6 @@ const Translation: FC<Props> = (props) => {
     );
 
     const translationsArray = Object.entries(translations);
-    // [['key', {'value', 'value', 'value'}]]
-    // [{key = 'key', values = {en, fr, zh} }]
 
     const newTranslationsArray = translationsArray.map((translation) => {
         return {
@@ -128,13 +127,17 @@ const Translation: FC<Props> = (props) => {
         return Object.entries(obj).some(([_k, value]) => value === '');
     };
 
-    const filteredTranslationArray = newTranslationsArray.reduce((previousValue, currentvalue) => {
-        if (filter === 'UNTRANSLATED' && emptyObject(currentvalue.values as Values)) {
-            previousValue.push(currentvalue);
-        } else if (filter === 'TRANSLATED' && !emptyObject(currentvalue.values as Values)) {
-            previousValue.push(currentvalue);
+    const filteredTranslationArray = newTranslationsArray.reduce((previousValue, currentValue) => {
+        const searchResult = currentValue.key.includes(search)
+            ? previousValue.push(currentValue)
+            : previousValue;
+
+        if (filter === 'UNTRANSLATED' && emptyObject(currentValue.values as Values)) {
+            searchResult;
+        } else if (filter === 'TRANSLATED' && !emptyObject(currentValue.values as Values)) {
+            searchResult;
         } else {
-            currentvalue.key.includes(search) ? previousValue.push(currentvalue) : previousValue;
+            searchResult;
         }
         return previousValue;
     }, [] as typeof newTranslationsArray);
@@ -166,31 +169,34 @@ const Translation: FC<Props> = (props) => {
         );
     };
 
-    const skeletons = Array.from({ length: 3 }, (_v, k) => k + 1);
+    const renderSkeletons = () => (
+        <div className="mb-16 mt-12">
+            <TranslationForm isLoading={isLoading} newForm={false} />
+        </div>
+    );
 
-    const renderSkeletons = () =>
-        skeletons.map((v) => (
-            <div key={v}>
-                <TranslationForm isLoading={isLoading} newForm={false} />
-            </div>
-        ));
+    const { width, height } = useWindowSize();
+    const listHeight = height ? height - 385 : 700;
+    const itemSize = width && width < 640 ? 450 : 350;
 
     return (
         <>
             {isLoading ? (
                 renderSkeletons()
             ) : (
-                <List
-                    height={888}
-                    itemCount={
-                        filter || search
-                            ? filteredTranslationArray.length
-                            : newTranslationsArray.length
-                    }
-                    itemSize={296}
-                    width={950}>
-                    {Row}
-                </List>
+                <div className="py-12">
+                    <List
+                        height={listHeight}
+                        itemCount={
+                            filter || search
+                                ? filteredTranslationArray.length
+                                : newTranslationsArray.length
+                        }
+                        itemSize={itemSize}
+                        width={'100%'}>
+                        {Row}
+                    </List>
+                </div>
             )}
         </>
     );

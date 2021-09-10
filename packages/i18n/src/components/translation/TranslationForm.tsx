@@ -74,7 +74,7 @@ const TranslationForm: FC<Props> = (props) => {
         </Field>
     );
 
-    const baseClasses = 'my-8 px-6 py-4 border rounded-md shadow';
+    const baseClasses = 'px-6 py-4 border rounded-md shadow';
     const formClasses = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
     return (
@@ -105,7 +105,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="enTranslation" name="enTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
@@ -115,7 +119,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="frTranslation" name="frTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
@@ -125,7 +133,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="zhTranslation" name="zhTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
