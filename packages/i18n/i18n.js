@@ -3,6 +3,6 @@ module.exports = {
     loadLocaleFrom: 'locales',
     locales: ['en'],
     pages: {
-        '*': ['application', 'common', 'programs', 'profile']
+        '*': ['auth', 'application', 'common', 'programs', 'profile']
     }
 };

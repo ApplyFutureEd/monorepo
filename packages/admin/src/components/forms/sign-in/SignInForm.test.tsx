@@ -3,36 +3,45 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
-import SignUpForm from './SignUpForm';
+import SignInForm from './SignInForm';
 
 const mockedPush = jest.fn();
-const mockedQuery = jest.fn().mockImplementation(() => ({
-    from: ''
-}));
 
 jest.mock('next/router', () => ({
     useRouter() {
         return {
             push: mockedPush,
-            query: mockedQuery()
+            query: {}
         };
     }
 }));
 
+jest.mock('@applyfuture/utils', () => ({
+    ...(jest.requireActual('@applyfuture/utils') as Record<string, any>),
+    graphql: jest.fn().mockImplementation(() => ({
+        data: {
+            getStudentByEmail: { items: [] }
+        }
+    })),
+    useAuthenticatedUser: jest.fn().mockImplementation(() => ({
+        handleAuth: jest.fn()
+    }))
+}));
+
 jest.mock('aws-amplify');
 
-Auth.signUp = jest.fn().mockImplementation(() => {
+Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
 
-describe('SignUpForm', () => {
+describe('SignInForm', () => {
     const fakeUser = {
         email: 'awesome.student@gmail.com',
         password: '$tR0nGPaSsw0rd'
     };
 
     it('can render without crashing', () => {
-        render(<SignUpForm />);
+        render(<SignInForm />);
 
         const heading = screen.getByLabelText(/email/);
 
@@ -40,7 +49,7 @@ describe('SignUpForm', () => {
     });
 
     it('can submit the form', async () => {
-        render(<SignUpForm />);
+        render(<SignInForm />);
 
         const email = screen.getByLabelText(/email/);
         const password = screen.getByLabelText(/password/);
@@ -51,20 +60,19 @@ describe('SignUpForm', () => {
         userEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(Auth.signUp).toHaveBeenCalledWith({
+            expect(Auth.signIn).toHaveBeenCalledWith({
                 password: fakeUser.password,
                 username: fakeUser.email
             });
-            expect(mockedPush).toBeCalledWith('/confirm-account?email=awesome.student@gmail.com');
         });
     });
 
-    it('can submit the form and redirect', async () => {
-        mockedQuery.mockImplementationOnce(() => ({
-            from: '/programs'
-        }));
+    it('can display the right error message when NotAuthorizedException is thrown', async () => {
+        Auth.signIn = jest.fn().mockImplementation(() => {
+            throw new AmplifyError('NotAuthorizedException');
+        });
 
-        render(<SignUpForm />);
+        render(<SignInForm />);
 
         const email = screen.getByLabelText(/email/);
         const password = screen.getByLabelText(/password/);
@@ -75,45 +83,19 @@ describe('SignUpForm', () => {
         userEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(Auth.signUp).toHaveBeenCalledWith({
-                password: fakeUser.password,
-                username: fakeUser.email
-            });
-            expect(mockedPush).toBeCalledWith(
-                '/confirm-account?email=awesome.student@gmail.com&from=/programs'
-            );
-        });
-    });
+            expect(Auth.signIn).toThrow();
 
-    it('can display the right error message when UsernameExistsException is thrown', async () => {
-        Auth.signUp = jest.fn().mockImplementation(() => {
-            throw new AmplifyError('UsernameExistsException');
-        });
-
-        render(<SignUpForm />);
-
-        const email = screen.getByLabelText(/email/);
-        const password = screen.getByLabelText(/password/);
-        const submitButton = screen.getByRole(/button/);
-
-        userEvent.type(email, fakeUser.email);
-        userEvent.type(password, fakeUser.password);
-        userEvent.click(submitButton);
-
-        await waitFor(() => {
-            expect(Auth.signUp).toThrow();
-
-            const errorMessage = screen.getByText(/auth:error-username-exists-exception/);
+            const errorMessage = screen.getByText(/auth:error-not-authorized-exception/);
             expect(errorMessage).toBeVisible();
         });
     });
 
     it('can display the right error message when an Error is thrown', async () => {
-        Auth.signUp = jest.fn().mockImplementation(() => {
+        Auth.signIn = jest.fn().mockImplementation(() => {
             throw new Error();
         });
 
-        render(<SignUpForm />);
+        render(<SignInForm />);
 
         const email = screen.getByLabelText(/email/);
         const password = screen.getByLabelText(/password/);
@@ -124,7 +106,7 @@ describe('SignUpForm', () => {
         userEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(Auth.signUp).toThrow();
+            expect(Auth.signIn).toThrow();
 
             const errorMessage = screen.getByText(/auth:error-generic-exception/);
             expect(errorMessage).toBeVisible();

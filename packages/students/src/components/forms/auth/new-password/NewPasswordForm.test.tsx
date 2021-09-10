@@ -13,6 +13,8 @@ jest.mock('next/router', () => ({
     }
 }));
 
+jest.mock('aws-amplify');
+
 Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });

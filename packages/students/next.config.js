@@ -13,9 +13,9 @@ const { locales, defaultLocale } = require('./i18n');
 const COMMIT_SHA = process.env.VERCEL_GITHUB_COMMIT_SHA;
 const basePath = '';
 
-module.exports = withTM(
-    withPWA(
-        withNextTranslate({
+module.exports = withPWA(
+    withNextTranslate(
+        withTM({
             basePath,
             env: {
                 ASSETS_CDN_URL: 'https://ik.imagekit.io/applyfuture',

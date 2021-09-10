@@ -14,6 +14,8 @@ jest.mock('next/router', () => ({
     }
 }));
 
+jest.mock('aws-amplify');
+
 Auth.forgotPasswordSubmit = jest.fn().mockImplementation(() => {
     return true;
 });
