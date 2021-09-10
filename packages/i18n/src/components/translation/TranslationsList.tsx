@@ -127,19 +127,34 @@ const Translation: FC<Props> = (props) => {
         fetchTranslations();
     }, [selected]);
 
-    const filteredTranslations = translations.reduce((previousValue, currentValue) => {
-        const searchResult = currentValue.key.includes(search)
-            ? previousValue.push(currentValue)
-            : previousValue;
+    const searchValue = (value: Translation) =>
+        Boolean(
+            value.key.includes(search) ||
+                value?.values?.en?.includes(search) ||
+                value?.values?.fr?.includes(search) ||
+                value?.values?.zh?.includes(search)
+        );
 
-        if (filter === 'UNTRANSLATED' && isObjectValuesEmpty(currentValue.values)) {
-            searchResult;
-        } else if (filter === 'TRANSLATED' && !isObjectValuesEmpty(currentValue.values)) {
-            searchResult;
-        } else {
-            searchResult;
+    const filterValue = (accumulator: Translation[], value: Translation) => {
+        if (filter === 'UNTRANSLATED' && isObjectValuesEmpty(value.values)) {
+            accumulator.push(value);
         }
-        return previousValue;
+        if (filter === 'TRANSLATED' && !isObjectValuesEmpty(value.values)) {
+            accumulator.push(value);
+        }
+        if (!filter) {
+            accumulator.push(value);
+        }
+    };
+
+    const filteredTranslations = translations.reduce((accumulator, value: Translation) => {
+        if (search) {
+            searchValue(value) && filterValue(accumulator, value);
+        } else {
+            filterValue(accumulator, value);
+        }
+
+        return accumulator;
     }, [] as Translation[]);
 
     return (
