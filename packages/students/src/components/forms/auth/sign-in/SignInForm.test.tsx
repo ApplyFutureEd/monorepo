@@ -28,6 +28,8 @@ jest.mock('@applyfuture/utils', () => ({
     }))
 }));
 
+jest.mock('aws-amplify');
+
 Auth.signIn = jest.fn().mockImplementation(() => {
     return true;
 });
@@ -119,7 +121,7 @@ describe('SignInForm', () => {
         });
     });
 
-    it('can display the right error message when NotAuthorizedException is thrown', async () => {
+    it('can display the right error message when UserNotConfirmedException is thrown', async () => {
         Auth.signIn = jest.fn().mockImplementation(() => {
             throw new AmplifyError('UserNotConfirmedException');
         });

@@ -3,18 +3,21 @@ import { useAuthenticatedUser } from '@applyfuture/utils';
 import { Auth } from 'aws-amplify';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import { FC, useState } from 'react';
 import { object, string } from 'yup';
 
 const SignInForm: FC = () => {
     const { handleAuth } = useAuthenticatedUser();
     const router = useRouter();
+    const { t } = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
+
     const validationSchema = object().shape({
         email: string()
-            .required('Please enter your email')
-            .email('Something is wrong with this email'),
-        password: string().required('Please enter your password')
+            .required(t('common:error-email-required'))
+            .email(t('common:error-email-format')),
+        password: string().required(t('auth:error-password-required'))
     });
 
     type FormValues = {
@@ -32,11 +35,15 @@ const SignInForm: FC = () => {
                 username: email.toLowerCase()
             });
             handleAuth(user);
-            return router.push((router.query.from as string) || '/');
+            return router.push((router.query.from as string) || '/programs');
         } catch (error) {
-            let message = 'Sorry, an error occurred';
+            console.log(error);
+            let message = t('auth:error-generic-exception');
             if (error.code === 'NotAuthorizedException') {
-                message = 'Email or password is incorrect';
+                message = t('auth:error-not-authorized-exception');
+            }
+            if (error.code === 'UserNotConfirmedException') {
+                return router.push(`/confirm-account?email=${email}`);
             }
             setErrorMessage(message);
         }
@@ -57,7 +64,7 @@ const SignInForm: FC = () => {
                             {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
-                                    label="Email"
+                                    label={t('auth:email')}
                                     type="text"
                                     {...fieldProps}
                                 />
@@ -67,28 +74,20 @@ const SignInForm: FC = () => {
                             {(fieldProps: FieldProps) => (
                                 <Input
                                     autoCapitalize="none"
-                                    label="Password"
+                                    label={t('auth:password')}
                                     type="password"
                                     {...fieldProps}
                                 />
                             )}
                         </Field>
 
-                        <div className="flex items-center justify-between">
-                            <div className="text-sm leading-5">
-                                <a href="mailto:it@applyfuture.com">
-                                    <div className="hover:text-indigo-500 text-indigo-600 focus:underline font-medium focus:outline-none cursor-pointer transition duration-150 ease-in-out">
-                                        Forgot password
-                                    </div>
-                                </a>
-                            </div>
-
+                        <div className="flex items-center justify-end">
                             <Button
                                 disabled={isSubmitting}
                                 isSubmitting={isSubmitting}
                                 type="submit"
                                 variant="primary">
-                                Sign In
+                                {t('auth:sign-in')}
                             </Button>
                         </div>
                         {errorMessage && (

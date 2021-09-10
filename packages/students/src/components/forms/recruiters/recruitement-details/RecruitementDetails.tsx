@@ -30,6 +30,10 @@ const RecruitementDetails: FC<Props> = (props) => {
         );
     };
 
+    const handleClick = () => {
+        scrollToErrors(errors);
+    };
+
     const countriesOptions = countries.map((country) => ({
         label: t(`common:${country.label}`),
         value: country.value
@@ -266,9 +270,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                         startIcon={faPaperPlane}
                         type="submit"
                         variant="primary"
-                        onClick={() => {
-                            scrollToErrors(errors);
-                        }}>
+                        onClick={handleClick}>
                         {t('landing:contact-form-submit-button')}
                     </Button>
                 )}

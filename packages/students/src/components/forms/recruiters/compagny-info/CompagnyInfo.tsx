@@ -20,6 +20,11 @@ const CompagnyInfo: FC<Props> = (props) => {
         return !formValues.compagnyName || !formValues.email;
     };
 
+    const handleClick = () => {
+        scrollToErrors(errors);
+        handleNextStep();
+    };
+
     return (
         <div className="space-y-6">
             <Field id="compagnyName" name="compagnyName">
@@ -65,14 +70,7 @@ const CompagnyInfo: FC<Props> = (props) => {
             </Field>
 
             <div className="flex justify-end">
-                <Button
-                    disabled={validate(values)}
-                    endIcon={faArrowRight}
-                    type="button"
-                    onClick={() => {
-                        scrollToErrors(errors);
-                        handleNextStep();
-                    }}>
+                <Button disabled={validate(values)} endIcon={faArrowRight} onClick={handleClick}>
                     {t('common:next-step')}
                 </Button>
             </div>
