@@ -1,27 +1,13 @@
-import { useWindowSize } from '@applyfuture/utils';
+import { namespaces, useWindowSize } from '@applyfuture/utils';
 import { faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { capitalize } from 'lodash';
 import { FC, useEffect, useState } from 'react';
 
 type Props = {
     handleSelected: (tab: string) => void;
     selected: string;
 };
-
-export const namespaces = [
-    'All',
-    'Account',
-    'Application',
-    'Auth',
-    'Common',
-    'Help',
-    'Landing',
-    'Navigation',
-    'Profile',
-    'Programs',
-    'Recruiters',
-    'Schools'
-];
 
 const Tabs: FC<Props> = (props) => {
     const { handleSelected, selected } = props;
@@ -116,15 +102,15 @@ const Tabs: FC<Props> = (props) => {
                     <div className="px-4 py-2 sm:px-6">
                         <div className="sm:flex-no-wrap flex flex-wrap items-center justify-between">
                             <div className="flex -mb-px space-x-4">
-                                {namespaces.map((tab, i) => (
-                                    <span key={i} id={`nav-tab-${i}`}>
+                                {['all', ...namespaces].map((namespace, i) => (
+                                    <span key={i} id={`nav-namespace.label-${i}`}>
                                         <button
                                             key={i}
                                             className={`${baseClasses} ${
-                                                selected === tab ? selectedClasses : ''
+                                                selected === namespace ? selectedClasses : ''
                                             }`}
-                                            onClick={() => handleSelected(tab)}>
-                                            {tab}
+                                            onClick={() => handleSelected(namespace)}>
+                                            {capitalize(namespace)}
                                         </button>
                                     </span>
                                 ))}

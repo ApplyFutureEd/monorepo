@@ -49,8 +49,8 @@ const TranslationForm: FC<Props> = (props) => {
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
 
     const namespaceOptions = namespaces.map((namespace) => ({
-        label: namespace.label,
-        value: namespace.value
+        label: namespace,
+        value: namespace
     }));
 
     const namespaceInput = (

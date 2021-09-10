@@ -39,6 +39,7 @@ export * from './helpers/isBrowser';
 export * from './helpers/locales';
 export * from './helpers/markdown';
 export * from './helpers/scrollToErrors';
+export * from './helpers/object';
 export * from './helpers/profile';
 export * from './helpers/ssr';
 export * from './helpers/tests';
