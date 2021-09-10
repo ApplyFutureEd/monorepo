@@ -147,15 +147,18 @@ const Translation: FC<Props> = (props) => {
         }
     };
 
-    const filteredTranslations = translations.reduce((accumulator, value: Translation) => {
-        if (search) {
-            searchValue(value) && filterValue(accumulator, value);
-        } else {
-            filterValue(accumulator, value);
-        }
+    const filteredTranslations = translations.reduce(
+        (accumulator: Translation[], value: Translation) => {
+            if (search) {
+                searchValue(value) && filterValue(accumulator, value);
+            } else {
+                filterValue(accumulator, value);
+            }
 
-        return accumulator;
-    }, [] as Translation[]);
+            return accumulator;
+        },
+        []
+    );
 
     return (
         <>
