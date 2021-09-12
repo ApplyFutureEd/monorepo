@@ -1,28 +1,10 @@
-import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Help from '@pages/help';
+import FrequentlyAskedQuestions from '@components/help/frequently-asked-questions/FrequentlyAskedQuestions';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FC } from 'react';
 
-jest.mock('@applyfuture/ui', () => ({
-    ...(jest.requireActual('@applyfuture/ui') as Record<string, FC>),
-    Header: jest.fn().mockImplementation(() => <div />)
-}));
-
-const MockedDashboardLayout: FC = (props) => {
-    return <div>{props.children}</div>;
-};
-
-jest.mock('@components/layouts/dashboard-layout/DashboardLayout', () => ({
-    __esModule: true,
-    default: jest.fn()
-}));
-
-((DashboardLayout as unknown) as any).mockImplementation(MockedDashboardLayout);
-
-describe.skip('Help', () => {
+describe('FrequentlyAskedQuestions', () => {
     it('can render without crashing', () => {
-        render(<Help />);
+        render(<FrequentlyAskedQuestions />);
 
         const heading = screen.getAllByRole('heading')[0];
 
@@ -30,7 +12,7 @@ describe.skip('Help', () => {
     });
 
     it('can open a question when the title is clicked', async () => {
-        render(<Help />);
+        render(<FrequentlyAskedQuestions />);
 
         const question = screen.getByText('help:question-1');
         const answer = screen.getByText('help:answer-1-p-1');
@@ -43,7 +25,7 @@ describe.skip('Help', () => {
     });
 
     it('can close a question when the title is clicked again', async () => {
-        render(<Help />);
+        render(<FrequentlyAskedQuestions />);
 
         const question = screen.getByText('help:question-1');
         const answer = screen.getByText('help:answer-1-p-1');
