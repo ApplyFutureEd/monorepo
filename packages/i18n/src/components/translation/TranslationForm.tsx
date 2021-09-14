@@ -41,7 +41,8 @@ const TranslationForm: FC<Props> = (props) => {
             await API.post('rest', '/i18n/save', {
                 body: { ...values, namespace: values.namespace.toLowerCase() }
             });
-            // fetchAndSetNamespace(values.namespace)
+            // si dans "All" alors fetchAndSetAllNamespaces()
+            // sinon fetchAndSetNamespace(values.namespace)
             toast({
                 title: 'The translation was successfully added',
                 variant: 'success'
@@ -92,7 +93,7 @@ const TranslationForm: FC<Props> = (props) => {
 
     return (
         <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit}>
-            {() => {
+            {({ isSubmitting }) => {
                 return (
                     <div className={newForm ? formClasses : baseClasses}>
                         <Form className="space-y-6">
@@ -157,7 +158,11 @@ const TranslationForm: FC<Props> = (props) => {
                                 </div>
                             </div>
                             {newForm && (
-                                <Button startIcon={faPlus} type="submit" variant="primary">
+                                <Button
+                                    isSubmitting={isSubmitting}
+                                    startIcon={faPlus}
+                                    type="submit"
+                                    variant="primary">
                                     Add Translation
                                 </Button>
                             )}
