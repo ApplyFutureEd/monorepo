@@ -36,7 +36,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             });
 
         // 1. retrieve JSON files according to the namespace
-        const fetchNamespace = async (namespace: string) => {
+        const fetchNamespaceFiles = async (namespace: string) => {
             const promises: Array<Promise<any>> = [];
 
             locales.forEach((locale) => {
@@ -53,15 +53,47 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             return Promise.all(promises);
         };
 
-        const files = await fetchNamespace(namespace);
+        const files = await fetchNamespaceFiles(namespace);
 
-        console.log(files);
-        console.log(files[0].en);
+        const formattedFiles = files.reduce((accumulator, value: { [locale: string]: string }) => {
+            const key = Object.keys(value)[0];
+            return Object.assign(accumulator, { [key]: value[key] });
+        }, {});
 
         // 2. Update the JSON files with the translation received
-        // a. read file content
-        // b. translation key exist
-        // c. translation does not exist
+        const updateNamespaceFiles = async (
+            namespace: string,
+            translationKey: string,
+            values: { [key: string]: string }
+        ) => {
+            const promises: Array<Promise<any>> = [];
+
+            locales.forEach((locale) => {
+                const updatedFile = {
+                    ...JSON.parse(formattedFiles[locale]),
+                    [translationKey]: values[locale]
+                };
+
+                console.log(updatedFile);
+
+                promises.push(
+                    s3.putObject({
+                        Body: JSON.stringify(updatedFile),
+                        Bucket: 'applyfuture-students-content162403-dev',
+                        ContentType: 'application/json',
+                        Key: `public/i18n/${locale}/${namespace}.json`
+                    })
+                );
+            });
+
+            return Promise.all(promises);
+        };
+
+        await updateNamespaceFiles(namespace, translationKey, {
+            en: englishTranslation,
+            fr: frenchTranslation,
+            zh: chineseTranslation
+        });
 
         return {
             body: JSON.stringify(event.body),

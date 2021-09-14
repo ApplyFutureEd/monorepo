@@ -41,6 +41,7 @@ const TranslationForm: FC<Props> = (props) => {
             await API.post('rest', '/i18n/save', {
                 body: { ...values, namespace: values.namespace.toLowerCase() }
             });
+            // fetchAndSetNamespace(values.namespace)
             toast({
                 title: 'The translation was successfully added',
                 variant: 'success'

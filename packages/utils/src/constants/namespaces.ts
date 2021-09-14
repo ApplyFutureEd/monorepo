@@ -1,4 +1,5 @@
 export const namespaces = [
+    'account',
     'application',
     'auth',
     'common',

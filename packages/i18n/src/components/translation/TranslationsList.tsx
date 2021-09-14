@@ -33,7 +33,7 @@ type Translations = {
     [locale: string]: Translation;
 };
 
-const Translation: FC<Props> = (props) => {
+const TranslationsList: FC<Props> = (props) => {
     const { filter, search, selected } = props;
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [translations, setTranslations] = useState<Array<Translation>>([]);
@@ -49,6 +49,7 @@ const Translation: FC<Props> = (props) => {
         locales.forEach((locale) => {
             promises.push(
                 Storage.get(`i18n/${locale}/${namespace}.json`, {
+                    cacheControl: 'no-cache',
                     download: true
                 }).then(async (data: any) => ({ [locale]: await data.Body.text() }))
             );
@@ -109,18 +110,26 @@ const Translation: FC<Props> = (props) => {
         }));
     };
 
+    const fetchAndSetAllNamespaces = async () => {
+        const files = await fetchAllNamespaces();
+        const flattenFiles = flatten(files);
+        const translations = formatTranslationsFromFiles(flattenFiles);
+        setTranslations(translations);
+    };
+
+    const fetchAndSetNamespace = async (namespace: string) => {
+        const files = await fetchNamespace(namespace);
+        const translations = formatTranslationsFromFiles(files);
+        setTranslations(translations);
+    };
+
     useEffect(() => {
         const fetchTranslations = async () => {
             setIsLoading(true);
             if (selected === 'all') {
-                const files = await fetchAllNamespaces();
-                const flattenFiles = flatten(files);
-                const translations = formatTranslationsFromFiles(flattenFiles);
-                setTranslations(translations);
+                fetchAndSetAllNamespaces();
             } else {
-                const files = await fetchNamespace(selected);
-                const translations = formatTranslationsFromFiles(files);
-                setTranslations(translations);
+                fetchAndSetNamespace(selected);
             }
             setIsLoading(false);
         };
@@ -189,4 +198,4 @@ const Translation: FC<Props> = (props) => {
     );
 };
 
-export default Translation;
+export default TranslationsList;
