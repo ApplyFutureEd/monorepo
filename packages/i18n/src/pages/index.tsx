@@ -1,19 +1,19 @@
 import { withPrivateAccess } from '@applyfuture/utils';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import Translation from '@components/translation/Translation';
 import TranslationForm from '@components/translation/TranslationForm';
-import { FC, useState } from 'react';
+import TranslationsList from '@components/translation/TranslationsList';
+import React, { FC, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 
 const LandingPage: FC = () => {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState<Filter>(null);
-    const [selected, setSelected] = useState('All');
+    const [selected, setSelected] = useState('all');
     const [displayForm, setDisplayForm] = useState(false);
 
     const handleSearch = (query: string) => {
-        setSearch(query.toLowerCase());
+        setSearch(query.toLowerCase().replace(/ /g, '-'));
     };
 
     const handleFilter = (filter: Filter) => {
@@ -41,7 +41,7 @@ const LandingPage: FC = () => {
             {displayForm && (
                 <TranslationForm newForm handleToggleDisplayForm={handleToggleDisplayForm} />
             )}
-            <Translation filter={filter} search={search} selected={selected} />
+            <TranslationsList filter={filter} search={search} selected={selected} />
         </DashboardLayout>
     );
 };

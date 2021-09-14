@@ -28,6 +28,11 @@ const ContactInfo: FC<Props> = (props) => {
         );
     };
 
+    const handleClick = () => {
+        scrollToErrors(errors);
+        handleNextStep();
+    };
+
     const countriesOptions = countries.map((country) => ({
         label: t(`common:${country.label}`),
         value: country.value
@@ -127,10 +132,7 @@ const ContactInfo: FC<Props> = (props) => {
                     disabled={validate(values)}
                     endIcon={faArrowRight}
                     type="button"
-                    onClick={() => {
-                        scrollToErrors(errors);
-                        handleNextStep();
-                    }}>
+                    onClick={handleClick}>
                     {t('common:next-step')}
                 </Button>
             </div>

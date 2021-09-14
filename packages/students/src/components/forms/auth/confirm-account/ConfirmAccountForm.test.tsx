@@ -1,5 +1,5 @@
 import { AmplifyError } from '@applyfuture/models';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Auth } from 'aws-amplify';
 
@@ -34,6 +34,8 @@ jest.mock('@applyfuture/utils', () => ({
         }
     ])
 }));
+
+jest.mock('aws-amplify');
 
 Auth.confirmSignUp = jest.fn().mockImplementation(() => {
     return true;

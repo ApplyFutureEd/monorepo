@@ -1,6 +1,6 @@
 import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
-import { namespaces } from '@data/namespaces';
+import { namespaces } from '@applyfuture/utils';
 import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
@@ -61,8 +61,8 @@ const TranslationForm: FC<Props> = (props) => {
     const zhFlag = <Flags.CN className="h-4" title="简体中文" />;
 
     const namespaceOptions = namespaces.map((namespace) => ({
-        label: namespace.label,
-        value: namespace.value
+        label: namespace,
+        value: namespace
     }));
 
     const namespaceInput = (
@@ -86,7 +86,7 @@ const TranslationForm: FC<Props> = (props) => {
         </Field>
     );
 
-    const baseClasses = 'my-8 px-6 py-4 border rounded-md shadow';
+    const baseClasses = 'px-6 py-4 border rounded-md shadow';
     const formClasses = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
     return (
@@ -117,7 +117,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="englishTranslation" name="englishTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
@@ -127,7 +131,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="frenchTranslation" name="frenchTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
@@ -137,7 +145,11 @@ const TranslationForm: FC<Props> = (props) => {
                                     <div className="w-full">
                                         <Field id="chineseTranslation" name="chineseTranslation">
                                             {(fieldProps: FieldProps) => (
-                                                <Input isLoading={isLoading} {...fieldProps} />
+                                                <Input
+                                                    isLoading={isLoading}
+                                                    rows={2}
+                                                    {...fieldProps}
+                                                />
                                             )}
                                         </Field>
                                     </div>
