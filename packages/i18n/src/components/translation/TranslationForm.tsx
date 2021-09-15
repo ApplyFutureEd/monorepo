@@ -1,11 +1,12 @@
 import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@applyfuture/utils';
-import { faPlus } from '@fortawesome/pro-light-svg-icons';
+import { faPlus, faSave } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import React, { FC, useState } from 'react';
+import { isEqual } from 'lodash';
+import React, { ChangeEvent, FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
@@ -47,13 +48,16 @@ const TranslationForm: FC<Props> = (props) => {
         translationKey: selected && translationKey ? translationKey : ''
     };
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
-    const [hideUpdateButton, setHideUpdateButton] = useState(false);
 
     const handleDisplayUpdateButton = () => {
         setDisplayUpdateButton(true);
     };
     const handleHideUpdateButton = () => {
-        setHideUpdateButton(true);
+        setDisplayUpdateButton(false);
+    };
+
+    const isDirty = (values: FormValues) => {
+        return !isEqual(initialValues, values);
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -71,7 +75,7 @@ const TranslationForm: FC<Props> = (props) => {
                 variant: 'success'
             });
             handleToggleDisplayForm && handleToggleDisplayForm();
-            handleHideUpdateButton && handleHideUpdateButton();
+            !newForm && handleHideUpdateButton();
         } catch (error) {
             toast({
                 title: 'Something went wrong',
@@ -126,15 +130,29 @@ const TranslationForm: FC<Props> = (props) => {
                                     {newForm ? namespaceSelect : namespaceInput}
                                 </div>
                                 <div className="flex flex-col w-full space-y-2">
-                                    <Field
-                                        id="translationKey"
-                                        name="translationKey"
-                                        validate={handleDisplayUpdateButton}>
+                                    <Field id="translationKey" name="translationKey">
                                         {(fieldProps: FieldProps) => (
                                             <Input
                                                 isLoading={isLoading}
                                                 label="Key"
                                                 {...fieldProps}
+                                                field={{
+                                                    ...fieldProps.field,
+                                                    onChange: (event: ChangeEvent<any>) => {
+                                                        if (
+                                                            isDirty({
+                                                                ...fieldProps.form.values,
+                                                                translationKey: event.target.value
+                                                            })
+                                                        ) {
+                                                            handleDisplayUpdateButton();
+                                                        } else {
+                                                            handleHideUpdateButton();
+                                                        }
+
+                                                        fieldProps.field.onChange(event);
+                                                    }
+                                                }}
                                             />
                                         )}
                                     </Field>
@@ -144,15 +162,30 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : enFlag}
                                     <div className="w-full">
-                                        <Field
-                                            id="englishTranslation"
-                                            name="englishTranslation"
-                                            validate={handleDisplayUpdateButton}>
+                                        <Field id="englishTranslation" name="englishTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
                                                     rows={2}
                                                     {...fieldProps}
+                                                    field={{
+                                                        ...fieldProps.field,
+                                                        onChange: (event: ChangeEvent<any>) => {
+                                                            if (
+                                                                isDirty({
+                                                                    ...fieldProps.form.values,
+                                                                    englishTranslation:
+                                                                        event.target.value
+                                                                })
+                                                            ) {
+                                                                handleDisplayUpdateButton();
+                                                            } else {
+                                                                handleHideUpdateButton();
+                                                            }
+
+                                                            fieldProps.field.onChange(event);
+                                                        }
+                                                    }}
                                                 />
                                             )}
                                         </Field>
@@ -161,15 +194,30 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : frFlag}
                                     <div className="w-full">
-                                        <Field
-                                            id="frenchTranslation"
-                                            name="frenchTranslation"
-                                            validate={handleDisplayUpdateButton}>
+                                        <Field id="frenchTranslation" name="frenchTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
                                                     rows={2}
                                                     {...fieldProps}
+                                                    field={{
+                                                        ...fieldProps.field,
+                                                        onChange: (event: ChangeEvent<any>) => {
+                                                            if (
+                                                                isDirty({
+                                                                    ...fieldProps.form.values,
+                                                                    frenchTranslation:
+                                                                        event.target.value
+                                                                })
+                                                            ) {
+                                                                handleDisplayUpdateButton();
+                                                            } else {
+                                                                handleHideUpdateButton();
+                                                            }
+
+                                                            fieldProps.field.onChange(event);
+                                                        }
+                                                    }}
                                                 />
                                             )}
                                         </Field>
@@ -178,25 +226,41 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : zhFlag}
                                     <div className="w-full">
-                                        <Field
-                                            id="chineseTranslation"
-                                            name="chineseTranslation"
-                                            validate={handleDisplayUpdateButton}>
+                                        <Field id="chineseTranslation" name="chineseTranslation">
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
                                                     rows={2}
                                                     {...fieldProps}
+                                                    field={{
+                                                        ...fieldProps.field,
+                                                        onChange: (event: ChangeEvent<any>) => {
+                                                            if (
+                                                                isDirty({
+                                                                    ...fieldProps.form.values,
+                                                                    chineseTranslation:
+                                                                        event.target.value
+                                                                })
+                                                            ) {
+                                                                handleDisplayUpdateButton();
+                                                            } else {
+                                                                handleHideUpdateButton();
+                                                            }
+
+                                                            fieldProps.field.onChange(event);
+                                                        }
+                                                    }}
                                                 />
                                             )}
                                         </Field>
                                     </div>
                                 </div>
                             </div>
-                            {!newForm && displayUpdateButton && !hideUpdateButton && (
+                            {!newForm && displayUpdateButton && (
                                 <div>
                                     <Button
                                         isSubmitting={isSubmitting}
+                                        startIcon={faSave}
                                         type="submit"
                                         variant="primary"
                                         onClick={() => validateOnChange}>
@@ -210,7 +274,7 @@ const TranslationForm: FC<Props> = (props) => {
                                     startIcon={faPlus}
                                     type="submit"
                                     variant="primary">
-                                    Add Translation
+                                    Add
                                 </Button>
                             )}
                         </Form>

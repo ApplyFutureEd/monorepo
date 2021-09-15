@@ -46,9 +46,11 @@ const handler = async (event) => {
             const promises = [];
             locales.forEach((locale) => {
                 const updatedFile = Object.assign(Object.assign({}, JSON.parse(formattedFiles[locale])), { [translationKey]: values[locale] });
-                console.log(updatedFile);
+                const sortedUpdatedFile = Object.keys(updatedFile)
+                    .sort()
+                    .reduce((accumulator, key) => (Object.assign(Object.assign({}, accumulator), { [key]: updatedFile[key] })), {});
                 promises.push(s3.putObject({
-                    Body: JSON.stringify(updatedFile),
+                    Body: JSON.stringify(sortedUpdatedFile),
                     Bucket: 'applyfuture-students-content162403-dev',
                     ContentType: 'application/json',
                     Key: `public/i18n/${locale}/${namespace}.json`

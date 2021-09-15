@@ -74,11 +74,19 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                     [translationKey]: values[locale]
                 };
 
-                console.log(updatedFile);
+                const sortedUpdatedFile = Object.keys(updatedFile)
+                    .sort()
+                    .reduce(
+                        (accumulator, key) => ({
+                            ...accumulator,
+                            [key]: updatedFile[key]
+                        }),
+                        {}
+                    );
 
                 promises.push(
                     s3.putObject({
-                        Body: JSON.stringify(updatedFile),
+                        Body: JSON.stringify(sortedUpdatedFile),
                         Bucket: 'applyfuture-students-content162403-dev',
                         ContentType: 'application/json',
                         Key: `public/i18n/${locale}/${namespace}.json`
