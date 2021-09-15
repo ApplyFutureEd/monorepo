@@ -5,11 +5,13 @@ import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
     handleToggleDisplayForm?: () => void;
+    fetchAndSetAllNamespaces?: () => void;
+    fetchAndSetNamespace?: (namespace: string) => void;
     isLoading?: boolean;
     newForm: boolean;
     selected?: string;
@@ -18,7 +20,16 @@ type Props = {
 };
 
 const TranslationForm: FC<Props> = (props) => {
-    const { handleToggleDisplayForm, isLoading, newForm, selected, translationKey, value } = props;
+    const {
+        handleToggleDisplayForm,
+        isLoading,
+        newForm,
+        selected,
+        translationKey,
+        value,
+        fetchAndSetAllNamespaces,
+        fetchAndSetNamespace
+    } = props;
 
     type FormValues = {
         chineseTranslation: string;
@@ -35,19 +46,32 @@ const TranslationForm: FC<Props> = (props) => {
         namespace: selected ? selected : '',
         translationKey: selected && translationKey ? translationKey : ''
     };
+    const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
+    const [hideUpdateButton, setHideUpdateButton] = useState(false);
+
+    const handleDisplayUpdateButton = () => {
+        setDisplayUpdateButton(true);
+    };
+    const handleHideUpdateButton = () => {
+        setHideUpdateButton(true);
+    };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
             await API.post('rest', '/i18n/save', {
                 body: { ...values, namespace: values.namespace.toLowerCase() }
             });
-            // si dans "All" alors fetchAndSetAllNamespaces()
-            // sinon fetchAndSetNamespace(values.namespace)
+            if (selected === 'all') {
+                fetchAndSetAllNamespaces && fetchAndSetAllNamespaces();
+            } else {
+                fetchAndSetNamespace && fetchAndSetNamespace(values.namespace);
+            }
             toast({
                 title: 'The translation was successfully added',
                 variant: 'success'
             });
             handleToggleDisplayForm && handleToggleDisplayForm();
+            handleHideUpdateButton && handleHideUpdateButton();
         } catch (error) {
             toast({
                 title: 'Something went wrong',
@@ -93,7 +117,7 @@ const TranslationForm: FC<Props> = (props) => {
 
     return (
         <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit}>
-            {({ isSubmitting }) => {
+            {({ isSubmitting, validateOnChange }) => {
                 return (
                     <div className={newForm ? formClasses : baseClasses}>
                         <Form className="space-y-6">
@@ -102,7 +126,10 @@ const TranslationForm: FC<Props> = (props) => {
                                     {newForm ? namespaceSelect : namespaceInput}
                                 </div>
                                 <div className="flex flex-col w-full space-y-2">
-                                    <Field id="translationKey" name="translationKey">
+                                    <Field
+                                        id="translationKey"
+                                        name="translationKey"
+                                        validate={handleDisplayUpdateButton}>
                                         {(fieldProps: FieldProps) => (
                                             <Input
                                                 isLoading={isLoading}
@@ -117,7 +144,10 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : enFlag}
                                     <div className="w-full">
-                                        <Field id="englishTranslation" name="englishTranslation">
+                                        <Field
+                                            id="englishTranslation"
+                                            name="englishTranslation"
+                                            validate={handleDisplayUpdateButton}>
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
@@ -131,7 +161,10 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : frFlag}
                                     <div className="w-full">
-                                        <Field id="frenchTranslation" name="frenchTranslation">
+                                        <Field
+                                            id="frenchTranslation"
+                                            name="frenchTranslation"
+                                            validate={handleDisplayUpdateButton}>
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
@@ -145,7 +178,10 @@ const TranslationForm: FC<Props> = (props) => {
                                 <div className="flex items-center space-x-4">
                                     {isLoading ? skeletonFlag : zhFlag}
                                     <div className="w-full">
-                                        <Field id="chineseTranslation" name="chineseTranslation">
+                                        <Field
+                                            id="chineseTranslation"
+                                            name="chineseTranslation"
+                                            validate={handleDisplayUpdateButton}>
                                             {(fieldProps: FieldProps) => (
                                                 <Input
                                                     isLoading={isLoading}
@@ -157,6 +193,17 @@ const TranslationForm: FC<Props> = (props) => {
                                     </div>
                                 </div>
                             </div>
+                            {!newForm && displayUpdateButton && !hideUpdateButton && (
+                                <div>
+                                    <Button
+                                        isSubmitting={isSubmitting}
+                                        type="submit"
+                                        variant="primary"
+                                        onClick={() => validateOnChange}>
+                                        Update
+                                    </Button>
+                                </div>
+                            )}
                             {newForm && (
                                 <Button
                                     isSubmitting={isSubmitting}
