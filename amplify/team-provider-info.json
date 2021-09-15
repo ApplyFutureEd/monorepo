@@ -25,31 +25,35 @@
       "function": {
         "postusersignup": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/postusersignup-584941754463476c676d-build.zip"
+          "s3Key": "amplify-builds/postusersignup-3068705478746a454467-build.zip"
         },
         "applicationdocument": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationdocument-304d7043455669655434-build.zip"
+          "s3Key": "amplify-builds/applicationdocument-534f68744f4646726661-build.zip"
         },
         "contactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/contactform-417a38466e344a434c4d-build.zip"
+          "s3Key": "amplify-builds/contactform-5a444c59625a55595851-build.zip"
         },
         "recruiterscontactform": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/recruiterscontactform-65314969686d422b7845-build.zip"
+          "s3Key": "amplify-builds/recruiterscontactform-326d743557525463595a-build.zip"
         },
         "feespayment": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/feespayment-7252514f384765355a6a-build.zip"
+          "s3Key": "amplify-builds/feespayment-3368636530693449586b-build.zip"
         },
         "applicationarchive": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/applicationarchive-6a7a5a6966487a454e56-build.zip"
+          "s3Key": "amplify-builds/applicationarchive-61395443746b69753675-build.zip"
         },
         "emailnotification": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/emailnotification-476470614b5a49776b47-build.zip"
+          "s3Key": "amplify-builds/emailnotification-36655754363558746553-build.zip"
+        },
+        "i18nsavetranslation": {
+          "deploymentBucketName": "amplify-students-dev-162403-deployment",
+          "s3Key": "amplify-builds/i18nsavetranslation-54736c4d55466d644178-build.zip"
         }
       }
     }

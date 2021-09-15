@@ -39,13 +39,12 @@ const ContactForm: FC = () => {
             await API.post('rest', '/contact-form', {
                 body: values
             });
-            actions.setSubmitting(false);
             setSubmitted(true);
         } catch (error) {
             setErrorMessage(t('landing:contact-form-error'));
-            actions.setSubmitting(false);
             setSubmitted(false);
         }
+        actions.setSubmitting(false);
     };
 
     return (

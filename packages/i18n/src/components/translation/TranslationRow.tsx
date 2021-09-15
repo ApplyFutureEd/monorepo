@@ -1,10 +1,11 @@
+import { Translation } from '@pages/index';
 import React, { CSSProperties, FC } from 'react';
 
 import TranslationForm from './TranslationForm';
 
 type Props = {
     index: number;
-    translations: any[];
+    translations: Translation[];
     selected: string;
     style: CSSProperties;
 };

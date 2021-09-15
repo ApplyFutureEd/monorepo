@@ -33,7 +33,7 @@ const SignInForm: FC = () => {
             });
             handleAuth(user);
             return router.push((router.query.from as string) || '/');
-        } catch (error) {
+        } catch (error: any) {
             let message = 'Sorry, an error occurred';
             if (error.code === 'NotAuthorizedException') {
                 message = 'Email or password is incorrect';

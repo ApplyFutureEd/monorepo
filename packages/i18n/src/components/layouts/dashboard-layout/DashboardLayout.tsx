@@ -16,7 +16,7 @@ type Props = {
     handleSearch: (query: string) => void;
     handleFilter: (filter: Filter) => void;
     handleSelected: (tab: string) => void;
-    handleDisplayForm: () => void;
+    handleToggleDisplayForm: () => void;
     title: string;
     selected: string;
     filter: Filter;
@@ -30,7 +30,7 @@ const DashboardLayout: FC<Props> = (props) => {
         handleSearch,
         handleFilter,
         handleSelected,
-        handleDisplayForm,
+        handleToggleDisplayForm,
         title,
         selected,
         filter
@@ -135,14 +135,14 @@ const DashboardLayout: FC<Props> = (props) => {
                                         <Button
                                             startIcon={faPlus}
                                             variant="primary"
-                                            onClick={handleDisplayForm}>
+                                            onClick={handleToggleDisplayForm}>
                                             New
                                         </Button>
                                     ) : (
                                         <Button
                                             startIcon={faTimes}
                                             variant="danger"
-                                            onClick={handleDisplayForm}>
+                                            onClick={handleToggleDisplayForm}>
                                             Cancel
                                         </Button>
                                     )}

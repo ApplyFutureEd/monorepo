@@ -47,6 +47,14 @@
                 "open": true
             },
             "policyResourceName": "/email-notification"
+        },
+        {
+            "name": "/i18n/save",
+            "lambdaFunction": "i18nsavetranslation",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/i18n/save"
         }
     ],
     "resourceName": "rest",
@@ -69,6 +77,9 @@
         },
         {
             "lambdaFunction": "emailnotification"
+        },
+        {
+            "lambdaFunction": "i18nsavetranslation"
         }
     ],
     "privacy": {
@@ -125,7 +136,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "i18nsavetranslation",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "d8120359"
+    "uuid": "6a21586a"
 }
