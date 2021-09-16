@@ -2,10 +2,11 @@ import { DropdownItem, Head, Header, MobileMenu, Transition, UserMenu } from '@a
 import { Button } from '@applyfuture/ui';
 import { routes } from '@components/layouts/routes';
 import Search from '@components/search/Search';
+import Statistics from '@components/statistics/Statistics';
 import Tabs from '@components/tabs/Tabs';
 import { faBars, faFilter, faPlus, faSignOut, faTimes } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Filter } from '@pages/index';
+import { Filter, Translation } from '@pages/index';
 import { Auth } from 'aws-amplify';
 import { FC, ReactNode, useState } from 'react';
 
@@ -17,9 +18,11 @@ type Props = {
     handleFilter: (filter: Filter) => void;
     handleSelected: (tab: string) => void;
     handleToggleDisplayForm: () => void;
+    isLoading: boolean;
     title: string;
     selected: string;
     filter: Filter;
+    translations: Translation[];
 };
 
 const DashboardLayout: FC<Props> = (props) => {
@@ -31,9 +34,11 @@ const DashboardLayout: FC<Props> = (props) => {
         handleFilter,
         handleSelected,
         handleToggleDisplayForm,
+        isLoading,
         title,
         selected,
-        filter
+        filter,
+        translations
     } = props;
 
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -99,6 +104,7 @@ const DashboardLayout: FC<Props> = (props) => {
 
             <main className="main pt-header min-h-screen bg-gray-100">
                 <div className="mx-auto py-0 max-w-7xl sm:px-6 md:py-6 lg:px-8">
+                    <Statistics isLoading={isLoading} translations={translations} />
                     <Tabs handleSelected={handleSelected} selected={selected} />
                     <div className="flex flex-col px-0 bg-white sm:px-8">
                         <div className="flex flex-col mt-8 px-2 space-y-4 sm:px-0 sm:space-y-0 md:flex-row md:items-center md:space-x-4">

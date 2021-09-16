@@ -152,8 +152,10 @@ const LandingPage: FC = () => {
             handleSearch={handleSearch}
             handleSelected={handleSelected}
             handleToggleDisplayForm={handleToggleDisplayForm}
+            isLoading={isLoading}
             selected={selected}
-            title="Dashboard">
+            title="Dashboard"
+            translations={translations}>
             {displayForm && (
                 <TranslationForm
                     newForm
