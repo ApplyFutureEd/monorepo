@@ -14,38 +14,48 @@ type Props = {
 
 const Statistics: FC<Props> = (props) => {
     const { isLoading, translations } = props;
-    const totalTranslations = translations.length;
 
-    const getNonCompleteTranslations = (translations: Translation[]) => {
-        const isCompleteValue: Array<any> = [];
-        const nonCompleteValue: Array<any> = [];
-        translations.forEach((translation) => {
+    const getTotalTranslation = (file: Translation[]) => file.length;
+
+    const getNonCompleteTranslations = (file: Translation[]) => {
+        const stateValues: Array<any> = [];
+        const nonCompleteValues: Array<any> = [];
+        file.forEach((translation) => {
             const value = Object.values(translation.values);
             // value has 3 values
             // value is an object
-            isCompleteValue.push(Object.entries(value).some(([_k, value]) => value === ''));
+            stateValues.push(Object.entries(value).some(([_k, value]) => value === ''));
         });
-        for (const value of isCompleteValue) {
+        for (const value of stateValues) {
             if (value === true) {
-                nonCompleteValue.push(value);
+                nonCompleteValues.push(value);
             }
         }
-        return nonCompleteValue;
+        return nonCompleteValues;
     };
 
-    const nonCompleteTranslations = getNonCompleteTranslations(translations).length;
-    const completeTranslations = totalTranslations - nonCompleteTranslations;
-    const completeTranslationsPercentage = Math.floor(
-        (completeTranslations * 100) / totalTranslations
-    );
+    const getCompleteTranslations = (totalValues: number, nonCompleteValues: number) =>
+        totalValues - nonCompleteValues;
 
-    // TODO : useState ? to be synchronous with data manipulation
+    const getTranslationsPercentage = (completeValues: number, totalValues: number) =>
+        Math.floor((completeValues * 100) / totalValues);
+
+    const totalTranslations = getTotalTranslation(translations);
+    const nonCompleteTranslations = getNonCompleteTranslations(translations).length;
+    const completeTranslations = getCompleteTranslations(
+        totalTranslations,
+        nonCompleteTranslations
+    );
+    const completeTranslationsPercentage = getTranslationsPercentage(
+        completeTranslations,
+        totalTranslations
+    );
 
     return (
         <div>
             <h1>Statistics</h1>
             <p>Total translations : {totalTranslations}</p>
-            <p>completeTranslations : {completeTranslations}</p>
+            <p>complete translations : {completeTranslations}</p>
             <p>Non complete translations : {nonCompleteTranslations}</p>
             <p>Completion : {completeTranslationsPercentage} %</p>
         </div>
