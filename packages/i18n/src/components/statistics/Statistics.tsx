@@ -1,3 +1,4 @@
+import { isObjectValuesEmpty } from '@applyfuture/utils';
 import { Translation } from '@pages/index';
 import { FC } from 'react';
 
@@ -6,58 +7,71 @@ type Props = {
     translations: Translation[];
 };
 
-// expected :
-// nb traductions
-// nb complete
-// nb incomplete
-// % completion
-
 const Statistics: FC<Props> = (props) => {
     const { isLoading, translations } = props;
 
-    const getTotalTranslation = (file: Translation[]) => file.length;
-
-    const getNonCompleteTranslations = (file: Translation[]) => {
-        const stateValues: Array<any> = [];
-        const nonCompleteValues: Array<any> = [];
-        file.forEach((translation) => {
-            const value = Object.values(translation.values);
-            // value has 3 values
-            // value is an object
-            stateValues.push(Object.entries(value).some(([_k, value]) => value === ''));
-        });
-        for (const value of stateValues) {
-            if (value === true) {
-                nonCompleteValues.push(value);
+    const uncompleteTranslations = translations.reduce(
+        (accumulator: Translation[], value: Translation) => {
+            if (isObjectValuesEmpty(value.values)) {
+                accumulator.push(value);
             }
-        }
-        return nonCompleteValues;
-    };
-
-    const getCompleteTranslations = (totalValues: number, nonCompleteValues: number) =>
-        totalValues - nonCompleteValues;
-
-    const getTranslationsPercentage = (completeValues: number, totalValues: number) =>
-        Math.floor((completeValues * 100) / totalValues);
-
-    const totalTranslations = getTotalTranslation(translations);
-    const nonCompleteTranslations = getNonCompleteTranslations(translations).length;
-    const completeTranslations = getCompleteTranslations(
-        totalTranslations,
-        nonCompleteTranslations
+            return accumulator;
+        },
+        []
     );
-    const completeTranslationsPercentage = getTranslationsPercentage(
-        completeTranslations,
-        totalTranslations
+    const completeTranslations = translations.length - uncompleteTranslations.length;
+    const completeTranslationsPercentage = Math.floor(
+        (completeTranslations * 100) / translations.length
     );
 
     return (
-        <div>
-            <h1>Statistics</h1>
-            <p>Total translations : {totalTranslations}</p>
-            <p>complete translations : {completeTranslations}</p>
-            <p>Non complete translations : {nonCompleteTranslations}</p>
-            <p>Completion : {completeTranslationsPercentage} %</p>
+        <div className="pt-8 bg-white border-b border-gray-200 sm:pt-0">
+            <div className="pb-12 bg-white sm:pb-0">
+                <div className="relative">
+                    <div className="white absolute inset-0 h-1/2" />
+                    <div className="relative mx-auto px-4 max-w-7xl sm:px-6 lg:px-8">
+                        <div className="mx-auto max-w-5xl">
+                            <dl className="bg-white rounded-lg sm:grid sm:grid-cols-4">
+                                <div className="flex flex-col p-4 text-center border-b border-gray-100 sm:border-0">
+                                    <dt className="order-2 mt-1 text-gray-500 font-sans text-sm font-medium leading-5">
+                                        Translations
+                                    </dt>
+                                    <dd className="order-1 text-indigo-600 text-3xl font-extrabold">
+                                        {translations.length}
+                                    </dd>
+                                </div>
+
+                                <div className="flex flex-col p-4 text-center border-b border-t border-gray-100 sm:border-0">
+                                    <dt className="order-2 mt-1 text-gray-500 font-sans text-sm font-medium leading-5">
+                                        Complete
+                                    </dt>
+                                    <dd className="order-1 text-indigo-600 text-3xl font-extrabold">
+                                        {completeTranslations}
+                                    </dd>
+                                </div>
+
+                                <div className="flex flex-col p-4 text-center border-t border-gray-100 sm:border-0">
+                                    <dt className="order-2 mt-1 text-gray-500 font-sans text-sm font-medium leading-5">
+                                        Uncomplete
+                                    </dt>
+                                    <dd className="order-1 text-indigo-600 text-3xl font-extrabold">
+                                        {uncompleteTranslations.length}
+                                    </dd>
+                                </div>
+
+                                <div className="flex flex-col p-4 text-center border-t border-gray-100 sm:border-0">
+                                    <dt className="order-2 mt-1 text-gray-500 font-sans text-sm font-medium leading-5">
+                                        Completion
+                                    </dt>
+                                    <dd className="order-1 text-indigo-600 text-3xl font-extrabold">
+                                        {completeTranslationsPercentage} %
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
