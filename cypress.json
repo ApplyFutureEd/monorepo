@@ -10,6 +10,7 @@
         "2-onboarding.spec.ts",
         "3-profile.spec.ts",
         "4-application.spec.ts",
-        "5-legal.spec.ts"
+        "5-legal.spec.ts",
+        "6-q&a.spec.ts"
     ]
 }
