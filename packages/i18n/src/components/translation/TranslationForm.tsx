@@ -1,7 +1,7 @@
 import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@applyfuture/utils';
-import { faPlus, faSave } from '@fortawesome/pro-light-svg-icons';
+import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -84,6 +84,28 @@ const TranslationForm: FC<Props> = (props) => {
         }
         actions.setSubmitting(false);
     };
+
+    /* const handleDelete = async (values: FormValues) => {
+        console.log('deleted');
+        try {
+            await API.post('rest', '/i18n/delete', {
+                body: {
+                    namespace: values.namespace,
+                    translationKey: values.translationKey
+                }
+            });
+            toast({
+                title: 'The translation was successfully deleted',
+                variant: 'success'
+            });
+        } catch (error) {
+            toast({
+                title: 'Something went wrong',
+                variant: 'error'
+            });
+            console.log(error);
+        }
+    }; */
 
     const skeletonFlag = <Skeleton height={18} width={22} />;
     const enFlag = <Flags.US className="h-4" title="English" />;
@@ -257,17 +279,21 @@ const TranslationForm: FC<Props> = (props) => {
                                 </div>
                             </div>
                             {!newForm && displayUpdateButton && (
-                                <div>
-                                    <Button
-                                        isSubmitting={isSubmitting}
-                                        startIcon={faSave}
-                                        type="submit"
-                                        variant="primary"
-                                        onClick={() => validateOnChange}>
-                                        Update
-                                    </Button>
-                                </div>
+                                <Button
+                                    isSubmitting={isSubmitting}
+                                    startIcon={faSave}
+                                    type="submit"
+                                    variant="primary"
+                                    onClick={() => validateOnChange}>
+                                    Update
+                                </Button>
                             )}
+                            <Button
+                                startIcon={faTrash}
+                                type="button"
+                                variant="secondary"
+                                onClick={() => console.log('deleted')}
+                            />
                             {newForm && (
                                 <Button
                                     isSubmitting={isSubmitting}
