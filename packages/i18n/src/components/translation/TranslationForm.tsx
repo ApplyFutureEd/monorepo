@@ -291,7 +291,14 @@ const TranslationForm: FC<Props> = (props) => {
                                         startIcon={faTrash}
                                         type="button"
                                         variant="secondary"
-                                        onClick={() => handleDelete(values)}>
+                                        onClick={() => {
+                                            const confirmDelete = window.confirm(
+                                                'Do you really want to delete this translation ?'
+                                            );
+                                            if (confirmDelete === true) {
+                                                handleDelete(values);
+                                            }
+                                        }}>
                                         Delete
                                     </Button>
                                 </div>
