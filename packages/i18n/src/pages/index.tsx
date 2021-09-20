@@ -126,20 +126,20 @@ const LandingPage: FC = () => {
     };
 
     const fetchAndSetNamespace = async (namespace: string) => {
+        setIsLoading(true);
         const files = await fetchNamespace(namespace);
         const translations = formatTranslationsFromFiles(files);
         setTranslations(translations);
+        setIsLoading(false);
     };
 
     useEffect(() => {
         const fetchTranslations = async () => {
-            setIsLoading(true);
             if (selected === 'all') {
                 fetchAndSetAllNamespaces();
             } else {
                 fetchAndSetNamespace(selected);
             }
-            setIsLoading(false);
         };
         fetchTranslations();
     }, [selected]);
