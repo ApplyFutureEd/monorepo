@@ -1,7 +1,9 @@
 import { Button, Input, Select } from '@applyfuture/ui';
+import { Modal } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@applyfuture/utils';
-import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { faExclamationTriangle, faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -10,9 +12,9 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 type Props = {
-    handleToggleDisplayForm?: () => void;
     fetchAndSetAllNamespaces?: () => void;
     fetchAndSetNamespace?: (namespace: string) => void;
+    handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
     newForm: boolean;
     selected?: string;
@@ -22,14 +24,14 @@ type Props = {
 
 const TranslationForm: FC<Props> = (props) => {
     const {
+        fetchAndSetAllNamespaces,
+        fetchAndSetNamespace,
         handleToggleDisplayForm,
         isLoading,
         newForm,
         selected,
         translationKey,
-        value,
-        fetchAndSetAllNamespaces,
-        fetchAndSetNamespace
+        value
     } = props;
 
     type FormValues = {
@@ -48,6 +50,7 @@ const TranslationForm: FC<Props> = (props) => {
         translationKey: selected && translationKey ? translationKey : ''
     };
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleDisplayUpdateButton = () => {
         setDisplayUpdateButton(true);
@@ -86,6 +89,7 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const handleDelete = async (values: FormValues) => {
+        setOpen(false);
         try {
             await API.post('rest', '/i18n/delete', {
                 body: {
@@ -103,6 +107,14 @@ const TranslationForm: FC<Props> = (props) => {
                 variant: 'error'
             });
         }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = async () => {
+        setOpen(false);
     };
 
     const skeletonFlag = <Skeleton height={18} width={22} />;
@@ -277,7 +289,11 @@ const TranslationForm: FC<Props> = (props) => {
                                 </div>
                             </div>
                             {!newForm && (
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between'
+                                    }}>
                                     {displayUpdateButton && (
                                         <Button
                                             isSubmitting={isSubmitting}
@@ -291,14 +307,7 @@ const TranslationForm: FC<Props> = (props) => {
                                         startIcon={faTrash}
                                         type="button"
                                         variant="secondary"
-                                        onClick={() => {
-                                            const confirmDelete = window.confirm(
-                                                'Do you really want to delete this translation ?'
-                                            );
-                                            if (confirmDelete === true) {
-                                                handleDelete(values);
-                                            }
-                                        }}>
+                                        onClick={() => handleOpen()}>
                                         Delete
                                     </Button>
                                 </div>
@@ -313,6 +322,48 @@ const TranslationForm: FC<Props> = (props) => {
                                 </Button>
                             )}
                         </Form>
+                        <Modal open={open} onClose={handleClose}>
+                            <div className="sm:flex sm:items-start">
+                                <div className="flex flex-shrink-0 items-center justify-center mx-auto w-12 h-12 text-red-500 bg-red-100 rounded-full sm:mx-0 sm:w-10 sm:h-10">
+                                    <FontAwesomeIcon icon={faExclamationTriangle} size="lg" />
+                                </div>
+                                <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                    <h3
+                                        className="text-gray-900 text-lg font-medium leading-6"
+                                        id="modal-headline">
+                                        Delete translation
+                                    </h3>
+                                    <div className="mt-2">
+                                        <p className="text-gray-500 text-sm leading-5">
+                                            Are you sure you want to delete this translation?
+                                            <br />
+                                            It will be permanently removed from our servers. This
+                                            action cannot be undone.
+                                        </p>
+                                        <div className="mt-4 sm:flex sm:flex-row-reverse">
+                                            <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                <Button
+                                                    isSubmitting={isSubmitting}
+                                                    type="button"
+                                                    variant="danger"
+                                                    onClick={() => handleDelete(values)}>
+                                                    Delete
+                                                </Button>
+                                            </span>
+                                            <span className="flex mt-3 w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                <Button
+                                                    isSubmitting={isSubmitting}
+                                                    type="button"
+                                                    variant="secondary"
+                                                    onClick={() => handleClose()}>
+                                                    Cancel
+                                                </Button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Modal>
                     </div>
                 );
             }}
