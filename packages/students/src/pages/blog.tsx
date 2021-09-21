@@ -16,11 +16,7 @@ const Blog: FC = () => {
 
                             <div className="relative mx-auto text-base lg:max-w-none">
                                 <figure>
-                                    <img
-                                        alt="illustartion"
-                                        className=""
-                                        src="/assets/images/blog/people.svg"
-                                    />
+                                    <img alt="illustration" src="/assets/images/blog/people.svg" />
                                 </figure>
                             </div>
                         </div>
