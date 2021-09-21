@@ -17,7 +17,7 @@ type Props = {
 const TranslationsList: FC<Props> = (props) => {
     const { filter, isLoading, search, selected, translations } = props;
     const { width: windowWidth, height: windowHeight } = useWindowSize();
-    const headerHeight = 385;
+    const headerHeight = 490;
     const smBreakpoint = 640;
     const listHeight = windowHeight ? windowHeight - headerHeight : 700;
     const itemSize = windowWidth && windowWidth < smBreakpoint ? 450 : 415; // 450 : 350

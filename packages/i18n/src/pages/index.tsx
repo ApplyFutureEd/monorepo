@@ -119,27 +119,29 @@ const LandingPage: FC = () => {
     };
 
     const fetchAndSetAllNamespaces = async () => {
+        setIsLoading(true);
         const files = await fetchAllNamespaces();
         const flattenFiles = flatten(files);
         const translations = formatTranslationsFromFiles(flattenFiles);
         setTranslations(translations);
+        setIsLoading(false);
     };
 
     const fetchAndSetNamespace = async (namespace: string) => {
+        setIsLoading(true);
         const files = await fetchNamespace(namespace);
         const translations = formatTranslationsFromFiles(files);
         setTranslations(translations);
+        setIsLoading(false);
     };
 
     useEffect(() => {
         const fetchTranslations = async () => {
-            setIsLoading(true);
             if (selected === 'all') {
                 fetchAndSetAllNamespaces();
             } else {
                 fetchAndSetNamespace(selected);
             }
-            setIsLoading(false);
         };
         fetchTranslations();
     }, [selected]);
@@ -152,8 +154,10 @@ const LandingPage: FC = () => {
             handleSearch={handleSearch}
             handleSelected={handleSelected}
             handleToggleDisplayForm={handleToggleDisplayForm}
+            isLoading={isLoading}
             selected={selected}
-            title="Dashboard">
+            title="Dashboard"
+            translations={translations}>
             {displayForm && (
                 <TranslationForm
                     newForm
