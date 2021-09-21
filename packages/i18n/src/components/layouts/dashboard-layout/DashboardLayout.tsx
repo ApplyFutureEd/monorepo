@@ -14,14 +14,14 @@ type Props = {
     children: ReactNode;
     description?: string;
     displayForm: boolean;
-    handleSearch: (query: string) => void;
+    filter: Filter;
     handleFilter: (filter: Filter) => void;
+    handleSearch: (query: string) => void;
     handleSelected: (tab: string) => void;
     handleToggleDisplayForm: () => void;
     isLoading: boolean;
-    title: string;
     selected: string;
-    filter: Filter;
+    title: string;
     translations: Translation[];
 };
 
@@ -30,14 +30,14 @@ const DashboardLayout: FC<Props> = (props) => {
         children,
         description,
         displayForm,
-        handleSearch,
+        filter,
         handleFilter,
+        handleSearch,
         handleSelected,
         handleToggleDisplayForm,
         isLoading,
-        title,
         selected,
-        filter,
+        title,
         translations
     } = props;
 

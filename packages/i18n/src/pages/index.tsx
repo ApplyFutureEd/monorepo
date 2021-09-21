@@ -119,10 +119,12 @@ const LandingPage: FC = () => {
     };
 
     const fetchAndSetAllNamespaces = async () => {
+        setIsLoading(true);
         const files = await fetchAllNamespaces();
         const flattenFiles = flatten(files);
         const translations = formatTranslationsFromFiles(flattenFiles);
         setTranslations(translations);
+        setIsLoading(false);
     };
 
     const fetchAndSetNamespace = async (namespace: string) => {
