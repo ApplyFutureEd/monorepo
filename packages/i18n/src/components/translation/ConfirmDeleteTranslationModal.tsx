@@ -5,14 +5,14 @@ import { FC } from 'react';
 
 import { FormValues } from './TranslationForm';
 type Props = {
-    open: boolean;
     handleClose(): void;
     handleDelete(values: FormValues): void;
+    open: boolean;
     values: FormValues;
 };
 
 const ConfirmDeleteTranslationModal: FC<Props> = (props) => {
-    const { open, handleClose, handleDelete, values } = props;
+    const { handleClose, handleDelete, open, values } = props;
 
     return (
         <Modal open={open} onClose={handleClose}>
