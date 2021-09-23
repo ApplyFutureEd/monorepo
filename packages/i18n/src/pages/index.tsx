@@ -137,7 +137,6 @@ const LandingPage: FC = () => {
 
     useEffect(() => {
         const fetchTranslations = async () => {
-            setIsLoading(true);
             if (selected === 'all') {
                 fetchAndSetAllNamespaces();
             } else {
@@ -155,8 +154,10 @@ const LandingPage: FC = () => {
             handleSearch={handleSearch}
             handleSelected={handleSelected}
             handleToggleDisplayForm={handleToggleDisplayForm}
+            isLoading={isLoading}
             selected={selected}
-            title="Dashboard">
+            title="Dashboard"
+            translations={translations}>
             {displayForm && (
                 <TranslationForm
                     newForm
