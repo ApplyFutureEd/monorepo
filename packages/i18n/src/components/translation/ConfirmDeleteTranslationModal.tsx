@@ -35,19 +35,16 @@ const ConfirmDeleteTranslationModal: FC<Props> = (props) => {
                                 It will be permanently removed from our servers. This action cannot
                                 be undone.
                             </p>
-                            <div className="mt-5 sm:flex sm:flex-row-reverse sm:mt-4">
-                                <button
-                                    className="inline-flex justify-center px-4 py-2 w-full text-white text-base font-medium bg-red-600 hover:bg-red-700 border border-transparent rounded-md focus:outline-none shadow-sm focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                            <div className="flex justify-between mt-5 mx-auto w-6/12 sm:justify-end sm:mt-4 sm:w-full sm:space-x-3">
+                                <Button type="button" variant="secondary" onClick={handleClose}>
+                                    Cancel
+                                </Button>
+                                <Button
                                     type="button"
+                                    variant="danger"
                                     onClick={() => handleDelete(values)}>
                                     Delete
-                                </button>
-                                <button
-                                    className="inline-flex justify-center mt-3 px-4 py-2 w-full hover:text-gray-500 text-gray-700 text-base font-medium bg-white border border-gray-300 rounded-md focus:outline-none shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm"
-                                    type="button"
-                                    onClick={handleClose}>
-                                    Cancel
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
