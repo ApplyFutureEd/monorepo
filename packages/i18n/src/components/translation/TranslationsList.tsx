@@ -20,7 +20,7 @@ const TranslationsList: FC<Props> = (props) => {
     const headerHeight = 490;
     const smBreakpoint = 640;
     const listHeight = windowHeight ? windowHeight - headerHeight : 700;
-    const itemSize = windowWidth && windowWidth < smBreakpoint ? 450 : 415; // 450 : 350
+    const itemSize = windowWidth && windowWidth < smBreakpoint ? 510 : 415;
 
     const searchValue = (value: Translation) =>
         Boolean(

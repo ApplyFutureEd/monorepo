@@ -111,6 +111,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "i18ndeletetranslation",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -155,6 +163,11 @@
       "service": "Lambda"
     },
     "i18nsavetranslation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "i18ndeletetranslation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
