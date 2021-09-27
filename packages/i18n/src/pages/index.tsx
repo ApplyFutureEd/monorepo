@@ -164,6 +164,7 @@ const LandingPage: FC = () => {
                     fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
                     fetchAndSetNamespace={fetchAndSetNamespace}
                     handleToggleDisplayForm={handleToggleDisplayForm}
+                    translations={translations}
                 />
             )}
             <TranslationsList

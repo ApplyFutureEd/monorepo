@@ -2,6 +2,7 @@ import { Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@applyfuture/utils';
 import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
+import { Translation } from '@pages/index';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -19,6 +20,7 @@ type Props = {
     newForm: boolean;
     selected?: string;
     translationKey?: string;
+    translations?: Translation[];
     value?: any;
 };
 
@@ -39,6 +41,7 @@ const TranslationForm: FC<Props> = (props) => {
         newForm,
         selected,
         translationKey,
+        translations,
         value
     } = props;
 
@@ -49,6 +52,7 @@ const TranslationForm: FC<Props> = (props) => {
         namespace: selected ? selected : '',
         translationKey: selected && translationKey ? translationKey : ''
     };
+
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -117,6 +121,10 @@ const TranslationForm: FC<Props> = (props) => {
         }
     };
 
+    const displayAlert = () => {
+        console.log('this key already exists');
+    };
+
     const skeletonFlag = <Skeleton height={18} width={22} />;
     const enFlag = <Flags.US className="h-4" title="English" />;
     const frFlag = <Flags.FR className="h-4" title="Français" />;
@@ -148,6 +156,63 @@ const TranslationForm: FC<Props> = (props) => {
         </Field>
     );
 
+    const keyInput = (
+        <Field id="translationKey" name="translationKey">
+            {(fieldProps: FieldProps) => (
+                <Input
+                    isLoading={isLoading}
+                    label="Key"
+                    {...fieldProps}
+                    field={{
+                        ...fieldProps.field,
+                        onChange: (event: ChangeEvent<any>) => {
+                            if (
+                                isDirty({
+                                    ...fieldProps.form.values,
+                                    translationKey: event.target.value
+                                })
+                            ) {
+                                handleDisplayUpdateButton();
+                            } else {
+                                handleHideUpdateButton();
+                            }
+
+                            fieldProps.field.onChange(event);
+                        }
+                    }}
+                />
+            )}
+        </Field>
+    );
+
+    const newKey = (
+        <Field id="translationKey" name="translationKey">
+            {(fieldProps: FieldProps) => (
+                <Input
+                    isLoading={isLoading}
+                    label="Key"
+                    {...fieldProps}
+                    field={{
+                        ...fieldProps.field,
+                        onChange: (event: ChangeEvent<any>) => {
+                            translations &&
+                                translations.forEach((value: Translation) => {
+                                    if (event.target.value === value.key) {
+                                        console.log(value.key);
+
+                                        displayAlert();
+                                    }
+                                });
+                            console.log(event.target.value);
+
+                            fieldProps.field.onChange(event);
+                        }
+                    }}
+                />
+            )}
+        </Field>
+    );
+
     const baseClasses = 'px-6 py-4 border rounded-md shadow';
     const formClasses = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
@@ -169,33 +234,7 @@ const TranslationForm: FC<Props> = (props) => {
                                         {newForm ? namespaceSelect : namespaceInput}
                                     </div>
                                     <div className="flex flex-col w-full space-y-2">
-                                        <Field id="translationKey" name="translationKey">
-                                            {(fieldProps: FieldProps) => (
-                                                <Input
-                                                    isLoading={isLoading}
-                                                    label="Key"
-                                                    {...fieldProps}
-                                                    field={{
-                                                        ...fieldProps.field,
-                                                        onChange: (event: ChangeEvent<any>) => {
-                                                            if (
-                                                                isDirty({
-                                                                    ...fieldProps.form.values,
-                                                                    translationKey:
-                                                                        event.target.value
-                                                                })
-                                                            ) {
-                                                                handleDisplayUpdateButton();
-                                                            } else {
-                                                                handleHideUpdateButton();
-                                                            }
-
-                                                            fieldProps.field.onChange(event);
-                                                        }
-                                                    }}
-                                                />
-                                            )}
-                                        </Field>
+                                        {newForm ? newKey : keyInput}
                                     </div>
                                 </div>
                                 <div className="flex flex-col space-y-3">
