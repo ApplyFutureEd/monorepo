@@ -11,8 +11,9 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 
 type TranslationFile = {
     [locale: string]: string;
+    namespace: string;
 };
-type Values = {
+export type Values = {
     en: string;
     fr: string;
     zh: string;
@@ -20,6 +21,7 @@ type Values = {
 
 export type Translation = {
     key: string;
+    namespace: string;
     values: Values;
 };
 
@@ -59,7 +61,7 @@ const LandingPage: FC = () => {
                 Storage.get(`i18n/${locale}/${namespace}.json`, {
                     cacheControl: 'no-cache',
                     download: true
-                }).then(async (data: any) => ({ [locale]: await data.Body.text() }))
+                }).then(async (data: any) => ({ [locale]: await data.Body.text(), namespace }))
             );
         });
 
@@ -76,12 +78,15 @@ const LandingPage: FC = () => {
         return Promise.all(promises);
     };
 
-    const getTranslationByLocale = (files: Array<TranslationFile>, locale: string) => {
+    const getTranslationByLocale = (files: TranslationFile[], locale: string) => {
         let translations = {};
         files
             .filter((file) => file[locale])
             .forEach((file) => {
-                translations = { ...translations, ...JSON.parse(file[locale]) };
+                translations = {
+                    ...translations,
+                    [file.namespace]: { ...JSON.parse(file[locale]) }
+                };
             });
         return translations;
     };
@@ -99,7 +104,6 @@ const LandingPage: FC = () => {
                 result[key][locale] = translations[locale][key];
             });
         });
-
         return result as { [locale: string]: Values };
     };
 
@@ -112,10 +116,18 @@ const LandingPage: FC = () => {
             },
             'en'
         );
-        return Object.entries(mergedFiles).map((translation) => ({
+        // { namespace: { en: { clé: valeur}, fr: { clé: valeur}, zh: { clé: valeur} } } }
+
+        /* return Object.entries(mergedFiles).map((translation) => ({
             key: translation[0],
+            namespace: 'toto',
             values: translation[1]
-        }));
+        })); */
+        const translations = [];
+        Object.entries(mergedFiles).forEach((namespace) => {
+            const locales = Object.entries(mergedFiles[namespace]);
+        });
+        return translations;
     };
 
     const fetchAndSetAllNamespaces = async () => {
