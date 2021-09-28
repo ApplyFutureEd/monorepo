@@ -11,8 +11,9 @@ export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 
 type TranslationFile = {
     [locale: string]: string;
+    namespace: string;
 };
-type Values = {
+export type Values = {
     en: string;
     fr: string;
     zh: string;
@@ -20,11 +21,14 @@ type Values = {
 
 export type Translation = {
     key: string;
+    namespace: string;
     values: Values;
 };
 
 type Translations = {
-    [locale: string]: Translation;
+    [namespace: string]: {
+        [locale: string]: Translation;
+    };
 };
 
 const LandingPage: FC = () => {
@@ -59,7 +63,7 @@ const LandingPage: FC = () => {
                 Storage.get(`i18n/${locale}/${namespace}.json`, {
                     cacheControl: 'no-cache',
                     download: true
-                }).then(async (data: any) => ({ [locale]: await data.Body.text() }))
+                }).then(async (data: any) => ({ [locale]: await data.Body.text(), namespace }))
             );
         });
 
@@ -76,31 +80,39 @@ const LandingPage: FC = () => {
         return Promise.all(promises);
     };
 
-    const getTranslationByLocale = (files: Array<TranslationFile>, locale: string) => {
-        let translations = {};
+    const getTranslationByLocale = (files: TranslationFile[], locale: string) => {
+        let translations: Translations = {};
         files
             .filter((file) => file[locale])
             .forEach((file) => {
-                translations = { ...translations, ...JSON.parse(file[locale]) };
+                translations = {
+                    ...translations,
+                    [file.namespace]: { ...JSON.parse(file[locale]) }
+                };
             });
         return translations;
     };
 
     const mergeTranslations = (
-        translations: { [key: string]: Translations },
+        translations: { [locale: string]: Translations },
         referenceLocale: string
     ) => {
         const result: any = {};
         const locales = Object.keys(translations);
-        const keys = Object.keys(translations[referenceLocale]);
-        keys.forEach((key: any) => {
-            result[key] = {};
-            locales.forEach((locale: any) => {
-                result[key][locale] = translations[locale][key];
+        const namespaces = Object.keys(translations[referenceLocale]);
+        namespaces.forEach((namespace: string) => {
+            const keys = Object.keys(translations[referenceLocale][namespace]);
+            keys.forEach((key: string) => {
+                result[key] = {};
+                locales.forEach((locale: any) => {
+                    result[key].namespace = namespace;
+                    result[key][locale] = translations[locale][namespace][key];
+                });
             });
         });
-
-        return result as { [locale: string]: Values };
+        return result as {
+            [translationKey: string]: { en: string; fr: string; zh: string; namespace: string };
+        };
     };
 
     const formatTranslationsFromFiles = (files: TranslationFile[]) => {
@@ -112,9 +124,15 @@ const LandingPage: FC = () => {
             },
             'en'
         );
+
         return Object.entries(mergedFiles).map((translation) => ({
             key: translation[0],
-            values: translation[1]
+            namespace: translation[1].namespace,
+            values: {
+                en: translation[1].en,
+                fr: translation[1].fr,
+                zh: translation[1].zh
+            }
         }));
     };
 
