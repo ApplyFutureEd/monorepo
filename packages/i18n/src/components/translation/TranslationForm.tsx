@@ -76,6 +76,14 @@ const TranslationForm: FC<Props> = (props) => {
         setOpen(false);
     };
 
+    const handleDisplayAlert = () => {
+        setDisplayAlert(true);
+    };
+
+    const handleHideAlert = () => {
+        setDisplayAlert(false);
+    };
+
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
             await API.post('rest', '/i18n/save', {
@@ -120,10 +128,6 @@ const TranslationForm: FC<Props> = (props) => {
                 variant: 'error'
             });
         }
-    };
-
-    const handleDisplayAlert = () => {
-        setDisplayAlert(!displayAlert);
     };
 
     const skeletonFlag = <Skeleton height={18} width={22} />;
@@ -196,6 +200,7 @@ const TranslationForm: FC<Props> = (props) => {
                     field={{
                         ...fieldProps.field,
                         onChange: (event: ChangeEvent<any>) => {
+                            handleHideAlert();
                             translations &&
                                 translations.forEach((value: Translation) => {
                                     if (event.target.value === value.key) {
@@ -235,14 +240,12 @@ const TranslationForm: FC<Props> = (props) => {
                                         {newForm ? newKey : keyInput}
                                     </div>
                                 </div>
-                                {displayAlert ? (
+                                {displayAlert && (
                                     <Alert
+                                        alertDescription="This translation key already exists"
                                         link="#translationKey"
                                         linkDescription="See translation"
-                                        text="This translation key already exists"
                                     />
-                                ) : (
-                                    ''
                                 )}
                                 <div className="flex flex-col space-y-3">
                                     <div className="flex items-center space-x-4">
