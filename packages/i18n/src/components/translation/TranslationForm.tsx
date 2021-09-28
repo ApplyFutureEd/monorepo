@@ -1,8 +1,7 @@
 import { Alert, Button, Input, Select } from '@applyfuture/ui';
-import { toast } from '@applyfuture/utils';
-import { namespaces } from '@applyfuture/utils';
+import { namespaces, toast } from '@applyfuture/utils';
 import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
-import { Translation } from '@pages/index';
+import { Translation, Values } from '@pages/index';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
@@ -17,11 +16,12 @@ type Props = {
     fetchAndSetNamespace?: (namespace: string) => void;
     handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
+    namespace?: string;
     newForm: boolean;
     selected?: string;
     translationKey?: string;
     translations?: Translation[];
-    value?: any;
+    values?: Values;
 };
 
 export type FormValues = {
@@ -38,19 +38,20 @@ const TranslationForm: FC<Props> = (props) => {
         fetchAndSetNamespace,
         handleToggleDisplayForm,
         isLoading,
+        namespace,
         newForm,
         selected,
         translationKey,
         translations,
-        value
+        values
     } = props;
 
     const initialValues: FormValues = {
-        chineseTranslation: selected && value?.zh ? value.zh : '',
-        englishTranslation: selected && value?.en ? value.en : '',
-        frenchTranslation: selected && value?.fr ? value.fr : '',
-        namespace: selected ? selected : '',
-        translationKey: selected && translationKey ? translationKey : ''
+        chineseTranslation: values?.zh ? values.zh : '',
+        englishTranslation: values?.en ? values.en : '',
+        frenchTranslation: values?.fr ? values.fr : '',
+        namespace: namespace ? namespace : '',
+        translationKey: translationKey ? translationKey : ''
     };
 
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
