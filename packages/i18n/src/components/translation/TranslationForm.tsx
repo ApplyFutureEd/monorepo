@@ -16,6 +16,7 @@ type Props = {
     fetchAndSetNamespace?: (namespace: string) => void;
     handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
+    listRef?: any;
     namespace?: string;
     newForm: boolean;
     selected?: string;
@@ -38,6 +39,7 @@ const TranslationForm: FC<Props> = (props) => {
         fetchAndSetNamespace,
         handleToggleDisplayForm,
         isLoading,
+        listRef,
         namespace,
         newForm,
         selected,
@@ -84,6 +86,14 @@ const TranslationForm: FC<Props> = (props) => {
     const handleHideAlert = () => {
         setDisplayAlert(false);
     };
+
+    const handleScroll = () => {
+        listRef.current.scrollToItem(10);
+        handleToggleDisplayForm && handleToggleDisplayForm();
+    };
+
+    // to do : create function that find index of existing translation
+    // use : array.indexOf(item)
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
@@ -244,8 +254,8 @@ const TranslationForm: FC<Props> = (props) => {
                                 {displayAlert && (
                                     <Alert
                                         alertDescription="This translation key already exists"
-                                        link="#translationKey"
-                                        linkDescription="See translation"
+                                        handleScroll={handleScroll}
+                                        scrollLinkDescription="See translation"
                                     />
                                 )}
                                 <div className="flex flex-col space-y-3">

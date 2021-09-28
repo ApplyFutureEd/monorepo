@@ -39,6 +39,8 @@ const LandingPage: FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [translations, setTranslations] = useState<Array<Translation>>([]);
 
+    const listRef = React.createRef();
+
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase().replace(/ /g, '-'));
     };
@@ -182,12 +184,14 @@ const LandingPage: FC = () => {
                     fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
                     fetchAndSetNamespace={fetchAndSetNamespace}
                     handleToggleDisplayForm={handleToggleDisplayForm}
+                    listRef={listRef}
                     translations={translations}
                 />
             )}
             <TranslationsList
                 filter={filter}
                 isLoading={isLoading}
+                listRef={listRef}
                 search={search}
                 selected={selected}
                 translations={translations}

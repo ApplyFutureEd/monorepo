@@ -4,12 +4,14 @@ import { FC } from 'react';
 
 type Props = {
     alertDescription: string;
+    handleScroll?: () => void;
     link?: string;
     linkDescription?: string;
+    scrollLinkDescription?: string;
 };
 
 export const Alert: FC<Props> = (props) => {
-    const { alertDescription, link, linkDescription } = props;
+    const { alertDescription, handleScroll, link, linkDescription, scrollLinkDescription } = props;
 
     return (
         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400">
@@ -29,6 +31,12 @@ export const Alert: FC<Props> = (props) => {
                             href={link}>
                             {linkDescription}
                         </a>
+                        <button
+                            className="hover:text-yellow-600 text-yellow-700 underline font-medium"
+                            type="button"
+                            onClick={handleScroll}>
+                            {scrollLinkDescription}
+                        </button>
                     </p>
                 </div>
             </div>
