@@ -29,5 +29,5 @@
         }
     },
     "exclude": [".next", "node_modules", "public"],
-    "include": ["**/*.ts", "**/*.tsx"]
+    "include": ["**/*.ts", "**/*.tsx", "../ui/src/alert/Alert.tsx"]
 }

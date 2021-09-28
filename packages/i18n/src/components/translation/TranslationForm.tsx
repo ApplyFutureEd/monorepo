@@ -1,4 +1,4 @@
-import { Button, Input, Select } from '@applyfuture/ui';
+import { Alert, Button, Input, Select } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { namespaces } from '@applyfuture/utils';
 import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
@@ -55,6 +55,7 @@ const TranslationForm: FC<Props> = (props) => {
 
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
     const [open, setOpen] = useState(false);
+    const [displayAlert, setDisplayAlert] = useState(false);
 
     const handleDisplayUpdateButton = () => {
         setDisplayUpdateButton(true);
@@ -121,8 +122,8 @@ const TranslationForm: FC<Props> = (props) => {
         }
     };
 
-    const displayAlert = () => {
-        console.log('this key already exists');
+    const handleDisplayAlert = () => {
+        setDisplayAlert(!displayAlert);
     };
 
     const skeletonFlag = <Skeleton height={18} width={22} />;
@@ -198,12 +199,9 @@ const TranslationForm: FC<Props> = (props) => {
                             translations &&
                                 translations.forEach((value: Translation) => {
                                     if (event.target.value === value.key) {
-                                        console.log(value.key);
-
-                                        displayAlert();
+                                        handleDisplayAlert();
                                     }
                                 });
-                            console.log(event.target.value);
 
                             fieldProps.field.onChange(event);
                         }
@@ -237,6 +235,15 @@ const TranslationForm: FC<Props> = (props) => {
                                         {newForm ? newKey : keyInput}
                                     </div>
                                 </div>
+                                {displayAlert ? (
+                                    <Alert
+                                        link="#translationKey"
+                                        linkDescription="See translation"
+                                        text="This translation key already exists"
+                                    />
+                                ) : (
+                                    ''
+                                )}
                                 <div className="flex flex-col space-y-3">
                                     <div className="flex items-center space-x-4">
                                         {isLoading ? skeletonFlag : enFlag}
