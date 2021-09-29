@@ -1,5 +1,4 @@
-import { withPrivateAccess } from '@applyfuture/utils';
-import { locales, namespaces } from '@applyfuture/utils';
+import { locales, namespaces, withPrivateAccess } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import TranslationForm from '@components/translation/TranslationForm';

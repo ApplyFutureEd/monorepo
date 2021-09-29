@@ -59,6 +59,7 @@ const TranslationForm: FC<Props> = (props) => {
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
     const [open, setOpen] = useState(false);
     const [displayAlert, setDisplayAlert] = useState(false);
+    const [index, setIndex] = useState(0);
 
     const handleDisplayUpdateButton = () => {
         setDisplayUpdateButton(true);
@@ -88,12 +89,9 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const handleScroll = () => {
-        listRef.current.scrollToItem(10);
+        listRef.current.scrollToItem(index);
         handleToggleDisplayForm && handleToggleDisplayForm();
     };
-
-    // to do : create function that find index of existing translation
-    // use : array.indexOf(item)
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
         try {
@@ -212,10 +210,13 @@ const TranslationForm: FC<Props> = (props) => {
                         ...fieldProps.field,
                         onChange: (event: ChangeEvent<any>) => {
                             handleHideAlert();
+                            const translationKeys: string[] = [];
                             translations &&
                                 translations.forEach((value: Translation) => {
+                                    translationKeys.push(value.key);
                                     if (event.target.value === value.key) {
                                         handleDisplayAlert();
+                                        setIndex(translationKeys.indexOf(event.target.value));
                                     }
                                 });
 
