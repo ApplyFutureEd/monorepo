@@ -1,4 +1,6 @@
-import ArticleList from '@components/article/ArticleList';
+import posts from '@assets/posts/posts';
+import Article from '@components/blog/article/Article';
+import Hero from '@components/blog/hero/Hero';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC } from 'react';
 
@@ -7,25 +9,24 @@ const Blog: FC = () => {
         <LandingLayout title="Blog">
             <div className="bg-white overflow-hidden">
                 <div className="relative mx-auto py-16 max-w-7xl sm:px-6 lg:px-8">
-                    <div className="relative z-30 mx-auto max-w-prose text-base lg:max-w-none">
-                        <div className="relative flex flex-col items-center mb-36 space-y-6 lg:flex-row lg:space-y-0">
-                            <div className="relative mx-auto text-base lg:max-w-none">
-                                <figure>
-                                    <img alt="illustration" src="/assets/images/blog/people.svg" />
-                                </figure>
-                            </div>
-                            <div className="md:w-full">
-                                <h1 className="mb-8 mt-2 text-center text-gray-900 text-3xl font-extrabold tracking-tight leading-8 sm:text-4xl sm:leading-10">
-                                    Welcome to ApplyBlog
-                                </h1>
-                                <p className="px-4 text-center text-gray-500 text-xl">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-                                    libero labore natus atque, ducimus sed.
-                                </p>
-                            </div>
-                        </div>
+                    <Hero />
+                    <div className="grid gap-12 mx-4 sm:grid-cols-2 sm:mx-auto lg:grid-cols-3 lg:max-w-none">
+                        {posts.map((post: any) => {
+                            return (
+                                <div key={post.id}>
+                                    <Article
+                                        author={post.author}
+                                        description={post.description}
+                                        image={post.image}
+                                        publicationDate={post.publicationDate}
+                                        readingTime={post.readingTime}
+                                        tag={post.tag}
+                                        title={post.title}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
-                    <ArticleList />
                 </div>
             </div>
         </LandingLayout>
