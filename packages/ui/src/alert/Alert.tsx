@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, ReactNode } from 'react';
 
 type Props = {
+    /**
+     * The content of the alert.
+     */
     children: ReactNode;
 };
 

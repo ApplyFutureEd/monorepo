@@ -253,12 +253,12 @@ const TranslationForm: FC<Props> = (props) => {
                                 </div>
                                 {displayAlert && (
                                     <Alert>
-                                        {'This translation key already exists'}.{' '}
+                                        <span>This translation key already exists.</span>{' '}
                                         <button
                                             className="hover:text-yellow-600 text-yellow-700 underline font-medium"
                                             type="button"
                                             onClick={handleScroll}>
-                                            {'See translation'}
+                                            See translation
                                         </button>
                                     </Alert>
                                 )}

@@ -4,11 +4,8 @@ import { Alert } from './Alert';
 
 describe('Alert', () => {
     it('can display an alert', () => {
-        const alert = {
-            children: 'Content'
-        };
-        render(<Alert>children={alert.children}</Alert>);
-        const children = screen.getByText(alert.children);
+        render(<Alert>Content</Alert>);
+        const children = screen.getByText('Content');
         expect(children).toBeInTheDocument();
     });
 });
