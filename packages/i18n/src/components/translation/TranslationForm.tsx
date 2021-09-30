@@ -6,7 +6,7 @@ import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEqual } from 'lodash';
-import React, { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, RefObject, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import ConfirmDeleteTranslationModal from './ConfirmDeleteTranslationModal';
@@ -16,7 +16,7 @@ type Props = {
     fetchAndSetNamespace?: (namespace: string) => void;
     handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
-    listRef?: any;
+    listRef?: RefObject<any>;
     namespace?: string;
     newForm: boolean;
     selected?: string;
@@ -89,7 +89,7 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const handleScroll = () => {
-        listRef.current.scrollToItem(index);
+        listRef?.current.scrollToItem(index);
         handleToggleDisplayForm && handleToggleDisplayForm();
     };
 
@@ -211,14 +211,13 @@ const TranslationForm: FC<Props> = (props) => {
                         onChange: (event: ChangeEvent<any>) => {
                             handleHideAlert();
                             const translationKeys: string[] = [];
-                            translations &&
-                                translations.forEach((value: Translation) => {
-                                    translationKeys.push(value.key);
-                                    if (event.target.value === value.key) {
-                                        handleDisplayAlert();
-                                        setIndex(translationKeys.indexOf(event.target.value));
-                                    }
-                                });
+                            translations?.forEach((value: Translation) => {
+                                translationKeys.push(value.key);
+                                if (event.target.value === value.key) {
+                                    handleDisplayAlert();
+                                    setIndex(translationKeys.indexOf(event.target.value));
+                                }
+                            });
 
                             fieldProps.field.onChange(event);
                         }
@@ -253,11 +252,15 @@ const TranslationForm: FC<Props> = (props) => {
                                     </div>
                                 </div>
                                 {displayAlert && (
-                                    <Alert
-                                        alertDescription="This translation key already exists"
-                                        handleScroll={handleScroll}
-                                        scrollLinkDescription="See translation"
-                                    />
+                                    <Alert>
+                                        {'This translation key already exists'}.{' '}
+                                        <button
+                                            className="hover:text-yellow-600 text-yellow-700 underline font-medium"
+                                            type="button"
+                                            onClick={handleScroll}>
+                                            {'See translation'}
+                                        </button>
+                                    </Alert>
                                 )}
                                 <div className="flex flex-col space-y-3">
                                     <div className="flex items-center space-x-4">

@@ -1,17 +1,13 @@
 import { faExclamationTriangle } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 type Props = {
-    alertDescription: string;
-    handleScroll?: () => void;
-    link?: string;
-    linkDescription?: string;
-    scrollLinkDescription?: string;
+    children: ReactNode;
 };
 
 export const Alert: FC<Props> = (props) => {
-    const { alertDescription, handleScroll, link, linkDescription, scrollLinkDescription } = props;
+    const { children } = props;
 
     return (
         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400">
@@ -24,20 +20,7 @@ export const Alert: FC<Props> = (props) => {
                     />
                 </div>
                 <div className="ml-3">
-                    <p className="text-yellow-700 text-sm">
-                        {alertDescription}.{' '}
-                        <a
-                            className="hover:text-yellow-600 text-yellow-700 underline font-medium"
-                            href={link}>
-                            {linkDescription}
-                        </a>
-                        <button
-                            className="hover:text-yellow-600 text-yellow-700 underline font-medium"
-                            type="button"
-                            onClick={handleScroll}>
-                            {scrollLinkDescription}
-                        </button>
-                    </p>
+                    <p className="text-yellow-700 text-sm">{children}</p>
                 </div>
             </div>
         </div>

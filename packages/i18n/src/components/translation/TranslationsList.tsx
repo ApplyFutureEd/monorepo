@@ -1,6 +1,6 @@
 import { isObjectValuesEmpty, useWindowSize } from '@applyfuture/utils';
 import { Filter, Translation } from '@pages/index';
-import React, { FC } from 'react';
+import { FC, RefObject } from 'react';
 import { FixedSizeList as List } from 'react-window';
 
 import TranslationRow from './TranslationRow';
@@ -9,7 +9,7 @@ import TranslationRowSkeleton from './TranslationRowSkeleton';
 type Props = {
     filter: Filter;
     isLoading: boolean;
-    listRef: any;
+    listRef: RefObject<any>;
     search: string;
     selected: string;
     translations: Translation[];
