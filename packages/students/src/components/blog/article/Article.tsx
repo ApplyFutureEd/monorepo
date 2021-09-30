@@ -6,7 +6,7 @@ import { FC } from 'react';
 type Props = {
     author: string;
     description: string;
-    image: any;
+    image: string;
     publicationDate: string;
     readingTime: number;
     tag: string;
