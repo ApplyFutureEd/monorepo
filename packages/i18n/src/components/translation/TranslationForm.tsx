@@ -1,12 +1,12 @@
-import { Button, Input, Select } from '@applyfuture/ui';
+import { Alert, Button, Input, Select } from '@applyfuture/ui';
 import { namespaces, toast } from '@applyfuture/utils';
 import { faPlus, faSave, faTrash } from '@fortawesome/pro-light-svg-icons';
-import { Values } from '@pages/index';
+import { Translation, Values } from '@pages/index';
 import { API } from 'aws-amplify';
 import Flags from 'country-flag-icons/react/3x2';
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { isEqual } from 'lodash';
-import React, { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, RefObject, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import ConfirmDeleteTranslationModal from './ConfirmDeleteTranslationModal';
@@ -16,10 +16,12 @@ type Props = {
     fetchAndSetNamespace?: (namespace: string) => void;
     handleToggleDisplayForm?: () => void;
     isLoading?: boolean;
+    listRef?: RefObject<any>;
     namespace?: string;
     newForm: boolean;
     selected?: string;
     translationKey?: string;
+    translations?: Translation[];
     values?: Values;
 };
 
@@ -37,10 +39,12 @@ const TranslationForm: FC<Props> = (props) => {
         fetchAndSetNamespace,
         handleToggleDisplayForm,
         isLoading,
+        listRef,
         namespace,
         newForm,
         selected,
         translationKey,
+        translations,
         values
     } = props;
 
@@ -51,8 +55,11 @@ const TranslationForm: FC<Props> = (props) => {
         namespace: namespace ? namespace : '',
         translationKey: translationKey ? translationKey : ''
     };
+
     const [displayUpdateButton, setDisplayUpdateButton] = useState(false);
     const [open, setOpen] = useState(false);
+    const [displayAlert, setDisplayAlert] = useState(false);
+    const [index, setIndex] = useState(0);
 
     const handleDisplayUpdateButton = () => {
         setDisplayUpdateButton(true);
@@ -71,6 +78,19 @@ const TranslationForm: FC<Props> = (props) => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleDisplayAlert = () => {
+        setDisplayAlert(true);
+    };
+
+    const handleHideAlert = () => {
+        setDisplayAlert(false);
+    };
+
+    const handleScroll = () => {
+        listRef?.current.scrollToItem(index);
+        handleToggleDisplayForm && handleToggleDisplayForm();
     };
 
     const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -150,6 +170,63 @@ const TranslationForm: FC<Props> = (props) => {
         </Field>
     );
 
+    const keyInput = (
+        <Field id="translationKey" name="translationKey">
+            {(fieldProps: FieldProps) => (
+                <Input
+                    isLoading={isLoading}
+                    label="Key"
+                    {...fieldProps}
+                    field={{
+                        ...fieldProps.field,
+                        onChange: (event: ChangeEvent<any>) => {
+                            if (
+                                isDirty({
+                                    ...fieldProps.form.values,
+                                    translationKey: event.target.value
+                                })
+                            ) {
+                                handleDisplayUpdateButton();
+                            } else {
+                                handleHideUpdateButton();
+                            }
+
+                            fieldProps.field.onChange(event);
+                        }
+                    }}
+                />
+            )}
+        </Field>
+    );
+
+    const newKey = (
+        <Field id="translationKey" name="translationKey">
+            {(fieldProps: FieldProps) => (
+                <Input
+                    isLoading={isLoading}
+                    label="Key"
+                    {...fieldProps}
+                    field={{
+                        ...fieldProps.field,
+                        onChange: (event: ChangeEvent<any>) => {
+                            handleHideAlert();
+                            const translationKeys: string[] = [];
+                            translations?.forEach((value: Translation) => {
+                                translationKeys.push(value.key);
+                                if (event.target.value === value.key) {
+                                    handleDisplayAlert();
+                                    setIndex(translationKeys.indexOf(event.target.value));
+                                }
+                            });
+
+                            fieldProps.field.onChange(event);
+                        }
+                    }}
+                />
+            )}
+        </Field>
+    );
+
     const baseClasses = 'px-6 py-4 border rounded-md shadow';
     const formClasses = 'mt-8 mb-24 px-6 py-4 border rounded-md shadow bg-indigo-100';
 
@@ -171,35 +248,20 @@ const TranslationForm: FC<Props> = (props) => {
                                         {newForm ? namespaceSelect : namespaceInput}
                                     </div>
                                     <div className="flex flex-col w-full space-y-2">
-                                        <Field id="translationKey" name="translationKey">
-                                            {(fieldProps: FieldProps) => (
-                                                <Input
-                                                    isLoading={isLoading}
-                                                    label="Key"
-                                                    {...fieldProps}
-                                                    field={{
-                                                        ...fieldProps.field,
-                                                        onChange: (event: ChangeEvent<any>) => {
-                                                            if (
-                                                                isDirty({
-                                                                    ...fieldProps.form.values,
-                                                                    translationKey:
-                                                                        event.target.value
-                                                                })
-                                                            ) {
-                                                                handleDisplayUpdateButton();
-                                                            } else {
-                                                                handleHideUpdateButton();
-                                                            }
-
-                                                            fieldProps.field.onChange(event);
-                                                        }
-                                                    }}
-                                                />
-                                            )}
-                                        </Field>
+                                        {newForm ? newKey : keyInput}
                                     </div>
                                 </div>
+                                {displayAlert && (
+                                    <Alert>
+                                        <span>This translation key already exists.</span>{' '}
+                                        <button
+                                            className="hover:text-yellow-600 text-yellow-700 underline font-medium"
+                                            type="button"
+                                            onClick={handleScroll}>
+                                            See translation
+                                        </button>
+                                    </Alert>
+                                )}
                                 <div className="flex flex-col space-y-3">
                                     <div className="flex items-center space-x-4">
                                         {isLoading ? skeletonFlag : enFlag}

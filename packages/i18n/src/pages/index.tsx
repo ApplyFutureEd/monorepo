@@ -1,5 +1,4 @@
-import { withPrivateAccess } from '@applyfuture/utils';
-import { locales, namespaces } from '@applyfuture/utils';
+import { locales, namespaces, withPrivateAccess } from '@applyfuture/utils';
 import Storage from '@aws-amplify/storage';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
 import TranslationForm from '@components/translation/TranslationForm';
@@ -38,6 +37,8 @@ const LandingPage: FC = () => {
     const [displayForm, setDisplayForm] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [translations, setTranslations] = useState<Array<Translation>>([]);
+
+    const listRef = React.createRef();
 
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase().replace(/ /g, '-'));
@@ -182,11 +183,14 @@ const LandingPage: FC = () => {
                     fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
                     fetchAndSetNamespace={fetchAndSetNamespace}
                     handleToggleDisplayForm={handleToggleDisplayForm}
+                    listRef={listRef}
+                    translations={translations}
                 />
             )}
             <TranslationsList
                 filter={filter}
                 isLoading={isLoading}
+                listRef={listRef}
                 search={search}
                 selected={selected}
                 translations={translations}
