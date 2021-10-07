@@ -1,5 +1,6 @@
 import { SupportedLocale } from '@applyfuture/models';
 import { date } from '@applyfuture/utils';
+import { Post } from '@pages/blog/[slug]';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
@@ -11,6 +12,7 @@ export type Author = {
 
 type Props = {
     author: Author;
+    currentPosts?: Post[];
     description?: string;
     id: number;
     image: string;

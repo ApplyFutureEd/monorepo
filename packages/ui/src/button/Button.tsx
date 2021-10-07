@@ -44,7 +44,7 @@ type Props = {
     /**
      * The variant to use.
      */
-    variant?: 'primary' | 'secondary' | 'success' | 'danger';
+    variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'text';
 };
 
 export const Button = forwardRef<Ref, Props>((props, ref) => {
@@ -71,6 +71,8 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         'text-white bg-green-400 focus:border-green-700 border-transparent focus:outline-none focus:ring-green cursor-default';
     const dangerClasses =
         'text-white hover:bg-red-500 bg-red-600 focus:border-red-700 border-transparent focus:outline-none focus:ring-red';
+    const textClasses =
+        'text-gray-500 hover:text-gray-700 border-transparent border-0 border-none rounded-none shadow-none';
     const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
 
     const classes = cx({
@@ -79,7 +81,16 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
         [`${secondaryClasses}`]: !disabled && variant === 'secondary',
         [`${successClasses}`]: !disabled && variant === 'success',
         [`${dangerClasses}`]: !disabled && variant === 'danger',
+        [`${textClasses}`]: !disabled && variant === 'text',
         [`${disabledClasses}`]: disabled || isSubmitting
+    });
+
+    const spanBaseClasses = 'inline-flex rounded-md';
+    const spanShadowClasses = 'shadow-sm';
+
+    const spanClasses = cx({
+        [`${spanBaseClasses}`]: true,
+        [`${spanShadowClasses}`]: !disabled && variant !== 'text'
     });
 
     if (isLoading) {
@@ -91,7 +102,7 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
     }
 
     return (
-        <span className="inline-flex rounded-md shadow-sm" {...rest}>
+        <span className={spanClasses} {...rest}>
             <button
                 ref={ref}
                 className={classes}
