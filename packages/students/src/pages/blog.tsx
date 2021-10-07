@@ -17,9 +17,11 @@ const Blog: FC = () => {
                                     <Article
                                         author={post.author}
                                         description={post.description}
+                                        id={post.id}
                                         image={post.image}
                                         publicationDate={post.publicationDate}
                                         readingTime={post.readingTime}
+                                        slug={post.slug}
                                         tag={post.tag}
                                         title={post.title}
                                     />
