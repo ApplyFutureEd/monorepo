@@ -5,21 +5,22 @@ import TranslationForm from './TranslationForm';
 
 type Props = {
     index: number;
-    translations: Translation[];
     selected: string;
     style: CSSProperties;
+    translations: Translation[];
 };
 
 const Row: FC<Props> = (props) => {
-    const { index, selected, translations, style } = props;
+    const { index, selected, style, translations } = props;
 
     return (
         <div style={style}>
             <TranslationForm
+                namespace={translations[index].namespace}
                 newForm={false}
                 selected={selected}
                 translationKey={translations[index].key}
-                value={translations[index].values}
+                values={translations[index].values}
             />
         </div>
     );
