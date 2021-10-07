@@ -44,7 +44,7 @@ describe('Article', () => {
         );
 
         const author = screen.getByText(/arthur/gi);
-        const authorImage = screen.getByAltText('author');
+        const authorPicture = screen.getByAltText('author');
         const description = screen.getByText(/inmitem/gi);
         const image = screen.getByAltText('illustration');
         const publicationDate = screen.getByText('23 Mar 1995');
@@ -53,7 +53,7 @@ describe('Article', () => {
         const title = screen.getByText('The 10 most popular business schools');
 
         expect(author).toBeInTheDocument();
-        expect(authorImage).toBeInTheDocument();
+        expect(authorPicture).toBeInTheDocument();
         expect(description).toBeInTheDocument();
         expect(image).toBeInTheDocument();
         expect(publicationDate).toBeInTheDocument();
