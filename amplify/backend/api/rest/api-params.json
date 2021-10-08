@@ -55,6 +55,14 @@
                 "open": true
             },
             "policyResourceName": "/i18n/save"
+        },
+        {
+            "name": "/i18n/delete",
+            "lambdaFunction": "i18ndeletetranslation",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/i18n/delete"
         }
     ],
     "resourceName": "rest",
@@ -80,6 +88,9 @@
         },
         {
             "lambdaFunction": "i18nsavetranslation"
+        },
+        {
+            "lambdaFunction": "i18ndeletetranslation"
         }
     ],
     "privacy": {
@@ -144,7 +155,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "i18ndeletetranslation",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "6a21586a"
+    "uuid": "5768bed4"
 }
