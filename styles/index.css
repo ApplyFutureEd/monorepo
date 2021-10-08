@@ -1,5 +1,6 @@
 @tailwind base;
 
+@import './blog-markdown.css';
 @import './clamp.css';
 @import './date-input.css';
 @import './icons.css';
