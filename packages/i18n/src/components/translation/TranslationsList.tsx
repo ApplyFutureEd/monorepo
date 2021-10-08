@@ -1,6 +1,6 @@
 import { isObjectValuesEmpty, useWindowSize } from '@applyfuture/utils';
 import { Filter, Translation } from '@pages/index';
-import React, { FC } from 'react';
+import { FC, RefObject } from 'react';
 import { FixedSizeList as List } from 'react-window';
 
 import TranslationRow from './TranslationRow';
@@ -9,18 +9,19 @@ import TranslationRowSkeleton from './TranslationRowSkeleton';
 type Props = {
     filter: Filter;
     isLoading: boolean;
+    listRef: RefObject<any>;
     search: string;
     selected: string;
     translations: Translation[];
 };
 
 const TranslationsList: FC<Props> = (props) => {
-    const { filter, isLoading, search, selected, translations } = props;
+    const { filter, isLoading, listRef, search, selected, translations } = props;
     const { width: windowWidth, height: windowHeight } = useWindowSize();
-    const headerHeight = 385;
+    const headerHeight = 490;
     const smBreakpoint = 640;
     const listHeight = windowHeight ? windowHeight - headerHeight : 700;
-    const itemSize = windowWidth && windowWidth < smBreakpoint ? 450 : 415; // 450 : 350
+    const itemSize = windowWidth && windowWidth < smBreakpoint ? 510 : 415;
 
     const searchValue = (value: Translation) =>
         Boolean(
@@ -62,6 +63,7 @@ const TranslationsList: FC<Props> = (props) => {
             ) : (
                 <div className="py-12">
                     <List
+                        ref={listRef}
                         height={listHeight}
                         itemCount={
                             filter || search ? filteredTranslations.length : translations.length
