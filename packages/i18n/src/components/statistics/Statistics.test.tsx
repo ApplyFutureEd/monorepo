@@ -2,6 +2,8 @@ import Statistics from '@components/statistics/Statistics';
 import { Translation, Values } from '@pages/index';
 import { render, screen } from '@testing-library/react';
 
+import StatisticsSkeleton from './StatisticsSkeleton';
+
 describe('Statistics', () => {
     const isLoading = false;
     const translations = [
@@ -38,5 +40,11 @@ describe('Statistics', () => {
         expect(uncompleteStatistics[0]).toBeInTheDocument();
         const completionStatistics = screen.getAllByText(completion);
         expect(completionStatistics[0]).toBeInTheDocument();
+    });
+
+    it('can display skeleton without crashing when loading is true', () => {
+        const { container } = render(<StatisticsSkeleton />);
+        const skeleton = container.querySelector('.react-loading-skeleton');
+        expect(skeleton).toBeInTheDocument();
     });
 });

@@ -6,7 +6,7 @@ import TranslationForm from './TranslationForm';
 type Props = {
     index: number;
     selected: string;
-    style: CSSProperties;
+    style?: CSSProperties;
     translations: Translation[];
 };
 
