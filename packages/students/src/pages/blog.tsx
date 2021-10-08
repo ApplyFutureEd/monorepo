@@ -3,7 +3,7 @@ import Article from '@components/blog/article/Article';
 import Hero from '@components/blog/hero/Hero';
 import Pagination from '@components/blog/pagination/Pagination';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import { Post } from './blog/[slug]';
 
@@ -15,7 +15,11 @@ const Blog: FC = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    const scrollTop = () => window.scrollTo(0, 0);
+    const scrollTop = useCallback(() => {
+        const blogTarget = document.querySelector('#blog') as HTMLElement;
+        const blogPosition = blogTarget?.offsetTop;
+        window.scrollTo(0, blogPosition);
+    }, [currentPage]);
 
     const paginate = (pageNumber: number) => {
         scrollTop();
@@ -35,10 +39,12 @@ const Blog: FC = () => {
             <div className="bg-white overflow-hidden">
                 <div className="relative mx-auto py-16 max-w-7xl sm:px-6 lg:px-8">
                     <Hero />
-                    <div className="grid gap-12 mx-4 sm:grid-cols-2 sm:mx-auto lg:grid-cols-3 lg:max-w-none">
+                    <div
+                        className="grid gap-12 mx-4 pt-8 sm:grid-cols-2 sm:mx-auto lg:grid-cols-3 lg:max-w-none"
+                        id="blog">
                         {currentPosts.map((post: Post) => {
                             return (
-                                <div key={post.id} id="blog">
+                                <div key={post.id}>
                                     <Article
                                         author={post.author}
                                         currentPosts={currentPosts}
