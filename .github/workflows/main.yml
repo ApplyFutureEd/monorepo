@@ -38,3 +38,30 @@ jobs:
                   install-command: yarn & yarn build:students
                   start: yarn start:students
                   command: node cypress-run
+    locales:
+        runs-on: ubuntu-latest
+        steps:
+            - name: students
+            - uses: keithweaver/aws-s3-github-action@master
+              with:
+                  command: cp
+                  source: s3://applyfuture-students-content162403-dev/public/i18n
+                  destination: ./packages/students/locales
+                  aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }
+            - name: admin
+            - uses: keithweaver/aws-s3-github-action@master
+              with:
+                  command: cp
+                  source: s3://applyfuture-students-content162403-dev/public/i18n
+                  destination: ./packages/admin/locales
+                  aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }
+            - name: i18n
+            - uses: keithweaver/aws-s3-github-action@master
+              with:
+                  command: cp
+                  source: s3://applyfuture-students-content162403-dev/public/i18n
+                  destination: ./packages/i18n/locales
+                  aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }
