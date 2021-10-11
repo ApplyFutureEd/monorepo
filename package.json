@@ -16,7 +16,7 @@
         "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
         "cy:open": "node cypress-open",
         "cy:run": "node cypress-run",
-        "i18n": "./locales.sh",
+        "i18n": "./locales.sh && git add . && git commit -m '🌍 i18n(monorepo): update translations' && git push",
         "lint": "eslint --fix .",
         "prettier:base": "prettier --parser typescript --single-quote",
         "prettier:check": "npm run prettier:base -- --list-different \"./**/*.{ts,tsx}\"",
