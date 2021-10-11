@@ -13,7 +13,6 @@
         "dev:students": "NODE_OPTIONS=\"--max_old_space_size=8192\" cd packages/students && yarn dev",
         "codegen": "amplify codegen models && mv ./src/models/index.d.ts ./packages/models/src/models.d.ts && rm -rf ./src",
         "commit": "git add . && cz",
-        "commit:empty": "git commit --allow-empty -m 'chore(content): publish/update static content'",
         "cy:open": "node cypress-open",
         "cy:run": "node cypress-run",
         "i18n": "./locales.sh && git add . && git commit -m '🌍 i18n(monorepo): update translations' && git push",
