@@ -150,6 +150,7 @@ const LandingPage: FC = () => {
         setIsLoading(true);
         const files = await fetchNamespace(namespace);
         const translations = formatTranslationsFromFiles(files);
+        console.log(translations);
         setTranslations(translations);
         setIsLoading(false);
     };
@@ -188,6 +189,8 @@ const LandingPage: FC = () => {
                 />
             )}
             <TranslationsList
+                fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
+                fetchAndSetNamespace={fetchAndSetNamespace}
                 filter={filter}
                 isLoading={isLoading}
                 listRef={listRef}
