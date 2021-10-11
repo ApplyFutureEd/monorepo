@@ -146,9 +146,7 @@ describe.skip('RecruitementDetails', () => {
             </Formik>
         );
 
-        const beginRecruitingDateInput = screen.getByLabelText(
-            /recruiter-form:when-begin-question/
-        );
+        const beginRecruitingDateInput = screen.getByLabelText(/recruiters:when-begin-question/);
 
         expect(beginRecruitingDateInput).toBeInTheDocument();
     });
@@ -171,29 +169,23 @@ describe.skip('RecruitementDetails', () => {
             </Formik>
         );
 
-        const beginRecruitingDateInput = screen.getByLabelText(
-            /recruiter-form:when-begin-question/
-        );
-        const servicesProvidedInput = screen.getByLabelText(
-            /recruiter-form:service-provide-question/
-        );
+        const beginRecruitingDateInput = screen.getByLabelText(/recruiters:when-begin-question/);
+        const servicesProvidedInput = screen.getByLabelText(/recruiters:service-provide-question/);
         const institutionsRepresentingInput = screen.getByLabelText(
-            /recruiter-form:institutions-representing-question/
+            /recruiters:institutions-representing-question/
         );
-        const belongToInput = screen.getByLabelText(
-            /recruiter-form:organization-belong-to-question/
-        );
-        const additionalCommentsInput = screen.getByLabelText(/recruiter-form:additional-comments/);
-        const referenceNameInput = screen.getByLabelText(/recruiter-form:reference-name/);
+        const belongToInput = screen.getByLabelText(/recruiters:organization-belong-to-question/);
+        const additionalCommentsInput = screen.getByLabelText(/recruiters:additional-comments/);
+        const referenceNameInput = screen.getByLabelText(/recruiters:reference-name/);
         const referenceInstitutionInput = screen.getByLabelText(
-            /recruiter-form:reference-institution-name/
+            /recruiters:reference-institution-name/
         );
         const referenceBusinessEmailInput = screen.getByLabelText(
-            /recruiter-form:reference-business-email/
+            /recruiters:reference-business-email/
         );
-        const referencePhoneInput = screen.getByTestId(/recruiter-form:reference-phone/);
-        const referenceWebsiteInput = screen.getByLabelText(/recruiter-form:reference-website/);
-        const confirmationInput = screen.getByLabelText(/recruiter-form:i-declare/);
+        const referencePhoneInput = screen.getByTestId(/recruiters:reference-phone/);
+        const referenceWebsiteInput = screen.getByLabelText(/recruiters:reference-website/);
+        const confirmationInput = screen.getByLabelText(/recruiters:i-declare/);
         const submitButton = screen.getByText(/landing:contact-form-submit-button/);
 
         userEvent.type(beginRecruitingDateInput, fakeRecruiter.beginRecruitingDate);

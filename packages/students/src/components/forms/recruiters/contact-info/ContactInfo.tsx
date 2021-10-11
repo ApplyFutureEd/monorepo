@@ -43,7 +43,7 @@ const ContactInfo: FC<Props> = (props) => {
             <Field id="mainSourceOfStudents" name="mainSourceOfStudents">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:main-source-of-students')}
+                        label={t('recruiters:main-source-of-students')}
                         options={countriesOptions}
                         {...fieldProps}
                     />
@@ -64,32 +64,30 @@ const ContactInfo: FC<Props> = (props) => {
 
             <Field id="phone" name="phone">
                 {(fieldProps: FieldProps) => (
-                    <PhoneInput label={t('recruiter-form:phone')} {...fieldProps} />
+                    <PhoneInput label={t('recruiters:phone')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="streetAddress" name="streetAddress">
                 {(fieldProps: FieldProps) => (
-                    <Input label={t('recruiter-form:street-address')} {...fieldProps} />
+                    <Input label={t('recruiters:street-address')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="city" name="city">
-                {(fieldProps: FieldProps) => (
-                    <Input label={t('recruiter-form:city')} {...fieldProps} />
-                )}
+                {(fieldProps: FieldProps) => <Input label={t('recruiters:city')} {...fieldProps} />}
             </Field>
 
             <Field id="stateOrProvince" name="stateOrProvince">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:state-province')} {...fieldProps} />
+                    <Input optional label={t('recruiters:state-province')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="country" name="country">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:country')}
+                        label={t('recruiters:country')}
                         options={countriesOptions}
                         {...fieldProps}
                     />
@@ -98,25 +96,25 @@ const ContactInfo: FC<Props> = (props) => {
 
             <Field id="postalCode" name="postalCode">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:postal-code')} {...fieldProps} />
+                    <Input optional label={t('recruiters:postal-code')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="skypeId" name="skypeId">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:skype-id')} {...fieldProps} />
+                    <Input optional label={t('recruiters:skype-id')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="whatsAppId" name="whatsAppId">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:whats-app-id')} {...fieldProps} />
+                    <Input optional label={t('recruiters:whats-app-id')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="ref" name="ref">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:referred-question')} {...fieldProps} />
+                    <Input optional label={t('recruiters:referred-question')} {...fieldProps} />
                 )}
             </Field>
 
