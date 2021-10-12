@@ -7,6 +7,8 @@ import TranslationRow from './TranslationRow';
 import TranslationRowSkeleton from './TranslationRowSkeleton';
 
 type Props = {
+    fetchAndSetAllNamespaces?: () => void;
+    fetchAndSetNamespace?: (namespace: string) => void;
     filter: Filter;
     isLoading: boolean;
     listRef: RefObject<any>;
@@ -16,7 +18,16 @@ type Props = {
 };
 
 const TranslationsList: FC<Props> = (props) => {
-    const { filter, isLoading, listRef, search, selected, translations } = props;
+    const {
+        fetchAndSetAllNamespaces,
+        fetchAndSetNamespace,
+        filter,
+        isLoading,
+        listRef,
+        search,
+        selected,
+        translations
+    } = props;
     const { width: windowWidth, height: windowHeight } = useWindowSize();
     const headerHeight = 490;
     const smBreakpoint = 640;
@@ -72,6 +83,8 @@ const TranslationsList: FC<Props> = (props) => {
                         width={'100%'}>
                         {(props) => (
                             <TranslationRow
+                                fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
+                                fetchAndSetNamespace={fetchAndSetNamespace}
                                 selected={selected}
                                 translations={
                                     filter || search ? filteredTranslations : translations
