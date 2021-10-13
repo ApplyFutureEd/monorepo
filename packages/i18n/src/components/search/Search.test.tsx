@@ -27,7 +27,3 @@ describe('Search', () => {
         expect(handleSearch).toHaveBeenCalled();
     });
 });
-
-/* En gros tu mocks ce que tu as dans ton onSubmit
-Et tu verifie que c'est bien called
-Pour la search tu simule l'ecriture dans l'input */
