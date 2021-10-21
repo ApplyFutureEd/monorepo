@@ -1,6 +1,6 @@
 import TranslationRow from '@components/translation/TranslationRow';
 import { Translation, Values } from '@pages/index';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('Translation row', () => {
     const index = 1;
@@ -20,5 +20,9 @@ describe('Translation row', () => {
 
     it('can render without crashing', () => {
         render(<TranslationRow index={index} selected={selected} translations={translations} />);
+
+        const label = screen.getByLabelText('Namespaces');
+
+        expect(label).toBeInTheDocument();
     });
 });
