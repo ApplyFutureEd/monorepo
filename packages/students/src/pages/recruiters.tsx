@@ -9,9 +9,9 @@ const RecruitersPage: FC = () => {
 
     const [currentStep, setCurrentStep] = useState(0);
     const steps = [
-        'recruiter-form:recruiter-form-step-1',
-        'recruiter-form:recruiter-form-step-2',
-        'recruiter-form:recruiter-form-step-3'
+        'recruiters:recruiter-form-step-1',
+        'recruiters:recruiter-form-step-2',
+        'recruiters:recruiter-form-step-3'
     ];
 
     const handlePreviousStep = () => {
@@ -23,7 +23,7 @@ const RecruitersPage: FC = () => {
     };
 
     return (
-        <LandingLayout title={t('recruiter-form:page-title')}>
+        <LandingLayout title={t('recruiters:page-title')}>
             <div className="relative bg-white">
                 <div className="lg:absolute lg:inset-0">
                     <div className="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">

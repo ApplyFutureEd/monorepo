@@ -171,14 +171,14 @@ describe.skip('ContactInfo', () => {
 
         const firstNameInput = screen.getByLabelText(/landing:contact-form-first-name/);
         const lastNameInput = screen.getByLabelText(/landing:contact-form-last-name/);
-        const phoneInput = screen.getByTestId(/recruiter-form:phone/);
-        const streetAddressInput = screen.getByLabelText(/recruiter-form:street-address/);
-        const cityInput = screen.getByLabelText(/recruiter-form:city/);
-        const stateOrProvinceInput = screen.getByLabelText(/recruiter-form:state-province/);
-        const postalCodeInput = screen.getByLabelText(/recruiter-form:postal-code/);
-        const skypeIdInput = screen.getByLabelText(/recruiter-form:skype-id/);
-        const whatsAppIdInput = screen.getByLabelText(/recruiter-form:whats-app-id/);
-        const refInput = screen.getByLabelText(/recruiter-form:referred-question/);
+        const phoneInput = screen.getByTestId(/recruiters:phone/);
+        const streetAddressInput = screen.getByLabelText(/recruiters:street-address/);
+        const cityInput = screen.getByLabelText(/recruiters:city/);
+        const stateOrProvinceInput = screen.getByLabelText(/recruiters:state-province/);
+        const postalCodeInput = screen.getByLabelText(/recruiters:postal-code/);
+        const skypeIdInput = screen.getByLabelText(/recruiters:skype-id/);
+        const whatsAppIdInput = screen.getByLabelText(/recruiters:whats-app-id/);
+        const refInput = screen.getByLabelText(/recruiters:referred-question/);
         const nextStepButton = screen.getByText(/common:next-step/);
 
         userEvent.type(firstNameInput, fakeRecruiter.firstName);

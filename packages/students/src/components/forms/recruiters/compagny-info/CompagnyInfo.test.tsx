@@ -143,7 +143,7 @@ describe.skip('CompagnyInfo', () => {
             </Formik>
         );
 
-        const compagnyNameInput = screen.getByLabelText(/recruiter-form:compagny-name/);
+        const compagnyNameInput = screen.getByLabelText(/recruiters:compagny-name/);
 
         expect(compagnyNameInput).toBeInTheDocument();
     });
@@ -166,13 +166,13 @@ describe.skip('CompagnyInfo', () => {
             </Formik>
         );
 
-        const compagnyNameInput = screen.getByLabelText(/recruiter-form:compagny-name/);
+        const compagnyNameInput = screen.getByLabelText(/recruiters:compagny-name/);
         const emailInput = screen.getByLabelText(/landing:contact-form-email/);
-        const websiteInput = screen.getByLabelText(/recruiter-form:website/);
-        const facebookInput = screen.getByLabelText(/recruiter-form:facebook/);
-        const instagramInput = screen.getByLabelText(/recruiter-form:instagram/);
-        const twitterInput = screen.getByLabelText(/recruiter-form:twitter/);
-        const linkedInInput = screen.getByLabelText(/recruiter-form:linked-in/);
+        const websiteInput = screen.getByLabelText(/recruiters:website/);
+        const facebookInput = screen.getByLabelText(/recruiters:facebook/);
+        const instagramInput = screen.getByLabelText(/recruiters:instagram/);
+        const twitterInput = screen.getByLabelText(/recruiters:twitter/);
+        const linkedInInput = screen.getByLabelText(/recruiters:linked-in/);
         const nextStepButton = screen.getByText(/common:next-step/);
 
         userEvent.type(compagnyNameInput, fakeRecruiter.compagnyName);
