@@ -9,5 +9,6 @@ export const namespaces = [
     'profile',
     'programs',
     'recruiters',
-    'schools'
+    'schools',
+    'blog'
 ];

@@ -4,16 +4,18 @@ module.exports = {
     locales: ['en', 'fr', 'zh'],
     pages: {
         '*': [
-            'auth',
+            'account',
             'application',
+            'auth',
+            'blog',
             'common',
             'help',
             'landing',
+            'navigation',
             'profile',
             'programs',
-            'navigation',
+            'recruiters',
             'schools',
-            'recruiter-form'
         ]
     }
 };
