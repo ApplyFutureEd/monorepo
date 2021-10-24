@@ -2,18 +2,14 @@ import TranslationForm from '@components/translation/TranslationForm';
 import { Translation, Values } from '@pages/index';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { API } from 'aws-amplify';
 import { createRef } from 'react';
 
-// handleOpen function
-// handleClose function
-// handleDisplayAlert function
-// handleHideAlert function
+// handleOpen function => confirmation modal
+// handleClose function => confirmation modal
+// handleDisplayAlert function => alert for existing translation
+// handleHideAlert function => alert for existing translation
 // handleScroll function
-
-// Je veux tester que mon composant render bien lorsque newform = true et newform = false
-// Je veux tester l'ajout d'une nouvelle trad
-// Je veux tester l'update d'une trad existante
-// Je veux tester le delete d'une trad existante
 
 describe('TranslationForm', () => {
     const fetchAndSetAllNamespaces = jest.fn();
@@ -35,7 +31,9 @@ describe('TranslationForm', () => {
         }
     ] as Translation[];
 
-    const onSubmit = jest.fn();
+    jest.mock('aws-amplify');
+
+    API.post = jest.fn();
 
     it('can render existing translations without crashing', () => {
         render(
@@ -72,7 +70,7 @@ describe('TranslationForm', () => {
         expect(translationForm).toBeInTheDocument();
     });
 
-    it('can call the onSubmit callback for adding a new translation', () => {
+    it('can call the onSubmit callback for adding a new translation', async () => {
         render(
             <TranslationForm
                 newForm
@@ -88,10 +86,12 @@ describe('TranslationForm', () => {
 
         userEvent.click(button);
 
-        expect(onSubmit).toHaveBeenCalled();
+        await waitFor(() => {
+            expect(API.post).toHaveBeenCalled();
+        });
     });
 
-    it.skip('can call callback function for updating an existing translation when input is dirty', async () => {
+    it('can call callback function for updating an existing translation when input is dirty', async () => {
         render(
             <TranslationForm
                 fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
@@ -106,10 +106,52 @@ describe('TranslationForm', () => {
 
         const input = screen.getAllByRole('textbox');
 
-        await waitFor(() => {
-            userEvent.type(input[2], 'hello');
-        });
+        userEvent.type(input[2], 'hello');
 
-        expect(onSubmit).toHaveBeenCalled();
+        await waitFor(() => {
+            expect(API.post).toHaveBeenCalled();
+        });
+    });
+
+    it('can call callback function for deleting a translation', async () => {
+        render(
+            <TranslationForm
+                fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
+                fetchAndSetNamespace={fetchAndSetNamespace}
+                namespace={translations[index].namespace}
+                newForm={false}
+                selected={selected}
+                translationKey={translations[index].key}
+                values={translations[index].values}
+            />
+        );
+
+        const button = screen.getByText('Delete');
+
+        userEvent.click(button);
+
+        await waitFor(() => {
+            expect(API.post).toHaveBeenCalled();
+        });
+    });
+
+    it.skip('can display an alert into newform if translation key exists', () => {
+        render(
+            <TranslationForm
+                newForm
+                fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
+                fetchAndSetNamespace={fetchAndSetNamespace}
+                handleToggleDisplayForm={handleToggleDisplayForm}
+                listRef={listRef}
+                translations={translations}
+            />
+        );
+
+        const alert = screen.getByText(/This translation key already exists/);
+        const input = screen.getAllByRole('textbox');
+
+        userEvent.type(input[1], 'namespace');
+
+        expect(alert).toBeInTheDocument();
     });
 });
