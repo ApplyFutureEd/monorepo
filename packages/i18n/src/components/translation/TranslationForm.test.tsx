@@ -5,12 +5,6 @@ import userEvent from '@testing-library/user-event';
 import { API } from 'aws-amplify';
 import { createRef } from 'react';
 
-// handleOpen function => confirmation modal
-// handleClose function => confirmation modal
-// handleDisplayAlert function => alert for existing translation
-// handleHideAlert function => alert for existing translation
-// handleScroll function
-
 describe('TranslationForm', () => {
     const fetchAndSetAllNamespaces = jest.fn();
     const fetchAndSetNamespace = jest.fn();

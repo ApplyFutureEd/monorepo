@@ -16,8 +16,6 @@ jest.mock('next/router', () => ({
     useState: jest.fn()
 })); */
 
-// ERROR : TypeError: _react.useState.mockImplementation is not a function
-
 describe('DashboardLayout', () => {
     const setOpenMobileMenu = jest.fn();
 
