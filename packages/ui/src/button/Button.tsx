@@ -44,7 +44,7 @@ type Props = {
     /**
      * The variant to use.
      */
-    variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'text';
+    variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'text' | 'rounded';
 };
 
 export const Button = forwardRef<Ref, Props>((props, ref) => {
@@ -74,23 +74,26 @@ export const Button = forwardRef<Ref, Props>((props, ref) => {
     const textClasses =
         'text-gray-500 hover:text-gray-700 border-transparent border-0 border-none rounded-none shadow-none';
     const disabledClasses = 'text-gray-500 bg-indigo-100 border-transparent cursor-not-allowed';
+    const roundedClasses =
+        'py-0 px-0 h-7 w-7 justify-center rounded-full border-0 border-none hover:bg-indigo-500 bg-indigo-600 min-h-0';
 
     const classes = cx({
-        [`${baseClasses}`]: true,
+        [`${baseClasses}`]: true && variant !== 'rounded',
         [`${primaryClasses}`]: !disabled && variant === 'primary',
         [`${secondaryClasses}`]: !disabled && variant === 'secondary',
         [`${successClasses}`]: !disabled && variant === 'success',
         [`${dangerClasses}`]: !disabled && variant === 'danger',
         [`${textClasses}`]: !disabled && variant === 'text',
+        [`${roundedClasses}`]: !disabled && variant === 'rounded',
         [`${disabledClasses}`]: disabled || isSubmitting
     });
 
-    const spanBaseClasses = 'inline-flex rounded-md';
+    const spanBaseClasses = 'inline-flex ';
     const spanShadowClasses = 'shadow-sm';
 
     const spanClasses = cx({
         [`${spanBaseClasses}`]: true,
-        [`${spanShadowClasses}`]: !disabled && variant !== 'text'
+        [`${spanShadowClasses}`]: !disabled && variant !== 'text' && variant !== 'rounded'
     });
 
     if (isLoading) {
