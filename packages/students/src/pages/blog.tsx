@@ -2,6 +2,7 @@ import posts from '@assets/posts/posts';
 import Article from '@components/blog/article/Article';
 import Hero from '@components/blog/hero/Hero';
 import Pagination from '@components/blog/pagination/Pagination';
+import Newsletter from '@components/blog/newsletter/Newsletter';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { FC, useCallback, useState } from 'react';
 
@@ -69,6 +70,7 @@ const Blog: FC = () => {
                         postsPerPage={postsPerPage}
                         totalPosts={posts.length}
                     />
+                    <Newsletter />
                 </div>
             </div>
         </LandingLayout>
