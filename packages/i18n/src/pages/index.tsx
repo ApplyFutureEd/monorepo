@@ -4,7 +4,7 @@ import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayou
 import TranslationForm from '@components/translation/TranslationForm';
 import TranslationsList from '@components/translation/TranslationsList';
 import { flatten } from 'lodash';
-import React, { FC, useEffect, useState } from 'react';
+import { createRef, FC, useEffect, useState } from 'react';
 
 export type Filter = 'TRANSLATED' | 'UNTRANSLATED' | null;
 
@@ -38,7 +38,7 @@ const LandingPage: FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [translations, setTranslations] = useState<Array<Translation>>([]);
 
-    const listRef = React.createRef();
+    const listRef = createRef();
 
     const handleSearch = (query: string) => {
         setSearch(query.toLowerCase().replace(/ /g, '-'));

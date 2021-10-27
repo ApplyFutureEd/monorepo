@@ -8,7 +8,7 @@ type Props = {
     fetchAndSetNamespace?: (namespace: string) => void;
     index: number;
     selected: string;
-    style: CSSProperties;
+    style?: CSSProperties;
     translations: Translation[];
 };
 
