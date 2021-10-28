@@ -64,6 +64,7 @@
         }
     },
     "dependencies": {
-        "react-share": "^4.4.0"
+        "react-share": "^4.4.0",
+        "sharethis-reactjs": "^1.6.0"
     }
 }
