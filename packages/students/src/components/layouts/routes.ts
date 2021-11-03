@@ -16,6 +16,10 @@ export const loggedRoutes = [
         label: 'navigation:applications'
     },
     {
+        href: '/blog',
+        label: 'Blog'
+    },
+    {
         href: '/help',
         label: 'navigation:help'
     }
@@ -33,6 +37,10 @@ export const unloggedRoutes = [
     {
         href: '/about',
         label: 'navigation:about-us'
+    },
+    {
+        href: '/blog',
+        label: 'Blog'
     },
     {
         href: '/#contact',
