@@ -22,11 +22,22 @@ const NewsletterForm: FC = () => {
     const onSubmit = async (values: initialValues, { resetForm }: any) => {
         const { email } = values;
         console.log(email);
-        resetForm(email);
-        toast({
-            title: 'Thank you for your subscription',
-            variant: 'success'
-        });
+        try {
+            await fetch('/api/newsletter-example3', {
+                body: JSON.stringify(email),
+                method: 'POST'
+            });
+            await toast({
+                title: 'Thank you for your subscription',
+                variant: 'success'
+            });
+            await resetForm(email);
+        } catch (error) {
+            toast({
+                title: 'Something went wrong',
+                variant: 'error'
+            });
+        }
     };
 
     return (
