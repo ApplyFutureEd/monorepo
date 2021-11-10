@@ -48,7 +48,7 @@ export const Footer: FC = () => {
 
                 <div className="mt-8">
                     <p className="text-center text-gray-900 text-base leading-6">
-                        &copy; 2020 ApplyFuture.com
+                        &copy; {new Date().getFullYear()} ApplyFuture.com
                     </p>
                 </div>
             </div>
