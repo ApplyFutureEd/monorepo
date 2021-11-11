@@ -21,10 +21,9 @@ const NewsletterForm: FC = () => {
 
     const onSubmit = async (values: initialValues, { resetForm }: any) => {
         const { email } = values;
-        console.log(email);
         try {
-            await fetch('/api/newsletter-example3', {
-                body: JSON.stringify(email),
+            await fetch('/api/newsletter', {
+                body: JSON.stringify({ email }),
                 method: 'POST'
             });
             await toast({
