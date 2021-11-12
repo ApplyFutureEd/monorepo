@@ -18,9 +18,11 @@ export const BreadcrumbsNavigation: FC<Props> = (props) => {
             <ol className="flex px-6 w-full bg-white rounded-md shadow space-x-4">
                 <li className="flex">
                     <div className="flex items-center">
-                        <a className="text-gray-400 hover:text-gray-500" href="/index">
-                            <FontAwesomeIcon fixedWidth icon={faHomeAlt} />
-                        </a>
+                        <div className="text-gray-400 hover:text-gray-500">
+                            <Link href="/">
+                                <FontAwesomeIcon fixedWidth icon={faHomeAlt} />
+                            </Link>
+                        </div>
                     </div>
                 </li>
                 {items?.map((item, index) => (
