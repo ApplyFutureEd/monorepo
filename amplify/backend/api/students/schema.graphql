@@ -339,6 +339,9 @@ type Post
     @searchable
     @key(name: "bySlug", fields: ["slug"], queryField: "getPostBySlug") {
     id: ID!
+    image: String
+    description: String
+    readingTime: Number
     category: String!
     content: String!
     lastUpdate: Float!
