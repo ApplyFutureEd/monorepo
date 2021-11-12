@@ -22,12 +22,12 @@ const SuggestionBar: FC<Props> = (props) => {
                         <div key={post.id} className="shadow-lg">
                             <Article
                                 author={post.author}
+                                category={post.category}
                                 id={post.id}
                                 image={post.image}
                                 publicationDate={post.publicationDate}
                                 readingTime={post.readingTime}
                                 slug={post.slug}
-                                tag={post.tag}
                                 title={post.title}
                             />
                         </div>
