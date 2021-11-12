@@ -53,11 +53,11 @@
         },
         "i18nsavetranslation": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/i18nsavetranslation-54736c4d55466d644178-build.zip"
+          "s3Key": "amplify-builds/i18nsavetranslation-483474464471565a5274-build.zip"
         },
         "i18ndeletetranslation": {
           "deploymentBucketName": "amplify-students-dev-162403-deployment",
-          "s3Key": "amplify-builds/i18ndeletetranslation-636e45664d3242665a71-build.zip"
+          "s3Key": "amplify-builds/i18ndeletetranslation-5254776b4234667a6863-build.zip"
         }
       }
     }
