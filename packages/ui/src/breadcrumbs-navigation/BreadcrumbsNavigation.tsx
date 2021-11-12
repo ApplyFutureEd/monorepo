@@ -14,7 +14,7 @@ export const BreadcrumbsNavigation: FC<Props> = (props) => {
     const { items } = props;
 
     return (
-        <nav aria-label="Breadcrumb" className="flex mb-6">
+        <nav aria-label="Breadcrumb" className="hidden mb-6 sm:flex">
             <ol className="flex px-6 w-full bg-white rounded-md shadow space-x-4">
                 <li className="flex">
                     <div className="flex items-center">
