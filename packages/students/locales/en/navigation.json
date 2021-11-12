@@ -1,1 +1,12 @@
-{"about-us":"About us","admin":"Admin","applications":"Applications","blog":"Blog","contact":"Contact","favorites":"Favorites","help":"Q&A","profile":"Profile","programs":"Programs","schools":"Schools","sign-out":"Sign Out"}
+{
+    "about-us": "About us",
+    "admin": "Admin",
+    "applications": "Applications",
+    "contact": "Contact",
+    "favorites": "Favorites",
+    "help": "Q&A",
+    "profile": "Profile",
+    "programs": "Programs",
+    "schools": "Schools",
+    "sign-out": "Sign Out"
+}

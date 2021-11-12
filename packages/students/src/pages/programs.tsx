@@ -11,7 +11,7 @@ import {
     SearchProgramsQuery,
     SearchProgramsQueryVariables
 } from '@applyfuture/graphql';
-import { Container } from '@applyfuture/ui';
+import { BreadcrumbsNavigation, Container } from '@applyfuture/ui';
 import {
     checkCompletion,
     createFilter,
@@ -54,11 +54,10 @@ const ProgramsPage: FC = () => {
         limit: 20
     });
 
-    const {
-        data: programsData,
-        fetchMore,
-        isLoading: programsIsLoading
-    } = useQuery<SearchProgramsQuery, SearchProgramsQueryVariables>(searchPrograms, variables);
+    const { data: programsData, fetchMore, isLoading: programsIsLoading } = useQuery<
+        SearchProgramsQuery,
+        SearchProgramsQueryVariables
+    >(searchPrograms, variables);
 
     const isPageBottom = usePageBottom();
 
@@ -189,10 +188,13 @@ const ProgramsPage: FC = () => {
         }
     };
 
+    const breadcrumbsItems = [{ label: t('programs:programs'), link: '/programs' }];
+
     return (
         <DashboardLayout
             description={t('programs:meta-description')}
             title={t('programs:page-title')}>
+            <BreadcrumbsNavigation items={breadcrumbsItems} />
             <ApplicationJourneySteps />
             {displayProfileActionPanel && <ProfileActionPanel />}
             {displaySignUpActionPanel && <SignUpActionPanel />}
