@@ -13,13 +13,13 @@ import { FC } from 'react';
 export type Post = {
     author: Author;
     description: string;
-    id: number;
+    id: string;
     image: string;
-    post: string;
+    content: string;
     publicationDate: string;
     readingTime: number;
     slug: string;
-    tag: string;
+    category: string;
     title: string;
 };
 
@@ -176,7 +176,7 @@ const Post: FC<Props> = (props) => {
                         <div
                             className="blog-markdown"
                             dangerouslySetInnerHTML={{
-                                __html: markdown({ value: post?.post })
+                                __html: markdown({ value: post?.content })
                             }}
                         />
                     </div>

@@ -48,6 +48,7 @@ const Blog: FC = () => {
                                 <div key={post.id}>
                                     <Article
                                         author={post.author}
+                                        category={post.category}
                                         currentPosts={currentPosts}
                                         description={post.description}
                                         id={post.id}
@@ -55,7 +56,6 @@ const Blog: FC = () => {
                                         publicationDate={post.publicationDate}
                                         readingTime={post.readingTime}
                                         slug={post.slug}
-                                        tag={post.tag}
                                         title={post.title}
                                     />
                                 </div>

@@ -1,6 +1,7 @@
 export * from './action-panel/ActionPanel';
 export * from './alert/Alert';
 export * from './banner/Banner';
+export * from './breadcrumbs-navigation/BreadcrumbsNavigation';
 export * from './button/Button';
 export * from './card-cvc-input/CardCvcInput';
 export * from './card-expire-date-input/CardExpireDateInput';
