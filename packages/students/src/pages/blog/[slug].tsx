@@ -3,6 +3,7 @@ import { markdown } from '@applyfuture/utils';
 import { date } from '@applyfuture/utils';
 import posts from '@assets/posts/posts';
 import { Author } from '@components/blog/article/Article';
+import SocialMedia from '@components/blog/social-media/SocialMedia';
 import SuggestionBar from '@components/blog/suggestion-bar/SuggestionBar';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -134,7 +135,7 @@ const Post: FC<Props> = (props) => {
                     </div>
                 </div>
                 <div className="relative px-2 lg:px-0">
-                    <div className="mb-16 mx-auto max-w-prose text-lg">
+                    <div className="mb-12 mx-auto max-w-prose text-lg">
                         <h1>
                             <span className="block mt-2 text-center text-gray-900 text-4xl font-extrabold tracking-tight leading-8">
                                 {post?.title}
@@ -143,6 +144,26 @@ const Post: FC<Props> = (props) => {
                         <p className="mt-8 text-center text-gray-500 text-xl leading-8">
                             {post?.description}
                         </p>
+                    </div>
+                    <div className="flex items-center justify-between mb-9 mx-auto px-9 max-w-prose">
+                        <div className="flex items-center space-x-4">
+                            <img
+                                alt="author"
+                                className="w-10 h-10 rounded-full"
+                                src={post?.author.picture}
+                            />
+                            <div>
+                                <h3 className="text-gray-700 text-lg">{post?.author.name}</h3>
+                                <time className="text-gray-700 text-sm" dateTime="2021-09-24">
+                                    {date({
+                                        locale: locale,
+                                        scheme: 'dd MMM yyyy',
+                                        value: post?.publicationDate
+                                    })}
+                                </time>
+                            </div>
+                        </div>
+                        <SocialMedia url={post?.slug} />
                     </div>
                     <div>
                         <img
@@ -159,7 +180,7 @@ const Post: FC<Props> = (props) => {
                             }}
                         />
                     </div>
-                    <div className="mt-16 mx-auto max-w-prose">
+                    <div className="flex items-center justify-between mt-16 mx-auto px-9 max-w-prose">
                         <div className="flex items-center space-x-4">
                             <img
                                 alt="author"
@@ -177,9 +198,11 @@ const Post: FC<Props> = (props) => {
                                 </time>
                             </div>
                         </div>
+                        <SocialMedia url={post?.slug} />
                     </div>
                 </div>
             </div>
+
             <SuggestionBar posts={suggestedPosts} />
         </LandingLayout>
     );
