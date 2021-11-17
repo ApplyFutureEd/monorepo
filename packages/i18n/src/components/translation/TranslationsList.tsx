@@ -1,4 +1,5 @@
 import { isObjectValuesEmpty, useWindowSize } from '@applyfuture/utils';
+import NoResult from '@components/no-result/NoResult';
 import { Filter, Translation } from '@pages/index';
 import { FC, RefObject } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -67,11 +68,17 @@ const TranslationsList: FC<Props> = (props) => {
         []
     );
 
-    return (
-        <>
-            {isLoading ? (
-                <TranslationRowSkeleton isLoading={isLoading} />
-            ) : (
+    const renderTranslations = () => {
+        if (isLoading) {
+            return <TranslationRowSkeleton isLoading={isLoading} />;
+        }
+
+        if (filteredTranslations.length === 0) {
+            return <NoResult />;
+        }
+
+        if (translations.length > 0 || filteredTranslations.length > 0) {
+            return (
                 <div className="py-12">
                     <List
                         ref={listRef}
@@ -94,9 +101,11 @@ const TranslationsList: FC<Props> = (props) => {
                         )}
                     </List>
                 </div>
-            )}
-        </>
-    );
+            );
+        }
+    };
+
+    return <>{renderTranslations()}</>;
 };
 
 export default TranslationsList;
