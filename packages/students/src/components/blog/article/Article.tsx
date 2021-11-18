@@ -3,6 +3,7 @@ import { date } from '@applyfuture/utils';
 import { Post } from '@pages/blog/[slug]';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 export type Author = {
@@ -24,6 +25,7 @@ type Props = {
 };
 
 const Article: FC<Props> = (props) => {
+    const { t } = useTranslation();
     const {
         author,
         description,
@@ -69,7 +71,9 @@ const Article: FC<Props> = (props) => {
                                     })}
                                 </time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>{readingTime} min read</span>
+                                <span>
+                                    {readingTime} {t('blog:article-reading-time')}
+                                </span>
                             </div>
                         </div>
                     </div>

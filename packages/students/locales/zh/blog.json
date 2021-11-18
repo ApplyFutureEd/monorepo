@@ -1,1 +1,13 @@
-{"hero-headline":"欢迎来到ApplyBlog","hero-paragraph":"","keep-reading":"继续阅读","newsletter-cta":"订阅","newsletter-headline":"订阅我们的简讯","newsletter-input-placeholder":"输入你的邮箱地址","newsletter-legal-notice":"我们关心对您的数据的保护。请阅读我们的","newsletter-paragraph":"","pagination-next":"下一页","pagination-previous":"上一页"}
+{
+    "article-reading-time": "minutes read",
+    "hero-headline": "欢迎来到ApplyBlog",
+    "hero-paragraph": "",
+    "keep-reading": "继续阅读",
+    "newsletter-cta": "订阅",
+    "newsletter-headline": "订阅我们的简讯",
+    "newsletter-input-placeholder": "输入你的邮箱地址",
+    "newsletter-legal-notice": "我们关心对您的数据的保护。请阅读我们的",
+    "newsletter-paragraph": "",
+    "pagination-next": "下一页",
+    "pagination-previous": "上一页"
+}

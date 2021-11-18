@@ -40,8 +40,7 @@ const Post: FC<Props> = (props) => {
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
 
-    const breadcrumbsItems = [{ label: 'Blog', link: '/blog' }];
-    // TODO : use translation key for label
+    const breadcrumbsItems = [{ label: `${t('navigation:blog')}`, link: '/blog' }];
 
     return (
         <LandingLayout title={post?.title}>
