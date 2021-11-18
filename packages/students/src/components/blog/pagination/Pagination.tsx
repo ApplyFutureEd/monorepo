@@ -1,6 +1,7 @@
 import { Button } from '@applyfuture/ui';
 import { faArrowLeft } from '@fortawesome/pro-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/pro-solid-svg-icons';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const Pagination: FC<Props> = (props) => {
+    const { t } = useTranslation();
     const { currentPage, paginate, paginateBack, paginateFront, postsPerPage, totalPosts } = props;
 
     const pageNumbers = [];
@@ -29,7 +31,7 @@ const Pagination: FC<Props> = (props) => {
                     onClick={() => {
                         paginateBack && paginateBack();
                     }}>
-                    Previous
+                    {t('blog:pagination-previous')}
                 </Button>
             </div>
             <nav className="hidden md:flex md:-mt-4">
@@ -59,7 +61,7 @@ const Pagination: FC<Props> = (props) => {
                     onClick={() => {
                         paginateFront && paginateFront();
                     }}>
-                    Next
+                    {t('blog:pagination-next')}
                 </Button>
             </div>
         </nav>

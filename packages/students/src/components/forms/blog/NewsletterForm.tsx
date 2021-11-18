@@ -1,10 +1,12 @@
 import { Button, Input } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { Field, FieldProps, Form, Formik } from 'formik';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 import { object, string } from 'yup';
 
 const NewsletterForm: FC = () => {
+    const { t } = useTranslation();
     const validationSchema = object().shape({
         email: string()
             .required('Please enter your email')
@@ -48,13 +50,16 @@ const NewsletterForm: FC = () => {
                 <div className="flex-1">
                     <Field id="email" name="email">
                         {(fieldProps: FieldProps) => (
-                            <Input placeholder="Enter your email" {...fieldProps} />
+                            <Input
+                                placeholder={t('blog:newsletter-input-placeholder')}
+                                {...fieldProps}
+                            />
                         )}
                     </Field>
                 </div>
                 <div className="mt-3 rounded-md md:ml-3 md:mt-0">
                     <Button type="submit" variant="primary">
-                        Subscribe
+                        {t('blog:newsletter-cta')}
                     </Button>
                 </div>
             </Form>
