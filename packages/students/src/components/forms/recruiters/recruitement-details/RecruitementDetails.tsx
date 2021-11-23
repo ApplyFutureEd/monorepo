@@ -57,26 +57,26 @@ const RecruitementDetails: FC<Props> = (props) => {
             value: '51 - 250'
         },
         {
-            label: t('recruiter-form:more-than'),
+            label: t('recruiters:more-than'),
             value: 'More than 251'
         }
     ];
 
     const marketingMethodsOptions = [
         {
-            label: t('recruiter-form:type-of-marketing-answer-1'),
+            label: t('recruiters:type-of-marketing-answer-1'),
             value: 'Online Advertising'
         },
         {
-            label: t('recruiter-form:type-of-marketing-answer-2'),
+            label: t('recruiters:type-of-marketing-answer-2'),
             value: 'Education Fairs'
         },
         {
-            label: t('recruiter-form:type-of-marketing-answer-3'),
+            label: t('recruiters:type-of-marketing-answer-3'),
             value: 'Sub-Agent Network'
         },
         {
-            label: t('recruiter-form:type-of-marketing-answer-4'),
+            label: t('recruiters:type-of-marketing-answer-4'),
             value: 'Newspaper and Magazine Advertising'
         }
     ];
@@ -99,7 +99,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             value: '1000 - 2500€'
         },
         {
-            label: `${t('recruiter-form:more-than')} 2500€`,
+            label: `${t('recruiters:more-than')} 2500€`,
             value: 'More than 2500€'
         }
     ];
@@ -108,18 +108,14 @@ const RecruitementDetails: FC<Props> = (props) => {
         <div className="space-y-6">
             <Field id="beginRecruitingDate" name="beginRecruitingDate">
                 {(fieldProps: FieldProps) => (
-                    <Input
-                        optional
-                        label={t('recruiter-form:when-begin-question')}
-                        {...fieldProps}
-                    />
+                    <Input optional label={t('recruiters:when-begin-question')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="servicesProvided" name="servicesProvided">
                 {(fieldProps: FieldProps) => (
                     <Input
-                        label={t('recruiter-form:service-provide-question')}
+                        label={t('recruiters:service-provide-question')}
                         rows={5}
                         {...fieldProps}
                     />
@@ -130,7 +126,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 {(fieldProps: FieldProps) => (
                     <Input
                         optional
-                        label={t('recruiter-form:institutions-representing-question')}
+                        label={t('recruiters:institutions-representing-question')}
                         {...fieldProps}
                     />
                 )}
@@ -139,7 +135,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             <Field id="belongTo" name="belongTo">
                 {(fieldProps: FieldProps) => (
                     <Input
-                        label={t('recruiter-form:organization-belong-to-question')}
+                        label={t('recruiters:organization-belong-to-question')}
                         {...fieldProps}
                     />
                 )}
@@ -149,7 +145,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 {(fieldProps: FieldProps) => (
                     <Select
                         optional
-                        label={t('recruiter-form:where-recruit-from-question')}
+                        label={t('recruiters:where-recruit-from-question')}
                         options={countriesOptions}
                         {...fieldProps}
                     />
@@ -159,7 +155,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             <Field id="howManyStudents" name="howManyStudents">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:how-many-students-question')}
+                        label={t('recruiters:how-many-students-question')}
                         options={studentsOptions}
                         {...fieldProps}
                     />
@@ -169,7 +165,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             <Field id="marketingMethods" name="marketingMethods">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:type-of-marketing-question')}
+                        label={t('recruiters:type-of-marketing-question')}
                         options={marketingMethodsOptions}
                         {...fieldProps}
                     />
@@ -179,7 +175,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             <Field id="averageServiceFee" name="averageServiceFee">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:average-fee-question')}
+                        label={t('recruiters:average-fee-question')}
                         options={averageServiceFeeOptions}
                         {...fieldProps}
                     />
@@ -189,7 +185,7 @@ const RecruitementDetails: FC<Props> = (props) => {
             <Field id="estimatedStudents" name="estimatedStudents">
                 {(fieldProps: FieldProps) => (
                     <Select
-                        label={t('recruiter-form:estimate-students-refer-question')}
+                        label={t('recruiters:estimate-students-refer-question')}
                         options={studentsOptions}
                         {...fieldProps}
                     />
@@ -200,7 +196,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 {(fieldProps: FieldProps) => (
                     <Input
                         optional
-                        label={t('recruiter-form:additional-comments')}
+                        label={t('recruiters:additional-comments')}
                         rows={5}
                         {...fieldProps}
                     />
@@ -209,7 +205,7 @@ const RecruitementDetails: FC<Props> = (props) => {
 
             <Field id="referenceName" name="referenceName">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:reference-name')} {...fieldProps} />
+                    <Input optional label={t('recruiters:reference-name')} {...fieldProps} />
                 )}
             </Field>
 
@@ -217,7 +213,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 {(fieldProps: FieldProps) => (
                     <Input
                         optional
-                        label={t('recruiter-form:reference-institution-name')}
+                        label={t('recruiters:reference-institution-name')}
                         {...fieldProps}
                     />
                 )}
@@ -227,7 +223,7 @@ const RecruitementDetails: FC<Props> = (props) => {
                 {(fieldProps: FieldProps) => (
                     <Input
                         optional
-                        label={t('recruiter-form:reference-business-email')}
+                        label={t('recruiters:reference-business-email')}
                         {...fieldProps}
                     />
                 )}
@@ -235,19 +231,19 @@ const RecruitementDetails: FC<Props> = (props) => {
 
             <Field id="referencePhone" name="referencePhone">
                 {(fieldProps: FieldProps) => (
-                    <PhoneInput label={t('recruiter-form:reference-phone')} {...fieldProps} />
+                    <PhoneInput label={t('recruiters:reference-phone')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="referenceWebsite" name="referenceWebsite">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:reference-website')} {...fieldProps} />
+                    <Input optional label={t('recruiters:reference-website')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="confirmation" name="confirmation">
                 {(fieldProps: FieldProps) => (
-                    <Checkbox label={t('recruiter-form:i-declare')} {...fieldProps} />
+                    <Checkbox label={t('recruiters:i-declare')} {...fieldProps} />
                 )}
             </Field>
 

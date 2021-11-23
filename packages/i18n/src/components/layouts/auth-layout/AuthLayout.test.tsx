@@ -1,7 +1,7 @@
 import AuthLayout from '@components/layouts/auth-layout/AuthLayout';
 import { render, screen } from '@testing-library/react';
 
-describe.skip('AuthLayout', () => {
+describe('AuthLayout', () => {
     it('can render without crashing', () => {
         render(
             <AuthLayout description="Lorem ipsum" title="Hello World">

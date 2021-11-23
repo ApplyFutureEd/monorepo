@@ -119,14 +119,19 @@ const TranslationForm: FC<Props> = (props) => {
     };
 
     const handleDelete = async (values: FormValues) => {
-        handleClose();
         try {
+            handleClose();
             await API.post('rest', '/i18n/delete', {
                 body: {
                     namespace: values.namespace,
                     translationKey: values.translationKey
                 }
             });
+            if (selected === 'all') {
+                fetchAndSetAllNamespaces && fetchAndSetAllNamespaces();
+            } else {
+                fetchAndSetNamespace && fetchAndSetNamespace(values.namespace);
+            }
             toast({
                 title: 'The translation was successfully deleted',
                 variant: 'success'

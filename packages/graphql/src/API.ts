@@ -141,7 +141,7 @@ export type School = {
 
 export type ModelProgramConnection = {
     __typename: 'ModelProgramConnection';
-    items?: Array<Program | null> | null;
+    items?: Array<Program>;
     nextToken?: string | null;
 };
 
@@ -236,7 +236,7 @@ export type UpdateSchoolInput = {
 };
 
 export type DeleteSchoolInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateProgramInput = {
@@ -425,7 +425,7 @@ export type UpdateProgramInput = {
 };
 
 export type DeleteProgramInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateStudentInput = {
@@ -694,7 +694,7 @@ export type Student = {
 
 export type ModelApplicationConnection = {
     __typename: 'ModelApplicationConnection';
-    items?: Array<Application | null> | null;
+    items?: Array<Application>;
     nextToken?: string | null;
 };
 
@@ -743,7 +743,7 @@ export type ApplicationStep = {
 
 export type ModelDocumentConnection = {
     __typename: 'ModelDocumentConnection';
-    items?: Array<Document | null> | null;
+    items?: Array<Document>;
     nextToken?: string | null;
 };
 
@@ -861,7 +861,7 @@ export type UpdateStudentInput = {
 };
 
 export type DeleteStudentInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateDocumentInput = {
@@ -896,7 +896,7 @@ export type UpdateDocumentInput = {
 };
 
 export type DeleteDocumentInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateApplicationInput = {
@@ -971,7 +971,7 @@ export type UpdateApplicationInput = {
 };
 
 export type DeleteApplicationInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type UpdateSearchAlertInput = {
@@ -1011,7 +1011,7 @@ export type SearchAlert = {
 };
 
 export type DeleteSearchAlertInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateFeedbackInput = {
@@ -1058,11 +1058,14 @@ export type UpdateFeedbackInput = {
 };
 
 export type DeleteFeedbackInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreatePostInput = {
     id?: string | null;
+    image?: string | null;
+    description?: string | null;
+    readingTime?: number | null;
     category: string;
     content: string;
     lastUpdate: number;
@@ -1075,6 +1078,9 @@ export type CreatePostInput = {
 };
 
 export type ModelPostConditionInput = {
+    image?: ModelStringInput | null;
+    description?: ModelStringInput | null;
+    readingTime?: ModelFloatInput | null;
     category?: ModelStringInput | null;
     content?: ModelStringInput | null;
     lastUpdate?: ModelFloatInput | null;
@@ -1092,6 +1098,9 @@ export type ModelPostConditionInput = {
 export type Post = {
     __typename: 'Post';
     id?: string;
+    image?: string | null;
+    description?: string | null;
+    readingTime?: number | null;
     category?: string;
     content?: string;
     lastUpdate?: number;
@@ -1105,6 +1114,9 @@ export type Post = {
 
 export type UpdatePostInput = {
     id: string;
+    image?: string | null;
+    description?: string | null;
+    readingTime?: number | null;
     category?: string | null;
     content?: string | null;
     lastUpdate?: number | null;
@@ -1117,7 +1129,7 @@ export type UpdatePostInput = {
 };
 
 export type DeletePostInput = {
-    id?: string | null;
+    id: string;
 };
 
 export type CreateSearchAlertInput = {
@@ -1211,7 +1223,7 @@ export type ModelStudentFilterInput = {
 
 export type ModelStudentConnection = {
     __typename: 'ModelStudentConnection';
-    items?: Array<Student | null> | null;
+    items?: Array<Student>;
     nextToken?: string | null;
 };
 
@@ -1266,7 +1278,7 @@ export type ModelSearchAlertFilterInput = {
 
 export type ModelSearchAlertConnection = {
     __typename: 'ModelSearchAlertConnection';
-    items?: Array<SearchAlert | null> | null;
+    items?: Array<SearchAlert>;
     nextToken?: string | null;
 };
 
@@ -1285,7 +1297,7 @@ export type ModelFeedbackFilterInput = {
 
 export type ModelFeedbackConnection = {
     __typename: 'ModelFeedbackConnection';
-    items?: Array<Feedback | null> | null;
+    items?: Array<Feedback>;
     nextToken?: string | null;
 };
 
@@ -1508,7 +1520,7 @@ export enum SearchableSortDirection {
 
 export type SearchableStudentConnection = {
     __typename: 'SearchableStudentConnection';
-    items?: Array<Student | null> | null;
+    items?: Array<Student>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -1561,7 +1573,7 @@ export enum SearchableApplicationSortableFields {
 
 export type SearchableApplicationConnection = {
     __typename: 'SearchableApplicationConnection';
-    items?: Array<Application | null> | null;
+    items?: Array<Application>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -1598,7 +1610,7 @@ export enum SearchableSearchAlertSortableFields {
 
 export type SearchableSearchAlertConnection = {
     __typename: 'SearchableSearchAlertConnection';
-    items?: Array<SearchAlert | null> | null;
+    items?: Array<SearchAlert>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -1633,7 +1645,7 @@ export enum SearchableFeedbackSortableFields {
 
 export type SearchableFeedbackConnection = {
     __typename: 'SearchableFeedbackConnection';
-    items?: Array<Feedback | null> | null;
+    items?: Array<Feedback>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -1668,7 +1680,7 @@ export type ModelSchoolFilterInput = {
 
 export type ModelSchoolConnection = {
     __typename: 'ModelSchoolConnection';
-    items?: Array<School | null> | null;
+    items?: Array<School>;
     nextToken?: string | null;
 };
 
@@ -1732,7 +1744,7 @@ export enum SearchableSchoolSortableFields {
 
 export type SearchableSchoolConnection = {
     __typename: 'SearchableSchoolConnection';
-    items?: Array<School | null> | null;
+    items?: Array<School>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -1906,13 +1918,16 @@ export enum SearchableProgramSortableFields {
 
 export type SearchableProgramConnection = {
     __typename: 'SearchableProgramConnection';
-    items?: Array<Program | null> | null;
+    items?: Array<Program>;
     nextToken?: string | null;
     total?: number | null;
 };
 
 export type ModelPostFilterInput = {
     id?: ModelIDInput | null;
+    image?: ModelStringInput | null;
+    description?: ModelStringInput | null;
+    readingTime?: ModelFloatInput | null;
     category?: ModelStringInput | null;
     content?: ModelStringInput | null;
     lastUpdate?: ModelFloatInput | null;
@@ -1929,12 +1944,15 @@ export type ModelPostFilterInput = {
 
 export type ModelPostConnection = {
     __typename: 'ModelPostConnection';
-    items?: Array<Post | null> | null;
+    items?: Array<Post>;
     nextToken?: string | null;
 };
 
 export type SearchablePostFilterInput = {
     id?: SearchableIDFilterInput | null;
+    image?: SearchableStringFilterInput | null;
+    description?: SearchableStringFilterInput | null;
+    readingTime?: SearchableFloatFilterInput | null;
     category?: SearchableStringFilterInput | null;
     content?: SearchableStringFilterInput | null;
     lastUpdate?: SearchableFloatFilterInput | null;
@@ -1956,6 +1974,9 @@ export type SearchablePostSortInput = {
 
 export enum SearchablePostSortableFields {
     id = 'id',
+    image = 'image',
+    description = 'description',
+    readingTime = 'readingTime',
     category = 'category',
     content = 'content',
     lastUpdate = 'lastUpdate',
@@ -1969,7 +1990,7 @@ export enum SearchablePostSortableFields {
 
 export type SearchablePostConnection = {
     __typename: 'SearchablePostConnection';
-    items?: Array<Post | null> | null;
+    items?: Array<Post>;
     nextToken?: string | null;
     total?: number | null;
 };
@@ -2006,7 +2027,7 @@ export type CreateSchoolMutation = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -2057,7 +2078,7 @@ export type CreateSchoolMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -2095,7 +2116,7 @@ export type UpdateSchoolMutation = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -2146,7 +2167,7 @@ export type UpdateSchoolMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -2184,7 +2205,7 @@ export type DeleteSchoolMutation = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -2235,7 +2256,7 @@ export type DeleteSchoolMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -2547,7 +2568,7 @@ export type CreateStudentMutation = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -2565,7 +2586,7 @@ export type CreateStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -2575,7 +2596,7 @@ export type CreateStudentMutation = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -2584,7 +2605,7 @@ export type CreateStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -2696,7 +2717,7 @@ export type UpdateStudentMutation = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -2714,7 +2735,7 @@ export type UpdateStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -2724,7 +2745,7 @@ export type UpdateStudentMutation = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -2733,7 +2754,7 @@ export type UpdateStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -2845,7 +2866,7 @@ export type DeleteStudentMutation = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -2863,7 +2884,7 @@ export type DeleteStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -2873,7 +2894,7 @@ export type DeleteStudentMutation = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -2882,7 +2903,7 @@ export type DeleteStudentMutation = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -4912,6 +4933,9 @@ export type CreatePostMutation = {
     createPost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -4933,6 +4957,9 @@ export type UpdatePostMutation = {
     updatePost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -4954,6 +4981,9 @@ export type DeletePostMutation = {
     deletePost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -5108,7 +5138,7 @@ export type GetStudentQuery = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -5126,7 +5156,7 @@ export type GetStudentQuery = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -5136,7 +5166,7 @@ export type GetStudentQuery = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -5145,7 +5175,7 @@ export type GetStudentQuery = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -5254,7 +5284,7 @@ export type ListStudentsQueryVariables = {
 export type ListStudentsQuery = {
     listStudents?: {
         __typename: 'ModelStudentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Student';
             id: string;
             address?: string | null;
@@ -5365,7 +5395,7 @@ export type ListStudentsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -5508,7 +5538,7 @@ export type ListDocumentsQueryVariables = {
 export type ListDocumentsQuery = {
     listDocuments?: {
         __typename: 'ModelDocumentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Document';
             id: string;
             studentId: string;
@@ -5592,7 +5622,7 @@ export type ListDocumentsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -5847,7 +5877,7 @@ export type ListApplicationsQueryVariables = {
 export type ListApplicationsQuery = {
     listApplications?: {
         __typename: 'ModelApplicationConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Application';
             id: string;
             admissionResult?: string | null;
@@ -6009,7 +6039,7 @@ export type ListApplicationsQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6153,7 +6183,7 @@ export type ListSearchAlertsQueryVariables = {
 export type ListSearchAlertsQuery = {
     listSearchAlerts?: {
         __typename: 'ModelSearchAlertConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'SearchAlert';
             id: string;
             lastUpdate: number;
@@ -6238,7 +6268,7 @@ export type ListSearchAlertsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6432,7 +6462,7 @@ export type ListFeedbacksQueryVariables = {
 export type ListFeedbacksQuery = {
     listFeedbacks?: {
         __typename: 'ModelFeedbackConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Feedback';
             id: string;
             application?: {
@@ -6460,7 +6490,7 @@ export type ListFeedbacksQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6476,7 +6506,7 @@ export type GetStudentByEmailQueryVariables = {
 export type GetStudentByEmailQuery = {
     getStudentByEmail?: {
         __typename: 'ModelStudentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Student';
             id: string;
             address?: string | null;
@@ -6587,7 +6617,7 @@ export type GetStudentByEmailQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6603,7 +6633,7 @@ export type GetDocumentByStudentQueryVariables = {
 export type GetDocumentByStudentQuery = {
     getDocumentByStudent?: {
         __typename: 'ModelDocumentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Document';
             id: string;
             studentId: string;
@@ -6687,7 +6717,7 @@ export type GetDocumentByStudentQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6703,7 +6733,7 @@ export type GetDocumentByStorageKeyQueryVariables = {
 export type GetDocumentByStorageKeyQuery = {
     getDocumentByStorageKey?: {
         __typename: 'ModelDocumentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Document';
             id: string;
             studentId: string;
@@ -6787,7 +6817,7 @@ export type GetDocumentByStorageKeyQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6803,7 +6833,7 @@ export type GetApplicationByStudentQueryVariables = {
 export type GetApplicationByStudentQuery = {
     getApplicationByStudent?: {
         __typename: 'ModelApplicationConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Application';
             id: string;
             admissionResult?: string | null;
@@ -6970,7 +7000,7 @@ export type GetApplicationByStudentQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -6986,7 +7016,7 @@ export type SearchStudentsQueryVariables = {
 export type SearchStudentsQuery = {
     searchStudents?: {
         __typename: 'SearchableStudentConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Student';
             id: string;
             address?: string | null;
@@ -7097,7 +7127,7 @@ export type SearchStudentsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
     } | null;
@@ -7114,7 +7144,7 @@ export type SearchApplicationsQueryVariables = {
 export type SearchApplicationsQuery = {
     searchApplications?: {
         __typename: 'SearchableApplicationConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Application';
             id: string;
             admissionResult?: string | null;
@@ -7276,7 +7306,7 @@ export type SearchApplicationsQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
     } | null;
@@ -7293,7 +7323,7 @@ export type SearchSearchAlertsQueryVariables = {
 export type SearchSearchAlertsQuery = {
     searchSearchAlerts?: {
         __typename: 'SearchableSearchAlertConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'SearchAlert';
             id: string;
             lastUpdate: number;
@@ -7378,7 +7408,7 @@ export type SearchSearchAlertsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
     } | null;
@@ -7395,7 +7425,7 @@ export type SearchFeedbacksQueryVariables = {
 export type SearchFeedbacksQuery = {
     searchFeedbacks?: {
         __typename: 'SearchableFeedbackConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Feedback';
             id: string;
             application?: {
@@ -7409,10 +7439,6 @@ export type SearchFeedbacksQuery = {
                 lastUpdate: number;
                 modalApplicationCompletedViewed: boolean;
                 programId: string;
-                student: {
-                    firstName: string;
-                    lastName: string;
-                };
                 studentId: string;
                 todo?: string | null;
                 tuitionsFeePaymentDate?: string | null;
@@ -7427,51 +7453,9 @@ export type SearchFeedbacksQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
-    } | null;
-};
-
-export type ListSchoolsQueryVariables = {
-    filter?: ModelSchoolFilterInput | null;
-    limit?: number | null;
-    nextToken?: string | null;
-};
-
-export type ListSchoolsQuery = {
-    listSchools?: {
-        __typename: 'ModelSchoolConnection';
-        items?: Array<{
-            __typename: 'School';
-            id: string;
-            city: string;
-            country: string;
-            coverPhoto: string;
-            contactEmail?: string | null;
-            contactJobTitle?: string | null;
-            contactName?: string | null;
-            contactPhone?: string | null;
-            contractStatus: string;
-            creationYear: number;
-            description?: string | null;
-            institutionType: string;
-            internationalStudents: number;
-            lastUpdate: number;
-            logo: string;
-            name: string;
-            totalStudents: number;
-            slug: string;
-            published: boolean;
-            createdAt?: string | null;
-            updatedAt?: string | null;
-            owner?: string | null;
-            programs?: {
-                __typename: 'ModelProgramConnection';
-                nextToken?: string | null;
-            } | null;
-        } | null> | null;
-        nextToken?: string | null;
     } | null;
 };
 
@@ -7506,7 +7490,7 @@ export type GetSchoolQuery = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -7557,24 +7541,22 @@ export type GetSchoolQuery = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
 };
 
-export type GetSchoolBySlugQueryVariables = {
-    slug?: string | null;
-    sortDirection?: ModelSortDirection | null;
+export type ListSchoolsQueryVariables = {
     filter?: ModelSchoolFilterInput | null;
     limit?: number | null;
     nextToken?: string | null;
 };
 
-export type GetSchoolBySlugQuery = {
-    getSchoolBySlug?: {
+export type ListSchoolsQuery = {
+    listSchools?: {
         __typename: 'ModelSchoolConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'School';
             id: string;
             city: string;
@@ -7602,7 +7584,51 @@ export type GetSchoolBySlugQuery = {
                 __typename: 'ModelProgramConnection';
                 nextToken?: string | null;
             } | null;
-        } | null> | null;
+        }>;
+        nextToken?: string | null;
+    } | null;
+};
+
+export type GetSchoolBySlugQueryVariables = {
+    slug?: string | null;
+    sortDirection?: ModelSortDirection | null;
+    filter?: ModelSchoolFilterInput | null;
+    limit?: number | null;
+    nextToken?: string | null;
+};
+
+export type GetSchoolBySlugQuery = {
+    getSchoolBySlug?: {
+        __typename: 'ModelSchoolConnection';
+        items: Array<{
+            __typename: 'School';
+            id: string;
+            city: string;
+            country: string;
+            coverPhoto: string;
+            contactEmail?: string | null;
+            contactJobTitle?: string | null;
+            contactName?: string | null;
+            contactPhone?: string | null;
+            contractStatus: string;
+            creationYear: number;
+            description?: string | null;
+            institutionType: string;
+            internationalStudents: number;
+            lastUpdate: number;
+            logo: string;
+            name: string;
+            totalStudents: number;
+            slug: string;
+            published: boolean;
+            createdAt?: string | null;
+            updatedAt?: string | null;
+            owner?: string | null;
+            programs?: {
+                __typename: 'ModelProgramConnection';
+                nextToken?: string | null;
+            } | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -7618,7 +7644,7 @@ export type SearchSchoolsQueryVariables = {
 export type SearchSchoolsQuery = {
     searchSchools?: {
         __typename: 'SearchableSchoolConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'School';
             id: string;
             city: string;
@@ -7646,108 +7672,9 @@ export type SearchSchoolsQuery = {
                 __typename: 'ModelProgramConnection';
                 nextToken?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
-    } | null;
-};
-
-export type ListProgramsQueryVariables = {
-    filter?: ModelProgramFilterInput | null;
-    limit?: number | null;
-    nextToken?: string | null;
-};
-
-export type ListProgramsQuery = {
-    listPrograms?: {
-        __typename: 'ModelProgramConnection';
-        items?: Array<{
-            __typename: 'Program';
-            id: string;
-            applicationFee: number;
-            applicationFeeCurrency: string;
-            city: string;
-            costOfLiving: number;
-            costOfLivingCurrency: string;
-            country: string;
-            degree: string;
-            description?: string | null;
-            discipline: string;
-            duration: number;
-            durationUnit: string;
-            fee: number;
-            feeCurrency: string;
-            feeUnit: string;
-            feesAndFinancing?: string | null;
-            gradePointAverage: number;
-            highestEducationLevel: number;
-            intakeInformation?: string | null;
-            intakes: string;
-            languages: Array<string | null>;
-            lastUpdate: number;
-            minimumAge: number;
-            minimumWorkExperience: number;
-            minimumWorkExperienceUnit: string;
-            name: string;
-            otherRequirements?: string | null;
-            published: boolean;
-            requestedDocuments: Array<{
-                __typename: 'RequestedDocument';
-                name: string;
-                isMandatory?: boolean | null;
-                storageKey?: string | null;
-                description?: string | null;
-                condition?: string | null;
-                isSpecific?: boolean | null;
-            }>;
-            schedule: string;
-            schoolId: string;
-            schoolName: string;
-            slug: string;
-            submissionDeadline: string;
-            testCambridgeAdvanced: number;
-            testCambridgeFirst: number;
-            testCeliCilsItPlida: number;
-            testDele: number;
-            testDelfdalf: number;
-            testGmat: number;
-            testGoethe: number;
-            testGre: number;
-            testIelts: number;
-            testTagemage: number;
-            testTcftef: number;
-            testToefl: number;
-            testToeic: number;
-            createdAt?: string | null;
-            updatedAt?: string | null;
-            owner?: string | null;
-            school?: {
-                __typename: 'School';
-                id: string;
-                city: string;
-                country: string;
-                coverPhoto: string;
-                contactEmail?: string | null;
-                contactJobTitle?: string | null;
-                contactName?: string | null;
-                contactPhone?: string | null;
-                contractStatus: string;
-                creationYear: number;
-                description?: string | null;
-                institutionType: string;
-                internationalStudents: number;
-                lastUpdate: number;
-                logo: string;
-                name: string;
-                totalStudents: number;
-                slug: string;
-                published: boolean;
-                createdAt?: string | null;
-                updatedAt?: string | null;
-                owner?: string | null;
-            } | null;
-        } | null> | null;
-        nextToken?: string | null;
     } | null;
 };
 
@@ -7848,18 +7775,16 @@ export type GetProgramQuery = {
     } | null;
 };
 
-export type GetProgramBySlugQueryVariables = {
-    slug?: string | null;
-    sortDirection?: ModelSortDirection | null;
+export type ListProgramsQueryVariables = {
     filter?: ModelProgramFilterInput | null;
     limit?: number | null;
     nextToken?: string | null;
 };
 
-export type GetProgramBySlugQuery = {
-    getProgramBySlug?: {
+export type ListProgramsQuery = {
+    listPrograms?: {
         __typename: 'ModelProgramConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Program';
             id: string;
             applicationFee: number;
@@ -7944,7 +7869,108 @@ export type GetProgramBySlugQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
+        nextToken?: string | null;
+    } | null;
+};
+
+export type GetProgramBySlugQueryVariables = {
+    slug?: string | null;
+    sortDirection?: ModelSortDirection | null;
+    filter?: ModelProgramFilterInput | null;
+    limit?: number | null;
+    nextToken?: string | null;
+};
+
+export type GetProgramBySlugQuery = {
+    getProgramBySlug?: {
+        __typename: 'ModelProgramConnection';
+        items: Array<{
+            __typename: 'Program';
+            id: string;
+            applicationFee: number;
+            applicationFeeCurrency: string;
+            city: string;
+            costOfLiving: number;
+            costOfLivingCurrency: string;
+            country: string;
+            degree: string;
+            description?: string | null;
+            discipline: string;
+            duration: number;
+            durationUnit: string;
+            fee: number;
+            feeCurrency: string;
+            feeUnit: string;
+            feesAndFinancing?: string | null;
+            gradePointAverage: number;
+            highestEducationLevel: number;
+            intakeInformation?: string | null;
+            intakes: string;
+            languages: Array<string | null>;
+            lastUpdate: number;
+            minimumAge: number;
+            minimumWorkExperience: number;
+            minimumWorkExperienceUnit: string;
+            name: string;
+            otherRequirements?: string | null;
+            published: boolean;
+            requestedDocuments: Array<{
+                __typename: 'RequestedDocument';
+                name: string;
+                isMandatory?: boolean | null;
+                storageKey?: string | null;
+                description?: string | null;
+                condition?: string | null;
+                isSpecific?: boolean | null;
+            }>;
+            schedule: string;
+            schoolId: string;
+            schoolName: string;
+            slug: string;
+            submissionDeadline: string;
+            testCambridgeAdvanced: number;
+            testCambridgeFirst: number;
+            testCeliCilsItPlida: number;
+            testDele: number;
+            testDelfdalf: number;
+            testGmat: number;
+            testGoethe: number;
+            testGre: number;
+            testIelts: number;
+            testTagemage: number;
+            testTcftef: number;
+            testToefl: number;
+            testToeic: number;
+            createdAt?: string | null;
+            updatedAt?: string | null;
+            owner?: string | null;
+            school?: {
+                __typename: 'School';
+                id: string;
+                city: string;
+                country: string;
+                coverPhoto: string;
+                contactEmail?: string | null;
+                contactJobTitle?: string | null;
+                contactName?: string | null;
+                contactPhone?: string | null;
+                contractStatus: string;
+                creationYear: number;
+                description?: string | null;
+                institutionType: string;
+                internationalStudents: number;
+                lastUpdate: number;
+                logo: string;
+                name: string;
+                totalStudents: number;
+                slug: string;
+                published: boolean;
+                createdAt?: string | null;
+                updatedAt?: string | null;
+                owner?: string | null;
+            } | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -7960,7 +7986,7 @@ export type GetProgramBySchoolQueryVariables = {
 export type GetProgramBySchoolQuery = {
     getProgramBySchool?: {
         __typename: 'ModelProgramConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Program';
             id: string;
             applicationFee: number;
@@ -8045,7 +8071,7 @@ export type GetProgramBySchoolQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -8061,7 +8087,7 @@ export type SearchProgramsQueryVariables = {
 export type SearchProgramsQuery = {
     searchPrograms?: {
         __typename: 'SearchableProgramConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Program';
             id: string;
             applicationFee: number;
@@ -8146,7 +8172,7 @@ export type SearchProgramsQuery = {
                 updatedAt?: string | null;
                 owner?: string | null;
             } | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
     } | null;
@@ -8160,6 +8186,9 @@ export type GetPostQuery = {
     getPost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -8181,9 +8210,12 @@ export type ListPostsQueryVariables = {
 export type ListPostsQuery = {
     listPosts?: {
         __typename: 'ModelPostConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Post';
             id: string;
+            image?: string | null;
+            description?: string | null;
+            readingTime?: number | null;
             category: string;
             content: string;
             lastUpdate: number;
@@ -8193,7 +8225,7 @@ export type ListPostsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -8209,9 +8241,12 @@ export type GetPostBySlugQueryVariables = {
 export type GetPostBySlugQuery = {
     getPostBySlug?: {
         __typename: 'ModelPostConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Post';
             id: string;
+            image?: string | null;
+            description?: string | null;
+            readingTime?: number | null;
             category: string;
             content: string;
             lastUpdate: number;
@@ -8221,7 +8256,7 @@ export type GetPostBySlugQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
     } | null;
 };
@@ -8237,9 +8272,12 @@ export type SearchPostsQueryVariables = {
 export type SearchPostsQuery = {
     searchPosts?: {
         __typename: 'SearchablePostConnection';
-        items?: Array<{
+        items: Array<{
             __typename: 'Post';
             id: string;
+            image?: string | null;
+            description?: string | null;
+            readingTime?: number | null;
             category: string;
             content: string;
             lastUpdate: number;
@@ -8249,7 +8287,7 @@ export type SearchPostsQuery = {
             createdAt?: string | null;
             updatedAt?: string | null;
             owner?: string | null;
-        } | null> | null;
+        }>;
         nextToken?: string | null;
         total?: number | null;
     } | null;
@@ -8507,7 +8545,7 @@ export type OnUpdateStudentByIdSubscription = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -8525,7 +8563,7 @@ export type OnUpdateStudentByIdSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -8535,7 +8573,7 @@ export type OnUpdateStudentByIdSubscription = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -8544,7 +8582,7 @@ export type OnUpdateStudentByIdSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -8655,7 +8693,7 @@ export type OnCreateStudentSubscription = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -8673,7 +8711,7 @@ export type OnCreateStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -8683,7 +8721,7 @@ export type OnCreateStudentSubscription = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -8692,7 +8730,7 @@ export type OnCreateStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -8803,7 +8841,7 @@ export type OnUpdateStudentSubscription = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -8821,7 +8859,7 @@ export type OnUpdateStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -8831,7 +8869,7 @@ export type OnUpdateStudentSubscription = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -8840,7 +8878,7 @@ export type OnUpdateStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -8951,7 +8989,7 @@ export type OnDeleteStudentSubscription = {
         address?: string | null;
         applications?: {
             __typename: 'ModelApplicationConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Application';
                 id: string;
                 admissionResult?: string | null;
@@ -8969,7 +9007,7 @@ export type OnDeleteStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         birthday?: string | null;
@@ -8979,7 +9017,7 @@ export type OnDeleteStudentSubscription = {
         disciplines?: Array<string | null> | null;
         documents?: {
             __typename: 'ModelDocumentConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Document';
                 id: string;
                 studentId: string;
@@ -8988,7 +9026,7 @@ export type OnDeleteStudentSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
         educationCountry?: string | null;
@@ -11143,7 +11181,7 @@ export type OnCreateSchoolSubscription = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -11194,7 +11232,7 @@ export type OnCreateSchoolSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -11227,7 +11265,7 @@ export type OnUpdateSchoolSubscription = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -11278,7 +11316,7 @@ export type OnUpdateSchoolSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -11311,7 +11349,7 @@ export type OnDeleteSchoolSubscription = {
         owner?: string | null;
         programs?: {
             __typename: 'ModelProgramConnection';
-            items?: Array<{
+            items: Array<{
                 __typename: 'Program';
                 id: string;
                 applicationFee: number;
@@ -11362,7 +11400,7 @@ export type OnDeleteSchoolSubscription = {
                 createdAt?: string | null;
                 updatedAt?: string | null;
                 owner?: string | null;
-            } | null> | null;
+            }>;
             nextToken?: string | null;
         } | null;
     } | null;
@@ -11651,6 +11689,9 @@ export type OnCreatePostSubscription = {
     onCreatePost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -11667,6 +11708,9 @@ export type OnUpdatePostSubscription = {
     onUpdatePost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;
@@ -11683,6 +11727,9 @@ export type OnDeletePostSubscription = {
     onDeletePost?: {
         __typename: 'Post';
         id: string;
+        image?: string | null;
+        description?: string | null;
+        readingTime?: number | null;
         category: string;
         content: string;
         lastUpdate: number;

@@ -1,4 +1,5 @@
 import { isObjectValuesEmpty, useWindowSize } from '@applyfuture/utils';
+import NoResult from '@components/no-result/NoResult';
 import { Filter, Translation } from '@pages/index';
 import { FC, RefObject } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -7,6 +8,8 @@ import TranslationRow from './TranslationRow';
 import TranslationRowSkeleton from './TranslationRowSkeleton';
 
 type Props = {
+    fetchAndSetAllNamespaces?: () => void;
+    fetchAndSetNamespace?: (namespace: string) => void;
     filter: Filter;
     isLoading: boolean;
     listRef: RefObject<any>;
@@ -16,7 +19,16 @@ type Props = {
 };
 
 const TranslationsList: FC<Props> = (props) => {
-    const { filter, isLoading, listRef, search, selected, translations } = props;
+    const {
+        fetchAndSetAllNamespaces,
+        fetchAndSetNamespace,
+        filter,
+        isLoading,
+        listRef,
+        search,
+        selected,
+        translations
+    } = props;
     const { width: windowWidth, height: windowHeight } = useWindowSize();
     const headerHeight = 490;
     const smBreakpoint = 640;
@@ -56,11 +68,17 @@ const TranslationsList: FC<Props> = (props) => {
         []
     );
 
-    return (
-        <>
-            {isLoading ? (
-                <TranslationRowSkeleton isLoading={isLoading} />
-            ) : (
+    const renderTranslations = () => {
+        if (isLoading) {
+            return <TranslationRowSkeleton isLoading={isLoading} />;
+        }
+
+        if (filteredTranslations.length === 0) {
+            return <NoResult />;
+        }
+
+        if (translations.length > 0 || filteredTranslations.length > 0) {
+            return (
                 <div className="py-12">
                     <List
                         ref={listRef}
@@ -72,6 +90,8 @@ const TranslationsList: FC<Props> = (props) => {
                         width={'100%'}>
                         {(props) => (
                             <TranslationRow
+                                fetchAndSetAllNamespaces={fetchAndSetAllNamespaces}
+                                fetchAndSetNamespace={fetchAndSetNamespace}
                                 selected={selected}
                                 translations={
                                     filter || search ? filteredTranslations : translations
@@ -81,9 +101,11 @@ const TranslationsList: FC<Props> = (props) => {
                         )}
                     </List>
                 </div>
-            )}
-        </>
-    );
+            );
+        }
+    };
+
+    return <>{renderTranslations()}</>;
 };
 
 export default TranslationsList;

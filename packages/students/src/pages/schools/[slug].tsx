@@ -12,7 +12,7 @@ import {
     listSchools,
     ListSchoolsQuery
 } from '@applyfuture/graphql';
-import { Container, Cover, SubHeader } from '@applyfuture/ui';
+import { BreadcrumbsNavigation, Container, Cover, SubHeader } from '@applyfuture/ui';
 import { getCountryLabel, markdown, useAuthenticatedUser, useQuery } from '@applyfuture/utils';
 import { GRAPHQL_AUTH_MODE, GraphQLResult } from '@aws-amplify/api';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
@@ -86,11 +86,17 @@ const SchoolPage: FC<Props> = (props) => {
         ?.filter((program) => program?.published)
         .filter((program) => program?.degree === 'CERTIFICATE');
 
+    const breadcrumbsItems = [
+        { label: t('schools:schools'), link: '/schools' },
+        { label: school.name, link: `/schools/${school.slug}` }
+    ];
+
     return (
         <>
             <DashboardLayout title={school.name}>
                 <div className="space-y-6">
                     <div>
+                        <BreadcrumbsNavigation items={breadcrumbsItems} />
                         <Cover
                             alt={''}
                             src={`${process.env.ASSETS_CDN_URL}/${school?.coverPhoto}` || ''}

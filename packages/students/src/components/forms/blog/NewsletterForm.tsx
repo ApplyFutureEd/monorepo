@@ -2,8 +2,15 @@ import { Button, Input } from '@applyfuture/ui';
 import { toast } from '@applyfuture/utils';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { FC } from 'react';
+import { object, string } from 'yup';
 
 const NewsletterForm: FC = () => {
+    const validationSchema = object().shape({
+        email: string()
+            .required('Please enter your email')
+            .email('Something is wrong with this email')
+    });
+
     type initialValues = {
         email: string;
     };
@@ -14,16 +21,29 @@ const NewsletterForm: FC = () => {
 
     const onSubmit = async (values: initialValues, { resetForm }: any) => {
         const { email } = values;
-        console.log(email);
-        resetForm(email);
-        toast({
-            title: 'Thank you for your subscription',
-            variant: 'success'
-        });
+        try {
+            await fetch('/api/newsletter', {
+                body: JSON.stringify({ email }),
+                method: 'POST'
+            });
+            await toast({
+                title: 'Thank you for your subscription',
+                variant: 'success'
+            });
+            await resetForm(email);
+        } catch (error) {
+            toast({
+                title: 'Something went wrong',
+                variant: 'error'
+            });
+        }
     };
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
             <Form className="flex flex-col w-full md:flex-row">
                 <div className="flex-1">
                     <Field id="email" name="email">

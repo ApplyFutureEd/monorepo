@@ -1,5 +1,5 @@
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 jest.mock('next/router', () => ({
     useRouter() {

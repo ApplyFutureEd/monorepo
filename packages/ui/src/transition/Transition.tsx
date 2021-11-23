@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useEffect, useRef } from 'react';
+import { createContext, FC, ReactNode, useContext, useEffect, useRef } from 'react';
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group';
 
 type TransitionContextProps = {
@@ -28,7 +28,7 @@ const useIsInitialRender = (): boolean => {
 
 type CSSTransitionProps = {
     appear?: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
     enter?: string;
     enterFrom?: string;
     enterTo?: string;

@@ -29,7 +29,7 @@ const CompagnyInfo: FC<Props> = (props) => {
         <div className="space-y-6">
             <Field id="compagnyName" name="compagnyName">
                 {(fieldProps: FieldProps) => (
-                    <Input label={t('recruiter-form:compagny-name')} {...fieldProps} />
+                    <Input label={t('recruiters:compagny-name')} {...fieldProps} />
                 )}
             </Field>
 
@@ -41,31 +41,31 @@ const CompagnyInfo: FC<Props> = (props) => {
 
             <Field id="website" name="website">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:website')} {...fieldProps} />
+                    <Input optional label={t('recruiters:website')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="facebook" name="facebook">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:facebook')} {...fieldProps} />
+                    <Input optional label={t('recruiters:facebook')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="instagram" name="instagram">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:instagram')} {...fieldProps} />
+                    <Input optional label={t('recruiters:instagram')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="twitter" name="twitter">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:twitter')} {...fieldProps} />
+                    <Input optional label={t('recruiters:twitter')} {...fieldProps} />
                 )}
             </Field>
 
             <Field id="linkedIn" name="linkedIn">
                 {(fieldProps: FieldProps) => (
-                    <Input optional label={t('recruiter-form:linked-in')} {...fieldProps} />
+                    <Input optional label={t('recruiters:linked-in')} {...fieldProps} />
                 )}
             </Field>
 

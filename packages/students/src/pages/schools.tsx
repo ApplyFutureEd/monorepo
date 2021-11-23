@@ -4,7 +4,7 @@ import {
     SearchSchoolsQuery,
     SearchSchoolsQueryVariables
 } from '@applyfuture/graphql';
-import { Container } from '@applyfuture/ui';
+import { BreadcrumbsNavigation, Container } from '@applyfuture/ui';
 import { useQuery } from '@applyfuture/utils';
 import ApplicationJourneySteps from '@components/common/application-journey-steps/ApplicationJourneySteps';
 import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
@@ -93,10 +93,13 @@ const SchoolsPage: FC = () => {
         }
     };
 
+    const breadcrumbsItems = [{ label: t('schools:schools'), link: '/schools' }];
+
     return (
         <DashboardLayout
             description={t('schools:meta-description')}
             title={t('schools:page-title')}>
+            <BreadcrumbsNavigation items={breadcrumbsItems} />
             <ApplicationJourneySteps />
             <Container
                 headerComponents={headerComponents}

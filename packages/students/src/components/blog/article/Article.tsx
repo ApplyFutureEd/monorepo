@@ -14,17 +14,26 @@ type Props = {
     author: Author;
     currentPosts?: Post[];
     description?: string;
-    id: number;
+    id: string;
     image: string;
     publicationDate?: string;
     readingTime?: number;
     slug: string;
-    tag: string;
+    category: string;
     title: string;
 };
 
 const Article: FC<Props> = (props) => {
-    const { author, description, image, publicationDate, readingTime, slug, tag, title } = props;
+    const {
+        author,
+        description,
+        image,
+        publicationDate,
+        readingTime,
+        slug,
+        category,
+        title
+    } = props;
 
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
@@ -37,7 +46,7 @@ const Article: FC<Props> = (props) => {
                 </div>
                 <div className="flex flex-1 flex-col justify-between p-6 bg-white">
                     <div className="flex flex-1 flex-col justify-between">
-                        <p className="text-indigo-600 text-sm font-medium">{tag}</p>
+                        <p className="text-indigo-600 text-sm font-medium">{category}</p>
                         <p className="mt-4 text-gray-900 text-xl font-semibold">{title}</p>
                         <p className="mt-3 text-gray-500 text-base">{description}</p>
                     </div>

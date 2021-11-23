@@ -2238,40 +2238,6 @@ export const searchFeedbacks = /* GraphQL */ `
         }
     }
 `;
-export const listSchools = /* GraphQL */ `
-    query ListSchools($filter: ModelSchoolFilterInput, $limit: Int, $nextToken: String) {
-        listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
-            items {
-                id
-                city
-                country
-                coverPhoto
-                contactEmail
-                contactJobTitle
-                contactName
-                contactPhone
-                contractStatus
-                creationYear
-                description
-                institutionType
-                internationalStudents
-                lastUpdate
-                logo
-                name
-                totalStudents
-                slug
-                published
-                createdAt
-                updatedAt
-                owner
-                programs {
-                    nextToken
-                }
-            }
-            nextToken
-        }
-    }
-`;
 export const getSchool = /* GraphQL */ `
     query GetSchool($id: ID!) {
         getSchool(id: $id) {
@@ -2351,6 +2317,40 @@ export const getSchool = /* GraphQL */ `
                 }
                 nextToken
             }
+        }
+    }
+`;
+export const listSchools = /* GraphQL */ `
+    query ListSchools($filter: ModelSchoolFilterInput, $limit: Int, $nextToken: String) {
+        listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
+            items {
+                id
+                city
+                country
+                coverPhoto
+                contactEmail
+                contactJobTitle
+                contactName
+                contactPhone
+                contractStatus
+                creationYear
+                description
+                institutionType
+                internationalStudents
+                lastUpdate
+                logo
+                name
+                totalStudents
+                slug
+                published
+                createdAt
+                updatedAt
+                owner
+                programs {
+                    nextToken
+                }
+            }
+            nextToken
         }
     }
 `;
@@ -2447,96 +2447,6 @@ export const searchSchools = /* GraphQL */ `
         }
     }
 `;
-export const listPrograms = /* GraphQL */ `
-    query ListPrograms($filter: ModelProgramFilterInput, $limit: Int, $nextToken: String) {
-        listPrograms(filter: $filter, limit: $limit, nextToken: $nextToken) {
-            items {
-                id
-                applicationFee
-                applicationFeeCurrency
-                city
-                costOfLiving
-                costOfLivingCurrency
-                country
-                degree
-                description
-                discipline
-                duration
-                durationUnit
-                fee
-                feeCurrency
-                feeUnit
-                feesAndFinancing
-                gradePointAverage
-                highestEducationLevel
-                intakeInformation
-                intakes
-                languages
-                lastUpdate
-                minimumAge
-                minimumWorkExperience
-                minimumWorkExperienceUnit
-                name
-                otherRequirements
-                published
-                requestedDocuments {
-                    name
-                    isMandatory
-                    storageKey
-                    description
-                    condition
-                    isSpecific
-                }
-                schedule
-                schoolId
-                schoolName
-                slug
-                submissionDeadline
-                testCambridgeAdvanced
-                testCambridgeFirst
-                testCeliCilsItPlida
-                testDele
-                testDelfdalf
-                testGmat
-                testGoethe
-                testGre
-                testIelts
-                testTagemage
-                testTcftef
-                testToefl
-                testToeic
-                createdAt
-                updatedAt
-                owner
-                school {
-                    id
-                    city
-                    country
-                    coverPhoto
-                    contactEmail
-                    contactJobTitle
-                    contactName
-                    contactPhone
-                    contractStatus
-                    creationYear
-                    description
-                    institutionType
-                    internationalStudents
-                    lastUpdate
-                    logo
-                    name
-                    totalStudents
-                    slug
-                    published
-                    createdAt
-                    updatedAt
-                    owner
-                }
-            }
-            nextToken
-        }
-    }
-`;
 export const getProgram = /* GraphQL */ `
     query GetProgram($id: ID!) {
         getProgram(id: $id) {
@@ -2624,6 +2534,96 @@ export const getProgram = /* GraphQL */ `
                     nextToken
                 }
             }
+        }
+    }
+`;
+export const listPrograms = /* GraphQL */ `
+    query ListPrograms($filter: ModelProgramFilterInput, $limit: Int, $nextToken: String) {
+        listPrograms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+            items {
+                id
+                applicationFee
+                applicationFeeCurrency
+                city
+                costOfLiving
+                costOfLivingCurrency
+                country
+                degree
+                description
+                discipline
+                duration
+                durationUnit
+                fee
+                feeCurrency
+                feeUnit
+                feesAndFinancing
+                gradePointAverage
+                highestEducationLevel
+                intakeInformation
+                intakes
+                languages
+                lastUpdate
+                minimumAge
+                minimumWorkExperience
+                minimumWorkExperienceUnit
+                name
+                otherRequirements
+                published
+                requestedDocuments {
+                    name
+                    isMandatory
+                    storageKey
+                    description
+                    condition
+                    isSpecific
+                }
+                schedule
+                schoolId
+                schoolName
+                slug
+                submissionDeadline
+                testCambridgeAdvanced
+                testCambridgeFirst
+                testCeliCilsItPlida
+                testDele
+                testDelfdalf
+                testGmat
+                testGoethe
+                testGre
+                testIelts
+                testTagemage
+                testTcftef
+                testToefl
+                testToeic
+                createdAt
+                updatedAt
+                owner
+                school {
+                    id
+                    city
+                    country
+                    coverPhoto
+                    contactEmail
+                    contactJobTitle
+                    contactName
+                    contactPhone
+                    contractStatus
+                    creationYear
+                    description
+                    institutionType
+                    internationalStudents
+                    lastUpdate
+                    logo
+                    name
+                    totalStudents
+                    slug
+                    published
+                    createdAt
+                    updatedAt
+                    owner
+                }
+            }
+            nextToken
         }
     }
 `;
@@ -2938,6 +2938,9 @@ export const getPost = /* GraphQL */ `
     query GetPost($id: ID!) {
         getPost(id: $id) {
             id
+            image
+            description
+            readingTime
             category
             content
             lastUpdate
@@ -2955,6 +2958,9 @@ export const listPosts = /* GraphQL */ `
         listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
             items {
                 id
+                image
+                description
+                readingTime
                 category
                 content
                 lastUpdate
@@ -2986,6 +2992,9 @@ export const getPostBySlug = /* GraphQL */ `
         ) {
             items {
                 id
+                image
+                description
+                readingTime
                 category
                 content
                 lastUpdate
@@ -3017,6 +3026,9 @@ export const searchPosts = /* GraphQL */ `
         ) {
             items {
                 id
+                image
+                description
+                readingTime
                 category
                 content
                 lastUpdate

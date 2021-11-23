@@ -12,7 +12,14 @@ import {
     listPrograms,
     ListProgramsQuery
 } from '@applyfuture/graphql';
-import { Button, Container, Cover, IconPanel, SubHeader } from '@applyfuture/ui';
+import {
+    BreadcrumbsNavigation,
+    Button,
+    Container,
+    Cover,
+    IconPanel,
+    SubHeader
+} from '@applyfuture/ui';
 import {
     applicationSteps,
     checkCompletion,
@@ -186,6 +193,12 @@ const ProgramPage: FC<Props> = (props) => {
         </div>
     ];
 
+    const breadcrumbsItems = [
+        { label: t('programs:programs'), link: '/programs' },
+        { label: program?.school?.name, link: `/schools/${program?.school?.slug}` },
+        { label: program.name, link: `/programs/${program?.slug}` }
+    ];
+
     return (
         <>
             {student && (
@@ -199,6 +212,7 @@ const ProgramPage: FC<Props> = (props) => {
             <DashboardLayout title={program.name}>
                 <div className="space-y-6">
                     <div>
+                        <BreadcrumbsNavigation items={breadcrumbsItems} />
                         <Cover
                             alt={''}
                             src={
