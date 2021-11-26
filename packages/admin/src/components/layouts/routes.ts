@@ -22,5 +22,9 @@ export const routes = [
     {
         href: '/programs',
         label: 'Programs'
+    },
+    {
+        href: '/posts',
+        label: 'Posts'
     }
 ];
