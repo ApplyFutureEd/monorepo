@@ -1,0 +1,168 @@
+import {
+    createPost,
+    CreatePostMutation,
+    deletePost,
+    DeletePostMutation,
+    SearchablePostSortableFields,
+    SearchableSortDirection,
+    searchPosts,
+    SearchPostsQuery,
+    SearchPostsQueryVariables
+} from '@applyfuture/graphql';
+import { Post } from '@applyfuture/models';
+import { Button, Container, Loader } from '@applyfuture/ui';
+import { graphql, toast, useQuery, withPrivateAccess } from '@applyfuture/utils';
+import ContextMenu, { ContextMenuItem } from '@components/common/context-menu/ContextMenu';
+import DashboardLayout from '@components/layouts/dashboard-layout/DashboardLayout';
+import Table from '@components/posts/Table';
+import {
+    faCopy,
+    faExternalLinkSquare,
+    faPencil,
+    faPlus,
+    faTrash
+} from '@fortawesome/pro-light-svg-icons';
+import kebabCase from 'lodash/kebabCase';
+import { useRouter } from 'next/router';
+import { FC, useState } from 'react';
+import { ItemParams, useContextMenu } from 'react-contexify';
+
+const PostsPage: FC = () => {
+    const router = useRouter();
+    const [variables, setVariables] = useState<SearchPostsQueryVariables>({
+        limit: 20,
+        sort: {
+            direction: 'desc' as SearchableSortDirection,
+            field: 'lastUpdate' as SearchablePostSortableFields
+        }
+    });
+    const { data, isLoading, refetch } = useQuery<SearchPostsQuery, SearchPostsQueryVariables>(
+        searchPosts,
+        variables
+    );
+
+    const { show } = useContextMenu({
+        id: 'posts'
+    });
+    const handleContextMenu = (e: React.MouseEvent, row: Post) => {
+        show(e, { props: { row } });
+    };
+
+    const contextMenuItems: Array<ContextMenuItem> = [
+        {
+            icon: faPencil,
+            label: 'Edit',
+            onClick: (args: ItemParams<any, any>) =>
+                router.push(`posts/update?id=${args.props.row.id}`)
+        },
+        {
+            icon: faCopy,
+            label: 'Duplicate',
+            onClick: async (args: ItemParams<any, any>) => {
+                try {
+                    const post = {
+                        ...args.props.row,
+                        name: `${args.props.row.name} copy`,
+                        slug: kebabCase(`${args.props.row.name} copy`)
+                    };
+
+                    delete post.id;
+                    delete post.__typename;
+                    delete post.updatedAt;
+                    delete post.createdAt;
+
+                    await graphql<CreatePostMutation>(createPost, {
+                        input: post
+                    });
+                    toast({
+                        description: `${args.props.row.name} successfully duplicated`,
+                        title: 'Post duplicated',
+                        variant: 'success'
+                    });
+                    refetch();
+                } catch (error) {
+                    toast({
+                        description: `${error.message}`,
+                        title: 'An error occured',
+                        variant: 'error'
+                    });
+                }
+            }
+        },
+        {
+            icon: faExternalLinkSquare,
+            label: 'Visit',
+            onClick: (args: ItemParams<any, any>) => {
+                const win = window.open(
+                    `https://www.applyfuture.com/posts/${args.props.row.slug}`,
+                    '_blank'
+                );
+                win?.focus();
+            }
+        },
+        {
+            icon: faTrash,
+            label: 'Delete',
+            onClick: async (args: ItemParams<any, any>) => {
+                try {
+                    await graphql<DeletePostMutation>(deletePost, {
+                        input: { id: args.props.row.id }
+                    });
+                    toast({
+                        description: `${args.props.row.name} successfully deleted`,
+                        title: 'Post deleted',
+                        variant: 'success'
+                    });
+                    refetch();
+                } catch (error) {
+                    toast({
+                        description: `${error.message}`,
+                        title: 'An error occured',
+                        variant: 'error'
+                    });
+                }
+            }
+        }
+    ];
+
+    const headerComponents = [
+        <Button
+            key={0}
+            startIcon={faPlus}
+            onClick={() => {
+                router.push(`/posts/create`);
+            }}>
+            New
+        </Button>
+    ];
+
+    const total = data.searchPosts?.total ? `(${data.searchPosts?.total})` : '';
+
+    return (
+        <DashboardLayout title="Posts">
+            <ContextMenu id="posts" items={contextMenuItems} />
+            <Container
+                headerComponents={headerComponents}
+                innerPadding={false}
+                title={`Posts ${total}`}>
+                <div className="relative">
+                    {isLoading && (
+                        <div className="z-1000 absolute inset-1/2 w-full h-full bg-gray-100 opacity-75">
+                            <Loader />
+                        </div>
+                    )}
+                    <Table
+                        data={data}
+                        handleContextMenu={handleContextMenu}
+                        setVariables={setVariables}
+                    />
+                </div>
+            </Container>
+        </DashboardLayout>
+    );
+};
+
+export default withPrivateAccess(PostsPage, {
+    groups: ['admin'],
+    redirection: '/sign-in'
+});
