@@ -4,6 +4,7 @@ import { markdown } from '@applyfuture/utils';
 import { date } from '@applyfuture/utils';
 import posts from '@assets/posts/posts';
 import { Author } from '@components/blog/article/Article';
+import DisqusComments from '@components/blog/disqus/DisqusComments';
 import SocialMedia from '@components/blog/social-media/SocialMedia';
 import SuggestionBar from '@components/blog/suggestion-bar/SuggestionBar';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
@@ -208,7 +209,7 @@ const Post: FC<Props> = (props) => {
                     </div>
                 </div>
             </div>
-
+            <DisqusComments post={post} />
             <SuggestionBar posts={suggestedPosts} />
         </LandingLayout>
     );

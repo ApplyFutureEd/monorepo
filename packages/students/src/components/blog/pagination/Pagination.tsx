@@ -25,14 +25,18 @@ const Pagination: FC<Props> = (props) => {
     return (
         <nav className="flex items-center justify-between mt-16 px-4 border-t border-gray-200 sm:px-0">
             <div className="flex flex-1 mt-2 w-0">
-                <Button
-                    startIcon={faArrowLeft}
-                    variant="text"
-                    onClick={() => {
-                        paginateBack && paginateBack();
-                    }}>
-                    {t('blog:pagination-previous')}
-                </Button>
+                {currentPage !== 1 ? (
+                    <Button
+                        startIcon={faArrowLeft}
+                        variant="text"
+                        onClick={() => {
+                            paginateBack && paginateBack();
+                        }}>
+                        {t('blog:pagination-previous')}
+                    </Button>
+                ) : (
+                    ''
+                )}
             </div>
             <nav className="hidden md:flex md:-mt-4">
                 <ul className="flex pl-0 rounded list-none">
@@ -55,14 +59,18 @@ const Pagination: FC<Props> = (props) => {
                 </ul>
             </nav>
             <div className="flex flex-1 justify-end mt-2 w-0">
-                <Button
-                    endIcon={faArrowRight}
-                    variant="text"
-                    onClick={() => {
-                        paginateFront && paginateFront();
-                    }}>
-                    {t('blog:pagination-next')}
-                </Button>
+                {Math.ceil(totalPosts / postsPerPage) === currentPage ? (
+                    ''
+                ) : (
+                    <Button
+                        endIcon={faArrowRight}
+                        variant="text"
+                        onClick={() => {
+                            paginateFront && paginateFront();
+                        }}>
+                        {t('blog:pagination-next')}
+                    </Button>
+                )}
             </div>
         </nav>
     );
