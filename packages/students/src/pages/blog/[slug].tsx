@@ -1,4 +1,5 @@
 import { SupportedLocale } from '@applyfuture/models';
+import { BreadcrumbsNavigation } from '@applyfuture/ui';
 import { markdown } from '@applyfuture/utils';
 import { date } from '@applyfuture/utils';
 import posts from '@assets/posts/posts';
@@ -9,6 +10,7 @@ import SuggestionBar from '@components/blog/suggestion-bar/SuggestionBar';
 import LandingLayout from '@components/layouts/landing-layout/LandingLayout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import { FC } from 'react';
 
 export type Post = {
@@ -34,12 +36,16 @@ type Params = {
 };
 
 const Post: FC<Props> = (props) => {
+    const { t } = useTranslation();
     const { post, suggestedPosts } = props;
     const router = useRouter();
     const locale = router.locale as SupportedLocale;
 
+    const breadcrumbsItems = [{ label: `${t('navigation:blog')}`, link: '/blog' }];
+
     return (
         <LandingLayout title={post?.title}>
+            <BreadcrumbsNavigation items={breadcrumbsItems} />
             <div className="relative py-16 bg-white overflow-hidden">
                 <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:w-full lg:h-full">
                     <div aria-hidden="true" className="relative mx-auto h-full text-lg">

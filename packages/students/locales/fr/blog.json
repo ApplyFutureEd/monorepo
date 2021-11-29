@@ -1,1 +1,13 @@
-{"hero-headline":"Bienvenue sur ApplyBlog","hero-paragraph":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed.","keep-reading":"Poursuivez votre lecture","newsletter-cta":"S'abonner","newsletter-headline":"Abonnez-vous à notre newsletter","newsletter-input-placeholder":"Entrez votre email","newsletter-legal-notice":"Nous prenons soin de vos données. Lisez notre","newsletter-paragraph":"Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.","pagination-next":"Suivant","pagination-previous":"Précédant"}
+{
+    "article-reading-time": "minutes de lecture",
+    "hero-headline": "Bienvenue sur ApplyBlog",
+    "hero-paragraph": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed.",
+    "keep-reading": "Poursuivez votre lecture",
+    "newsletter-cta": "S'abonner",
+    "newsletter-headline": "Abonnez-vous à notre newsletter",
+    "newsletter-input-placeholder": "Entrez votre email",
+    "newsletter-legal-notice": "Nous prenons soin de vos données. Lisez notre",
+    "newsletter-paragraph": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.",
+    "pagination-next": "Suivant",
+    "pagination-previous": "Précédent"
+}
